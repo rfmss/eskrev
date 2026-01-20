@@ -847,7 +847,16 @@ body.xray-active #editor {
 .qr-modal { max-width: 760px; }
 .qr-stream-layout,
 .qr-scan-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center; }
-.qr-canvas { width: 100%; max-width: 320px; aspect-ratio: 1 / 1; margin: 0 auto; }
+.qr-canvas {
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    background: #fff;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
 .qr-stream-panel,
 .qr-scan-panel { display: flex; flex-direction: column; gap: 12px; }
 .qr-stream-instructions {

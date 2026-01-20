@@ -3,8 +3,9 @@ import { buildTotPayload, importTot } from './export_tot.js';
 import { lang } from './lang.js';
 
 const QR_VERSION = 'v1';
-const CHUNK_SIZE = 250;
-const FRAME_INTERVAL_MS = 380;
+const CHUNK_SIZE = 200;
+const FRAME_INTERVAL_MS = 450;
+const QR_SIZE = 360;
 
 const qrTransfer = (() => {
   let streamTimer = null;
@@ -92,9 +93,9 @@ const qrTransfer = (() => {
 
     if (!qrInstance) {
       qrInstance = new QRCode(els.streamCode, {
-        width: 256,
-        height: 256,
-        correctLevel: QRCode.CorrectLevel.L
+        width: QR_SIZE,
+        height: QR_SIZE,
+        correctLevel: QRCode.CorrectLevel.Q
       });
     }
 
