@@ -1,0 +1,73 @@
+const CACHE_NAME = "tot-cache-v1";
+const CACHE_ASSETS = [
+  "./",
+  "./index.html",
+  "./totbooks.html",
+  "./manifest.json",
+  "./src/css/main.css",
+  "./src/css/base.css",
+  "./src/css/layout.css",
+  "./src/css/components.css",
+  "./src/js/app.js",
+  "./src/js/modules/auth.js",
+  "./src/js/modules/birth_tracker.js",
+  "./src/js/modules/editor.js",
+  "./src/js/modules/export_tot.js",
+  "./src/js/modules/lang.js",
+  "./src/js/modules/store.js",
+  "./src/js/modules/ui.js",
+  "./src/js/modules/qr_transfer.js",
+  "./src/assets/js/qrcode.min.js",
+  "./src/assets/js/lz-string.min.js",
+  "./src/assets/js/phosphor.js",
+  "./src/assets/audio/backspace.wav",
+  "./src/assets/audio/enter.wav",
+  "./src/assets/audio/music.mp3",
+  "./src/assets/audio/scificannon.mp3",
+  "./src/assets/audio/type.wav",
+  "./src/assets/fonts/0xProtoNerdFont-Regular.ttf",
+  "./src/assets/fonts/3270NerdFontMono-Regular.ttf",
+  "./src/assets/fonts/BlexMonoNerdFont-Text.ttf",
+  "./src/assets/fonts/FiraCodeNerdFontPropo-Regular.ttf",
+  "./src/assets/fonts/iMWritingMonoNerdFont-Regular.ttf",
+  "./src/assets/fonts/JetBrainsMonoNLNerdFont-Regular.ttf",
+  "./src/assets/fonts/SymbolsNerdFontMono-Regular.ttf",
+  "./src/assets/fonts/SymbolsNerdFont-Regular.ttf",
+  "./src/assets/icons/icon-192.svg",
+  "./src/assets/icons/icon-512.svg"
+];
+
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(CACHE_ASSETS))
+  );
+  self.skipWaiting();
+});
+
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    caches.keys().then((keys) =>
+      Promise.all(
+        keys.map((key) => (key === CACHE_NAME ? null : caches.delete(key)))
+      )
+    )
+  );
+  self.clients.claim();
+});
+
+self.addEventListener("fetch", (event) => {
+  if (event.request.method !== "GET") return;
+  event.respondWith(
+    caches.match(event.request).then((cached) => {
+      if (cached) return cached;
+      return fetch(event.request)
+        .then((response) => {
+          if (!response || response.status !== 200) return response;
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+          return response;
+        })
+        .catch(() => cached);
+    })
+  );
+});

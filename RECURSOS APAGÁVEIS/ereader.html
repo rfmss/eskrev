@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writer's Reader - V13 (Custom Shortcuts)</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,700;1,7..72,400&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        :root { --p-width: 60vw; }
+        body { margin: 0; padding: 0; font-family: 'Lato', sans-serif; background: #eee; overflow: hidden; }
+
+        /* --- EDITOR --- */
+        .editor-container { 
+            max-width: 800px; margin: 50px auto; padding: 30px; 
+            background: white; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+            height: 85vh; display: flex; flex-direction: column;
+        }
+        .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        h2 { margin: 0; color: #333; }
+        .shortcuts-hint { font-size: 0.8rem; color: #888; background: #f4f4f4; padding: 5px 10px; border-radius: 4px; }
+        
+        textarea#source-text { 
+            flex: 1; padding: 25px; margin-bottom: 20px; 
+            border: 1px solid #ddd; border-radius: 5px; 
+            font-size: 16px; font-family: 'Literata', serif; resize: none; 
+            line-height: 1.6; color: #333; outline: none;
+        }
+        
+        .action-btn { 
+            background: #2c3e50; color: white; padding: 15px; 
+            border: none; cursor: pointer; border-radius: 5px; 
+            font-size: 1.1rem; display: flex; align-items: center; justify-content: center; gap: 10px; 
+            transition: 0.2s;
+        }
+        .action-btn:hover { background: #34495e; transform: translateY(-2px); }
+
+        /* --- LEITOR (OVERLAY) --- */
+        #ereader-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 9999;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+            display: flex; flex-direction: column;
+        }
+        #ereader-overlay.active { transform: translateY(0); }
+
+        #overlay-tint {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 50; mix-blend-mode: multiply;
+            background-color: transparent; transition: background-color 0.2s;
+        }
+
+        /* --- TOOLBAR --- */
+        .toolbar {
+            padding: 0 25px; height: 60px; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,0.08); z-index: 100; user-select: none;
+            transition: background-color 0.3s;
+        }
+        
+        .tool-group { display: flex; gap: 10px; align-items: center; height: 100%; }
+        
+        /* Botões */
+        .icon-btn { 
+            background: none; border: none; font-size: 1.25rem; cursor: pointer; 
+            opacity: 0.5; transition: 0.2s; color: inherit; 
+            width: 40px; height: 40px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center; position: relative;
+        }
+        .icon-btn:hover { opacity: 1; background-color: rgba(0,0,0,0.05); }
+        
+        .text-btn {
+            font-size: 1rem; font-weight: bold; width: 35px; height: 35px;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid transparent;
+        }
+        .text-btn:hover { border-color: rgba(0,0,0,0.1); }
+        
+        #btn-mode-toggle { opacity: 0.8; }
+        #btn-mode-toggle:hover { opacity: 1; transform: scale(1.1); }
+
+        /* Tooltip */
+        .icon-btn::after, .text-btn::after {
+            content: attr(data-tooltip);
+            position: absolute; bottom: -25px; font-size: 0.65rem; opacity: 0; transition: opacity 0.2s;
+            background: #333; color: white; padding: 3px 6px; border-radius: 4px; pointer-events: none; white-space: nowrap; font-weight: normal;
+        }
+        .icon-btn:hover::after, .text-btn:hover::after { opacity: 1; bottom: -30px; }
+
+        /* Bandeiras */
+        .flag-btn { font-size: 1.4rem; opacity: 0.6; filter: grayscale(100%); transition: 0.3s; }
+        .flag-btn:hover { opacity: 1; filter: grayscale(0%); transform: scale(1.1); }
+
+        /* --- VIEWER --- */
+        #viewer-container {
+            flex: 1; position: relative; width: 100%;
+            transition: background-color 0.3s, filter 0.2s;
+        }
+        #book-content {
+            transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s;
+            font-size: 19px; /* Default */
+            line-height: 1.8; text-align: justify; outline: none;
+        }
+
+        /* Modos */
+        .view-paginated #viewer-container { overflow: hidden; }
+        .view-paginated #book-content {
+            position: absolute; top: 0; left: 0; height: calc(100vh - 100px);
+            padding: 40px calc((100vw - var(--p-width)) / 2);
+            column-width: var(--p-width); column-gap: calc(100vw - var(--p-width)); column-fill: auto; width: auto;
+        }
+        .click-zone { position: absolute; top: 60px; bottom: 40px; width: 10%; z-index: 90; display: none; }
+        .view-paginated .click-zone { display: block; }
+        .zone-left { left: 0; cursor: w-resize; }
+        .zone-right { right: 0; cursor: e-resize; }
+
+        .view-scrolled #viewer-container { overflow-y: auto; overflow-x: hidden; }
+        .view-scrolled #book-content {
+            position: static; width: var(--p-width); margin: 0 auto; 
+            padding: 50px 0 100px 0; height: auto !important; 
+            column-width: auto !important; transform: none !important;
+        }
+
+        .footer-info { text-align: center; padding: 10px; font-size: 0.8rem; opacity: 0.6; z-index: 100; background: inherit; }
+
+        /* Temas */
+        .theme-light { background-color: #fcfbf9; color: #2c2c2c; } 
+        .theme-light .toolbar { background-color: #f7f5f0; }
+        .theme-sepia { background-color: #f4ecd8; color: #5b4636; }
+        .theme-sepia .toolbar { background-color: #ebe1c9; border-color: rgba(91, 70, 54, 0.1); }
+        .theme-dark { background-color: #1a1a1a; color: #c0c0c0; }
+        .theme-dark .toolbar { background-color: #252525; border-color: rgba(255,255,255,0.1); }
+        .theme-dark input[type=range] { filter: invert(1); }
+
+        .font-literata { font-family: 'Literata', serif; }
+        .font-merriweather { font-family: 'Merriweather', serif; }
+        .font-lato { font-family: 'Lato', sans-serif; }
+    </style>
+</head>
+<body>
+
+    <div class="editor-container">
+        <div class="header-row">
+            <h2>Writer's Deck <small>V13</small></h2>
+            <div class="shortcuts-hint">
+                <i class="ri-keyboard-line"></i> Atalhos: M, T, B/D, +/-
+            </div>
+        </div>
+        
+        <textarea id="source-text" placeholder="Cole seu texto aqui e deixe a IA detectar...">
+O Captain! My Captain! our fearful trip is done,
+The ship has weather’d every rack, the prize we sought is won,
+The port is near, the bells I hear, the people all exulting,
+While follow eyes the steady keel, the vessel grim and daring;
+But O heart! heart! heart!
+O the bleeding drops of red,
+Where on the deck my Captain lies,
+Fallen cold and dead.
+        </textarea>
+        
+        <button class="action-btn" onclick="initReader()">
+            <i class="ri-magic-line"></i> Detectar Idioma & Ler
+        </button>
+    </div>
+
+    <div id="ereader-overlay" class="theme-light view-paginated">
+        <div id="overlay-tint"></div>
+
+        <div class="toolbar">
+            <div class="tool-group">
+                <button class="icon-btn" id="btn-close" onclick="closeReader()" data-tooltip="Sair (Esc)"><i class="ri-close-line"></i></button>
+                <div style="width: 1px; height: 20px; background: currentColor; opacity: 0.2;"></div>
+                <div id="lang-container" class="tool-group" style="gap:5px;"></div>
+            </div>
+
+            <div class="tool-group">
+                <button class="icon-btn" id="btn-mode-toggle" onclick="toggleMode()" data-tooltip="Alternar Modo (M)">
+                    <i class="ri-article-line"></i> 
+                </button>
+            </div>
+
+            <div class="tool-group">
+                <button class="icon-btn text-btn" id="btn-font-minus" onclick="adjustFontSize(-1)" data-tooltip="Diminuir Fonte (-)">
+                    <i class="ri-subtract-line" style="font-size:0.8rem"></i>A
+                </button>
+                <button class="icon-btn text-btn" id="btn-font-plus" onclick="adjustFontSize(1)" data-tooltip="Aumentar Fonte (+)">
+                    A<i class="ri-add-line" style="font-size:0.8rem"></i>
+                </button>
+
+                <div style="width: 1px; height: 20px; background: currentColor; opacity: 0.2;"></div>
+
+                <button class="icon-btn text-btn font-literata" onclick="setFont('literata')" data-tooltip="Literata">L</button>
+                <button class="icon-btn text-btn font-merriweather" onclick="setFont('merriweather')" data-tooltip="Merriweather">M</button>
+                <button class="icon-btn text-btn font-lato" onclick="setFont('lato')" data-tooltip="Lato">S</button>
+                
+                <div style="width: 1px; height: 20px; background: currentColor; opacity: 0.2;"></div>
+
+                <button class="icon-btn" id="btn-theme" onclick="cycleTheme()" data-tooltip="Mudar Tema (T)">
+                    <i class="ri-contrast-drop-line"></i>
+                </button>
+                
+                <div style="display:flex; align-items:center; gap:5px;">
+                    <i class="ri-sun-line" style="font-size:1rem; opacity:0.5"></i>
+                    <input type="range" id="brightness-slider" min="30" max="100" value="100" oninput="adjustBrightness(this.value)" style="width:70px" title="Brilho (B / D)">
+                </div>
+            </div>
+        </div>
+
+        <div id="viewer-container" onscroll="handleScroll()">
+            <div class="click-zone zone-left" onclick="turnPage(-1)"></div>
+            <div class="click-zone zone-right" onclick="turnPage(1)"></div>
+            <div id="book-content" class="font-literata"></div>
+        </div>
+
+        <div class="footer-info" id="footer-data"></div>
+    </div>
+
+    <script>
+        /* --- TRADUÇÕES --- */
+        const uiTranslations = {
+            'pt-br': { page: "Página", of: "de", read: "Lido", close: "Sair (Esc)", mode: "Modo (M)", theme: "Tema (T)", brightness: "Brilho", zoomIn: "Aumentar (+)", zoomOut: "Diminuir (-)" },
+            'en': { page: "Page", of: "of", read: "Read", close: "Close (Esc)", mode: "Mode (M)", theme: "Theme (T)", brightness: "Brightness", zoomIn: "Increase (+)", zoomOut: "Decrease (-)" },
+            'fr': { page: "Page", of: "sur", read: "Lu", close: "Fermer (Esc)", mode: "Mode (M)", theme: "Thème (T)", brightness: "Luminosité", zoomIn: "Agrandir (+)", zoomOut: "Réduire (-)" },
+            'es': { page: "Página", of: "de", read: "Leído", close: "Cerrar (Esc)", mode: "Modo (M)", theme: "Tema (T)", brightness: "Brillo", zoomIn: "Aumentar (+)", zoomOut: "Disminuir (-)" }
+        };
+
+        const flags = {
+            'pt-br': { icon: '🇧🇷', label: 'Português' }, 'en': { icon: '🇬🇧', label: 'English' },
+            'fr': { icon: '🇫🇷', label: 'Français' }, 'es': { icon: '🇪🇸', label: 'Español' }
+        };
+
+        const detectorRules = {
+            'pt-br': ['o', 'a', 'que', 'de', 'e', 'do', 'da', 'em', 'um', 'para', 'é', 'não'],
+            'en': ['the', 'and', 'to', 'of', 'a', 'in', 'is', 'that', 'it', 'he', 'was', 'for'],
+            'fr': ['le', 'la', 'les', 'et', 'des', 'est', 'du', 'une', 'pour', 'dans', 'qui'],
+            'es': ['el', 'la', 'los', 'las', 'y', 'en', 'de', 'que', 'es', 'un', 'por', 'con']
+        };
+
+        /* Estado Inicial (fontSize adicionado) */
+        let state = { lang: 'pt-br', mode: 'page', themeIdx: 0, page: 0, totalPages: 1, brightness: 100, fontSize: 19 };
+        const themes = ['theme-light', 'theme-sepia', 'theme-dark'];
+
+        const els = {
+            overlay: document.getElementById('ereader-overlay'),
+            content: document.getElementById('book-content'),
+            viewer: document.getElementById('viewer-container'),
+            langContainer: document.getElementById('lang-container'),
+            footer: document.getElementById('footer-data'),
+            source: document.getElementById('source-text'),
+            slider: document.getElementById('brightness-slider'),
+            btnMode: document.getElementById('btn-mode-toggle'),
+            btnClose: document.getElementById('btn-close'),
+            btnTheme: document.getElementById('btn-theme'),
+            btnZoomIn: document.getElementById('btn-font-plus'),
+            btnZoomOut: document.getElementById('btn-font-minus')
+        };
+
+        /* --- CORE LOGIC --- */
+        function detectLanguage(text) {
+            let scores = { 'pt-br': 0, 'en': 0, 'fr': 0, 'es': 0 };
+            const words = text.toLowerCase().split(/\s+/);
+            words.forEach(word => {
+                const cleanWord = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+                for (let lang in detectorRules) {
+                    if (detectorRules[lang].includes(cleanWord)) scores[lang]++;
+                }
+            });
+            let winner = 'pt-br'; let max = 0;
+            for (let lang in scores) { if(scores[lang] > max){ max=scores[lang]; winner=lang; }}
+            return winner;
+        }
+
+        function initReader() {
+            let userText = els.source.value.trim();
+            if(!userText) return;
+            const detectedLang = detectLanguage(userText);
+            state.lang = detectedLang;
+            
+            els.content.innerHTML = formatText(userText);
+            els.content.style.fontSize = state.fontSize + 'px';
+
+            els.overlay.classList.add('active');
+            if(document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(()=>{});
+            
+            updateUI(); 
+            renderFlags();
+            updateModeIcon();
+            
+            state.page = 0; els.viewer.scrollTop = 0;
+            setTimeout(() => switchMode(state.mode, true), 50);
+        }
+
+        function closeReader() {
+            els.overlay.classList.remove('active');
+            if(document.exitFullscreen) document.exitFullscreen();
+        }
+
+        function formatText(txt) { 
+            return txt.split('\n').map(p => p.trim() ? `<p>${p}</p>` : '<br>').join(''); 
+        }
+
+        /* --- IDIOMAS --- */
+        function renderFlags() {
+            els.langContainer.innerHTML = '';
+            Object.keys(flags).forEach(langKey => {
+                if (langKey !== state.lang) {
+                    const btn = document.createElement('button');
+                    btn.className = 'icon-btn flag-btn';
+                    btn.innerHTML = flags[langKey].icon;
+                    btn.title = `Mudar para ${flags[langKey].label}`;
+                    btn.onclick = () => changeLanguage(langKey);
+                    els.langContainer.appendChild(btn);
+                }
+            });
+        }
+
+        function changeLanguage(newLang) {
+            state.lang = newLang;
+            els.content.style.opacity = 0;
+            setTimeout(() => {
+                updateUI(); renderFlags();
+                els.content.style.opacity = 1;
+                if(state.mode === 'page') updatePageUI(); else handleScroll();
+            }, 300);
+        }
+
+        function updateUI() {
+            const dict = uiTranslations[state.lang];
+            els.btnClose.setAttribute('data-tooltip', dict.close);
+            els.btnMode.setAttribute('data-tooltip', dict.mode);
+            els.btnTheme.setAttribute('data-tooltip', dict.theme);
+            els.slider.title = `${dict.brightness}: ${state.brightness}% (B / D)`;
+            // Legendas dos botões atualizadas para novos atalhos
+            els.btnZoomIn.setAttribute('data-tooltip', dict.zoomIn);
+            els.btnZoomOut.setAttribute('data-tooltip', dict.zoomOut);
+        }
+
+        /* --- MODOS --- */
+        function updateModeIcon() {
+            if (state.mode === 'page') els.btnMode.innerHTML = '<i class="ri-article-line"></i>';
+            else els.btnMode.innerHTML = '<i class="ri-book-open-line"></i>';
+        }
+
+        function switchMode(newMode, force = false) {
+            if (state.mode === newMode && !force) return;
+
+            let progress = 0;
+            if(state.mode === 'page') progress = state.page / (state.totalPages || 1);
+            else {
+                let d = els.viewer.scrollHeight - els.viewer.clientHeight;
+                progress = d > 0 ? els.viewer.scrollTop / d : 0;
+            }
+
+            state.mode = newMode;
+            updateModeIcon();
+
+            if (newMode === 'page') {
+                els.overlay.classList.remove('view-scrolled');
+                els.overlay.classList.add('view-paginated');
+                els.viewer.scrollTop = 0;
+                
+                setTimeout(() => {
+                    calculatePages();
+                    state.page = Math.floor(progress * state.totalPages);
+                    if(isNaN(state.page)) state.page = 0;
+                    updatePageUI();
+                }, 50);
+            } else {
+                els.overlay.classList.remove('view-paginated');
+                els.overlay.classList.add('view-scrolled');
+                els.content.style.left = '0';
+                setTimeout(() => {
+                    let d = els.viewer.scrollHeight - els.viewer.clientHeight;
+                    els.viewer.scrollTop = progress * d;
+                    handleScroll();
+                }, 50);
+            }
+        }
+        function toggleMode() { switchMode(state.mode === 'page' ? 'scroll' : 'page'); }
+
+        function calculatePages() {
+            if(state.mode !== 'page') return;
+            const vw = window.innerWidth;
+            const fullW = els.content.scrollWidth;
+            state.totalPages = Math.ceil(fullW / vw);
+            if(state.totalPages < 1) state.totalPages = 1;
+            updatePageUI();
+        }
+        function turnPage(dir) {
+            if(state.mode !== 'page') return;
+            const next = state.page + dir;
+            if(next >= 0 && next < state.totalPages) { state.page = next; updatePageUI(); }
+        }
+        function updatePageUI() {
+            els.content.style.left = `-${state.page * 100}vw`;
+            const dict = uiTranslations[state.lang];
+            els.footer.innerText = `${dict.page} ${state.page + 1} ${dict.of} ${state.totalPages}`;
+        }
+
+        function handleScroll() {
+            if(state.mode !== 'scroll') return;
+            let totalHeight = els.viewer.scrollHeight - els.viewer.clientHeight;
+            let pct = 0;
+            if (totalHeight > 0) pct = Math.round((els.viewer.scrollTop / totalHeight) * 100);
+            if (isNaN(pct)) pct = 0; if (pct > 100) pct = 100;
+            const dict = uiTranslations[state.lang];
+            els.footer.innerText = `${dict.read}: ${pct}%`;
+        }
+
+        /* --- VISUAL E TECLADO --- */
+        function cycleTheme() {
+            els.overlay.classList.remove(themes[state.themeIdx]);
+            state.themeIdx = (state.themeIdx + 1) % themes.length;
+            els.overlay.classList.add(themes[state.themeIdx]);
+        }
+        function setFont(font) {
+            els.content.className = 'font-' + font;
+            if(state.mode === 'page') setTimeout(calculatePages, 100);
+        }
+        
+        function adjustFontSize(delta) {
+            state.fontSize += delta;
+            if(state.fontSize < 14) state.fontSize = 14; 
+            if(state.fontSize > 32) state.fontSize = 32; 
+            els.content.style.fontSize = state.fontSize + 'px';
+            if(state.mode === 'page') calculatePages();
+        }
+
+        function adjustBrightness(val) {
+            state.brightness = parseInt(val);
+            if(state.brightness > 100) state.brightness = 100;
+            if(state.brightness < 30) state.brightness = 30;
+            els.viewer.style.filter = `brightness(${state.brightness}%)`;
+            els.slider.value = state.brightness;
+            const dict = uiTranslations[state.lang];
+            els.slider.title = `${dict.brightness}: ${state.brightness}% (B / D)`;
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if(!els.overlay.classList.contains('active')) {
+                if(e.ctrlKey && e.key === 'Enter') initReader();
+                return;
+            }
+            const key = e.key.toLowerCase();
+            
+            // Bloqueio de ação padrão para novas teclas
+            if (['m', 't', 'b', 'd', '+', '-', '=', '_'].includes(key)) { e.preventDefault(); }
+            
+            if(key === 'escape') closeReader();
+            if(key === 'm') toggleMode();
+            if(key === 't') cycleTheme();
+            
+            // ATALHOS NOVOS: B (Bright) / D (Darker)
+            if(key === 'b') adjustBrightness(state.brightness + 5);
+            if(key === 'd') adjustBrightness(state.brightness - 5);
+            
+            // ATALHOS NOVOS: + (Aumentar) / - (Diminuir)
+            if(e.key === '+' || e.key === '=') adjustFontSize(1);
+            if(e.key === '-' || e.key === '_') adjustFontSize(-1);
+
+            if(state.mode === 'page') {
+                if(key === 'arrowleft') turnPage(-1);
+                if(key === 'arrowright') turnPage(1);
+            }
+        });
+        window.addEventListener('resize', () => { if(state.mode === 'page') calculatePages(); });
+    </script>
+</body>
+</html>

@@ -31,9 +31,13 @@
     backdrop-filter: blur(12px); /* Blur mais forte */
 }
 .drawer.open { width: var(--drawer-w); }
-.drawer-header { height: 50px; border-bottom: var(--border-style); display: flex; align-items: center; justify-content: space-between; padding: 0 15px; flex-shrink: 0; }
+.drawer-header { height: 50px; border-bottom: var(--border-style); display: flex; align-items: center; justify-content: center; padding: 0 15px; flex-shrink: 0; position: relative; }
+#closeDrawer { position: absolute; right: 12px; }
 .drawer-content { flex: 1; padding: 15px; overflow-y: auto; opacity: 0; transition: opacity 0.2s; }
 .drawer.open .drawer-content { opacity: 1; }
+.mobile-memo-actions { display: none; margin-top: 12px; }
+.mobile-only { display: none; }
+.desktop-only { display: block; }
 
 /* GATILHO MOBILE */
 .mobile-trigger {
@@ -52,11 +56,52 @@
   background: transparent;
 }
 
+#booksView {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--hud-w);
+  right: 0;
+}
+
+#booksFrame {
+  position: absolute;
+  inset: 0;
+}
+
+.panel.books-active {
+  padding: 0;
+}
+
+#editorView {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: visible;
+}
+
+#editorWrap {
+  position: relative;
+  width: 58vw;
+  max-width: 860px;
+  min-height: 80vh;
+  margin-top: 20px;
+  overflow: visible;
+}
+
 #editor {
-  width: 65vw; max-width: 1100px; min-height: 80vh;
+  width: 100%;
+  min-height: 80vh;
   outline: none; caret-color: var(--color-accent);
-  padding-bottom: 100px; margin-top: 20px; line-height: 1.7;
+  padding-bottom: 100px; line-height: 1.85;
   white-space: pre-wrap; word-break: break-word; overflow-wrap: break-word;
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+  max-height: none;
+  height: auto;
+  text-align: left;
 }
 
 /* CONTROLS (Correção de posição e tamanho) */
@@ -76,13 +121,15 @@
   pointer-events: auto;
   
   /* SEGREDO DA LINHA ÚNICA */
-  flex-wrap: nowrap; /* Impede quebra de linha */
-  white-space: nowrap; /* Texto não quebra */
-  overflow-x: auto; /* Se tela for minúscula, rola horizontal */
-  scrollbar-width: none; /* Esconde barra de rolagem horizontal */
+  flex-wrap: wrap;
+  white-space: nowrap;
+  overflow: visible;
+  row-gap: 6px;
+  column-gap: 10px;
   
-  width: auto; max-width: 90vw; /* Ajusta ao conteúdo, mas não passa da tela */
-  height: var(--controls-h); /* Altura fixa fina */
+  width: auto; max-width: 96vw; /* Ajusta ao conteúdo, mas não passa da tela */
+  height: auto;
+  min-height: var(--controls-h);
   
   backdrop-filter: blur(12px); 
 }
@@ -90,12 +137,30 @@
 
 /* MOBILE */
 @media (max-width: 900px) {
-    .hud { transform: translateX(-100%); background: var(--bg-drawer); border-right: var(--border-style); height: 100%; top: 0; bottom: 0; left: 0; }
+    .hud { transform: translateX(-100%); background: var(--bg-drawer); border-right: var(--border-style); height: 100%; top: 0; bottom: 0; left: 0; width: 56px; }
     .mobile-trigger { display: flex; }
     .hud.mobile-open { transform: translateX(0); box-shadow: 5px 0 50px rgba(0,0,0,0.5); }
-    .drawer { left: var(--hud-w); width: 0; top: 0; bottom: 0; border-radius: 0; }
-    .drawer.open { width: calc(100vw - var(--hud-w)); }
-    #editor { width: 95vw; }
-    .controls { bottom: 20px; }
-    .controls-inner { width: 95vw; max-width: 95vw; }
+    .drawer { left: 0; width: 0; top: 0; bottom: 0; border-radius: 0; }
+    .drawer.open { width: 100vw; }
+    #editorWrap { width: 92vw; margin-top: 8px; }
+    #booksView { left: 0; }
+    .logo-area { display: none; }
+    .panel { top: 10px; bottom: 70px; padding: 0 14px; }
+    .controls { bottom: 10px; }
+    .controls-inner { width: 96vw; max-width: 96vw; padding: 6px 10px; gap: 8px; }
+    .controls-inner .status-label { display: none; }
+    .controls-inner .btn span { display: none; }
+    .controls-inner .btn { padding: 6px; min-width: 30px; }
+    .controls-inner .btn-icon { width: 28px; height: 28px; }
+    .controls-inner .search-wrapper { min-width: 120px; max-width: 160px; }
+    .controls-inner .search-input { font-size: 11px; }
+    .mobile-memo-actions { display: block; }
+    .mobile-only { display: block; }
+    .desktop-only { display: none; }
+    body.mobile-lite #editorView { display: none; }
+    body.mobile-lite #booksView { display: none; }
+    body.mobile-lite .controls { display: none; }
+    body.mobile-lite .logo-area { display: none; }
+    body.mobile-lite .panel { top: 0; bottom: 0; padding: 0 14px; }
+    body.mobile-lite .drawer { left: 0; }
 }

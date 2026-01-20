@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#f5f2ea"/>
+  <rect x="40" y="40" width="432" height="432" fill="none" stroke="#c2412d" stroke-width="10"/>
+  <text x="256" y="300" text-anchor="middle" font-family="monospace" font-size="160" fill="#1f1d1a">TOT</text>
+</svg>

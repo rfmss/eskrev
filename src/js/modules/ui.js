@@ -1,3 +1,5 @@
+import { lang } from './lang.js';
+
 export const ui = {
     elements: {},
     pomodoroInterval: null,
@@ -19,6 +21,7 @@ export const ui = {
         };
         this.initTheme();
         this.initMobile();
+        document.addEventListener("lang:changed", () => this.refreshDrawerTitle());
     },
 
     // --- POMODORO SOBERANO (TIMESTAMP) ---
@@ -29,49 +32,55 @@ export const ui = {
             const div = document.createElement("div"); div.className = "divider"; controls.appendChild(div);
             const btn = document.createElement("button");
             btn.className = "btn"; btn.id = "pomodoroBtn";
-            btn.innerHTML = `<i class="ph ph-timer"></i> 25:00`;
+            btn.innerHTML = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-tomato"></use></svg> 25:00`;
             btn.onclick = () => this.togglePomodoro();
             controls.appendChild(btn);
         }
-        
+        this.cachePomodoroElements();
+        this.bindPomodoroModal();
+
         // Verifica se já existe um timer rodando (Resistência a F5)
         this.checkPomodoroState();
     },
 
     togglePomodoro() {
         const activeTarget = localStorage.getItem("lit_pomo_target");
-        
         if (activeTarget) {
-            // Se tem alvo, o clique significa PARAR
-            this.stopPomodoro();
-        } else {
-            // Se não tem, o clique significa INICIAR
-            // Define o alvo para 25 minutos a partir de agora
-            const targetTime = Date.now() + (25 * 60 * 1000); 
-            localStorage.setItem("lit_pomo_target", targetTime);
-            this.startTicker();
+            return;
         }
+        this.showChoiceOnly();
     },
 
     stopPomodoro() {
         clearInterval(this.pomodoroInterval);
         localStorage.removeItem("lit_pomo_target");
+        localStorage.removeItem("lit_pomo_phase");
+        localStorage.removeItem("lit_pomo_duration");
+        this.hidePomodoroModal();
         const btn = document.getElementById("pomodoroBtn");
         if(btn) {
-            btn.innerHTML = `<i class="ph ph-timer"></i> 25:00`;
+            btn.innerHTML = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-tomato"></use></svg> 25:00`;
             btn.classList.remove("active");
         }
     },
 
     checkPomodoroState() {
         const target = localStorage.getItem("lit_pomo_target");
+        const phase = localStorage.getItem("lit_pomo_phase") || "work";
         if (target) {
             // Se existe um alvo salvo, verifica se ainda é válido
             if (parseInt(target) > Date.now()) {
+                if (phase === "break") this.showBreakModal();
                 this.startTicker(); // O tempo ainda não acabou, retoma o contador
             } else {
-                this.stopPomodoro(); // O tempo acabou enquanto o site estava fechado
+                if (phase === "work") {
+                    this.startBreak();
+                } else {
+                    this.showUnlockModal();
+                }
             }
+        } else if (phase === "await_unlock") {
+            this.showUnlockModal();
         }
     },
 
@@ -87,33 +96,151 @@ export const ui = {
         this.pomodoroInterval = setInterval(() => {
             const target = parseInt(localStorage.getItem("lit_pomo_target"));
             if (!target) { this.stopPomodoro(); return; }
+            const phase = localStorage.getItem("lit_pomo_phase") || "work";
 
             const now = Date.now();
             const diff = target - now;
 
             if (diff <= 0) {
-                // TEMPO ESGOTADO
-                this.stopPomodoro();
-                btn.innerHTML = "ACABOU!";
-                new Audio("src/assets/audio/enter.wav").play().catch(()=>{}); 
-                alert("⏰ POMODORO FINALIZADO!");
+                if (phase === "work") {
+                    this.startBreak();
+                } else {
+                    this.showUnlockModal();
+                }
             } else {
                 // ATUALIZA VISOR
                 const min = Math.floor((diff / 1000) / 60).toString().padStart(2, '0');
                 const sec = Math.floor((diff / 1000) % 60).toString().padStart(2, '0');
-                btn.innerHTML = `<i class="ph ph-timer"></i> ${min}:${sec}`;
+                const label = phase === "break" ? lang.t("pomo_break_label") : "";
+                btn.innerHTML = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-tomato"></use></svg> ${label} ${min}:${sec}`.trim();
+                if (phase === "break") this.updateBreakCountdown(`${min}:${sec}`);
             }
         }, 1000); // Atualiza a cada segundo
     },
 
+    cachePomodoroElements() {
+        this.pomoModal = document.getElementById("pomodoroModal");
+        this.pomoBreakView = document.getElementById("pomoBreakView");
+        this.pomoUnlockView = document.getElementById("pomoUnlockView");
+        this.pomoCountdown = document.getElementById("pomoCountdown");
+        this.pomoPassInput = document.getElementById("pomoPassInput");
+        this.pomoUnlockBtn = document.getElementById("pomoUnlockBtn");
+        this.pomoChoice = document.getElementById("pomoChoice");
+        this.pomoMsg = document.getElementById("pomoMsg");
+    },
+
+    bindPomodoroModal() {
+        if (!this.pomoModal) return;
+        if (this.pomoUnlockBtn) {
+            this.pomoUnlockBtn.onclick = () => this.tryUnlockPomodoro();
+        }
+        if (this.pomoPassInput) {
+            this.pomoPassInput.onkeydown = (e) => {
+                if (e.key === "Enter") this.tryUnlockPomodoro();
+            };
+        }
+        if (this.pomoChoice) {
+            this.pomoChoice.querySelectorAll("[data-duration]").forEach((btn) => {
+                btn.onclick = () => {
+                    const value = parseInt(btn.getAttribute("data-duration"), 10);
+                    if (Number.isFinite(value)) this.startWork(value);
+                };
+            });
+        }
+    },
+
+    startWork(minutes) {
+        const targetTime = Date.now() + (minutes * 60 * 1000);
+        localStorage.setItem("lit_pomo_target", targetTime);
+        localStorage.setItem("lit_pomo_phase", "work");
+        localStorage.setItem("lit_pomo_duration", String(minutes));
+        this.hidePomodoroModal();
+        this.startTicker();
+    },
+
+    startBreak() {
+        const targetTime = Date.now() + (6 * 60 * 1000);
+        localStorage.setItem("lit_pomo_target", targetTime);
+        localStorage.setItem("lit_pomo_phase", "break");
+        this.showBreakModal();
+        this.startTicker();
+        new Audio("src/assets/audio/enter.wav").play().catch(()=>{}); 
+    },
+
+    showBreakModal() {
+        if (!this.pomoModal) return;
+        this.pomoModal.classList.add("active");
+        if (this.pomoBreakView) this.pomoBreakView.style.display = "block";
+        if (this.pomoUnlockView) this.pomoUnlockView.style.display = "none";
+        this.updateBreakCountdown("06:00");
+    },
+
+    showUnlockModal() {
+        clearInterval(this.pomodoroInterval);
+        localStorage.removeItem("lit_pomo_target");
+        localStorage.setItem("lit_pomo_phase", "await_unlock");
+        if (!this.pomoModal) return;
+        this.pomoModal.classList.add("active");
+        if (this.pomoBreakView) this.pomoBreakView.style.display = "none";
+        if (this.pomoUnlockView) this.pomoUnlockView.style.display = "block";
+        const unlockPrompt = document.getElementById("pomoUnlockPrompt");
+        if (unlockPrompt) unlockPrompt.style.display = "";
+        if (this.pomoPassInput) this.pomoPassInput.style.display = "";
+        if (this.pomoUnlockBtn) this.pomoUnlockBtn.style.display = "";
+        if (this.pomoChoice) this.pomoChoice.style.display = "none";
+        if (this.pomoPassInput) this.pomoPassInput.value = "";
+        if (this.pomoMsg) this.pomoMsg.innerText = "";
+        setTimeout(() => { if (this.pomoPassInput) this.pomoPassInput.focus(); }, 50);
+    },
+
+    showChoiceOnly() {
+        if (!this.pomoModal) return;
+        this.pomoModal.classList.add("active");
+        if (this.pomoBreakView) this.pomoBreakView.style.display = "none";
+        if (this.pomoUnlockView) this.pomoUnlockView.style.display = "block";
+        const unlockPrompt = document.getElementById("pomoUnlockPrompt");
+        if (unlockPrompt) unlockPrompt.style.display = "none";
+        if (this.pomoPassInput) this.pomoPassInput.style.display = "none";
+        if (this.pomoUnlockBtn) this.pomoUnlockBtn.style.display = "none";
+        if (this.pomoChoice) this.pomoChoice.style.display = "block";
+        if (this.pomoMsg) this.pomoMsg.innerText = "";
+    },
+
+    hidePomodoroModal() {
+        if (this.pomoModal) this.pomoModal.classList.remove("active");
+        if (this.pomoPassInput) this.pomoPassInput.style.display = "";
+        if (this.pomoUnlockBtn) this.pomoUnlockBtn.style.display = "";
+    },
+
+    updateBreakCountdown(value) {
+        if (this.pomoCountdown) this.pomoCountdown.innerText = value;
+    },
+
+    tryUnlockPomodoro() {
+        const stored = localStorage.getItem("lit_auth_key");
+        const inputVal = this.pomoPassInput ? this.pomoPassInput.value : "";
+        if (!stored || inputVal === stored) {
+            if (this.pomoMsg) this.pomoMsg.innerText = lang.t("pomo_unlocked");
+            if (this.pomoChoice) this.pomoChoice.style.display = "block";
+        } else {
+            if (this.pomoMsg) this.pomoMsg.innerText = lang.t("pomo_wrong_pass");
+            if (this.pomoPassInput) {
+                this.pomoPassInput.value = "";
+                this.pomoPassInput.focus();
+                this.pomoPassInput.classList.add("shake");
+                setTimeout(() => this.pomoPassInput.classList.remove("shake"), 500);
+            }
+        }
+    },
+
     // --- TEMA E UI (Mantido inalterado, apenas encapsulado corretamente) ---
     initTheme() {
-        const currentTheme = localStorage.getItem("lit_theme_pref") || "tva";
+        const currentTheme = localStorage.getItem("lit_theme_pref") || "journal";
         document.body.setAttribute("data-theme", currentTheme);
     },
 
     toggleTheme() {
-        const themes = ["tva", "ibm-light", "ibm-dark", "ibm-blue", "journal", "terminal"];
+        const themes = ["tva", "amber-invert", "ink-dark", "ibm-light", "ibm-dark", "ibm-blue", "journal", "terminal"];
         const current = document.body.getAttribute("data-theme");
         let nextIndex = themes.indexOf(current) + 1;
         if (nextIndex >= themes.length) nextIndex = 0;
@@ -144,16 +271,35 @@ export const ui = {
         drawer.classList.add("open");
         if(window.innerWidth <= 900) hud.classList.add("mobile-open");
 
-        const titles = { files: "ARQUIVOS", nav: "NAVEGAÇÃO", memo: "MEMO" };
-        this.elements.drawerTitle.innerText = titles[panelName];
+        const titles = {
+            files: lang.t("drawer_files"),
+            nav: lang.t("drawer_nav"),
+            memo: lang.t("drawer_memo")
+        };
+        this.elements.drawerTitle.innerText = titles[panelName] || "";
 
         if(panelName === 'files' && callbacks.renderFiles) callbacks.renderFiles();
         if(panelName === 'nav' && callbacks.renderNav) callbacks.renderNav();
+        localStorage.setItem("lit_ui_drawer_open", "true");
+        localStorage.setItem("lit_ui_drawer_panel", panelName);
     },
 
     closeDrawer() {
         this.elements.drawer.classList.remove("open");
         document.querySelectorAll(".hud-btn").forEach(b => b.classList.remove("active"));
         if(window.innerWidth <= 900) this.elements.hud.classList.remove("mobile-open");
+        localStorage.setItem("lit_ui_drawer_open", "false");
+    }
+    ,
+    refreshDrawerTitle() {
+        const panel = localStorage.getItem("lit_ui_drawer_panel");
+        const titles = {
+            files: lang.t("drawer_files"),
+            nav: lang.t("drawer_nav"),
+            memo: lang.t("drawer_memo")
+        };
+        if (this.elements.drawerTitle && titles[panel]) {
+            this.elements.drawerTitle.innerText = titles[panel];
+        }
     }
 };

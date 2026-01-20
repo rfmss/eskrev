@@ -1,0 +1,22 @@
+{
+  "name": "TOT Editor",
+  "short_name": "TOT",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f5f2ea",
+  "theme_color": "#f5f2ea",
+  "icons": [
+    {
+      "src": "src/assets/icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "src/assets/icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

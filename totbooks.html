@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>🔸T∅TBooks</title>
+
+<style>
+html, body {
+    background: transparent !important;
+}
+
+* { box-sizing: border-box; }
+
+:root {
+  --book-w: 160px;
+  --book-h: 226px;
+  --open-w: min(92vw, 720px);
+  --open-h: min(86vh, 520px);
+
+  --shadow-closed: 0 30px 60px rgba(0,0,0,.35);
+  --shadow-open:   0 20px 50px rgba(0,0,0,.25);
+  --text-chumbo: #888888; /* Coringa: Visível no preto e no branco */
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: transparent;
+    overflow: hidden;
+    /* Fonte de sistema (San Francisco/Segoe UI) para interface limpa */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-chumbo);
+}
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  vertical-align: -0.125em;
+}
+
+/* --- REGRAS NOVAS DE TEXTO (LINHA ÚNICA) --- */
+.book-cover h2, .book-content h2 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 18px !important;
+    line-height: 1.2 !important;
+    margin: 10px 0 !important;
+}
+
+/* Hint no fundo (Atualizado com a cor Chumbo) */
+.bg-hint {
+  position: fixed;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  letter-spacing: .6px;
+  color: var(--text-chumbo); /* Cor atualizada */
+  font-weight: 500;
+  user-select: none;
+  pointer-events: none;
+  text-align: center;
+  line-height: 1.6;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+/* Tarja colorida da capa (Ajustada para cima) */
+/* CAPA REFORÇADA */
+.totbook:not(.open):hover .cover {
+  transform: rotateY(-18deg) translateZ(5px);
+}
+
+.strap {
+  position: absolute;
+  left: 0; right: 0;
+  top: 55px; 
+  height: 90px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  
+  /* FONTE IMPACTANTE */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;      
+  font-weight: 900; /* Peso máximo */
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #000000;
+  
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  z-index: 5;
+}
+
+/* Dica interna ao arrastar (Pílula preta) */
+.hint {
+  position: absolute;
+  left: 50%;
+  top: 15px; 
+  transform: translateX(-50%);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  white-space: nowrap;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+  z-index: 7;
+}
+
+/* Overlay */
+/* Overlay Invisível: Mantém a magia do truque */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: transparent !important; /* Mata o fundo escuro */
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+.overlay.active {
+  pointer-events: all; /* Continua bloqueando cliques no fundo, mas sem escurecer */
+}
+
+/* Palco */
+.library {
+  position: absolute;
+  inset: 0;
+}
+
+/* --- MODAL GLASSFORM TOTAL (INVISÍVEL + SAÍDA) --- */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.modal.active { display: flex; }
+
+.modal .scrim {
+  position: absolute;
+  inset: 0;
+  /* Uma opacidade de 0.01 é invisível ao olho, mas força o navegador a renderizar o blur do card */
+  background: rgba(0, 0, 0, 0.01) !important;
+  backdrop-filter: none !important;
+}
+
+/* --- MODAL IDE / ANGULAR --- */
+.modal .card {
+  position: relative;
+  width: min(380px, 85vw);
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(20px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 4px !important; /* Borda angular profissional */
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  animation: totPopIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Animação de Saída */
+.modal.closing .card {
+  animation: totPopOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes totPopIn {
+  0% { opacity: 0; transform: scale(0.95) translateY(10px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes totPopOut {
+  0% { opacity: 1; transform: scale(1) translateY(0); }
+  100% { opacity: 0; transform: scale(0.95) translateY(10px); }
+}
+
+.modal h3 { margin: 0 0 20px; font-weight: 700; color: #fff; font-size: 15px; text-transform: uppercase; letter-spacing: 1px; }
+
+.modal input {
+  width: 100% !important;
+  background: rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 2px !important;
+  padding: 12px;
+  text-align: center;
+  margin-bottom: 24px;
+  color: #fff !important;
+  outline: none !important;
+}
+
+/* BOTÕES PROFISSIONAIS (ANGULARES) */
+.modal .actions { display: flex; justify-content: center; gap: 12px; }
+
+.modal button {
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 8px 24px;
+  border-radius: 2px !important; /* Aqui o profissionalismo acontece */
+  font-size: 12px;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.modal .btn-ok { background: rgba(255, 255, 255, 0.1) !important; border-color: rgba(255,255,255,0.4) !important; }
+.modal .btn-ok:hover { background: rgba(255, 255, 255, 0.2) !important; }
+.modal .btn-cancel:hover { background: rgba(255, 0, 0, 0.1) !important; }
+
+/* TEXTO FANTASMA */
+.bg-hint {
+  position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  font-size: 14px; color: var(--text-chumbo); opacity: 0.05; transition: opacity 0.4s;
+}
+body:hover .bg-hint { opacity: 0.4; }
+
+/* --- OVERLAY DO LIVRO ABERTO (MANTÉM O TRUQUE) --- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: transparent !important; /* Sem fundo escuro */
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+.overlay.active { pointer-events: all; }
+
+/* BOOK BASE */
+.totbook{
+  position:absolute;
+  width: var(--book-w);
+  height: var(--book-h);
+  background:#1c1c1c;
+  border-radius: 18px;
+  box-shadow: var(--shadow-closed);
+  transform: rotateY(-12deg) rotateX(4deg);
+  transition:
+    width .9s cubic-bezier(.22,.61,.36,1),
+    height .9s cubic-bezier(.22,.61,.36,1),
+    transform .9s cubic-bezier(.22,.61,.36,1),
+    box-shadow .9s ease,
+    opacity .4s ease,
+    filter .6s ease;
+  overflow:hidden;
+  user-select:none;
+  z-index:1;
+}
+
+/* Realismo */
+.totbook::before{
+  content:"";
+  position:absolute;
+  left:0; top:0;
+  width:14px;
+  height:100%;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.25));
+  opacity:.55;
+  pointer-events:none;
+}
+.totbook::after{
+  content:"";
+  position:absolute;
+  right:0;
+  top:10px;
+  width:18px;
+  height: calc(100% - 20px);
+  background: linear-gradient(90deg, rgba(255,255,255,.55), rgba(255,255,255,.10));
+  border-radius: 10px;
+  opacity:.22;
+  pointer-events:none;
+}
+
+.totbook.open{
+  width: var(--open-w);
+  height: var(--open-h);
+  transform: rotateY(0) rotateX(0);
+  box-shadow: var(--shadow-open);
+  z-index:20;
+}
+
+/* CAPA */
+.cover{
+  position:absolute;
+  inset:0;
+  background: linear-gradient(145deg, #1f1f1f, #2a2a2a);
+  border-radius: inherit;
+  transform-origin: left center;
+  transition:
+    transform .9s cubic-bezier(.22,.61,.36,1),
+    opacity .45s ease,
+    filter .6s ease;
+  cursor: grab;
+  touch-action: none;
+  z-index: 3;
+}
+.cover:active{ cursor: grabbing; }
+
+.cover .sheen{
+  position:absolute;
+  inset:-40px -80px;
+  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.12), transparent 55%);
+  transform: rotate(-8deg);
+  pointer-events:none;
+  opacity:.7;
+  z-index: 4;
+}
+
+/* Tarja + ícone (FINAL: Altura 90px) */
+.strap {
+  position: absolute;
+  left: 0; right: 0;
+  top: 55px; 
+  height: 90px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  
+  /* FONTE: Menor e Ultra Grossa */
+  font-family: -apple-system, BlinkMacSystemFont, "Arial Black", sans-serif;
+  font-size: 13px;      /* Reduzido 2 pontos */
+  font-weight: 900;     /* Ultra Bold */
+  letter-spacing: -0.2px;
+  text-transform: uppercase;
+  color: #000000;
+  
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  z-index: 5;
+}
+.strap svg{ width:16px; height:16px; opacity: 0.85; }
+.strap span {
+  display: inline-block;
+  max-width: 110px;      /* Garante que o texto não vaze da tarja */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Coloca "..." se passar do limite */
+}
+
+/* Elástico (Sempre por cima) */
+.elastic{
+  position:absolute;
+  top:0;
+  right:16px; 
+  width:12px;
+  height:100%;
+  background: #121212;
+  box-shadow: -1px 0 3px rgba(0,0,0,0.6); 
+  z-index: 10; 
+}
+
+/* abertura/fechamento */
+.totbook.open .cover{
+  transform: rotateY(-140deg);
+  opacity:0;
+  filter: blur(0.2px);
+  pointer-events:none;
+}
+
+/* HANDLE (drag quando aberto) */
+.drag-handle{
+  position:absolute;
+  left:0; right:0;
+  top:0;
+  height: 28px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  opacity:0;
+  pointer-events:none;
+  transition: opacity .25s ease;
+  z-index: 6;
+  user-select:none;
+}
+.totbook.open .drag-handle{
+  opacity:.85;
+  pointer-events:auto;
+  cursor: grab;
+  touch-action: none;
+}
+.totbook.open .drag-handle:active{ cursor: grabbing; }
+
+.drag-handle .dots{
+  width: 42px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.12);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.5);
+}
+
+/* Hint pós-arraste */
+.hint{
+  position:absolute;
+  left:50%;
+  top: 18px;
+  transform: translateX(-50%);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: rgba(0,0,0,.55);
+  color: rgba(255,255,255,.92);
+  opacity:0;
+  pointer-events:none;
+  transition: opacity .25s ease;
+  z-index: 7;
+}
+.hint.show{ opacity:1; }
+
+/* PÁGINAS */
+.pages{
+  position:absolute;
+  inset:0;
+  background:#fbfbfb;
+  padding: 34px 32px 58px;
+  opacity:0;
+  overflow:hidden;
+  transition: opacity .25s ease .30s;
+  pointer-events: none;
+  z-index: 4;
+}
+.totbook.open .pages{
+  opacity:1;
+  pointer-events: auto;
+}
+
+.page-viewport{
+  position:relative;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+}
+
+.sheet{
+  position:absolute;
+  inset:0;
+  padding-right: 6px;
+  overflow:hidden;
+  background: transparent;
+  will-change: transform, opacity;
+}
+
+.page-text{
+  width:100%; height:100%;
+  max-width:100%;
+  outline:none !important;
+  border:none;
+  background:none;
+  font-family: Georgia, serif;
+  font-size:16px;
+  line-height:1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  user-select:text;
+  padding-right: 2px;
+  color: #212121; /* <--- FORÇA O PRETO PARA LEITURA */
+}
+.page-text:focus{ outline:none !important; }
+
+.pagination{
+  position:absolute;
+  left:0; right:0;
+  bottom:0;
+  height: 44px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:12px;
+  padding: 0 18px 10px;
+  font-size:12px;
+  color:#666;
+  background: linear-gradient(to top, rgba(251,251,251,1), rgba(251,251,251,.92), rgba(251,251,251,0));
+}
+
+.pagination button{
+  border:none;
+  background:none;
+  cursor:pointer;
+  font-size:18px;
+  padding: 0 6px;
+}
+.pagination button:disabled{
+  opacity:.35;
+  cursor: default;
+}
+
+/* ANIMAÇÕES */
+.sheet.exit-left{ transform: translateX(-18%); opacity:0; transition: transform .28s ease, opacity .28s ease; }
+.sheet.exit-right{ transform: translateX(18%); opacity:0; transition: transform .28s ease, opacity .28s ease; }
+.sheet.enter-from-right{ transform: translateX(18%); opacity:0; }
+.sheet.enter-from-left{ transform: translateX(-18%); opacity:0; }
+.sheet.enter-active{ transform: translateX(0); opacity:1; transition: transform .28s ease, opacity .28s ease; }
+
+@keyframes birth {
+  0%   { opacity:0; transform: translateY(18px) scale(.72) rotateY(-26deg) rotateX(10deg); filter: blur(3px); }
+  35%  { opacity:.65; transform: translateY(8px) scale(.92) rotateY(-16deg) rotateX(6deg); filter: blur(1.5px); }
+  65%  { opacity:1; transform: translateY(0) scale(1.02) rotateY(-12deg) rotateX(4deg); filter: blur(.3px); }
+  100% { opacity:1; transform: translateY(0) scale(1) rotateY(-12deg) rotateX(4deg); filter: blur(0); }
+}
+.totbook.birthing{
+  animation: birth 6.5s cubic-bezier(.22,.61,.36,1) forwards;
+}
+
+/* --- LIXEIRA FANTASMA (Fade + Slide) --- */
+#trash-zone {
+  position: fixed;
+  bottom: 40px; 
+  left: 50%; 
+  /* Começa invisível e escondida para baixo */
+  transform: translate(-50%, 40px); 
+  opacity: 0;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  
+  background: transparent;
+  color: var(--text-chumbo); /* Cinza Universal */
+  font-family: -apple-system, sans-serif;
+  z-index: 100;
+  pointer-events: none;
+  
+  /* A mágica da transição suave */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Removemos pseudos antigos por segurança */
+#trash-zone::before, #trash-zone::after { content: none !important; }
+
+#trash-zone i { font-size: 28px; }
+#trash-zone span { font-size: 12px; font-weight: 500; opacity: 0.8; }
+
+/* QUANDO ARRASTAR (Ativado pelo JS no body) */
+body.is-dragging #trash-zone { 
+  transform: translate(-50%, 0); /* Sobe para o lugar */
+  opacity: 1; /* Aparece */
+}
+
+/* Estado de PERIGO (Vermelho) */
+#trash-zone.danger {
+  transform: translate(-50%, -10px) scale(1.1);
+  color: #ef4444; 
+}
+
+/* Efeito de Brilho (Tracinhos Verdes) */
+.totbook.birthing::after {
+  content: "";
+  position: absolute;
+  inset: -25px; /* Ajusta o alcance dos tracinhos */
+  background: 
+    linear-gradient(90deg, #4ade80 12px, transparent 12px) 0% 50%,
+    linear-gradient(90deg, #4ade80 12px, transparent 12px) 100% 50%,
+    linear-gradient(0deg, #4ade80 12px, transparent 12px) 50% 0%,
+    linear-gradient(0deg, #4ade80 12px, transparent 12px) 50% 100%,
+    linear-gradient(45deg, #4ade80 10px, transparent 10px) 15% 15%,
+    linear-gradient(-45deg, #4ade80 10px, transparent 10px) 85% 15%;
+  background-repeat: no-repeat;
+  background-size: 15px 4px, 15px 4px, 4px 15px, 4px 15px, 15px 4px, 15px 4px;
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none;
+  animation: sparkBurst 0.8s ease-out forwards;
+  animation-delay: 0.5s; /* Espera o livro dar o "pop" inicial */
+}
+
+@keyframes sparkBurst {
+  0% { transform: scale(0.6); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: scale(1.3); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg-hint" id="hint-text">
+  Duplo clique para criar • Arraste para organizar
+</div>
+
+<div class="overlay" id="overlay"></div>
+<div class="library" id="library"></div>
+
+<div id="trash-zone">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="font-size: 24px;">
+      <path d="M9 3h6l1 2h4v2H4V5h4l1-2zm-1 6h10l-1 12H9L8 9zm2 1v9h2v-9h-2zm4 0v9h2v-9h-2z"></path>
+    </svg>
+    <span>Solte para descartar</span>
+</div>
+
+<div class="modal" id="modal">
+  <div class="scrim"></div>
+  <div class="card">
+    <h3 id="modalTitle">🔸 T∅TBook novo</h3>
+    <input id="modalInput" type="text" maxlength="13" placeholder="Nome do projeto...">
+    <div class="actions">
+      <button class="btn-cancel" id="modalCancel">Cancelar</button>
+      <button class="btn-ok" id="modalOk">Criar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const library = document.getElementById('library');
+const overlay  = document.getElementById('overlay');
+
+const modal = document.getElementById('modal');
+const modalInput = document.getElementById('modalInput');
+const modalCancel = document.getElementById('modalCancel');
+const modalOk = document.getElementById('modalOk');
+
+const MAX_PAGES = 50;
+const DRAG_THRESHOLD = 6;         // mais responsivo
+const OPEN_COOLDOWN_MS = 700;     // impedir abrir logo após arraste
+const CREATE_COOLDOWN_MS = 60000; // 1 minuto
+
+let isSpawning = false;
+let lastSpawnAt = 0;
+let pendingSpawn = null;
+
+// Paleta variada + shuffle-bag
+const strapColors = [
+  '#f2a900', '#d97706', '#3a6ea5', '#6b8e23', '#8b5cf6',
+  '#b45309', '#374151', '#16a34a', '#dc2626'
+];
+
+// --- SISTEMA DE REGISTRO (O CARTÓRIO) ---
+function getRegistry() { 
+  return JSON.parse(localStorage.getItem('totbook_registry') || '[]'); 
+}
+
+function addToRegistry(id) {
+  const reg = getRegistry();
+  if(!reg.includes(id)) {
+    reg.push(id);
+    localStorage.setItem('totbook_registry', JSON.stringify(reg));
+  }
+}
+
+function removeFromRegistry(id) {
+  const reg = getRegistry().filter(i => i !== id);
+  localStorage.setItem('totbook_registry', JSON.stringify(reg));
+}
+// ----------------------------------------
+
+// --- CARREGAMENTO (A RESSURREIÇÃO) ---
+(function loadAllBooks(){
+  const registry = getRegistry(); // Pega a lista do cartório
+  
+  if (registry.length === 0) {
+    // Se for a primeira vez (ou se deletou tudo), cria os padrões
+    createBook('PROJETOS', 160, 240, { pinnedTitle: true });
+    createBook('IDEIAS',   420, 200, { pinnedTitle: true });
+  } else {
+    // Carrega posições salvas UMA vez para evitar leitura repetida em disco
+    const savedPositions = JSON.parse(localStorage.getItem('tot_books_positions') || '{}');
+    
+    // Itera sobre o registro oficial
+    registry.forEach((id, i) => {
+      try {
+        const savedTitle = localStorage.getItem(titleKey(id)) || 'Sem Título';
+
+        // Configurações do grid (caso não tenha posição salva)
+        const colW = 180;   
+        const rowH = 240;
+        const cols = Math.max(1, Math.floor((window.innerWidth - 40) / colW));
+        
+        const col = i % cols;              
+        const row = Math.floor(i / cols);
+
+        const fx = 30 + col * colW;
+        const fy = 60 + row * rowH;
+
+        // Recupera a posição deste ID específico ou usa o grid
+        const p = savedPositions[id] || { x: fx, y: fy };
+        
+        createBook(savedTitle, p.x, p.y, { id });
+
+      } catch (e) {
+        console.error("Erro ao carregar livro " + id, e);
+      }
+    });
+  }
+})();
+
+function pagesKey(id) { return 'pages_' + id; }
+
+function colorKey(id){ return 'color_' + id; }
+function posKey(id){ return 'pos_' + id; }
+function titleKey(id){ return 'title_' + id; }
+
+function parsePx(value, fallback){
+  const v = parseFloat(value);
+  return Number.isFinite(v) ? v : fallback;
+}
+
+function getBookSize(){
+  const styles = getComputedStyle(document.documentElement);
+  const w = parsePx(styles.getPropertyValue('--book-w'), 160);
+  const h = parsePx(styles.getPropertyValue('--book-h'), 226);
+  return { w, h };
+}
+
+function ensureInBounds(pos, fallback){
+  const pad = 8;
+  const size = getBookSize();
+  const maxX = window.innerWidth - size.w - pad;
+  const maxY = window.innerHeight - size.h - pad;
+  if (pos.x < pad || pos.x > maxX || pos.y < pad || pos.y > maxY) {
+    return fallback;
+  }
+  return pos;
+}
+
+function colorBagKey(){ return 'strap_color_bag_v1'; }
+function getNextColor(){
+  let bag;
+  try { bag = JSON.parse(localStorage.getItem(colorBagKey()) || 'null'); } catch { bag = null; }
+
+  if (!Array.isArray(bag) || bag.length === 0){
+    bag = [...strapColors];
+    for (let i = bag.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [bag[i], bag[j]] = [bag[j], bag[i]];
+    }
+  }
+
+  const color = bag.pop();
+  localStorage.setItem(colorBagKey(), JSON.stringify(bag));
+  return color;
+}
+
+function loadPages(id){
+  try{
+    const raw = localStorage.getItem(pagesKey(id));
+    const arr = raw ? JSON.parse(raw) : null;
+    if (Array.isArray(arr) && arr.length) return arr;
+  }catch(_){}
+  return [''];
+}
+function savePages(id, pages){
+  localStorage.setItem(pagesKey(id), JSON.stringify(pages));
+}
+
+function loadPos(id, fallback){
+  try{
+    const raw = localStorage.getItem(posKey(id));
+    if (!raw) return fallback;
+    const p = JSON.parse(raw);
+    if (typeof p?.x === 'number' && typeof p?.y === 'number') return p;
+  }catch(_){}
+  return fallback;
+}
+function savePos(id, x, y){
+  localStorage.setItem(posKey(id), JSON.stringify({x,y}));
+}
+
+function clampToViewport(el){
+  const pad = 8;
+  const w = el.offsetWidth;
+  const h = el.offsetHeight;
+  let x = parseFloat(el.style.left) || el.offsetLeft || 0;
+  let y = parseFloat(el.style.top)  || el.offsetTop  || 0;
+
+  const maxX = window.innerWidth - w - pad;
+  const maxY = window.innerHeight - h - pad;
+
+  x = Math.max(pad, Math.min(maxX, x));
+  y = Math.max(pad, Math.min(maxY, y));
+
+  el.style.left = Math.round(x) + 'px';
+  el.style.top  = Math.round(y) + 'px';
+  return {x,y};
+}
+
+function clearSelection(){
+  const sel = window.getSelection?.();
+  if (sel) sel.removeAllRanges();
+}
+
+function focusCaretEnd(editable){
+  editable.focus({preventScroll:true});
+  clearSelection();
+  const range = document.createRange();
+  range.selectNodeContents(editable);
+  range.collapse(false);
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
+}
+
+function openModalForNewBook(x, y){
+  // 1. Já oculta o texto fantasma no início para evitar conflito
+  const h = document.getElementById('hint-text');
+  if(h) h.style.opacity = "0";
+
+  modal.classList.add('active');
+  modalInput.value = '';
+  modalInput.focus();
+
+  pendingSpawn = { x, y };
+
+  // 2. FECHAMENTO COM ANIMAÇÃO (Ajustado para o novo CSS)
+  const close = () => {
+    modal.classList.add('closing'); // Ativa o PopOut
+    setTimeout(() => {
+      modal.classList.remove('active');
+      modal.classList.remove('closing');
+      pendingSpawn = null;
+    }, 300); // Tempo da animação de saída
+  };
+
+  const confirm = () => {
+    let name = (modalInput.value || '').trim();
+    if (!name) return;
+    name = name.substring(0, 10); // Limite profissional de 10 chars
+
+    close(); // Fecha com suavidade
+
+    // Remove de vez o texto de ajuda do fundo
+    if(h) h.style.display = 'none'; 
+
+    const now = Date.now();
+    if (isSpawning) return;
+    
+    if (now - lastSpawnAt < CREATE_COOLDOWN_MS) return;
+
+    isSpawning = true;
+    lastSpawnAt = now; 
+
+    const id = 'book_' + now.toString(36);
+    localStorage.setItem(titleKey(id), name);
+
+    createBook(name, pendingSpawn ? pendingSpawn.x : x, pendingSpawn ? pendingSpawn.y : y, {
+      id,
+      birthing: true,
+      pinnedTitle: false
+    });
+
+    setTimeout(() => { isSpawning = false; }, 6500);
+  };
+
+  const onKey = (e) => {
+    if (e.key === 'Escape') close();
+    if (e.key === 'Enter') confirm();
+  };
+
+  const cleanup = () => {
+    modalCancel.removeEventListener('click', onCancel);
+    modalOk.removeEventListener('click', onOk);
+    window.removeEventListener('keydown', onKey);
+    modal.querySelector('.scrim').removeEventListener('click', onCancel);
+  };
+
+  const onCancel = () => { cleanup(); close(); };
+  const onOk = () => { cleanup(); confirm(); };
+
+  modalCancel.addEventListener('click', onCancel);
+  modalOk.addEventListener('click', onOk);
+  modal.querySelector('.scrim').addEventListener('click', onCancel);
+  window.addEventListener('keydown', onKey);
+}
+
+function createBook(title, x, y, opts = {}){
+  const id = opts.id || ('book_' + title.toLowerCase().replace(/\s+/g,'_'));
+  addToRegistry(id);
+  if (opts.pinnedTitle) localStorage.setItem(titleKey(id), title);
+
+  const book = document.createElement('div');
+  book.className = 'totbook';
+  book.dataset.id = id;
+
+  const savedTitle = localStorage.getItem(titleKey(id)) || title;
+
+  const savedColor = localStorage.getItem(colorKey(id)) || getNextColor();
+  localStorage.setItem(colorKey(id), savedColor);
+
+  const fallback = { x, y };
+  const loaded = loadPos(id, fallback);
+  const pos = ensureInBounds(loaded, fallback);
+  book.style.left = Math.round(pos.x) + 'px';
+  book.style.top  = Math.round(pos.y) + 'px';
+
+  let pages = loadPages(id);
+  let pageIndex = 0;
+
+  book.innerHTML = `
+    <div class="cover" aria-label="Capa ${savedTitle}">
+      <div class="sheen"></div>
+      <div class="strap" style="background:${savedColor}">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="font-size: 18px;">
+          <path d="M6 3h11a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm2 4h7v2H8V7zm0 4h7v2H8v-2zm0 4h5v2H8v-2z"></path>
+        </svg>
+        <span class="title-text">${escapeHtml(savedTitle)}</span>
+      </div>
+      <div class="elastic"></div>
+    </div>
+
+    <div class="drag-handle" title="Arrastar">
+      <div class="dots"></div>
+    </div>
+
+    <div class="hint">clique para abrir</div>
+
+    <div class="pages" role="region" aria-label="Páginas ${savedTitle}">
+      <div class="page-viewport">
+        <div class="sheet sheet-a">
+          <div class="page-text" contenteditable="true" spellcheck="false"></div>
+        </div>
+        <div class="sheet sheet-b" style="display:none">
+          <div class="page-text" contenteditable="true" spellcheck="false"></div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <button class="prev" title="Página anterior">‹</button>
+        <span class="count"></span>
+        <button class="next" title="Próxima página">›</button>
+      </div>
+    </div>
+  `;
+
+  const cover = book.querySelector('.cover');
+  const handle = book.querySelector('.drag-handle');
+  const hint = book.querySelector('.hint');
+
+  const pagesEl = book.querySelector('.pages');
+  const prevBtn = book.querySelector('.prev');
+  const nextBtn = book.querySelector('.next');
+  const countEl = book.querySelector('.count');
+
+  const sheetA = book.querySelector('.sheet-a');
+  const sheetB = book.querySelector('.sheet-b');
+  const textA  = sheetA.querySelector('.page-text');
+  const textB  = sheetB.querySelector('.page-text');
+
+  let frontSheet = sheetA;
+  let backSheet  = sheetB;
+  let frontText  = textA;
+  let backText   = textB;
+
+  let isFlipping = false;
+  let justDraggedUntil = 0;
+
+  function persist(){
+    pages[pageIndex] = frontText.innerText;
+    savePages(id, pages);
+  }
+
+  function updatePager(){
+    countEl.textContent = `${pageIndex+1} / ${pages.length}`;
+    prevBtn.disabled = pageIndex === 0;
+    nextBtn.disabled = (pageIndex === pages.length-1) && (pages.length >= MAX_PAGES);
+  }
+
+  function renderCurrent(){
+    frontText.innerText = pages[pageIndex] ?? '';
+    updatePager();
+  }
+
+  function onPaste(e){
+    e.preventDefault();
+    const plain = (e.clipboardData || window.clipboardData).getData('text');
+    document.execCommand('insertText', false, plain);
+    // após colar, tentar paginar automaticamente
+    queueMicrotask(() => autoPaginateIfNeeded(true));
+  }
+
+  function onInput(){
+    pages[pageIndex] = frontText.innerText;
+    savePages(id, pages);
+    autoPaginateIfNeeded(true);
+  }
+
+  function bindFront(){
+    textA.removeEventListener('paste', onPaste);
+    textA.removeEventListener('input', onInput);
+    textB.removeEventListener('paste', onPaste);
+    textB.removeEventListener('input', onInput);
+
+    frontText.addEventListener('paste', onPaste);
+    frontText.addEventListener('input', onInput);
+  }
+
+  pagesEl.addEventListener('pointerdown', (e)=> e.stopPropagation());
+
+  function swapSheets(){
+    const tmpS = frontSheet; frontSheet = backSheet; backSheet = tmpS;
+    const tmpT = frontText;  frontText  = backText;  backText  = tmpT;
+    bindFront();
+  }
+
+  function animateTo(newIndex, direction, after){
+    if (isFlipping) return;
+    if (newIndex === pageIndex) return;
+    if (newIndex < 0 || newIndex >= pages.length) return;
+
+    isFlipping = true;
+    persist();
+
+    backText.innerText = pages[newIndex] ?? '';
+    backSheet.style.display = 'block';
+
+    const backBase  = 'sheet ' + (backSheet === sheetA ? 'sheet-a' : 'sheet-b');
+    const frontBase = 'sheet ' + (frontSheet === sheetA ? 'sheet-a' : 'sheet-b');
+
+    backSheet.className  = backBase  + (direction === 'next' ? ' enter-from-right' : ' enter-from-left');
+    frontSheet.className = frontBase;
+
+    backSheet.getBoundingClientRect();
+
+    backSheet.classList.add('enter-active');
+    if (direction === 'next') frontSheet.classList.add('exit-left');
+    else frontSheet.classList.add('exit-right');
+
+    let finished = false;
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+
+      frontSheet.style.display = 'none';
+      frontSheet.className = frontBase;
+      backSheet.className  = backBase;
+
+      swapSheets();
+      pageIndex = newIndex;
+      updatePager();
+
+      focusCaretEnd(frontText);
+
+      isFlipping = false;
+      if (typeof after === 'function') after();
+    };
+
+    backSheet.addEventListener('transitionend', finish, { once:true });
+    setTimeout(finish, 420);
+  }
+
+  prevBtn.addEventListener('click', () => {
+    if (isFlipping) return;
+    if (pageIndex > 0) animateTo(pageIndex - 1, 'prev');
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (isFlipping) return;
+    if (pageIndex < pages.length - 1) {
+      animateTo(pageIndex + 1, 'next');
+    } else if (pages.length < MAX_PAGES) {
+      pages.push('');
+      savePages(id, pages);
+      animateTo(pageIndex + 1, 'next');
+    }
+  });
+
+  // ✅ AUTO-PAGINAÇÃO REAL POR OVERFLOW (altura)
+  function fits(el){
+    return el.scrollHeight <= el.clientHeight + 1;
+  }
+
+  function splitToFit(fullText){
+    // Binary search no corte, pra caber no frontText
+    let lo = 0;
+    let hi = fullText.length;
+    let best = 0;
+
+    // tenta cortar em quebras/espacos preferencialmente
+    function normalizeCut(i){
+      // volta para um espaço/linha se possível
+      for (let k = i; k > 0; k--){
+        const ch = fullText[k-1];
+        if (ch === '\n' || ch === ' ') return k;
+      }
+      return i;
+    }
+
+    while (lo <= hi){
+      const mid = Math.floor((lo + hi) / 2);
+      const cut = normalizeCut(mid);
+
+      frontText.innerText = fullText.slice(0, cut);
+      if (fits(frontText)){
+        best = cut;
+        lo = mid + 1;
+      } else {
+        hi = mid - 1;
+      }
+    }
+
+    // garante pelo menos 1 char se absolutamente nada couber (caso extremo)
+    if (best === 0) best = Math.min(1, fullText.length);
+
+    const a = fullText.slice(0, best);
+    const b = fullText.slice(best);
+    return { a, b };
+  }
+
+  function ensureNextPageExists(){
+    if (pageIndex < pages.length - 1) return;
+    if (pages.length >= MAX_PAGES) return;
+    pages.push('');
+    savePages(id, pages);
+  }
+
+  function autoPaginateIfNeeded(jumpForward){
+    // se não está aberto, não mexe
+    if (!book.classList.contains('open')) return;
+    if (isFlipping) return;
+
+    let safety = 0;
+    while (!fits(frontText) && pages.length <= MAX_PAGES && safety < 20){
+      safety++;
+
+      if (pages.length >= MAX_PAGES){
+        // chegou no limite: não tem o que fazer além de truncar visualmente (mas evitamos scroll)
+        break;
+      }
+
+      const full = frontText.innerText;
+      const { a, b } = splitToFit(full);
+
+      // salva a parte que cabe
+      frontText.innerText = a;
+      pages[pageIndex] = a;
+
+      // cria/usa próxima página e empilha overflow no início dela
+      ensureNextPageExists();
+      const nextIndex = pageIndex + 1;
+
+      // se já havia conteúdo na próxima página, preserva
+      pages[nextIndex] = (b + (pages[nextIndex] || '')).trimStart();
+
+      savePages(id, pages);
+      updatePager();
+
+      if (jumpForward){
+        // vai pra próxima página automaticamente
+        animateTo(nextIndex, 'next', () => {
+          // frontText agora já é o próximo (depois do swap)
+          frontText.innerText = pages[nextIndex] ?? '';
+          pages[nextIndex] = frontText.innerText;
+          savePages(id, pages);
+          focusCaretEnd(frontText);
+
+          // se ainda estiver overflow (p.ex. colou um texto gigante), continua
+          queueMicrotask(() => autoPaginateIfNeeded(true));
+        });
+        return;
+      } else {
+        // não pula (modo silencioso)
+        // nada
+      }
+    }
+  }
+
+  // ✅ DRAG ROBUSTO COM POINTER CAPTURE (não perde no arraste rápido)
+  function attachDrag(target, mode){
+    let isDown = false;
+    let moved = false;
+    let startX = 0, startY = 0;
+    let baseL  = 0, baseT  = 0;
+    let pid = null;
+    let lastEvent = null; // <--- Variável essencial para o cálculo final
+    let rafId = null;
+    let pending = null;
+
+    function getLT(){
+      const left = parseFloat(book.style.left) || book.offsetLeft || 0;
+      const top  = parseFloat(book.style.top)  || book.offsetTop  || 0;
+      return {left, top};
+    }
+
+    const down = (e) => {
+      if (mode === 'closed' && book.classList.contains('open')) return;
+      if (mode === 'open' && !book.classList.contains('open')) return;
+
+      isDown = true;
+      moved = false;
+      pid = e.pointerId;
+
+      startX = e.clientX;
+      startY = e.clientY;
+
+      const pos = getLT();
+      baseL = pos.left;
+      baseT = pos.top;
+
+      // 🔥 Avisa o CSS para subir a lixeira (se for caderno fechado)
+      if (mode === 'closed') document.body.classList.add('is-dragging');
+
+      try{ target.setPointerCapture(pid); }catch(_){}
+      e.preventDefault();
+    };
+
+    const move = (e) => {
+      if (!isDown) return;
+      pending = { clientX: e.clientX, clientY: e.clientY };
+      lastEvent = pending;
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        if (!pending) return;
+        const dx = pending.clientX - startX;
+        const dy = pending.clientY - startY;
+
+        if (!moved && (Math.abs(dx) + Math.abs(dy) >= DRAG_THRESHOLD)) moved = true;
+        if (!moved) return;
+
+        book.style.left = Math.round(baseL + dx) + 'px';
+        book.style.top  = Math.round(baseT + dy) + 'px';
+
+        // --- LÓGICA VISUAL DE PERIGO ---
+        if (mode === 'closed') {
+          const trashZone = document.getElementById('trash-zone');
+          const distToBottom = window.innerHeight - pending.clientY;
+
+          // Se chegar a 60px do fundo, ativa o modo PERIGO (vermelhão)
+          if (distToBottom < 60) trashZone.classList.add('danger');
+          else trashZone.classList.remove('danger');
+        }
+      });
+    };
+
+    const end = () => {
+      if (!isDown) return;
+      isDown = false;
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      
+      // 🔥 Esconde a lixeira visualmente
+      document.body.classList.remove('is-dragging');
+      const trashZone = document.getElementById('trash-zone');
+      trashZone.classList.remove('danger');
+
+      if (pid != null){
+        try{ target.releasePointerCapture(pid); }catch(_){}
+      }
+
+      if (moved){
+        justDraggedUntil = Date.now() + OPEN_COOLDOWN_MS;
+        
+        // CORREÇÃO: Usamos o Y real do mouse (lastEvent) para deletar
+        const mouseY = lastEvent ? lastEvent.clientY : 0;
+        const distToBottom = window.innerHeight - mouseY;
+
+        if (distToBottom < 60 && mode === 'closed') {
+          // 💀 DELETAR CADERNO
+          book.style.transition = 'all 0.4s cubic-bezier(0.5, 0, 0.5, 1)';
+          book.style.transform = 'scale(0) translateY(100px)';
+          book.style.opacity = '0';
+          
+          setTimeout(() => {
+            book.remove();
+            removeFromRegistry(id); 
+            localStorage.removeItem('pages_' + id);
+            localStorage.removeItem('pos_' + id);
+            localStorage.removeItem('title_' + id);
+            localStorage.removeItem('color_' + id);
+          }, 400);
+        } else {
+          // SALVAR POSIÇÃO
+          const p = clampToViewport(book);
+          savePos(id, p.x, p.y);
+          hint.classList.add('show');
+          setTimeout(()=> hint.classList.remove('show'), 1200);
+        }
+
+      } else {
+        if (!book.classList.contains('open') && Date.now() > justDraggedUntil){
+          openBook(book);
+        }
+      }
+
+      moved = false;
+      pid = null;
+      lastEvent = null;
+    };
+
+    const cancel = () => {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      if (pid != null){
+        try{ target.releasePointerCapture(pid); }catch(_){}
+      }
+      // Limpeza geral de segurança
+      document.body.classList.remove('is-dragging');
+      document.getElementById('trash-zone').classList.remove('danger');
+      
+      isDown = false;
+      moved = false;
+      pid = null;
+    };
+
+    target.addEventListener('pointerdown', down);
+    target.addEventListener('pointermove', move);
+    target.addEventListener('pointerup', end);
+    target.addEventListener('pointercancel', cancel);
+  }
+  
+  attachDrag(cover,  'closed');
+  attachDrag(handle, 'open');
+
+  renderCurrent();
+  bindFront();
+  library.appendChild(book);
+
+    const p0 = clampToViewport(book);
+
+  // não sobrescrever posição salva no reload
+  const hasSavedPos = !!localStorage.getItem(posKey(id));
+  if (hasSavedPos) {
+    if (Math.abs(p0.x - pos.x) > 1 || Math.abs(p0.y - pos.y) > 1) {
+      savePos(id, p0.x, p0.y);
+    }
+  }
+  if (opts.birthing || !hasSavedPos) {
+    savePos(id, p0.x, p0.y);
+  }
+
+  if (opts.birthing){
+
+    book.classList.add('birthing');
+    book.style.pointerEvents = 'none';
+    setTimeout(() => {
+      book.style.pointerEvents = '';
+      book.classList.remove('birthing');
+    }, 6500);
+  }
+}
+
+function openBook(book){
+  closeAll();
+  book.classList.add('open');
+  overlay.classList.add('active');
+
+  const frontText = book.querySelector('.sheet:not([style*="display: none"]) .page-text') || book.querySelector('.page-text');
+  setTimeout(() => focusCaretEnd(frontText), 0);
+}
+
+function closeAll(){
+  document.querySelectorAll('.totbook.open').forEach(b => b.classList.remove('open'));
+  overlay.classList.remove('active');
+}
+overlay.addEventListener('click', closeAll);
+
+// ✅ Fecha ao apertar ESC
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeAll();
+});
+
+// ✅ Duplo clique com "Mensagem de Cooldown" Restaurada
+library.addEventListener('dblclick', (e) => {
+  if (e.target !== library) return;
+
+  const now = Date.now();
+  const hintEl = document.getElementById('hint-text'); 
+  
+  if (isSpawning) return;
+
+  // SE TENTAR CRIAR ANTES DA HORA (BLOQUEIO):
+  if (now - lastSpawnAt < CREATE_COOLDOWN_MS) {
+    const remaining = Math.ceil((CREATE_COOLDOWN_MS - (now - lastSpawnAt)) / 1000);
+    
+    // Forçamos o elemento a aparecer, mesmo que tenha sido escondido antes
+    hintEl.style.display = 'block'; 
+    hintEl.style.opacity = "0";
+    
+    setTimeout(() => {
+      hintEl.innerHTML = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h12v2h-1v3c0 1.7-1 3.2-2.6 4l-1.4.8 1.4.8c1.6.8 2.6 2.3 2.6 4v3H7v-3c0-1.7 1-3.2 2.6-4l1.4-.8-1.4-.8C8 9.2 7 7.7 7 6V4H6V2zm3 18h6v-2H9v2z"></path></svg> Aguarde ${remaining}s para criar outro...`;
+      hintEl.style.color = "#ef4444"; // Cor de alerta (vermelho suave)
+      hintEl.style.transform = "translate(-50%, -50%) scale(1.1)";
+      hintEl.style.opacity = "1";
+    }, 50);
+
+    // Reseta e esconde novamente após 3 segundos
+    setTimeout(() => {
+      hintEl.style.opacity = "0";
+      setTimeout(() => {
+        hintEl.style.display = 'none'; // Volta a ficar invisível para não sujar o editor
+        hintEl.style.transform = "translate(-50%, -50%)";
+      }, 400);
+    }, 3000);
+    
+    return; 
+  }
+
+  // Se passou no teste, abre o modal normalmente
+  const x = e.clientX - 120;
+  const y = e.clientY - 170;
+  openModalForNewBook(x, y);
+});
+
+window.addEventListener('resize', () => {
+  document.querySelectorAll('.totbook').forEach(b => clampToViewport(b));
+});
+
+function escapeHtml(s){
+  return String(s)
+    .replaceAll('&','&amp;')
+    .replaceAll('<','&lt;')
+    .replaceAll('>','&gt;')
+    .replaceAll('"','&quot;')
+    .replaceAll("'","&#039;");
+}
+</script>
+</body>
+</html>
