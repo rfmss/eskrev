@@ -737,8 +737,11 @@ export const editorFeatures = {
         this.readerRuler = document.querySelector(".reader-ruler");
         this.readerGlass = document.querySelector(".reader-glass");
         this.readerPlay = document.getElementById("btnReaderPlay");
+        this.readerSpeedDown = document.getElementById("btnReaderSpeedDown");
+        this.readerSpeedUp = document.getElementById("btnReaderSpeedUp");
         this.readerAutoScroll = false;
         this.readerAutoScrollRaf = null;
+        this.readerAutoScrollSpeed = 1;
         const btn = document.getElementById("btnReader");
         const close = document.getElementById("closeModalReader");
         const btnGlossary = document.getElementById("btnReaderGlossary");
@@ -777,6 +780,12 @@ export const editorFeatures = {
         }
         if (this.readerPlay) {
             this.readerPlay.onclick = () => this.toggleReaderAutoScroll();
+        }
+        if (this.readerSpeedDown) {
+            this.readerSpeedDown.onclick = () => this.adjustReaderSpeed(-0.3);
+        }
+        if (this.readerSpeedUp) {
+            this.readerSpeedUp.onclick = () => this.adjustReaderSpeed(0.3);
         }
         if (this.readerRuler && this.readerBody) {
             let dragging = false;
@@ -820,16 +829,22 @@ export const editorFeatures = {
             if (!this.readerContent) return;
             if (e.key === "ArrowDown") {
                 e.preventDefault();
-                this.readerContent.scrollBy({ top: 48, behavior: "smooth" });
+                const scrollEl = this.getReaderScrollEl();
+                if (scrollEl) scrollEl.scrollBy({ top: 48, behavior: "smooth" });
             }
             if (e.key === "ArrowUp") {
                 e.preventDefault();
-                this.readerContent.scrollBy({ top: -48, behavior: "smooth" });
+                const scrollEl = this.getReaderScrollEl();
+                if (scrollEl) scrollEl.scrollBy({ top: -48, behavior: "smooth" });
             }
         });
         if (this.readerContent) {
             this.readerContent.addEventListener("wheel", () => this.stopReaderAutoScroll(), { passive: true });
             this.readerContent.addEventListener("touchstart", () => this.stopReaderAutoScroll(), { passive: true });
+        }
+        if (this.readerBody) {
+            this.readerBody.addEventListener("wheel", () => this.stopReaderAutoScroll(), { passive: true });
+            this.readerBody.addEventListener("touchstart", () => this.stopReaderAutoScroll(), { passive: true });
         }
     },
 
@@ -843,6 +858,28 @@ export const editorFeatures = {
         this.readerBody.style.setProperty("--ruler-height", `${height}px`);
     },
 
+    getReaderScrollEl() {
+        if (!this.readerContent) return null;
+        if (this.readerContent.scrollHeight > this.readerContent.clientHeight + 1) {
+            return this.readerContent;
+        }
+        if (this.readerBody && this.readerBody.scrollHeight > this.readerBody.clientHeight + 1) {
+            return this.readerBody;
+        }
+        return this.readerContent;
+    },
+
+    adjustReaderSpeed(delta) {
+        const next = Math.max(0.2, Math.min(3, (this.readerAutoScrollSpeed || 1) + delta));
+        this.readerAutoScrollSpeed = next;
+        if (this.readerSpeedDown) {
+            this.readerSpeedDown.title = `Lento (${next.toFixed(1)}x)`;
+        }
+        if (this.readerSpeedUp) {
+            this.readerSpeedUp.title = `Rápido (${next.toFixed(1)}x)`;
+        }
+    },
+
     toggleReaderAutoScroll() {
         if (!this.readerContent || !this.readerPlay) return;
         if (this.readerAutoScroll) {
@@ -850,15 +887,18 @@ export const editorFeatures = {
             return;
         }
         this.readerAutoScroll = true;
+        if (this.readerBox) this.readerBox.classList.add("autoscroll-active");
         this.readerPlay.innerHTML = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-pause"></use></svg>`;
         const step = () => {
-            if (!this.readerAutoScroll || !this.readerContent) return;
-            const maxScroll = this.readerContent.scrollHeight - this.readerContent.clientHeight;
-            if (this.readerContent.scrollTop >= maxScroll) {
+            if (!this.readerAutoScroll) return;
+            const scrollEl = this.getReaderScrollEl();
+            if (!scrollEl) return;
+            const maxScroll = scrollEl.scrollHeight - scrollEl.clientHeight;
+            if (scrollEl.scrollTop >= maxScroll) {
                 this.stopReaderAutoScroll();
                 return;
             }
-            this.readerContent.scrollTop += 0.4;
+            scrollEl.scrollTop += this.readerAutoScrollSpeed || 1;
             this.readerAutoScrollRaf = requestAnimationFrame(step);
         };
         this.readerAutoScrollRaf = requestAnimationFrame(step);
@@ -869,6 +909,7 @@ export const editorFeatures = {
         this.readerAutoScroll = false;
         if (this.readerAutoScrollRaf) cancelAnimationFrame(this.readerAutoScrollRaf);
         this.readerAutoScrollRaf = null;
+        if (this.readerBox) this.readerBox.classList.remove("autoscroll-active");
         if (this.readerPlay) {
             this.readerPlay.innerHTML = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-play-circle"></use></svg>`;
         }
@@ -878,6 +919,7 @@ export const editorFeatures = {
         if (!this.readerModal || !this.readerContent || !this.readerGlossary || !this.readerBox) return;
         const text = this.editor.innerText || "";
         this.readerContent.textContent = text;
+        this.readerContent.scrollTop = 0;
         this.readerGlossary.innerHTML = "";
         this.updateGlossary(text);
         this.readerModal.classList.add("active");
@@ -893,6 +935,7 @@ export const editorFeatures = {
             this.syncReaderRuler();
         }
         this.stopReaderAutoScroll();
+        this.adjustReaderSpeed(0);
         setTimeout(() => this.readerContent.focus(), 50);
     },
 

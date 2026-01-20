@@ -317,9 +317,13 @@
                     <div class="reader-glass-panel reader-glass-top"></div>
                     <div class="reader-glass-panel reader-glass-bottom"></div>
                 </div>
-                <button id="btnReaderPlay" class="reader-ruler-play btn-icon" title="Play" data-i18n-title="reader_play_title">
-                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-play-circle"></use></svg>
-                </button>
+                <div class="reader-ruler-controls" aria-hidden="true">
+                    <button id="btnReaderSpeedDown" class="btn-icon" title="Lento">−</button>
+                    <button id="btnReaderPlay" class="btn-icon" title="Play" data-i18n-title="reader_play_title">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-play-circle"></use></svg>
+                    </button>
+                    <button id="btnReaderSpeedUp" class="btn-icon" title="Rápido">+</button>
+                </div>
                 <aside class="reader-sidebar">
                     <div class="reader-section-title" data-i18n="reader_glossary">DICIONÁRIO</div>
                     <div id="readerGlossary" class="reader-glossary"></div>
