@@ -1,0 +1,19 @@
+{
+  "version": "pt-chunk-22",
+  "verbs": {
+    "diria": { "lemma": "dizer", "tag": "COND/3S", "conf": "med" },
+    "diríamos": { "lemma": "dizer", "tag": "COND/1P", "conf": "med" },
+    "faríamos": { "lemma": "fazer", "tag": "COND/1P", "conf": "med" },
+    "iria": { "lemma": "ir", "tag": "COND/3S", "conf": "med" },
+    "iriam": { "lemma": "ir", "tag": "COND/3P", "conf": "med" }
+  },
+  "adjectives": {
+    "mesmo": { "lemma": "mesmo", "tag": "MASC.SG", "conf": "low", "ambiguous": true },
+    "mesma": { "lemma": "mesmo", "tag": "FEM.SG", "conf": "low", "ambiguous": true },
+    "mesmos": { "lemma": "mesmo", "tag": "MASC.PL", "conf": "low", "ambiguous": true },
+    "mesmas": { "lemma": "mesmo", "tag": "FEM.PL", "conf": "low", "ambiguous": true }
+  },
+  "ambiguous": [
+    "mesmo"
+  ]
+}

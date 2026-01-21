@@ -1,0 +1,25 @@
+{
+  "version": "pt-chunk-15",
+  "verbs": {
+    "moro": { "lemma": "morar", "tag": "PRES/1S", "conf": "med" },
+    "mora": { "lemma": "morar", "tag": "PRES/3S", "conf": "med" },
+    "moramos": { "lemma": "morar", "tag": "PRES/1P", "conf": "med" },
+    "moram": { "lemma": "morar", "tag": "PRES/3P", "conf": "med" },
+    "morar": { "lemma": "morar", "tag": "INF", "conf": "med" },
+
+    "chego": { "lemma": "chegar", "tag": "PRES/1S", "conf": "med" },
+    "chega": { "lemma": "chegar", "tag": "PRES/3S", "conf": "med" },
+    "chegamos": { "lemma": "chegar", "tag": "PRES/1P", "conf": "med" },
+    "chegam": { "lemma": "chegar", "tag": "PRES/3P", "conf": "med" }
+  },
+  "adjectives": {
+    "simples": { "lemma": "simples", "tag": "INVAR", "conf": "med" },
+    "real": { "lemma": "real", "tag": "INVAR", "conf": "med" },
+    "reais": { "lemma": "real", "tag": "PL", "conf": "med" },
+    "vivo": { "lemma": "vivo", "tag": "MASC.SG", "conf": "med", "ambiguous": true },
+    "viva": { "lemma": "vivo", "tag": "FEM.SG", "conf": "med", "ambiguous": true }
+  },
+  "ambiguous": [
+    "vivo"
+  ]
+}

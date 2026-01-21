@@ -1,0 +1,17 @@
+{
+  "version": "pt-chunk-29",
+  "verbs": {
+    "levo": { "lemma": "levar", "tag": "PRES/1S", "conf": "med" },
+    "leva": { "lemma": "levar", "tag": "PRES/3S", "conf": "med" },
+    "levamos": { "lemma": "levar", "tag": "PRES/1P", "conf": "med" },
+    "levam": { "lemma": "levar", "tag": "PRES/3P", "conf": "med" },
+    "levar": { "lemma": "levar", "tag": "INF", "conf": "med" }
+  },
+  "adjectives": {
+    "puro": { "lemma": "puro", "tag": "MASC.SG", "conf": "med" },
+    "pura": { "lemma": "puro", "tag": "FEM.SG", "conf": "med" },
+    "puros": { "lemma": "puro", "tag": "MASC.PL", "conf": "med" },
+    "puras": { "lemma": "puro", "tag": "FEM.PL", "conf": "med" }
+  },
+  "ambiguous": []
+}

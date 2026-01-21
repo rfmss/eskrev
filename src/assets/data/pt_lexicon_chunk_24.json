@@ -1,0 +1,14 @@
+{
+  "version": "pt-chunk-24",
+  "verbs": {
+    "lembrei": { "lemma": "lembrar", "tag": "PRET/1S", "conf": "med" },
+    "lembrara": { "lemma": "lembrar", "tag": "PRET/3S", "conf": "low" },
+    "amarei": { "lemma": "amar", "tag": "FUT/1S", "conf": "med" }
+  },
+  "adjectives": {
+    "muito": { "lemma": "muito", "tag": "INVAR", "conf": "low", "ambiguous": true }
+  },
+  "ambiguous": [
+    "muito"
+  ]
+}

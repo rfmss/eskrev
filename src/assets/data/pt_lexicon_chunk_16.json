@@ -1,0 +1,27 @@
+{
+  "version": "pt-chunk-16",
+  "verbs": {
+    "meço": { "lemma": "medir", "tag": "PRES/1S", "conf": "med" },
+    "mede": { "lemma": "medir", "tag": "PRES/3S", "conf": "med" },
+    "medimos": { "lemma": "medir", "tag": "PRES/1P", "conf": "med" },
+    "medem": { "lemma": "medir", "tag": "PRES/3P", "conf": "med" },
+    "medir": { "lemma": "medir", "tag": "INF", "conf": "med" },
+
+    "vejo": { "lemma": "ver", "tag": "PRES/1S", "conf": "med" },
+    "ouco": { "lemma": "ouvir", "tag": "PRES/1S", "conf": "med" },
+    "ouve": { "lemma": "ouvir", "tag": "PRES/3S", "conf": "med" },
+    "ouvimos": { "lemma": "ouvir", "tag": "PRES/1P", "conf": "med" },
+    "ouvem": { "lemma": "ouvir", "tag": "PRES/3P", "conf": "med" }
+  },
+  "adjectives": {
+    "meio": { "lemma": "meio", "tag": "INVAR", "conf": "low", "ambiguous": true },
+    "mesmo": { "lemma": "mesmo", "tag": "MASC.SG", "conf": "low", "ambiguous": true },
+    "mesma": { "lemma": "mesmo", "tag": "FEM.SG", "conf": "low", "ambiguous": true },
+    "mesmos": { "lemma": "mesmo", "tag": "MASC.PL", "conf": "low", "ambiguous": true },
+    "mesmas": { "lemma": "mesmo", "tag": "FEM.PL", "conf": "low", "ambiguous": true }
+  },
+  "ambiguous": [
+    "meio",
+    "mesmo"
+  ]
+}

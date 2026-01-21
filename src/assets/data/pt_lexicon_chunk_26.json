@@ -1,0 +1,23 @@
+{
+  "version": "pt-chunk-26",
+  "verbs": {
+    "mando": { "lemma": "mandar", "tag": "PRES/1S", "conf": "med" },
+    "manda": { "lemma": "mandar", "tag": "PRES/3S", "conf": "med" },
+    "mandamos": { "lemma": "mandar", "tag": "PRES/1P", "conf": "med" },
+    "mandam": { "lemma": "mandar", "tag": "PRES/3P", "conf": "med" },
+    "mandar": { "lemma": "mandar", "tag": "INF", "conf": "med" },
+
+    "trago": { "lemma": "trazer", "tag": "PRES/1S", "conf": "med" },
+    "traz": { "lemma": "trazer", "tag": "PRES/3S", "conf": "med" },
+    "trazemos": { "lemma": "trazer", "tag": "PRES/1P", "conf": "med" },
+    "trazem": { "lemma": "trazer", "tag": "PRES/3P", "conf": "med" },
+    "trazer": { "lemma": "trazer", "tag": "INF", "conf": "med" }
+  },
+  "adjectives": {
+    "rapido": { "lemma": "rapido", "tag": "MASC.SG", "conf": "med" },
+    "rapida": { "lemma": "rapido", "tag": "FEM.SG", "conf": "med" },
+    "rapidos": { "lemma": "rapido", "tag": "MASC.PL", "conf": "med" },
+    "rapidas": { "lemma": "rapido", "tag": "FEM.PL", "conf": "med" }
+  },
+  "ambiguous": []
+}

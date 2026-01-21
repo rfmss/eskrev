@@ -1,0 +1,23 @@
+{
+  "version": "pt-chunk-20",
+  "verbs": {
+    "penso": { "lemma": "pensar", "tag": "PRES/1S", "conf": "med" },
+    "pensa": { "lemma": "pensar", "tag": "PRES/3S", "conf": "med" },
+    "pensamos": { "lemma": "pensar", "tag": "PRES/1P", "conf": "med" },
+    "pensam": { "lemma": "pensar", "tag": "PRES/3P", "conf": "med" },
+
+    "posso": { "lemma": "poder", "tag": "PRES/1S", "conf": "med" },
+    "pode": { "lemma": "poder", "tag": "PRES/3S", "conf": "low", "ambiguous": true },
+    "podem": { "lemma": "poder", "tag": "PRES/3P", "conf": "med" }
+  },
+  "adjectives": {
+    "mesmo": { "lemma": "mesmo", "tag": "MASC.SG", "conf": "low", "ambiguous": true },
+    "mesma": { "lemma": "mesmo", "tag": "FEM.SG", "conf": "low", "ambiguous": true },
+    "mesmos": { "lemma": "mesmo", "tag": "MASC.PL", "conf": "low", "ambiguous": true },
+    "mesmas": { "lemma": "mesmo", "tag": "FEM.PL", "conf": "low", "ambiguous": true }
+  },
+  "ambiguous": [
+    "mesmo",
+    "pode"
+  ]
+}

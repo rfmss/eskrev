@@ -862,7 +862,27 @@ export const editorFeatures = {
             "src/assets/data/pt_lexicon_chunk_7.json",
             "src/assets/data/pt_lexicon_chunk_8.json",
             "src/assets/data/pt_lexicon_chunk_9.json",
-            "src/assets/data/pt_lexicon_chunk_10.json"
+            "src/assets/data/pt_lexicon_chunk_10.json",
+            "src/assets/data/pt_lexicon_chunk_11.json",
+            "src/assets/data/pt_lexicon_chunk_12.json",
+            "src/assets/data/pt_lexicon_chunk_13.json",
+            "src/assets/data/pt_lexicon_chunk_14.json",
+            "src/assets/data/pt_lexicon_chunk_15.json",
+            "src/assets/data/pt_lexicon_chunk_16.json",
+            "src/assets/data/pt_lexicon_chunk_17.json",
+            "src/assets/data/pt_lexicon_chunk_18.json",
+            "src/assets/data/pt_lexicon_chunk_19.json",
+            "src/assets/data/pt_lexicon_chunk_20.json",
+            "src/assets/data/pt_lexicon_chunk_21.json",
+            "src/assets/data/pt_lexicon_chunk_22.json",
+            "src/assets/data/pt_lexicon_chunk_23.json",
+            "src/assets/data/pt_lexicon_chunk_24.json",
+            "src/assets/data/pt_lexicon_chunk_25.json",
+            "src/assets/data/pt_lexicon_chunk_26.json",
+            "src/assets/data/pt_lexicon_chunk_27.json",
+            "src/assets/data/pt_lexicon_chunk_28.json",
+            "src/assets/data/pt_lexicon_chunk_29.json",
+            "src/assets/data/pt_lexicon_chunk_30.json"
         ];
         this.updateLexiconStatus(0);
         fetch(this.ptLexiconChunks[0])
@@ -1316,7 +1336,8 @@ export const editorFeatures = {
             } else {
                 res = this.analyzeAdjective(norm, test.form, "pt");
             }
-            const ok = res && res.lemma === test.lemma && (!test.tag || res.tag === test.tag);
+            const ambOk = typeof test.ambiguous === "boolean" ? (res && res.ambiguous === test.ambiguous) : true;
+            const ok = res && res.lemma === test.lemma && (!test.tag || res.tag === test.tag) && ambOk;
             results.push({ ...test, ok, got: res });
         });
         const passed = results.filter(r => r.ok).length;

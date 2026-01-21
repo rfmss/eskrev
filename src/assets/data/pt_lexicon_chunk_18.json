@@ -1,0 +1,22 @@
+{
+  "version": "pt-chunk-18",
+  "verbs": {
+    "creio": { "lemma": "crer", "tag": "PRES/1S", "conf": "med" },
+    "crê": { "lemma": "crer", "tag": "PRES/3S", "conf": "med" },
+    "cremos": { "lemma": "crer", "tag": "PRES/1P", "conf": "med" },
+    "creem": { "lemma": "crer", "tag": "PRES/3P", "conf": "med" },
+    "crer": { "lemma": "crer", "tag": "INF", "conf": "med" }
+  },
+  "adjectives": {
+    "melhor": { "lemma": "bom", "tag": "COMP", "conf": "low", "ambiguous": true },
+    "pior": { "lemma": "mau", "tag": "COMP", "conf": "low", "ambiguous": true },
+    "maior": { "lemma": "grande", "tag": "COMP", "conf": "low", "ambiguous": true },
+    "menor": { "lemma": "pequeno", "tag": "COMP", "conf": "low", "ambiguous": true }
+  },
+  "ambiguous": [
+    "melhor",
+    "pior",
+    "maior",
+    "menor"
+  ]
+}

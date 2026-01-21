@@ -1,0 +1,24 @@
+{
+  "version": "pt-chunk-14",
+  "verbs": {
+    "caminho": { "lemma": "caminhar", "tag": "PRES/1S", "conf": "med" },
+    "caminha": { "lemma": "caminhar", "tag": "PRES/3S", "conf": "med" },
+    "caminhamos": { "lemma": "caminhar", "tag": "PRES/1P", "conf": "med" },
+    "caminham": { "lemma": "caminhar", "tag": "PRES/3P", "conf": "med" },
+    "caminhar": { "lemma": "caminhar", "tag": "INF", "conf": "med" },
+
+    "vejo": { "lemma": "ver", "tag": "PRES/1S", "conf": "med" },
+    "ve": { "lemma": "ver", "tag": "PRES/3S", "conf": "med" }
+  },
+  "adjectives": {
+    "inteiro": { "lemma": "inteiro", "tag": "MASC.SG", "conf": "med" },
+    "inteira": { "lemma": "inteiro", "tag": "FEM.SG", "conf": "med" },
+    "inteiros": { "lemma": "inteiro", "tag": "MASC.PL", "conf": "med" },
+    "inteiras": { "lemma": "inteiro", "tag": "FEM.PL", "conf": "med" },
+    "tal": { "lemma": "tal", "tag": "INVAR", "conf": "med", "ambiguous": true },
+    "tais": { "lemma": "tal", "tag": "PL", "conf": "med", "ambiguous": true }
+  },
+  "ambiguous": [
+    "tal"
+  ]
+}

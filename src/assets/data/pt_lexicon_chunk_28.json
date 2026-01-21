@@ -1,0 +1,19 @@
+{
+  "version": "pt-chunk-28",
+  "verbs": {
+    "devo": { "lemma": "dever", "tag": "PRES/1S", "conf": "med" },
+    "deve": { "lemma": "dever", "tag": "PRES/3S", "conf": "med", "ambiguous": true },
+    "devemos": { "lemma": "dever", "tag": "PRES/1P", "conf": "med" },
+    "devem": { "lemma": "dever", "tag": "PRES/3P", "conf": "med" },
+    "dever": { "lemma": "dever", "tag": "INF", "conf": "med" }
+  },
+  "adjectives": {
+    "possivel": { "lemma": "possivel", "tag": "INVAR", "conf": "med" },
+    "possiveis": { "lemma": "possivel", "tag": "PL", "conf": "med" },
+    "inutil": { "lemma": "inutil", "tag": "INVAR", "conf": "med" },
+    "inuteis": { "lemma": "inutil", "tag": "PL", "conf": "med" }
+  },
+  "ambiguous": [
+    "deve"
+  ]
+}

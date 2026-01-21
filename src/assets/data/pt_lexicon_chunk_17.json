@@ -1,0 +1,27 @@
+{
+  "version": "pt-chunk-17",
+  "verbs": {
+    "sigo": { "lemma": "seguir", "tag": "PRES/1S", "conf": "med" },
+    "segue": { "lemma": "seguir", "tag": "PRES/3S", "conf": "med" },
+    "seguimos": { "lemma": "seguir", "tag": "PRES/1P", "conf": "med" },
+    "seguem": { "lemma": "seguir", "tag": "PRES/3P", "conf": "med" },
+    "seguir": { "lemma": "seguir", "tag": "INF", "conf": "med" },
+
+    "uso": { "lemma": "usar", "tag": "PRES/1S", "conf": "med" },
+    "usa": { "lemma": "usar", "tag": "PRES/3S", "conf": "med" },
+    "usamos": { "lemma": "usar", "tag": "PRES/1P", "conf": "med" },
+    "usam": { "lemma": "usar", "tag": "PRES/3P", "conf": "med" },
+    "usar": { "lemma": "usar", "tag": "INF", "conf": "med" }
+  },
+  "adjectives": {
+    "muito": { "lemma": "muito", "tag": "INVAR", "conf": "low", "ambiguous": true },
+    "pouco": { "lemma": "pouco", "tag": "MASC.SG", "conf": "low", "ambiguous": true },
+    "pouca": { "lemma": "pouco", "tag": "FEM.SG", "conf": "low", "ambiguous": true },
+    "poucos": { "lemma": "pouco", "tag": "MASC.PL", "conf": "low", "ambiguous": true },
+    "poucas": { "lemma": "pouco", "tag": "FEM.PL", "conf": "low", "ambiguous": true }
+  },
+  "ambiguous": [
+    "muito",
+    "pouco"
+  ]
+}

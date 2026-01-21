@@ -1,0 +1,14 @@
+{
+  "version": "pt-chunk-25",
+  "verbs": {
+    "disse": { "lemma": "dizer", "tag": "PRET/3S", "conf": "med" },
+    "dizer": { "lemma": "dizer", "tag": "INF", "conf": "med" },
+    "dir-se-a": { "lemma": "dizer", "tag": "FUT/3S", "conf": "low", "ambiguous": true }
+  },
+  "adjectives": {
+    "pode": { "lemma": "poder", "tag": "PRES/3S", "conf": "low", "ambiguous": true }
+  },
+  "ambiguous": [
+    "pode"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "version": "pt-chunk-30",
+  "verbs": {
+    "trabalho": { "lemma": "trabalhar", "tag": "PRES/1S", "conf": "med" },
+    "trabalha": { "lemma": "trabalhar", "tag": "PRES/3S", "conf": "med" },
+    "trabalhamos": { "lemma": "trabalhar", "tag": "PRES/1P", "conf": "med" },
+    "trabalham": { "lemma": "trabalhar", "tag": "PRES/3P", "conf": "med" },
+    "trabalhar": { "lemma": "trabalhar", "tag": "INF", "conf": "med" }
+  },
+  "adjectives": {
+    "moderno": { "lemma": "moderno", "tag": "MASC.SG", "conf": "med" },
+    "moderna": { "lemma": "moderno", "tag": "FEM.SG", "conf": "med" },
+    "modernos": { "lemma": "moderno", "tag": "MASC.PL", "conf": "med" },
+    "modernas": { "lemma": "moderno", "tag": "FEM.PL", "conf": "med" }
+  },
+  "ambiguous": []
+}

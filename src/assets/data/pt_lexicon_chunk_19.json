@@ -1,0 +1,21 @@
+{
+  "version": "pt-chunk-19",
+  "verbs": {
+    "penso": { "lemma": "pensar", "tag": "PRES/1S", "conf": "med" },
+    "pensa": { "lemma": "pensar", "tag": "PRES/3S", "conf": "med" },
+    "pensam": { "lemma": "pensar", "tag": "PRES/3P", "conf": "med" },
+
+    "sinto": { "lemma": "sentir", "tag": "PRES/1S", "conf": "med" },
+    "sente": { "lemma": "sentir", "tag": "PRES/3S", "conf": "med" },
+    "sentem": { "lemma": "sentir", "tag": "PRES/3P", "conf": "med" }
+  },
+  "adjectives": {
+    "certo": { "lemma": "certo", "tag": "MASC.SG", "conf": "low", "ambiguous": true },
+    "certa": { "lemma": "certo", "tag": "FEM.SG", "conf": "low", "ambiguous": true },
+    "certos": { "lemma": "certo", "tag": "MASC.PL", "conf": "low", "ambiguous": true },
+    "certas": { "lemma": "certo", "tag": "FEM.PL", "conf": "low", "ambiguous": true }
+  },
+  "ambiguous": [
+    "certo"
+  ]
+}

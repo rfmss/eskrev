@@ -1,0 +1,16 @@
+{
+  "version": "pt-chunk-23",
+  "verbs": {
+    "tenho": { "lemma": "ter", "tag": "PRES/1S", "conf": "med" },
+    "tem": { "lemma": "ter", "tag": "PRES/3S", "conf": "med" },
+    "tinha": { "lemma": "ter", "tag": "IMP/1-3S", "conf": "med" },
+    "tivera": { "lemma": "ter", "tag": "PRET/3S", "conf": "low" },
+    "tiveram": { "lemma": "ter", "tag": "PRET/3P", "conf": "low" }
+  },
+  "adjectives": {
+    "meio": { "lemma": "meio", "tag": "INVAR", "conf": "low", "ambiguous": true }
+  },
+  "ambiguous": [
+    "meio"
+  ]
+}

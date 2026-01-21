@@ -1,0 +1,19 @@
+{
+  "version": "pt-chunk-27",
+  "verbs": {
+    "deixo": { "lemma": "deixar", "tag": "PRES/1S", "conf": "med" },
+    "deixa": { "lemma": "deixar", "tag": "PRES/3S", "conf": "med" },
+    "deixamos": { "lemma": "deixar", "tag": "PRES/1P", "conf": "med" },
+    "deixam": { "lemma": "deixar", "tag": "PRES/3P", "conf": "med" },
+    "deixar": { "lemma": "deixar", "tag": "INF", "conf": "med" }
+  },
+  "adjectives": {
+    "forte": { "lemma": "forte", "tag": "INVAR", "conf": "med" },
+    "fortes": { "lemma": "forte", "tag": "PL", "conf": "med" },
+    "fraco": { "lemma": "fraco", "tag": "MASC.SG", "conf": "med" },
+    "fraca": { "lemma": "fraco", "tag": "FEM.SG", "conf": "med" },
+    "fracos": { "lemma": "fraco", "tag": "MASC.PL", "conf": "med" },
+    "fracas": { "lemma": "fraco", "tag": "FEM.PL", "conf": "med" }
+  },
+  "ambiguous": []
+}

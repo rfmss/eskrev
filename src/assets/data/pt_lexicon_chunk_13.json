@@ -1,0 +1,25 @@
+{
+  "version": "pt-chunk-13",
+  "verbs": {
+    "lembro": { "lemma": "lembrar", "tag": "PRES/1S", "conf": "med" },
+    "lembra": { "lemma": "lembrar", "tag": "PRES/3S", "conf": "med" },
+    "lembramos": { "lemma": "lembrar", "tag": "PRES/1P", "conf": "med" },
+    "lembram": { "lemma": "lembrar", "tag": "PRES/3P", "conf": "med" },
+    "lembrar": { "lemma": "lembrar", "tag": "INF", "conf": "med" },
+
+    "sorrio": { "lemma": "sorrir", "tag": "PRES/1S", "conf": "med" },
+    "sorri": { "lemma": "sorrir", "tag": "PRES/3S", "conf": "med" },
+    "sorrimos": { "lemma": "sorrir", "tag": "PRES/1P", "conf": "med" },
+    "sorriem": { "lemma": "sorrir", "tag": "PRES/3P", "conf": "med" },
+    "sorrir": { "lemma": "sorrir", "tag": "INF", "conf": "med" }
+  },
+  "adjectives": {
+    "suave": { "lemma": "suave", "tag": "INVAR", "conf": "med" },
+    "suaves": { "lemma": "suave", "tag": "PL", "conf": "med" },
+    "vazio": { "lemma": "vazio", "tag": "MASC.SG", "conf": "med" },
+    "vazia": { "lemma": "vazio", "tag": "FEM.SG", "conf": "med" },
+    "vazios": { "lemma": "vazio", "tag": "MASC.PL", "conf": "med" },
+    "vazias": { "lemma": "vazio", "tag": "FEM.PL", "conf": "med" }
+  },
+  "ambiguous": []
+}

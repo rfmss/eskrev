@@ -1,0 +1,18 @@
+{
+  "version": "pt-chunk-21",
+  "verbs": {
+    "amo-te": { "lemma": "amar", "tag": "PRES/1S", "conf": "med" },
+    "amar-te-ei": { "lemma": "amar", "tag": "FUT/1S", "conf": "med" },
+    "direi": { "lemma": "dizer", "tag": "FUT/1S", "conf": "med" },
+    "dir-lhe-ei": { "lemma": "dizer", "tag": "FUT/1S", "conf": "low", "ambiguous": true },
+    "farei": { "lemma": "fazer", "tag": "FUT/1S", "conf": "med" },
+    "far-se-a": { "lemma": "fazer", "tag": "FUT/3S", "conf": "low", "ambiguous": true }
+  },
+  "adjectives": {
+    "cansado": { "lemma": "cansado", "tag": "MASC.SG", "conf": "med", "ambiguous": true },
+    "cansada": { "lemma": "cansado", "tag": "FEM.SG", "conf": "med", "ambiguous": true }
+  },
+  "ambiguous": [
+    "cansado"
+  ]
+}
