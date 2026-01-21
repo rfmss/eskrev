@@ -121,6 +121,7 @@
 .hud, .controls, .logo-area, .drawer { transition: opacity 2.5s ease, width 0.3s; opacity: 1; }
 body.focus-active .hud, body.focus-active .controls, body.focus-active .logo-area, body.focus-active .drawer { opacity: 0.1; } 
 body.focus-active .goal-stars { opacity: 0.15; }
+body.focus-active .xray-panel.show { opacity: 0.18; }
 
 body.focus-active #editor .focus-dim {
     color: var(--color-muted);

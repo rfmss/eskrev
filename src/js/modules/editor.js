@@ -772,6 +772,9 @@ export const editorFeatures = {
         btn.onclick = () => this.setXrayActive(!this.xrayActive);
         this.editor.addEventListener("input", () => this.scheduleXrayUpdate());
         this.editor.addEventListener("keyup", () => this.scheduleXrayUpdate());
+        this.editor.addEventListener("compositionend", () => this.scheduleXrayUpdate());
+        this.editor.addEventListener("click", () => this.scheduleXrayUpdate());
+        document.addEventListener("lang:changed", () => this.scheduleXrayUpdate());
     },
 
     setXrayActive(active) {
