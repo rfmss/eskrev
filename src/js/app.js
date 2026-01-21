@@ -1,4 +1,4 @@
-/* * T∅T - Editor - CORE MODULE
+/* * T∅T Writer - CORE MODULE
  * Fixes: Memo persistence bug (Ghost Data)
  */
 
@@ -234,10 +234,46 @@ function setupEventListeners() {
     document.getElementById("tabNav").onclick = () => { showEditorView(); ui.openDrawer('nav', { renderNav: renderNavigation }); };
     document.getElementById("tabMemo").onclick = () => { showEditorView(); ui.openDrawer('memo', {}); };
     document.getElementById("closeDrawer").onclick = () => ui.closeDrawer();
+    document.addEventListener("mobile:openDrawer", () => {
+        showEditorView();
+        ui.openDrawer('files', { renderFiles: renderProjectList });
+    });
 
     // Books (modo interno via iframe)
     const tabBooks = document.getElementById("tabBooks");
     if (tabBooks) tabBooks.onclick = () => { ui.closeDrawer(); showBooksView(); };
+    const mobileTabFiles = document.getElementById("mobileTabFiles");
+    const mobileTabNav = document.getElementById("mobileTabNav");
+    const mobileTabMemo = document.getElementById("mobileTabMemo");
+    const mobileTabTheme = document.getElementById("mobileTabTheme");
+    const mobileTabBooks = document.getElementById("mobileTabBooks");
+    if (mobileTabFiles) mobileTabFiles.onclick = () => { showEditorView(); ui.openDrawer('files', { renderFiles: renderProjectList }); };
+    if (mobileTabNav) mobileTabNav.onclick = () => { showEditorView(); ui.openDrawer('nav', { renderNav: renderNavigation }); };
+    if (mobileTabMemo) mobileTabMemo.onclick = () => { showEditorView(); ui.openDrawer('memo', {}); };
+    if (mobileTabTheme) mobileTabTheme.onclick = () => { ui.toggleTheme(); };
+    if (mobileTabBooks) mobileTabBooks.onclick = () => { ui.closeDrawer(); showBooksView(); };
+
+    const mobileControlsTrigger = document.getElementById("mobileControlsTrigger");
+    const mobileControlsClose = document.getElementById("mobileControlsClose");
+    if (mobileControlsTrigger) {
+        mobileControlsTrigger.onclick = (e) => {
+            e.stopPropagation();
+            document.body.classList.add("mobile-controls-open");
+        };
+    }
+    if (mobileControlsClose) {
+        mobileControlsClose.onclick = (e) => {
+            e.stopPropagation();
+            document.body.classList.remove("mobile-controls-open");
+        };
+    }
+    document.addEventListener("click", (e) => {
+        if (!document.body.classList.contains("mobile-controls-open")) return;
+        const controls = document.querySelector(".controls-inner");
+        if (controls && !controls.contains(e.target) && !mobileControlsTrigger?.contains(e.target)) {
+            document.body.classList.remove("mobile-controls-open");
+        }
+    });
 
 
     document.addEventListener('click', (e) => {
@@ -357,7 +393,7 @@ function setupEventListeners() {
                 document.getElementById("memoArea").value
             );
             const text = buildReportText();
-            printRawText(text, "T∅T - RELATORIO");
+            printRawText(text, "T∅T Writer - RELATORIO");
             document.getElementById("exportModal").classList.remove("active");
         };
     }
@@ -1032,7 +1068,7 @@ function downloadText(text, filename, mime) {
 function buildMarkdownExport() {
     const projects = Array.isArray(store.data.projects) ? store.data.projects : [];
     const blocks = [];
-    blocks.push("# T∅T Export\n");
+    blocks.push("# T∅T Writer Export\n");
     blocks.push(`_Gerado em ${new Date().toISOString()}_\n`);
     const manifestText = localStorage.getItem("tot_manifest_text");
     const manifestSignedAt = localStorage.getItem("tot_manifest_signed_at");

@@ -406,7 +406,7 @@
 
 ## Textos estÃ¡ticos em index.html
 
-- 🔸 T∅T - Editor
+- 🔸 T∅T Writer
 - INICIALIZANDO SISTEMA
 - 🇧🇷 PT
 - Crie a senha da sessão
@@ -581,4 +581,3 @@
 - 🔸 T∅TBook novo
 - Cancelar
 - Criar
-

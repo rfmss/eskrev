@@ -20,6 +20,18 @@ const CACHE_ASSETS = [
   "./src/assets/js/qrcode.min.js",
   "./src/assets/js/lz-string.min.js",
   "./src/assets/js/phosphor.js",
+  "./src/assets/data/pt_lexicon_core.json",
+  "./src/assets/data/pt_lexicon_chunk_1.json",
+  "./src/assets/data/pt_lexicon_chunk_2.json",
+  "./src/assets/data/pt_lexicon_chunk_3.json",
+  "./src/assets/data/pt_lexicon_chunk_4.json",
+  "./src/assets/data/pt_lexicon_chunk_5.json",
+  "./src/assets/data/pt_lexicon_chunk_6.json",
+  "./src/assets/data/pt_lexicon_chunk_7.json",
+  "./src/assets/data/pt_lexicon_chunk_8.json",
+  "./src/assets/data/pt_lexicon_chunk_9.json",
+  "./src/assets/data/pt_lexicon_chunk_10.json",
+  "./src/js/modules/xray_tests.js",
   "./src/assets/audio/backspace.wav",
   "./src/assets/audio/enter.wav",
   "./src/assets/audio/music.mp3",
@@ -34,7 +46,8 @@ const CACHE_ASSETS = [
   "./src/assets/fonts/SymbolsNerdFontMono-Regular.ttf",
   "./src/assets/fonts/SymbolsNerdFont-Regular.ttf",
   "./src/assets/icons/icon-192.svg",
-  "./src/assets/icons/icon-512.svg"
+  "./src/assets/icons/icon-512.svg",
+  "./src/assets/icons/logo-tot.svg"
 ];
 
 self.addEventListener("install", (event) => {

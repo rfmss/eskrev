@@ -13,8 +13,8 @@ html, body {
 * { box-sizing: border-box; }
 
 :root {
-  --book-w: 160px;
-  --book-h: 226px;
+  --book-w: 80px;
+  --book-h: 113px;
   --open-w: min(92vw, 720px);
   --open-h: min(86vh, 520px);
 
@@ -241,7 +241,7 @@ body:hover .bg-hint { opacity: 0.4; }
   width: var(--book-w);
   height: var(--book-h);
   background:#1c1c1c;
-  border-radius: 18px;
+  border-radius: 6px;
   box-shadow: var(--shadow-closed);
   transform: rotateY(-12deg) rotateX(4deg);
   transition:
@@ -275,7 +275,7 @@ body:hover .bg-hint { opacity: 0.4; }
   width:18px;
   height: calc(100% - 20px);
   background: linear-gradient(90deg, rgba(255,255,255,.55), rgba(255,255,255,.10));
-  border-radius: 10px;
+  border-radius: 4px;
   opacity:.22;
   pointer-events:none;
 }
@@ -345,6 +345,16 @@ body:hover .bg-hint { opacity: 0.4; }
   overflow: hidden;
   text-overflow: ellipsis; /* Coloca "..." se passar do limite */
 }
+.totbook:not(.open) .strap {
+  top: 18px;
+  height: 46px;
+  font-size: 8px;
+  gap: 4px;
+}
+.totbook:not(.open) .strap svg { width: 12px; height: 12px; }
+.totbook:not(.open) .strap span { max-width: 54px; }
+.totbook:not(.open)::before { width: 6px; }
+.totbook:not(.open)::after { width: 8px; top: 6px; height: calc(100% - 12px); border-radius: 4px; }
 
 /* Elástico (Sempre por cima) */
 .elastic{
@@ -402,12 +412,12 @@ body:hover .bg-hint { opacity: 0.4; }
 .hint{
   position:absolute;
   left:50%;
-  top: 18px;
+  bottom: -18px;
   transform: translateX(-50%);
-  padding: 6px 10px;
+  padding: 4px 8px;
   border-radius: 999px;
-  font-size: 12px;
-  background: rgba(0,0,0,.55);
+  font-size: 10px;
+  background: rgba(0,0,0,.45);
   color: rgba(255,255,255,.92);
   opacity:0;
   pointer-events:none;
@@ -466,6 +476,15 @@ body:hover .bg-hint { opacity: 0.4; }
   color: #212121; /* <--- FORÇA O PRETO PARA LEITURA */
 }
 .page-text:focus{ outline:none !important; }
+
+@media (max-width: 900px) {
+  :root {
+    --open-w: 94vw;
+    --open-h: 88vh;
+  }
+  .pages { padding: 24px 18px 44px; }
+  .page-text { font-size: 15px; line-height: 1.6; }
+}
 
 .pagination{
   position:absolute;
@@ -602,7 +621,7 @@ body.is-dragging #trash-zone {
   <div class="scrim"></div>
   <div class="card">
     <h3 id="modalTitle">🔸 T∅TBook novo</h3>
-    <input id="modalInput" type="text" maxlength="13" placeholder="Nome do projeto...">
+    <input id="modalInput" type="text" maxlength="8" placeholder="Nome do projeto...">
     <div class="actions">
       <button class="btn-cancel" id="modalCancel">Cancelar</button>
       <button class="btn-ok" id="modalOk">Criar</button>
@@ -905,7 +924,7 @@ function openModalForNewBook(x, y){
   const confirm = () => {
     let name = (modalInput.value || '').trim();
     if (!name) return;
-    name = name.substring(0, 10); // Limite profissional de 10 chars
+    name = name.substring(0, 8); // Limite de 8 chars
 
     close(); // Fecha com suavidade
 
@@ -954,15 +973,16 @@ function openModalForNewBook(x, y){
 }
 
 function createBook(title, x, y, opts = {}){
-  const id = opts.id || ('book_' + title.toLowerCase().replace(/\s+/g,'_'));
+  const safeTitle = (title || '').trim().substring(0, 8);
+  const id = opts.id || ('book_' + safeTitle.toLowerCase().replace(/\s+/g,'_'));
   addToRegistry(id);
-  if (opts.pinnedTitle) localStorage.setItem(titleKey(id), title);
+  if (opts.pinnedTitle) localStorage.setItem(titleKey(id), safeTitle);
 
   const book = document.createElement('div');
   book.className = 'totbook';
   book.dataset.id = id;
 
-  const savedTitle = localStorage.getItem(titleKey(id)) || title;
+  const savedTitle = localStorage.getItem(titleKey(id)) || safeTitle;
 
   const savedColor = localStorage.getItem(colorKey(id)) || getNextColor();
   localStorage.setItem(colorKey(id), savedColor);

@@ -762,17 +762,59 @@ body.xray-active #editor *::selection {
 .xray-panel-item {
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
+    gap: 8px;
+    font-size: 11px;
     color: var(--color-text);
+}
+.xray-panel-item span {
+    flex: 1;
+    line-height: 1.4;
 }
 .xray-panel-item strong {
     color: var(--color-accent);
+    white-space: nowrap;
 }
 .xray-panel-empty {
     font-size: 11px;
     color: var(--color-muted);
     text-align: center;
     margin-top: 6px;
+}
+.xray-panel-policy {
+    font-size: 9px;
+    line-height: 1.4;
+    color: var(--color-muted);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 8px;
+    margin-top: 6px;
+}
+.xray-panel-audit {
+    margin-top: 8px;
+    width: 100%;
+    padding: 6px 8px;
+    border-radius: var(--radius);
+    border: var(--border-style);
+    background: rgba(255, 255, 255, 0.05);
+    font-family: var(--font-ui);
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    cursor: pointer;
+    transition: opacity 0.2s ease, background 0.2s ease;
+}
+.xray-panel-audit.active {
+    background: var(--color-accent-dim);
+    color: var(--color-text);
+}
+.xray-panel-audit:hover { opacity: 0.85; }
+.xray-panel-status {
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-top: 6px;
+    text-align: right;
 }
 
 /* MODO LEITOR */

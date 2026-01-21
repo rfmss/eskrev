@@ -3,11 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>🔸 T∅T - Editor</title>
+    <title>🔸 T∅T Writer</title>
     <meta name="theme-color" content="#c4c4c4" />
     
     <link rel="manifest" href="manifest.json" />
-    <link rel="icon" href="src/assets/icons/icon-512.svg" type="image/svg+xml" />
+    <link rel="icon" href="src/assets/icons/logo-tot.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="src/assets/icons/logo-tot.svg" />
     <script src="src/assets/js/qrcode.min.js"></script>
     <script src="src/assets/js/jsqr.min.js"></script>
     <script src="src/assets/js/lz-string.min.js"></script>
@@ -111,6 +112,23 @@
             <span id="drawerTitle" data-i18n="drawer_system">SISTEMA</span>
             <button id="closeDrawer" class="btn-icon">×</button>
         </div>
+        <div class="drawer-tabs-mobile">
+            <button class="drawer-tab-btn" id="mobileTabFiles" aria-label="Arquivos">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-folder-open"></use></svg>
+            </button>
+            <button class="drawer-tab-btn" id="mobileTabNav" aria-label="Navegação">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-list-bullets"></use></svg>
+            </button>
+            <button class="drawer-tab-btn" id="mobileTabMemo" aria-label="Memo">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-pencil"></use></svg>
+            </button>
+            <button class="drawer-tab-btn" id="mobileTabTheme" aria-label="Tema">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-sun"></use></svg>
+            </button>
+            <button class="drawer-tab-btn" id="mobileTabBooks" aria-label="T∅TBooks">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-notepad"></use></svg>
+            </button>
+        </div>
         
         <div id="panelFiles" class="drawer-content" style="display:none;">
             <div class="panel-placeholder" data-i18n="files_hint">Controle seus arquivos e backups localmente.</div>
@@ -171,6 +189,13 @@
                     <div id="xrayAdjs" class="xray-panel-list"></div>
                 </div>
                 <div id="xrayEmpty" class="xray-panel-empty" data-i18n="xray_empty">Sem dados suficientes.</div>
+                <div class="xray-panel-policy" data-i18n="xray_policy">
+                    Contabiliza verbos (inclui infinitivo/gerúndio/particípio) e adjetivos. Itens ambíguos aparecem marcados.
+                </div>
+                <button id="xrayAuditToggle" class="xray-panel-audit" type="button" data-i18n="xray_audit_toggle">
+                    AUDITAR
+                </button>
+                <div id="xrayLexiconStatus" class="xray-panel-status" data-i18n="xray_lexicon_status">Pacote linguístico 0%</div>
             </aside>
             <div id="editor" contenteditable="true" spellcheck="false"></div>
         </div>
@@ -188,7 +213,11 @@
 
 
     <div class="controls">
+        <button id="mobileControlsTrigger" class="mobile-controls-trigger" aria-label="Abrir painel">
+            <span></span><span></span><span></span>
+        </button>
         <div class="controls-inner">
+            <button id="mobileControlsClose" class="btn-icon mobile-controls-close" aria-label="Fechar painel">×</button>
             <span id="currentDocLabel" class="status-label">UNTITLED</span>
             <span id="liveStats" class="status-label" data-i18n="stats_label">CHARS: 0 | WORDS: 0</span>
             <button class="btn" id="btnFontType" title="Mudar Fonte [Alt+F]" data-i18n-title="font_title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-text-aa"></use></svg></button>

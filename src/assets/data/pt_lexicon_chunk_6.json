@@ -1,0 +1,43 @@
+{
+  "version": "pt-chunk-6",
+  "verbs": {
+    "abro": { "lemma": "abrir", "tag": "PRES/1S", "conf": "med" },
+    "abre": { "lemma": "abrir", "tag": "PRES/3S", "conf": "med" },
+    "abrimos": { "lemma": "abrir", "tag": "PRES/1P", "conf": "med" },
+    "abrem": { "lemma": "abrir", "tag": "PRES/3P", "conf": "med" },
+    "abrir": { "lemma": "abrir", "tag": "INF", "conf": "med" },
+    "abri": { "lemma": "abrir", "tag": "PRET/1S", "conf": "med" },
+
+    "fecho": { "lemma": "fechar", "tag": "PRES/1S", "conf": "med" },
+    "fecha": { "lemma": "fechar", "tag": "PRES/3S", "conf": "med" },
+    "fechamos": { "lemma": "fechar", "tag": "PRES/1P", "conf": "med" },
+    "fecham": { "lemma": "fechar", "tag": "PRES/3P", "conf": "med" },
+    "fechar": { "lemma": "fechar", "tag": "INF", "conf": "med" },
+    "fechei": { "lemma": "fechar", "tag": "PRET/1S", "conf": "med" },
+
+    "crio": { "lemma": "criar", "tag": "PRES/1S", "conf": "med" },
+    "cria": { "lemma": "criar", "tag": "PRES/3S", "conf": "med" },
+    "criamos": { "lemma": "criar", "tag": "PRES/1P", "conf": "med" },
+    "criam": { "lemma": "criar", "tag": "PRES/3P", "conf": "med" },
+    "criar": { "lemma": "criar", "tag": "INF", "conf": "med" },
+    "criei": { "lemma": "criar", "tag": "PRET/1S", "conf": "med" },
+
+    "guardo": { "lemma": "guardar", "tag": "PRES/1S", "conf": "med" },
+    "guarda": { "lemma": "guardar", "tag": "PRES/3S", "conf": "med" },
+    "guardamos": { "lemma": "guardar", "tag": "PRES/1P", "conf": "med" },
+    "guardam": { "lemma": "guardar", "tag": "PRES/3P", "conf": "med" },
+    "guardar": { "lemma": "guardar", "tag": "INF", "conf": "med" }
+  },
+  "adjectives": {
+    "livre": { "lemma": "livre", "tag": "INVAR", "conf": "med" },
+    "livres": { "lemma": "livre", "tag": "PL", "conf": "med" },
+    "vazio": { "lemma": "vazio", "tag": "MASC.SG", "conf": "med" },
+    "vazia": { "lemma": "vazio", "tag": "FEM.SG", "conf": "med" },
+    "vazios": { "lemma": "vazio", "tag": "MASC.PL", "conf": "med" },
+    "vazias": { "lemma": "vazio", "tag": "FEM.PL", "conf": "med" },
+    "lento": { "lemma": "lento", "tag": "MASC.SG", "conf": "med" },
+    "lenta": { "lemma": "lento", "tag": "FEM.SG", "conf": "med" },
+    "lentos": { "lemma": "lento", "tag": "MASC.PL", "conf": "med" },
+    "lentas": { "lemma": "lento", "tag": "FEM.PL", "conf": "med" }
+  }
+}

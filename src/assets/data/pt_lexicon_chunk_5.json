@@ -1,0 +1,37 @@
+{
+  "version": "pt-chunk-5",
+  "verbs": {
+    "posso": { "lemma": "poder", "tag": "PRES/1S", "conf": "med" },
+    "pode": { "lemma": "poder", "tag": "PRES/3S", "conf": "low", "ambiguous": true },
+    "podemos": { "lemma": "poder", "tag": "PRES/1P", "conf": "med" },
+    "podem": { "lemma": "poder", "tag": "PRES/3P", "conf": "med" },
+    "pude": { "lemma": "poder", "tag": "PRET/1S", "conf": "med" },
+    "puderam": { "lemma": "poder", "tag": "PRET/3P", "conf": "med" },
+
+    "quero": { "lemma": "querer", "tag": "PRES/1S", "conf": "med" },
+    "quer": { "lemma": "querer", "tag": "PRES/3S", "conf": "med" },
+    "queremos": { "lemma": "querer", "tag": "PRES/1P", "conf": "med" },
+    "querem": { "lemma": "querer", "tag": "PRES/3P", "conf": "med" },
+
+    "faço": { "lemma": "fazer", "tag": "PRES/1S", "conf": "med" },
+    "faz": { "lemma": "fazer", "tag": "PRES/3S", "conf": "med" },
+    "fazemos": { "lemma": "fazer", "tag": "PRES/1P", "conf": "med" },
+    "fazem": { "lemma": "fazer", "tag": "PRES/3P", "conf": "med" },
+    "fiz": { "lemma": "fazer", "tag": "PRET/1S", "conf": "med" }
+  },
+  "adjectives": {
+    "melhor": { "lemma": "bom", "tag": "COMP", "conf": "low", "ambiguous": true },
+    "pior": { "lemma": "mau", "tag": "COMP", "conf": "low", "ambiguous": true },
+    "maior": { "lemma": "grande", "tag": "COMP", "conf": "low", "ambiguous": true },
+    "menor": { "lemma": "pequeno", "tag": "COMP", "conf": "low", "ambiguous": true },
+    "possivel": { "lemma": "possivel", "tag": "INVAR", "conf": "med" },
+    "possiveis": { "lemma": "possivel", "tag": "PL", "conf": "med" }
+  },
+  "ambiguous": [
+    "melhor",
+    "pior",
+    "maior",
+    "menor",
+    "pode"
+  ]
+}

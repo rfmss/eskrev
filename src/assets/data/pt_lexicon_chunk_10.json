@@ -1,0 +1,32 @@
+{
+  "version": "pt-chunk-10",
+  "verbs": {
+    "chamo": { "lemma": "chamar", "tag": "PRES/1S", "conf": "med" },
+    "chama": { "lemma": "chamar", "tag": "PRES/3S", "conf": "med" },
+    "chamamos": { "lemma": "chamar", "tag": "PRES/1P", "conf": "med" },
+    "chamam": { "lemma": "chamar", "tag": "PRES/3P", "conf": "med" },
+    "chamar": { "lemma": "chamar", "tag": "INF", "conf": "med" },
+
+    "pode": { "lemma": "poder", "tag": "PRES/3S", "conf": "low", "ambiguous": true },
+    "podem": { "lemma": "poder", "tag": "PRES/3P", "conf": "med" },
+
+    "gosto": { "lemma": "gostar", "tag": "PRES/1S", "conf": "med" },
+    "gosta": { "lemma": "gostar", "tag": "PRES/3S", "conf": "med" },
+    "gostamos": { "lemma": "gostar", "tag": "PRES/1P", "conf": "med" },
+    "gostam": { "lemma": "gostar", "tag": "PRES/3P", "conf": "med" }
+  },
+  "adjectives": {
+    "frio": { "lemma": "frio", "tag": "MASC.SG", "conf": "med" },
+    "fria": { "lemma": "frio", "tag": "FEM.SG", "conf": "med" },
+    "frios": { "lemma": "frio", "tag": "MASC.PL", "conf": "med" },
+    "frias": { "lemma": "frio", "tag": "FEM.PL", "conf": "med" },
+    "vivo": { "lemma": "vivo", "tag": "MASC.SG", "conf": "med", "ambiguous": true },
+    "viva": { "lemma": "vivo", "tag": "FEM.SG", "conf": "med", "ambiguous": true },
+    "vivos": { "lemma": "vivo", "tag": "MASC.PL", "conf": "med", "ambiguous": true },
+    "vivas": { "lemma": "vivo", "tag": "FEM.PL", "conf": "med", "ambiguous": true }
+  },
+  "ambiguous": [
+    "pode",
+    "vivo"
+  ]
+}

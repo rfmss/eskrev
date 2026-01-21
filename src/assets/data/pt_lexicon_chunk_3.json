@@ -1,0 +1,43 @@
+{
+  "version": "pt-chunk-3",
+  "verbs": {
+    "dormir": { "lemma": "dormir", "tag": "INF", "conf": "med" },
+    "durmo": { "lemma": "dormir", "tag": "PRES/1S", "conf": "med" },
+    "dorme": { "lemma": "dormir", "tag": "PRES/3S", "conf": "med" },
+    "dormimos": { "lemma": "dormir", "tag": "PRES/1P", "conf": "med" },
+    "dormem": { "lemma": "dormir", "tag": "PRES/3P", "conf": "med" },
+    "dormi": { "lemma": "dormir", "tag": "PRET/1S", "conf": "med" },
+    "dormiu": { "lemma": "dormir", "tag": "PRET/3S", "conf": "med" },
+
+    "chego": { "lemma": "chegar", "tag": "PRES/1S", "conf": "med" },
+    "chega": { "lemma": "chegar", "tag": "PRES/3S", "conf": "med" },
+    "chegamos": { "lemma": "chegar", "tag": "PRES/1P", "conf": "med" },
+    "chegam": { "lemma": "chegar", "tag": "PRES/3P", "conf": "med" },
+    "chegar": { "lemma": "chegar", "tag": "INF", "conf": "med" },
+    "chegando": { "lemma": "chegar", "tag": "GER", "conf": "med" },
+
+    "dou": { "lemma": "dar", "tag": "PRES/1S", "conf": "med" },
+    "da": { "lemma": "dar", "tag": "PRES/3S", "conf": "med", "ambiguous": true },
+    "damos": { "lemma": "dar", "tag": "PRES/1P", "conf": "med" },
+    "dão": { "lemma": "dar", "tag": "PRES/3P", "conf": "med" },
+    "dei": { "lemma": "dar", "tag": "PRET/1S", "conf": "med" },
+    "deu": { "lemma": "dar", "tag": "PRET/3S", "conf": "med" }
+  },
+  "adjectives": {
+    "novo": { "lemma": "novo", "tag": "MASC.SG", "conf": "med" },
+    "nova": { "lemma": "novo", "tag": "FEM.SG", "conf": "med" },
+    "novos": { "lemma": "novo", "tag": "MASC.PL", "conf": "med" },
+    "novas": { "lemma": "novo", "tag": "FEM.PL", "conf": "med" },
+    "antigo": { "lemma": "antigo", "tag": "MASC.SG", "conf": "med" },
+    "antiga": { "lemma": "antigo", "tag": "FEM.SG", "conf": "med" },
+    "antigos": { "lemma": "antigo", "tag": "MASC.PL", "conf": "med" },
+    "antigas": { "lemma": "antigo", "tag": "FEM.PL", "conf": "med" },
+    "doente": { "lemma": "doente", "tag": "INVAR", "conf": "med" },
+    "doentes": { "lemma": "doente", "tag": "PL", "conf": "med" },
+    "alegre": { "lemma": "alegre", "tag": "INVAR", "conf": "med" },
+    "alegres": { "lemma": "alegre", "tag": "PL", "conf": "med" }
+  },
+  "ambiguous": [
+    "da"
+  ]
+}

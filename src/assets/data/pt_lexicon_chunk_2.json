@@ -1,0 +1,48 @@
+{
+  "version": "pt-chunk-2",
+  "verbs": {
+    "sinto": { "lemma": "sentir", "tag": "PRES/1S", "conf": "med" },
+    "sente": { "lemma": "sentir", "tag": "PRES/3S", "conf": "med" },
+    "sentimos": { "lemma": "sentir", "tag": "PRES/1P", "conf": "med" },
+    "sentem": { "lemma": "sentir", "tag": "PRES/3P", "conf": "med" },
+    "sentir": { "lemma": "sentir", "tag": "INF", "conf": "med" },
+    "sentindo": { "lemma": "sentir", "tag": "GER", "conf": "med" },
+    "senti": { "lemma": "sentir", "tag": "PRET/1S", "conf": "med" },
+    "sentiu": { "lemma": "sentir", "tag": "PRET/3S", "conf": "med" },
+
+    "quero": { "lemma": "querer", "tag": "PRES/1S", "conf": "med" },
+    "quer": { "lemma": "querer", "tag": "PRES/3S", "conf": "med" },
+    "queremos": { "lemma": "querer", "tag": "PRES/1P", "conf": "med" },
+    "querem": { "lemma": "querer", "tag": "PRES/3P", "conf": "med" },
+
+    "vejo": { "lemma": "ver", "tag": "PRES/1S", "conf": "med" },
+    "ve": { "lemma": "ver", "tag": "PRES/3S", "conf": "med" },
+    "vimos": { "lemma": "ver", "tag": "PRET/1P", "conf": "med" },
+
+    "entro": { "lemma": "entrar", "tag": "PRES/1S", "conf": "med" },
+    "entra": { "lemma": "entrar", "tag": "PRES/3S", "conf": "med" },
+    "entramos": { "lemma": "entrar", "tag": "PRES/1P", "conf": "med" },
+    "entram": { "lemma": "entrar", "tag": "PRES/3P", "conf": "med" },
+    "entrar": { "lemma": "entrar", "tag": "INF", "conf": "med" },
+    "entrando": { "lemma": "entrar", "tag": "GER", "conf": "med" }
+  },
+  "adjectives": {
+    "claro": { "lemma": "claro", "tag": "MASC.SG", "conf": "med", "ambiguous": true },
+    "clara": { "lemma": "claro", "tag": "FEM.SG", "conf": "med", "ambiguous": true },
+    "claros": { "lemma": "claro", "tag": "MASC.PL", "conf": "med", "ambiguous": true },
+    "claras": { "lemma": "claro", "tag": "FEM.PL", "conf": "med", "ambiguous": true },
+    "duro": { "lemma": "duro", "tag": "MASC.SG", "conf": "med" },
+    "dura": { "lemma": "duro", "tag": "FEM.SG", "conf": "med" },
+    "duros": { "lemma": "duro", "tag": "MASC.PL", "conf": "med" },
+    "duras": { "lemma": "duro", "tag": "FEM.PL", "conf": "med" },
+    "leve": { "lemma": "leve", "tag": "INVAR", "conf": "med" },
+    "leves": { "lemma": "leve", "tag": "PL", "conf": "med" },
+    "frio": { "lemma": "frio", "tag": "MASC.SG", "conf": "med" },
+    "fria": { "lemma": "frio", "tag": "FEM.SG", "conf": "med" },
+    "frios": { "lemma": "frio", "tag": "MASC.PL", "conf": "med" },
+    "frias": { "lemma": "frio", "tag": "FEM.PL", "conf": "med" }
+  },
+  "ambiguous": [
+    "claro"
+  ]
+}

@@ -75,7 +75,7 @@ export function buildTotPayload(store) {
   return {
     HEADER: {
       VERSION: "TOT/2",
-      APP: "T∅T - Type over Tap",
+      APP: "T∅T Writer - Type over Tap",
       CREATED: new Date().toISOString(),
       CERT: birth && birth.cert ? birth.cert : "UNKNOWN"
     },

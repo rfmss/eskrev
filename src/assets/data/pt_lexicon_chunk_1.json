@@ -1,0 +1,66 @@
+{
+  "version": "pt-chunk-1",
+  "verbs": {
+    "falo": { "lemma": "falar", "tag": "PRES/1S", "conf": "med", "ambiguous": true },
+    "fala": { "lemma": "falar", "tag": "PRES/3S", "conf": "med" },
+    "falamos": { "lemma": "falar", "tag": "PRES/1P", "conf": "med" },
+    "falam": { "lemma": "falar", "tag": "PRES/3P", "conf": "med" },
+    "falar": { "lemma": "falar", "tag": "INF", "conf": "med" },
+    "falando": { "lemma": "falar", "tag": "GER", "conf": "med" },
+    "falei": { "lemma": "falar", "tag": "PRET/1S", "conf": "med" },
+    "falou": { "lemma": "falar", "tag": "PRET/3S", "conf": "med" },
+    "falarei": { "lemma": "falar", "tag": "FUT/1S", "conf": "med" },
+
+    "escrevo": { "lemma": "escrever", "tag": "PRES/1S", "conf": "med" },
+    "escreve": { "lemma": "escrever", "tag": "PRES/3S", "conf": "med" },
+    "escrevemos": { "lemma": "escrever", "tag": "PRES/1P", "conf": "med" },
+    "escrevem": { "lemma": "escrever", "tag": "PRES/3P", "conf": "med" },
+    "escrever": { "lemma": "escrever", "tag": "INF", "conf": "med" },
+    "escrevendo": { "lemma": "escrever", "tag": "GER", "conf": "med" },
+    "escrevi": { "lemma": "escrever", "tag": "PRET/1S", "conf": "med" },
+    "escreveu": { "lemma": "escrever", "tag": "PRET/3S", "conf": "med" },
+    "escreverei": { "lemma": "escrever", "tag": "FUT/1S", "conf": "med" },
+
+    "leio": { "lemma": "ler", "tag": "PRES/1S", "conf": "med" },
+    "le": { "lemma": "ler", "tag": "PRES/3S", "conf": "med" },
+    "lemos": { "lemma": "ler", "tag": "PRES/1P", "conf": "med" },
+    "leem": { "lemma": "ler", "tag": "PRES/3P", "conf": "med" },
+    "ler": { "lemma": "ler", "tag": "INF", "conf": "med" },
+    "lendo": { "lemma": "ler", "tag": "GER", "conf": "med" },
+    "li": { "lemma": "ler", "tag": "PRET/1S", "conf": "med" },
+    "leu": { "lemma": "ler", "tag": "PRET/3S", "conf": "med" },
+
+    "penso": { "lemma": "pensar", "tag": "PRES/1S", "conf": "med" },
+    "pensa": { "lemma": "pensar", "tag": "PRES/3S", "conf": "med" },
+    "pensamos": { "lemma": "pensar", "tag": "PRES/1P", "conf": "med" },
+    "pensam": { "lemma": "pensar", "tag": "PRES/3P", "conf": "med" },
+    "pensar": { "lemma": "pensar", "tag": "INF", "conf": "med" },
+    "pensando": { "lemma": "pensar", "tag": "GER", "conf": "med" },
+    "pensei": { "lemma": "pensar", "tag": "PRET/1S", "conf": "med" }
+  },
+  "adjectives": {
+    "belo": { "lemma": "belo", "tag": "MASC.SG", "conf": "med" },
+    "bela": { "lemma": "belo", "tag": "FEM.SG", "conf": "med" },
+    "belos": { "lemma": "belo", "tag": "MASC.PL", "conf": "med" },
+    "belas": { "lemma": "belo", "tag": "FEM.PL", "conf": "med" },
+    "feio": { "lemma": "feio", "tag": "MASC.SG", "conf": "med" },
+    "feia": { "lemma": "feio", "tag": "FEM.SG", "conf": "med" },
+    "feios": { "lemma": "feio", "tag": "MASC.PL", "conf": "med" },
+    "feias": { "lemma": "feio", "tag": "FEM.PL", "conf": "med" },
+    "doce": { "lemma": "doce", "tag": "INVAR", "conf": "med" },
+    "doces": { "lemma": "doce", "tag": "PL", "conf": "med" },
+    "duro": { "lemma": "duro", "tag": "MASC.SG", "conf": "med" },
+    "dura": { "lemma": "duro", "tag": "FEM.SG", "conf": "med" },
+    "duros": { "lemma": "duro", "tag": "MASC.PL", "conf": "med" },
+    "duras": { "lemma": "duro", "tag": "FEM.PL", "conf": "med" },
+    "vivo": { "lemma": "vivo", "tag": "MASC.SG", "conf": "med", "ambiguous": true },
+    "viva": { "lemma": "vivo", "tag": "FEM.SG", "conf": "med", "ambiguous": true },
+    "vivos": { "lemma": "vivo", "tag": "MASC.PL", "conf": "med", "ambiguous": true },
+    "vivas": { "lemma": "vivo", "tag": "FEM.PL", "conf": "med", "ambiguous": true }
+  },
+  "ambiguous": [
+    "vivo",
+    "viva",
+    "falo"
+  ]
+}

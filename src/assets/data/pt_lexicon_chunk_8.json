@@ -1,0 +1,34 @@
+{
+  "version": "pt-chunk-8",
+  "verbs": {
+    "quero": { "lemma": "querer", "tag": "PRES/1S", "conf": "med" },
+    "quer": { "lemma": "querer", "tag": "PRES/3S", "conf": "med" },
+    "queremos": { "lemma": "querer", "tag": "PRES/1P", "conf": "med" },
+    "querem": { "lemma": "querer", "tag": "PRES/3P", "conf": "med" },
+
+    "espero": { "lemma": "esperar", "tag": "PRES/1S", "conf": "med" },
+    "espera": { "lemma": "esperar", "tag": "PRES/3S", "conf": "med" },
+    "esperamos": { "lemma": "esperar", "tag": "PRES/1P", "conf": "med" },
+    "esperam": { "lemma": "esperar", "tag": "PRES/3P", "conf": "med" },
+    "esperar": { "lemma": "esperar", "tag": "INF", "conf": "med" },
+
+    "preciso": { "lemma": "precisar", "tag": "PRES/1S", "conf": "med", "ambiguous": true },
+    "precisa": { "lemma": "precisar", "tag": "PRES/3S", "conf": "med" },
+    "precisamos": { "lemma": "precisar", "tag": "PRES/1P", "conf": "med" },
+    "precisam": { "lemma": "precisar", "tag": "PRES/3P", "conf": "med" },
+    "precisar": { "lemma": "precisar", "tag": "INF", "conf": "med" }
+  },
+  "adjectives": {
+    "possivel": { "lemma": "possivel", "tag": "INVAR", "conf": "med" },
+    "possiveis": { "lemma": "possivel", "tag": "PL", "conf": "med" },
+    "impossivel": { "lemma": "impossivel", "tag": "INVAR", "conf": "med" },
+    "impossiveis": { "lemma": "impossivel", "tag": "PL", "conf": "med" },
+    "necessario": { "lemma": "necessario", "tag": "MASC.SG", "conf": "med" },
+    "necessaria": { "lemma": "necessario", "tag": "FEM.SG", "conf": "med" },
+    "necessarios": { "lemma": "necessario", "tag": "MASC.PL", "conf": "med" },
+    "necessarias": { "lemma": "necessario", "tag": "FEM.PL", "conf": "med" }
+  },
+  "ambiguous": [
+    "preciso"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "version": "pt-chunk-9",
+  "verbs": {
+    "penso": { "lemma": "pensar", "tag": "PRES/1S", "conf": "med" },
+    "pensa": { "lemma": "pensar", "tag": "PRES/3S", "conf": "med" },
+    "pensamos": { "lemma": "pensar", "tag": "PRES/1P", "conf": "med" },
+    "pensam": { "lemma": "pensar", "tag": "PRES/3P", "conf": "med" },
+    "pensar": { "lemma": "pensar", "tag": "INF", "conf": "med" },
+    "pensei": { "lemma": "pensar", "tag": "PRET/1S", "conf": "med" },
+
+    "imagino": { "lemma": "imaginar", "tag": "PRES/1S", "conf": "med" },
+    "imagina": { "lemma": "imaginar", "tag": "PRES/3S", "conf": "med" },
+    "imaginamos": { "lemma": "imaginar", "tag": "PRES/1P", "conf": "med" },
+    "imaginam": { "lemma": "imaginar", "tag": "PRES/3P", "conf": "med" },
+    "imaginar": { "lemma": "imaginar", "tag": "INF", "conf": "med" },
+
+    "lembro": { "lemma": "lembrar", "tag": "PRES/1S", "conf": "med" },
+    "lembra": { "lemma": "lembrar", "tag": "PRES/3S", "conf": "med" },
+    "lembramos": { "lemma": "lembrar", "tag": "PRES/1P", "conf": "med" },
+    "lembram": { "lemma": "lembrar", "tag": "PRES/3P", "conf": "med" },
+    "lembrar": { "lemma": "lembrar", "tag": "INF", "conf": "med" }
+  },
+  "adjectives": {
+    "lindo": { "lemma": "lindo", "tag": "MASC.SG", "conf": "med" },
+    "linda": { "lemma": "lindo", "tag": "FEM.SG", "conf": "med" },
+    "lindos": { "lemma": "lindo", "tag": "MASC.PL", "conf": "med" },
+    "lindas": { "lemma": "lindo", "tag": "FEM.PL", "conf": "med" },
+    "trivial": { "lemma": "trivial", "tag": "INVAR", "conf": "med" },
+    "triviais": { "lemma": "trivial", "tag": "PL", "conf": "med" }
+  },
+  "ambiguous": []
+}

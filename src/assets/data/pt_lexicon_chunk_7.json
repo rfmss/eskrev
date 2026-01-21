@@ -1,0 +1,40 @@
+{
+  "version": "pt-chunk-7",
+  "verbs": {
+    "ando": { "lemma": "andar", "tag": "PRES/1S", "conf": "med" },
+    "anda": { "lemma": "andar", "tag": "PRES/3S", "conf": "med" },
+    "andamos": { "lemma": "andar", "tag": "PRES/1P", "conf": "med" },
+    "andam": { "lemma": "andar", "tag": "PRES/3P", "conf": "med" },
+    "andar": { "lemma": "andar", "tag": "INF", "conf": "med" },
+    "andando": { "lemma": "andar", "tag": "GER", "conf": "med" },
+
+    "fico": { "lemma": "ficar", "tag": "PRES/1S", "conf": "med" },
+    "fica": { "lemma": "ficar", "tag": "PRES/3S", "conf": "med" },
+    "ficamos": { "lemma": "ficar", "tag": "PRES/1P", "conf": "med" },
+    "ficam": { "lemma": "ficar", "tag": "PRES/3P", "conf": "med" },
+    "ficar": { "lemma": "ficar", "tag": "INF", "conf": "med" },
+    "ficando": { "lemma": "ficar", "tag": "GER", "conf": "med" },
+
+    "vejo": { "lemma": "ver", "tag": "PRES/1S", "conf": "med" },
+    "vemos": { "lemma": "ver", "tag": "PRES/1P", "conf": "med" },
+
+    "gosto": { "lemma": "gostar", "tag": "PRES/1S", "conf": "med" },
+    "gosta": { "lemma": "gostar", "tag": "PRES/3S", "conf": "med" },
+    "gostamos": { "lemma": "gostar", "tag": "PRES/1P", "conf": "med" },
+    "gostam": { "lemma": "gostar", "tag": "PRES/3P", "conf": "med" },
+    "gostar": { "lemma": "gostar", "tag": "INF", "conf": "med" }
+  },
+  "adjectives": {
+    "simples": { "lemma": "simples", "tag": "INVAR", "conf": "med" },
+    "claro": { "lemma": "claro", "tag": "MASC.SG", "conf": "med", "ambiguous": true },
+    "certa": { "lemma": "certo", "tag": "FEM.SG", "conf": "med", "ambiguous": true },
+    "seguro": { "lemma": "seguro", "tag": "MASC.SG", "conf": "med" },
+    "segura": { "lemma": "seguro", "tag": "FEM.SG", "conf": "med" },
+    "seguros": { "lemma": "seguro", "tag": "MASC.PL", "conf": "med" },
+    "seguras": { "lemma": "seguro", "tag": "FEM.PL", "conf": "med" }
+  },
+  "ambiguous": [
+    "claro",
+    "certo"
+  ]
+}

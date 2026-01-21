@@ -1,5 +1,6 @@
 import { lang } from './lang.js';
 import { lexicon } from './lexicon.js';
+import { xrayTests } from './xray_tests.js';
 
 export const editorFeatures = {
     editor: null,
@@ -25,6 +26,16 @@ export const editorFeatures = {
     xrayVerbsEl: null,
     xrayAdjsEl: null,
     xrayEmptyEl: null,
+    xrayObserver: null,
+    ptLexicon: null,
+    ptLexiconReady: false,
+    ptLexiconLoading: false,
+    ptLexiconChunks: [],
+    ptLexiconChunksLoaded: 0,
+    ptLexiconStatusEl: null,
+    xrayAuditToggle: null,
+    xrayAuditActive: false,
+    xrayAuditState: new Map(),
     readerModal: null,
     readerBox: null,
     readerContent: null,
@@ -160,6 +171,9 @@ export const editorFeatures = {
             case '--dice':
             case '--dado':
                 this.rollInlineDice();
+                return true;
+            case '--xraytest':
+                this.runXrayTests();
                 return true;
             default: return false; 
         }
@@ -767,14 +781,40 @@ export const editorFeatures = {
         this.xrayVerbsEl = document.getElementById("xrayVerbs");
         this.xrayAdjsEl = document.getElementById("xrayAdjs");
         this.xrayEmptyEl = document.getElementById("xrayEmpty");
+        this.ptLexiconStatusEl = document.getElementById("xrayLexiconStatus");
+        this.xrayAuditToggle = document.getElementById("xrayAuditToggle");
         const btn = document.getElementById("btnXray");
         if (!btn || !this.xrayPanel) return;
         btn.onclick = () => this.setXrayActive(!this.xrayActive);
+        if (this.xrayAuditToggle) {
+            this.xrayAuditToggle.onclick = () => {
+                this.xrayAuditActive = !this.xrayAuditActive;
+                this.xrayAuditToggle.classList.toggle("active", this.xrayAuditActive);
+                this.xrayAuditState.clear();
+            };
+        }
         this.editor.addEventListener("input", () => this.scheduleXrayUpdate());
         this.editor.addEventListener("keyup", () => this.scheduleXrayUpdate());
         this.editor.addEventListener("compositionend", () => this.scheduleXrayUpdate());
         this.editor.addEventListener("click", () => this.scheduleXrayUpdate());
         document.addEventListener("lang:changed", () => this.scheduleXrayUpdate());
+        document.addEventListener("click", (e) => {
+            if (!this.xrayActive) return;
+            if (!this.xrayPanel) return;
+            if (this.xrayPanel.contains(e.target)) return;
+            if (btn && btn.contains(e.target)) return;
+            this.setXrayActive(false);
+        });
+        if (this.editor && !this.xrayObserver) {
+            this.xrayObserver = new MutationObserver(() => {
+                if (this.xrayActive) this.scheduleXrayUpdate();
+            });
+            this.xrayObserver.observe(this.editor, {
+                childList: true,
+                subtree: true,
+                characterData: true
+            });
+        }
     },
 
     setXrayActive(active) {
@@ -787,8 +827,14 @@ export const editorFeatures = {
         if (active) {
             this.clearSelection();
             this.lastSelectionRange = null;
+            this.ensurePtLexicon();
             this.scheduleXrayUpdate();
+        } else if (this.xrayVerbsEl && this.xrayAdjsEl && this.xrayEmptyEl) {
+            this.xrayVerbsEl.innerHTML = "";
+            this.xrayAdjsEl.innerHTML = "";
+            this.xrayEmptyEl.style.display = "block";
         }
+        this.xrayAuditState.clear();
         this.updateSelectionToolbar();
         this.scheduleFocusBlockUpdate();
     },
@@ -800,6 +846,79 @@ export const editorFeatures = {
             this.xrayRaf = null;
             this.updateXrayOverlay();
         });
+    },
+
+    ensurePtLexicon() {
+        if (this.ptLexiconReady || this.ptLexiconLoading) return;
+        this.ptLexiconLoading = true;
+        this.ptLexiconChunks = [
+            "src/assets/data/pt_lexicon_core.json",
+            "src/assets/data/pt_lexicon_chunk_1.json",
+            "src/assets/data/pt_lexicon_chunk_2.json",
+            "src/assets/data/pt_lexicon_chunk_3.json",
+            "src/assets/data/pt_lexicon_chunk_4.json",
+            "src/assets/data/pt_lexicon_chunk_5.json",
+            "src/assets/data/pt_lexicon_chunk_6.json",
+            "src/assets/data/pt_lexicon_chunk_7.json",
+            "src/assets/data/pt_lexicon_chunk_8.json",
+            "src/assets/data/pt_lexicon_chunk_9.json",
+            "src/assets/data/pt_lexicon_chunk_10.json"
+        ];
+        this.updateLexiconStatus(0);
+        fetch(this.ptLexiconChunks[0])
+            .then((r) => r.json())
+            .then((data) => {
+                this.ptLexicon = data || null;
+                this.ptLexiconReady = true;
+                this.ptLexiconChunksLoaded = 1;
+                this.updateLexiconStatus(1);
+                this.loadLexiconChunks();
+            })
+            .catch(() => {
+                this.ptLexicon = null;
+            })
+            .finally(() => {
+                this.ptLexiconLoading = false;
+                if (this.xrayActive) this.scheduleXrayUpdate();
+            });
+    },
+
+    loadLexiconChunks() {
+        if (!this.ptLexiconChunks || this.ptLexiconChunks.length <= 1) return;
+        const rest = this.ptLexiconChunks.slice(1);
+        rest.reduce((chain, url, idx) => {
+            return chain.then(() => fetch(url).then((r) => r.json()).then((data) => {
+                this.mergePtLexicon(data);
+                this.ptLexiconChunksLoaded = idx + 2;
+                this.updateLexiconStatus(this.ptLexiconChunksLoaded);
+            }).catch(() => {}));
+        }, Promise.resolve());
+    },
+
+    mergePtLexicon(extra) {
+        if (!extra) return;
+        if (!this.ptLexicon) this.ptLexicon = {};
+        if (extra.verbs) {
+            if (!this.ptLexicon.verbs) this.ptLexicon.verbs = {};
+            Object.assign(this.ptLexicon.verbs, extra.verbs);
+        }
+        if (extra.adjectives) {
+            if (!this.ptLexicon.adjectives) this.ptLexicon.adjectives = {};
+            Object.assign(this.ptLexicon.adjectives, extra.adjectives);
+        }
+        if (extra.ambiguous) {
+            if (!Array.isArray(this.ptLexicon.ambiguous)) this.ptLexicon.ambiguous = [];
+            extra.ambiguous.forEach((entry) => {
+                if (!this.ptLexicon.ambiguous.includes(entry)) this.ptLexicon.ambiguous.push(entry);
+            });
+        }
+    },
+
+    updateLexiconStatus(loaded) {
+        if (!this.ptLexiconStatusEl) return;
+        const total = this.ptLexiconChunks.length || 1;
+        const pct = Math.min(100, Math.round((loaded / total) * 100));
+        this.ptLexiconStatusEl.textContent = `${lang.t("xray_lexicon_status")} ${pct}%`;
     },
 
     updateXrayOverlay() {
@@ -820,11 +939,20 @@ export const editorFeatures = {
         const adjCounts = new Map();
         tokens.forEach((word) => {
             const lower = word.toLowerCase();
-            if (this.isXrayVerb(lower, langCode)) {
-                verbCounts.set(lower, (verbCounts.get(lower) || 0) + 1);
+            const norm = this.normalizeXrayToken(lower);
+            const verb = this.analyzeVerb(norm, lower, langCode);
+            if (verb) {
+                const key = `${verb.form}|${verb.lemma}|${verb.tag}|${verb.conf}|${verb.ambiguous ? "1" : "0"}`;
+                const entry = verbCounts.get(key) || { word: verb.form, lemma: verb.lemma, tag: verb.tag, conf: verb.conf, ambiguous: verb.ambiguous, count: 0 };
+                entry.count += 1;
+                verbCounts.set(key, entry);
             }
-            if (this.isXrayAdjective(lower, langCode)) {
-                adjCounts.set(lower, (adjCounts.get(lower) || 0) + 1);
+            const adj = this.analyzeAdjective(norm, lower, langCode);
+            if (adj) {
+                const key = `${adj.form}|${adj.lemma}|${adj.tag}|${adj.conf}|${adj.ambiguous ? "1" : "0"}`;
+                const entry = adjCounts.get(key) || { word: adj.form, lemma: adj.lemma, tag: adj.tag, conf: adj.conf, ambiguous: adj.ambiguous, count: 0 };
+                entry.count += 1;
+                adjCounts.set(key, entry);
             }
         });
         return {
@@ -833,10 +961,18 @@ export const editorFeatures = {
         };
     },
 
+    normalizeXrayToken(word) {
+        try {
+            return word.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        } catch (_) {
+            return word;
+        }
+    },
+
     getXrayTokens(text) {
         const raw = String(text || "");
         try {
-            const matches = raw.match(/[\\p{L}]{3,}/gu);
+            const matches = raw.match(/[\p{L}]{3,}/gu);
             return matches || [];
         } catch (_) {
             const matches = raw.match(/[A-Za-zÀ-ÖØ-öø-ÿ]{3,}/g);
@@ -856,6 +992,194 @@ export const editorFeatures = {
         return suffixes.some((suffix) => word.endsWith(suffix) && word.length > suffix.length + 1);
     },
 
+    analyzeVerb(normWord, rawWord, langCode) {
+        if (!this.isXrayVerb(normWord, langCode)) return null;
+        if (langCode !== "pt") {
+            return { form: rawWord, lemma: normWord, tag: "", conf: "med", ambiguous: false };
+        }
+        const cleaned = this.stripPtClitics(normWord);
+        const lex = this.lookupPtLexiconVerb(cleaned);
+        if (lex) {
+            return {
+                form: rawWord,
+                lemma: lex.lemma,
+                tag: lex.tag || "",
+                conf: lex.conf || "high",
+                ambiguous: !!lex.ambiguous
+            };
+        }
+        const analysis = this.inferPtVerb(cleaned);
+        if (!analysis) return null;
+        return {
+            form: rawWord,
+            lemma: analysis.lemma,
+            tag: analysis.tag,
+            conf: analysis.conf,
+            ambiguous: analysis.ambiguous
+        };
+    },
+
+    analyzeAdjective(normWord, rawWord, langCode) {
+        if (!this.isXrayAdjective(normWord, langCode)) return null;
+        if (langCode !== "pt") {
+            return { form: rawWord, lemma: normWord, tag: "", conf: "med", ambiguous: false };
+        }
+        const lex = this.lookupPtLexiconAdj(normWord);
+        if (lex) {
+            return {
+                form: rawWord,
+                lemma: lex.lemma,
+                tag: lex.tag || "",
+                conf: lex.conf || "high",
+                ambiguous: !!lex.ambiguous
+            };
+        }
+        const analysis = this.inferPtAdjective(normWord);
+        return {
+            form: rawWord,
+            lemma: analysis.lemma,
+            tag: analysis.tag,
+            conf: analysis.conf,
+            ambiguous: analysis.ambiguous
+        };
+    },
+
+    stripPtClitics(word) {
+        const cleaned = word.split("-")[0];
+        return cleaned.replace(/(me|te|se|nos|vos|lhe|lhes|lo|la|los|las|no|na|nos|nas)$/i, "");
+    },
+
+    inferPtVerb(word) {
+        const base = word.toLowerCase();
+        if (base.length < 3) return null;
+        const irregular = this.lookupPtIrregularVerb(base);
+        if (irregular) return irregular;
+        if (/(ar|er|ir)$/.test(base)) {
+            return { lemma: base, tag: "INF", conf: "high", ambiguous: false };
+        }
+        if (/ando$/.test(base)) {
+            return { lemma: base.replace(/ando$/, "ar"), tag: "GER", conf: "med", ambiguous: false };
+        }
+        if (/endo$/.test(base)) {
+            return { lemma: base.replace(/endo$/, "er"), tag: "GER", conf: "med", ambiguous: false };
+        }
+        if (/indo$/.test(base)) {
+            return { lemma: base.replace(/indo$/, "ir"), tag: "GER", conf: "med", ambiguous: false };
+        }
+        if (/ado$/.test(base)) {
+            return { lemma: base.replace(/ado$/, "ar"), tag: "PART", conf: "med", ambiguous: true };
+        }
+        if (/ido$/.test(base)) {
+            return { lemma: base.replace(/ido$/, "ir"), tag: "PART", conf: "med", ambiguous: true };
+        }
+        if (/arei$/.test(base)) {
+            return { lemma: base.replace(/arei$/, "ar"), tag: "FUT/1S", conf: "med", ambiguous: false };
+        }
+        if (/erei$/.test(base)) {
+            return { lemma: base.replace(/erei$/, "er"), tag: "FUT/1S", conf: "med", ambiguous: false };
+        }
+        if (/irei$/.test(base)) {
+            return { lemma: base.replace(/irei$/, "ir"), tag: "FUT/1S", conf: "med", ambiguous: false };
+        }
+        if (/ará$/.test(base)) {
+            return { lemma: base.replace(/ará$/, "ar"), tag: "FUT/3S", conf: "med", ambiguous: false };
+        }
+        if (/erá$/.test(base)) {
+            return { lemma: base.replace(/erá$/, "er"), tag: "FUT/3S", conf: "med", ambiguous: false };
+        }
+        if (/irá$/.test(base)) {
+            return { lemma: base.replace(/irá$/, "ir"), tag: "FUT/3S", conf: "med", ambiguous: false };
+        }
+        if (/ava$/.test(base)) {
+            return { lemma: base.replace(/ava$/, "ar"), tag: "IMP/1-3S", conf: "med", ambiguous: false };
+        }
+        if (/ia$/.test(base)) {
+            return { lemma: base.replace(/ia$/, "er"), tag: "IMP/1-3S", conf: "low", ambiguous: false };
+        }
+        if (/o$/.test(base) && base.length > 3) {
+            return { lemma: base.replace(/o$/, "ar"), tag: "PRES/1S", conf: "low", ambiguous: false };
+        }
+        return { lemma: base, tag: "", conf: "low", ambiguous: false };
+    },
+
+    inferPtAdjective(word) {
+        const base = word.toLowerCase();
+        const amb = this.isPtAmbiguousToken(base);
+        if (/as$/.test(base)) {
+            return { lemma: base.replace(/as$/, "o"), tag: "FEM.PL", conf: amb ? "low" : "med", ambiguous: amb };
+        }
+        if (/os$/.test(base)) {
+            return { lemma: base.replace(/os$/, "o"), tag: "MASC.PL", conf: amb ? "low" : "med", ambiguous: amb };
+        }
+        if (/a$/.test(base)) {
+            return { lemma: base.replace(/a$/, "o"), tag: "FEM.SG", conf: amb ? "low" : "low", ambiguous: amb };
+        }
+        if (/o$/.test(base)) {
+            return { lemma: base, tag: "MASC.SG", conf: amb ? "low" : "low", ambiguous: amb };
+        }
+        return { lemma: base, tag: "", conf: amb ? "low" : "low", ambiguous: amb };
+    },
+
+    lookupPtIrregularVerb(word) {
+        const map = {
+            sou: { lemma: "ser", tag: "PRES/1S", conf: "high", ambiguous: false },
+            es: { lemma: "ser", tag: "PRES/2S", conf: "high", ambiguous: false },
+            eh: { lemma: "ser", tag: "PRES/3S", conf: "high", ambiguous: false },
+            somos: { lemma: "ser", tag: "PRES/1P", conf: "high", ambiguous: false },
+            sao: { lemma: "ser", tag: "PRES/3P", conf: "high", ambiguous: false },
+            era: { lemma: "ser", tag: "IMP/1-3S", conf: "med", ambiguous: false },
+            eram: { lemma: "ser", tag: "IMP/3P", conf: "med", ambiguous: false },
+            fui: { lemma: "ser/ir", tag: "PRET/1S", conf: "low", ambiguous: true },
+            foi: { lemma: "ser/ir", tag: "PRET/3S", conf: "low", ambiguous: true },
+            fomos: { lemma: "ser/ir", tag: "PRET/1P", conf: "low", ambiguous: true },
+            foram: { lemma: "ser/ir", tag: "PRET/3P", conf: "low", ambiguous: true },
+            estou: { lemma: "estar", tag: "PRES/1S", conf: "high", ambiguous: false },
+            esta: { lemma: "estar", tag: "PRES/3S", conf: "high", ambiguous: false },
+            estamos: { lemma: "estar", tag: "PRES/1P", conf: "high", ambiguous: false },
+            estao: { lemma: "estar", tag: "PRES/3P", conf: "high", ambiguous: false },
+            estava: { lemma: "estar", tag: "IMP/1-3S", conf: "med", ambiguous: false },
+            tenho: { lemma: "ter", tag: "PRES/1S", conf: "high", ambiguous: false },
+            tem: { lemma: "ter", tag: "PRES/3S", conf: "high", ambiguous: false },
+            temos: { lemma: "ter", tag: "PRES/1P", conf: "high", ambiguous: false },
+            tinha: { lemma: "ter", tag: "IMP/1-3S", conf: "med", ambiguous: false },
+            vou: { lemma: "ir", tag: "PRES/1S", conf: "high", ambiguous: false },
+            vai: { lemma: "ir", tag: "PRES/3S", conf: "high", ambiguous: false },
+            vamos: { lemma: "ir", tag: "PRES/1P", conf: "high", ambiguous: false },
+            vao: { lemma: "ir", tag: "PRES/3P", conf: "high", ambiguous: false },
+            vejo: { lemma: "ver", tag: "PRES/1S", conf: "high", ambiguous: false },
+            ve: { lemma: "ver", tag: "PRES/3S", conf: "high", ambiguous: false },
+            posso: { lemma: "poder", tag: "PRES/1S", conf: "high", ambiguous: false },
+            pode: { lemma: "poder", tag: "PRES/3S", conf: "low", ambiguous: true },
+            sei: { lemma: "saber", tag: "PRES/1S", conf: "high", ambiguous: false }
+        };
+        const cleaned = this.normalizeXrayToken(word);
+        return map[cleaned] || null;
+    },
+
+    lookupPtLexiconVerb(word) {
+        if (!this.ptLexiconReady || !this.ptLexicon || !this.ptLexicon.verbs) return null;
+        const cleaned = this.normalizeXrayToken(word);
+        return this.ptLexicon.verbs[cleaned] || null;
+    },
+
+    lookupPtLexiconAdj(word) {
+        if (!this.ptLexiconReady || !this.ptLexicon || !this.ptLexicon.adjectives) return null;
+        const cleaned = this.normalizeXrayToken(word);
+        return this.ptLexicon.adjectives[cleaned] || null;
+    },
+
+    isPtAmbiguousToken(word) {
+        const cleaned = this.normalizeXrayToken(word);
+        if (this.ptLexiconReady && this.ptLexicon && Array.isArray(this.ptLexicon.ambiguous)) {
+            return this.ptLexicon.ambiguous.includes(cleaned);
+        }
+        const list = [
+            "meio", "mesmo", "muito", "pouco", "certo", "so",
+            "melhor", "pior", "maior", "menor", "pode", "falo", "cansado"
+        ];
+        return list.includes(cleaned);
+    },
+
     getXrayVerbList(langCode) {
         const lists = {
             pt: ["ser", "estar", "ter", "fazer", "ir", "ver", "dar", "dizer", "poder", "querer", "saber", "ficar", "vir", "haver", "usar", "criar", "salvar", "ler", "escrever"],
@@ -864,7 +1188,7 @@ export const editorFeatures = {
             fr: ["etre", "avoir", "faire", "aller", "voir", "donner", "dire", "pouvoir", "vouloir", "savoir", "rester", "venir", "utiliser", "creer", "sauver", "lire", "ecrire"]
         };
         const key = lists[langCode] ? langCode : "pt";
-        return new Set(lists[key]);
+        return new Set(lists[key].map((word) => this.normalizeXrayToken(word)));
     },
 
     getXrayVerbSuffixes(langCode) {
@@ -886,12 +1210,18 @@ export const editorFeatures = {
     },
 
     sortXrayCounts(map) {
-        return Array.from(map.entries())
+        return Array.from(map.values())
             .sort((a, b) => {
-                if (b[1] !== a[1]) return b[1] - a[1];
-                return a[0].localeCompare(b[0]);
+                if (b.count !== a.count) return b.count - a.count;
+                return a.word.localeCompare(b.word);
             })
-            .slice(0, 10);
+            .slice(0, 10)
+            .map((entry) => {
+                const confLabel = lang.t(entry.conf === "high" ? "xray_conf_high" : entry.conf === "med" ? "xray_conf_med" : "xray_conf_low");
+                const amb = entry.ambiguous ? " · amb" : "";
+                const tag = entry.tag ? ` · ${entry.tag}` : "";
+                return [`${entry.word} → ${entry.lemma}${tag}${amb} · ${confLabel}`, entry.count];
+            });
     },
 
     renderXrayList(target, items) {
@@ -902,12 +1232,100 @@ export const editorFeatures = {
             row.className = "xray-panel-item";
             const label = document.createElement("span");
             label.textContent = word;
+            label.dataset.form = word.split("→")[0].trim();
             const badge = document.createElement("strong");
             badge.textContent = String(count);
             row.appendChild(label);
             row.appendChild(badge);
+            row.addEventListener("click", () => {
+                if (!this.xrayAuditActive) return;
+                const form = label.dataset.form || "";
+                if (form) this.auditHighlight(form);
+            });
             target.appendChild(row);
         });
+    },
+
+    auditHighlight(form) {
+        const text = this.editor ? this.editor.innerText || "" : "";
+        if (!text) return;
+        const escaped = form.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const regex = new RegExp(`\\b${escaped}\\b`, "gi");
+        const indices = [];
+        let match;
+        while ((match = regex.exec(text)) !== null) {
+            indices.push({ start: match.index, end: match.index + match[0].length });
+        }
+        if (!indices.length) return;
+        const key = form.toLowerCase();
+        const next = (this.xrayAuditState.get(key) || 0) % indices.length;
+        this.xrayAuditState.set(key, next + 1);
+        const range = this.findRangeByTextOffset(indices[next].start, indices[next].end);
+        if (!range) return;
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        const rect = range.getBoundingClientRect();
+        if (rect && this.editor) {
+            const panel = this.editor.closest(".panel");
+            if (panel) {
+                const panelRect = panel.getBoundingClientRect();
+                const top = rect.top - panelRect.top + panel.scrollTop;
+                panel.scrollTo({ top: Math.max(0, top - panelRect.height / 2), behavior: "smooth" });
+            }
+        }
+    },
+
+    findRangeByTextOffset(start, end) {
+        if (!this.editor) return null;
+        const walker = document.createTreeWalker(this.editor, NodeFilter.SHOW_TEXT, null);
+        let node = walker.nextNode();
+        let offset = 0;
+        let startNode = null;
+        let startOffset = 0;
+        let endNode = null;
+        let endOffset = 0;
+        while (node) {
+            const len = node.nodeValue.length;
+            if (startNode === null && offset + len >= start) {
+                startNode = node;
+                startOffset = Math.max(0, start - offset);
+            }
+            if (offset + len >= end) {
+                endNode = node;
+                endOffset = Math.max(0, end - offset);
+                break;
+            }
+            offset += len;
+            node = walker.nextNode();
+        }
+        if (!startNode || !endNode) return null;
+        const range = document.createRange();
+        range.setStart(startNode, startOffset);
+        range.setEnd(endNode, endOffset);
+        return range;
+    },
+
+    runXrayTests() {
+        const results = [];
+        xrayTests.forEach((test) => {
+            const norm = this.normalizeXrayToken(test.form.toLowerCase());
+            let res = null;
+            if (test.type === "verb") {
+                res = this.analyzeVerb(norm, test.form, "pt");
+            } else {
+                res = this.analyzeAdjective(norm, test.form, "pt");
+            }
+            const ok = res && res.lemma === test.lemma && (!test.tag || res.tag === test.tag);
+            results.push({ ...test, ok, got: res });
+        });
+        const passed = results.filter(r => r.ok).length;
+        const total = results.length;
+        if (window.totModal?.alert) {
+            window.totModal.alert(`X-RAY TESTS: ${passed}/${total} OK`);
+        } else {
+            console.log("X-RAY TESTS", results);
+        }
     },
 
     escapeHtml(text) {

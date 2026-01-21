@@ -1,0 +1,41 @@
+{
+  "version": "pt-chunk-4",
+  "verbs": {
+    "sei": { "lemma": "saber", "tag": "PRES/1S", "conf": "med" },
+    "sabe": { "lemma": "saber", "tag": "PRES/3S", "conf": "med" },
+    "sabemos": { "lemma": "saber", "tag": "PRES/1P", "conf": "med" },
+    "sabem": { "lemma": "saber", "tag": "PRES/3P", "conf": "med" },
+    "soube": { "lemma": "saber", "tag": "PRET/1-3S", "conf": "med" },
+    "souberam": { "lemma": "saber", "tag": "PRET/3P", "conf": "med" },
+
+    "trago": { "lemma": "trazer", "tag": "PRES/1S", "conf": "med" },
+    "traz": { "lemma": "trazer", "tag": "PRES/3S", "conf": "med" },
+    "trazemos": { "lemma": "trazer", "tag": "PRES/1P", "conf": "med" },
+    "trazem": { "lemma": "trazer", "tag": "PRES/3P", "conf": "med" },
+    "trouxe": { "lemma": "trazer", "tag": "PRET/1-3S", "conf": "med" },
+    "trouxeram": { "lemma": "trazer", "tag": "PRET/3P", "conf": "med" },
+
+    "digo": { "lemma": "dizer", "tag": "PRES/1S", "conf": "med" },
+    "diz": { "lemma": "dizer", "tag": "PRES/3S", "conf": "med" },
+    "dizem": { "lemma": "dizer", "tag": "PRES/3P", "conf": "med" },
+    "disse": { "lemma": "dizer", "tag": "PRET/3S", "conf": "med" },
+
+    "vejo": { "lemma": "ver", "tag": "PRES/1S", "conf": "med" },
+    "ve": { "lemma": "ver", "tag": "PRES/3S", "conf": "med" },
+    "veem": { "lemma": "ver", "tag": "PRES/3P", "conf": "med" },
+    "vi": { "lemma": "ver", "tag": "PRET/1S", "conf": "med" }
+  },
+  "adjectives": {
+    "feliz": { "lemma": "feliz", "tag": "INVAR", "conf": "med" },
+    "felizes": { "lemma": "feliz", "tag": "PL", "conf": "med" },
+    "triste": { "lemma": "triste", "tag": "INVAR", "conf": "med" },
+    "tristes": { "lemma": "triste", "tag": "PL", "conf": "med" },
+    "certo": { "lemma": "certo", "tag": "MASC.SG", "conf": "med", "ambiguous": true },
+    "certa": { "lemma": "certo", "tag": "FEM.SG", "conf": "med", "ambiguous": true },
+    "certos": { "lemma": "certo", "tag": "MASC.PL", "conf": "med", "ambiguous": true },
+    "certas": { "lemma": "certo", "tag": "FEM.PL", "conf": "med", "ambiguous": true }
+  },
+  "ambiguous": [
+    "certo"
+  ]
+}
