@@ -84,7 +84,10 @@
   --bg-core: #24160f;
   --bg-panel: transparent;
   --bg-drawer: rgba(43, 26, 18, 0.92);
+  --bg-xray: #2b1a12;
   --bg-controls: rgba(43, 26, 18, 0.86);
+  --xray-surface: rgba(255, 255, 255, 0.04);
+  --xray-border: 1px solid rgba(255, 255, 255, 0.12);
   --color-accent: #f2a43b;
   --color-accent-dim: rgba(242, 164, 59, 0.18);
   --color-text: #f2a43b;
@@ -104,7 +107,10 @@
   --bg-core: #eef2f6;            
   --bg-panel: transparent; 
   --bg-drawer: rgba(255, 255, 255, 0.75);
+  --bg-xray: #ffffff;
   --bg-controls: rgba(255, 255, 255, 0.60);
+  --xray-surface: rgba(0, 0, 0, 0.03);
+  --xray-border: 1px solid rgba(0, 0, 0, 0.12);
   --color-text: #1e3a66;         
   --color-accent: #2962ff;       
   --color-accent-dim: rgba(41, 98, 255, 0.1);
@@ -124,7 +130,10 @@
   --bg-core: #1e3a66;            
   --bg-panel: transparent; 
   --bg-drawer: rgba(13, 24, 41, 0.85);
+  --bg-xray: #0d1829;
   --bg-controls: rgba(13, 24, 41, 0.70);
+  --xray-surface: rgba(255, 255, 255, 0.05);
+  --xray-border: 1px solid rgba(255, 255, 255, 0.14);
   --color-text: #d0e2ff;         
   --color-accent: #4589ff;       
   --color-accent-dim: rgba(69, 137, 255, 0.15);
@@ -144,7 +153,10 @@
   --bg-core: #294D81;            
   --bg-panel: transparent; 
   --bg-drawer: rgba(30, 60, 110, 0.85);
+  --bg-xray: #1e3c6e;
   --bg-controls: rgba(30, 60, 110, 0.70);
+  --xray-surface: rgba(255, 255, 255, 0.06);
+  --xray-border: 1px solid rgba(255, 255, 255, 0.16);
   --color-text: #ffffff;      
   --color-accent: #64b5f6;      
   --color-accent-dim: rgba(100, 181, 246, 0.2);
@@ -164,7 +176,10 @@
   --bg-core: #cfcfcf;
   --bg-panel: transparent;
   --bg-drawer: rgba(236, 236, 236, 0.92);
+  --bg-xray: #f4f4f4;
   --bg-controls: rgba(236, 236, 236, 0.82);
+  --xray-surface: rgba(0, 0, 0, 0.04);
+  --xray-border: 1px solid rgba(0, 0, 0, 0.12);
   --color-text: #2a2622; 
   --color-accent: #2a2622; 
   --color-accent-dim: rgba(42, 38, 34, 0.08);
@@ -184,7 +199,10 @@
   --bg-core: #000000;
   --bg-panel: transparent;
   --bg-drawer: rgba(0, 20, 0, 0.90);
+  --bg-xray: #001400;
   --bg-controls: rgba(0, 20, 0, 0.80);
+  --xray-surface: rgba(255, 255, 255, 0.04);
+  --xray-border: 1px solid rgba(255, 255, 255, 0.14);
   --color-text: #00ff41; 
   --color-accent: #00ff41;
   --color-accent-dim: rgba(0, 255, 65, 0.15);
@@ -204,7 +222,10 @@
   --bg-core: #f2a43b;
   --bg-panel: transparent;
   --bg-drawer: rgba(242, 164, 59, 0.88);
+  --bg-xray: #f2a43b;
   --bg-controls: rgba(242, 164, 59, 0.82);
+  --xray-surface: rgba(0, 0, 0, 0.08);
+  --xray-border: 1px solid rgba(0, 0, 0, 0.2);
   --color-text: #24160f;
   --color-accent: #24160f;
   --color-accent-dim: rgba(36, 22, 15, 0.18);
@@ -224,7 +245,10 @@
   --bg-core: #1a1a1a;
   --bg-panel: transparent;
   --bg-drawer: rgba(28, 28, 28, 0.92);
+  --bg-xray: #1c1c1c;
   --bg-controls: rgba(28, 28, 28, 0.86);
+  --xray-surface: rgba(255, 255, 255, 0.05);
+  --xray-border: 1px solid rgba(255, 255, 255, 0.14);
   --color-text: #cfcfcf;
   --color-accent: #e0e0e0;
   --color-accent-dim: rgba(224, 224, 224, 0.18);

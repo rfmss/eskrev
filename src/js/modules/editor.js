@@ -813,6 +813,7 @@ export const editorFeatures = {
         this.xrayOverlay = document.getElementById("xrayOverlay");
         this.xrayPanel = document.getElementById("xrayPanel");
         this.xrayHeader = this.xrayPanel ? this.xrayPanel.querySelector(".xray-header") : null;
+        this.xrayDragHandle = document.getElementById("xrayDragHandle");
         this.xrayVerbsEl = document.getElementById("xrayVerbs");
         this.xrayAdjsEl = document.getElementById("xrayAdjs");
         this.xrayEmptyEl = document.getElementById("xrayEmpty");
@@ -848,7 +849,7 @@ export const editorFeatures = {
                 this.xrayHelp.classList.toggle("active");
             };
         }
-        if (this.xrayHeader && this.xrayPanel) {
+        if (this.xrayDragHandle && this.xrayPanel) {
             this.bindXrayDrag();
         }
         if (this.xraySearch) {
@@ -902,6 +903,15 @@ export const editorFeatures = {
     },
 
     setXrayActive(active) {
+        if (active && lang.current !== "pt") {
+            const msg = lang.t("xray_locked_intl") || lang.t("xray_locked_ptbr");
+            if (window.totModal && typeof window.totModal.alert === "function") {
+                window.totModal.alert(msg);
+            } else {
+                alert(msg);
+            }
+            return;
+        }
         this.xrayActive = active;
         document.body.classList.toggle("xray-active", active);
         if (this.xrayPanel) {
@@ -961,7 +971,7 @@ export const editorFeatures = {
             if (this.xrayPanel) this.xrayPanel.classList.remove("dragging");
         };
 
-        this.xrayHeader.addEventListener("mousedown", (e) => {
+        this.xrayDragHandle.addEventListener("mousedown", (e) => {
             if (e.button !== 0) return;
             e.preventDefault();
             startDrag(e.clientX, e.clientY);
@@ -969,7 +979,7 @@ export const editorFeatures = {
         window.addEventListener("mousemove", (e) => moveDrag(e.clientX, e.clientY));
         window.addEventListener("mouseup", endDrag);
 
-        this.xrayHeader.addEventListener("touchstart", (e) => {
+        this.xrayDragHandle.addEventListener("touchstart", (e) => {
             const touch = e.touches && e.touches[0];
             if (!touch) return;
             startDrag(touch.clientX, touch.clientY);

@@ -815,19 +815,46 @@ body.consult-open .selection-toolbar {
     width: min(520px, 70vw);
     max-height: calc(100vh - var(--controls-h) - 140px);
     overflow: hidden;
-    background: var(--bg-drawer);
-    border: var(--border-style);
+    background: var(--bg-xray);
+    border: var(--xray-border);
     box-shadow: var(--shadow-float);
     border-radius: var(--radius);
-    padding: 16px 18px;
+    padding: 18px 20px;
     display: flex;
     flex-direction: column;
+    color: var(--color-text);
     opacity: 0;
     transform: translate(-50%, -46%);
     pointer-events: none;
     transition: opacity 0.2s ease, transform 0.2s ease;
     z-index: 80;
+    backdrop-filter: none;
 }
+.xray-drag-handle {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 54px;
+    height: 10px;
+    border-radius: 999px;
+    border: var(--border-style);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: var(--shadow-float);
+    cursor: grab;
+}
+.xray-drag-handle::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 12px;
+    right: 12px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--color-muted);
+    opacity: 0.7;
+}
+.xray-panel.dragging .xray-drag-handle { cursor: grabbing; }
 .xray-panel.show {
     opacity: 1;
     transform: translate(-50%, -50%);
@@ -862,18 +889,18 @@ body.consult-open .selection-toolbar {
     margin-bottom: 8px;
 }
 .xray-search {
-    border: var(--border-style);
+    border: var(--xray-border);
     border-radius: var(--radius);
     padding: 6px 8px;
-    background: rgba(255,255,255,0.06);
+    background: var(--xray-surface);
     color: var(--color-text);
     font-size: 12px;
 }
 .xray-select {
-    border: var(--border-style);
+    border: var(--xray-border);
     border-radius: var(--radius);
     padding: 6px 8px;
-    background: rgba(255,255,255,0.06);
+    background: var(--xray-surface);
     color: var(--color-text);
     font-size: 12px;
 }
@@ -893,13 +920,13 @@ body.consult-open .selection-toolbar {
     margin-bottom: 10px;
 }
 .xray-tab {
-    border: var(--border-style);
+    border: var(--xray-border);
     border-radius: var(--radius);
     padding: 6px 10px;
     font-size: 11px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    background: rgba(255,255,255,0.04);
+    background: var(--xray-surface);
     color: var(--color-muted);
     cursor: pointer;
 }
@@ -919,29 +946,67 @@ body.consult-open .selection-toolbar {
     left: 50%;
     bottom: calc(100% + 8px);
     transform: translateX(-50%);
-    white-space: normal;
-    max-width: min(360px, calc(100vw - 32px));
-    text-align: center;
-    overflow-wrap: anywhere;
-    background: rgba(15, 15, 15, 0.9);
-    color: var(--color-text);
+    background: rgba(15, 15, 15, 0.92);
+    color: #f5f5f5;
     border: var(--border-style);
     border-radius: 6px;
     padding: 4px 8px;
     font-size: 10px;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.2px;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s ease, transform 0.2s ease;
     z-index: 3;
 }
-[data-tip=""]::after { display: none; }
-.xray-header-actions [data-tip]::after {
+.xray-panel [data-tip]::after {
+    white-space: normal;
+    min-width: 120px;
+    max-width: min(320px, calc(100% - 24px));
+    text-align: center;
+    word-break: normal;
+    overflow-wrap: break-word;
+}
+.xray-panel [data-tip] {
+    overflow: visible;
+}
+.xray-panel .xray-badges [data-tip]::after {
     left: auto;
     right: 0;
     transform: translateX(0);
     text-align: right;
-    max-width: min(300px, calc(100vw - 32px));
+}
+.xray-panel .xray-badges [data-tip]:hover::after,
+.xray-panel .xray-badges [data-tip]:focus::after {
+    transform: translateY(-2px);
+}
+.hud [data-tip]::after,
+.controls [data-tip]::after,
+.selection-toolbar [data-tip]::after,
+.reader-modal [data-tip]::after {
+    white-space: nowrap;
+    max-width: none;
+    width: max-content;
+    text-align: center;
+}
+.hud [data-tip]::after {
+    left: calc(100% + 10px);
+    bottom: 50%;
+    transform: translateY(50%);
+    text-align: left;
+}
+.hud [data-tip]:hover::after,
+.hud [data-tip]:focus::after {
+    transform: translateY(50%);
+}
+[data-tip=""]::after { display: none; }
+.xray-header-actions [data-tip]::after {
+    left: auto;
+    right: 0;
+    top: calc(100% + 4px);
+    bottom: auto;
+    transform: translateX(0);
+    text-align: right;
+    max-width: min(220px, calc(100vw - 32px));
 }
 .xray-panel [data-tip]:hover::after,
 .xray-panel [data-tip]:focus::after,
@@ -966,6 +1031,7 @@ body.consult-open .selection-toolbar {
     flex: 1;
     min-height: 220px;
     overflow-y: auto;
+    overflow-x: hidden;
     padding-right: 6px;
     margin-bottom: 8px;
 }
@@ -976,10 +1042,11 @@ body.consult-open .selection-toolbar {
 }
 
 .xray-group {
-    border: var(--border-style);
+    border: var(--xray-border);
     border-radius: var(--radius);
     padding: 8px 10px;
     margin-bottom: 8px;
+    background: var(--xray-surface);
 }
 .xray-group-header {
     display: grid;

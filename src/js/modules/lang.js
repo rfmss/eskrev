@@ -43,8 +43,11 @@ export const lang = {
             reader_title: "Modo Leitor",
             reader_btn: "LEITOR",
             reader_ruler_close_title: "Fechar régua",
-            xray_title: "Modo Raio-X",
-            xray_btn: "X-RAY",
+            xray_title: "RASTRO",
+            xray_btn: "RASTRO",
+            xray_tooltip: "Leitura por vestígios.",
+            xray_locked_ptbr: "RASTRO é um modo desenvolvido em português do Brasil.\nOutras línguas aguardam adaptação.",
+            xray_locked_intl: "RASTRO é um modo desenvolvido em português do Brasil.\nOutras línguas aguardam adaptação.",
             consult_title: "Consultar",
             consult_close_title: "Fechar",
             consult_button: "CONSULTAR",
@@ -62,7 +65,7 @@ export const lang = {
             consult_status_idle: "—",
             consult_status_tried: "Tentativas:",
             consult_status_added: "Adicionada ao dicionário pessoal.",
-            xray_panel_title: "RAIO-X DO TEXTO",
+            xray_panel_title: "RASTRO DO TEXTO",
             xray_help_title: "Ajuda",
             xray_help_tip: "Ajuda",
             xray_close_title: "Fechar",
@@ -344,8 +347,10 @@ export const lang = {
             reader_title: "Reader Mode",
             reader_btn: "READER",
             reader_ruler_close_title: "Close ruler",
-            xray_title: "X-Ray Mode",
-            xray_btn: "X-RAY",
+            xray_title: "RASTRO",
+            xray_btn: "RASTRO",
+            xray_tooltip: "Leitura por vestígios.",
+            xray_locked_intl: "RASTRO is currently available only in Brazilian Portuguese.",
             consult_title: "Consult",
             consult_close_title: "Close",
             consult_button: "CONSULT",
@@ -636,8 +641,10 @@ export const lang = {
             reader_title: "Modo Lector",
             reader_btn: "LECTOR",
             reader_ruler_close_title: "Cerrar regla",
-            xray_title: "Modo Rayos-X",
-            xray_btn: "X-RAY",
+            xray_title: "RASTRO",
+            xray_btn: "RASTRO",
+            xray_tooltip: "Leitura por vestígios.",
+            xray_locked_intl: "RASTRO está disponible solo en portugués de Brasil por ahora.",
             consult_title: "Consultar",
             consult_close_title: "Cerrar",
             consult_button: "CONSULTAR",
@@ -920,8 +927,10 @@ export const lang = {
             reader_title: "Mode Lecture",
             reader_btn: "LECTEUR",
             reader_ruler_close_title: "Fermer la règle",
-            xray_title: "Mode Rayon-X",
-            xray_btn: "X-RAY",
+            xray_title: "RASTRO",
+            xray_btn: "RASTRO",
+            xray_tooltip: "Leitura por vestígios.",
+            xray_locked_intl: "RASTRO est actuellement disponible uniquement en portugais du Brésil.",
             consult_title: "Consulter",
             consult_close_title: "Fermer",
             consult_button: "CONSULTER",
@@ -1196,25 +1205,36 @@ export const lang = {
     },
     apply() {
         const t = this.db[this.current];
+        const xray = this.db.pt || {};
+        const getText = (key) => {
+            if (key && key.startsWith("xray_") && !key.startsWith("xray_locked")) {
+                return xray[key] || t[key];
+            }
+            return t[key];
+        };
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
-            if (t[key]) el.innerText = t[key];
+            const val = getText(key);
+            if (val) el.innerText = val;
         });
         document.querySelectorAll('[data-i18n-html]').forEach(el => {
             const key = el.getAttribute('data-i18n-html');
-            if (t[key]) el.innerHTML = t[key];
+            const val = getText(key);
+            if (val) el.innerHTML = val;
         });
         document.querySelectorAll('[data-i18n-title]').forEach(el => {
             const key = el.getAttribute('data-i18n-title');
-            if (t[key]) {
-                el.setAttribute('aria-label', t[key]);
+            const val = getText(key);
+            if (val) {
+                el.setAttribute('aria-label', val);
                 el.removeAttribute('title');
             }
         });
         document.querySelectorAll('[data-i18n-tip]').forEach(el => {
             const key = el.getAttribute('data-i18n-tip');
-            if (t[key]) {
-                el.setAttribute('data-tip', t[key]);
+            const val = getText(key);
+            if (val) {
+                el.setAttribute('data-tip', val);
             } else {
                 el.removeAttribute('data-tip');
             }
@@ -1228,7 +1248,8 @@ export const lang = {
         });
         document.querySelectorAll('input[data-i18n-ph], textarea[data-i18n-ph]').forEach(el => {
             const key = el.getAttribute('data-i18n-ph');
-            if (t[key]) el.placeholder = t[key];
+            const val = getText(key);
+            if (val) el.placeholder = val;
         });
         document.querySelectorAll('[data-i18n-lang]').forEach(el => {
             if (t.lang_label) el.innerText = t.lang_label;
