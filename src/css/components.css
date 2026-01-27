@@ -6,6 +6,12 @@
   border-radius: var(--radius);
 }
 .hud-btn:hover, .hud-btn.active { background: var(--color-accent-dim); color: var(--color-text); opacity: 0.95; transform: scale(1.04); }
+.hud-btn .icon,
+.drawer-tab-btn .icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
 
 .list-item {
     padding: 10px; margin-bottom: 5px; border: 1px solid transparent; 
@@ -167,6 +173,14 @@ select:focus-visible {
 body.focus-active .hud, body.focus-active .controls, body.focus-active .logo-area, body.focus-active .drawer { opacity: 0.1; } 
 body.focus-active .goal-stars { opacity: 0.15; }
 body.focus-active .xray-panel.show { opacity: 1; }
+body.writing-active .hud { opacity: 0.3; }
+body.writing-active .controls { opacity: 0.35; }
+body.writing-active .logo-area,
+body.writing-active .drawer { opacity: 0.2; }
+
+body.reader-open {
+    overflow: hidden;
+}
 
 #btnAudio,
 #btnLock {
@@ -870,23 +884,14 @@ body.consult-open .selection-toolbar {
 .terms-body p { margin: 0 0 12px; }
 .terms-body ul { margin: 0 0 12px 16px; padding: 0; }
 .terms-body li { margin-bottom: 8px; }
-.terms-check {
-    margin-top: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 12px;
-    color: var(--color-text);
-}
-.terms-check input {
-    width: 14px;
-    height: 14px;
-    accent-color: var(--color-accent);
-}
 .terms-actions {
     margin-top: 14px;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
+}
+.terms-actions .btn-ghost {
+    grid-column: 1 / -1;
 }
 .btn-ghost {
     background: transparent;
@@ -1339,6 +1344,11 @@ input[type="checkbox"]:focus-visible {
     text-align: center;
     z-index: 6;
 }
+.reader-modal [data-tip]::after {
+    top: calc(100% + 8px);
+    bottom: auto;
+    transform: translateX(-50%);
+}
 .hud [data-tip]::after {
     left: calc(100% + 10px);
     top: 50%;
@@ -1346,8 +1356,7 @@ input[type="checkbox"]:focus-visible {
     transform: translateY(-50%);
     text-align: left;
     max-width: min(240px, calc(100vw - var(--hud-w) - 32px));
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
 }
 [data-tip=""]::after { display: none; }
 .xray-header-actions [data-tip]::after {
@@ -1389,7 +1398,7 @@ input[type="checkbox"]:focus-visible {
     overflow-y: auto;
     overflow-x: hidden;
     padding-right: 6px;
-    padding-bottom: 8px;
+    padding-bottom: 18px;
     margin-bottom: 8px;
 }
 .xray-list::-webkit-scrollbar { width: 6px; }
@@ -1484,7 +1493,7 @@ input[type="checkbox"]:focus-visible {
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     padding-top: 12px;
     margin-top: 16px;
-    padding-bottom: 12px;
+    padding-bottom: 18px;
 }
 .xray-panel-audit {
     margin-top: 8px;
@@ -1547,11 +1556,25 @@ input[type="checkbox"]:focus-visible {
 .reader-modal {
     max-width: none;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    min-height: 100vh;
     border-radius: 0;
     border: none;
     background: #2c2c2c;
     color: #d6d3cf;
+    box-shadow: none;
+    overflow: hidden;
+}
+.modal-overlay#readerModal {
+    background: transparent;
+    padding: 0;
+    align-items: stretch;
+    justify-content: stretch;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
 }
 .reader-modal.reader-theme-light {
     background: #d6d6d6;
@@ -1573,6 +1596,18 @@ input[type="checkbox"]:focus-visible {
     color: #d6d3cf;
     width: 40px;
     height: 40px;
+    border: none;
+    background: transparent;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 16px;
+}
+.reader-actions #closeModalReader {
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: 0;
 }
 .reader-actions .btn-icon .icon {
     width: 22px;
@@ -1586,6 +1621,7 @@ input[type="checkbox"]:focus-visible {
     display: block;
     min-height: calc(100vh - 60px);
     height: calc(100vh - 60px);
+    overflow: hidden;
 }
 .reader-content {
     font-family: var(--font-body);
@@ -1595,13 +1631,13 @@ input[type="checkbox"]:focus-visible {
     white-space: pre-wrap;
     overflow-y: auto;
     overflow-x: hidden;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 60px);
     max-height: none;
     width: 60vw;
     max-width: 760px;
     min-width: 320px;
     margin: 0 auto;
-    padding: 40px 0 100px;
+    padding: 32px 0 0;
 }
 .reader-content.reader-font-serif {
     font-family: "Source Serif 4", "Georgia", "Times New Roman", serif;
@@ -1691,7 +1727,7 @@ input[type="checkbox"]:focus-visible {
 .reader-modal.show-ruler .reader-ruler-controls { display: inline-flex; }
 .reader-ruler-controls .btn-icon {
     background: rgba(0, 0, 0, 0.18);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: none;
     border-radius: 999px;
     width: 30px;
     height: 30px;
@@ -1703,10 +1739,22 @@ input[type="checkbox"]:focus-visible {
     justify-content: center;
     backdrop-filter: blur(6px);
 }
+.reader-ruler-controls #btnReaderRulerClose {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1;
+}
+.reader-ruler-controls .btn-icon .icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+    fill: currentColor;
+    stroke: currentColor;
+}
 .reader-modal.reader-theme-light .reader-ruler-controls .btn-icon {
     color: #2a2622;
     background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    border: none;
 }
 .reader-ruler-controls .icon { width: 18px; height: 18px; }
 .reader-ruler::before {
@@ -1745,16 +1793,19 @@ input[type="checkbox"]:focus-visible {
     display: none;
 }
 .reader-modal.show-ruler .reader-glass { display: block; }
+.reader-modal.show-ruler .reader-content {
+    user-select: none;
+}
 .reader-glass-panel {
     position: absolute;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.025);
-    backdrop-filter: blur(1px);
+    background: rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(4px);
 }
 .reader-modal.reader-theme-light .reader-glass-panel {
-    background: rgba(0, 0, 0, 0.012);
-    backdrop-filter: blur(0.8px);
+    background: rgba(0, 0, 0, 0.02);
+    backdrop-filter: blur(2.5px);
 }
 .reader-glass-top {
     top: 0;
@@ -1763,6 +1814,9 @@ input[type="checkbox"]:focus-visible {
 .reader-glass-bottom {
     top: calc(var(--ruler-top, 0px) + var(--ruler-height, 130px));
     bottom: 0;
+}
+.reader-ruler::before {
+    inset: 0;
 }
 
 @media (max-width: 900px) {
@@ -1918,6 +1972,21 @@ kbd {
     display: grid;
     gap: 10px;
 }
+.mobile-memo-section-title {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-muted);
+}
+.mobile-memo-search {
+    border: var(--border-style);
+    border-radius: var(--radius);
+    padding: 8px 10px;
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--color-text);
+    font-family: var(--font-ui);
+    font-size: 12px;
+}
 .mobile-memo-input {
     min-height: 120px;
     border: var(--border-style);
@@ -1930,6 +1999,15 @@ kbd {
     font-size: 13px;
 }
 .mobile-memo-tags {
+    border: var(--border-style);
+    border-radius: var(--radius);
+    padding: 8px 10px;
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--color-text);
+    font-family: var(--font-ui);
+    font-size: 12px;
+}
+.mobile-memo-folder {
     border: var(--border-style);
     border-radius: var(--radius);
     padding: 8px 10px;
@@ -1983,6 +2061,17 @@ kbd {
     cursor: pointer;
 }
 .mobile-memo-btn.danger { color: #ff6666; }
+.mobile-project-actions {
+    display: flex;
+    gap: 10px;
+}
+.mobile-project-actions .btn-half {
+    flex: 1 1 0%;
+}
+.mobile-project-actions .btn-half:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
 .mobile-intro .modal-body { display: grid; gap: 16px; }
 
 @media (prefers-reduced-motion: reduce) {

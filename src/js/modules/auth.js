@@ -13,7 +13,8 @@ export const auth = {
     termsModal: null,
     termsBody: null,
     termsCheck: null,
-    termsAccept: null,
+    termsChoice25: null,
+    termsChoice50: null,
     termsBack: null,
     termsLink: null,
     termsScrolledEnough: false,
@@ -78,7 +79,17 @@ export const auth = {
         choice25.onclick = () => this.handleManifestoChoice(25);
         choice50.onclick = () => this.handleManifestoChoice(50);
         if (termsLink) termsLink.onclick = () => this.openTermsModal();
-        if (verifyLink) verifyLink.onclick = () => { window.location.href = "verify.html"; };
+        if (verifyLink) verifyLink.onclick = () => {
+            const ev = document.getElementById("editorView");
+            const bv = document.getElementById("booksView");
+            const vv = document.getElementById("verifyView");
+            const panel = document.querySelector(".panel");
+            if (ev) ev.style.display = "none";
+            if (bv) bv.style.display = "none";
+            if (vv) vv.style.display = "block";
+            if (panel) panel.classList.add("books-active");
+            localStorage.setItem("lit_ui_view", "verify");
+        };
     },
 
     setupEvents() {
@@ -154,7 +165,8 @@ export const auth = {
         this.termsModal = document.getElementById("termsModal");
         this.termsBody = document.getElementById("termsBody");
         this.termsCheck = document.getElementById("termsCheck");
-        this.termsAccept = document.getElementById("termsAccept");
+        this.termsChoice25 = document.getElementById("termsChoice25");
+        this.termsChoice50 = document.getElementById("termsChoice50");
         this.termsBack = document.getElementById("termsBack");
 
         const updateTermsText = () => {
@@ -169,11 +181,11 @@ export const auth = {
         if (this.termsModal) {
             this.termsModal.addEventListener("keydown", (e) => this.handleTermsFocusTrap(e));
         }
-        if (this.termsCheck) {
-            this.termsCheck.addEventListener("change", () => this.updateTermsButtonState());
+        if (this.termsChoice25) {
+            this.termsChoice25.addEventListener("click", () => this.acceptTermsWithDuration(25));
         }
-        if (this.termsAccept) {
-            this.termsAccept.addEventListener("click", () => this.acceptTerms());
+        if (this.termsChoice50) {
+            this.termsChoice50.addEventListener("click", () => this.acceptTermsWithDuration(50));
         }
         if (this.termsBack) {
             this.termsBack.addEventListener("click", () => this.closeTermsModal(true));
@@ -227,7 +239,7 @@ export const auth = {
         this.termsModal.classList.add("active");
         this.updateTermsScrollState(true);
         this.updateTermsButtonState();
-        if (this.termsAccept) this.termsAccept.focus();
+        if (this.termsChoice25) this.termsChoice25.focus();
     },
 
     closeTermsModal(clearPending = false) {
@@ -250,39 +262,33 @@ export const auth = {
     },
 
     updateTermsButtonState() {
-        if (!this.termsAccept) return;
+        const btns = [this.termsChoice25, this.termsChoice50].filter(Boolean);
         const accepted = this.hasAcceptedTerms();
         const hasPending = Number.isFinite(this.pendingCycle);
         if (accepted && !hasPending) {
-            this.termsAccept.disabled = false;
-            this.termsAccept.textContent = lang.t("terms_close");
-            if (this.termsCheck) this.termsCheck.checked = true;
-            if (this.termsCheck && this.termsCheck.parentElement) {
-                this.termsCheck.parentElement.style.display = "none";
+            btns.forEach(btn => btn.style.display = "none");
+            if (this.termsBack) {
+                this.termsBack.textContent = lang.t("terms_close");
+                this.termsBack.style.display = "block";
             }
-            if (this.termsBack) this.termsBack.style.display = "none";
             return;
         }
-        if (this.termsAccept.textContent !== lang.t("terms_primary")) {
-            this.termsAccept.textContent = lang.t("terms_primary");
+        if (this.termsBack && this.termsBack.textContent !== lang.t("terms_back")) {
+            this.termsBack.textContent = lang.t("terms_back");
         }
-        if (this.termsCheck && this.termsCheck.parentElement) {
-            this.termsCheck.parentElement.style.display = "";
-            if (!accepted) this.termsCheck.checked = false;
-        }
+        btns.forEach(btn => btn.style.display = "");
         if (this.termsBack) this.termsBack.style.display = "";
-        const checked = this.termsCheck ? this.termsCheck.checked : false;
-        this.termsAccept.disabled = !(checked && this.termsScrolledEnough);
+        btns.forEach(btn => btn.disabled = !this.termsScrolledEnough);
     },
 
-    async acceptTerms() {
+    async acceptTermsWithDuration(minutes) {
         const accepted = this.hasAcceptedTerms();
         const hasPending = Number.isFinite(this.pendingCycle);
         if (accepted && !hasPending) {
             this.closeTermsModal();
             return;
         }
-        if (!this.termsCheck || !this.termsCheck.checked || !this.termsScrolledEnough) return;
+        if (!this.termsScrolledEnough) return;
         const acceptedKey = this.getTermsAcceptedKey();
         const currentLang = lang?.state?.lang || "pt-br";
         localStorage.setItem(acceptedKey, "true");
@@ -300,7 +306,7 @@ export const auth = {
         } catch (e) {
             console.warn("terms hash failed", e);
         }
-        const pending = this.pendingCycle;
+        const pending = Number.isFinite(minutes) ? minutes : this.pendingCycle;
         this.pendingCycle = null;
         this.closeTermsModal();
         if (Number.isFinite(pending) && typeof this.acceptWithDuration === "function") {

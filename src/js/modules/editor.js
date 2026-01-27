@@ -109,6 +109,7 @@ export const editorFeatures = {
     focusBlockRaf: null,
     activeBlock: null,
     focusReady: false,
+    writingStarted: false,
     lastUserScrollTime: 0,
     
     init(editorElement) {
@@ -413,6 +414,14 @@ export const editorFeatures = {
             }, { passive: true });
         }
         this.editor.addEventListener("keydown", (e) => {
+            if (e.key === "Backspace" && this.shouldProtectChapterMarker()) {
+                e.preventDefault();
+                return;
+            }
+            if (!this.writingStarted && (e.key.length === 1 || e.key === "Enter")) {
+                this.writingStarted = true;
+                document.body.classList.add("writing-active");
+            }
             this.focusReady = true;
             if (e.key === "Enter") this.playSound('enter');
             else if (e.key === "Backspace") this.playSound('backspace');
@@ -448,6 +457,27 @@ export const editorFeatures = {
                 this.scheduleFocusBlockUpdate();
             }
         });
+    },
+
+    shouldProtectChapterMarker() {
+        const sel = window.getSelection();
+        if (!sel || sel.rangeCount === 0 || !sel.isCollapsed) return false;
+        const range = sel.getRangeAt(0);
+        if (!this.editor.contains(range.startContainer)) return false;
+        const block = this.getBlockElement(range.startContainer);
+        if (!block) return false;
+        const atStart = this.isCaretAtBlockStart(range, block);
+        if (!atStart) return false;
+        const prev = block.previousElementSibling;
+        if (prev && prev.classList && prev.classList.contains("chapter-mark")) return true;
+        return false;
+    },
+
+    isCaretAtBlockStart(range, block) {
+        const start = range.cloneRange();
+        start.selectNodeContents(block);
+        start.collapse(true);
+        return range.compareBoundaryPoints(Range.START_TO_START, start) === 0;
     },
 
     triggerFocusMode() {
@@ -2251,12 +2281,22 @@ export const editorFeatures = {
         const btnRulerClose = document.getElementById("btnReaderRulerClose");
         const btnFont = document.getElementById("btnReaderFont");
         const btnTheme = document.getElementById("btnReaderTheme");
+        const glossaryOutsideHandler = (e) => {
+            if (!this.readerBox || !this.readerBox.classList.contains("show-glossary")) return;
+            const target = e.target;
+            if (!target) return;
+            if (target.closest && (target.closest(".reader-sidebar") || target.closest("#btnReaderGlossary"))) return;
+            this.readerBox.classList.remove("show-glossary");
+        };
         if (btn) btn.onclick = () => this.openReaderMode();
         if (close) close.onclick = () => this.closeReaderMode();
         if (btnGlossary) {
             btnGlossary.onclick = () => {
                 if (this.readerBox) this.readerBox.classList.toggle("show-glossary");
             };
+        }
+        if (this.readerModal) {
+            this.readerModal.addEventListener("pointerdown", glossaryOutsideHandler);
         }
         if (btnRuler) {
             btnRuler.onclick = () => {
@@ -2300,6 +2340,7 @@ export const editorFeatures = {
             this.readerSpeedUp.onclick = () => this.adjustReaderSpeed(0.3);
         }
         if (this.readerRuler && this.readerBody) {
+            const rulerHintSeen = () => localStorage.getItem("readerRulerHintSeen") === "1";
             let dragging = false;
             let resizing = false;
             let resizeEdge = null;
@@ -2376,10 +2417,17 @@ export const editorFeatures = {
                 } else {
                     this.readerRuler.classList.add("dragging");
                 }
+                if (!rulerHintSeen()) {
+                    localStorage.setItem("readerRulerHintSeen", "1");
+                }
                 document.addEventListener("pointermove", onMove);
                 document.addEventListener("pointerup", onUp);
             });
             this.readerRuler.addEventListener("pointermove", (e) => {
+                if (rulerHintSeen()) {
+                    this.readerRuler.classList.remove("resize-ns");
+                    return;
+                }
                 if (dragging || resizing || !this.readerRuler) return;
                 const rect = this.readerRuler.getBoundingClientRect();
                 const offsetY = e.clientY - rect.top;
@@ -2424,8 +2472,9 @@ export const editorFeatures = {
         if (!this.readerRuler || !this.readerBody) return;
         const rulerRect = this.readerRuler.getBoundingClientRect();
         const modalRect = this.readerBody.getBoundingClientRect();
+        const inset = 6;
         const top = Math.max(0, rulerRect.top - modalRect.top);
-        const height = rulerRect.height;
+        const height = Math.max(40, rulerRect.height);
         this.readerBody.style.setProperty("--ruler-top", `${top}px`);
         this.readerBody.style.setProperty("--ruler-height", `${height}px`);
     },
@@ -2495,10 +2544,11 @@ export const editorFeatures = {
         this.readerGlossary.innerHTML = "";
         this.updateGlossary(text);
         this.readerModal.classList.add("active");
+        document.body.classList.add("reader-open");
         this.readerBox.classList.remove("show-glossary");
         this.readerBox.classList.remove("show-ruler");
         this.readerBox.classList.remove("reader-theme-light");
-        if (this.readerContent) this.readerContent.classList.remove("reader-font-serif");
+        if (this.readerContent) this.readerContent.classList.add("reader-font-serif");
         if (this.readerModal.requestFullscreen) {
             this.readerModal.requestFullscreen().catch(() => {});
         }
@@ -2514,6 +2564,7 @@ export const editorFeatures = {
     closeReaderMode() {
         this.stopReaderAutoScroll();
         if (this.readerModal) this.readerModal.classList.remove("active");
+        document.body.classList.remove("reader-open");
         if (document.fullscreenElement) {
             document.exitFullscreen().catch(() => {});
         }

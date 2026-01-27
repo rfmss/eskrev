@@ -87,12 +87,9 @@
             <h2 id="termsTitle" data-i18n="terms_title">Uso responsável do TΦT</h2>
         </div>
         <div class="terms-body" id="termsBody"></div>
-        <label class="terms-check">
-            <input type="checkbox" id="termsCheck">
-            <span data-i18n="terms_check">Li, compreendi e aceito os termos de uso</span>
-        </label>
         <div class="terms-actions">
-            <button id="termsAccept" class="btn-full" disabled data-i18n="terms_primary">Aceitar e começar</button>
+            <button id="termsChoice25" class="btn-half" data-duration="25" data-i18n="pomo_25">25 MIN</button>
+            <button id="termsChoice50" class="btn-half" data-duration="50" data-i18n="pomo_55">50 MIN</button>
             <button id="termsBack" class="btn-ghost" data-i18n="terms_back">Voltar</button>
         </div>
         <div class="terms-tip" data-i18n="terms_tip">Dica: exporte com frequência e guarde seus backups.</div>
@@ -118,7 +115,7 @@
         <div class="hud-rail"></div>
         <button class="hud-btn" id="tabNav" title="Navegação [Alt+2]" data-i18n-title="tab_nav" data-i18n-tip="tab_nav"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-list-bullets"></use></svg></button>
         <button class="hud-btn" id="tabMemo" title="Memo [Alt+3]" data-i18n-title="tab_memo" data-i18n-tip="tab_memo"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-pencil"></use></svg></button>
-        <button class="hud-btn" id="tabBooks" title="TΦTBooks [Alt+4]" data-i18n-title="tab_books" data-i18n-tip="tab_books"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-bookmark-simple"></use></svg></button>
+        <button class="hud-btn" id="tabBooks" title="TΦTBooks [Alt+4]" data-i18n-title="tab_books" data-i18n-tip="tab_books"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-book-open-text"></use></svg></button>
         <div class="hud-separator"></div>
         <button class="hud-btn" id="tabFiles" title="Arquivos [Alt+1]" data-i18n-title="tab_files" data-i18n-tip="tab_files"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-folder-open"></use></svg></button>
         <div class="hud-separator"></div>
@@ -224,9 +221,6 @@
                 <a class="btn-half" id="btnOfflinePack" href="site.zip" download data-i18n="offline_download">BAIXAR APP OFFLINE</a>
                 <a class="btn-half" id="btnGithub" href="https://github.com/rfmss/type-over-tap" target="_blank" rel="noopener" data-i18n="project_github">GITHUB DO PROJETO</a>
             </div>
-            <div class="file-actions mobile-only">
-                <button class="btn-half" id="btnExportMobileMemos" data-i18n="mobile_export_memos">EXPORTAR MEMOS</button>
-            </div>
             <div id="projectList" class="list-container"></div>
         </div>
 
@@ -243,14 +237,37 @@
                 <textarea id="memoArea" data-i18n-ph="memo_ph" placeholder="Buffer de memória..."></textarea>
             </div>
             <div class="mobile-only mobile-memo">
+                <input id="mobileMemoSearch" class="mobile-memo-search" data-i18n-ph="mobile_memo_search" placeholder="Buscar ou #tag" />
+                <button class="btn-full" id="btnMobileScan" data-i18n="btn_scan">SCAN QR</button>
+
+                <div class="mobile-memo-section-title" data-i18n="mobile_notes_title">NOTAS</div>
                 <textarea id="mobileMemoInput" class="mobile-memo-input" data-i18n-ph="mobile_memo_ph" placeholder="Nota rápida..."></textarea>
                 <input id="mobileMemoTags" class="mobile-memo-tags" data-i18n-ph="mobile_memo_tags" placeholder="Tags (separe por vírgula)" />
+                <input id="mobileMemoFolder" class="mobile-memo-folder" data-i18n-ph="mobile_memo_folder" placeholder="Pasta (opcional)" />
                 <button class="btn-full" id="btnAddMobileMemo" data-i18n="mobile_memo_add">SALVAR NOTA</button>
                 <div id="mobileMemoList" class="mobile-memo-list"></div>
+
+                <div class="mobile-memo-section-title" data-i18n="mobile_files_title">ARQUIVOS</div>
+                <div class="help-text" data-i18n="mobile_files_hint">Organize notas por pasta.</div>
+                <div id="mobileFoldersList" class="mobile-memo-tags-list"></div>
+
+                <div class="mobile-memo-section-title" data-i18n="mobile_projects_title">TΦT PROJETOS</div>
+                <div class="help-text" data-i18n="mobile_projects_hint">Projetos ganham QR e exportação dedicada.</div>
+                <button class="btn-full" id="btnMobileNewProject" data-i18n="mobile_project_new">NOVO PROJETO</button>
+                <div id="mobileProjectList" class="mobile-memo-list"></div>
+                <div class="mobile-project-actions">
+                    <button class="btn-half" id="btnMobileProjectQr" data-i18n="mobile_project_qr">QR DO PROJETO</button>
+                    <button class="btn-half" id="btnMobileProjectJson" data-i18n="mobile_project_json">EXPORTAR PROJETO</button>
+                </div>
+
+                <div class="mobile-memo-section-title" data-i18n="mobile_tags_title">TAGS</div>
+                <div id="mobileTagsList" class="mobile-memo-tags-list"></div>
             </div>
-            <div class="mobile-memo-actions mobile-only">
-                <button class="btn-full" id="btnMobileTheme" data-i18n="mobile_theme">TROCAR TEMA</button>
-                <button class="btn-full" id="btnMobileFullToggle" data-i18n="mobile_full_enable">ATIVAR MODO COMPLETO</button>
+            <div class="mobile-only mobile-project-note">
+                <div class="mobile-memo-section-title" data-i18n="mobile_project_note_title">NOTA DO PROJETO</div>
+                <div id="mobileProjectNoteTitle" class="mobile-project-note-title" data-i18n="mobile_project_note_empty">Nenhum projeto selecionado</div>
+                <textarea id="mobileProjectNoteInput" class="mobile-project-note-input" data-i18n-ph="mobile_project_note_ph" placeholder="Nota do projeto..."></textarea>
+                <div class="help-text" data-i18n="mobile_project_note_hint">Notas do projeto acompanham a cápsula e sincronizam.</div>
             </div>
         </div>
     </aside>
@@ -342,6 +359,15 @@
             src="totbooks.html"
             style="width:100%; height:100%; border:0; background:transparent;"
             title="TΦTBooks"
+        ></iframe>
+    </div>
+
+    <div id="verifyView" style="display:none; width:100%; height:100%;">
+        <iframe
+            id="verifyFrame"
+            src="verify.html"
+            style="width:100%; height:100%; border:0; background:transparent;"
+            title="TΦT Verify"
         ></iframe>
     </div>
 </main>
@@ -501,7 +527,7 @@
                 </div>
                 <div class="reader-ruler-controls" aria-hidden="true">
                     <button id="btnReaderRulerClose" class="btn-icon" title="Fechar régua" data-i18n-title="reader_ruler_close_title" data-i18n-tip="reader_ruler_close_title">
-                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-x"></use></svg>
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-x-logo"></use></svg>
                     </button>
                     <button id="btnReaderSpeedDown" class="btn-icon" title="Lento">
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-minus"></use></svg>
@@ -634,10 +660,7 @@
                     <p class="help-text" data-i18n="pomo_break_hint">Desbloqueio exige a senha da sessão ao fim.</p>
                 </div>
                 <div id="pomoUnlockView" style="display:none;">
-                    <p id="pomoUnlockPrompt" data-i18n="pomo_unlock_prompt">DIGITE SUA SENHA PARA LIBERAR:</p>
-                    <input type="password" id="pomoPassInput" class="search-input" style="border:1px solid var(--color-accent); padding:10px; text-align:center; margin-bottom:10px;">
-                    <button class="btn-full" id="pomoUnlockBtn" data-i18n="unlock_btn">DESBLOQUEAR</button>
-                    <div id="pomoChoice" style="display:none; margin-top:15px;">
+                    <div id="pomoChoice" style="display:block; margin-top:5px;">
                         <p data-i18n="pomo_choice">ESCOLHA O PRÓXIMO CICLO:</p>
                         <div style="display:flex; gap:10px;">
                             <button class="btn-half" data-duration="25" data-i18n="pomo_25">25 MIN</button>

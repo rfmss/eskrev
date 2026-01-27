@@ -20,7 +20,27 @@ html, body {
 
   --shadow-closed: 0 14px 28px rgba(0,0,0,.18);
   --shadow-open:   0 16px 36px rgba(0,0,0,.22);
-  --text-chumbo: #888888; /* Coringa: Visível no preto e no branco */
+  --text-chumbo: #888888; /* fallback */
+  --book-accent: rgba(255,255,255,0.08);
+}
+
+body[data-theme="paper"] {
+  --text-chumbo: rgba(58, 57, 53, 0.6);
+  --book-accent: rgba(58, 57, 53, 0.12);
+  --shadow-closed: 0 10px 22px rgba(0,0,0,.14);
+  --shadow-open:   0 14px 28px rgba(0,0,0,.18);
+}
+body[data-theme="chumbo"] {
+  --text-chumbo: rgba(231, 234, 242, 0.72);
+  --book-accent: rgba(154, 167, 255, 0.18);
+  --shadow-closed: 0 12px 26px rgba(0,0,0,.28);
+  --shadow-open:   0 18px 40px rgba(0,0,0,.36);
+}
+body[data-theme="study"] {
+  --text-chumbo: rgba(255, 240, 229, 0.7);
+  --book-accent: rgba(255, 240, 229, 0.18);
+  --shadow-closed: 0 12px 24px rgba(0,0,0,.22);
+  --shadow-open:   0 16px 32px rgba(0,0,0,.28);
 }
 
 body {
@@ -613,8 +633,12 @@ body.is-dragging #trash-zone {
 <div class="library" id="library"></div>
 
 <div id="trash-zone">
-    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="font-size: 24px;">
-      <path d="M9 3h6l1 2h4v2H4V5h4l1-2zm-1 6h10l-1 12H9L8 9zm2 1v9h2v-9h-2zm4 0v9h2v-9h-2z"></path>
+    <svg class="icon" viewBox="0 0 256 256" aria-hidden="true" style="font-size: 24px;">
+      <line x1="216" y1="56" x2="40" y2="56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+      <line x1="104" y1="104" x2="104" y2="168" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+      <line x1="152" y1="104" x2="152" y2="168" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+      <path d="M200,56V208a8,8,0,0,1-8,8H64a8,8,0,0,1-8-8V56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
+      <path d="M168,56V40a16,16,0,0,0-16-16H104A16,16,0,0,0,88,40V56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
     </svg>
     <span>Solte para descartar</span>
 </div>
@@ -632,6 +656,19 @@ body.is-dragging #trash-zone {
 </div>
 
 <script>
+const applyTheme = (value) => {
+  const theme = value || localStorage.getItem("lit_theme_pref") || "paper";
+  document.body.setAttribute("data-theme", theme);
+};
+applyTheme();
+window.addEventListener("storage", (e) => {
+  if (e.key === "lit_theme_pref") applyTheme(e.newValue);
+});
+window.addEventListener("message", (e) => {
+  if (e.origin !== window.location.origin) return;
+  if (e.data && e.data.type === "theme") applyTheme(e.data.value);
+});
+
 const library = document.getElementById('library');
 const overlay  = document.getElementById('overlay');
 

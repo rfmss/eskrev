@@ -93,6 +93,13 @@ const qrTransfer = (() => {
       store.save(editorEl.innerHTML, memoEl ? memoEl.value : undefined);
     }
     const payload = buildTotPayload(store);
+    return buildBase64FromPayload(payload);
+  }
+
+  function buildBase64FromPayload(payload) {
+    if (!window.LZString) {
+      throw new Error('LZString not available.');
+    }
     const json = JSON.stringify(payload);
     return window.LZString.compressToBase64(json);
   }
@@ -116,15 +123,7 @@ const qrTransfer = (() => {
     URL.revokeObjectURL(url);
   }
 
-  async function initStream() {
-    if (!els.streamCode) return;
-    try {
-      await ensureQrLibs();
-    } catch (_) {
-      if (els.streamStatus) els.streamStatus.textContent = lang.t('qr_libs_missing');
-      return;
-    }
-    const base64 = buildBackupBase64();
+  function setupStreamFromBase64(base64, label) {
     streamBackupId = Date.now().toString().slice(-6);
     streamChunks = base64.match(new RegExp(`.{1,${CHUNK_SIZE}}`, 'g')) || [];
     streamTotal = streamChunks.length;
@@ -144,11 +143,40 @@ const qrTransfer = (() => {
       return;
     }
 
+    if (label && els.streamMeta) {
+      els.streamMeta.textContent = label;
+    }
+
     updateStreamFrame();
 
     if (streamTimer) clearInterval(streamTimer);
     streamTimer = setInterval(updateStreamFrame, FRAME_INTERVAL_MS);
     setStreamStatus();
+  }
+
+  async function initStream() {
+    if (!els.streamCode) return;
+    try {
+      await ensureQrLibs();
+    } catch (_) {
+      if (els.streamStatus) els.streamStatus.textContent = lang.t('qr_libs_missing');
+      return;
+    }
+    const base64 = buildBackupBase64();
+    setupStreamFromBase64(base64);
+  }
+
+  async function startCustomStream(payload, label) {
+    if (!els.streamCode) return;
+    try {
+      await ensureQrLibs();
+    } catch (_) {
+      if (els.streamStatus) els.streamStatus.textContent = lang.t('qr_libs_missing');
+      return;
+    }
+    const base64 = buildBase64FromPayload(payload);
+    if (els.streamModal) els.streamModal.classList.add('active');
+    setupStreamFromBase64(base64, label);
   }
 
   function updateStreamFrame() {
@@ -530,6 +558,8 @@ const qrTransfer = (() => {
 
   return {
     init,
+    startStream: initStream,
+    startCustomStream,
     decodeBackupBase64,
     downloadBase64Backup
   };

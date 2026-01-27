@@ -12,7 +12,8 @@ export const store = {
     data: {
         projects: [],
         activeId: null,
-        memo: ""
+        memo: "",
+        mobileNotes: []
     },
     persistTimer: null,
     persistDelayMs: 500,
@@ -25,6 +26,7 @@ export const store = {
                 this.data = JSON.parse(saved || legacy);
                 // Validação de integridade básica
                 if (!Array.isArray(this.data.projects)) this.data.projects = [];
+                if (!Array.isArray(this.data.mobileNotes)) this.data.mobileNotes = [];
                 if (!saved && legacy) {
                     localStorage.setItem("tot_data", JSON.stringify(this.data));
                 }
@@ -35,6 +37,7 @@ export const store = {
         } else {
             // Cria projeto padrão se for a primeira vez
             this.createProject(lang.t("default_project"));
+            this.data.mobileNotes = [];
         }
     },
 

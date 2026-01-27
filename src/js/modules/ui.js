@@ -129,22 +129,12 @@ export const ui = {
         this.pomoBreakView = document.getElementById("pomoBreakView");
         this.pomoUnlockView = document.getElementById("pomoUnlockView");
         this.pomoCountdown = document.getElementById("pomoCountdown");
-        this.pomoPassInput = document.getElementById("pomoPassInput");
-        this.pomoUnlockBtn = document.getElementById("pomoUnlockBtn");
         this.pomoChoice = document.getElementById("pomoChoice");
         this.pomoMsg = document.getElementById("pomoMsg");
     },
 
     bindPomodoroModal() {
         if (!this.pomoModal) return;
-        if (this.pomoUnlockBtn) {
-            this.pomoUnlockBtn.onclick = () => this.tryUnlockPomodoro();
-        }
-        if (this.pomoPassInput) {
-            this.pomoPassInput.onkeydown = (e) => {
-                if (e.key === "Enter") this.tryUnlockPomodoro();
-            };
-        }
         if (this.pomoChoice) {
             this.pomoChoice.querySelectorAll("[data-duration]").forEach((btn) => {
                 btn.onclick = () => {
@@ -191,17 +181,13 @@ export const ui = {
         if (this.pomoUnlockView) this.pomoUnlockView.style.display = "block";
         const unlockPrompt = document.getElementById("pomoUnlockPrompt");
         if (unlockPrompt) unlockPrompt.style.display = "";
-        if (this.pomoPassInput) this.pomoPassInput.style.display = "";
-        if (this.pomoUnlockBtn) this.pomoUnlockBtn.style.display = "";
         if (this.pomoChoice) this.pomoChoice.style.display = "block";
-        if (this.pomoPassInput) this.pomoPassInput.value = "";
         if (this.pomoMsg) this.pomoMsg.innerText = "";
         if (this.pomoChoice) {
             this.pomoChoice.querySelectorAll("[data-duration]").forEach((btn) => {
-                btn.disabled = true;
+                btn.disabled = false;
             });
         }
-        setTimeout(() => { if (this.pomoPassInput) this.pomoPassInput.focus(); }, 50);
     },
 
     showChoiceOnly() {
@@ -224,35 +210,13 @@ export const ui = {
 
     hidePomodoroModal() {
         if (this.pomoModal) this.pomoModal.classList.remove("active");
-        if (this.pomoPassInput) this.pomoPassInput.style.display = "";
-        if (this.pomoUnlockBtn) this.pomoUnlockBtn.style.display = "";
     },
 
     updateBreakCountdown(value) {
         if (this.pomoCountdown) this.pomoCountdown.innerText = value;
     },
 
-    tryUnlockPomodoro() {
-        const stored = localStorage.getItem("lit_auth_key");
-        const inputVal = this.pomoPassInput ? this.pomoPassInput.value : "";
-        if (!stored || inputVal === stored) {
-            if (this.pomoMsg) this.pomoMsg.innerText = lang.t("pomo_unlocked");
-            if (this.pomoChoice) {
-                this.pomoChoice.style.display = "block";
-                this.pomoChoice.querySelectorAll("[data-duration]").forEach((btn) => {
-                    btn.disabled = false;
-                });
-            }
-        } else {
-            if (this.pomoMsg) this.pomoMsg.innerText = lang.t("pomo_wrong_pass");
-            if (this.pomoPassInput) {
-                this.pomoPassInput.value = "";
-                this.pomoPassInput.focus();
-                this.pomoPassInput.classList.add("shake");
-                setTimeout(() => this.pomoPassInput.classList.remove("shake"), 500);
-            }
-        }
-    },
+    tryUnlockPomodoro() {},
 
     // --- TEMA E UI (Mantido inalterado, apenas encapsulado corretamente) ---
     initTheme() {
@@ -278,6 +242,14 @@ export const ui = {
         const newTheme = themes[nextIndex];
         document.body.setAttribute("data-theme", newTheme);
         localStorage.setItem("lit_theme_pref", newTheme);
+        const verifyFrame = document.getElementById("verifyFrame");
+        if (verifyFrame && verifyFrame.contentWindow) {
+            verifyFrame.contentWindow.postMessage({ type: "theme", value: newTheme }, window.location.origin);
+        }
+        const booksFrame = document.getElementById("booksFrame");
+        if (booksFrame && booksFrame.contentWindow) {
+            booksFrame.contentWindow.postMessage({ type: "theme", value: newTheme }, window.location.origin);
+        }
     },
 
     initMobile() {

@@ -7,11 +7,15 @@
   <link rel="stylesheet" href="src/css/base.css">
   <link rel="stylesheet" href="src/css/components.css">
   <style>
+    html, body {
+      height: auto;
+      overflow-y: auto;
+    }
     body {
       background: var(--bg-core);
       color: var(--color-text);
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       min-height: 100vh;
       padding: 24px;
@@ -275,8 +279,18 @@
   </div>
 
   <script>
-    const theme = localStorage.getItem("lit_theme_pref") || "paper";
-    document.body.setAttribute("data-theme", theme);
+    const applyTheme = (value) => {
+      const theme = value || localStorage.getItem("lit_theme_pref") || "paper";
+      document.body.setAttribute("data-theme", theme);
+    };
+    applyTheme();
+    window.addEventListener("storage", (e) => {
+      if (e.key === "lit_theme_pref") applyTheme(e.newValue);
+    });
+    window.addEventListener("message", (e) => {
+      if (e.origin !== window.location.origin) return;
+      if (e.data && e.data.type === "theme") applyTheme(e.data.value);
+    });
 
     const fileInput = document.getElementById("fileInput");
     const btnVerify = document.getElementById("btnVerify");
