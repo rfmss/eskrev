@@ -124,23 +124,23 @@
 
 /* 2. CHUMBO EDITORIAL */
 [data-theme="chumbo"] {
-  --bg-core: #34363b;
+  --bg-core: #2f3133;
   --bg-panel: transparent;
-  --bg-drawer: #3a3d43;
-  --bg-xray: #3c4046;
-  --bg-controls: #3a3d43;
-  --xray-surface: rgba(231, 234, 242, 0.05);
-  --xray-border: 1px solid #454a52;
-  --color-text: #e2e5ea;
-  --color-accent: #b2b8c4;
-  --color-accent-dim: rgba(178, 184, 196, 0.2);
-  --color-muted: #c0c5cf;
-  --border-style: 1px solid #454a52;
-  --grid-opacity: 0.045;
-  --selection-bg: rgba(163, 169, 181, 0.3);
-  --selection-text: #34363b;
-  --search-bg: rgba(163, 169, 181, 0.3);
-  --search-text: #34363b;
+  --bg-drawer: #34363a;
+  --bg-xray: #35373c;
+  --bg-controls: #34363a;
+  --xray-surface: rgba(231, 234, 242, 0.04);
+  --xray-border: 1px solid rgba(231, 234, 242, 0.08);
+  --color-text: #e6e6e6;
+  --color-accent: #c7c7c7;
+  --color-accent-dim: rgba(199, 199, 199, 0.2);
+  --color-muted: #b1b1b1;
+  --border-style: 1px solid rgba(199, 199, 199, 0.14);
+  --grid-opacity: 0.035;
+  --selection-bg: rgba(199, 199, 199, 0.26);
+  --selection-text: #2f3133;
+  --search-bg: rgba(199, 199, 199, 0.26);
+  --search-text: #2f3133;
   --radius: 2px;
 }
 
@@ -382,7 +382,7 @@ mark.search-active { box-shadow: 0 0 0 2px var(--color-accent-dim); }
     line-height: 1.7;
 }
 #editor.font-mono {
-    font-family: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    font-family: "Terminal-Font", "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
                  "Liberation Mono", "Courier New", monospace;
     line-height: 1.65;
     letter-spacing: 0.01em;

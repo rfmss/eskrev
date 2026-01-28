@@ -232,7 +232,7 @@ body.mobile-typing .mobile-trigger {
 }
 
 .controls-inner {
-  display: flex; align-items: center; gap: 12px; padding: 0 18px;
+  display: flex; align-items: center; gap: 10px; padding: 0 16px;
   background: var(--bg-controls); 
   border: var(--border-style); /* Borda Glass */
   box-shadow: var(--shadow-float); /* Sombra */
@@ -244,14 +244,19 @@ body.mobile-typing .mobile-trigger {
   flex-wrap: wrap;
   white-space: nowrap;
   overflow: visible;
-  row-gap: 5px;
-  column-gap: 8px;
+  row-gap: 6px;
+  column-gap: 10px;
   
   width: auto; max-width: 96vw; /* Ajusta ao conteúdo, mas não passa da tela */
   height: auto;
   min-height: var(--controls-h);
   
-  backdrop-filter: blur(12px); 
+  backdrop-filter: blur(10px); 
+}
+
+.controls-inner .btn,
+.controls-inner .btn-icon {
+  min-height: var(--controls-h);
 }
 .controls-inner::-webkit-scrollbar { display: none; }
 
