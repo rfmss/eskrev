@@ -16,6 +16,7 @@ export const auth = {
     termsChoice25: null,
     termsChoice50: null,
     termsBack: null,
+    termsClose: null,
     termsLink: null,
     termsScrolledEnough: false,
     init() {
@@ -51,12 +52,17 @@ export const auth = {
         const langToggle = document.getElementById("manifestoLangToggle");
         const termsLink = document.getElementById("manifestoTermsLink");
         const verifyLink = document.getElementById("manifestoVerifyLink");
+        const supportBlock = document.getElementById("manifestoSupport");
         const applyManifestoText = () => {
             if (!body) return;
-            body.innerHTML = lang.t("manifesto_body");
+            const key = modal.classList.contains("manifesto-full") ? "manifesto_body_full" : "manifesto_body";
+            body.innerHTML = lang.t(key) || lang.t("manifesto_body");
         };
+        this.applyManifestoText = applyManifestoText;
         if (!modal || !choice25 || !choice50) return;
         modal.classList.add("active");
+        modal.classList.remove("manifesto-full");
+        if (supportBlock) supportBlock.classList.remove("active");
         document.body.classList.add("manifesto-open");
         applyManifestoText();
         document.addEventListener("lang:changed", applyManifestoText);
@@ -90,6 +96,21 @@ export const auth = {
             if (panel) panel.classList.add("books-active");
             localStorage.setItem("lit_ui_view", "verify");
         };
+    },
+
+    openFullManifesto() {
+        const modal = document.getElementById("manifestoModal");
+        const body = document.getElementById("manifestoText");
+        const supportBlock = document.getElementById("manifestoSupport");
+        if (!modal || !body) return;
+        modal.classList.add("active", "manifesto-full");
+        document.body.classList.add("manifesto-open");
+        if (supportBlock) supportBlock.classList.add("active");
+        if (typeof this.applyManifestoText === "function") {
+            this.applyManifestoText();
+        } else {
+            body.innerHTML = lang.t("manifesto_body_full") || lang.t("manifesto_body");
+        }
     },
 
     setupEvents() {
@@ -168,6 +189,7 @@ export const auth = {
         this.termsChoice25 = document.getElementById("termsChoice25");
         this.termsChoice50 = document.getElementById("termsChoice50");
         this.termsBack = document.getElementById("termsBack");
+        this.termsClose = document.getElementById("termsClose");
 
         const updateTermsText = () => {
             if (this.termsBody) this.termsBody.innerHTML = lang.t("terms_body");
@@ -175,20 +197,22 @@ export const auth = {
         updateTermsText();
         document.addEventListener("lang:changed", updateTermsText);
 
-        if (this.termsBody) {
-            this.termsBody.addEventListener("scroll", () => this.updateTermsScrollState());
-        }
         if (this.termsModal) {
             this.termsModal.addEventListener("keydown", (e) => this.handleTermsFocusTrap(e));
+            this.termsModal.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") {
+                    e.preventDefault();
+                    this.closeTermsModal(true);
+                }
+            });
+            this.termsModal.addEventListener("click", (e) => {
+                if (e.target === this.termsModal) {
+                    this.closeTermsModal(true);
+                }
+            });
         }
-        if (this.termsChoice25) {
-            this.termsChoice25.addEventListener("click", () => this.acceptTermsWithDuration(25));
-        }
-        if (this.termsChoice50) {
-            this.termsChoice50.addEventListener("click", () => this.acceptTermsWithDuration(50));
-        }
-        if (this.termsBack) {
-            this.termsBack.addEventListener("click", () => this.closeTermsModal(true));
+        if (this.termsClose) {
+            this.termsClose.addEventListener("click", () => this.closeTermsModal(true));
         }
     },
     handleTermsFocusTrap(e) {
@@ -236,8 +260,7 @@ export const auth = {
         document.body.classList.add("terms-open");
         this.termsModal.classList.add("active");
         this.updateTermsScrollState(true);
-        this.updateTermsButtonState();
-        if (this.termsChoice25) this.termsChoice25.focus();
+        if (this.termsClose) this.termsClose.focus();
     },
 
     closeTermsModal(clearPending = false) {
@@ -248,24 +271,7 @@ export const auth = {
 
     updateTermsScrollState(force = false) {
         if (!this.termsBody) return;
-        const scrollMax = this.termsBody.scrollHeight - this.termsBody.clientHeight;
-        if (scrollMax <= 0) {
-            this.termsScrolledEnough = true;
-        } else {
-            const pct = this.termsBody.scrollTop / scrollMax;
-            this.termsScrolledEnough = pct >= 0.7;
-        }
         if (force) this.termsBody.scrollTop = 0;
-        this.updateTermsButtonState();
-    },
-
-    updateTermsButtonState() {
-        const btns = [this.termsChoice25, this.termsChoice50].filter(Boolean);
-        btns.forEach(btn => btn.style.display = "none");
-        if (this.termsBack) {
-            this.termsBack.textContent = lang.t("terms_close");
-            this.termsBack.style.display = "block";
-        }
     },
 
     async acceptTermsWithDuration(minutes) {
@@ -275,7 +281,6 @@ export const auth = {
             this.closeTermsModal();
             return;
         }
-        if (!this.termsScrolledEnough) return;
         await this.markTermsAccepted();
         const pending = Number.isFinite(minutes) ? minutes : this.pendingCycle;
         this.pendingCycle = null;

@@ -734,6 +734,30 @@ body.consult-open .selection-toolbar {
     gap: 8px;
     margin-bottom: 10px;
 }
+.manifesto-lines--icon {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+.manifesto-lines--icon > div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.manifesto-lines-icon {
+    width: 36px;
+    height: 36px;
+    opacity: 0.7;
+}
+.manifesto-lines-icon--tinta {
+    animation: tintaFloat 3.6s ease-in-out infinite;
+    filter: grayscale(1) saturate(0.1) brightness(0.65);
+}
+.manifesto-lines-icon--typewriter {
+    animation: tintaFloat 3.6s ease-in-out infinite;
+    filter: grayscale(1) saturate(0.1) brightness(0.8);
+    opacity: 0.85;
+}
 .manifesto-lines p {
     margin: 0;
 }
@@ -750,6 +774,11 @@ body.consult-open .selection-toolbar {
 @keyframes manifestoFade {
     from { opacity: 0; transform: translateY(6px); }
     to { opacity: 1; transform: translateY(0); }
+}
+@keyframes tintaFloat {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-3px) scale(1.02); }
+    100% { transform: translateY(0) scale(1); }
 }
 .manifesto-grid {
     display: grid;
@@ -803,8 +832,9 @@ body.consult-open .selection-toolbar {
 .manifesto-note {
     font-size: 12px;
     color: var(--color-muted);
-    margin-top: 14px;
+    margin-top: 8px;
     display: block;
+    text-align: center;
 }
 .manifesto-note.subtle {
     margin-top: 10px;
@@ -820,6 +850,9 @@ body.consult-open .selection-toolbar {
 .manifesto-verify-note {
     font-size: 11px;
     color: var(--color-muted);
+}
+.manifesto-modal:not(.manifesto-full) .manifesto-verify {
+    display: none;
 }
 .manifesto-actions {
     padding: 14px 26px 20px;
@@ -852,6 +885,89 @@ body.consult-open .selection-toolbar {
     font-size: 11px;
     color: var(--color-muted);
 }
+.manifesto-support {
+    padding: 0 26px 24px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}
+.manifesto-support.active {
+    display: flex;
+}
+.manifesto-support-title {
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--color-text);
+    font-family: var(--font-ui);
+}
+.manifesto-support-lead {
+    font-size: 12px;
+    color: var(--color-muted);
+}
+.manifesto-support-lines {
+    display: grid;
+    gap: 8px;
+}
+.manifesto-support-line {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 8px;
+    align-items: center;
+    padding: 8px 10px;
+    border: var(--border-style);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.02);
+    position: relative;
+}
+.manifesto-support-line.btc {
+    position: relative;
+}
+.manifesto-support-qr-pop {
+    position: absolute;
+    top: -12px;
+    right: 10px;
+    transform: translateY(-100%) scale(0.96);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 2;
+}
+.manifesto-support-line.btc:hover .manifesto-support-qr-pop,
+.manifesto-support-line.btc:focus-within .manifesto-support-qr-pop {
+    opacity: 1;
+    transform: translateY(-100%) scale(1);
+}
+.manifesto-support-label {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-muted);
+}
+.manifesto-support-qr {
+    width: 160px;
+    max-width: 100%;
+    border-radius: var(--radius);
+    border: var(--border-style);
+    background: #fff;
+    padding: 6px;
+}
+.manifesto-support-value {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: var(--radius);
+    background: rgba(0, 0, 0, 0.08);
+    color: var(--color-text);
+    font-size: 11px;
+    word-break: break-all;
+    cursor: pointer;
+}
+.manifesto-support-fine {
+    font-size: 11px;
+    color: var(--color-muted);
+}
 
 .terms-modal .terms-box {
     background: var(--bg-drawer);
@@ -865,12 +981,31 @@ body.consult-open .selection-toolbar {
     padding: 18px 22px;
     color: var(--color-text);
 }
+.terms-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
 .terms-header h2 {
     margin: 0 0 8px;
     font-size: 15px;
     letter-spacing: 0.8px;
     color: var(--color-text);
     font-family: var(--font-display, var(--font-ui));
+}
+.terms-header .terms-close {
+    border: none;
+    background: transparent;
+    color: var(--color-text);
+    font-size: 18px;
+    line-height: 1;
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 .terms-body {
     border: var(--border-style);
@@ -903,6 +1038,13 @@ body.consult-open .selection-toolbar {
     margin-top: 10px;
     font-size: 11px;
     color: var(--color-muted);
+}
+
+.manifesto-modal:not(.manifesto-full) .manifesto-verify {
+    display: none;
+}
+.manifesto-modal.manifesto-full .manifesto-verify {
+    display: flex;
 }
 .export-social {
     margin-top: 18px;
@@ -991,6 +1133,15 @@ body.consult-open .selection-toolbar {
 #gatekeeper.active #viewLock {
     animation: crtBoot 1.4s ease forwards;
 }
+#viewSetup h2 {
+    margin: 0 0 6px;
+}
+#viewSetup p {
+    margin: 4px 0 6px;
+}
+#viewSetup .btn-full {
+    margin-top: 6px;
+}
 .modal-header { padding: 14px; border-bottom: var(--border-style); display: flex; justify-content: space-between; align-items: center; font-weight: bold; letter-spacing: 0.8px; }
 .modal-body { padding: 18px; }
 .export-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; justify-items: center; text-align: center; }
@@ -1010,6 +1161,15 @@ body.consult-open .selection-toolbar {
 .export-card span { font-size: 11px; font-weight: bold; letter-spacing: 1px; }
 .export-card small { font-size: 9px; opacity: 0.6; }
 .export-note { margin-top: 8px; }
+.export-support-link {
+    margin-top: 6px;
+    border: none;
+    background: none;
+    color: var(--color-accent);
+    font-size: 11px;
+    letter-spacing: 0.6px;
+    cursor: pointer;
+}
 
 /* PAGINACAO A4 */
 #pageMarkers {
@@ -1282,12 +1442,14 @@ input[type="checkbox"]:focus-visible {
     cursor: pointer;
 }
 .xray-panel [data-tip],
+.manifesto-box [data-tip],
 .hud [data-tip],
 .controls [data-tip],
 .selection-toolbar [data-tip],
 .reader-modal [data-tip] { position: relative; }
 
 .xray-panel [data-tip]::after,
+.manifesto-box [data-tip]::after,
 .hud [data-tip]::after,
 .controls [data-tip]::after,
 .selection-toolbar [data-tip]::after,
@@ -1373,7 +1535,9 @@ input[type="checkbox"]:focus-visible {
     padding: 4px 6px;
 }
 .xray-panel [data-tip]:hover::after,
+.manifesto-box [data-tip]:hover::after,
 .xray-panel [data-tip]:focus::after,
+.manifesto-box [data-tip]:focus::after,
 .controls [data-tip]:hover::after,
 .controls [data-tip]:focus::after,
 .selection-toolbar [data-tip]:hover::after,
@@ -1825,6 +1989,25 @@ input[type="checkbox"]:focus-visible {
 @media (max-width: 900px) {
     .reader-sidebar { position: static; width: auto; margin-top: 12px; }
     .hud-btn { width: 40px; height: 40px; }
+    #goalStars { display: none !important; }
+    #panelActions,
+    #panelFiles,
+    #panelNav { display: none !important; }
+    .drawer-tabs-mobile #mobileTabFiles,
+    .drawer-tabs-mobile #mobileTabNav,
+    .drawer-tabs-mobile #mobileTabTheme,
+    .drawer-tabs-mobile #mobileTabBooks { display: none !important; }
+    .mobile-views,
+    #mobileFilesSection,
+    #mobileFoldersList,
+    #mobileProjectsSection,
+    #mobileProjectList,
+    .mobile-project-actions,
+    #mobileTagsSection,
+    #mobileTagsList,
+    #mobileMemoTags,
+    #mobileMemoFolder,
+    .mobile-project-note { display: none !important; }
 }
 
 /* QR TRANSFER */
@@ -2184,4 +2367,26 @@ kbd {
 .status-label,
 .help-text {
     animation: signalJitter 3.6s steps(2, end) infinite;
+}
+
+.manifesto-support-more {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--color-muted);
+    line-height: 1.5;
+}
+
+.manifesto-inline-link {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+    font: inherit;
+}
+.manifesto-inline-link:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
 }

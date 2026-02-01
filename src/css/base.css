@@ -31,7 +31,7 @@
 /* 1. Solzinho (Temas/Contraste) */
 .ph-sun-dim::before         { content: "\f0599"; } 
 
-/* 2. Marcador de Página (TΦTBooks) */
+/* 2. Marcador de Página (.skrBooks) */
 .ph-book-open-text::before  { content: "\f02e"; } 
 
 /* 3. A Bomba (HUD Superior - Metáfora de Detonação/Hard Reset) */

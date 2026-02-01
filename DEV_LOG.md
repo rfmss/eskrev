@@ -1,4 +1,4 @@
-# DEV LOG — TΦT Writer
+# DEV LOG — .skr Writer
 
 Data: 2026-01-27
 

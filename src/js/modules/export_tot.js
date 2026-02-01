@@ -15,7 +15,7 @@ function downloadTextAsFile(text, filename) {
 
 export function exportTot(store) {
   buildTotPayloadWithChain(store).then((payload) => {
-    const filename = `TOT_${Date.now()}.tot`;
+    const filename = `TOT_${Date.now()}.skr`;
     downloadTextAsFile(JSON.stringify(payload, null, 2), filename);
   });
 }
@@ -86,10 +86,10 @@ export function buildTotPayload(store) {
     : 0;
 
   return {
-    protocol: "TΦT Proof",
+    protocol: ".skr Proof",
     version: "1.0",
-    format: ".tot",
-    created_with: "TΦT — Type over Tap",
+    format: ".skr",
+    created_with: "eskrev",
     environment: "offline-first",
     language: langMap[langRaw] || "pt-BR",
     session: {
@@ -126,7 +126,7 @@ export function buildTotPayload(store) {
     },
     HEADER: {
       VERSION: "TOT/2",
-      APP: "TΦT Writer - Type over Tap",
+      APP: ".skr Writer - eskrev",
       CREATED: new Date().toISOString(),
       CERT: birth && birth.cert ? birth.cert : "UNKNOWN"
     },

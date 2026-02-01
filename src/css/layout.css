@@ -4,6 +4,7 @@
 .logo-area {
   position: absolute; top: 10px; left: calc(var(--hud-w) + var(--gap)); right: 24px;
   display: flex; align-items: center; gap: 15px; z-index: 10; height: 30px; overflow: hidden;
+  cursor: pointer;
 }
 .logo-area img { height: 26px; flex-shrink: 0; }
 

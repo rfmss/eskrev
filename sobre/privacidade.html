@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidade — eskrev</title>
+  <link rel="stylesheet" href="../src/css/fonts.css">
+  <link rel="stylesheet" href="../src/css/base.css">
+  <link rel="stylesheet" href="../src/css/components.css">
+  <style>
+    html, body { height: auto; overflow-y: auto; }
+    body {
+      background: var(--bg-core);
+      color: var(--color-text);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .policy-shell {
+      width: min(920px, 92vw);
+      background: var(--bg-panel);
+      border: 2px solid var(--color-accent-dim);
+      border-radius: calc(var(--radius) + 2px);
+      box-shadow: none;
+      padding: 28px 24px 32px;
+      position: relative;
+    }
+    .policy-shell::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 1px solid var(--color-accent-dim);
+      border-radius: var(--radius);
+      pointer-events: none;
+      opacity: 0.6;
+    }
+    .policy-header {
+      border-bottom: var(--border-style);
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+      display: grid;
+      gap: 6px;
+    }
+    .policy-title {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.2;
+      font-family: "Source Serif 4", "Georgia", "Times New Roman", serif;
+      font-weight: 600;
+    }
+    .policy-subtitle {
+      margin: 0;
+      font-size: 12px;
+      color: var(--color-muted);
+      letter-spacing: 0.2px;
+      font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    }
+    .policy-body {
+      display: grid;
+      gap: 18px;
+      font-size: 14px;
+      line-height: 1.75;
+      font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    }
+    .policy-section h2 {
+      margin: 0 0 6px;
+      font-size: 13px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--color-muted);
+    }
+    .policy-section p { margin: 0 0 8px; }
+    .policy-section ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+    .policy-note { color: var(--color-muted); font-size: 12px; }
+  </style>
+</head>
+<body>
+  <main class="policy-shell">
+    <header class="policy-header">
+      <h1 class="policy-title">Política de Privacidade — eskrev</h1>
+      <p class="policy-subtitle">Última atualização: 2 de fevereiro de 2026</p>
+    </header>
+
+    <section class="policy-body">
+      <div class="policy-section">
+        <p>O eskrev é um editor offline. Não operamos servidores, contas ou telemetria. Esta política descreve como os dados são tratados localmente no seu dispositivo.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Quais informações coletamos</h2>
+        <p><strong>Informações que você fornece (localmente):</strong> textos, notas, nome de projetos, preferências de tema e fonte, senha de sessão e arquivos importados (.skr).</p>
+        <p><strong>Informações técnicas locais:</strong> metadados do processo de escrita (tempo, ritmo, inserções, revisões) usados apenas para recursos do próprio editor.</p>
+        <p><strong>O que não coletamos:</strong> não capturamos localização, contatos, imagens, áudio, histórico de navegação, identificadores de publicidade, cookies de rastreamento ou dados de conta.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Como usamos suas informações</h2>
+        <ul>
+          <li>Manter o editor funcionando offline no seu navegador.</li>
+          <li>Salvar seu conteúdo e preferências no dispositivo.</li>
+          <li>Permitir exportação, importação e verificação técnica local.</li>
+        </ul>
+      </div>
+
+      <div class="policy-section">
+        <h2>Onde armazenamos suas informações</h2>
+        <p>Todos os dados ficam no seu dispositivo, usando armazenamento local do navegador (localStorage, IndexedDB e Cache Storage). Não enviamos dados para servidores.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Seus direitos e escolhas</h2>
+        <p>Como os dados são locais, você pode:</p>
+        <ul>
+          <li>Exportar seus textos e projetos quando quiser.</li>
+          <li>Apagar a sessão e limpar dados localmente.</li>
+          <li>Excluir arquivos e notas diretamente no editor.</li>
+        </ul>
+        <p class="policy-note">Sob a LGPD, você tem direitos de acesso, correção, eliminação e portabilidade. No eskrev, esses direitos são exercidos localmente, no próprio dispositivo.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>A segurança das suas informações</h2>
+        <p>Adotamos medidas técnicas para manter o processamento local. A segurança depende do seu dispositivo e navegador. Recomendamos exportar e manter backups periódicos.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Por quanto tempo mantemos suas informações</h2>
+        <p>Enquanto você não apagar a sessão ou limpar os dados do navegador. O controle é seu.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Informações relacionadas a adolescentes</h2>
+        <p>O eskrev não é direcionado a menores de 13 anos. Se você é responsável legal e deseja orientações, entre em contato.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Atualização da Política de Privacidade</h2>
+        <p>Podemos atualizar este documento. A data de atualização estará indicada no topo.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Contato</h2>
+        <p>Se você tiver dúvidas sobre privacidade, escreva para: <strong>rfmss@disr.it</strong>.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>Termos complementares — Brasil</h2>
+        <p>Em conformidade com a LGPD, você pode solicitar informações e exercer seus direitos. Como o eskrev não coleta dados em servidores, solicitações são atendidas localmente no próprio aplicativo, por meio de exportação e exclusão dos dados no dispositivo.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,6 +1,6 @@
-## Terms of Use — TΦT
+## Terms of Use — .skr
 
-TΦT is an experimental tool created by a writer to support other writers.
+.skr is an experimental tool created by a writer to support other writers.
 
 Use is at your own risk.
 
@@ -12,5 +12,5 @@ The author is not responsible for:
 - misuse
 - legal interpretation of generated material
 
-By using TΦT, you acknowledge and accept its limitations.
+By using .skr, you acknowledge and accept its limitations.
 

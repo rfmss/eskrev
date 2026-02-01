@@ -275,11 +275,12 @@ export const ui = {
         Object.values(panels).forEach(p => { if (p) p.style.display = "none"; });
         document.querySelectorAll(".hud-btn").forEach(b => b.classList.remove("active"));
         const isMobile = window.innerWidth <= 900;
+        const resolvedPanel = isMobile ? "memo" : panelName;
         if (isMobile) {
-            Object.values(panels).forEach(p => { if (p) p.style.display = "block"; });
+            if (panels.memo) panels.memo.style.display = "block";
             drawer.classList.add("mobile-all");
-        } else if (panels[panelName]) {
-            panels[panelName].style.display = "block";
+        } else if (panels[resolvedPanel]) {
+            panels[resolvedPanel].style.display = "block";
             drawer.classList.remove("mobile-all");
         }
         drawer.classList.add("open");
@@ -293,12 +294,12 @@ export const ui = {
             nav: lang.t("drawer_nav"),
             memo: lang.t("drawer_memo")
         };
-        this.elements.drawerTitle.innerText = isMobile ? lang.t("drawer_system") : (titles[panelName] || "");
+        this.elements.drawerTitle.innerText = isMobile ? (titles.memo || lang.t("drawer_memo")) : (titles[resolvedPanel] || "");
 
-        if(panelName === 'files' && callbacks.renderFiles) callbacks.renderFiles();
-        if(panelName === 'nav' && callbacks.renderNav) callbacks.renderNav();
+        if(resolvedPanel === 'files' && callbacks.renderFiles) callbacks.renderFiles();
+        if(resolvedPanel === 'nav' && callbacks.renderNav) callbacks.renderNav();
         localStorage.setItem("lit_ui_drawer_open", "true");
-        localStorage.setItem("lit_ui_drawer_panel", panelName);
+        localStorage.setItem("lit_ui_drawer_panel", resolvedPanel);
     },
 
     closeDrawer() {

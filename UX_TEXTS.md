@@ -5,7 +5,7 @@
 - lang_label: ESP
 - lang_title: Idioma
 - manifesto_title: MANIFIESTO TâT
-- manifesto_subtitle: Type over Tap
+- manifesto_subtitle: eskrev
 - manifesto_body: <p>TâT es un editor offline, portÃ¡til y no rastreable. Lo abres una vez. DespuÃ©s de eso, escribes sin internet.</p><p>Cada computadora es un escenario vacÃ­o. Tu entorno de escritura llega como una cÃ¡psula local, transportada manualmente mediante archivos o Stream QR.</p><div class="manifesto-grid"><div class="manifesto-card"><h3><span class="manifesto-badge">01</span> DESKTOP FIRST</h3><p>Hecho para escribir. Foco total. Salida limpia.</p></div><div class="manifesto-card"><h3><span class="manifesto-badge">02</span> MÃVIL = CLAVE</h3><p>El mÃ³vil escanea QR, guarda notas rÃ¡pidas y transporta tu trabajo. Nada se sincroniza automÃ¡ticamente.</p></div><div class="manifesto-card"><h3><span class="manifesto-badge">03</span> TODO ES LOCAL</h3><p>Tus textos viven dentro de una cÃ¡psula local. La exportaciÃ³n es manual. Siempre offline.</p></div><div class="manifesto-card"><h3><span class="manifesto-badge">04</span> EVIDENCIA MATEMÃTICA</h3><p>Hashes criptogrÃ¡ficos y metadatos verificables demuestran que un texto existÃ­a en un momento determinado. Esto no es una promesa legal. Es matemÃ¡tica.</p></div><div class="manifesto-card"><h3><span class="manifesto-badge">05</span> QUÃ SE REGISTRA</h3><p>Hash, caracteres, ritmo de escritura, primera y Ãºltima pulsaciÃ³n, origen del archivo.</p></div><div class="manifesto-card"><h3><span class="manifesto-badge">06</span> LO QUE NO EXISTE AQUÃ</h3><p>Sin cuenta. Sin nube. Sin rastreo. Sin garantÃ­a legal absoluta.</p></div><div class="manifesto-card"><h3><span class="manifesto-badge">07</span> ANCLA OPCIONAL</h3><p>Publica el hash si quieres. O guÃ¡rdalo. La decisiÃ³n siempre es tuya.</p></div></div><p class="manifesto-note">Al continuar, entiendes los lÃ­mites y aceptas el manifiesto.</p>
 - manifesto_accept: LEÃ Y ENTENDÃ
 - welcome: INICIANDO SISTEMA
@@ -207,7 +207,7 @@
 - lang_label: FRAN
 - lang_title: Langue
 - manifesto_title: MANIFESTE TâT
-- manifesto_subtitle: Type over Tap
+- manifesto_subtitle: eskrev
 - manifesto_body: <p>TâT est un Ã©diteur hors ligne, portable et non traÃ§able. Vous lâouvrez une fois. Ensuite, vous Ã©crivez sans internet.</p><p>Chaque ordinateur est une scÃ¨ne vide. Votre environnement dâÃ©criture arrive sous forme de capsule locale, transportÃ©e manuellement via des fichiers ou le Stream QR.</p><div class="manifesto-grid"><div class="manifesto-card"><h3><span class="manifesto-badge">01</span> DESKTOP FIRST</h3><p>ConÃ§u pour Ã©crire. Concentration totale. Sortie propre.</p></div><div class="manifesto-card"><h3><span class="manifesto-badge">02</span> MOBILE = CLÃ</h3><p>Le mobile scanne les QR, conserve des notes rapides et transporte votre travail. Rien ne se synchronise automatiquement.</p></div><div class="manifesto-card"><h3><span class="manifesto-badge">03</span> TOUT EST LOCAL</h3><p>Vos textes vivent dans une capsule locale. Lâexportation est manuelle. Toujours hors ligne.</p></div><div class="manifesto-card"><h3><span class="manifesto-badge">04</span> PREUVE MATHÃMATIQUE</h3><p>Des hash cryptographiques et des mÃ©tadonnÃ©es vÃ©rifiables montrent quâun texte existait Ã  un moment donnÃ©. Ce nâest pas une promesse lÃ©gale. Câest mathÃ©matique.</p></div><div class="manifesto-card"><h3><span class="manifesto-badge">05</span> CE QUI EST ENREGISTRÃ</h3><p>Hash, caractÃ¨res, rythme de frappe, premiÃ¨re et derniÃ¨re touche, origine du fichier.</p></div><div class="manifesto-card"><h3><span class="manifesto-badge">06</span> CE QUI NâEXISTE PAS ICI</h3><p>Pas de compte. Pas de cloud. Pas de traÃ§age. Aucune garantie lÃ©gale absolue.</p></div><div class="manifesto-card"><h3><span class="manifesto-badge">07</span> ANCRAGE OPTIONNEL</h3><p>Publiez le hash si vous le souhaitez. Ou conservez-le. La dÃ©cision vous appartient toujours.</p></div></div><p class="manifesto-note">En continuant, vous comprenez les limites et acceptez le manifeste.</p>
 - manifesto_accept: J'AI LU ET COMPRIS
 - welcome: DÃMARRAGE DU SYSTÃME
@@ -406,15 +406,15 @@
 
 ## Textos estÃ¡ticos em index.html
 
-- 🔸 TΦT Writer
+- 🔸 .skr Writer
 - INICIALIZANDO SISTEMA
 - 🇧🇷 PT
 - Crie a senha da sessão
 - Criar sessão local
 - BLOQUEADO
 - DESBLOQUEAR
-- MANIFESTO TΦT
-- Type over Tap
+- MANIFESTO .skr
+- eskrev
 - PTBR
 - LI E ENTENDI
 - /// SYSTEM READY /// PRESS [F1] FOR HELP :: TYPE --H IN EDITOR
@@ -467,7 +467,7 @@
 - LinkedIn
 - FEDIVERSO
 - Pense em redes sociais como email: voce pode usar qualquer provedor e falar com qualquer pessoa. O fediverso funciona assim. Em vez de uma empresa mandar em tudo, varias comunidades se conectam. Voce escolhe onde morar, leva seus dados e ainda conversa com todo mundo. E menos vigilancia, mais controle e mais liberdade.
-- DIVULGAR TΦT
+- DIVULGAR .skr
 - COPIAR TEXTO
 - ABRIR REDE
 - MODO LEITOR
@@ -476,7 +476,7 @@
 - DICIONÁRIO
 - STREAM ATIVO
 - FRAME 000 / 000
-- 1) No celular, abra o TΦT e vá em Arquivos → Scan QR.
+- 1) No celular, abra o .skr e vá em Arquivos → Scan QR.
 - 2) Aponte para esta tela até completar.
 - 3) Depois, apague tudo aqui.
 - PAUSAR
@@ -575,9 +575,9 @@
 
 ## Textos estÃ¡ticos em totbooks.html
 
-- 🔸TΦTBooks
+- 🔸.skrBooks
 - Duplo clique para criar • Arraste para organizar
 - Solte para descartar
-- 🔸 TΦTBook novo
+- 🔸 .skrBook novo
 - Cancelar
 - Criar

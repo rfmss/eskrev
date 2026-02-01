@@ -1,4 +1,4 @@
-/* * TΦT Writer - CORE MODULE
+/* * .skr Writer - CORE MODULE
  * Fixes: Memo persistence bug (Ghost Data)
  */
 
@@ -15,7 +15,7 @@ import { qrTransfer } from './modules/qr_transfer.js';
 document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add("booting");
     setTimeout(() => document.body.classList.remove("booting"), 2000);
-    console.log("🚀 TΦT SYSTEM BOOTING v5.5...");
+    console.log("🚀 .skr SYSTEM BOOTING v5.5...");
 
     if (sessionStorage.getItem("tot_force_clean") === "1") {
         try { localStorage.clear(); } catch (_) {}
@@ -33,6 +33,20 @@ document.addEventListener('DOMContentLoaded', () => {
     lang.init();
     window.totModal = initSystemModal();
     auth.init();
+
+    document.querySelectorAll('[data-manifesto-open]').forEach((el) => {
+        el.addEventListener('click', (e) => {
+            e.preventDefault();
+            auth.openFullManifesto();
+        });
+    });
+    document.querySelectorAll('[data-terms-open]').forEach((el) => {
+        el.addEventListener('click', (e) => {
+            e.preventDefault();
+            auth.openTermsModal();
+        });
+    });
+
     
     ui.initPomodoro();
     qrTransfer.init({
@@ -59,6 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
         setupMobileFallbackTriggers();
         ensureMobileModule().catch(() => {});
     }
+    setupSupportCopy();
+    setupSupportLinks();
+    setupLogoManifesto();
 
     // TRAVA DE SEGURANÇA (Anti-Close)
     window.addEventListener("beforeunload", (e) => {
@@ -85,6 +102,71 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+function setupSupportCopy() {
+    const items = document.querySelectorAll(".manifesto-support-value[data-copy]");
+    if (!items.length) return;
+    const copyText = (text) => {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            return navigator.clipboard.writeText(text);
+        }
+        return new Promise((resolve) => {
+            const area = document.createElement("textarea");
+            area.value = text;
+            area.setAttribute("readonly", "true");
+            area.style.position = "fixed";
+            area.style.opacity = "0";
+            document.body.appendChild(area);
+            area.select();
+            document.execCommand("copy");
+            document.body.removeChild(area);
+            resolve();
+        });
+    };
+    items.forEach((item) => {
+        item.addEventListener("click", () => {
+            const id = item.getAttribute("data-copy");
+            const target = id ? document.getElementById(id) : null;
+            if (!target) return;
+            const text = (target.textContent || "").trim();
+            if (!text) return;
+            const original = lang.t("support_copy");
+            const done = lang.t("support_copy_done");
+            copyText(text).then(() => {
+                item.setAttribute("data-tip", done);
+                setTimeout(() => {
+                    item.setAttribute("data-tip", original);
+                }, 900);
+            });
+        });
+    });
+}
+
+function setupSupportLinks() {
+    const link = document.querySelector(".export-support-link");
+    if (!link) return;
+    link.addEventListener("click", () => {
+        const manifesto = document.getElementById("manifestoModal");
+        const supportBlock = document.getElementById("manifestoSupport");
+        if (!manifesto || !supportBlock) return;
+        if (auth?.openFullManifesto) {
+            auth.openFullManifesto();
+        } else {
+            manifesto.classList.add("active");
+            document.body.classList.add("manifesto-open");
+            supportBlock.classList.add("active");
+        }
+        supportBlock.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+}
+
+function setupLogoManifesto() {
+    const logo = document.querySelector(".logo-area");
+    if (!logo) return;
+    logo.addEventListener("click", () => {
+        if (auth?.openFullManifesto) auth.openFullManifesto();
+    });
+}
 
 let mobileModulePromise = null;
 function ensureMobileModule() {
@@ -412,7 +494,7 @@ function setupEventListeners() {
         if (!file) return;
         const reader = new FileReader();
         reader.onload = (evt) => {
-            if (file.name.endsWith('.tot')) {
+            if (file.name.endsWith('.skr')) {
                 const payload = importTot(evt.target.result);
                 if (payload && applyTotPayload(payload)) {
                     if (window.totModal) window.totModal.alert(lang.t("alert_capsule_restored"));
@@ -494,7 +576,7 @@ function setupEventListeners() {
                 document.getElementById("memoArea").value
             );
             const text = buildReportText();
-            printRawText(text, "TΦT Writer - RELATORIO");
+            printRawText(text, ".skr Writer - RELATORIO");
             document.getElementById("exportModal").classList.remove("active");
         };
     }
@@ -507,7 +589,7 @@ function setupEventListeners() {
                 document.getElementById("memoArea").value
             );
             const active = store.getActive && store.getActive();
-            const baseName = active && active.name ? active.name : "TFT";
+            const baseName = active && active.name ? active.name : ".skr";
             const safeName = baseName
                 .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
                 .replace(/[^a-zA-Z0-9]+/g, "-")
@@ -515,13 +597,13 @@ function setupEventListeners() {
                 .toLowerCase();
             const slug = safeName || "tft";
             buildTotPayloadWithChain(store).then((payload) => {
-                downloadText(JSON.stringify(payload, null, 2), `${slug}-${Date.now()}.tot`, "application/json");
+                downloadText(JSON.stringify(payload, null, 2), `${slug}-${Date.now()}.skr`, "application/json");
                 document.getElementById("exportModal").classList.remove("active");
             });
         };
     }
 
-    // TOT capsule (.tot)
+    // TOT capsule (.skr)
         const btnTot = document.getElementById("actionDownloadTot");
     if (btnTot) {
         btnTot.onclick = () => {
@@ -1034,7 +1116,7 @@ function downloadText(text, filename, mime) {
 function buildMarkdownExport() {
     const projects = Array.isArray(store.data.projects) ? store.data.projects : [];
     const blocks = [];
-    blocks.push("# TΦT Writer Export\n");
+    blocks.push("# .skr Writer Export\n");
     blocks.push(`_Gerado em ${new Date().toISOString()}_\n`);
     const manifestText = localStorage.getItem("tot_manifest_text");
     const manifestSignedAt = localStorage.getItem("tot_manifest_signed_at");
@@ -1062,11 +1144,11 @@ function buildMarkdownExport() {
     let registry = [];
     try { registry = JSON.parse(registryRaw || "[]"); } catch (_) { registry = []; }
     if (registry.length) {
-        blocks.push("\n## TΦTBooks\n");
+        blocks.push("\n## .skrBooks\n");
         registry.forEach((entry, idx) => {
             const id = typeof entry === "string" ? entry : entry.id;
             if (!id) return;
-            const title = localStorage.getItem(`title_${id}`) || `TΦTBook ${idx + 1}`;
+            const title = localStorage.getItem(`title_${id}`) || `.skrBook ${idx + 1}`;
             blocks.push(`\n### ${title}\n`);
             let pages = [];
             try { pages = JSON.parse(localStorage.getItem(`pages_${id}`) || "[]"); } catch (_) { pages = []; }
@@ -1102,7 +1184,7 @@ function buildReportText() {
         registry.forEach((entry, idx) => {
             const id = typeof entry === "string" ? entry : entry.id;
             if (!id) return;
-            const title = localStorage.getItem(`title_${id}`) || `TΦTBook ${idx + 1}`;
+            const title = localStorage.getItem(`title_${id}`) || `.skrBook ${idx + 1}`;
             blocks.push(`\n--- ${title} ---`);
             let pages = [];
             try { pages = JSON.parse(localStorage.getItem(`pages_${id}`) || "[]"); } catch (_) { pages = []; }

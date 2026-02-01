@@ -12,12 +12,12 @@ Aqui está a versão refinada com esses inputs técnicos.
 
 ---
 
-# 📜 CÂNONE TΦT (Especificação Mestra V.3.2 - The Optimized Edition)
+# 📜 CÂNONE .skr (Especificação Mestra V.3.2 - The Optimized Edition)
 
 ### 🏛️ FILOSOFIA: A TATUAGEM E O EREMITA
 
-> **"O Editor é o Bunker. O .TΦT é a Civilização."**
-> 1. **Protocolo Eremita:** O software é uma casca descartável. A Cápsula (.tot) é a vida. Ao importar uma cápsula, o universo inteiro é restaurado. **Regra de Ouro:** O app deve funcionar 100% offline, sem nenhuma requisição a CDNs ou APIs externas.
+> **"O Editor é o Bunker. O ..skr é a Civilização."**
+> 1. **Protocolo Eremita:** O software é uma casca descartável. A Cápsula (.skr) é a vida. Ao importar uma cápsula, o universo inteiro é restaurado. **Regra de Ouro:** O app deve funcionar 100% offline, sem nenhuma requisição a CDNs ou APIs externas.
 > 2. **Tatuagem Digital (Deep Persistence):** Persistência absoluta no `localStorage` em tempo real. **Performance:** A gravação deve usar *debouncing* inteligente (ex: salvar 500ms após a última tecla) para não engasgar a digitação em textos longos.
 > 
 > 
@@ -122,7 +122,7 @@ Aqui está a versão refinada com esses inputs técnicos.
 
 ---
 
-## 📦 FASE 4: O ARQUIVO .TΦT (The Capsule)
+## 📦 FASE 4: O ARQUIVO ..skr (The Capsule)
 
 *Objetivo: Backup Total e Restauração.*
 
@@ -158,7 +158,7 @@ Aqui está a versão refinada com esses inputs técnicos.
 
 4. **A GRANDE UNIFICAÇÃO (Fase 4):**
 * Store rewrite (Capture All).
-* Export/Import .tot e Geração do `site.zip`.
+* Export/Import .skr e Geração do `site.zip`.
 
 
 
@@ -177,12 +177,12 @@ Aqui está o **Cânone V.3.1**, atualizado, consolidado e pronto para implementa
 
 ---
 
-# 📜 CÂNONE TΦT (Especificação Mestra V.3.1 - The Ironclad Edition)
+# 📜 CÂNONE .skr (Especificação Mestra V.3.1 - The Ironclad Edition)
 
 ### 🏛️ FILOSOFIA: A TATUAGEM E O EREMITA
 
-> **"O Editor é o Bunker. O .TΦT é a Civilização."**
-> 1. **Protocolo Eremita:** O software é uma casca descartável. A Cápsula (.tot) é a vida. Ao importar uma cápsula, o universo inteiro é restaurado milimetricamente.
+> **"O Editor é o Bunker. O ..skr é a Civilização."**
+> 1. **Protocolo Eremita:** O software é uma casca descartável. A Cápsula (.skr) é a vida. Ao importar uma cápsula, o universo inteiro é restaurado milimetricamente.
 > 2. **Tatuagem Digital (Deep Persistence):** Nada é volátil. Tudo o que acontece na tela é gravado no `localStorage` em tempo real. Se o navegador travar, a bateria acabar ou a aba for fechada, ao reabrir, o cursor deve estar piscando **exatamente** onde parou, o cronômetro deve estar contando (ou estourado) e os menus no mesmo estado.
 > 
 > 
@@ -300,7 +300,7 @@ Aqui está o **Cânone V.3.1**, atualizado, consolidado e pronto para implementa
 
 ---
 
-## 📦 FASE 4: O ARQUIVO .TΦT (The Capsule)
+## 📦 FASE 4: O ARQUIVO ..skr (The Capsule)
 
 *Objetivo: Backup Total e Restauração.*
 
@@ -339,7 +339,7 @@ Aqui está o **Cânone V.3.1**, atualizado, consolidado e pronto para implementa
 
 4. **A GRANDE UNIFICAÇÃO (Fase 4):**
 * Captura total de estado (Store rewrite).
-* Export/Import .tot e Geração do `site.zip`.
+* Export/Import .skr e Geração do `site.zip`.
 
 
 

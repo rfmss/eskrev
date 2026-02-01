@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>TΦTBooks</title>
+<title>.skrBooks</title>
 
 <style>
 html, body {
@@ -508,6 +508,19 @@ body:hover .bg-hint { opacity: 0.4; }
   .page-text { font-size: 15px; line-height: 1.6; }
 }
 
+@media (max-width: 720px) {
+  :root {
+    --book-w: 68px;
+    --book-h: 96px;
+    --open-w: 96vw;
+    --open-h: 90vh;
+  }
+  .pages { padding: 18px 14px 40px; }
+  .page-text { font-size: 14px; line-height: 1.6; }
+  .bg-hint { font-size: 12px; padding: 0 12px; }
+  .pagination { height: 38px; padding: 0 12px 8px; }
+}
+
 .pagination{
   position:absolute;
   left:0; right:0;
@@ -646,7 +659,7 @@ body.is-dragging #trash-zone {
 <div class="modal" id="modal">
   <div class="scrim"></div>
   <div class="card">
-    <h3 id="modalTitle">Φ TΦTBook novo</h3>
+    <h3 id="modalTitle">Φ .skrBook novo</h3>
     <input id="modalInput" type="text" maxlength="8" placeholder="Nome do projeto...">
     <div class="actions">
       <button class="btn-cancel" id="modalCancel">Cancelar</button>
@@ -690,9 +703,9 @@ let pendingSpawn = null;
 const langCode = localStorage.getItem('lit_lang') || 'pt';
 const i18n = {
   pt: {
-    totbooks_hint: "Duplo clique cria um TΦTBook. Ao criar, arraste e clique para abrir.",
+    totbooks_hint: "Duplo clique cria um .skrBook. Ao criar, arraste e clique para abrir.",
     totbooks_drop: "Solte para descartar",
-    totbooks_modal_title: "Φ TΦTBook novo",
+    totbooks_modal_title: "Φ .skrBook novo",
     totbooks_modal_ph: "Nome do projeto...",
     totbooks_cancel: "Cancelar",
     totbooks_create: "Criar",
@@ -703,9 +716,9 @@ const i18n = {
     totbooks_cover_label: "Capa {title}"
   },
   "en-uk": {
-    totbooks_hint: "Double-click creates a TΦTBook. After creating, drag to organise and click to open.",
+    totbooks_hint: "Double-click creates a .skrBook. After creating, drag to organise and click to open.",
     totbooks_drop: "Drop to discard",
-    totbooks_modal_title: "Φ New TΦTBook",
+    totbooks_modal_title: "Φ New .skrBook",
     totbooks_modal_ph: "Project name...",
     totbooks_cancel: "Cancel",
     totbooks_create: "Create",
@@ -716,9 +729,9 @@ const i18n = {
     totbooks_cover_label: "Cover {title}"
   },
   es: {
-    totbooks_hint: "Doble clic crea un TΦTBook. Al crear, arrastra y toca para abrir.",
+    totbooks_hint: "Doble clic crea un .skrBook. Al crear, arrastra y toca para abrir.",
     totbooks_drop: "Suelta para descartar",
-    totbooks_modal_title: "Φ Nuevo TΦTBook",
+    totbooks_modal_title: "Φ Nuevo .skrBook",
     totbooks_modal_ph: "Nombre del proyecto...",
     totbooks_cancel: "Cancelar",
     totbooks_create: "Crear",
@@ -729,9 +742,9 @@ const i18n = {
     totbooks_cover_label: "Portada {title}"
   },
   fr: {
-    totbooks_hint: "Double-cliquez crée un TΦTBook. Après créer, glissez et cliquez pour ouvrir.",
+    totbooks_hint: "Double-cliquez crée un .skrBook. Après créer, glissez et cliquez pour ouvrir.",
     totbooks_drop: "Déposez pour supprimer",
-    totbooks_modal_title: "Φ Nouveau TΦTBook",
+    totbooks_modal_title: "Φ Nouveau .skrBook",
     totbooks_modal_ph: "Nom du projet...",
     totbooks_cancel: "Annuler",
     totbooks_create: "Créer",

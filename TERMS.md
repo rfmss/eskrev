@@ -1,6 +1,6 @@
-## Termos de Uso — TΦT
+## Termos de Uso — .skr
 
-TΦT é uma ferramenta experimental criada por um escritor para apoiar a escrita de outros escritores.
+.skr é uma ferramenta experimental criada por um escritor para apoiar a escrita de outros escritores.
 
 O uso do sistema é feito por sua conta e risco.
 
@@ -12,5 +12,5 @@ O autor do projeto não se responsabiliza por:
 - uso indevido do sistema
 - interpretações jurídicas do material produzido
 
-Ao utilizar o TΦT, você concorda que compreende suas limitações técnicas e conceituais.
+Ao utilizar o .skr, você concorda que compreende suas limitações técnicas e conceituais.
 

@@ -1,6 +1,6 @@
 # Como analisamos o texto
 
-O TΦT Writer analisa o texto 100% offline.
+O .skr Writer analisa o texto 100% offline.
 
 O Raio‑X combina:
 

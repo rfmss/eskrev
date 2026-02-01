@@ -173,7 +173,7 @@ const renderMobileProjects = () => {
         const card = document.createElement("div");
         card.className = "mobile-memo-card";
         const title = document.createElement("div");
-        title.textContent = proj.name || "TΦT";
+        title.textContent = proj.name || ".skr";
         title.className = "mobile-memo-meta";
         card.appendChild(title);
         const excerpt = document.createElement("div");
@@ -381,12 +381,12 @@ const initMobileMemos = () => {
             const active = getActiveProject();
             if (!active) return;
             const payload = {
-                protocol: "TΦT Mobile Project",
+                protocol: ".skr Mobile Project",
                 version: "1.0",
                 created_at: new Date().toISOString(),
                 project: active
             };
-            qrTransfer.startCustomStream(payload, active.name || "TΦT");
+            qrTransfer.startCustomStream(payload, active.name || ".skr");
         };
     }
     if (projectJson) {
@@ -394,7 +394,7 @@ const initMobileMemos = () => {
             const active = getActiveProject();
             if (!active) return;
             const payload = {
-                protocol: "TΦT Mobile Project",
+                protocol: ".skr Mobile Project",
                 version: "1.0",
                 created_at: new Date().toISOString(),
                 project: active

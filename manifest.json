@@ -1,6 +1,6 @@
 {
-  "name": "TΦT Writer",
-  "short_name": "TΦT",
+  "name": ".skr Writer",
+  "short_name": ".skr",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#f5f2ea",

@@ -100,7 +100,8 @@ const CACHE_ASSETS = [
   "./src/assets/fonts/JetBrainsMonoNLNerdFont-Regular.ttf",
   "./src/assets/icons/icon-192.svg",
   "./src/assets/icons/icon-512.svg",
-  "./src/assets/icons/logo-tot.svg"
+  "./src/assets/icons/logo-tot.svg",
+  "./qr-bitcoin.png"
 ];
 
 self.addEventListener("install", (event) => {

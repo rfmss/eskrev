@@ -1,29 +1,29 @@
-# TΦT — Type over Tap
+# eskrev
 
-![Human-written](https://img.shields.io/badge/Human--written-.tot-2B2F36)
+![Human-written](https://img.shields.io/badge/Human--written-.skr-2B2F36)
 
 **Written here. Verifiable by anyone.**
 
-TΦT is an offline, portable, non-trackable editor built for human writing in the age of AI.
+.skr is an offline, portable, non-trackable editor built for human writing in the age of AI.
 
-Texts exported as `.tot` include a technical record of the human writing process.
+Texts exported as `.skr` include a technical record of the human writing process.
 
 Text is produced exclusively through human typing.
-The system records the writing process and generates a verifiable capsule (.tot).
+The system records the writing process and generates a verifiable capsule (.skr).
 
-## What is a .tot file
+## What is a .skr file
 
-A `.tot` file contains:
+A `.skr` file contains:
 - full text
 - writing process metadata
 - cryptographic hash
 - verifiable technical evidence
 
-It can be checked using **TΦT Verify**.
+It can be checked using **.skr Verify**.
 
-## TΦT Verify
+## .skr Verify
 
-TΦT Verify checks whether a text corresponds to a real human writing process.
+.skr Verify checks whether a text corresponds to a real human writing process.
 
 It is not AI detection.
 It is not stylistic analysis.
@@ -33,7 +33,7 @@ It is technical verification.
 
 ## Philosophy
 
-TΦT does not claim legal authorship.
+.skr does not claim legal authorship.
 It provides technical evidence.
 
 Interpretation remains human.
