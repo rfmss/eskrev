@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const editorEl = document.getElementById("editor");
     editorFeatures.init(editorEl);
     birthTracker.init(editorEl);
+    setupCopyGuard(editorEl);
     
     loadActiveDocument();
     editorFeatures.schedulePaginationUpdate();
@@ -1288,6 +1289,36 @@ function initHelpTabs() {
         });
     });
     sizeHelpModal();
+}
+
+function setupCopyGuard(editorEl) {
+    if (!editorEl) return;
+    const notify = (msg) => {
+        if (window.totModal && typeof window.totModal.alert === "function") {
+            window.totModal.alert(msg);
+        }
+    };
+    const shouldBlock = (selection) => {
+        if (!selection || selection.isCollapsed) return false;
+        const range = selection.rangeCount ? selection.getRangeAt(0) : null;
+        if (!range) return false;
+        const inEditor = editorEl.contains(range.commonAncestorContainer);
+        if (!inEditor) {
+            notify(lang.t("copy_blocked_outside"));
+            return true;
+        }
+        if (birthTracker && birthTracker.state && birthTracker.state.cert !== "ENABLED") {
+            notify(lang.t("copy_blocked_untrusted"));
+            return true;
+        }
+        return false;
+    };
+    document.addEventListener("copy", (e) => {
+        if (shouldBlock(document.getSelection())) e.preventDefault();
+    });
+    document.addEventListener("cut", (e) => {
+        if (shouldBlock(document.getSelection())) e.preventDefault();
+    });
 }
 
 function renderProjectList() {
