@@ -22,8 +22,32 @@ export const ui = {
         };
         this.initTheme();
         this.initMobile();
+        this.initScrollHints();
         this.bindMemoSanitizer();
         document.addEventListener("lang:changed", () => this.refreshDrawerTitle());
+    },
+    initScrollHints() {
+        const hud = this.elements.hud;
+        const controls = document.querySelector(".controls-inner");
+        if (!hud || !controls) return;
+        const update = () => {
+            const isMobile = document.body.classList.contains("mobile-lite") || window.innerWidth <= 900;
+            if (isMobile) {
+                hud.classList.remove("has-overflow");
+                controls.classList.remove("has-overflow");
+                return;
+            }
+            const hudOverflow = hud.scrollHeight - hud.clientHeight > 2;
+            const controlsOverflow = controls.scrollWidth - controls.clientWidth > 2;
+            hud.classList.toggle("has-overflow", hudOverflow);
+            controls.classList.toggle("has-overflow", controlsOverflow);
+        };
+        const onHudScroll = () => update();
+        const onControlsScroll = () => update();
+        hud.addEventListener("scroll", onHudScroll);
+        controls.addEventListener("scroll", onControlsScroll);
+        window.addEventListener("resize", update);
+        setTimeout(update, 200);
     },
     bindMemoSanitizer() {
         const memoArea = this.elements.memoArea;

@@ -14,6 +14,8 @@
   padding-top: 20px; z-index: 40; 
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   /* Sem borda lateral dura, apenas o fim do background */
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 .hud-separator {
   width: 18px;
@@ -238,13 +240,15 @@ body.mobile-typing .mobile-trigger {
   border: var(--border-style); /* Borda Glass */
   box-shadow: var(--shadow-float); /* Sombra */
   border-radius: var(--radius);
+  position: relative;
   
   pointer-events: auto;
   
   /* SEGREDO DA LINHA ÚNICA */
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   white-space: nowrap;
-  overflow: visible;
+  overflow-x: auto;
+  overflow-y: hidden;
   row-gap: 6px;
   column-gap: 10px;
   
@@ -254,6 +258,10 @@ body.mobile-typing .mobile-trigger {
   
   backdrop-filter: blur(10px); 
 }
+.controls-inner > * {
+  flex-shrink: 0;
+}
+.controls-inner::-webkit-scrollbar { display: none; }
 
 .controls-inner .btn,
 .controls-inner .btn-icon {

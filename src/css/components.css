@@ -208,6 +208,82 @@ body.focus-active #editor .focus-active-block {
 }
 .hud:hover, .controls:hover, .logo-area:hover, .drawer:hover { opacity: 1 !important; transition: opacity 0.3s; }
 
+/* HUD + CONTROLS SCROLL HINTS (tablet/desktop) */
+.hud-scroll-hint,
+.controls-scroll-hint {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.hud.has-overflow .hud-scroll-hint {
+    opacity: 0.45;
+}
+.controls-inner.has-overflow .controls-scroll-hint {
+    opacity: 0.45;
+}
+.hud-scroll-hint {
+    right: 6px;
+    top: 8px;
+    bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.hud-scroll-hint .icon {
+    width: 14px;
+    height: 14px;
+    color: var(--color-muted);
+    opacity: 0.6;
+}
+.hud-scroll-hint .hint-up {
+    transform: rotate(-90deg);
+    animation: hintFloatUp 1.6s ease-in-out infinite;
+}
+.hud-scroll-hint .hint-down {
+    transform: rotate(90deg);
+    animation: hintFloatDown 1.6s ease-in-out infinite;
+}
+.controls-scroll-hint {
+    left: 10px;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.controls-scroll-hint .icon {
+    width: 14px;
+    height: 14px;
+    color: var(--color-muted);
+    opacity: 0.6;
+}
+.controls-scroll-hint .hint-left {
+    transform: rotate(180deg);
+    animation: hintFloatLeft 1.6s ease-in-out infinite;
+}
+.controls-scroll-hint .hint-right {
+    transform: rotate(0deg);
+    animation: hintFloatRight 1.6s ease-in-out infinite;
+}
+@keyframes hintFloatUp {
+    0%, 100% { transform: translateY(0) rotate(-90deg); opacity: 0.45; }
+    50% { transform: translateY(-4px) rotate(-90deg); opacity: 0.8; }
+}
+@keyframes hintFloatDown {
+    0%, 100% { transform: translateY(0) rotate(90deg); opacity: 0.45; }
+    50% { transform: translateY(4px) rotate(90deg); opacity: 0.8; }
+}
+@keyframes hintFloatLeft {
+    0%, 100% { transform: translateX(0) rotate(180deg); opacity: 0.45; }
+    50% { transform: translateX(-4px) rotate(180deg); opacity: 0.8; }
+}
+@keyframes hintFloatRight {
+    0%, 100% { transform: translateX(0) rotate(0deg); opacity: 0.45; }
+    50% { transform: translateX(4px) rotate(0deg); opacity: 0.8; }
+}
+
 /* TOOLBAR CONTEXTUAL */
 .selection-toolbar {
     position: fixed;
