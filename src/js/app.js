@@ -46,6 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
             auth.openTermsModal();
         });
     });
+    document.querySelectorAll('[data-privacy-open]').forEach((el) => {
+        el.addEventListener('click', (e) => {
+            e.preventDefault();
+            auth.openPrivacyModal();
+        });
+    });
 
     
     ui.initPomodoro();

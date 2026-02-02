@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>.skr Writer</title>
+    <title>eskrev - editor de textos</title>
     <meta name="theme-color" content="#c4c4c4" />
     
     <link rel="manifest" href="manifest.json" />
@@ -18,19 +18,34 @@
 
 <div id="gatekeeper" class="modal-overlay" style="z-index: 9999; background: var(--bg-core); flex-direction: column;">
     
-    <div id="viewSetup" style="display:none; flex-direction:column; align-items:center; gap:8px; text-align:center;">
-        <h2 data-i18n="welcome" style="letter-spacing:2px; margin:0 0 4px;">INICIALIZANDO SISTEMA</h2>
-        <div style="display:flex; gap:8px;">
+    <div id="viewSetup" class="setup-view" style="display:none; flex-direction:column; align-items:center; gap:6px; text-align:center;">
+        <h2 data-i18n="welcome" style="letter-spacing:2px; margin:0 0 2px;">INICIALIZANDO SISTEMA</h2>
+        <div class="setup-lang">
             <button id="setupLangToggle" class="flag-btn" data-i18n="lang_label">🇧🇷 PT</button>
         </div>
-        <div style="width:240px; margin-top:2px;">
+        <div class="setup-form">
             <p data-i18n="setup_project_label" class="help-text">Nome do projeto</p>
-            <input type="text" id="setupProjectName" class="search-input" autocomplete="off" style="border:1px solid var(--color-accent); padding:8px; margin-bottom:6px; text-align:center;">
+            <input type="text" id="setupProjectName" class="search-input" autocomplete="off">
             <p data-i18n="create_pass" class="help-text">Crie a senha da sessão</p>
-            <input type="password" id="setupPass1" class="search-input" style="border:1px solid var(--color-accent); padding:8px; margin-bottom:6px; text-align:center;">
-            <input type="password" id="setupPass2" class="search-input" style="border:1px solid var(--color-accent); padding:8px; margin-bottom:6px; text-align:center;" data-i18n-ph="repeat_pass" placeholder="Confirmar">
+            <div class="setup-field">
+                <input type="password" id="setupPass1" class="search-input" data-eye-input="true">
+                <button type="button" class="password-toggle" data-target="setupPass1" aria-label="Mostrar senha">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="src/assets/icons/phosphor-sprite.svg#icon-eye"></use>
+                    </svg>
+                </button>
+            </div>
+            <div class="setup-field">
+                <input type="password" id="setupPass2" class="search-input" data-i18n-ph="repeat_pass" placeholder="Confirmar" data-eye-input="true">
+                <button type="button" class="password-toggle" data-target="setupPass2" aria-label="Mostrar senha">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="src/assets/icons/phosphor-sprite.svg#icon-eye"></use>
+                    </svg>
+                </button>
+            </div>
             <button id="btnCreateSession" class="btn-full" data-i18n="start_btn">Criar sessão local</button>
         </div>
+        <div class="manifesto-terms-note setup-password-note" data-i18n-html="setup_password_note">Com essa senha, você controla esta sessão: trava, exporta e apaga.<br>O que for exportado funciona em qualquer outra.</div>
     </div>
 
     <div id="viewLock" style="display:none; flex-direction:column; align-items:center; gap:14px;">
@@ -68,15 +83,20 @@
             <button id="manifestoVerifyLink" class="manifesto-link" data-i18n="verify_link">Verificar um arquivo .skr</button>
             <div class="manifesto-verify-note" data-i18n="verify_note">Verificação técnica de escrita humana.</div>
         </div>
-        <div class="manifesto-note" data-i18n="manifesto_pomo_hint">Escolha seu primeiro ciclo de trabalho. Você pode ajustar isso depois.</div>
         <div class="manifesto-actions">
-            <button id="manifestoChoice25" class="btn-half" data-duration="25" data-i18n="pomo_25">25 MIN</button>
-            <button id="manifestoChoice50" class="btn-half" data-duration="50" data-i18n="pomo_55">50 MIN</button>
+            <div class="manifesto-note" data-i18n="manifesto_pomo_hint">Escolha seu primeiro ciclo de trabalho. Você pode ajustar isso depois.</div>
+            <div class="manifesto-actions-row">
+                <button id="manifestoChoice25" class="btn-half" data-duration="25" data-i18n="pomo_25">25 MIN</button>
+                <button id="manifestoChoice50" class="btn-half" data-duration="50" data-i18n="pomo_55">50 MIN</button>
+            </div>
         </div>
         <div class="manifesto-terms">
-            <button id="manifestoTermsLink" class="manifesto-link" data-i18n="terms_link">Termos de uso</button>
-            <div class="manifesto-terms-note" data-i18n="terms_accept_hint">Ao iniciar uma sessão, você aceita os Termos de uso.</div>
-            <a class="manifesto-link manifesto-privacy-link" data-i18n="privacy_link" href="sobre/privacidade.html" target="_blank" rel="noopener">Política de privacidade</a>
+            <div class="manifesto-terms-links">
+                <button id="manifestoTermsLink" class="manifesto-link" data-i18n="terms_link">Termos de uso</button>
+                <span class="manifesto-link-sep" aria-hidden="true">|</span>
+                <button id="manifestoPrivacyLink" class="manifesto-link manifesto-privacy-link" data-i18n="privacy_link" data-privacy-open="true">Política de privacidade</button>
+            </div>
+            <div class="manifesto-terms-note" data-i18n="terms_accept_hint">Ao continuar, você concorda com a Política de Privacidade e os Termos de uso.</div>
         </div>
         <div class="manifesto-support" id="manifestoSupport">
             <div class="manifesto-support-title" data-i18n="support_title">Compre-me uma caneta</div>
@@ -114,6 +134,16 @@
         </div>
         <div class="terms-body" id="termsBody"></div>
         <div class="terms-tip" data-i18n="terms_tip">Dica: exporte com frequência e guarde seus backups.</div>
+    </div>
+</div>
+
+<div id="privacyModal" class="modal-overlay privacy-modal">
+    <div class="terms-box privacy-box" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+        <div class="terms-header">
+            <h2 id="privacyTitle" data-i18n="privacy_title">Política de privacidade</h2>
+            <button id="privacyClose" class="terms-close" aria-label="Fechar">×</button>
+        </div>
+        <div class="terms-body privacy-body" id="privacyBody"></div>
     </div>
 </div>
 
@@ -240,14 +270,13 @@
             </div>
             <div class="file-actions">
                 <a class="btn-half" id="btnOfflinePack" href="site.zip" download data-i18n="offline_download">BAIXAR APP OFFLINE</a>
-                <a class="btn-half" id="btnGithub" href="https://github.com/rfmss/type-over-tap" target="_blank" rel="noopener" data-i18n="project_github">GITHUB DO PROJETO</a>
+                <a class="btn-half" id="btnGithub" href="https://github.com/rfmss/eskrev" target="_blank" rel="noopener" data-i18n="project_github">GITHUB DO PROJETO</a>
             </div>
             <div id="projectList" class="list-container"></div>
         </div>
 
         <div id="panelNav" class="drawer-content" style="display:none;">
-            <div class="panel-placeholder" data-i18n="nav_hint">Veja a estrutura do texto e navegue pelos marcadores.</div>
-            <div class="help-text" data-i18n="nav_structure">Estrutura do documento:</div>
+            <div class="panel-placeholder" data-i18n-html="nav_hint">Veja a estrutura e navegue pelos capítulos.<br>Use <strong>Inserir marcador</strong> para pular entre eles.</div>
             <div id="chapterList" class="list-container"></div>
             <button class="btn-full" id="btnInsertChapter" style="margin-top:10px;" data-i18n="nav_insert">INSERIR MARCADOR</button>
         </div>

@@ -496,10 +496,16 @@ body.xray-active #editor *::selection {
 .terms-modal {
     z-index: 300;
 }
+.privacy-modal {
+    z-index: 300;
+}
 .manifesto-modal {
     z-index: 110;
 }
 body.terms-open .manifesto-modal {
+    pointer-events: none;
+}
+body.privacy-open .manifesto-modal {
     pointer-events: none;
 }
 body.manifesto-open #frame {
@@ -508,8 +514,15 @@ body.manifesto-open #frame {
 body.terms-open #frame {
     pointer-events: none;
 }
+body.privacy-open #frame {
+    pointer-events: none;
+}
 .terms-modal,
 .terms-modal .terms-box {
+    pointer-events: auto;
+}
+.privacy-modal,
+.privacy-modal .privacy-box {
     pointer-events: auto;
 }
 .modal-box { 
@@ -562,7 +575,7 @@ body.terms-open #frame {
     z-index: 120;
 }
 .manifesto-box {
-    width: min(900px, 92vw);
+    width: min(880px, 92vw);
     max-height: 88vh;
     overflow: hidden;
     border: var(--border-style);
@@ -571,6 +584,7 @@ body.terms-open #frame {
     box-shadow: var(--shadow-float);
     display: flex;
     flex-direction: column;
+    gap: 8px;
 }
 .consult-modal {
     z-index: 110;
@@ -679,7 +693,7 @@ body.consult-open .selection-toolbar {
     cursor: pointer;
 }
 .manifesto-header {
-    padding: 16px 28px 10px;
+    padding: 20px 28px 8px;
     border-bottom: var(--border-style);
 }
 .manifesto-title-row {
@@ -690,21 +704,21 @@ body.consult-open .selection-toolbar {
 }
 .manifesto-header h1 {
     margin: 0 0 8px;
-    letter-spacing: 2px;
-    font-size: 16px;
+    letter-spacing: 1.2px;
+    font-size: 17px;
     color: var(--color-text);
     font-family: var(--font-display, var(--font-ui));
 }
 .manifesto-header p {
     margin: 0;
-    font-size: 11px;
+    font-size: 12px;
     color: var(--color-muted);
-    letter-spacing: 1px;
+    letter-spacing: 0.6px;
     text-transform: none;
     font-family: var(--font-ui);
 }
 .manifesto-body {
-    padding: 16px 26px;
+    padding: 12px 26px 6px;
     overflow-y: auto;
     font-size: 14px;
     line-height: 1.65;
@@ -830,9 +844,9 @@ body.consult-open .selection-toolbar {
     font-weight: 700;
 }
 .manifesto-note {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--color-muted);
-    margin-top: 8px;
+    margin-top: 6px;
     display: block;
     text-align: center;
 }
@@ -841,7 +855,7 @@ body.consult-open .selection-toolbar {
     opacity: 0.8;
 }
 .manifesto-verify {
-    padding: 0 28px 12px;
+    padding: 0 26px 10px;
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -855,10 +869,18 @@ body.consult-open .selection-toolbar {
     display: none;
 }
 .manifesto-actions {
-    padding: 14px 26px 20px;
+    padding: 8px 26px 14px;
     border-top: var(--border-style);
     display: flex;
-    gap: 12px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.manifesto-actions-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
 }
 .manifesto-actions .btn-full,
 .manifesto-actions .btn-half {
@@ -867,23 +889,44 @@ body.consult-open .selection-toolbar {
     border: none;
 }
 .manifesto-terms {
-    padding: 0 26px 20px;
+    padding: 8px 26px 24px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    gap: 6px;
     text-align: center;
+    border-top: var(--border-style);
+}
+.manifesto-terms-links {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+.manifesto-link-sep {
+    color: var(--color-muted);
+    font-size: 12px;
+    letter-spacing: 0.5px;
 }
 .manifesto-link {
     background: none;
     border: none;
-    color: var(--color-accent);
+    color: var(--color-text);
     font-size: 12px;
     letter-spacing: 0.5px;
     cursor: pointer;
+    padding: 2px 4px;
+    line-height: 1;
+}
+.manifesto-link:hover {
+    color: var(--color-accent);
 }
 .manifesto-terms-note {
     font-size: 11px;
     color: var(--color-muted);
+    line-height: 1.4;
+    margin-top: 2px;
 }
 .manifesto-support {
     padding: 0 26px 24px;
@@ -969,7 +1012,8 @@ body.consult-open .selection-toolbar {
     color: var(--color-muted);
 }
 
-.terms-modal .terms-box {
+.terms-modal .terms-box,
+.privacy-modal .privacy-box {
     background: var(--bg-drawer);
     border: var(--border-style);
     border-radius: var(--radius);
@@ -1039,6 +1083,76 @@ body.consult-open .selection-toolbar {
     font-size: 11px;
     color: var(--color-muted);
 }
+
+.privacy-body {
+    font-size: 13px;
+    line-height: 1.7;
+}
+.privacy-date {
+    margin: 0 0 10px;
+    font-size: 11px;
+    color: var(--color-muted);
+    letter-spacing: 0.2px;
+    text-transform: none;
+}
+.privacy-body a,
+.privacy-body a:visited,
+.privacy-body a:hover,
+.privacy-body a:active {
+    color: inherit;
+    text-decoration: none;
+    font-weight: inherit;
+}
+.privacy-body .policy-shell {
+    width: 100%;
+    background: var(--bg-panel);
+    border: var(--border-style);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-float);
+    padding: 16px 18px;
+    position: static;
+}
+.privacy-body .policy-shell::before {
+    display: none;
+}
+.privacy-body .policy-header {
+    border-bottom: var(--border-style);
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    display: grid;
+    gap: 6px;
+}
+.privacy-body .policy-title {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.2;
+    font-family: var(--font-display, var(--font-ui));
+    font-weight: 600;
+}
+.privacy-body .policy-subtitle {
+    margin: 0;
+    font-size: 11px;
+    color: var(--color-muted);
+    letter-spacing: 0.2px;
+    font-family: var(--font-ui);
+}
+.privacy-body .policy-body {
+    display: grid;
+    gap: 14px;
+    font-size: 13px;
+    line-height: 1.7;
+    font-family: var(--font-ui);
+}
+.privacy-body .policy-section h2 {
+    margin: 0 0 6px;
+    font-size: 11px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--color-muted);
+}
+.privacy-body .policy-section p { margin: 0 0 8px; }
+.privacy-body .policy-section ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.privacy-body .policy-note { color: var(--color-muted); font-size: 11px; }
 
 .manifesto-modal:not(.manifesto-full) .manifesto-verify {
     display: none;
@@ -2335,11 +2449,78 @@ kbd {
     backdrop-filter: blur(6px);
 }
 #gatekeeper .search-input {
-    border: none !important;
-    border-bottom: 1px solid var(--color-muted) !important;
-    border-radius: 0;
-    padding: 12px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.18) !important;
+    border-radius: 6px;
+    padding: 10px 12px;
     text-align: center;
+    background: rgba(255, 255, 255, 0.55);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+#gatekeeper .search-input:focus {
+    border-color: var(--color-accent) !important;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08);
+}
+#gatekeeper .setup-view {
+    gap: 10px;
+}
+#gatekeeper .setup-lang {
+    display: flex;
+    gap: 6px;
+}
+#gatekeeper .setup-form {
+    width: 260px;
+    display: grid;
+    gap: 8px;
+}
+#gatekeeper .setup-field {
+    position: relative;
+    display: grid;
+}
+#gatekeeper .setup-field .search-input {
+    padding-right: 36px;
+}
+#gatekeeper .password-toggle {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 26px;
+    height: 26px;
+    border: none;
+    background: transparent;
+    color: var(--color-muted);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    cursor: pointer;
+}
+#gatekeeper .password-toggle:hover {
+    color: var(--color-text);
+    background: rgba(0, 0, 0, 0.06);
+}
+#gatekeeper .password-toggle .icon {
+    width: 16px;
+    height: 16px;
+}
+#gatekeeper .setup-form .help-text {
+    margin: 0;
+    line-height: 1.2;
+}
+#gatekeeper .setup-form .search-input {
+    padding: 8px 10px;
+}
+#gatekeeper .setup-form .btn-full {
+    margin-top: 4px;
+}
+#gatekeeper .setup-password-note {
+    width: 100%;
+    max-width: 520px;
+    font-size: 10px;
+    line-height: 1.35;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 #gatekeeper .btn-full {
     background: var(--color-accent);
@@ -2382,7 +2563,7 @@ kbd {
     padding: 0;
     margin: 0;
     color: inherit;
-    text-decoration: underline;
+    text-decoration: none;
     cursor: pointer;
     font: inherit;
 }

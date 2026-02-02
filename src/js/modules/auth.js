@@ -19,8 +19,13 @@ export const auth = {
     termsClose: null,
     termsLink: null,
     termsScrolledEnough: false,
+    privacyModal: null,
+    privacyBody: null,
+    privacyClose: null,
+    privacyLoaded: false,
     init() {
         this.setupTerms();
+        this.setupPrivacy();
         const accepted = localStorage.getItem('tot_manifest_signed');
         if (!accepted) {
             this.showManifesto();
@@ -51,6 +56,7 @@ export const auth = {
         const body = document.getElementById("manifestoText");
         const langToggle = document.getElementById("manifestoLangToggle");
         const termsLink = document.getElementById("manifestoTermsLink");
+        const privacyLink = document.getElementById("manifestoPrivacyLink");
         const verifyLink = document.getElementById("manifestoVerifyLink");
         const supportBlock = document.getElementById("manifestoSupport");
         const applyManifestoText = () => {
@@ -85,6 +91,7 @@ export const auth = {
         choice25.onclick = () => this.handleManifestoChoice(25);
         choice50.onclick = () => this.handleManifestoChoice(50);
         if (termsLink) termsLink.onclick = () => this.openTermsModal();
+        if (privacyLink) privacyLink.onclick = () => this.openPrivacyModal();
         if (verifyLink) verifyLink.onclick = () => {
             const ev = document.getElementById("editorView");
             const bv = document.getElementById("booksView");
@@ -180,6 +187,32 @@ export const auth = {
                 if (window.totModal) await window.totModal.alert(lang.t("reset_cancel"));
             }
         };
+
+        // Toggle de senha (olho)
+        document.querySelectorAll(".password-toggle").forEach((btn) => {
+            const targetId = btn.getAttribute("data-target");
+            const input = targetId ? document.getElementById(targetId) : null;
+            if (!input) return;
+            const use = btn.querySelector("use");
+            const setState = (visible) => {
+                input.type = visible ? "text" : "password";
+                btn.setAttribute("aria-label", visible ? "Ocultar senha" : "Mostrar senha");
+                if (use) {
+                    use.setAttribute(
+                        "href",
+                        visible
+                            ? "src/assets/icons/phosphor-sprite.svg#icon-eye-slash"
+                            : "src/assets/icons/phosphor-sprite.svg#icon-eye"
+                    );
+                }
+            };
+            setState(false);
+            btn.addEventListener("click", () => {
+                const isVisible = input.type === "text";
+                setState(!isVisible);
+                input.focus();
+            });
+        });
     },
 
     setupTerms() {
@@ -219,6 +252,43 @@ export const auth = {
         if (!this.termsModal || !this.termsModal.classList.contains("active")) return;
         if (e.key !== "Tab") return;
         const focusable = this.termsModal.querySelectorAll("button, input, [href], [tabindex]:not([tabindex='-1'])");
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+        }
+    },
+
+    setupPrivacy() {
+        this.privacyModal = document.getElementById("privacyModal");
+        this.privacyBody = document.getElementById("privacyBody");
+        this.privacyClose = document.getElementById("privacyClose");
+        if (!this.privacyModal) return;
+        this.privacyModal.addEventListener("keydown", (e) => this.handlePrivacyFocusTrap(e));
+        this.privacyModal.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                e.preventDefault();
+                this.closePrivacyModal(true);
+            }
+        });
+        this.privacyModal.addEventListener("click", (e) => {
+            if (e.target === this.privacyModal) {
+                this.closePrivacyModal(true);
+            }
+        });
+        if (this.privacyClose) {
+            this.privacyClose.addEventListener("click", () => this.closePrivacyModal(true));
+        }
+    },
+    handlePrivacyFocusTrap(e) {
+        if (!this.privacyModal || !this.privacyModal.classList.contains("active")) return;
+        if (e.key !== "Tab") return;
+        const focusable = this.privacyModal.querySelectorAll("button, input, [href], [tabindex]:not([tabindex='-1'])");
         if (!focusable.length) return;
         const first = focusable[0];
         const last = focusable[focusable.length - 1];
@@ -272,6 +342,54 @@ export const auth = {
     updateTermsScrollState(force = false) {
         if (!this.termsBody) return;
         if (force) this.termsBody.scrollTop = 0;
+    },
+
+    async openPrivacyModal() {
+        if (!this.privacyModal) return;
+        document.body.classList.add("privacy-open");
+        this.privacyModal.classList.add("active");
+        await this.loadPrivacyContent();
+        if (this.privacyBody) this.privacyBody.scrollTop = 0;
+        if (this.privacyClose) this.privacyClose.focus();
+    },
+
+    closePrivacyModal() {
+        if (this.privacyModal) this.privacyModal.classList.remove("active");
+        document.body.classList.remove("privacy-open");
+    },
+
+    async loadPrivacyContent() {
+        if (!this.privacyBody || this.privacyLoaded) return;
+        try {
+            this.privacyBody.innerHTML = `<div class="privacy-loading" data-i18n="privacy_loading">${lang.t("privacy_loading")}</div>`;
+            const res = await fetch("sobre/privacidade.html", { cache: "no-store" });
+            if (!res.ok) throw new Error("privacy fetch failed");
+            const text = await res.text();
+            const doc = new DOMParser().parseFromString(text, "text/html");
+            const body = doc.querySelector(".policy-body");
+            const subtitle = doc.querySelector(".policy-subtitle");
+            const subtitleText = subtitle ? subtitle.textContent.trim() : "";
+            if (body) {
+                const clone = body.cloneNode(true);
+                const sections = clone.querySelectorAll(".policy-section");
+                sections.forEach((section) => {
+                    const h2 = section.querySelector("h2");
+                    const title = h2 ? h2.textContent.trim().toLowerCase() : "";
+                    if (title.includes("atualização")) {
+                        section.remove();
+                    }
+                });
+                const dateLine = subtitleText
+                    ? `<div class="privacy-date">${subtitleText}</div>`
+                    : "";
+                this.privacyBody.innerHTML = `${dateLine}${clone.innerHTML}`;
+            } else if (doc.body) {
+                this.privacyBody.innerHTML = doc.body.innerHTML;
+            }
+            this.privacyLoaded = true;
+        } catch (e) {
+            this.privacyBody.innerHTML = `<div class="privacy-loading" data-i18n="privacy_error">${lang.t("privacy_error")}</div>`;
+        }
     },
 
     async acceptTermsWithDuration(minutes) {
