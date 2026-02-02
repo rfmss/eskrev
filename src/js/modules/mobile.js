@@ -318,6 +318,36 @@ const initMobileMemos = () => {
     const viewItems = document.querySelectorAll(".mobile-view-item");
     const addBtn = document.getElementById("btnAddMobileMemo");
     if (!memoInput) return;
+    const cleanText = (text) => {
+        if (!text) return "";
+        return text
+            .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "")
+            .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{1F1E6}-\u{1F1FF}\u{FE0F}\u{200D}]/gu, "");
+    };
+    const applyClean = () => {
+        const clean = cleanText(memoInput.value);
+        if (clean !== memoInput.value) {
+            const pos = memoInput.selectionStart || 0;
+            memoInput.value = clean;
+            const next = Math.min(pos, clean.length);
+            memoInput.setSelectionRange(next, next);
+        }
+    };
+    memoInput.addEventListener("paste", (e) => {
+        e.preventDefault();
+        const clip = e.clipboardData || window.clipboardData;
+        const text = clip ? clip.getData("text/plain") : "";
+        const clean = cleanText(text);
+        const start = memoInput.selectionStart || 0;
+        const end = memoInput.selectionEnd || 0;
+        const value = memoInput.value || "";
+        memoInput.value = value.slice(0, start) + clean + value.slice(end);
+        const cursor = start + clean.length;
+        memoInput.setSelectionRange(cursor, cursor);
+        memoInput.dispatchEvent(new Event("input"));
+    });
+    memoInput.addEventListener("input", applyClean);
+
 
     mobileNotesCache = loadMobileNotes();
     renderMobileNotes();

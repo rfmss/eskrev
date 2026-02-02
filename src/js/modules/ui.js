@@ -22,7 +22,41 @@ export const ui = {
         };
         this.initTheme();
         this.initMobile();
+        this.bindMemoSanitizer();
         document.addEventListener("lang:changed", () => this.refreshDrawerTitle());
+    },
+    bindMemoSanitizer() {
+        const memoArea = this.elements.memoArea;
+        if (!memoArea) return;
+        const cleanText = (text) => {
+            if (!text) return "";
+            return text
+                .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "")
+                .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{1F1E6}-\u{1F1FF}\u{FE0F}\u{200D}]/gu, "");
+        };
+        const applyClean = () => {
+            const clean = cleanText(memoArea.value);
+            if (clean !== memoArea.value) {
+                const pos = memoArea.selectionStart || 0;
+                memoArea.value = clean;
+                const next = Math.min(pos, clean.length);
+                memoArea.setSelectionRange(next, next);
+            }
+        };
+        memoArea.addEventListener("paste", (e) => {
+            e.preventDefault();
+            const clip = e.clipboardData || window.clipboardData;
+            const text = clip ? clip.getData("text/plain") : "";
+            const clean = cleanText(text);
+            const start = memoArea.selectionStart || 0;
+            const end = memoArea.selectionEnd || 0;
+            const value = memoArea.value || "";
+            memoArea.value = value.slice(0, start) + clean + value.slice(end);
+            const cursor = start + clean.length;
+            memoArea.setSelectionRange(cursor, cursor);
+            memoArea.dispatchEvent(new Event("input"));
+        });
+        memoArea.addEventListener("input", applyClean);
     },
 
     // --- POMODORO SOBERANO (TIMESTAMP) ---
