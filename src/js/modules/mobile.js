@@ -58,7 +58,7 @@ const updateMobileViewCounts = () => {
     const tags = new Set();
     mobileNotesCache.forEach(note => (note.tags || []).forEach(tag => tags.add(normalizeTag(tag))));
     if (tagsCount) tagsCount.textContent = tags.size;
-    const favs = mobileNotesCache.filter(note => (note.tags || []).map(normalizeTag).includes("fav") || (note.tags || []).map(normalizeTag).includes("favorito") || (note.tags || []).map(normalizeTag).includes("φ"));
+    const favs = mobileNotesCache.filter(note => (note.tags || []).map(normalizeTag).includes("fav") || (note.tags || []).map(normalizeTag).includes("favorito"));
     if (favCount) favCount.textContent = favs.length;
     if (projCount) projCount.textContent = (store.data.projects || []).length;
 };
@@ -287,7 +287,8 @@ const renderMobileNotes = () => {
 
 const addOrUpdateMobileNote = (text, tagsRaw, folderRaw) => {
     const baseTags = tagsRaw.split(",").map(normalizeTag).filter(Boolean).filter(tag => tag !== "mobile");
-    const tags = Array.from(new Set([...baseTags, "mobile"]));
+    const isMobile = window.innerWidth <= 900;
+    const tags = isMobile ? Array.from(new Set([...baseTags, "mobile"])) : baseTags;
     const folder = normalizeFolder(folderRaw);
     const now = new Date().toISOString();
     if (mobileEditingId) {

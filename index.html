@@ -25,7 +25,7 @@
         </div>
         <div class="setup-form">
             <p data-i18n="setup_project_label" class="help-text">Nome do projeto</p>
-            <input type="text" id="setupProjectName" class="search-input" autocomplete="off">
+            <input type="text" id="setupProjectName" class="search-input" autocomplete="off" data-i18n-ph="setup_project_ph" placeholder="opcional">
             <p data-i18n="create_pass" class="help-text">Crie a senha da sessão</p>
             <div class="setup-field">
                 <input type="password" id="setupPass1" class="search-input" data-eye-input="true">
@@ -212,7 +212,7 @@
                 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-sun"></use></svg>
             </button>
             <button class="drawer-tab-btn" id="mobileTabBooks" aria-label=".skrBooks">
-                <span class="icon-text">Φ</span>
+                <span class="icon-text">B</span>
             </button>
         </div>
 
@@ -290,7 +290,7 @@
         <div id="panelNotes" class="drawer-content" style="display:none;">
             <div class="mobile-memo">
                 <div class="mobile-memo-header">
-                    <div class="mobile-logo">Φ</div>
+                    <div class="mobile-logo">.skr</div>
                     <div class="mobile-title">.skr Mobile</div>
                 </div>
 
@@ -304,6 +304,13 @@
                     <button class="mobile-view-item" type="button" data-target="#mobileFilesSection">
                         <span data-i18n="mobile_view_files">Files</span> <span class="mobile-view-count" id="mobileFilesCount">0</span>
                     </button>
+                    <button class="mobile-view-item" type="button" data-filter="#fav">
+                        <span class="mobile-view-fav">
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-bookmark"></use></svg>
+                            <span data-i18n="mobile_view_favs">Favoritos</span>
+                        </span>
+                        <span class="mobile-view-count" id="mobileFavCount">0</span>
+                    </button>
                     <button class="mobile-view-item" type="button" data-target="#mobileTagsSection">
                         <span data-i18n="mobile_view_tags">Tags</span> <span class="mobile-view-count" id="mobileTagsCount">0</span>
                     </button>
@@ -312,7 +319,7 @@
                 <div class="mobile-memo-section-title" id="mobileNotesSection" data-i18n="mobile_notes_title">NOTAS</div>
                 <textarea id="mobileMemoInput" class="mobile-memo-input" data-i18n-ph="mobile_memo_ph" placeholder="Nota rápida..."></textarea>
                 <input id="mobileMemoTags" class="mobile-memo-tags" data-i18n-ph="mobile_memo_tags" placeholder="Tags (separe por vírgula)" />
-                <div class="mobile-memo-tags-fixed" aria-hidden="true">
+                <div class="mobile-memo-tags-fixed mobile-only" aria-hidden="true">
                     <span class="mobile-memo-tag locked">#mobile <span class="tag-lock">fixo</span></span>
                 </div>
                 <input id="mobileMemoFolder" class="mobile-memo-folder" data-i18n-ph="mobile_memo_folder" placeholder="Pasta (opcional)" />
@@ -320,7 +327,6 @@
                 <div id="mobileMemoList" class="mobile-memo-list"></div>
 
                 <div class="mobile-memo-section-title" id="mobileFilesSection" data-i18n="mobile_files_title">ARQUIVOS</div>
-                <div class="help-text" data-i18n="mobile_files_hint">Organize notas por pasta.</div>
                 <div id="mobileFoldersList" class="mobile-memo-tags-list"></div>
 
                 <div class="mobile-memo-section-title" id="mobileTagsSection" data-i18n="mobile_tags_title">TAGS</div>

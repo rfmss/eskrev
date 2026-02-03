@@ -659,8 +659,8 @@ body.is-dragging #trash-zone {
 <div class="modal" id="modal">
   <div class="scrim"></div>
   <div class="card">
-    <h3 id="modalTitle">Φ .skrBook novo</h3>
-    <input id="modalInput" type="text" maxlength="8" placeholder="Nome do projeto...">
+    <h3 id="modalTitle">.skrBook novo</h3>
+    <input id="modalInput" type="text" maxlength="8" placeholder="">
     <div class="actions">
       <button class="btn-cancel" id="modalCancel">Cancelar</button>
       <button class="btn-ok" id="modalOk">Criar</button>
@@ -705,7 +705,7 @@ const i18n = {
   pt: {
     totbooks_hint: "Duplo clique cria um .skrBook. Ao criar, arraste e clique para abrir.",
     totbooks_drop: "Solte para descartar",
-    totbooks_modal_title: "Φ .skrBook novo",
+    totbooks_modal_title: ".skrBook novo",
     totbooks_modal_ph: "Nome do projeto...",
     totbooks_cancel: "Cancelar",
     totbooks_create: "Criar",
@@ -718,7 +718,7 @@ const i18n = {
   "en-uk": {
     totbooks_hint: "Double-click creates a .skrBook. After creating, drag to organise and click to open.",
     totbooks_drop: "Drop to discard",
-    totbooks_modal_title: "Φ New .skrBook",
+    totbooks_modal_title: "New .skrBook",
     totbooks_modal_ph: "Project name...",
     totbooks_cancel: "Cancel",
     totbooks_create: "Create",
@@ -731,7 +731,7 @@ const i18n = {
   es: {
     totbooks_hint: "Doble clic crea un .skrBook. Al crear, arrastra y toca para abrir.",
     totbooks_drop: "Suelta para descartar",
-    totbooks_modal_title: "Φ Nuevo .skrBook",
+    totbooks_modal_title: "Nuevo .skrBook",
     totbooks_modal_ph: "Nombre del proyecto...",
     totbooks_cancel: "Cancelar",
     totbooks_create: "Crear",
@@ -744,7 +744,7 @@ const i18n = {
   fr: {
     totbooks_hint: "Double-cliquez crée un .skrBook. Après créer, glissez et cliquez pour ouvrir.",
     totbooks_drop: "Déposez pour supprimer",
-    totbooks_modal_title: "Φ Nouveau .skrBook",
+    totbooks_modal_title: "Nouveau .skrBook",
     totbooks_modal_ph: "Nom du projet...",
     totbooks_cancel: "Annuler",
     totbooks_create: "Créer",
@@ -1051,7 +1051,7 @@ function createBook(title, x, y, opts = {}){
     <div class="cover" aria-label="${escapeHtml(coverLabel)}">
       <div class="sheen"></div>
     <div class="strap" style="background:${savedColor}">
-        <span class="phi-mark">Φ</span>
+        <span class="phi-mark"></span>
         <span class="title-text">${escapeHtml(savedTitle)}</span>
       </div>
       <div class="elastic"></div>

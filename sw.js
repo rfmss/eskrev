@@ -1,4 +1,4 @@
-const CACHE_NAME = "tot-cache-v6";
+const CACHE_NAME = "skrv-cache-v7";
 const CACHE_ASSETS = [
   "./",
   "./index.html",
@@ -106,7 +106,16 @@ const CACHE_ASSETS = [
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(CACHE_ASSETS))
+    caches.open(CACHE_NAME).then((cache) =>
+      Promise.all(
+        CACHE_ASSETS.map((asset) =>
+          cache.add(asset).catch((err) => {
+            console.warn("[sw] cache failed:", asset, err);
+            return null;
+          })
+        )
+      )
+    )
   );
   self.skipWaiting();
 });

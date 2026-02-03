@@ -73,10 +73,10 @@
   --glass-blur: blur(12px);
   --shadow-float: 0 6px 20px rgba(0, 0, 0, 0.18);
   --page-height: 1120px;
-  --font-display: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --font-body: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --font-quote: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --font-ui: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-display: "Source Serif 4", "Georgia", "Times New Roman", serif;
+  --font-body: "Source Serif 4", "Georgia", "Times New Roman", serif;
+  --font-quote: "Source Serif 4", "Georgia", "Times New Roman", serif;
+  --font-ui: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
 }
 
 /* 1. TEMA PAPEL EDITORIAL (default) */
@@ -94,7 +94,7 @@
   --color-muted: rgba(58, 57, 53, 0.5);
   --border-style: 1px solid rgba(43, 42, 38, 0.12);
   --grid-opacity: 0.03;
-  --font-ui: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-ui: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
   --font-main: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-mono: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --radius: 6px;
@@ -180,7 +180,7 @@
   --color-muted: #a59a90;        
   --border-style: 1px solid rgba(183, 168, 154, 0.18);
   --grid-opacity: 0.05;
-  --font-ui: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-ui: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
   --font-main: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-mono: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --radius: 4px; 
@@ -203,7 +203,7 @@
   --color-muted: #a59a90;        
   --border-style: 1px solid rgba(183, 168, 154, 0.18);
   --grid-opacity: 0.05;
-  --font-ui: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-ui: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
   --font-main: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-mono: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --radius: 4px; 
@@ -226,7 +226,7 @@
   --color-muted: rgba(43, 38, 34, 0.5);
   --border-style: 1px solid rgba(109, 97, 85, 0.18);
   --grid-opacity: 0.02;
-  --font-ui: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-ui: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
   --font-main: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-mono: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --radius: 4px; 
@@ -249,7 +249,7 @@
   --color-muted: #6f9a73;
   --border-style: 1px solid rgba(159, 214, 161, 0.2);
   --grid-opacity: 0.08;
-  --font-ui: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-ui: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
   --font-main: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-mono: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --radius: 4px;
@@ -272,7 +272,7 @@
   --color-muted: rgba(36, 22, 15, 0.55);
   --border-style: 1px solid rgba(36, 22, 15, 0.18);
   --grid-opacity: 0.12;
-  --font-ui: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-ui: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
   --font-main: "Inter", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --radius: 4px;
@@ -299,7 +299,7 @@
   --color-muted: rgba(207, 207, 207, 0.55);
   --border-style: 1px solid rgba(224, 224, 224, 0.18);
   --grid-opacity: 0.08;
-  --font-ui: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-ui: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
   --font-main: "Inter", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --radius: 2px;
