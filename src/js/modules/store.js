@@ -1,8 +1,8 @@
 import { lang } from './lang.js';
 
 const showAlert = (message) => {
-    if (window.totModal && typeof window.totModal.alert === "function") {
-        window.totModal.alert(message);
+    if (window.skrvModal && typeof window.skrvModal.alert === "function") {
+        window.skrvModal.alert(message);
     } else {
         console.warn(message);
     }
@@ -19,7 +19,7 @@ export const store = {
     persistDelayMs: 500,
 
     init() {
-        const saved = localStorage.getItem("tot_data");
+        const saved = localStorage.getItem("skrv_data") || localStorage.getItem("tot_data");
         const legacy = localStorage.getItem("zel_data");
         if (saved || legacy) {
             try {
@@ -28,7 +28,7 @@ export const store = {
                 if (!Array.isArray(this.data.projects)) this.data.projects = [];
                 if (!Array.isArray(this.data.mobileNotes)) this.data.mobileNotes = [];
                 if (!saved && legacy) {
-                    localStorage.setItem("tot_data", JSON.stringify(this.data));
+                    localStorage.setItem("skrv_data", JSON.stringify(this.data));
                 }
             } catch (e) {
                 console.error("Erro ao carregar dados:", e);
@@ -68,12 +68,12 @@ export const store = {
                 clearTimeout(this.persistTimer);
                 this.persistTimer = null;
             }
-            localStorage.setItem("tot_data", JSON.stringify(this.data));
+            localStorage.setItem("skrv_data", JSON.stringify(this.data));
             return;
         }
         if (this.persistTimer) clearTimeout(this.persistTimer);
         this.persistTimer = setTimeout(() => {
-            localStorage.setItem("tot_data", JSON.stringify(this.data));
+            localStorage.setItem("skrv_data", JSON.stringify(this.data));
             this.persistTimer = null;
         }, this.persistDelayMs);
     },
@@ -153,6 +153,7 @@ export const store = {
 
         // Limpa todo o estado local para evitar restauração fantasma.
         try {
+            localStorage.removeItem("skrv_data");
             localStorage.removeItem("tot_data");
             localStorage.removeItem("zel_data");
             localStorage.removeItem("lit_auth_key");
@@ -181,7 +182,7 @@ export const store = {
             caches.keys().then((keys) => keys.forEach((k) => caches.delete(k))).catch(() => {});
         }
 
-        try { sessionStorage.setItem("tot_force_clean", "1"); } catch (_) {}
+        try { sessionStorage.setItem("skrv_force_clean", "1"); } catch (_) {}
         setTimeout(() => location.replace(location.pathname), 250); // Renasce limpo
     },
 

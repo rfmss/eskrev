@@ -1,5 +1,5 @@
-// src/js/modules/export_tot.js
-// TOT/1 — Transfer Only Text (cápsula offline)
+// src/js/modules/export_skrv.js
+// SKRV/1 — Transfer Only Text (cápsula offline)
 
 function downloadTextAsFile(text, filename) {
   const blob = new Blob([text], { type: "application/json;charset=utf-8" });
@@ -13,14 +13,14 @@ function downloadTextAsFile(text, filename) {
   URL.revokeObjectURL(url);
 }
 
-export function exportTot(store) {
-  buildTotPayloadWithChain(store).then((payload) => {
-    const filename = `TOT_${Date.now()}.skr`;
+export function exportSkrv(store) {
+  buildSkrvPayloadWithChain(store).then((payload) => {
+    const filename = `SKRV_${Date.now()}.skrv`;
     downloadTextAsFile(JSON.stringify(payload, null, 2), filename);
   });
 }
 
-export function importTot(raw) {
+export function importSkrv(raw) {
   try {
     const parsed = JSON.parse(raw);
     if (!parsed || typeof parsed !== "object") return null;
@@ -43,7 +43,7 @@ function htmlToText(html) {
 
 function collectWorkbenchState() {
   const state = { registry: [], pages: {}, positions: {}, titles: {}, colors: {} };
-  const registry = localStorage.getItem("totbook_registry");
+  const registry = localStorage.getItem("skrvbook_registry") || localStorage.getItem("totbook_registry");
   if (registry) {
     try {
       state.registry = JSON.parse(registry);
@@ -62,8 +62,10 @@ function collectWorkbenchState() {
   return state;
 }
 
-export function buildTotPayload(store) {
+export function buildSkrvPayload(store) {
   const data = store.data || {};
+  const archive = { ...data };
+  delete archive.memo;
   const projects = Array.isArray(data.projects) ? data.projects : [];
   const active = projects.find(p => p.id === data.activeId) || projects[0] || null;
   const activeHtml = active ? active.content : "";
@@ -125,18 +127,18 @@ export function buildTotPayload(store) {
       responsibility: "User-owned content"
     },
     HEADER: {
-      VERSION: "TOT/2",
+      VERSION: "SKRV/2",
       APP: ".skr Writer - eskrev",
       CREATED: new Date().toISOString(),
       CERT: birth && birth.cert ? birth.cert : "UNKNOWN"
     },
     MANIFEST: {
-      accepted: localStorage.getItem("tot_manifest_signed") === "true",
-      accepted_at: localStorage.getItem("tot_manifest_signed_at") || "",
-      text: localStorage.getItem("tot_manifest_text") || ""
+      accepted: (localStorage.getItem("skrv_manifest_signed") || localStorage.getItem("tot_manifest_signed")) === "true",
+      accepted_at: localStorage.getItem("skrv_manifest_signed_at") || localStorage.getItem("tot_manifest_signed_at") || "",
+      text: localStorage.getItem("skrv_manifest_text") || localStorage.getItem("tot_manifest_text") || ""
     },
     ACCESS: {
-      count: parseInt(localStorage.getItem("tot_access_count"), 10) || 0
+      count: parseInt(localStorage.getItem("skrv_access_count") || localStorage.getItem("tot_access_count"), 10) || 0
     },
     SESSION_CONFIG: {
       theme: localStorage.getItem("lit_theme_pref") || "paper",
@@ -145,13 +147,13 @@ export function buildTotPayload(store) {
       lang: localStorage.getItem("lit_lang") || "pt"
     },
     MASTER_TEXT: masterText,
-    ARCHIVE_STATE: data,
+    ARCHIVE_STATE: archive,
     WORKBENCH_STATE: collectWorkbenchState()
   };
 }
 
-export async function buildTotPayloadWithChain(store) {
-  const payload = buildTotPayload(store);
+export async function buildSkrvPayloadWithChain(store) {
+  const payload = buildSkrvPayload(store);
   const chain = await buildBirthChain(payload.MASTER_TEXT || "");
   payload.BIRTH_CHAIN = chain;
   payload.proof.content_hash = await sha256Hex(payload.content.text || "");
@@ -165,8 +167,8 @@ async function sha256Hex(text) {
 }
 
 async function buildBirthChain(text) {
-  const prevRaw = localStorage.getItem("tot_birth_chain");
-  const historyRaw = localStorage.getItem("tot_birth_chain_history");
+  const prevRaw = localStorage.getItem("skrv_birth_chain") || localStorage.getItem("tot_birth_chain");
+  const historyRaw = localStorage.getItem("skrv_birth_chain_history") || localStorage.getItem("tot_birth_chain_history");
   let prev = null;
   let history = [];
   try { prev = prevRaw ? JSON.parse(prevRaw) : null; } catch (_) { prev = null; }
@@ -190,7 +192,7 @@ async function buildBirthChain(text) {
     hash,
     history
   };
-  localStorage.setItem("tot_birth_chain", JSON.stringify({ hash, created_at: createdAt }));
-  localStorage.setItem("tot_birth_chain_history", JSON.stringify(history));
+  localStorage.setItem("skrv_birth_chain", JSON.stringify({ hash, created_at: createdAt }));
+  localStorage.setItem("skrv_birth_chain_history", JSON.stringify(history));
   return chain;
 }

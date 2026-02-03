@@ -16,6 +16,7 @@ export const ui = {
             panels: {
                 files: document.getElementById("panelFiles"),
                 nav: document.getElementById("panelNav"),
+                notes: document.getElementById("panelNotes"),
                 memo: document.getElementById("panelMemo"),
                 actions: document.getElementById("panelActions")
             }
@@ -333,9 +334,9 @@ export const ui = {
         Object.values(panels).forEach(p => { if (p) p.style.display = "none"; });
         document.querySelectorAll(".hud-btn").forEach(b => b.classList.remove("active"));
         const isMobile = window.innerWidth <= 900;
-        const resolvedPanel = isMobile ? "memo" : panelName;
+        const resolvedPanel = isMobile ? "notes" : panelName;
         if (isMobile) {
-            if (panels.memo) panels.memo.style.display = "block";
+            if (panels.notes) panels.notes.style.display = "block";
             drawer.classList.add("mobile-all");
         } else if (panels[resolvedPanel]) {
             panels[resolvedPanel].style.display = "block";
@@ -350,9 +351,10 @@ export const ui = {
         const titles = {
             files: lang.t("drawer_files"),
             nav: lang.t("drawer_nav"),
+            notes: lang.t("drawer_notes"),
             memo: lang.t("drawer_memo")
         };
-        this.elements.drawerTitle.innerText = isMobile ? (titles.memo || lang.t("drawer_memo")) : (titles[resolvedPanel] || "");
+        this.elements.drawerTitle.innerText = isMobile ? (titles.notes || lang.t("drawer_notes")) : (titles[resolvedPanel] || "");
 
         if(resolvedPanel === 'files' && callbacks.renderFiles) callbacks.renderFiles();
         if(resolvedPanel === 'nav' && callbacks.renderNav) callbacks.renderNav();
@@ -377,6 +379,7 @@ export const ui = {
         const titles = {
             files: lang.t("drawer_files"),
             nav: lang.t("drawer_nav"),
+            notes: lang.t("drawer_notes"),
             memo: lang.t("drawer_memo")
         };
         if (this.elements.drawerTitle && titles[panel]) {

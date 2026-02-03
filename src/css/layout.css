@@ -16,6 +16,7 @@
   /* Sem borda lateral dura, apenas o fim do background */
   overflow-y: auto;
   overscroll-behavior: contain;
+  opacity: 0.45;
 }
 .hud-separator {
   width: 18px;
@@ -52,11 +53,11 @@
 /* GATILHO MOBILE */
 .mobile-trigger {
     display: none; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
-    width: 16px; height: 48px; background: rgba(255, 255, 255, 0.06); color: var(--color-accent);
+    width: 16px; height: 48px; background: rgba(244, 241, 234, 0.06); color: var(--color-accent);
     border-radius: 0 8px 8px 0;
     justify-content: center; align-items: center; cursor: pointer; z-index: 50;
     box-shadow: 1px 0 8px rgba(0,0,0,0.35);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(244, 241, 234, 0.12);
     opacity: 0;
     pointer-events: none;
 }
@@ -97,8 +98,8 @@ body.mobile-typing .mobile-trigger {
     width: 44px;
     height: 32px;
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(244, 241, 234, 0.2);
+    background: rgba(244, 241, 234, 0.05);
     box-shadow: 0 8px 20px rgba(0,0,0,0.25);
     padding: 6px 8px;
     z-index: 60;
@@ -166,7 +167,7 @@ body.mobile-typing .mobile-trigger {
     height: 42px;
     border-radius: 12px;
     border: var(--border-style);
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(244, 241, 234, 0.04);
     color: var(--color-accent);
 }
 .drawer-tab-btn .icon { width: 20px; height: 20px; }
@@ -206,10 +207,12 @@ body.mobile-typing .mobile-trigger {
 
 #editorWrap {
   position: relative;
-  width: 58vw;
+  width: 52vw;
   max-width: 860px;
   min-height: 80vh;
-  margin-top: 8px;
+  margin-top: 0;
+  padding-left: 10px;
+  padding-right: 10px;
   overflow: visible;
 }
 
@@ -217,7 +220,7 @@ body.mobile-typing .mobile-trigger {
   width: 100%;
   min-height: 80vh;
   outline: none; caret-color: var(--color-accent);
-  padding-bottom: 100px; line-height: 1.85;
+  padding-bottom: 180px; line-height: 1.8;
   white-space: pre-wrap; word-break: break-word; overflow-wrap: break-word;
   position: relative;
   z-index: 1;

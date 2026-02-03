@@ -3,7 +3,8 @@ import { ui } from './ui.js';
 import { lang } from './lang.js';
 import { qrTransfer } from './qr_transfer.js';
 
-const MOBILE_NOTES_KEY = "tot_mobile_notes_v1";
+const MOBILE_NOTES_KEY = "skrv_mobile_notes_v1";
+const MOBILE_NOTES_KEY_LEGACY = "tot_mobile_notes_v1";
 let mobileNotesCache = [];
 let mobileNotesFilter = { search: "", folder: "" };
 let mobileEditingId = null;
@@ -31,7 +32,7 @@ const buildNoteExcerpt = (text) => {
 const loadMobileNotes = () => {
     if (Array.isArray(store.data.mobileNotes) && store.data.mobileNotes.length) return store.data.mobileNotes;
     try {
-        const raw = localStorage.getItem(MOBILE_NOTES_KEY);
+        const raw = localStorage.getItem(MOBILE_NOTES_KEY) || localStorage.getItem(MOBILE_NOTES_KEY_LEGACY);
         const parsed = raw ? JSON.parse(raw) : [];
         return Array.isArray(parsed) ? parsed : [];
     } catch (_) {
@@ -181,12 +182,12 @@ const renderMobileProjects = () => {
         card.appendChild(excerpt);
         card.onclick = () => {
             store.setActive(proj.id);
-            if (typeof window.totLoadActiveDocument === "function") {
-                window.totLoadActiveDocument();
+            if (typeof window.skrvLoadActiveDocument === "function") {
+                window.skrvLoadActiveDocument();
             }
             openMobileProjectNote(store.getActive());
             if (sessionStorage.getItem("mobile_project_hint") !== "1") {
-                if (window.totModal) window.totModal.alert(lang.t("mobile_project_hint"));
+                if (window.skrvModal) window.skrvModal.alert(lang.t("mobile_project_hint"));
                 sessionStorage.setItem("mobile_project_hint", "1");
             }
         };
@@ -248,7 +249,7 @@ const renderMobileNotes = () => {
             const tags = document.getElementById("mobileMemoTags");
             const folderInput = document.getElementById("mobileMemoFolder");
             if (input) input.value = note.text || "";
-            if (tags) tags.value = (note.tags || []).join(", ");
+            if (tags) tags.value = (note.tags || []).filter(tag => normalizeTag(tag) !== "mobile").join(", ");
             if (folderInput) folderInput.value = note.folder || "";
             mobileEditingId = note.id;
         };
@@ -285,7 +286,8 @@ const renderMobileNotes = () => {
 };
 
 const addOrUpdateMobileNote = (text, tagsRaw, folderRaw) => {
-    const tags = tagsRaw.split(",").map(normalizeTag).filter(Boolean);
+    const baseTags = tagsRaw.split(",").map(normalizeTag).filter(Boolean).filter(tag => tag !== "mobile");
+    const tags = Array.from(new Set([...baseTags, "mobile"]));
     const folder = normalizeFolder(folderRaw);
     const now = new Date().toISOString();
     if (mobileEditingId) {
@@ -544,7 +546,7 @@ export const initMobileFeatures = () => {
     initMobileTapToEdit();
     initMobileEdgeHandle();
 
-    window.totMobileRenderProjects = renderMobileProjects;
-    window.totMobileCreateProject = createMobileProject;
-    window.totMobileOpenProjectNote = openMobileProjectNote;
+    window.skrvMobileRenderProjects = renderMobileProjects;
+    window.skrvMobileCreateProject = createMobileProject;
+    window.skrvMobileOpenProjectNote = openMobileProjectNote;
 };

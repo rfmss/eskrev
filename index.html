@@ -44,8 +44,8 @@
                 </button>
             </div>
             <button id="btnCreateSession" class="btn-full" data-i18n="start_btn">Criar sessão local</button>
+            <div class="manifesto-terms-note setup-password-note" data-i18n-html="setup_password_note">Com essa senha, você controla esta sessão: trava, exporta e apaga.<br>O que for exportado funciona em qualquer outra.</div>
         </div>
-        <div class="manifesto-terms-note setup-password-note" data-i18n-html="setup_password_note">Com essa senha, você controla esta sessão: trava, exporta e apaga.<br>O que for exportado funciona em qualquer outra.</div>
     </div>
 
     <div id="viewLock" style="display:none; flex-direction:column; align-items:center; gap:14px;">
@@ -165,7 +165,8 @@
     <div class="hud">
         <div class="hud-rail"></div>
         <button class="hud-btn" id="tabNav" title="Navegação [Alt+2]" data-i18n-title="tab_nav" data-i18n-tip="tab_nav"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-list-bullets"></use></svg></button>
-        <button class="hud-btn" id="tabMemo" title="Memo [Alt+3]" data-i18n-title="tab_memo" data-i18n-tip="tab_memo"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-pencil"></use></svg></button>
+        <button class="hud-btn" id="tabNotes" title="Notas [Alt+3]" data-i18n-title="tab_notes" data-i18n-tip="tab_notes"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-notepad"></use></svg></button>
+        <button class="hud-btn" id="tabMemo" title="Transferência [Alt+M]" data-i18n-title="tab_memo" data-i18n-tip="tab_memo"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-pencil"></use></svg></button>
         <button class="hud-btn" id="tabBooks" title=".skrBooks [Alt+4]" data-i18n-title="tab_books" data-i18n-tip="tab_books"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-book-open-text"></use></svg></button>
         <div class="hud-separator"></div>
         <button class="hud-btn" id="tabFiles" title="Arquivos [Alt+1]" data-i18n-title="tab_files" data-i18n-tip="tab_files"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-folder-open"></use></svg></button>
@@ -204,8 +205,8 @@
             <button class="drawer-tab-btn" id="mobileTabNav" aria-label="Navegação">
                 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-list-bullets"></use></svg>
             </button>
-            <button class="drawer-tab-btn" id="mobileTabMemo" aria-label="Memo">
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-pencil"></use></svg>
+            <button class="drawer-tab-btn" id="mobileTabMemo" aria-label="Notas">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-notepad"></use></svg>
             </button>
             <button class="drawer-tab-btn" id="mobileTabTheme" aria-label="Tema">
                 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-sun"></use></svg>
@@ -270,13 +271,14 @@
                 <button class="btn-half" id="btnNewProject" data-i18n="btn_new_project">+ NOVO</button>
                 <button class="btn-half" id="btnImport" title="Importar JSON/TXT" data-i18n-title="btn_import_title" data-i18n-tip="btn_import_title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-upload-simple"></use></svg> <span data-i18n="btn_open">ABRIR</span></button>
                 <button class="btn-half" id="btnScanQr" title="Scan QR" data-i18n-title="btn_scan_qr" data-i18n-tip="btn_scan_qr"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-qr-code"></use></svg> <span data-i18n="btn_scan">SCAN QR</span></button>
-                <input type="file" id="fileInput" style="display:none;" accept=".json,.txt,.md,.skr,.b64,.qr">
+                <input type="file" id="fileInput" style="display:none;" accept=".json,.txt,.md,.skr,.skrv,.b64,.qr">
             </div>
             <div class="file-actions">
                 <a class="btn-half" id="btnOfflinePack" href="site.zip" download data-i18n="offline_download">BAIXAR APP OFFLINE</a>
                 <a class="btn-half" id="btnGithub" href="https://github.com/rfmss/eskrev" target="_blank" rel="noopener" data-i18n="project_github">GITHUB DO PROJETO</a>
             </div>
             <div id="projectList" class="list-container"></div>
+
         </div>
 
         <div id="panelNav" class="drawer-content" style="display:none;">
@@ -285,16 +287,14 @@
             <button class="btn-full" id="btnInsertChapter" style="margin-top:10px;" data-i18n="nav_insert">INSERIR MARCADOR</button>
         </div>
 
-        <div id="panelMemo" class="drawer-content" style="display:none;">
-            <div class="panel-placeholder" data-i18n="memo_hint">Guarde ideias rápidas sem tocar no texto.</div>
-            <div class="desktop-only">
-                <textarea id="memoArea" data-i18n-ph="memo_ph" placeholder="Buffer de memória..."></textarea>
-            </div>
-            <div class="mobile-only mobile-memo">
+        <div id="panelNotes" class="drawer-content" style="display:none;">
+            <div class="mobile-memo">
                 <div class="mobile-memo-header">
                     <div class="mobile-logo">Φ</div>
                     <div class="mobile-title">.skr Mobile</div>
                 </div>
+
+                <input id="mobileMemoSearch" class="mobile-memo-search" data-i18n-ph="mobile_memo_search" placeholder="Buscar ou #tag" />
 
                 <div class="mobile-views">
                     <div class="mobile-views-title" data-i18n="mobile_views_title">Views</div>
@@ -304,23 +304,17 @@
                     <button class="mobile-view-item" type="button" data-target="#mobileFilesSection">
                         <span data-i18n="mobile_view_files">Files</span> <span class="mobile-view-count" id="mobileFilesCount">0</span>
                     </button>
-                    <button class="mobile-view-item" type="button" data-filter="#fav">
-                        <span class="mobile-view-fav">Φ</span> <span data-i18n="mobile_view_favs">Favoritos</span> <span class="mobile-view-count" id="mobileFavCount">0</span>
-                    </button>
-                    <button class="mobile-view-item" type="button" data-target="#mobileProjectsSection">
-                        <span data-i18n="mobile_view_projects">.skr Projetos</span> <span class="mobile-view-count" id="mobileProjectsCount">0</span>
-                    </button>
                     <button class="mobile-view-item" type="button" data-target="#mobileTagsSection">
                         <span data-i18n="mobile_view_tags">Tags</span> <span class="mobile-view-count" id="mobileTagsCount">0</span>
                     </button>
                 </div>
 
-                <input id="mobileMemoSearch" class="mobile-memo-search" data-i18n-ph="mobile_memo_search" placeholder="Buscar ou #tag" />
-                <button class="btn-full" id="btnMobileScan" data-i18n="btn_scan">SCAN QR</button>
-
                 <div class="mobile-memo-section-title" id="mobileNotesSection" data-i18n="mobile_notes_title">NOTAS</div>
                 <textarea id="mobileMemoInput" class="mobile-memo-input" data-i18n-ph="mobile_memo_ph" placeholder="Nota rápida..."></textarea>
                 <input id="mobileMemoTags" class="mobile-memo-tags" data-i18n-ph="mobile_memo_tags" placeholder="Tags (separe por vírgula)" />
+                <div class="mobile-memo-tags-fixed" aria-hidden="true">
+                    <span class="mobile-memo-tag locked">#mobile <span class="tag-lock">fixo</span></span>
+                </div>
                 <input id="mobileMemoFolder" class="mobile-memo-folder" data-i18n-ph="mobile_memo_folder" placeholder="Pasta (opcional)" />
                 <button class="btn-full" id="btnAddMobileMemo" data-i18n="mobile_memo_add">SALVAR NOTA</button>
                 <div id="mobileMemoList" class="mobile-memo-list"></div>
@@ -329,23 +323,15 @@
                 <div class="help-text" data-i18n="mobile_files_hint">Organize notas por pasta.</div>
                 <div id="mobileFoldersList" class="mobile-memo-tags-list"></div>
 
-                <div class="mobile-memo-section-title" id="mobileProjectsSection" data-i18n="mobile_projects_title">.skr PROJETOS</div>
-                <div class="help-text" data-i18n="mobile_projects_hint">Projetos ganham QR e exportação dedicada.</div>
-                <button class="btn-full" id="btnMobileNewProject" data-i18n="mobile_project_new">NOVO PROJETO</button>
-                <div id="mobileProjectList" class="mobile-memo-list"></div>
-                <div class="mobile-project-actions">
-                    <button class="btn-half" id="btnMobileProjectQr" data-i18n="mobile_project_qr">QR DO PROJETO</button>
-                    <button class="btn-half" id="btnMobileProjectJson" data-i18n="mobile_project_json">EXPORTAR PROJETO</button>
-                </div>
-
                 <div class="mobile-memo-section-title" id="mobileTagsSection" data-i18n="mobile_tags_title">TAGS</div>
                 <div id="mobileTagsList" class="mobile-memo-tags-list"></div>
             </div>
-            <div class="mobile-only mobile-project-note">
-                <div class="mobile-memo-section-title" data-i18n="mobile_project_note_title">NOTA DO PROJETO</div>
-                <div id="mobileProjectNoteTitle" class="mobile-project-note-title" data-i18n="mobile_project_note_empty">Nenhum projeto selecionado</div>
-                <textarea id="mobileProjectNoteInput" class="mobile-project-note-input" data-i18n-ph="mobile_project_note_ph" placeholder="Nota do projeto..."></textarea>
-                <div class="help-text" data-i18n="mobile_project_note_hint">Notas do projeto acompanham a cápsula e sincronizam.</div>
+        </div>
+
+        <div id="panelMemo" class="drawer-content" style="display:none;">
+            <div class="panel-placeholder" data-i18n="memo_hint">Área de transferência para colar ideias externas.</div>
+            <div class="desktop-only">
+                <textarea id="memoArea" data-i18n-ph="memo_ph" placeholder="Área de transferência..."></textarea>
             </div>
         </div>
     </aside>
@@ -495,7 +481,7 @@
                 <div class="export-grid">
                     <div class="export-card" id="actionDownloadMd"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-file-text"></use></svg><span data-i18n="export_markdown">EXPORTAR MARKDOWN</span><small>.md</small></div>
                     <div class="export-card" id="actionPrintReport"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-printer"></use></svg><span data-i18n="export_report_full">IMPRESSAO COMPLETA</span><small data-i18n="export_all">tudo</small></div>
-                    <div class="export-card" id="actionDownloadJson" data-i18n-tip="export_capsule_tip"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-file"></use></svg><span data-i18n="export_json">EXPORTAR CÁPSULA</span><small>.skr</small></div>
+                    <div class="export-card" id="actionDownloadJson" data-i18n-tip="export_capsule_tip"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-file"></use></svg><span data-i18n="export_json">EXPORTAR CÁPSULA</span><small>.skrv</small></div>
                     <div class="export-card" id="actionQrStream"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-qr-code"></use></svg><span data-i18n="export_qr_stream">STREAM QR</span><small data-i18n="export_light">luz</small></div>
                 </div>
                 <div class="export-social">

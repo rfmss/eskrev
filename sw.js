@@ -13,7 +13,7 @@ const CACHE_ASSETS = [
   "./src/js/modules/auth.js",
   "./src/js/modules/birth_tracker.js",
   "./src/js/modules/editor.js",
-  "./src/js/modules/export_tot.js",
+  "./src/js/modules/export_skrv.js",
   "./src/js/modules/lang.js",
   "./src/js/modules/store.js",
   "./src/js/modules/ui.js",

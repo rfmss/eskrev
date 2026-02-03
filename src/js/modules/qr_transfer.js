@@ -1,5 +1,5 @@
 import { store } from './store.js';
-import { buildTotPayload, importTot } from './export_tot.js';
+import { buildSkrvPayload, importSkrv } from './export_skrv.js';
 import { lang } from './lang.js';
 
 const QR_VERSION = 'v1';
@@ -92,7 +92,7 @@ const qrTransfer = (() => {
     if (editorEl) {
       store.save(editorEl.innerHTML, memoEl ? memoEl.value : undefined);
     }
-    const payload = buildTotPayload(store);
+    const payload = buildSkrvPayload(store);
     return buildBase64FromPayload(payload);
   }
 
@@ -108,7 +108,7 @@ const qrTransfer = (() => {
     if (!window.LZString) return null;
     const json = window.LZString.decompressFromBase64(base64.trim());
     if (!json) return null;
-    const payload = importTot(json);
+    const payload = importSkrv(json);
     return payload || null;
   }
 
@@ -118,7 +118,7 @@ const qrTransfer = (() => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `TOT_QR_${Date.now()}.b64`;
+    a.download = `SKRV_QR_${Date.now()}.b64`;
     a.click();
     URL.revokeObjectURL(url);
   }
@@ -134,6 +134,7 @@ const qrTransfer = (() => {
       qrInstance = new QRCode(els.streamCode, {
         width: QR_SIZE,
         height: QR_SIZE,
+        colorLight: "#F4F1EA",
         correctLevel: QRCode.CorrectLevel.Q
       });
     }

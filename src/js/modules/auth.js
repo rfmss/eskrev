@@ -26,7 +26,7 @@ export const auth = {
     init() {
         this.setupTerms();
         this.setupPrivacy();
-        const accepted = localStorage.getItem('tot_manifest_signed');
+        const accepted = localStorage.getItem('skrv_manifest_signed') || localStorage.getItem('tot_manifest_signed');
         if (!accepted) {
             this.showManifesto();
             return;
@@ -78,10 +78,10 @@ export const auth = {
         const acceptWithDuration = (minutes) => {
             const text = document.getElementById("manifestoText");
             if (text) {
-                localStorage.setItem("tot_manifest_text", text.innerText.trim());
+                localStorage.setItem("skrv_manifest_text", text.innerText.trim());
             }
-            localStorage.setItem("tot_manifest_signed", "true");
-            localStorage.setItem("tot_manifest_signed_at", new Date().toISOString());
+            localStorage.setItem("skrv_manifest_signed", "true");
+            localStorage.setItem("skrv_manifest_signed_at", new Date().toISOString());
             localStorage.setItem("lit_pomo_preset", String(minutes));
             modal.classList.remove("active");
             document.body.classList.remove("manifesto-open");
@@ -152,7 +152,7 @@ export const auth = {
                 }
                 this.unlock();
             } else {
-                if (window.totModal) await window.totModal.alert(lang.t("reset_invalid"));
+                if (window.skrvModal) await window.skrvModal.alert(lang.t("reset_invalid"));
             }
         };
 
@@ -175,16 +175,16 @@ export const auth = {
         document.getElementById('emergencyReset').onclick = async () => {
             const stored = localStorage.getItem('lit_auth_key');
             // Pede a senha para confirmar a destruição
-            if (!window.totModal) return;
-            const pass = await window.totModal.prompt(lang.t("reset_prompt"), { title: lang.t("modal_title") });
+            if (!window.skrvModal) return;
+            const pass = await window.skrvModal.prompt(lang.t("reset_prompt"), { title: lang.t("modal_title") });
             
             if (pass === stored) {
-                const ok = await window.totModal.confirm(lang.db[lang.current].reset_warn, { title: lang.t("modal_title") });
+                const ok = await window.skrvModal.confirm(lang.db[lang.current].reset_warn, { title: lang.t("modal_title") });
                 if (ok) {
                     store.hardReset();
                 }
             } else {
-                if (window.totModal) await window.totModal.alert(lang.t("reset_cancel"));
+                if (window.skrvModal) await window.skrvModal.alert(lang.t("reset_cancel"));
             }
         };
 

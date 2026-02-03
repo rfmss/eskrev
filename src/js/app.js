@@ -7,7 +7,7 @@ import { ui } from './modules/ui.js';
 import { editorFeatures } from './modules/editor.js';
 import { lang } from './modules/lang.js';
 import { auth } from './modules/auth.js';
-import { exportTot, importTot, buildTotPayloadWithChain } from './modules/export_tot.js';
+import { exportSkrv, importSkrv, buildSkrvPayloadWithChain } from './modules/export_skrv.js';
 import { birthTracker } from './modules/birth_tracker.js';
 import { qrTransfer } from './modules/qr_transfer.js';
 
@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => document.body.classList.remove("booting"), 2000);
     console.log("🚀 .skr SYSTEM BOOTING v5.5...");
 
-    if (sessionStorage.getItem("tot_force_clean") === "1") {
+    if (sessionStorage.getItem("skrv_force_clean") === "1") {
         try { localStorage.clear(); } catch (_) {}
-        try { sessionStorage.removeItem("tot_force_clean"); } catch (_) {}
+        try { sessionStorage.removeItem("skrv_force_clean"); } catch (_) {}
     }
 
     store.init();
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ui.init();
     
     lang.init();
-    window.totModal = initSystemModal();
+    window.skrvModal = initSystemModal();
     auth.init();
 
     document.querySelectorAll('[data-manifesto-open]').forEach((el) => {
@@ -57,11 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
     ui.initPomodoro();
     qrTransfer.init({
         onRestore: (payload) => {
-            if (payload && applyTotPayload(payload)) {
-                if (window.totModal) window.totModal.alert(lang.t("alert_backup_restored"));
+            if (payload && applySkrvPayload(payload)) {
+                if (window.skrvModal) window.skrvModal.alert(lang.t("alert_backup_restored"));
                 location.reload();
             } else {
-                if (window.totModal) window.totModal.alert(lang.t("alert_backup_invalid"));
+                if (window.skrvModal) window.skrvModal.alert(lang.t("alert_backup_invalid"));
             }
         }
     });
@@ -394,6 +394,8 @@ function setupEventListeners() {
     // Gavetas (abrir drawer volta para o editor)
     document.getElementById("tabFiles").onclick = () => { showEditorView(); ui.openDrawer('files', { renderFiles: renderProjectList }); };
     document.getElementById("tabNav").onclick = () => { showEditorView(); ui.openDrawer('nav', { renderNav: renderNavigation }); };
+    const tabNotes = document.getElementById("tabNotes");
+    if (tabNotes) tabNotes.onclick = () => { showEditorView(); ui.openDrawer('notes', {}); };
     document.getElementById("tabMemo").onclick = () => { showEditorView(); ui.openDrawer('memo', {}); };
     document.getElementById("closeDrawer").onclick = () => ui.closeDrawer();
     document.addEventListener("mobile:openDrawer", () => {
@@ -411,7 +413,7 @@ function setupEventListeners() {
     const mobileTabBooks = document.getElementById("mobileTabBooks");
     if (mobileTabFiles) mobileTabFiles.onclick = () => { showEditorView(); ui.openDrawer('files', { renderFiles: renderProjectList }); };
     if (mobileTabNav) mobileTabNav.onclick = () => { showEditorView(); ui.openDrawer('nav', { renderNav: renderNavigation }); };
-    if (mobileTabMemo) mobileTabMemo.onclick = () => { showEditorView(); ui.openDrawer('memo', {}); };
+    if (mobileTabMemo) mobileTabMemo.onclick = () => { showEditorView(); ui.openDrawer('notes', {}); };
     if (mobileTabTheme) mobileTabTheme.onclick = () => { ui.toggleTheme(); };
     if (mobileTabBooks) mobileTabBooks.onclick = () => { ui.closeDrawer(); showBooksView(); };
 
@@ -501,25 +503,25 @@ function setupEventListeners() {
         if (!file) return;
         const reader = new FileReader();
         reader.onload = (evt) => {
-            if (file.name.endsWith('.skr')) {
-                const payload = importTot(evt.target.result);
-                if (payload && applyTotPayload(payload)) {
-                    if (window.totModal) window.totModal.alert(lang.t("alert_capsule_restored"));
+            if (file.name.endsWith('.skr') || file.name.endsWith('.skrv')) {
+                const payload = importSkrv(evt.target.result);
+                if (payload && applySkrvPayload(payload)) {
+                    if (window.skrvModal) window.skrvModal.alert(lang.t("alert_capsule_restored"));
                     location.reload();
                 } else {
-                    if (window.totModal) window.totModal.alert(lang.t("alert_capsule_invalid"));
+                    if (window.skrvModal) window.skrvModal.alert(lang.t("alert_capsule_invalid"));
                 }
             } else if (file.name.endsWith('.b64') || file.name.endsWith('.qr')) {
                 const payload = qrTransfer.decodeBackupBase64(evt.target.result);
-                if (payload && applyTotPayload(payload)) {
-                    if (window.totModal) window.totModal.alert(lang.t("alert_backup_restored"));
+                if (payload && applySkrvPayload(payload)) {
+                    if (window.skrvModal) window.skrvModal.alert(lang.t("alert_backup_restored"));
                     location.reload();
                 } else {
-                    if (window.totModal) window.totModal.alert(lang.t("alert_backup_invalid"));
+                    if (window.skrvModal) window.skrvModal.alert(lang.t("alert_backup_invalid"));
                 }
             } else if (file.name.endsWith('.json')) {
                 if (store.importData(evt.target.result)) { 
-                    if (window.totModal) window.totModal.alert(lang.t("alert_backup_restored")); 
+                    if (window.skrvModal) window.skrvModal.alert(lang.t("alert_backup_restored")); 
                     location.reload(); 
                 }
             } else {
@@ -561,7 +563,7 @@ function setupEventListeners() {
     });
 
     // Downloads e QR
-    // Downloads (JSON / TXT / TOT)
+    // Downloads (JSON / TXT / SKRV)
     const btnMd = document.getElementById("actionDownloadMd");
     if (btnMd) {
         btnMd.onclick = () => {
@@ -570,7 +572,7 @@ function setupEventListeners() {
                 document.getElementById("memoArea").value
             );
             const markdown = buildMarkdownExport();
-            downloadText(markdown, `TOT_EXPORT_${Date.now()}.md`, "text/markdown");
+            downloadText(markdown, `SKRV_EXPORT_${Date.now()}.md`, "text/markdown");
             document.getElementById("exportModal").classList.remove("active");
         };
     }
@@ -583,7 +585,7 @@ function setupEventListeners() {
                 document.getElementById("memoArea").value
             );
             const text = buildReportText();
-            printRawText(text, ".skr Writer - RELATORIO");
+            printRawText(text, ".skr Writer - CÁPSULA");
             document.getElementById("exportModal").classList.remove("active");
         };
     }
@@ -602,28 +604,15 @@ function setupEventListeners() {
                 .replace(/[^a-zA-Z0-9]+/g, "-")
                 .replace(/^-+|-+$/g, "")
                 .toLowerCase();
-            const slug = safeName || "tft";
-            buildTotPayloadWithChain(store).then((payload) => {
-                downloadText(JSON.stringify(payload, null, 2), `${slug}-${Date.now()}.skr`, "application/json");
+            const slug = safeName || "skrv";
+            buildSkrvPayloadWithChain(store).then((payload) => {
+                downloadText(JSON.stringify(payload, null, 2), `${slug}-${Date.now()}.skrv`, "application/json");
                 document.getElementById("exportModal").classList.remove("active");
             });
         };
     }
 
-    // TOT capsule (.skr)
-        const btnTot = document.getElementById("actionDownloadTot");
-    if (btnTot) {
-        btnTot.onclick = () => {
-            store.save(
-                document.getElementById("editor").innerHTML,
-                document.getElementById("memoArea").value
-            );
-            exportTot(store);
-            document.getElementById("exportModal").classList.remove("active");
-        };
-    }
-
-    // vamos ligar isso no próximo passo, depois que criarmos o módulo export_tot.js
+    // Nota: export .skrv já é o caminho oficial (actionDownloadJson).
 
     document.getElementById("closeModalHelp").onclick = () => {
         const overlay = document.getElementById("helpModal");
@@ -699,8 +688,8 @@ function setupEventListeners() {
                 return;
             }
             const systemModal = document.getElementById("systemModal");
-            if (systemModal && systemModal.classList.contains("active") && window.totModal?.cancel) {
-                window.totModal.cancel();
+            if (systemModal && systemModal.classList.contains("active") && window.skrvModal?.cancel) {
+                window.skrvModal.cancel();
                 return;
             }
             if (document.activeElement === searchInput) { document.getElementById("btnClear").click(); searchInput.blur(); }
@@ -759,7 +748,7 @@ function setupEventListeners() {
         overlay.addEventListener("click", (e) => {
             if (overlay.id === "gatekeeper" || overlay.id === "pomodoroModal" || overlay.id === "termsModal" || overlay.id === "manifestoModal") return;
             if (overlay.id === "systemModal") {
-                if (e.target === overlay && window.totModal?.cancel) window.totModal.cancel();
+                if (e.target === overlay && window.skrvModal?.cancel) window.skrvModal.cancel();
                 return;
             }
             if (e.target === overlay) {
@@ -778,18 +767,18 @@ function setupEventListeners() {
     });
 
     document.getElementById("btnNewProject").onclick = async () => {
-        if (!window.totModal) return;
-        const name = await window.totModal.prompt(lang.t("prompt_file_name"), { title: lang.t("modal_title") });
+        if (!window.skrvModal) return;
+        const name = await window.skrvModal.prompt(lang.t("prompt_file_name"), { title: lang.t("modal_title") });
         if (name && name.trim()) {
             if (window.innerWidth <= 900) {
                 const run = () => {
-                    if (window.totMobileCreateProject) {
-                        window.totMobileCreateProject(name.trim());
+                    if (window.skrvMobileCreateProject) {
+                        window.skrvMobileCreateProject(name.trim());
                         renderProjectList();
-                        ui.openDrawer('memo', {});
+                        ui.openDrawer('notes', {});
                     }
                 };
-                if (!window.totMobileCreateProject) {
+                if (!window.skrvMobileCreateProject) {
                     ensureMobileModule().then(run).catch(() => {});
                 } else {
                     run();
@@ -805,17 +794,17 @@ function setupEventListeners() {
     const btnMobileNewProject = document.getElementById("btnMobileNewProject");
     if (btnMobileNewProject) {
         btnMobileNewProject.onclick = async () => {
-            if (!window.totModal) return;
-            const name = await window.totModal.prompt(lang.t("prompt_file_name"), { title: lang.t("modal_title") });
+            if (!window.skrvModal) return;
+            const name = await window.skrvModal.prompt(lang.t("prompt_file_name"), { title: lang.t("modal_title") });
             if (name && name.trim()) {
                 const run = () => {
-                    if (window.totMobileCreateProject) {
-                        window.totMobileCreateProject(name.trim());
+                    if (window.skrvMobileCreateProject) {
+                        window.skrvMobileCreateProject(name.trim());
                         renderProjectList();
-                        ui.openDrawer('memo', {});
+                        ui.openDrawer('notes', {});
                     }
                 };
-                if (!window.totMobileCreateProject) {
+                if (!window.skrvMobileCreateProject) {
                     ensureMobileModule().then(run).catch(() => {});
                 } else {
                     run();
@@ -953,7 +942,7 @@ function setupEventListeners() {
     const mobileThemeBtn = document.getElementById("btnMobileTheme");
     if (mobileThemeBtn) {
         mobileThemeBtn.onclick = () => {
-            if (window.innerWidth <= 900 && !window.totMobileRenderProjects) {
+            if (window.innerWidth <= 900 && !window.skrvMobileRenderProjects) {
                 ensureMobileModule().catch(() => {});
             }
             ui.toggleTheme();
@@ -984,7 +973,7 @@ function restoreUiState(showEditorView, showBooksView) {
     const isMobile = window.innerWidth <= 900;
     const mobileBooted = localStorage.getItem("lit_mobile_booted") === "true";
     if (isMobile && !drawerOpen && !mobileBooted) {
-        ui.openDrawer("memo", {});
+        ui.openDrawer("notes", {});
         localStorage.setItem("lit_mobile_booted", "true");
     }
 }
@@ -1004,17 +993,24 @@ function restoreEditorScroll() {
 }
 
 function incrementAccessCount() {
-    const key = "tot_access_count";
-    const current = parseInt(localStorage.getItem(key), 10) || 0;
+    const key = "skrv_access_count";
+    const legacyKey = "tot_access_count";
+    const current = parseInt(localStorage.getItem(key) || localStorage.getItem(legacyKey), 10) || 0;
     localStorage.setItem(key, String(current + 1));
 }
 
 
-function applyTotPayload(payload) {
+function applySkrvPayload(payload) {
     const archive = payload.ARCHIVE_STATE;
     if (!archive || !Array.isArray(archive.projects)) return false;
 
+    const previousMemo = store.data && typeof store.data.memo === "string" ? store.data.memo : "";
     store.data = archive;
+    if (!Object.prototype.hasOwnProperty.call(archive, "memo")) {
+        store.data.memo = previousMemo;
+    } else if (store.data.memo === undefined || store.data.memo === null) {
+        store.data.memo = "";
+    }
     store.persist(true);
 
     const cfg = payload.SESSION_CONFIG || {};
@@ -1027,7 +1023,7 @@ function applyTotPayload(payload) {
     for (let i = 0; i < localStorage.length; i += 1) {
         const key = localStorage.key(i);
         if (!key) continue;
-        if (key === "totbook_registry" || key.startsWith("pages_") || key.startsWith("pos_") || key.startsWith("title_") || key.startsWith("color_")) {
+        if (key === "skrvbook_registry" || key === "totbook_registry" || key.startsWith("pages_") || key.startsWith("pos_") || key.startsWith("title_") || key.startsWith("color_")) {
             keysToRemove.push(key);
         }
     }
@@ -1035,7 +1031,7 @@ function applyTotPayload(payload) {
 
     const workbench = payload.WORKBENCH_STATE || {};
     if (Array.isArray(workbench.registry)) {
-        localStorage.setItem("totbook_registry", JSON.stringify(workbench.registry));
+        localStorage.setItem("skrvbook_registry", JSON.stringify(workbench.registry));
     }
     Object.entries(workbench.pages || {}).forEach(([k, v]) => localStorage.setItem(k, v));
     Object.entries(workbench.positions || {}).forEach(([k, v]) => localStorage.setItem(k, v));
@@ -1125,9 +1121,9 @@ function buildMarkdownExport() {
     const blocks = [];
     blocks.push("# .skr Writer Export\n");
     blocks.push(`_Gerado em ${new Date().toISOString()}_\n`);
-    const manifestText = localStorage.getItem("tot_manifest_text");
-    const manifestSignedAt = localStorage.getItem("tot_manifest_signed_at");
-    const accessCount = localStorage.getItem("tot_access_count");
+    const manifestText = localStorage.getItem("skrv_manifest_text") || localStorage.getItem("tot_manifest_text");
+    const manifestSignedAt = localStorage.getItem("skrv_manifest_signed_at") || localStorage.getItem("tot_manifest_signed_at");
+    const accessCount = localStorage.getItem("skrv_access_count") || localStorage.getItem("tot_access_count");
     if (manifestText) {
         blocks.push("\n## Manifesto Assinado\n");
         if (manifestSignedAt) blocks.push(`Assinado em: ${manifestSignedAt}\n`);
@@ -1140,14 +1136,28 @@ function buildMarkdownExport() {
         const md = htmlToMarkdown(proj.content || "");
         blocks.push(`\n## ${title}\n`);
         blocks.push(md || "_(vazio)_");
+        if (proj.mobileNote) {
+            blocks.push(`\n### Nota do projeto\n`);
+            blocks.push(proj.mobileNote);
+        }
     });
 
-    if (store.data.memo) {
-        blocks.push(`\n## Memo\n`);
-        blocks.push(store.data.memo);
+    if (Array.isArray(store.data.mobileNotes) && store.data.mobileNotes.length) {
+        blocks.push(`\n## Notas (mobile)\n`);
+        store.data.mobileNotes.forEach((note, idx) => {
+            const title = note.title ? note.title : `Nota ${idx + 1}`;
+            const date = note.updatedAt || note.createdAt || "";
+            const folder = note.folder ? `Pasta: ${note.folder}` : "";
+            const tags = (note.tags || []).length ? `Tags: ${(note.tags || []).map(t => `#${t}`).join(" ")}` : "";
+            blocks.push(`\n### ${title}\n`);
+            if (date) blocks.push(`_${new Date(date).toLocaleString()}_\n`);
+            if (folder) blocks.push(folder);
+            if (tags) blocks.push(tags);
+            blocks.push("\n" + (note.text || ""));
+        });
     }
 
-    const registryRaw = localStorage.getItem("totbook_registry");
+    const registryRaw = localStorage.getItem("skrvbook_registry") || localStorage.getItem("totbook_registry");
     let registry = [];
     try { registry = JSON.parse(registryRaw || "[]"); } catch (_) { registry = []; }
     if (registry.length) {
@@ -1178,16 +1188,31 @@ function buildReportText() {
     const blocks = projects.map((proj, idx) => {
         const title = proj.name || `DOC ${idx + 1}`;
         const text = htmlToText(proj.content || "");
-        return `=== ${title} ===\n\n${text}`;
+        let out = `=== ${title} ===\n\n${text}`;
+        if (proj.mobileNote) {
+            out += `\n\n--- NOTA DO PROJETO ---\n\n${proj.mobileNote}`;
+        }
+        return out;
     });
-    if (store.data.memo) {
-        blocks.push(`=== MEMO ===\n\n${store.data.memo}`);
+    if (Array.isArray(store.data.mobileNotes) && store.data.mobileNotes.length) {
+        blocks.push("=== NOTAS (MOBILE) ===");
+        store.data.mobileNotes.forEach((note, idx) => {
+            const title = note.title ? note.title : `Nota ${idx + 1}`;
+            const date = note.updatedAt || note.createdAt || "";
+            const folder = note.folder ? `Pasta: ${note.folder}` : "";
+            const tags = (note.tags || []).length ? `Tags: ${(note.tags || []).map(t => `#${t}`).join(" ")}` : "";
+            blocks.push(`\n--- ${title} ---`);
+            if (date) blocks.push(`${new Date(date).toLocaleString()}`);
+            if (folder) blocks.push(folder);
+            if (tags) blocks.push(tags);
+            blocks.push(`\n${note.text || ""}`);
+        });
     }
-    const registryRaw = localStorage.getItem("totbook_registry");
+    const registryRaw = localStorage.getItem("skrvbook_registry") || localStorage.getItem("totbook_registry");
     let registry = [];
     try { registry = JSON.parse(registryRaw || "[]"); } catch (_) { registry = []; }
     if (registry.length) {
-        blocks.push("=== TΦTBOOKS ===");
+        blocks.push("=== .skrBooks ===");
         registry.forEach((entry, idx) => {
             const id = typeof entry === "string" ? entry : entry.id;
             if (!id) return;
@@ -1208,15 +1233,26 @@ function buildReportText() {
     return blocks.join("\n\n");
 }
 
+function buildProjectReportText(project) {
+    if (!project) return "";
+    const title = project.name || "DOC";
+    const text = htmlToText(project.content || "");
+    let out = `=== ${title} ===\n\n${text}`;
+    if (project.mobileNote) {
+        out += `\n\n--- NOTA DO PROJETO ---\n\n${project.mobileNote}`;
+    }
+    return out;
+}
+
 // Exposição mínima para módulo mobile (carregamento condicional)
-window.totLoadActiveDocument = loadActiveDocument;
-window.totRenderProjectList = renderProjectList;
+window.skrvLoadActiveDocument = loadActiveDocument;
+window.skrvRenderProjectList = renderProjectList;
 
 function printRawText(text, title) {
     const w = window.open("", "_blank", "noopener,noreferrer");
     if (!w) {
-        if (window.totModal && typeof window.totModal.alert === "function") {
-            window.totModal.alert(lang.t("print_popup_blocked"));
+        if (window.skrvModal && typeof window.skrvModal.alert === "function") {
+            window.skrvModal.alert(lang.t("print_popup_blocked"));
         } else {
             alert(lang.t("print_popup_blocked"));
         }
@@ -1240,6 +1276,9 @@ pre { white-space: pre-wrap; font-size: 14px; line-height: 1.6; }
 </html>`);
     doc.close();
     w.focus();
+    w.onload = () => {
+        try { w.print(); } catch (_) {}
+    };
 }
 function initHelpTabs() {
     const tabs = document.querySelectorAll('.help-tab');
@@ -1319,17 +1358,17 @@ function renderProjectList() {
                 store.setActive(proj.id);
                 renderProjectList();
                 const run = () => {
-                    if (window.totMobileOpenProjectNote) {
-                        window.totMobileOpenProjectNote(proj);
+                    if (window.skrvMobileOpenProjectNote) {
+                        window.skrvMobileOpenProjectNote(proj);
                     }
                 };
-                if (!window.totMobileOpenProjectNote) {
+                if (!window.skrvMobileOpenProjectNote) {
                     ensureMobileModule().then(run).catch(() => {});
                 } else {
                     run();
                 }
                 if (sessionStorage.getItem("mobile_project_hint") !== "1") {
-                    if (window.totModal) window.totModal.alert(lang.t("mobile_project_hint"));
+                    if (window.skrvModal) window.skrvModal.alert(lang.t("mobile_project_hint"));
                     sessionStorage.setItem("mobile_project_hint", "1");
                 }
                 return;
@@ -1346,12 +1385,20 @@ function renderProjectList() {
         btnEdit.className = "btn-icon-small"; btnEdit.innerHTML = "<svg class='icon' viewBox='0 0 24 24' aria-hidden='true'><use href='src/assets/icons/phosphor-sprite.svg#icon-pencil'></use></svg>";
         btnEdit.onclick = (e) => { e.stopPropagation(); enableInlineRename(infoDiv, proj.id, proj.name); };
 
+        const btnPrint = document.createElement("button");
+        btnPrint.className = "btn-icon-small"; btnPrint.innerHTML = "<svg class='icon' viewBox='0 0 24 24' aria-hidden='true'><use href='src/assets/icons/phosphor-sprite.svg#icon-printer'></use></svg>";
+        btnPrint.onclick = (e) => {
+            e.stopPropagation();
+            const text = buildProjectReportText(proj);
+            printRawText(text, `.skr Writer - ${proj.name || "Documento"}`);
+        };
+
         const btnDel = document.createElement("button");
         btnDel.className = "btn-icon-small danger"; btnDel.innerHTML = "<svg class='icon' viewBox='0 0 24 24' aria-hidden='true'><use href='src/assets/icons/phosphor-sprite.svg#icon-trash'></use></svg>";
         btnDel.onclick = async (e) => {
             e.stopPropagation();
-            if (!window.totModal) return;
-            const ok = await window.totModal.confirm(`${lang.t("project_delete_confirm")} "${proj.name}"?`);
+            if (!window.skrvModal) return;
+            const ok = await window.skrvModal.confirm(`${lang.t("project_delete_confirm")} "${proj.name}"?`);
             if (ok) {
                 store.deleteProject(proj.id);
                 renderProjectList();
@@ -1359,12 +1406,12 @@ function renderProjectList() {
             }
         };
 
-        actionsDiv.appendChild(btnEdit); actionsDiv.appendChild(btnDel);
+        actionsDiv.appendChild(btnEdit); actionsDiv.appendChild(btnPrint); actionsDiv.appendChild(btnDel);
         div.appendChild(infoDiv); div.appendChild(actionsDiv);
         list.appendChild(div);
     });
-    if (document.getElementById("mobileProjectList") && window.totMobileRenderProjects) {
-        window.totMobileRenderProjects();
+    if (document.getElementById("mobileProjectList") && window.skrvMobileRenderProjects) {
+        window.skrvMobileRenderProjects();
     }
 }
 
@@ -1380,7 +1427,11 @@ function enableInlineRename(container, id, currentName) {
 function renderNavigation() {
     const list = document.getElementById("chapterList"); list.innerHTML = "";
     const headers = document.getElementById("editor").querySelectorAll("h1, h2, .chapter-mark");
-    if (headers.length === 0) { list.innerHTML = `<div class='help-text'>${lang.t("nav_empty_hint")}</div>`; return; }
+    if (headers.length === 0) {
+        const emptyHint = lang.t("nav_empty_hint");
+        list.innerHTML = emptyHint ? `<div class='help-text'>${emptyHint}</div>` : "";
+        return;
+    }
     headers.forEach((header, index) => {
         const div = document.createElement("div"); div.className = "list-item"; div.style.justifyContent = "space-between"; div.style.display = "flex"; div.style.alignItems = "center";
         const label = document.createElement("div");
@@ -1414,8 +1465,8 @@ function renderNavigation() {
         btnDel.onclick = async (e) => {
             e.stopPropagation();
             const label = header.innerText || `Capítulo ${index + 1}`;
-            if (!window.totModal) return;
-            const ok = await window.totModal.confirm(`${lang.t("nav_delete_confirm")} "${label}"?`);
+            if (!window.skrvModal) return;
+            const ok = await window.skrvModal.confirm(`${lang.t("nav_delete_confirm")} "${label}"?`);
             if (ok) {
                 header.remove();
                 renderNavigation();

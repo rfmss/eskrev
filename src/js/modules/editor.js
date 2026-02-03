@@ -138,14 +138,14 @@ export const editorFeatures = {
         const isAndroid = /Android/i.test(navigator.userAgent || "");
         if (!isAndroid) return;
         const applyMode = () => {
-            const hw = localStorage.getItem("tot_hwkb") === "true";
+            const hw = (localStorage.getItem("skrv_hwkb") || localStorage.getItem("tot_hwkb")) === "true";
             this.editor.setAttribute("inputmode", hw ? "none" : "text");
         };
         applyMode();
         this.editor.addEventListener("focus", applyMode);
         this.editor.addEventListener("keydown", () => {
-            if (localStorage.getItem("tot_hwkb") === "true") return;
-            localStorage.setItem("tot_hwkb", "true");
+            if ((localStorage.getItem("skrv_hwkb") || localStorage.getItem("tot_hwkb")) === "true") return;
+            localStorage.setItem("skrv_hwkb", "true");
             this.editor.setAttribute("inputmode", "none");
             this.editor.blur();
             requestAnimationFrame(() => this.editor.focus());
@@ -241,12 +241,13 @@ export const editorFeatures = {
                 return true;
             case '--kb':
                 {
-                    const enabled = localStorage.getItem("tot_hwkb") === "true";
+                    const enabled = (localStorage.getItem("skrv_hwkb") || localStorage.getItem("tot_hwkb")) === "true";
                     if (enabled) {
+                        localStorage.removeItem("skrv_hwkb");
                         localStorage.removeItem("tot_hwkb");
                         this.editor.setAttribute("inputmode", "text");
                     } else {
-                        localStorage.setItem("tot_hwkb", "true");
+                        localStorage.setItem("skrv_hwkb", "true");
                         this.editor.setAttribute("inputmode", "none");
                     }
                 }
@@ -344,8 +345,8 @@ export const editorFeatures = {
             if (now - this.lastPasteNoticeAt < 1200) return;
             this.lastPasteNoticeAt = now;
             const msg = lang.t("paste_blocked");
-            if (window.totModal && typeof window.totModal.alert === "function") {
-                window.totModal.alert(msg);
+            if (window.skrvModal && typeof window.skrvModal.alert === "function") {
+                window.skrvModal.alert(msg);
             } else {
                 alert(msg);
             }
@@ -1064,8 +1065,8 @@ export const editorFeatures = {
     setXrayActive(active) {
         if (active && lang.current !== "pt") {
             const msg = lang.t("xray_locked_intl") || lang.t("xray_locked_ptbr");
-            if (window.totModal && typeof window.totModal.alert === "function") {
-                window.totModal.alert(msg);
+            if (window.skrvModal && typeof window.skrvModal.alert === "function") {
+                window.skrvModal.alert(msg);
             } else {
                 alert(msg);
             }
@@ -2244,8 +2245,8 @@ export const editorFeatures = {
         });
         const passed = results.filter(r => r.ok).length;
         const total = results.length;
-        if (window.totModal?.alert) {
-            window.totModal.alert(`X-RAY TESTS: ${passed}/${total} OK`);
+        if (window.skrvModal?.alert) {
+            window.skrvModal.alert(`X-RAY TESTS: ${passed}/${total} OK`);
         } else {
             console.log("X-RAY TESTS", results);
         }
@@ -2305,7 +2306,8 @@ export const editorFeatures = {
                 if (this.readerBox.classList.contains("show-ruler")) {
                     const modalRect = this.readerBody.getBoundingClientRect();
                     const rulerRect = this.readerRuler.getBoundingClientRect();
-                    const targetTop = Math.max(60, (modalRect.height - rulerRect.height) / 2);
+                    const maxTop = modalRect.height - rulerRect.height - 40;
+                    const targetTop = Math.max(24, Math.min(maxTop, 32));
                     this.readerRuler.style.top = `${targetTop}px`;
                     if (!this.readerRuler.dataset.baseHeight) {
                         this.readerRuler.dataset.baseHeight = String(rulerRect.height || 140);
@@ -2353,7 +2355,7 @@ export const editorFeatures = {
                 const delta = e.clientY - startY;
                 const modalRect = this.readerBody.getBoundingClientRect();
                 const rulerRect = this.readerRuler.getBoundingClientRect();
-                const minTop = 60;
+                const minTop = 24;
                 const maxTop = modalRect.height - rulerRect.height - 40;
                 const baseHeight = parseFloat(this.readerRuler.dataset.baseHeight || "140");
                 const minHeight = Math.max(60, baseHeight * 0.9);
@@ -2475,18 +2477,14 @@ export const editorFeatures = {
         const inset = 6;
         const top = Math.max(0, rulerRect.top - modalRect.top);
         const height = Math.max(40, rulerRect.height);
-        this.readerBody.style.setProperty("--ruler-top", `${top}px`);
-        this.readerBody.style.setProperty("--ruler-height", `${height}px`);
+        const adjustedTop = top + inset;
+        const adjustedHeight = Math.max(40, height - inset * 2);
+        this.readerBody.style.setProperty("--ruler-top", `${adjustedTop}px`);
+        this.readerBody.style.setProperty("--ruler-height", `${adjustedHeight}px`);
     },
 
     getReaderScrollEl() {
         if (!this.readerContent) return null;
-        if (this.readerContent.scrollHeight > this.readerContent.clientHeight + 1) {
-            return this.readerContent;
-        }
-        if (this.readerBody && this.readerBody.scrollHeight > this.readerBody.clientHeight + 1) {
-            return this.readerBody;
-        }
         return this.readerContent;
     },
 
@@ -2977,9 +2975,9 @@ export const editorFeatures = {
         const selection = this.getSelectedWord();
         if (!selection || !this.consultStatus) return;
         const word = selection.clean.toLowerCase();
-        const stored = JSON.parse(localStorage.getItem("tot_personal_dict") || "[]");
+        const stored = JSON.parse(localStorage.getItem("skrv_personal_dict") || localStorage.getItem("tot_personal_dict") || "[]");
         if (!stored.includes(word)) stored.push(word);
-        localStorage.setItem("tot_personal_dict", JSON.stringify(stored));
+        localStorage.setItem("skrv_personal_dict", JSON.stringify(stored));
         this.consultStatus.textContent = lang.t("consult_status_added");
     },
 
@@ -3180,7 +3178,7 @@ export const editorFeatures = {
     exportTxt() {
         const b = new Blob([this.editor.innerText], {type:"text/plain"});
         const a = document.createElement("a"); a.href = window.URL.createObjectURL(b);
-        a.download = `TOT_Doc_${Date.now()}.txt`; a.click();
+        a.download = `SKRV_Doc_${Date.now()}.txt`; a.click();
     },
 
     insertChapter() {
