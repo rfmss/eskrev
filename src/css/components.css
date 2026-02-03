@@ -237,11 +237,9 @@ body.focus-active #editor .focus-active-block {
     opacity: 0.6;
 }
 .hud-scroll-hint .hint-up {
-    transform: rotate(-90deg);
     animation: hintFloatUp 1.6s ease-in-out infinite;
 }
 .hud-scroll-hint .hint-down {
-    transform: rotate(90deg);
     animation: hintFloatDown 1.6s ease-in-out infinite;
 }
 .controls-scroll-hint {
@@ -260,28 +258,26 @@ body.focus-active #editor .focus-active-block {
     opacity: 0.6;
 }
 .controls-scroll-hint .hint-left {
-    transform: rotate(180deg);
     animation: hintFloatLeft 1.6s ease-in-out infinite;
 }
 .controls-scroll-hint .hint-right {
-    transform: rotate(0deg);
     animation: hintFloatRight 1.6s ease-in-out infinite;
 }
 @keyframes hintFloatUp {
-    0%, 100% { transform: translateY(0) rotate(-90deg); opacity: 0.45; }
-    50% { transform: translateY(-4px) rotate(-90deg); opacity: 0.8; }
+    0%, 100% { transform: translateY(0); opacity: 0.45; }
+    50% { transform: translateY(-4px); opacity: 0.8; }
 }
 @keyframes hintFloatDown {
-    0%, 100% { transform: translateY(0) rotate(90deg); opacity: 0.45; }
-    50% { transform: translateY(4px) rotate(90deg); opacity: 0.8; }
+    0%, 100% { transform: translateY(0); opacity: 0.45; }
+    50% { transform: translateY(4px); opacity: 0.8; }
 }
 @keyframes hintFloatLeft {
-    0%, 100% { transform: translateX(0) rotate(180deg); opacity: 0.45; }
-    50% { transform: translateX(-4px) rotate(180deg); opacity: 0.8; }
+    0%, 100% { transform: translateX(0); opacity: 0.45; }
+    50% { transform: translateX(-4px); opacity: 0.8; }
 }
 @keyframes hintFloatRight {
-    0%, 100% { transform: translateX(0) rotate(0deg); opacity: 0.45; }
-    50% { transform: translateX(4px) rotate(0deg); opacity: 0.8; }
+    0%, 100% { transform: translateX(0); opacity: 0.45; }
+    50% { transform: translateX(4px); opacity: 0.8; }
 }
 
 /* TOOLBAR CONTEXTUAL */

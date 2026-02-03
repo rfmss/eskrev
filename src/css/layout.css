@@ -209,7 +209,7 @@ body.mobile-typing .mobile-trigger {
   width: 58vw;
   max-width: 860px;
   min-height: 80vh;
-  margin-top: 20px;
+  margin-top: 8px;
   overflow: visible;
 }
 
@@ -229,7 +229,7 @@ body.mobile-typing .mobile-trigger {
 
 /* CONTROLS (Correção de posição e tamanho) */
 .controls {
-  position: absolute; left: 0; right: 0; bottom: 14px;
+  position: absolute; left: var(--hud-w); right: 0; bottom: 14px;
   min-height: var(--controls-h); display: flex; justify-content: center;
   z-index: 50; pointer-events: none; 
 }
@@ -252,7 +252,7 @@ body.mobile-typing .mobile-trigger {
   row-gap: 6px;
   column-gap: 10px;
   
-  width: auto; max-width: 96vw; /* Ajusta ao conteúdo, mas não passa da tela */
+  width: auto; max-width: calc(96vw - var(--hud-w)); /* evita colisão com HUD */
   height: auto;
   min-height: var(--controls-h);
   
