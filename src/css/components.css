@@ -1127,8 +1127,8 @@ body.consult-open .selection-toolbar {
 }
 .terms-header h2 {
     margin: 0 0 8px;
-    font-size: 15px;
-    letter-spacing: 0.8px;
+    font-size: 16px;
+    letter-spacing: 0.4px;
     color: var(--color-text);
     font-family: var(--font-display, var(--font-ui));
 }
@@ -1148,16 +1148,17 @@ body.consult-open .selection-toolbar {
 .terms-body {
     border: var(--border-style);
     border-radius: var(--radius);
-    padding: 12px;
+    padding: 18px 20px;
     max-height: 60vh;
     overflow-y: auto;
-    font-size: 12px;
-    line-height: 1.55;
-    background: rgba(244, 241, 234, 0.03);
+    font-size: 14px;
+    line-height: 1.8;
+    font-family: var(--font-body, var(--font-ui));
+    background: rgba(244, 241, 234, 0.04);
 }
-.terms-body p { margin: 0 0 12px; }
-.terms-body ul { margin: 0 0 12px 16px; padding: 0; }
-.terms-body li { margin-bottom: 8px; }
+.terms-body p { margin: 0 0 14px; }
+.terms-body ul { margin: 0 0 14px 18px; padding: 0; }
+.terms-body li { margin-bottom: 10px; }
 .terms-actions {
     margin-top: 14px;
     display: grid;
@@ -1203,8 +1204,10 @@ body.consult-open .selection-toolbar {
     border: var(--border-style);
     border-radius: var(--radius);
     box-shadow: var(--shadow-float);
-    padding: 16px 18px;
+    padding: 18px 20px;
     position: static;
+    max-width: 640px;
+    margin: 0 auto;
 }
 .privacy-body .policy-shell::before {
     display: none;
@@ -1218,7 +1221,7 @@ body.consult-open .selection-toolbar {
 }
 .privacy-body .policy-title {
     margin: 0;
-    font-size: 16px;
+    font-size: 17px;
     line-height: 1.2;
     font-family: var(--font-display, var(--font-ui));
     font-weight: 600;
@@ -1232,10 +1235,10 @@ body.consult-open .selection-toolbar {
 }
 .privacy-body .policy-body {
     display: grid;
-    gap: 14px;
-    font-size: 13px;
-    line-height: 1.7;
-    font-family: var(--font-ui);
+    gap: 16px;
+    font-size: 14px;
+    line-height: 1.85;
+    font-family: var(--font-body, var(--font-ui));
 }
 .privacy-body .policy-section h2 {
     margin: 0 0 6px;
