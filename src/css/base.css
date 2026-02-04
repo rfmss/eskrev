@@ -95,6 +95,7 @@
   --bg-core: #d7d6d1;
   --bg-panel: transparent;
   --bg-drawer: rgba(215, 214, 209, 0.94);
+  --bg-drawer-solid: #d7d6d1;
   --bg-xray: #dfddd7;
   --bg-controls: rgba(215, 214, 209, 0.82);
   --xray-surface: rgba(43, 42, 38, 0.04);
@@ -117,6 +118,7 @@
   --bg-core: #d7d6d1;
   --bg-panel: transparent;
   --bg-drawer: rgba(215, 214, 209, 0.94);
+  --bg-drawer-solid: #d7d6d1;
   --bg-xray: #dfddd7;
   --bg-controls: rgba(215, 214, 209, 0.82);
   --xray-surface: rgba(43, 42, 38, 0.04);
@@ -138,6 +140,7 @@
   --bg-core: #2f3133;
   --bg-panel: transparent;
   --bg-drawer: #34363a;
+  --bg-drawer-solid: #34363a;
   --bg-xray: #35373c;
   --bg-controls: #34363a;
   --xray-surface: rgba(231, 234, 242, 0.04);
@@ -160,6 +163,7 @@
   --bg-core: #2b1c12;
   --bg-panel: transparent;
   --bg-drawer: rgba(43, 28, 18, 0.88);
+  --bg-drawer-solid: #2b1c12;
   --bg-xray: #2f1f14;
   --bg-controls: rgba(43, 28, 18, 0.82);
   --xray-surface: rgba(240, 166, 74, 0.08);
@@ -181,6 +185,7 @@
   --bg-core: #222429;            
   --bg-panel: transparent; 
   --bg-drawer: rgba(29, 31, 36, 0.9);
+  --bg-drawer-solid: #1d1f24;
   --bg-xray: #1b1d21;
   --bg-controls: rgba(29, 31, 36, 0.78);
   --xray-surface: rgba(244, 241, 234, 0.06);
@@ -204,6 +209,7 @@
   --bg-core: #2a2e33;            
   --bg-panel: transparent; 
   --bg-drawer: rgba(30, 33, 38, 0.9);
+  --bg-drawer-solid: #1e2126;
   --bg-xray: #1c2026;
   --bg-controls: rgba(30, 33, 38, 0.78);
   --xray-surface: rgba(244, 241, 234, 0.06);

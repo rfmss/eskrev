@@ -392,11 +392,425 @@ function setupEventListeners() {
     };
 
     // Gavetas (abrir drawer volta para o editor)
-    document.getElementById("tabFiles").onclick = () => { showEditorView(); ui.openDrawer('files', { renderFiles: renderProjectList }); };
-    document.getElementById("tabNav").onclick = () => { showEditorView(); ui.openDrawer('nav', { renderNav: renderNavigation }); };
+    const notesModal = document.getElementById("notesModal");
+    const notesClose = document.getElementById("notesClose");
+    const notesState = {
+        activeId: null,
+        stage: "list",
+        search: "",
+        folder: "",
+        tag: "",
+        overlayType: "",
+        overlayValue: ""
+    };
+    const NOTES_KEY = "skrv_mobile_notes_v1";
+    const NOTES_KEY_LEGACY = "tot_mobile_notes_v1";
+    const NOTES_LIMIT = 200;
+    const FOLDERS_LIMIT = 30;
+    const notesCache = () => {
+        if (Array.isArray(store.data.mobileNotes)) return store.data.mobileNotes;
+        try {
+            const raw = localStorage.getItem(NOTES_KEY) || localStorage.getItem(NOTES_KEY_LEGACY);
+            const parsed = raw ? JSON.parse(raw) : [];
+            return Array.isArray(parsed) ? parsed : [];
+        } catch (_) {
+            return [];
+        }
+    };
+    const saveNotes = (notes) => {
+        store.data.mobileNotes = Array.isArray(notes) ? notes : [];
+        store.persist(true);
+        localStorage.setItem(NOTES_KEY, JSON.stringify(store.data.mobileNotes));
+    };
+    const normalizeTag = (tag) => String(tag || "").trim().replace(/^#/, "").toLowerCase();
+    const normalizeFolder = (folder) => String(folder || "").trim();
+    const formatDate = (iso) => {
+        if (!iso) return "";
+        const d = new Date(iso);
+        if (Number.isNaN(d.getTime())) return "";
+        return d.toLocaleDateString();
+    };
+    const noteTitle = (note) => {
+        if (note.title && note.title.trim()) return note.title.trim();
+        const first = String(note.text || "").split("\n").find(Boolean);
+        return first ? first.trim().slice(0, 48) : lang.t("notes_untitled");
+    };
+    const parseQuery = (raw) => {
+        const query = String(raw || "").trim();
+        const parts = query.split(/\s+/).filter(Boolean);
+        const tags = [];
+        let folder = "";
+        const text = [];
+        parts.forEach(part => {
+            if (part.startsWith("#") && part.length > 1) {
+                tags.push(normalizeTag(part.slice(1)));
+                return;
+            }
+            if (part.startsWith("/") && part.length > 1) {
+                folder = normalizeFolder(part.slice(1));
+                return;
+            }
+            text.push(part);
+        });
+        return { text: text.join(" ").toLowerCase(), tags, folder };
+    };
+    const matchesSearch = (note, query) => {
+        if (!query.text && !query.tags.length && !query.folder) return true;
+        const body = `${note.title || ""} ${note.text || ""}`.toLowerCase();
+        if (query.text && !body.includes(query.text)) return false;
+        if (query.folder && normalizeFolder(note.folder) !== query.folder) return false;
+        if (query.tags.length) {
+            const noteTags = (note.tags || []).map(normalizeTag);
+            const hasAll = query.tags.every(tag => noteTags.includes(tag));
+            if (!hasAll) return false;
+        }
+        return true;
+    };
+    const buildNoteCard = (note) => {
+        const card = document.createElement("div");
+        card.className = "notes-card";
+        const title = document.createElement("div");
+        title.className = "notes-card-title";
+        title.textContent = noteTitle(note);
+        const meta = document.createElement("div");
+        meta.className = "notes-card-meta";
+        meta.textContent = note.folder ? `${note.folder} · ${formatDate(note.updatedAt || note.createdAt)}` : formatDate(note.updatedAt || note.createdAt);
+        const excerpt = document.createElement("div");
+        excerpt.className = "notes-card-meta";
+        excerpt.textContent = String(note.text || "").replace(/\s+/g, " ").trim().slice(0, 64);
+        const tags = document.createElement("div");
+        tags.className = "notes-tags";
+        (note.tags || []).slice(0, 6).forEach(tag => {
+            const span = document.createElement("span");
+            span.className = "notes-tag";
+            span.textContent = `#${normalizeTag(tag)}`;
+            tags.appendChild(span);
+        });
+        card.appendChild(title);
+        card.appendChild(meta);
+        if (excerpt.textContent) card.appendChild(excerpt);
+        if (tags.childElementCount) card.appendChild(tags);
+        card.onclick = () => openNotePreview(note.id);
+        return card;
+    };
+
+    const renderNotesList = () => {
+        const list = document.getElementById("notesList");
+        const empty = document.getElementById("notesEmpty");
+        const notesAll = notesCache();
+        const parsed = parseQuery(notesState.search);
+        const notes = notesAll.filter(n => matchesSearch(n, parsed))
+            .filter(n => notesState.folder ? normalizeFolder(n.folder) === notesState.folder : true)
+            .filter(n => notesState.tag ? (n.tags || []).map(normalizeTag).includes(notesState.tag) : true);
+        if (!list || !empty) return;
+        list.innerHTML = "";
+        const foldersWrap = document.getElementById("notesFoldersWrap");
+        const foldersEl = document.getElementById("notesFolders");
+        if (foldersWrap && foldersEl) {
+            const folders = Array.from(new Set(notesAll.map(n => normalizeFolder(n.folder)).filter(Boolean)));
+            const folderList = document.getElementById("notesFolderList");
+            if (folderList) {
+                folderList.innerHTML = "";
+                folders.forEach(folder => {
+                    const option = document.createElement("option");
+                    option.value = folder;
+                    folderList.appendChild(option);
+                });
+            }
+            if (folders.length) {
+                foldersWrap.style.display = "grid";
+                foldersEl.innerHTML = "";
+                const allBtn = document.createElement("button");
+                allBtn.className = "notes-filter-btn" + (!notesState.folder ? " active" : "");
+                allBtn.type = "button";
+                allBtn.textContent = lang.t("notes_folders_all");
+                allBtn.onclick = () => {
+                    notesState.folder = "";
+                    renderNotesList();
+                };
+                foldersEl.appendChild(allBtn);
+                folders.forEach(folder => {
+                    const btn = document.createElement("button");
+                    btn.className = "notes-filter-btn" + (notesState.folder === folder ? " active" : "");
+                    btn.type = "button";
+                    btn.textContent = folder;
+                    btn.onclick = () => {
+                        openNotesOverlay("folder", folder);
+                    };
+                    foldersEl.appendChild(btn);
+                });
+            } else {
+                foldersWrap.style.display = "none";
+                foldersEl.innerHTML = "";
+            }
+        }
+        const tagsWrap = document.getElementById("notesTagsWrap");
+        const tagsEl = document.getElementById("notesTagsList");
+        if (tagsWrap && tagsEl) {
+            const tagSet = new Set();
+            notesAll.forEach(n => (n.tags || []).forEach(tag => tagSet.add(normalizeTag(tag))));
+            const tags = Array.from(tagSet);
+            if (tags.length) {
+                tagsWrap.style.display = "grid";
+                tagsEl.innerHTML = "";
+                const allBtn = document.createElement("button");
+                allBtn.className = "notes-filter-btn" + (!notesState.tag ? " active" : "");
+                allBtn.type = "button";
+                allBtn.textContent = lang.t("notes_tags_all");
+                allBtn.onclick = () => {
+                    notesState.tag = "";
+                    renderNotesList();
+                };
+                tagsEl.appendChild(allBtn);
+                tags.forEach(tag => {
+                    const btn = document.createElement("button");
+                    btn.className = "notes-filter-btn" + (notesState.tag === tag ? " active" : "");
+                    btn.type = "button";
+                    btn.textContent = `#${tag}`;
+                    btn.onclick = () => {
+                        openNotesOverlay("tag", tag);
+                    };
+                    tagsEl.appendChild(btn);
+                });
+            } else {
+                tagsWrap.style.display = "none";
+                tagsEl.innerHTML = "";
+            }
+        }
+        if (!notes.length) {
+            empty.style.display = "flex";
+            return;
+        }
+        empty.style.display = "none";
+        notes.forEach(note => {
+            list.appendChild(buildNoteCard(note));
+        });
+    };
+
+    const openNotesOverlay = (type, value) => {
+        const overlay = document.getElementById("notesOverlay");
+        const titleEl = document.getElementById("notesOverlayTitle");
+        const listEl = document.getElementById("notesOverlayList");
+        if (!overlay || !titleEl || !listEl) return;
+        const notesAll = notesCache();
+        const filtered = type === "folder"
+            ? notesAll.filter(n => normalizeFolder(n.folder) === value)
+            : notesAll.filter(n => (n.tags || []).map(normalizeTag).includes(value));
+        titleEl.textContent = type === "folder" ? value : `#${value}`;
+        listEl.innerHTML = "";
+        filtered.forEach(note => listEl.appendChild(buildNoteCard(note)));
+        notesState.overlayType = type;
+        notesState.overlayValue = value;
+        overlay.classList.add("active");
+        overlay.setAttribute("aria-hidden", "false");
+    };
+    const closeNotesOverlay = () => {
+        const overlay = document.getElementById("notesOverlay");
+        if (!overlay) return;
+        overlay.classList.remove("active");
+        overlay.setAttribute("aria-hidden", "true");
+        notesState.overlayType = "";
+        notesState.overlayValue = "";
+    };
+    const setNotesStage = (stage) => {
+        notesState.stage = stage;
+        document.querySelectorAll(".notes-stage").forEach(el => el.classList.remove("is-active"));
+        const target = document.querySelector(`.notes-stage-${stage}`);
+        if (target) target.classList.add("is-active");
+        if (stage === "list") renderNotesList();
+    };
+    const openNotePreview = (id) => {
+        openNoteEdit(id);
+    };
+    const openNoteEdit = (id) => {
+        const note = notesCache().find(n => n.id === id);
+        if (!note) return;
+        notesState.activeId = id;
+        closeNotesOverlay();
+        const titleEl = document.getElementById("notesTitle");
+        const bodyEl = document.getElementById("notesBody");
+        const tagsEl = document.getElementById("notesTags");
+        const folderEl = document.getElementById("notesFolder");
+        const metaEl = document.getElementById("notesMeta");
+        if (titleEl) titleEl.value = note.title || "";
+        if (bodyEl) bodyEl.value = note.text || "";
+        if (tagsEl) tagsEl.value = (note.tags || []).map(t => `#${normalizeTag(t)}`).join(", ");
+        if (folderEl) folderEl.value = note.folder || "";
+        if (metaEl) metaEl.textContent = `${lang.t("notes_updated")}: ${formatDate(note.updatedAt || note.createdAt)}`;
+        setNotesStage("edit");
+    };
+    const createNewNote = (preset = {}) => {
+        const notes = notesCache();
+        if (notes.length >= NOTES_LIMIT) {
+            if (window.skrvModal?.alert) window.skrvModal.alert(lang.t("mobile_limit_notes"));
+            else alert(lang.t("mobile_limit_notes"));
+            return;
+        }
+        const presetFolder = normalizeFolder(preset.folder);
+        if (presetFolder) {
+            const folders = Array.from(new Set(notes.map(n => normalizeFolder(n.folder)).filter(Boolean)));
+            if (!folders.includes(presetFolder) && folders.length >= FOLDERS_LIMIT) {
+                if (window.skrvModal?.alert) window.skrvModal.alert(lang.t("mobile_limit_folders"));
+                else alert(lang.t("mobile_limit_folders"));
+                return;
+            }
+        }
+        const presetTags = Array.isArray(preset.tags) ? preset.tags.map(normalizeTag).filter(Boolean) : [];
+        const note = {
+            id: `note_${Date.now()}`,
+            title: "",
+            text: "",
+            tags: presetTags,
+            folder: presetFolder,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+        };
+        notes.unshift(note);
+        saveNotes(notes);
+        openNoteEdit(note.id);
+        renderNotesList();
+    };
+    const updateActiveNote = () => {
+        const notes = notesCache();
+        const note = notes.find(n => n.id === notesState.activeId);
+        if (!note) return;
+        const titleEl = document.getElementById("notesTitle");
+        const bodyEl = document.getElementById("notesBody");
+        const tagsEl = document.getElementById("notesTags");
+        const folderEl = document.getElementById("notesFolder");
+        const title = titleEl ? titleEl.value.trim() : "";
+        const text = bodyEl ? bodyEl.value : "";
+        const tags = tagsEl ? tagsEl.value.split(",").map(normalizeTag).filter(Boolean) : [];
+        const folder = folderEl ? normalizeFolder(folderEl.value) : "";
+        if (folder) {
+            const folders = Array.from(new Set(notes.map(n => normalizeFolder(n.folder)).filter(Boolean)));
+            if (!folders.includes(folder) && folders.length >= FOLDERS_LIMIT) {
+                if (window.skrvModal?.alert) window.skrvModal.alert(lang.t("mobile_limit_folders"));
+                else alert(lang.t("mobile_limit_folders"));
+                return;
+            }
+        }
+        note.title = title;
+        note.text = text;
+        note.tags = tags;
+        note.folder = folder;
+        note.updatedAt = new Date().toISOString();
+        saveNotes(notes);
+        const metaEl = document.getElementById("notesMeta");
+        if (metaEl) metaEl.textContent = `${lang.t("notes_updated")}: ${formatDate(note.updatedAt)}`;
+        renderNotesList();
+    };
+    let updateTimer = null;
+    const scheduleUpdate = () => {
+        if (updateTimer) clearTimeout(updateTimer);
+        updateTimer = setTimeout(updateActiveNote, 250);
+    };
+
+    const openNotesModal = () => {
+        ui.closeDrawer();
+        showEditorView();
+        const pomo = document.getElementById("pomodoroModal");
+        if (pomo && pomo.classList.contains("active")) return;
+        if (!notesModal) return;
+        notesModal.classList.add("active");
+        notesModal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("notes-open");
+        renderNotesList();
+        setNotesStage("list");
+    };
+    const closeNotesModal = () => {
+        if (!notesModal) return;
+        const overlay = document.getElementById("notesOverlay");
+        if (overlay) {
+            overlay.classList.remove("active");
+            overlay.setAttribute("aria-hidden", "true");
+        }
+        notesModal.classList.remove("active");
+        notesModal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("notes-open");
+    };
+    if (notesClose) notesClose.onclick = () => closeNotesModal();
+    document.addEventListener("mousedown", (e) => {
+        if (!notesModal || !notesModal.classList.contains("active")) return;
+        const panel = notesModal.querySelector(".notes-panel");
+        const overlay = document.getElementById("notesOverlay");
+        if (overlay && overlay.classList.contains("active")) {
+            const insideOverlay = overlay.contains(e.target);
+            const insidePanel = panel && panel.contains(e.target);
+            if (!insideOverlay && insidePanel) {
+                overlay.classList.remove("active");
+                overlay.setAttribute("aria-hidden", "true");
+            } else if (!insideOverlay && !insidePanel) {
+                closeNotesModal();
+            }
+            return;
+        }
+        if (panel && !panel.contains(e.target)) {
+            closeNotesModal();
+        }
+    });
+    const notesSearch = document.getElementById("notesSearch");
+    const notesNew = document.getElementById("notesNew");
+    const notesEmptyCreate = document.getElementById("notesEmptyCreate");
+    const notesFab = document.getElementById("notesFab");
+    const notesOverlayClose = document.getElementById("notesOverlayClose");
+    const notesOverlayNew = document.getElementById("notesOverlayNew");
+    const notesBackToList = document.getElementById("notesBackToList");
+    const notesEdit = document.getElementById("notesEdit");
+    const notesBackToPreview = document.getElementById("notesBackToPreview");
+    const notesDelete = document.getElementById("notesDelete");
+    const notesTitle = document.getElementById("notesTitle");
+    const notesBody = document.getElementById("notesBody");
+    const notesTags = document.getElementById("notesTags");
+    const notesFolder = document.getElementById("notesFolder");
+    if (notesSearch) {
+        notesSearch.addEventListener("input", (e) => {
+            notesState.search = e.target.value;
+            renderNotesList();
+        });
+    }
+    if (notesNew) notesNew.onclick = () => createNewNote();
+    if (notesEmptyCreate) notesEmptyCreate.onclick = () => createNewNote();
+    if (notesFab) notesFab.onclick = () => createNewNote();
+    if (notesBackToList) notesBackToList.onclick = () => setNotesStage("list");
+    if (notesEdit) notesEdit.onclick = () => openNoteEdit(notesState.activeId);
+    if (notesBackToPreview) notesBackToPreview.onclick = () => setNotesStage("list");
+    if (notesDelete) {
+        notesDelete.onclick = async () => {
+            const notes = notesCache();
+            const note = notes.find(n => n.id === notesState.activeId);
+            if (!note) return;
+            const ok = window.skrvModal?.confirm ? await window.skrvModal.confirm(lang.t("notes_delete_confirm")) : confirm(lang.t("notes_delete_confirm"));
+            if (!ok) return;
+            const next = notes.filter(n => n.id !== notesState.activeId);
+            saveNotes(next);
+            notesState.activeId = null;
+            renderNotesList();
+            setNotesStage("list");
+        };
+    }
+    if (notesOverlayClose) notesOverlayClose.onclick = () => closeNotesOverlay();
+    if (notesOverlayNew) {
+        notesOverlayNew.onclick = () => {
+            if (notesState.overlayType === "tag") {
+                createNewNote({ tags: [notesState.overlayValue] });
+            } else if (notesState.overlayType === "folder") {
+                createNewNote({ folder: notesState.overlayValue });
+            } else {
+                createNewNote();
+            }
+        };
+    }
+    [notesTitle, notesBody, notesTags, notesFolder].forEach(el => {
+        if (!el) return;
+        el.addEventListener("input", scheduleUpdate);
+    });
+
+    document.getElementById("tabFiles").onclick = () => { showEditorView(); ui.openDrawer('files', { renderFiles: renderProjectList }); closeNotesModal(); };
+    document.getElementById("tabNav").onclick = () => { showEditorView(); ui.openDrawer('nav', { renderNav: renderNavigation }); closeNotesModal(); };
     const tabNotes = document.getElementById("tabNotes");
-    if (tabNotes) tabNotes.onclick = () => { showEditorView(); ui.openDrawer('notes', {}); };
-    document.getElementById("tabMemo").onclick = () => { showEditorView(); ui.openDrawer('memo', {}); };
+    if (tabNotes) tabNotes.onclick = () => { openNotesModal(); };
+    document.getElementById("tabMemo").onclick = () => { showEditorView(); ui.openDrawer('memo', {}); closeNotesModal(); };
     document.getElementById("closeDrawer").onclick = () => ui.closeDrawer();
     document.addEventListener("mobile:openDrawer", () => {
         showEditorView();
@@ -411,9 +825,9 @@ function setupEventListeners() {
     const mobileTabMemo = document.getElementById("mobileTabMemo");
     const mobileTabTheme = document.getElementById("mobileTabTheme");
     const mobileTabBooks = document.getElementById("mobileTabBooks");
-    if (mobileTabFiles) mobileTabFiles.onclick = () => { showEditorView(); ui.openDrawer('files', { renderFiles: renderProjectList }); };
-    if (mobileTabNav) mobileTabNav.onclick = () => { showEditorView(); ui.openDrawer('nav', { renderNav: renderNavigation }); };
-    if (mobileTabMemo) mobileTabMemo.onclick = () => { showEditorView(); ui.openDrawer('notes', {}); };
+    if (mobileTabFiles) mobileTabFiles.onclick = () => { showEditorView(); ui.openDrawer('files', { renderFiles: renderProjectList }); closeNotesModal(); };
+    if (mobileTabNav) mobileTabNav.onclick = () => { showEditorView(); ui.openDrawer('nav', { renderNav: renderNavigation }); closeNotesModal(); };
+    if (mobileTabMemo) mobileTabMemo.onclick = () => { openNotesModal(); };
     if (mobileTabTheme) mobileTabTheme.onclick = () => { ui.toggleTheme(); };
     if (mobileTabBooks) mobileTabBooks.onclick = () => { ui.closeDrawer(); showBooksView(); };
 
@@ -695,6 +1109,21 @@ function setupEventListeners() {
                 auth.closeTermsModal(true);
                 return;
             }
+            const notesModal = document.getElementById("notesModal");
+            if (notesModal && notesModal.classList.contains("active")) {
+                const overlay = document.getElementById("notesOverlay");
+                if (overlay && overlay.classList.contains("active")) {
+                    overlay.classList.remove("active");
+                    overlay.setAttribute("aria-hidden", "true");
+                    return;
+                }
+                if (notesState.stage === "edit") {
+                    setNotesStage("list");
+                } else {
+                    closeNotesModal();
+                }
+                return;
+            }
             const systemModal = document.getElementById("systemModal");
             if (systemModal && systemModal.classList.contains("active") && window.skrvModal?.cancel) {
                 window.skrvModal.cancel();
@@ -789,7 +1218,7 @@ function setupEventListeners() {
                     if (window.skrvMobileCreateProject) {
                         window.skrvMobileCreateProject(name.trim());
                         renderProjectList();
-                        ui.openDrawer('notes', {});
+                        openNotesModal();
                     }
                 };
                 if (!window.skrvMobileCreateProject) {
@@ -815,7 +1244,7 @@ function setupEventListeners() {
                     if (window.skrvMobileCreateProject) {
                         window.skrvMobileCreateProject(name.trim());
                         renderProjectList();
-                        ui.openDrawer('notes', {});
+                        openNotesModal();
                     }
                 };
                 if (!window.skrvMobileCreateProject) {

@@ -363,4 +363,8 @@ body.mobile-typing .mobile-trigger {
         border-bottom: var(--border-style);
         justify-content: space-between;
     }
+    .notes-panel {
+        left: 0;
+        width: 100vw;
+    }
 }

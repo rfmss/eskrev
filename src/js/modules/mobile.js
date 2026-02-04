@@ -5,6 +5,8 @@ import { qrTransfer } from './qr_transfer.js';
 
 const MOBILE_NOTES_KEY = "skrv_mobile_notes_v1";
 const MOBILE_NOTES_KEY_LEGACY = "tot_mobile_notes_v1";
+const MOBILE_NOTES_LIMIT = 200;
+const MOBILE_FOLDERS_LIMIT = 30;
 let mobileNotesCache = [];
 let mobileNotesFilter = { search: "", folder: "" };
 let mobileEditingId = null;
@@ -301,6 +303,27 @@ const addOrUpdateMobileNote = (text, tagsRaw, folderRaw) => {
         }
         mobileEditingId = null;
     } else {
+        if (mobileNotesCache.length >= MOBILE_NOTES_LIMIT) {
+            const msg = lang.t("mobile_limit_notes") || "Limite de notas atingido.";
+            if (window.skrvModal && typeof window.skrvModal.alert === "function") {
+                window.skrvModal.alert(msg);
+            } else {
+                alert(msg);
+            }
+            return;
+        }
+        if (folder) {
+            const folders = Array.from(new Set(mobileNotesCache.map(n => normalizeFolder(n.folder)).filter(Boolean)));
+            if (!folders.includes(folder) && folders.length >= MOBILE_FOLDERS_LIMIT) {
+                const msg = lang.t("mobile_limit_folders") || "Limite de pastas atingido.";
+                if (window.skrvModal && typeof window.skrvModal.alert === "function") {
+                    window.skrvModal.alert(msg);
+                } else {
+                    alert(msg);
+                }
+                return;
+            }
+        }
         mobileNotesCache.unshift({
             id: `note_${Date.now()}`,
             text,

@@ -53,7 +53,7 @@
             <use href="src/assets/icons/phosphor-sprite.svg#icon-lock-key"></use>
         </svg>
         <h2 data-i18n="locked">BLOQUEADO</h2>
-        <input type="password" id="authPass" class="search-input" style="border:1px solid var(--color-accent); padding:8px; width:200px; text-align:center; font-size:18px;">
+        <input type="password" id="authPass" class="search-input" style="border:1px solid var(--color-accent); padding:6px; width:160px; text-align:center; font-size:16px;" data-i18n-ph="lock_pass_ph" placeholder="Senha da sessão">
         <button id="btnUnlock" class="btn-full" style="width:200px;" data-i18n="unlock_btn">DESBLOQUEAR</button>
         <span id="authMsg" class="help-text"></span>
         
@@ -305,6 +305,65 @@
             </div>
         </div>
     </aside>
+
+        <div id="notesModal" class="notes-modal" aria-hidden="true">
+            <div class="notes-panel" role="dialog" aria-modal="true">
+                <div class="notes-header">
+                    <h2 data-i18n="notes_title">NOTAS</h2>
+                    <button id="notesClose" class="notes-close" type="button" data-i18n-title="close_label">×</button>
+                </div>
+            <div class="notes-body">
+                <div class="notes-stage notes-stage-list is-active" data-stage="list">
+                    <div class="notes-search">
+                        <div class="notes-search-row">
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-magnifying-glass"></use></svg>
+                            <input id="notesSearch" class="notes-search-input" data-i18n-ph="notes_search_ph" placeholder="Buscar..." />
+                        </div>
+                        <button id="notesNew" class="btn-full" data-i18n="notes_new">NOVA NOTA</button>
+                    </div>
+                    <div id="notesFoldersWrap" class="notes-filters" style="display:none;">
+                        <div class="notes-filter-title" data-i18n="notes_folders_title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-folder-open"></use></svg> PASTAS</div>
+                        <div id="notesFolders" class="notes-filter-list"></div>
+                    </div>
+                    <div id="notesTagsWrap" class="notes-filters" style="display:none;">
+                        <div class="notes-filter-title" data-i18n="notes_tags_title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-list-bullets"></use></svg> TAGS</div>
+                        <div id="notesTagsList" class="notes-filter-list"></div>
+                    </div>
+                    <div id="notesEmpty" class="notes-empty">
+                        <div class="notes-empty-title" data-i18n="notes_empty_title">Sem notas ainda.</div>
+                        <div class="notes-empty-body" data-i18n="notes_empty_body">Crie sua primeira nota para começar.</div>
+                        <button id="notesEmptyCreate" class="btn-full" data-i18n="notes_empty_cta">CRIAR PRIMEIRA NOTA</button>
+                    </div>
+                    <div id="notesList" class="notes-list"></div>
+                    <button id="notesFab" class="notes-fab" type="button" data-i18n-title="notes_new" aria-label="NOVA NOTA"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-plus"></use></svg></button>
+                </div>
+                <div class="notes-stage notes-stage-edit" data-stage="edit">
+                    <div class="notes-stage-header">
+                        <button id="notesBackToPreview" class="btn-icon" data-i18n-title="notes_back" aria-label="VOLTAR"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-caret-left"></use></svg></button>
+                        <button id="notesDelete" class="btn-icon danger" data-i18n-title="notes_delete" aria-label="APAGAR"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-trash"></use></svg></button>
+                    </div>
+                    <div class="notes-edit">
+                        <input id="notesTitle" class="notes-input" data-i18n-ph="notes_title_ph" placeholder="Titulo" />
+                        <input id="notesTags" class="notes-input" data-i18n-ph="notes_tags_ph" placeholder="Tags (#tag, #outra)" />
+                        <input id="notesFolder" class="notes-input" list="notesFolderList" data-i18n-ph="notes_folder_ph" placeholder="Pasta (opcional)" />
+                        <datalist id="notesFolderList"></datalist>
+                        <textarea id="notesBody" class="notes-textarea" data-i18n-ph="notes_body_ph" placeholder="Texto..."></textarea>
+                        <div class="notes-meta" id="notesMeta"></div>
+                    </div>
+                </div>
+                <div id="notesOverlay" class="notes-overlay" aria-hidden="true">
+                    <div class="notes-overlay-header">
+                        <span id="notesOverlayTitle"></span>
+                        <div class="notes-overlay-actions">
+                            <button id="notesOverlayNew" class="btn-icon" data-i18n-title="notes_new" aria-label="NOVA NOTA"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-plus"></use></svg></button>
+                            <button id="notesOverlayClose" class="btn-icon" data-i18n-title="notes_back" aria-label="VOLTAR"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-caret-left"></use></svg></button>
+                        </div>
+                    </div>
+                    <div id="notesOverlayList" class="notes-list"></div>
+                </div>
+            </div>
+            </div>
+        </div>
 
     <main class="panel">
     <div id="editorView">

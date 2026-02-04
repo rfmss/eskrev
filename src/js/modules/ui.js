@@ -344,6 +344,7 @@ export const ui = {
         localStorage.setItem("lit_pomo_target", targetTime);
         localStorage.setItem("lit_pomo_phase", "work");
         localStorage.setItem("lit_pomo_duration", String(minutes));
+        document.body.classList.add("pomo-active");
         this.hidePomodoroModal();
         this.startTicker();
     },
@@ -352,6 +353,7 @@ export const ui = {
         const targetTime = Date.now() + (6 * 60 * 1000);
         localStorage.setItem("lit_pomo_target", targetTime);
         localStorage.setItem("lit_pomo_phase", "break");
+        document.body.classList.add("pomo-active");
         this.showBreakModal();
         this.startTicker();
         new Audio("src/assets/audio/enter.wav").play().catch(()=>{}); 
@@ -360,6 +362,12 @@ export const ui = {
     showBreakModal() {
         if (!this.pomoModal) return;
         this.pomoModal.classList.add("active");
+        const notesModal = document.getElementById("notesModal");
+        if (notesModal && notesModal.classList.contains("active")) {
+            notesModal.classList.remove("active");
+            notesModal.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("notes-open");
+        }
         if (this.pomoBreakView) this.pomoBreakView.style.display = "block";
         if (this.pomoUnlockView) this.pomoUnlockView.style.display = "none";
         this.updateBreakCountdown("06:00");
@@ -369,8 +377,15 @@ export const ui = {
         clearInterval(this.pomodoroInterval);
         localStorage.removeItem("lit_pomo_target");
         localStorage.setItem("lit_pomo_phase", "await_unlock");
+        document.body.classList.add("pomo-active");
         if (!this.pomoModal) return;
         this.pomoModal.classList.add("active");
+        const notesModal = document.getElementById("notesModal");
+        if (notesModal && notesModal.classList.contains("active")) {
+            notesModal.classList.remove("active");
+            notesModal.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("notes-open");
+        }
         if (this.pomoBreakView) this.pomoBreakView.style.display = "none";
         if (this.pomoUnlockView) this.pomoUnlockView.style.display = "block";
         const unlockPrompt = document.getElementById("pomoUnlockPrompt");
@@ -387,6 +402,7 @@ export const ui = {
     showChoiceOnly() {
         if (!this.pomoModal) return;
         this.pomoModal.classList.add("active");
+        document.body.classList.add("pomo-active");
         if (this.pomoBreakView) this.pomoBreakView.style.display = "none";
         if (this.pomoUnlockView) this.pomoUnlockView.style.display = "block";
         const unlockPrompt = document.getElementById("pomoUnlockPrompt");
@@ -404,6 +420,7 @@ export const ui = {
 
     hidePomodoroModal() {
         if (this.pomoModal) this.pomoModal.classList.remove("active");
+        document.body.classList.remove("pomo-active");
     },
 
     updateBreakCountdown(value) {
