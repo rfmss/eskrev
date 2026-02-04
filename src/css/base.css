@@ -73,10 +73,21 @@
   --glass-blur: blur(12px);
   --shadow-float: 0 6px 20px rgba(0, 0, 0, 0.18);
   --page-height: 1120px;
-  --font-display: "Source Serif 4", "Georgia", "Times New Roman", serif;
-  --font-body: "Source Serif 4", "Georgia", "Times New Roman", serif;
-  --font-quote: "Source Serif 4", "Georgia", "Times New Roman", serif;
-  --font-ui: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --content-max: 760px;
+  --content-narrow: 640px;
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --text-lg: 20px;
+  --text-md: 14px;
+  --text-sm: 12px;
+  --font-display: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-quote: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-ui: "Inter", "Helvetica Neue", Arial, sans-serif;
 }
 
 /* 1. TEMA PAPEL EDITORIAL (default) */
@@ -91,10 +102,10 @@
   --color-accent: #5a5956;
   --color-accent-dim: rgba(90, 89, 86, 0.16);
   --color-text: #3a3935;
-  --color-muted: rgba(58, 57, 53, 0.5);
-  --border-style: 1px solid rgba(43, 42, 38, 0.12);
+  --color-muted: rgba(58, 57, 53, 0.62);
+  --border-style: 1px solid rgba(43, 42, 38, 0.16);
   --grid-opacity: 0.03;
-  --font-ui: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-ui: "Inter", "Helvetica Neue", Arial, sans-serif;
   --font-main: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-mono: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --radius: 6px;
@@ -113,8 +124,8 @@
   --color-accent: #5a5956;
   --color-accent-dim: rgba(90, 89, 86, 0.16);
   --color-text: #3a3935;
-  --color-muted: rgba(58, 57, 53, 0.5);
-  --border-style: 1px solid rgba(43, 42, 38, 0.12);
+  --color-muted: rgba(58, 57, 53, 0.62);
+  --border-style: 1px solid rgba(43, 42, 38, 0.16);
   --grid-opacity: 0.03;
   --selection-bg: #202123;
   --selection-text: #f2f1ed;
@@ -133,9 +144,9 @@
   --xray-border: 1px solid rgba(231, 234, 242, 0.08);
   --color-text: #e6e6e6;
   --color-accent: #c7c7c7;
-  --color-accent-dim: rgba(199, 199, 199, 0.2);
-  --color-muted: #b1b1b1;
-  --border-style: 1px solid rgba(199, 199, 199, 0.14);
+  --color-accent-dim: rgba(199, 199, 199, 0.24);
+  --color-muted: #c4c4c4;
+  --border-style: 1px solid rgba(199, 199, 199, 0.18);
   --grid-opacity: 0.035;
   --selection-bg: rgba(199, 199, 199, 0.26);
   --selection-text: #2f3133;
@@ -156,8 +167,8 @@
   --color-text: #f0a64a;
   --color-accent: #e08f3a;
   --color-accent-dim: rgba(224, 143, 58, 0.22);
-  --color-muted: rgba(240, 166, 74, 0.58);
-  --border-style: 1px solid rgba(240, 166, 74, 0.18);
+  --color-muted: rgba(240, 166, 74, 0.66);
+  --border-style: 1px solid rgba(240, 166, 74, 0.22);
   --grid-opacity: 0.06;
   --selection-bg: rgba(224, 143, 58, 0.22);
   --selection-text: #1f140d;
@@ -177,10 +188,10 @@
   --color-text: #e7e2da;         
   --color-accent: #b7a89a;       
   --color-accent-dim: rgba(183, 168, 154, 0.18);
-  --color-muted: #a59a90;        
-  --border-style: 1px solid rgba(183, 168, 154, 0.18);
+  --color-muted: #b8ab9f;        
+  --border-style: 1px solid rgba(183, 168, 154, 0.22);
   --grid-opacity: 0.05;
-  --font-ui: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-ui: "Inter", "Helvetica Neue", Arial, sans-serif;
   --font-main: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-mono: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --radius: 4px; 
@@ -200,10 +211,10 @@
   --color-text: #e7e2da;      
   --color-accent: #b7a89a;      
   --color-accent-dim: rgba(183, 168, 154, 0.18);
-  --color-muted: #a59a90;        
-  --border-style: 1px solid rgba(183, 168, 154, 0.18);
+  --color-muted: #b8ab9f;        
+  --border-style: 1px solid rgba(183, 168, 154, 0.22);
   --grid-opacity: 0.05;
-  --font-ui: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-ui: "Inter", "Helvetica Neue", Arial, sans-serif;
   --font-main: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-mono: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --radius: 4px; 
@@ -226,7 +237,7 @@
   --color-muted: rgba(43, 38, 34, 0.5);
   --border-style: 1px solid rgba(109, 97, 85, 0.18);
   --grid-opacity: 0.02;
-  --font-ui: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-ui: "Inter", "Helvetica Neue", Arial, sans-serif;
   --font-main: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-mono: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --radius: 4px; 
@@ -249,7 +260,7 @@
   --color-muted: #6f9a73;
   --border-style: 1px solid rgba(159, 214, 161, 0.2);
   --grid-opacity: 0.08;
-  --font-ui: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-ui: "Inter", "Helvetica Neue", Arial, sans-serif;
   --font-main: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-mono: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --radius: 4px;
@@ -272,7 +283,7 @@
   --color-muted: rgba(36, 22, 15, 0.55);
   --border-style: 1px solid rgba(36, 22, 15, 0.18);
   --grid-opacity: 0.12;
-  --font-ui: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-ui: "Inter", "Helvetica Neue", Arial, sans-serif;
   --font-main: "Inter", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --radius: 4px;
@@ -299,7 +310,7 @@
   --color-muted: rgba(207, 207, 207, 0.55);
   --border-style: 1px solid rgba(224, 224, 224, 0.18);
   --grid-opacity: 0.08;
-  --font-ui: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-ui: "Inter", "Helvetica Neue", Arial, sans-serif;
   --font-main: "Inter", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --radius: 2px;
@@ -371,20 +382,20 @@ mark.search-active { box-shadow: 0 0 0 2px var(--color-accent-dim); }
 }
 #editor.font-inter {
     font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.65;
+    line-height: 1.6;
 }
 #editor.font-serif {
     font-family: "Source Serif 4", "Georgia", "Times New Roman", serif;
-    line-height: 1.8;
+    line-height: 1.7;
 }
 #editor.font-plex {
-    font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.7;
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.65;
 }
 #editor.font-mono {
     font-family: "Terminal-Font", "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
                  "Liberation Mono", "Courier New", monospace;
-    line-height: 1.65;
+    line-height: 1.6;
     letter-spacing: 0.01em;
     font-variant-ligatures: none;
 }

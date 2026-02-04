@@ -1,42 +1,6 @@
-<svg
-  width="512"
-  height="512"
-  viewBox="0 0 512 512"
-  xmlns="http://www.w3.org/2000/svg"
-  fill="none"
->
-
-  <!-- Grupo principal -->
-  <g fill="currentColor">
-
-    <!-- Zero estilizado -->
-    <path
-      d="
-        M256 96
-        C174 96 112 158 112 256
-        C112 354 174 416 256 416
-        C338 416 400 354 400 256
-        C400 158 338 96 256 96
-        Z
-
-        M256 136
-        C318 136 360 186 360 256
-        C360 326 318 376 256 376
-        C194 376 152 326 152 256
-        C152 186 194 136 256 136
-        Z
-      "
-      fill-rule="evenodd"
-    />
-
-    <!-- Cursor -->
-    <rect
-      x="236"
-      y="64"
-      width="40"
-      height="384"
-      rx="8"
-    />
-
-  </g>
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 686 689" width="1280" height="1286">
+	<style>
+		.s0 { fill: none;stroke: #2f3133;stroke-linecap: round;stroke-linejoin: round;stroke-width: 41 } 
+	</style>
+	<path id="Forma 1" class="s0" d="m192.01 33l-152.17 586.3c0 0-17.9 34.46 8.95 35.81 26.86 1.35 40.28-35.81 40.28-35.81l80.57-246.15 398.32-205.88-274.5 259.44-74.59 112.03 434.13 98.47"/>
 </svg>

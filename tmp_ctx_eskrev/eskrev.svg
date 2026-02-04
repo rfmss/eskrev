@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="160" viewBox="0 0 560 160" role="img" aria-label="sKrv">
+  <rect width="100%" height="100%" fill="none"/>
+
+  <defs>
+    <mask id="pageCut">
+      <rect width="100%" height="100%" fill="#F4F1EA"/>
+      <!-- corte interno simulando páginas -->
+      <polygon points="380,88 400,108 420,88" fill="black"/>
+    </mask>
+  </defs>
+
+  <text
+    x="24"
+    y="108"
+    font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial"
+    font-size="96"
+    font-weight="600"
+    letter-spacing="-1"
+    fill="currentColor"
+    mask="url(#pageCut)"
+  >sKrv</text>
+</svg>

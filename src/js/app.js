@@ -168,7 +168,7 @@ function setupSupportLinks() {
 }
 
 function setupLogoManifesto() {
-    const logo = document.querySelector(".logo-area");
+    const logo = document.querySelector(".logo-dot");
     if (!logo) return;
     logo.addEventListener("click", () => {
         if (auth?.openFullManifesto) auth.openFullManifesto();
@@ -485,7 +485,15 @@ function setupEventListeners() {
         const d = document.getElementById("drawer");
         const h = document.querySelector(".hud");
         if (e.target.closest('#gatekeeper')) return;
-        if (d.classList.contains("open") && !d.contains(e.target) && !h.contains(e.target)) ui.closeDrawer();
+        const manifesto = document.getElementById("manifestoModal");
+        if (manifesto && manifesto.classList.contains("active") && e.target === manifesto) {
+            manifesto.classList.remove("active");
+            document.body.classList.remove("manifesto-open");
+            return;
+        }
+        const insideDrawer = e.target.closest("#drawer");
+        const insideHud = e.target.closest(".hud");
+        if (d.classList.contains("open") && !insideDrawer && !insideHud) ui.closeDrawer();
     });
     const panelArea = document.querySelector(".panel");
     if (panelArea) {
@@ -647,7 +655,7 @@ function setupEventListeners() {
         const key = e.key.toLowerCase();
         if (isCtrl) {
             const textShortcuts = ["a", "c", "x", "v"];
-            const browserShortcuts = ["l", "t", "w", "r", "n", "p"];
+            const browserShortcuts = ["l", "t", "w", "r", "n"];
             if (key === "s") {
                 e.preventDefault();
                 document.getElementById("btnSave").click();
@@ -692,10 +700,16 @@ function setupEventListeners() {
                 window.skrvModal.cancel();
                 return;
             }
+            const manifestoModal = document.getElementById("manifestoModal");
+            if (manifestoModal && manifestoModal.classList.contains("active")) {
+                manifestoModal.classList.remove("active");
+                document.body.classList.remove("manifesto-open");
+                return;
+            }
             if (document.activeElement === searchInput) { document.getElementById("btnClear").click(); searchInput.blur(); }
             let closed = false;
             document.querySelectorAll(".modal-overlay.active").forEach(m => { 
-                if (m.id !== "gatekeeper" && m.id !== "pomodoroModal" && m.id !== "manifestoModal" && m.id !== "termsModal") {
+                if (m.id !== "gatekeeper" && m.id !== "pomodoroModal" && m.id !== "termsModal") {
                     m.classList.remove("active"); 
                     if(m.id==="resetModal") {
                         document.getElementById("step2Reset").style.display="none"; 
@@ -848,6 +862,7 @@ function setupEventListeners() {
         if(msg) msg.innerText = "";
         currentProofWord = generateProofWord();
         if (proofWordEl) proofWordEl.innerText = currentProofWord ? `"${currentProofWord}"` : "[SEM CONTEÚDO]";
+        setTimeout(() => { if (proofInput) proofInput.focus(); }, 50);
     };
     
     document.getElementById("closeModalReset").onclick = () => resetModal.classList.remove("active");
@@ -866,6 +881,7 @@ function setupEventListeners() {
                 if (proofMsg) proofMsg.innerText = lang.t("reset_proof_ok");
                 if (btnStep1) btnStep1.style.display = "block";
                 if (step0) step0.style.display = "none";
+                btnStep1.focus();
             } else {
                 if (proofMsg) proofMsg.innerText = lang.t("reset_proof_fail");
                 if (proofInput) {
@@ -877,12 +893,28 @@ function setupEventListeners() {
             }
         };
     }
+    if (proofInput) {
+        proofInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                btnProof?.click();
+            }
+        });
+    }
 
     if (btnStep1) {
         btnStep1.onclick = () => {
             if (step2) step2.style.display = "block";
             setTimeout(() => { if(passInput) passInput.focus(); }, 100);
         };
+    }
+    if (btnStep1) {
+        btnStep1.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                btnStep1.click();
+            }
+        });
     }
     
     const triggerReset = () => {
@@ -1353,7 +1385,8 @@ function renderProjectList() {
         const infoDiv = document.createElement("div");
         infoDiv.style.flex = "1"; infoDiv.style.cursor = "pointer";
         infoDiv.innerHTML = `<div class="file-name-display">${proj.name}</div><div class="list-item-meta">${proj.date.split(',')[0]}</div>`;
-        infoDiv.onclick = () => {
+        infoDiv.onclick = (e) => {
+            e.stopPropagation();
             if (window.innerWidth <= 900) {
                 store.setActive(proj.id);
                 renderProjectList();
@@ -1429,7 +1462,8 @@ function renderNavigation() {
     const headers = document.getElementById("editor").querySelectorAll("h1, h2, .chapter-mark");
     if (headers.length === 0) {
         const emptyHint = lang.t("nav_empty_hint");
-        list.innerHTML = emptyHint ? `<div class='help-text'>${emptyHint}</div>` : "";
+        const showHint = emptyHint && emptyHint !== "nav_empty_hint";
+        list.innerHTML = showHint ? `<div class='help-text'>${emptyHint}</div>` : "";
         return;
     }
     headers.forEach((header, index) => {

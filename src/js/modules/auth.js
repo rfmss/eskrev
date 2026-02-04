@@ -51,12 +51,9 @@ export const auth = {
 
     showManifesto() {
         const modal = document.getElementById("manifestoModal");
-        const choice25 = document.getElementById("manifestoChoice25");
-        const choice50 = document.getElementById("manifestoChoice50");
+        const acceptBtn = document.getElementById("manifestoAccept");
         const body = document.getElementById("manifestoText");
         const langToggle = document.getElementById("manifestoLangToggle");
-        const termsLink = document.getElementById("manifestoTermsLink");
-        const privacyLink = document.getElementById("manifestoPrivacyLink");
         const verifyLink = document.getElementById("manifestoVerifyLink");
         const supportBlock = document.getElementById("manifestoSupport");
         const applyManifestoText = () => {
@@ -65,7 +62,7 @@ export const auth = {
             body.innerHTML = lang.t(key) || lang.t("manifesto_body");
         };
         this.applyManifestoText = applyManifestoText;
-        if (!modal || !choice25 || !choice50) return;
+        if (!modal) return;
         modal.classList.add("active");
         modal.classList.remove("manifesto-full");
         if (supportBlock) supportBlock.classList.remove("active");
@@ -75,23 +72,19 @@ export const auth = {
         if (langToggle) {
             langToggle.onclick = () => lang.cycleLang();
         }
-        const acceptWithDuration = (minutes) => {
+        const acceptManifesto = () => {
             const text = document.getElementById("manifestoText");
             if (text) {
                 localStorage.setItem("skrv_manifest_text", text.innerText.trim());
             }
             localStorage.setItem("skrv_manifest_signed", "true");
             localStorage.setItem("skrv_manifest_signed_at", new Date().toISOString());
-            localStorage.setItem("lit_pomo_preset", String(minutes));
             modal.classList.remove("active");
             document.body.classList.remove("manifesto-open");
             this.runGatekeeper();
         };
-        this.acceptWithDuration = acceptWithDuration;
-        choice25.onclick = () => this.handleManifestoChoice(25);
-        choice50.onclick = () => this.handleManifestoChoice(50);
-        if (termsLink) termsLink.onclick = () => this.openTermsModal();
-        if (privacyLink) privacyLink.onclick = () => this.openPrivacyModal();
+        this.acceptWithDuration = acceptManifesto;
+        if (acceptBtn) acceptBtn.onclick = () => acceptManifesto();
         if (verifyLink) verifyLink.onclick = () => {
             const ev = document.getElementById("editorView");
             const bv = document.getElementById("booksView");

@@ -22,10 +22,48 @@ export const ui = {
             }
         };
         this.initTheme();
+        this.bindFaviconScheme();
         this.initMobile();
         this.initScrollHints();
+        this.bindClipboardMarker();
         this.bindMemoSanitizer();
         document.addEventListener("lang:changed", () => this.refreshDrawerTitle());
+    },
+    bindClipboardMarker() {
+        const handler = (e) => {
+            const target = e.target;
+            if (target && target.id === "memoArea") return;
+            const isInput = target && (target.tagName === "TEXTAREA" || target.tagName === "INPUT");
+            if (!isInput || !e.clipboardData) return;
+            const start = target.selectionStart ?? 0;
+            const end = target.selectionEnd ?? 0;
+            if (start === end) return;
+            const value = target.value || "";
+            const selected = value.slice(start, end);
+            e.preventDefault();
+            e.clipboardData.setData("text/plain", selected);
+            e.clipboardData.setData("text/x-skrv", "native");
+            if (e.type === "cut") {
+                target.value = value.slice(0, start) + value.slice(end);
+                const next = start;
+                if (typeof target.setSelectionRange === "function") {
+                    target.setSelectionRange(next, next);
+                }
+                target.dispatchEvent(new Event("input"));
+            }
+        };
+        document.addEventListener("copy", handler, true);
+        document.addEventListener("cut", handler, true);
+    },
+    bindFaviconScheme() {
+        if (!window.matchMedia) return;
+        const media = window.matchMedia("(prefers-color-scheme: dark)");
+        const onChange = () => this.updateFavicon();
+        if (media.addEventListener) {
+            media.addEventListener("change", onChange);
+        } else if (media.addListener) {
+            media.addListener(onChange);
+        }
     },
     initScrollHints() {
         const hud = this.elements.hud;
@@ -53,19 +91,42 @@ export const ui = {
     bindMemoSanitizer() {
         const memoArea = this.elements.memoArea;
         if (!memoArea) return;
+        const ensureMask = () => {
+            if (!memoArea._skrvMask || memoArea._skrvMask.length !== memoArea.value.length) {
+                memoArea._skrvMask = "n".repeat(memoArea.value.length);
+            }
+        };
+        const applyReplace = (start, end, insertLen, originChar) => {
+            ensureMask();
+            const mask = memoArea._skrvMask;
+            const insert = originChar ? originChar.repeat(insertLen) : "";
+            memoArea._skrvMask = mask.slice(0, start) + insert + mask.slice(end);
+        };
+        const diffRange = (prev, next) => {
+            let start = 0;
+            const prevLen = prev.length;
+            const nextLen = next.length;
+            while (start < prevLen && start < nextLen && prev[start] === next[start]) start += 1;
+            let endPrev = prevLen;
+            let endNext = nextLen;
+            while (endPrev > start && endNext > start && prev[endPrev - 1] === next[endNext - 1]) {
+                endPrev -= 1;
+                endNext -= 1;
+            }
+            return { start, end: endPrev, insertLen: endNext - start };
+        };
         const cleanText = (text) => {
             if (!text) return "";
             return text
                 .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "")
                 .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{1F1E6}-\u{1F1FF}\u{FE0F}\u{200D}]/gu, "");
         };
-        const applyClean = () => {
-            const clean = cleanText(memoArea.value);
-            if (clean !== memoArea.value) {
-                const pos = memoArea.selectionStart || 0;
-                memoArea.value = clean;
-                const next = Math.min(pos, clean.length);
-                memoArea.setSelectionRange(next, next);
+        const warnExternal = () => {
+            const msg = lang.t("copy_native_only") || "Conteúdo externo ignorado. Só o texto nativo foi copiado.";
+            if (window.skrvModal && typeof window.skrvModal.alert === "function") {
+                window.skrvModal.alert(msg);
+            } else {
+                alert(msg);
             }
         };
         memoArea.addEventListener("paste", (e) => {
@@ -79,9 +140,83 @@ export const ui = {
             memoArea.value = value.slice(0, start) + clean + value.slice(end);
             const cursor = start + clean.length;
             memoArea.setSelectionRange(cursor, cursor);
+            const nativeFlag = clip && clip.getData("text/x-skrv") === "native";
+            applyReplace(start, end, clean.length, nativeFlag ? "n" : "e");
+            memoArea._skrvSkipInput = true;
             memoArea.dispatchEvent(new Event("input"));
         });
-        memoArea.addEventListener("input", applyClean);
+        memoArea.addEventListener("beforeinput", (e) => {
+            memoArea._skrvPrevValue = memoArea.value;
+            memoArea._skrvLastInputType = e.inputType;
+        });
+        memoArea.addEventListener("input", () => {
+            if (memoArea._skrvSkipInput) {
+                memoArea._skrvSkipInput = false;
+                memoArea._skrvPrevValue = memoArea.value;
+                return;
+            }
+            const prev = memoArea._skrvPrevValue ?? "";
+            const next = memoArea.value || "";
+            if (prev !== next) {
+                const { start, end, insertLen } = diffRange(prev, next);
+                applyReplace(start, end, insertLen, "n");
+            }
+            memoArea._skrvPrevValue = memoArea.value;
+        });
+        memoArea.addEventListener("copy", (e) => {
+            const start = memoArea.selectionStart || 0;
+            const end = memoArea.selectionEnd || 0;
+            if (start === end) return;
+            ensureMask();
+            const mask = memoArea._skrvMask;
+            const value = memoArea.value || "";
+            let native = "";
+            let hasExternal = false;
+            for (let i = start; i < end; i += 1) {
+                if (mask[i] === "e") {
+                    hasExternal = true;
+                } else {
+                    native += value[i];
+                }
+            }
+            if (!e.clipboardData) return;
+            e.preventDefault();
+            e.clipboardData.setData("text/plain", native);
+            if (native) e.clipboardData.setData("text/x-skrv", "native");
+            if (hasExternal) warnExternal();
+        });
+        memoArea.addEventListener("cut", (e) => {
+            const start = memoArea.selectionStart || 0;
+            const end = memoArea.selectionEnd || 0;
+            if (start === end) return;
+            ensureMask();
+            const mask = memoArea._skrvMask;
+            const value = memoArea.value || "";
+            let native = "";
+            let keptExternal = "";
+            let hasExternal = false;
+            for (let i = start; i < end; i += 1) {
+                if (mask[i] === "e") {
+                    hasExternal = true;
+                    keptExternal += value[i];
+                } else {
+                    native += value[i];
+                }
+            }
+            if (!e.clipboardData) return;
+            e.preventDefault();
+            e.clipboardData.setData("text/plain", native);
+            if (native) e.clipboardData.setData("text/x-skrv", "native");
+            if (hasExternal) warnExternal();
+            const before = value.slice(0, start);
+            const after = value.slice(end);
+            memoArea.value = before + keptExternal + after;
+            memoArea._skrvMask = (mask.slice(0, start)) + ("e".repeat(keptExternal.length)) + (mask.slice(end));
+            const cursor = start + keptExternal.length;
+            memoArea.setSelectionRange(cursor, cursor);
+            memoArea._skrvPrevValue = memoArea.value;
+            memoArea.dispatchEvent(new Event("input"));
+        });
     },
 
     // --- POMODORO SOBERANO (TIMESTAMP) ---
@@ -278,6 +413,19 @@ export const ui = {
     tryUnlockPomodoro() {},
 
     // --- TEMA E UI (Mantido inalterado, apenas encapsulado corretamente) ---
+    updateFavicon() {
+        const favicon = document.getElementById("appFavicon");
+        if (!favicon) return;
+        const lightIcon = "src/assets/icons/logoEskrev-favicon-dark.svg";
+        const darkIcon = "src/assets/icons/logoEskrev-favicon-cream.svg";
+        const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const useLight = !prefersDark;
+        const next = useLight ? lightIcon : darkIcon;
+        if (favicon.getAttribute("href") !== next) {
+            favicon.setAttribute("href", next);
+        }
+    },
+
     initTheme() {
         const allowed = ["paper", "chumbo", "study"];
         let currentTheme = localStorage.getItem("lit_theme_pref") || "paper";
@@ -291,6 +439,7 @@ export const ui = {
         if (!allowed.includes(currentTheme)) currentTheme = "paper";
         document.body.setAttribute("data-theme", currentTheme);
         localStorage.setItem("lit_theme_pref", currentTheme);
+        this.updateFavicon();
     },
 
     toggleTheme() {
@@ -301,6 +450,7 @@ export const ui = {
         const newTheme = themes[nextIndex];
         document.body.setAttribute("data-theme", newTheme);
         localStorage.setItem("lit_theme_pref", newTheme);
+        this.updateFavicon();
         const verifyFrame = document.getElementById("verifyFrame");
         if (verifyFrame && verifyFrame.contentWindow) {
             verifyFrame.contentWindow.postMessage({ type: "theme", value: newTheme }, window.location.origin);
@@ -339,7 +489,7 @@ export const ui = {
             if (panels.notes) panels.notes.style.display = "block";
             drawer.classList.add("mobile-all");
         } else if (panels[resolvedPanel]) {
-            panels[resolvedPanel].style.display = "block";
+            panels[resolvedPanel].style.display = resolvedPanel === "memo" ? "flex" : "block";
             drawer.classList.remove("mobile-all");
         }
         drawer.classList.add("open");

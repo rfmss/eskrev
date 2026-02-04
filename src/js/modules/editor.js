@@ -7,9 +7,9 @@ import { ptPosLexicon } from './pt_pos_lexicon.js';
 export const editorFeatures = {
     editor: null,
     fontList: [
-        { className: "font-inter", baseSize: 20 },
-        { className: "font-serif", baseSize: 21 },
-        { className: "font-mono", baseSize: 20 }
+        { className: "font-inter", baseSize: 19 },
+        { className: "font-serif", baseSize: 20 },
+        { className: "font-mono", baseSize: 19 }
     ],
     lastSearchValue: "",
     statsRaf: null,
@@ -351,15 +351,49 @@ export const editorFeatures = {
                 alert(msg);
             }
         };
+        const isNativeClipboard = (clip) => {
+            if (!clip) return false;
+            return clip.getData("text/x-skrv") === "native";
+        };
+        this.editor.addEventListener("copy", (e) => {
+            const sel = window.getSelection();
+            const text = sel ? sel.toString() : "";
+            if (e.clipboardData) {
+                e.preventDefault();
+                e.clipboardData.setData("text/plain", text);
+                e.clipboardData.setData("text/x-skrv", "native");
+            }
+        });
+        this.editor.addEventListener("cut", (e) => {
+            const sel = window.getSelection();
+            const text = sel ? sel.toString() : "";
+            if (e.clipboardData) {
+                e.preventDefault();
+                e.clipboardData.setData("text/plain", text);
+                e.clipboardData.setData("text/x-skrv", "native");
+                document.execCommand("delete");
+            }
+        });
         this.editor.addEventListener("beforeinput", (e) => {
             if (e.inputType === "insertFromPaste" || e.inputType === "insertFromDrop") {
-                e.preventDefault();
-                notifyPasteBlocked();
+                const clip = e.clipboardData || window.clipboardData;
+                if (!isNativeClipboard(clip)) {
+                    e.preventDefault();
+                    notifyPasteBlocked();
+                }
             }
         });
         this.editor.addEventListener("paste", (e) => {
-            e.preventDefault();
-            notifyPasteBlocked();
+            const clip = e.clipboardData || window.clipboardData;
+            if (isNativeClipboard(clip)) {
+                e.preventDefault();
+                const text = clip ? clip.getData("text/plain") : "";
+                const clean = this.sanitizePlainText(text);
+                document.execCommand("insertText", false, clean);
+            } else {
+                e.preventDefault();
+                notifyPasteBlocked();
+            }
         });
         this.editor.addEventListener("drop", (e) => {
             e.preventDefault();

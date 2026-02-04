@@ -6,7 +6,22 @@
   display: flex; align-items: center; gap: 15px; z-index: 10; height: 30px; overflow: hidden;
   cursor: pointer;
 }
-.logo-area img { height: 26px; flex-shrink: 0; }
+.logo-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid var(--color-accent-dim);
+  background: transparent;
+  color: var(--color-accent);
+  font-size: 18px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+  cursor: pointer;
+}
+.logo-dot:hover { opacity: 1; }
 
 .hud {
   position: absolute; left: 0; top: 80px; bottom: 80px; width: var(--hud-w);
@@ -16,7 +31,7 @@
   /* Sem borda lateral dura, apenas o fim do background */
   overflow-y: auto;
   overscroll-behavior: contain;
-  opacity: 0.45;
+  opacity: 0.55;
 }
 .hud-separator {
   width: 18px;
@@ -44,7 +59,7 @@
 .drawer.open { width: var(--drawer-w); }
 .drawer-header { height: 50px; border-bottom: var(--border-style); display: flex; align-items: center; justify-content: center; padding: 0 15px; flex-shrink: 0; position: relative; }
 #closeDrawer { position: absolute; right: 12px; }
-.drawer-content { flex: 1; padding: 14px; overflow-y: auto; opacity: 0; transition: opacity 0.2s; }
+.drawer-content { flex: 1; padding: 16px; overflow-y: auto; opacity: 0; transition: opacity 0.2s; }
 .drawer.open .drawer-content { opacity: 1; }
 .drawer-content#panelMemo { display: flex; flex-direction: column; gap: 10px; }
 .mobile-memo-actions { display: none; margin-top: 12px; }
@@ -127,8 +142,8 @@ body.mobile-typing .mobile-trigger {
     gap: 14px;
 }
 .drawer-section-title {
-    font-size: 10px;
-    letter-spacing: 2px;
+    font-size: 11px;
+    letter-spacing: 1.6px;
     text-transform: uppercase;
     color: var(--color-muted);
 }
@@ -151,6 +166,9 @@ body.mobile-typing .mobile-trigger {
     grid-template-columns: 20px 1fr auto;
     gap: 8px;
     align-items: center;
+}
+.drawer-search-row .search-input {
+    border: none;
 }
 .drawer-search-actions {
     display: flex;
@@ -176,7 +194,7 @@ body.mobile-typing .mobile-trigger {
 /* PAINEL CENTRAL RESPONSIVO */
 .panel {
   position: absolute; left: 0; right: 0; top: 60px; bottom: 80px;
-  padding: 0 20px; overflow-y: auto; overflow-x: hidden;
+  padding: 0 28px; overflow-y: auto; overflow-x: hidden;
   display: flex; justify-content: center; z-index: 1;
   background: transparent;
 }
@@ -208,12 +226,11 @@ body.mobile-typing .mobile-trigger {
 
 #editorWrap {
   position: relative;
-  width: 52vw;
-  max-width: 860px;
+  width: min(70ch, 80vw);
+  max-width: var(--content-max);
   min-height: 80vh;
   margin-top: 0;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 0 8px;
   overflow: visible;
 }
 
@@ -221,7 +238,7 @@ body.mobile-typing .mobile-trigger {
   width: 100%;
   min-height: 80vh;
   outline: none; caret-color: var(--color-accent);
-  padding-bottom: 180px; line-height: 1.8;
+  padding-bottom: 180px; line-height: 1.65;
   white-space: pre-wrap; word-break: break-word; overflow-wrap: break-word;
   position: relative;
   z-index: 1;
