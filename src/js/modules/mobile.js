@@ -24,6 +24,20 @@ const downloadText = (text, filename, mime) => {
 const normalizeTag = (tag) => String(tag || "").trim().replace(/^#/, "").toLowerCase();
 const normalizeFolder = (folder) => String(folder || "").trim();
 const getActiveProject = () => (store.getActive && store.getActive());
+const updateMobileNotesTitle = () => {
+    const titleEl = document.getElementById("mobileNotesSection");
+    const badge = document.getElementById("mobileProjectBadge");
+    if (!titleEl) return;
+    const active = getActiveProject();
+    if (active && active.name) {
+        const template = lang.t("mobile_notes_title_project") || "NOTAS de {project}";
+        titleEl.textContent = template.replace("{project}", active.name);
+        if (badge) badge.style.display = "inline-block";
+    } else {
+        titleEl.textContent = lang.t("mobile_notes_title");
+        if (badge) badge.style.display = "none";
+    }
+};
 
 const buildNoteExcerpt = (text) => {
     const clean = String(text || "").replace(/\s+/g, " ").trim();
@@ -198,12 +212,17 @@ const renderMobileProjects = () => {
     const active = getActiveProject();
     if (projectQr) projectQr.disabled = !active;
     if (projectJson) projectJson.disabled = !active;
+    if (!active && projects.length) {
+        store.setActive(projects[0].id);
+    }
+    updateMobileNotesTitle();
     updateMobileViewCounts();
 };
 
 const renderMobileNotes = () => {
     const list = document.getElementById("mobileMemoList");
     if (!list) return;
+    updateMobileNotesTitle();
     let notes = [...mobileNotesCache];
     const search = String(mobileNotesFilter.search || "").trim();
     const folder = normalizeFolder(mobileNotesFilter.folder);
@@ -251,7 +270,10 @@ const renderMobileNotes = () => {
             const tags = document.getElementById("mobileMemoTags");
             const folderInput = document.getElementById("mobileMemoFolder");
             if (input) input.value = note.text || "";
-            if (tags) tags.value = (note.tags || []).filter(tag => normalizeTag(tag) !== "mobile").join(", ");
+            if (tags) {
+                const base = (note.tags || []).filter(tag => normalizeTag(tag) !== "mobile");
+                tags.value = base.length ? `${base.join(", ")}, #mobile` : "#mobile";
+            }
             if (folderInput) folderInput.value = note.folder || "";
             mobileEditingId = note.id;
         };
@@ -289,8 +311,7 @@ const renderMobileNotes = () => {
 
 const addOrUpdateMobileNote = (text, tagsRaw, folderRaw) => {
     const baseTags = tagsRaw.split(",").map(normalizeTag).filter(Boolean).filter(tag => tag !== "mobile");
-    const isMobile = window.innerWidth <= 900;
-    const tags = isMobile ? Array.from(new Set([...baseTags, "mobile"])) : baseTags;
+    const tags = Array.from(new Set([...baseTags, "mobile"]));
     const folder = normalizeFolder(folderRaw);
     const now = new Date().toISOString();
     if (mobileEditingId) {
@@ -344,6 +365,7 @@ const initMobileMemos = () => {
     const viewItems = document.querySelectorAll(".mobile-view-item");
     const addBtn = document.getElementById("btnAddMobileMemo");
     if (!memoInput) return;
+    updateMobileNotesTitle();
     const cleanText = (text) => {
         if (!text) return "";
         return text
@@ -359,6 +381,20 @@ const initMobileMemos = () => {
             memoInput.setSelectionRange(next, next);
         }
     };
+    const cleanTagsText = (value) => {
+        const clean = cleanText(value || "");
+        return clean.replace(/[\n\r]+/g, " ").trim();
+    };
+    const enforceMobileTag = () => {
+        if (!memoTags) return;
+        const tags = cleanTagsText(memoTags.value)
+            .split(",")
+            .map(normalizeTag)
+            .filter(Boolean)
+            .filter(tag => tag !== "mobile");
+        const next = tags.length ? `${tags.join(", ")}, #mobile` : "#mobile";
+        memoTags.value = next;
+    };
     memoInput.addEventListener("paste", (e) => {
         e.preventDefault();
         const clip = e.clipboardData || window.clipboardData;
@@ -373,6 +409,13 @@ const initMobileMemos = () => {
         memoInput.dispatchEvent(new Event("input"));
     });
     memoInput.addEventListener("input", applyClean);
+    if (memoTags) {
+        memoTags.addEventListener("input", () => {
+            memoTags.value = cleanTagsText(memoTags.value);
+            enforceMobileTag();
+        });
+        enforceMobileTag();
+    }
 
 
     mobileNotesCache = loadMobileNotes();
@@ -414,7 +457,10 @@ const initMobileMemos = () => {
             if (!text) return;
             addOrUpdateMobileNote(text, memoTags ? memoTags.value : "", memoFolder ? memoFolder.value : "");
             memoInput.value = "";
-            if (memoTags) memoTags.value = "";
+            if (memoTags) {
+                memoTags.value = "";
+                enforceMobileTag();
+            }
             if (memoFolder) memoFolder.value = "";
             renderMobileNotes();
             renderMobileFolders();

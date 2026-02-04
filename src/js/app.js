@@ -401,12 +401,14 @@ function setupEventListeners() {
         folder: "",
         tag: "",
         overlayType: "",
-        overlayValue: ""
+        overlayValue: "",
+        draftId: null
     };
     const NOTES_KEY = "skrv_mobile_notes_v1";
     const NOTES_KEY_LEGACY = "tot_mobile_notes_v1";
     const NOTES_LIMIT = 200;
     const FOLDERS_LIMIT = 30;
+    const PINNED_LIMIT = 5;
     const notesCache = () => {
         if (Array.isArray(store.data.mobileNotes)) return store.data.mobileNotes;
         try {
@@ -469,9 +471,24 @@ function setupEventListeners() {
     const buildNoteCard = (note) => {
         const card = document.createElement("div");
         card.className = "notes-card";
+        if (note.pinned) card.classList.add("is-pinned");
+        const header = document.createElement("div");
+        header.className = "notes-card-header";
         const title = document.createElement("div");
         title.className = "notes-card-title";
         title.textContent = noteTitle(note);
+        const pinBtn = document.createElement("button");
+        pinBtn.type = "button";
+        pinBtn.className = "btn-icon notes-pin-btn" + (note.pinned ? " active" : "");
+        if (note.pinned) {
+            pinBtn.innerHTML = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-push-pin-simple-fill"></use></svg>`;
+        } else {
+            pinBtn.innerHTML = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-push-pin-simple"></use></svg>`;
+        }
+        pinBtn.onclick = (event) => {
+            event.stopPropagation();
+            toggleNotePin(note.id);
+        };
         const meta = document.createElement("div");
         meta.className = "notes-card-meta";
         meta.textContent = note.folder ? `${note.folder} · ${formatDate(note.updatedAt || note.createdAt)}` : formatDate(note.updatedAt || note.createdAt);
@@ -486,7 +503,9 @@ function setupEventListeners() {
             span.textContent = `#${normalizeTag(tag)}`;
             tags.appendChild(span);
         });
-        card.appendChild(title);
+        header.appendChild(title);
+        header.appendChild(pinBtn);
+        card.appendChild(header);
         card.appendChild(meta);
         if (excerpt.textContent) card.appendChild(excerpt);
         if (tags.childElementCount) card.appendChild(tags);
@@ -507,7 +526,17 @@ function setupEventListeners() {
         const foldersWrap = document.getElementById("notesFoldersWrap");
         const foldersEl = document.getElementById("notesFolders");
         if (foldersWrap && foldersEl) {
-            const folders = Array.from(new Set(notesAll.map(n => normalizeFolder(n.folder)).filter(Boolean)));
+            const folderMeta = new Map();
+            notesAll.forEach(n => {
+                const folder = normalizeFolder(n.folder);
+                if (!folder) return;
+                const stamp = new Date(n.updatedAt || n.createdAt || 0).getTime();
+                const prev = folderMeta.get(folder) || 0;
+                if (stamp > prev) folderMeta.set(folder, stamp);
+            });
+            const folders = Array.from(folderMeta.entries())
+                .sort((a, b) => b[1] - a[1])
+                .map(([folder]) => folder);
             const folderList = document.getElementById("notesFolderList");
             if (folderList) {
                 folderList.innerHTML = "";
@@ -547,9 +576,28 @@ function setupEventListeners() {
         const tagsWrap = document.getElementById("notesTagsWrap");
         const tagsEl = document.getElementById("notesTagsList");
         if (tagsWrap && tagsEl) {
-            const tagSet = new Set();
-            notesAll.forEach(n => (n.tags || []).forEach(tag => tagSet.add(normalizeTag(tag))));
-            const tags = Array.from(tagSet);
+            const tagMeta = new Map();
+            notesAll.forEach(n => {
+                const stamp = new Date(n.updatedAt || n.createdAt || 0).getTime();
+                (n.tags || []).forEach(tag => {
+                    const key = normalizeTag(tag);
+                    if (!key) return;
+                    const prev = tagMeta.get(key) || 0;
+                    if (stamp > prev) tagMeta.set(key, stamp);
+                });
+            });
+            const tags = Array.from(tagMeta.entries())
+                .sort((a, b) => b[1] - a[1])
+                .map(([tag]) => tag);
+            const tagsList = document.getElementById("notesTagsDatalist");
+            if (tagsList) {
+                tagsList.innerHTML = "";
+                tags.forEach(tag => {
+                    const option = document.createElement("option");
+                    option.value = `#${tag}`;
+                    tagsList.appendChild(option);
+                });
+            }
             if (tags.length) {
                 tagsWrap.style.display = "grid";
                 tagsEl.innerHTML = "";
@@ -582,7 +630,11 @@ function setupEventListeners() {
             return;
         }
         empty.style.display = "none";
-        notes.forEach(note => {
+        const ordered = [
+            ...notes.filter(n => n.pinned),
+            ...notes.filter(n => !n.pinned)
+        ];
+        ordered.forEach(note => {
             list.appendChild(buildNoteCard(note));
         });
     };
@@ -613,6 +665,7 @@ function setupEventListeners() {
         notesState.overlayValue = "";
     };
     const setNotesStage = (stage) => {
+        if (stage !== "edit") finalizeDraftIfNeeded();
         notesState.stage = stage;
         document.querySelectorAll(".notes-stage").forEach(el => el.classList.remove("is-active"));
         const target = document.querySelector(`.notes-stage-${stage}`);
@@ -626,18 +679,70 @@ function setupEventListeners() {
         const note = notesCache().find(n => n.id === id);
         if (!note) return;
         notesState.activeId = id;
+        notesState.draftId = null;
         closeNotesOverlay();
         const titleEl = document.getElementById("notesTitle");
         const bodyEl = document.getElementById("notesBody");
         const tagsEl = document.getElementById("notesTags");
         const folderEl = document.getElementById("notesFolder");
         const metaEl = document.getElementById("notesMeta");
+        const pinToggle = document.getElementById("notesPinToggle");
         if (titleEl) titleEl.value = note.title || "";
         if (bodyEl) bodyEl.value = note.text || "";
         if (tagsEl) tagsEl.value = (note.tags || []).map(t => `#${normalizeTag(t)}`).join(", ");
         if (folderEl) folderEl.value = note.folder || "";
         if (metaEl) metaEl.textContent = `${lang.t("notes_updated")}: ${formatDate(note.updatedAt || note.createdAt)}`;
+        if (pinToggle) {
+            pinToggle.classList.toggle("active", !!note.pinned);
+            if (note.pinned) {
+                pinToggle.innerHTML = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-push-pin-simple-fill"></use></svg>`;
+            } else {
+                pinToggle.innerHTML = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-push-pin-simple"></use></svg>`;
+            }
+        }
         setNotesStage("edit");
+    };
+    const readNoteInputs = () => {
+        const titleEl = document.getElementById("notesTitle");
+        const bodyEl = document.getElementById("notesBody");
+        const tagsEl = document.getElementById("notesTags");
+        const folderEl = document.getElementById("notesFolder");
+        const title = titleEl ? titleEl.value.trim() : "";
+        const text = bodyEl ? bodyEl.value : "";
+        const tags = tagsEl ? tagsEl.value.split(",").map(normalizeTag).filter(Boolean) : [];
+        const folder = folderEl ? normalizeFolder(folderEl.value) : "";
+        return { title, text, tags, folder };
+    };
+    const hasNoteContent = ({ title, text, tags, folder }) => {
+        return Boolean(`${title}${text}${folder}${(tags || []).join("")}`.trim());
+    };
+    const finalizeDraftIfNeeded = () => {
+        if (!notesState.draftId) return;
+        const data = readNoteInputs();
+        if (!hasNoteContent(data)) {
+            notesState.draftId = null;
+            return;
+        }
+        const notes = notesCache();
+        if (notes.length >= NOTES_LIMIT) {
+            if (window.skrvModal?.alert) window.skrvModal.alert(lang.t("mobile_limit_notes"));
+            else alert(lang.t("mobile_limit_notes"));
+            return;
+        }
+        const note = {
+            id: notesState.draftId,
+            title: data.title,
+            text: data.text,
+            tags: data.tags,
+            folder: data.folder,
+            pinned: false,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+        };
+        notes.unshift(note);
+        saveNotes(notes);
+        notesState.activeId = note.id;
+        notesState.draftId = null;
     };
     const createNewNote = (preset = {}) => {
         const notes = notesCache();
@@ -656,32 +761,59 @@ function setupEventListeners() {
             }
         }
         const presetTags = Array.isArray(preset.tags) ? preset.tags.map(normalizeTag).filter(Boolean) : [];
-        const note = {
-            id: `note_${Date.now()}`,
-            title: "",
-            text: "",
-            tags: presetTags,
-            folder: presetFolder,
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString()
-        };
-        notes.unshift(note);
-        saveNotes(notes);
-        openNoteEdit(note.id);
-        renderNotesList();
-    };
-    const updateActiveNote = () => {
-        const notes = notesCache();
-        const note = notes.find(n => n.id === notesState.activeId);
-        if (!note) return;
+        notesState.activeId = null;
+        notesState.draftId = `note_${Date.now()}`;
+        closeNotesOverlay();
         const titleEl = document.getElementById("notesTitle");
         const bodyEl = document.getElementById("notesBody");
         const tagsEl = document.getElementById("notesTags");
         const folderEl = document.getElementById("notesFolder");
-        const title = titleEl ? titleEl.value.trim() : "";
-        const text = bodyEl ? bodyEl.value : "";
-        const tags = tagsEl ? tagsEl.value.split(",").map(normalizeTag).filter(Boolean) : [];
-        const folder = folderEl ? normalizeFolder(folderEl.value) : "";
+        const metaEl = document.getElementById("notesMeta");
+        const pinToggle = document.getElementById("notesPinToggle");
+        if (titleEl) titleEl.value = "";
+        if (bodyEl) bodyEl.value = "";
+        if (tagsEl) tagsEl.value = presetTags.map(t => `#${t}`).join(", ");
+        if (folderEl) folderEl.value = presetFolder || "";
+        if (metaEl) metaEl.textContent = "";
+        if (pinToggle) pinToggle.classList.remove("active");
+        setNotesStage("edit");
+    };
+    const toggleNotePin = (id) => {
+        const notes = notesCache();
+        const note = notes.find(n => n.id === id);
+        if (!note) return;
+        const pinnedCount = notes.filter(n => n.pinned).length;
+        if (!note.pinned && pinnedCount >= PINNED_LIMIT) {
+            if (window.skrvModal?.alert) window.skrvModal.alert(lang.t("mobile_limit_pins"));
+            else alert(lang.t("mobile_limit_pins"));
+            return;
+        }
+        note.pinned = !note.pinned;
+        note.updatedAt = new Date().toISOString();
+        saveNotes(notes);
+        if (notesState.activeId === id) {
+            const pinToggle = document.getElementById("notesPinToggle");
+            if (pinToggle) {
+                pinToggle.classList.toggle("active", note.pinned);
+                if (note.pinned) {
+                    pinToggle.innerHTML = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-push-pin-simple-fill"></use></svg>`;
+                } else {
+                    pinToggle.innerHTML = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-push-pin-simple"></use></svg>`;
+                }
+            }
+        }
+        renderNotesList();
+    };
+    const updateActiveNote = () => {
+        if (notesState.draftId) {
+            const data = readNoteInputs();
+            if (!hasNoteContent(data)) return;
+            finalizeDraftIfNeeded();
+        }
+        const notes = notesCache();
+        const note = notes.find(n => n.id === notesState.activeId);
+        if (!note) return;
+        const { title, text, tags, folder } = readNoteInputs();
         if (folder) {
             const folders = Array.from(new Set(notes.map(n => normalizeFolder(n.folder)).filter(Boolean)));
             if (!folders.includes(folder) && folders.length >= FOLDERS_LIMIT) {
@@ -720,6 +852,7 @@ function setupEventListeners() {
     };
     const closeNotesModal = () => {
         if (!notesModal) return;
+        finalizeDraftIfNeeded();
         const overlay = document.getElementById("notesOverlay");
         if (overlay) {
             overlay.classList.remove("active");
@@ -759,6 +892,7 @@ function setupEventListeners() {
     const notesEdit = document.getElementById("notesEdit");
     const notesBackToPreview = document.getElementById("notesBackToPreview");
     const notesDelete = document.getElementById("notesDelete");
+    const notesPinToggle = document.getElementById("notesPinToggle");
     const notesTitle = document.getElementById("notesTitle");
     const notesBody = document.getElementById("notesBody");
     const notesTags = document.getElementById("notesTags");
@@ -787,6 +921,11 @@ function setupEventListeners() {
             notesState.activeId = null;
             renderNotesList();
             setNotesStage("list");
+        };
+    }
+    if (notesPinToggle) {
+        notesPinToggle.onclick = () => {
+            if (notesState.activeId) toggleNotePin(notesState.activeId);
         };
     }
     if (notesOverlayClose) notesOverlayClose.onclick = () => closeNotesOverlay();

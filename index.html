@@ -25,7 +25,7 @@
         </div>
         <div class="setup-form">
             <p data-i18n="setup_project_label" class="help-text">Nome do projeto</p>
-            <input type="text" id="setupProjectName" class="search-input" autocomplete="off" data-i18n-ph="setup_project_ph" placeholder="opcional">
+            <input type="text" id="setupProjectName" class="search-input" autocomplete="off" data-i18n-ph="setup_project_ph" placeholder="Nome do projeto">
             <p data-i18n="create_pass" class="help-text">Crie a senha da sessão</p>
             <div class="setup-field">
                 <input type="password" id="setupPass1" class="search-input" data-eye-input="true">
@@ -43,7 +43,11 @@
                     </svg>
                 </button>
             </div>
-            <button id="btnCreateSession" class="btn-full" data-i18n="start_btn">Criar sessão local</button>
+            <div class="setup-choices">
+                <button id="setupPomo25" class="btn-half" data-duration="25" data-i18n="pomo_25">25 MIN</button>
+                <button id="setupPomo50" class="btn-half" data-duration="50" data-i18n="pomo_55">50 MIN</button>
+            </div>
+            <div id="setupMsg" class="help-text" aria-live="polite"></div>
             <div class="manifesto-terms-note setup-password-note" data-i18n-html="setup_password_note">Com essa senha, você controla esta sessão: trava, exporta e apaga.<br>O que for exportado funciona em qualquer outra.</div>
         </div>
     </div>
@@ -255,7 +259,7 @@
             <div class="mobile-memo">
                 <div class="mobile-memo-header">
                     <div class="mobile-logo">.skr</div>
-                    <div class="mobile-title">.skr Mobile</div>
+                    <div class="mobile-title">.skr Mobile <span id="mobileProjectBadge" class="mobile-project-badge" data-i18n="mobile_project_active" style="display:none;">ativo</span></div>
                 </div>
 
                 <input id="mobileMemoSearch" class="mobile-memo-search" data-i18n-ph="mobile_memo_search" placeholder="Buscar ou #tag" />
@@ -340,11 +344,13 @@
                 <div class="notes-stage notes-stage-edit" data-stage="edit">
                     <div class="notes-stage-header">
                         <button id="notesBackToPreview" class="btn-icon" data-i18n-title="notes_back" aria-label="VOLTAR"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-caret-left"></use></svg></button>
+                        <button id="notesPinToggle" class="btn-icon notes-pin-toggle" data-i18n-title="notes_pin" aria-label="FIXAR"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-push-pin-simple"></use></svg></button>
                         <button id="notesDelete" class="btn-icon danger" data-i18n-title="notes_delete" aria-label="APAGAR"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-trash"></use></svg></button>
                     </div>
                     <div class="notes-edit">
                         <input id="notesTitle" class="notes-input" data-i18n-ph="notes_title_ph" placeholder="Titulo" />
-                        <input id="notesTags" class="notes-input" data-i18n-ph="notes_tags_ph" placeholder="Tags (#tag, #outra)" />
+                        <input id="notesTags" class="notes-input" list="notesTagsDatalist" data-i18n-ph="notes_tags_ph" placeholder="Tags (#tag, #outra)" />
+                        <datalist id="notesTagsDatalist"></datalist>
                         <input id="notesFolder" class="notes-input" list="notesFolderList" data-i18n-ph="notes_folder_ph" placeholder="Pasta (opcional)" />
                         <datalist id="notesFolderList"></datalist>
                         <textarea id="notesBody" class="notes-textarea" data-i18n-ph="notes_body_ph" placeholder="Texto..."></textarea>

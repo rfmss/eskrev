@@ -120,34 +120,78 @@ export const auth = {
             setupLangToggle.onclick = () => lang.cycleLang();
         }
 
-        // Criação de Sessão
-        document.getElementById('btnCreateSession').onclick = async () => {
-            const p1 = document.getElementById('setupPass1').value;
-            const p2 = document.getElementById('setupPass2').value;
-            if (p1 && p1 === p2 && p1.trim() !== "") {
-                localStorage.setItem('lit_auth_key', p1);
-                const projectInput = document.getElementById('setupProjectName');
-                const projectName = projectInput ? projectInput.value.trim() : "";
-                if (projectName) {
-                    const active = store.getActive();
-                    if (active && active.id) {
-                        store.renameProject(active.id, projectName);
-                    } else {
-                        store.createProject(projectName);
-                    }
-                }
-                const preset = parseInt(localStorage.getItem("lit_pomo_preset"), 10);
-                if (Number.isFinite(preset) && preset > 0) {
-                    localStorage.removeItem("lit_pomo_preset");
-                    ui.startWork(preset);
-                } else {
-                    localStorage.setItem('lit_pomo_prompt', 'true');
-                }
-                this.unlock();
-            } else {
-                if (window.skrvModal) await window.skrvModal.alert(lang.t("reset_invalid"));
+        const showSetupError = (message) => {
+            const msg = document.getElementById("setupMsg");
+            if (msg) {
+                msg.textContent = message || "";
+                msg.style.color = "#ff4444";
             }
         };
+        const clearSetupError = () => showSetupError("");
+        const updateSetupButtons = () => {
+            const projectInput = document.getElementById('setupProjectName');
+            const p1 = document.getElementById('setupPass1');
+            const p2 = document.getElementById('setupPass2');
+            const valid = Boolean(
+                projectInput && projectInput.value.trim() &&
+                p1 && p1.value.trim() &&
+                p2 && p2.value.trim() &&
+                p1.value === p2.value
+            );
+            document.querySelectorAll("#viewSetup [data-duration]").forEach((btn) => {
+                btn.disabled = !valid;
+            });
+        };
+        const createSession = (duration) => {
+            const projectInput = document.getElementById('setupProjectName');
+            const projectName = projectInput ? projectInput.value.trim() : "";
+            const p1 = document.getElementById('setupPass1').value;
+            const p2 = document.getElementById('setupPass2').value;
+            if (!projectName) {
+                showSetupError(lang.t("setup_error_name_required"));
+                return;
+            }
+            if (!p1 || !p1.trim()) {
+                showSetupError(lang.t("setup_error_pass_required"));
+                return;
+            }
+            if (p1 !== p2) {
+                showSetupError(lang.t("setup_error_pass_mismatch"));
+                return;
+            }
+            clearSetupError();
+            localStorage.setItem('lit_auth_key', p1);
+            const active = store.getActive();
+            if (active && active.id) {
+                store.renameProject(active.id, projectName);
+            } else {
+                store.createProject(projectName);
+            }
+            if (Number.isFinite(duration) && duration > 0) {
+                ui.startWork(duration);
+            }
+            this.unlock();
+        };
+        const setupPomoButtons = document.querySelectorAll("#viewSetup [data-duration]");
+        setupPomoButtons.forEach((btn) => {
+            btn.onclick = () => {
+                const duration = parseInt(btn.getAttribute("data-duration"), 10);
+                createSession(duration);
+            };
+        });
+        updateSetupButtons();
+        const setupInputs = [
+            document.getElementById('setupProjectName'),
+            document.getElementById('setupPass1'),
+            document.getElementById('setupPass2')
+        ];
+        setupInputs.forEach((input) => {
+            if (!input) return;
+            input.addEventListener("input", () => {
+                clearSetupError();
+                updateSetupButtons();
+            });
+        });
 
         // Lógica de Desbloqueio
         const tryUnlock = () => {
@@ -483,8 +527,10 @@ export const auth = {
         document.getElementById('viewLock').style.display = 'none';
         const projectInput = document.getElementById('setupProjectName');
         if (projectInput) projectInput.value = "";
+        const msg = document.getElementById("setupMsg");
+        if (msg) msg.textContent = "";
         setTimeout(() => {
-            const input = document.getElementById('setupPass1');
+            const input = document.getElementById('setupProjectName');
             if (input) input.focus();
         }, 100);
     },
