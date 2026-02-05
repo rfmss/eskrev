@@ -1,0 +1,52 @@
+{
+  "personas": [
+    {
+      "id": "conto",
+      "label": "persona_conto",
+      "templates": [
+        { "id": "conto-curto", "label": "template_conto_curto", "file": "content/templates/conto-curto.md" }
+      ]
+    },
+    {
+      "id": "romance",
+      "label": "persona_romance",
+      "templates": [
+        { "id": "romance-keypoints", "label": "template_romance_keypoints", "file": "content/templates/romance-keypoints.md" },
+        { "id": "romance-capitulo", "label": "template_romance_capitulo", "file": "content/templates/romance-capitulo.md" }
+      ]
+    },
+    {
+      "id": "roteiro",
+      "label": "persona_roteiro",
+      "templates": [
+        { "id": "roteiro-filme", "label": "template_roteiro_filme", "file": "content/templates/roteiro-filme.md" },
+        { "id": "roteiro-tv", "label": "template_roteiro_tv", "file": "content/templates/roteiro-tv.md" },
+        { "id": "roteiro-novela", "label": "template_roteiro_novela", "file": "content/templates/roteiro-novela.md" }
+      ]
+    },
+    {
+      "id": "ensaio",
+      "label": "persona_ensaio",
+      "templates": [
+        { "id": "ensaio-cronica", "label": "template_ensaio_cronica", "file": "content/templates/ensaio-cronica.md" },
+        { "id": "ensaio-pessoal", "label": "template_ensaio_pessoal", "file": "content/templates/ensaio-pessoal.md" },
+        { "id": "ensaio-opiniao", "label": "template_ensaio_opiniao", "file": "content/templates/ensaio-opiniao.md" }
+      ]
+    },
+    {
+      "id": "universitario",
+      "label": "persona_universitario",
+      "templates": [
+        { "id": "universitario-abnt", "label": "template_universitario_abnt", "file": "content/templates/universitario-abnt.md" },
+        { "id": "universitario-artigo", "label": "template_universitario_artigo", "file": "content/templates/universitario-artigo.md" }
+      ]
+    },
+    {
+      "id": "enem",
+      "label": "persona_enem",
+      "templates": [
+        { "id": "enem-redacao", "label": "template_enem_redacao", "file": "content/templates/enem-redacao.md" }
+      ]
+    }
+  ]
+}

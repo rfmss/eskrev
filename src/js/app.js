@@ -391,6 +391,369 @@ function setupEventListeners() {
         localStorage.setItem("lit_ui_view", "verify");
     };
 
+    // Template Pane + Novo Texto
+    const templateState = {
+        open: localStorage.getItem("skrv_template_open") === "true",
+        minimized: localStorage.getItem("skrv_template_min") === "true",
+        width: parseInt(localStorage.getItem("skrv_template_w"), 10) || 360,
+        activeTemplate: null,
+        activePersona: null,
+        enemThemes: []
+    };
+    let templateRegistry = null;
+    let selectedTemplate = null;
+    let selectedPersona = null;
+
+    const loadTemplateRegistry = async () => {
+        if (templateRegistry) return templateRegistry;
+        const res = await fetch("config/persona-templates.json");
+        templateRegistry = await res.json();
+        return templateRegistry;
+    };
+
+    const parseTemplate = (raw) => {
+        const lines = String(raw || "").split(/\r?\n/);
+        const blocks = [];
+        let current = { title: lang.t("template_section_default"), body: [] };
+        lines.forEach((line) => {
+            if (line.startsWith("## ")) {
+                if (current.body.length) blocks.push(current);
+                current = { title: line.replace(/^##\s+/, "").trim(), body: [] };
+            } else if (line.startsWith("# ")) {
+                if (!blocks.length && !current.body.length) {
+                    current.title = line.replace(/^#\s+/, "").trim();
+                } else {
+                    current.body.push(line);
+                }
+            } else {
+                current.body.push(line);
+            }
+        });
+        if (current.body.length || current.title) blocks.push(current);
+        return blocks;
+    };
+
+    const renderGuidePane = (template, raw) => {
+        const pane = document.getElementById("templatePane");
+        const titleEl = document.getElementById("templateTitle");
+        const subtitleEl = document.getElementById("templateSubtitle");
+        const contentEl = document.getElementById("templateContent");
+        if (!pane || !titleEl || !contentEl) return;
+        titleEl.textContent = lang.t(template.label) || template.label;
+        if (subtitleEl) subtitleEl.textContent = lang.t("template_guide_hint");
+        contentEl.innerHTML = "";
+        const container = document.createElement("div");
+        container.className = "guide-content";
+
+        const appendParagraph = (lines) => {
+            if (!lines.length) return;
+            const p = document.createElement("p");
+            p.className = "guide-paragraph";
+            lines.forEach((line, idx) => {
+                p.appendChild(document.createTextNode(line));
+                if (idx < lines.length - 1) p.appendChild(document.createElement("br"));
+            });
+            container.appendChild(p);
+        };
+
+        const appendQuote = (text) => {
+            const q = document.createElement("blockquote");
+            q.className = "guide-quote";
+            q.textContent = text;
+            container.appendChild(q);
+        };
+
+        const appendHeading = (text, level) => {
+            const h = document.createElement("div");
+            h.className = level === 1 ? "guide-title" : "guide-section-title";
+            h.textContent = text;
+            container.appendChild(h);
+        };
+
+        const lines = String(raw || "").split(/\r?\n/);
+        let paragraph = [];
+        let listEl = null;
+        const flushList = () => { listEl = null; };
+
+        const insertEnemTheme = () => {
+            const block = document.createElement("div");
+            block.className = "guide-theme";
+            const label = document.createElement("div");
+            label.className = "guide-theme-label";
+            label.textContent = lang.t("guide_theme_label");
+            const text = document.createElement("div");
+            text.className = "guide-theme-text";
+            const btn = document.createElement("button");
+            btn.className = "btn-half";
+            btn.type = "button";
+            btn.textContent = lang.t("guide_theme_button");
+            block.appendChild(label);
+            block.appendChild(text);
+            block.appendChild(btn);
+            container.appendChild(block);
+
+            let themesCache = templateState.enemThemes || [];
+            const setRandomTheme = () => {
+                if (!themesCache.length) return;
+                const next = themesCache[Math.floor(Math.random() * themesCache.length)];
+                text.textContent = next;
+            };
+            if (!themesCache.length) {
+                fetch("content/enem/themes.json")
+                    .then((res) => res.json())
+                    .then((data) => {
+                        themesCache = Array.isArray(data.themes) ? data.themes : [];
+                        templateState.enemThemes = themesCache;
+                        setRandomTheme();
+                    });
+            } else {
+                setRandomTheme();
+            }
+            btn.onclick = () => setRandomTheme();
+        };
+
+        if (template.id === "enem-redacao") {
+            insertEnemTheme();
+        }
+
+        lines.forEach((line) => {
+            const trimmed = line.trim();
+            if (!trimmed) {
+                appendParagraph(paragraph);
+                paragraph = [];
+                flushList();
+                return;
+            }
+            if (trimmed === "---") {
+                appendParagraph(paragraph);
+                paragraph = [];
+                flushList();
+                const hr = document.createElement("hr");
+                hr.className = "guide-hr";
+                container.appendChild(hr);
+                return;
+            }
+            if (trimmed.startsWith("# ")) {
+                appendParagraph(paragraph);
+                paragraph = [];
+                flushList();
+                appendHeading(trimmed.replace(/^#\s+/, ""), 1);
+                return;
+            }
+            if (trimmed.startsWith("## ")) {
+                appendParagraph(paragraph);
+                paragraph = [];
+                flushList();
+                appendHeading(trimmed.replace(/^##\s+/, ""), 2);
+                return;
+            }
+            if (trimmed.startsWith("> ")) {
+                appendParagraph(paragraph);
+                paragraph = [];
+                flushList();
+                appendQuote(trimmed.replace(/^>\s+/, ""));
+                return;
+            }
+            if (trimmed.startsWith("- ")) {
+                appendParagraph(paragraph);
+                paragraph = [];
+                if (!listEl) {
+                    listEl = document.createElement("ul");
+                    listEl.className = "guide-list";
+                    container.appendChild(listEl);
+                }
+                const li = document.createElement("li");
+                li.textContent = trimmed.replace(/^-\s+/, "");
+                listEl.appendChild(li);
+                return;
+            }
+            paragraph.push(trimmed);
+        });
+        appendParagraph(paragraph);
+        contentEl.appendChild(container);
+    };
+
+    const applyTemplateLayout = () => {
+        const workspace = document.getElementById("workspace");
+        const pane = document.getElementById("templatePane");
+        const split = document.getElementById("templateSplit");
+        const tab = document.getElementById("templateTab");
+        if (!pane || !split || !tab) return;
+        if (workspace) workspace.style.setProperty("--template-pane-w", `${templateState.width}px`);
+        pane.style.setProperty("--template-pane-w", `${templateState.width}px`);
+        if (!templateState.activeTemplate) {
+            templateState.open = false;
+            templateState.minimized = false;
+        }
+        if (templateState.open) {
+            pane.classList.add("open");
+            split.classList.add("active");
+            tab.classList.remove("show");
+        } else {
+            pane.classList.remove("open");
+            split.classList.remove("active");
+            tab.classList.remove("show");
+        }
+        pane.classList.toggle("minimized", templateState.minimized);
+        localStorage.setItem("skrv_template_open", templateState.open ? "true" : "false");
+        localStorage.setItem("skrv_template_min", templateState.minimized ? "true" : "false");
+        localStorage.setItem("skrv_template_w", String(templateState.width));
+    };
+
+    const openTemplatePane = async (templateId) => {
+        const registry = await loadTemplateRegistry();
+        const all = registry.personas.flatMap(p => p.templates.map(t => ({ ...t, persona: p.id })));
+        const template = all.find(t => t.id === templateId);
+        if (!template) return;
+        const res = await fetch(template.file);
+        const raw = await res.text();
+        templateState.open = true;
+        templateState.minimized = false;
+        templateState.activeTemplate = template;
+        applyTemplateLayout();
+        renderGuidePane(template, raw);
+        const tab = document.getElementById("templateTab");
+        if (tab) tab.textContent = (lang.t(template.label) || template.label).toUpperCase();
+    };
+
+    const closeTemplatePane = () => {
+        templateState.open = false;
+        templateState.minimized = false;
+        applyTemplateLayout();
+    };
+
+    const minimizeTemplatePane = () => {
+        if (!templateState.open) return;
+        templateState.minimized = !templateState.minimized;
+        applyTemplateLayout();
+    };
+
+    const setupTemplateResize = () => {
+        const split = document.getElementById("templateSplit");
+        const pane = document.getElementById("templatePane");
+        if (!split || !pane) return;
+        let dragging = false;
+        const onMove = (e) => {
+            if (!dragging) return;
+            const clientX = e.clientX || (e.touches && e.touches[0]?.clientX);
+            if (!clientX) return;
+            const total = window.innerWidth;
+            const width = Math.min(520, Math.max(220, total - clientX));
+            templateState.width = width;
+            pane.style.setProperty("--template-pane-w", `${width}px`);
+        };
+        const onUp = () => {
+            if (!dragging) return;
+            dragging = false;
+            localStorage.setItem("skrv_template_w", String(templateState.width));
+            document.body.classList.remove("dragging");
+        };
+        split.addEventListener("mousedown", () => {
+            dragging = true;
+            document.body.classList.add("dragging");
+        });
+        window.addEventListener("mousemove", onMove);
+        window.addEventListener("mouseup", onUp);
+    };
+
+    const openNewTextModal = async () => {
+        const modal = document.getElementById("newTextModal");
+        if (!modal) return;
+        const registry = await loadTemplateRegistry();
+        selectedPersona = null;
+        selectedTemplate = null;
+        const personasEl = document.getElementById("newTextPersonas");
+        if (personasEl) {
+            personasEl.innerHTML = "";
+            registry.personas.forEach((persona) => {
+                const btn = document.createElement("button");
+                btn.className = "newtext-card";
+                btn.type = "button";
+                btn.textContent = lang.t(persona.label) || persona.label;
+                btn.onclick = () => {
+                    selectedPersona = persona;
+                    const title = document.getElementById("newTextTemplatesTitle");
+                    if (title) title.textContent = lang.t(persona.label) || persona.label;
+                    const list = document.getElementById("newTextTemplates");
+                    if (list) {
+                        list.innerHTML = "";
+                        persona.templates.forEach((tpl, idx) => {
+                            const tplBtn = document.createElement("button");
+                            tplBtn.className = "btn-full";
+                            tplBtn.type = "button";
+                            tplBtn.textContent = lang.t(tpl.label) || tpl.label;
+                            tplBtn.onclick = () => {
+                                selectedTemplate = tpl;
+                                list.querySelectorAll("button").forEach((b) => b.classList.remove("active"));
+                                tplBtn.classList.add("active");
+                            };
+                            if (idx === 0) {
+                                selectedTemplate = tpl;
+                                tplBtn.classList.add("active");
+                            }
+                            list.appendChild(tplBtn);
+                        });
+                    }
+                    setNewTextStep(3);
+                };
+                personasEl.appendChild(btn);
+            });
+        }
+        setNewTextStep(1);
+        modal.classList.add("active");
+        modal.setAttribute("aria-hidden", "false");
+    };
+
+    const closeNewTextModal = () => {
+        const modal = document.getElementById("newTextModal");
+        if (!modal) return;
+        modal.classList.remove("active");
+        modal.setAttribute("aria-hidden", "true");
+    };
+
+    const setNewTextStep = (step) => {
+        document.querySelectorAll(".newtext-step").forEach((el) => el.classList.remove("is-active"));
+        const target = document.querySelector(`.newtext-step-${step}`);
+        if (target) target.classList.add("is-active");
+    };
+
+    const createNewDocument = (title, content = "") => {
+        store.createProject(title, content);
+        loadActiveDocument();
+        renderProjectList();
+    };
+
+    const createSimpleProject = () => {
+        const base = lang.t("newtext_default_title") || "Novo texto";
+        const existing = (store.data.projects || []).map(p => p.name);
+        let name = base;
+        if (existing.includes(name)) {
+            let i = 2;
+            while (existing.includes(`${base} ${i}`)) i += 1;
+            name = `${base} ${i}`;
+        }
+        createNewDocument(name, "");
+    };
+
+    const applyNewTextTemplate = async (mode) => {
+        if (!selectedTemplate && selectedPersona && selectedPersona.templates.length) {
+            selectedTemplate = selectedPersona.templates[0];
+        }
+        if (!selectedTemplate) return;
+        const personaLabel = selectedPersona ? (lang.t(selectedPersona.label) || selectedPersona.label) : "";
+        const templateLabel = lang.t(selectedTemplate.label) || selectedTemplate.label;
+        const title = personaLabel ? `${personaLabel} — ${templateLabel}` : templateLabel;
+        const res = await fetch(selectedTemplate.file);
+        const raw = await res.text();
+        if (mode === "insert") {
+            createNewDocument(title, raw);
+        } else {
+            createNewDocument(title, "");
+            openTemplatePane(selectedTemplate.id);
+        }
+        closeNewTextModal();
+    };
+
     // Gavetas (abrir drawer volta para o editor)
     const notesModal = document.getElementById("notesModal");
     const notesClose = document.getElementById("notesClose");
@@ -945,6 +1308,58 @@ function setupEventListeners() {
         el.addEventListener("input", scheduleUpdate);
     });
 
+    const newTextModal = document.getElementById("newTextModal");
+    const newTextClose = document.getElementById("newTextClose");
+    const newTextBlank = document.getElementById("newTextBlank");
+    const newTextTemplate = document.getElementById("newTextTemplate");
+    const newTextUseRef = document.getElementById("newTextUseRef");
+    const newTextInsert = document.getElementById("newTextInsert");
+    if (newTextClose) newTextClose.onclick = () => closeNewTextModal();
+    if (newTextBlank) newTextBlank.onclick = () => {
+        createNewDocument(lang.t("newtext_default_title"), "");
+        closeNewTextModal();
+    };
+    if (newTextTemplate) newTextTemplate.onclick = () => setNewTextStep(2);
+    if (newTextUseRef) newTextUseRef.onclick = () => applyNewTextTemplate("reference");
+    if (newTextInsert) newTextInsert.onclick = () => applyNewTextTemplate("insert");
+    if (newTextModal) {
+        newTextModal.addEventListener("click", (e) => {
+            if (e.target === newTextModal) closeNewTextModal();
+        });
+        newTextModal.querySelectorAll("[data-action=\"blank\"]").forEach((btn) => {
+            btn.onclick = () => {
+                createNewDocument(lang.t("newtext_default_title"), "");
+                closeNewTextModal();
+            };
+        });
+        newTextModal.querySelectorAll("[data-action=\"back\"]").forEach((btn) => {
+            btn.onclick = () => setNewTextStep(2);
+        });
+    }
+
+    const templateClose = document.getElementById("templateClose");
+    const templateMinimize = document.getElementById("templateMinimize");
+    const templateTab = document.getElementById("templateTab");
+    if (templateClose) templateClose.onclick = () => closeTemplatePane();
+    if (templateMinimize) templateMinimize.onclick = () => minimizeTemplatePane();
+    if (templateTab) templateTab.onclick = () => {
+        if (!templateState.activeTemplate) return;
+        templateState.open = true;
+        templateState.minimized = false;
+        applyTemplateLayout();
+    };
+    document.querySelectorAll(".guide-rail-item").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const id = btn.getAttribute("data-guide");
+            if (!id) return;
+            openTemplatePane(id);
+            document.querySelectorAll(".guide-rail-item").forEach((el) => el.classList.remove("active"));
+            btn.classList.add("active");
+        });
+    });
+    setupTemplateResize();
+    applyTemplateLayout();
+
     document.getElementById("tabFiles").onclick = () => { showEditorView(); ui.openDrawer('files', { renderFiles: renderProjectList }); closeNotesModal(); };
     document.getElementById("tabNav").onclick = () => { showEditorView(); ui.openDrawer('nav', { renderNav: renderNavigation }); closeNotesModal(); };
     const tabNotes = document.getElementById("tabNotes");
@@ -1297,7 +1712,13 @@ function setupEventListeners() {
             if (e.key === "3") { e.preventDefault(); ui.openDrawer('memo', {}); }
             if (e.key === "0") { e.preventDefault(); ui.closeDrawer(); }
             if (e.code === "KeyL") { e.preventDefault(); auth.lock(); }
-            if (e.code === "KeyT") { e.preventDefault(); ui.toggleTheme(); }
+            if (e.code === "KeyT" && e.shiftKey) {
+                e.preventDefault();
+                templateState.open = !templateState.open;
+                if (!templateState.open) templateState.minimized = false;
+                applyTemplateLayout();
+            }
+            if (e.code === "KeyT" && !e.shiftKey) { e.preventDefault(); ui.toggleTheme(); }
             if (e.code === "KeyM") { e.preventDefault(); document.getElementById("btnAudio").click(); }
             if (e.code === "KeyP") { e.preventDefault(); ui.togglePomodoro(); }
             if (e.code === "KeyF") { e.preventDefault(); document.getElementById("btnFontType").click(); }
@@ -1348,51 +1769,11 @@ function setupEventListeners() {
         });
     });
 
-    document.getElementById("btnNewProject").onclick = async () => {
-        if (!window.skrvModal) return;
-        const name = await window.skrvModal.prompt(lang.t("prompt_file_name"), { title: lang.t("modal_title") });
-        if (name && name.trim()) {
-            if (window.innerWidth <= 900) {
-                const run = () => {
-                    if (window.skrvMobileCreateProject) {
-                        window.skrvMobileCreateProject(name.trim());
-                        renderProjectList();
-                        openNotesModal();
-                    }
-                };
-                if (!window.skrvMobileCreateProject) {
-                    ensureMobileModule().then(run).catch(() => {});
-                } else {
-                    run();
-                }
-                return;
-            }
-            store.createProject(name.trim());
-            loadActiveDocument();
-            renderProjectList();
-        }
-    };
+    document.getElementById("btnNewProject").onclick = () => createSimpleProject();
 
     const btnMobileNewProject = document.getElementById("btnMobileNewProject");
     if (btnMobileNewProject) {
-        btnMobileNewProject.onclick = async () => {
-            if (!window.skrvModal) return;
-            const name = await window.skrvModal.prompt(lang.t("prompt_file_name"), { title: lang.t("modal_title") });
-            if (name && name.trim()) {
-                const run = () => {
-                    if (window.skrvMobileCreateProject) {
-                        window.skrvMobileCreateProject(name.trim());
-                        renderProjectList();
-                        openNotesModal();
-                    }
-                };
-                if (!window.skrvMobileCreateProject) {
-                    ensureMobileModule().then(run).catch(() => {});
-                } else {
-                    run();
-                }
-            }
-        };
+        btnMobileNewProject.onclick = () => createSimpleProject();
     }
     
     document.getElementById("btnThemeToggle").onclick = () => ui.toggleTheme();
@@ -1602,7 +1983,30 @@ function incrementAccessCount() {
 
 function applySkrvPayload(payload) {
     const archive = payload.ARCHIVE_STATE;
-    if (!archive || !Array.isArray(archive.projects)) return false;
+    if (!archive) return false;
+    if (!Array.isArray(archive.projects)) {
+        archive.projects = [];
+    }
+    if (!archive.projects.length) {
+        const fallbackName = lang.t("default_project") || "Projeto";
+        archive.projects.push({
+            id: Date.now().toString(),
+            name: fallbackName,
+            content: payload.MASTER_TEXT || "",
+            date: new Date().toLocaleString(),
+            cursorPos: 0
+        });
+        archive.activeId = archive.projects[0].id;
+    } else {
+        archive.projects.forEach((proj) => {
+            if (!proj.name) {
+                proj.name = lang.t("default_project") || "Projeto";
+            }
+        });
+        if (!archive.activeId) {
+            archive.activeId = archive.projects[0].id;
+        }
+    }
 
     const previousMemo = store.data && typeof store.data.memo === "string" ? store.data.memo : "";
     store.data = archive;

@@ -103,6 +103,20 @@ const CACHE_ASSETS = [
   "./src/assets/icons/logoEskrev.svg",
   "./src/assets/icons/logoEskrev-favicon-dark.svg",
   "./src/assets/icons/logoEskrev-favicon-cream.svg",
+  "./config/persona-templates.json",
+  "./content/templates/conto-curto.md",
+  "./content/templates/romance-keypoints.md",
+  "./content/templates/romance-capitulo.md",
+  "./content/templates/roteiro-filme.md",
+  "./content/templates/roteiro-tv.md",
+  "./content/templates/roteiro-novela.md",
+  "./content/templates/ensaio-cronica.md",
+  "./content/templates/ensaio-pessoal.md",
+  "./content/templates/ensaio-opiniao.md",
+  "./content/templates/universitario-abnt.md",
+  "./content/templates/universitario-artigo.md",
+  "./content/templates/enem-redacao.md",
+  "./content/enem/themes.json",
   "./qr-bitcoin.png"
 ];
 

@@ -57,7 +57,7 @@
             <use href="src/assets/icons/phosphor-sprite.svg#icon-lock-key"></use>
         </svg>
         <h2 data-i18n="locked">BLOQUEADO</h2>
-        <input type="password" id="authPass" class="search-input" style="border:1px solid var(--color-accent); padding:6px; width:160px; text-align:center; font-size:16px;" data-i18n-ph="lock_pass_ph" placeholder="Senha da sessão">
+        <input type="password" id="authPass" class="search-input lock-input" data-i18n-ph="lock_pass_ph" placeholder="Senha da sessão">
         <button id="btnUnlock" class="btn-full" style="width:200px;" data-i18n="unlock_btn">DESBLOQUEAR</button>
         <span id="authMsg" class="help-text"></span>
         
@@ -241,10 +241,6 @@
                 <button class="btn-half" id="btnScanQr" title="Scan QR" data-i18n-title="btn_scan_qr" data-i18n-tip="btn_scan_qr"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-qr-code"></use></svg> <span data-i18n="btn_scan">SCAN QR</span></button>
                 <input type="file" id="fileInput" style="display:none;" accept=".json,.txt,.md,.skr,.skrv,.b64,.qr">
             </div>
-            <div class="file-actions">
-                <a class="btn-half" id="btnOfflinePack" href="site.zip" download data-i18n="offline_download">BAIXAR APP OFFLINE</a>
-                <a class="btn-half" id="btnGithub" href="https://github.com/rfmss/eskrev" target="_blank" rel="noopener" data-i18n="project_github">GITHUB DO PROJETO</a>
-            </div>
             <div id="projectList" class="list-container"></div>
 
         </div>
@@ -371,8 +367,49 @@
             </div>
         </div>
 
+        <div id="newTextModal" class="modal-overlay newtext-modal" aria-hidden="true">
+            <div class="modal-box newtext-box" role="dialog" aria-modal="true">
+                <div class="newtext-header">
+                    <div>
+                        <h2 data-i18n="newtext_title">Novo texto</h2>
+                        <p data-i18n="newtext_subtitle">Como você quer começar?</p>
+                    </div>
+                    <button id="newTextClose" class="btn-icon" aria-label="Fechar">×</button>
+                </div>
+                <div class="newtext-body">
+                    <div class="newtext-step newtext-step-1 is-active" data-step="1">
+                        <button id="newTextBlank" class="newtext-card" type="button">
+                            <div class="newtext-card-title" data-i18n="newtext_blank_title">Em branco</div>
+                            <div class="newtext-card-body" data-i18n="newtext_blank_body">Só escrever.</div>
+                        </button>
+                        <button id="newTextTemplate" class="newtext-card" type="button">
+                            <div class="newtext-card-title" data-i18n="newtext_template_title">Com template</div>
+                            <div class="newtext-card-body" data-i18n="newtext_template_body">Estrutura pronta.</div>
+                        </button>
+                    </div>
+                    <div class="newtext-step newtext-step-2" data-step="2">
+                        <div class="newtext-step-title" data-i18n="newtext_persona_title">O que você veio escrever?</div>
+                        <div id="newTextPersonas" class="newtext-grid"></div>
+                        <button class="newtext-link" type="button" data-action="blank" data-i18n="newtext_blank_link">Criar em branco</button>
+                    </div>
+                    <div class="newtext-step newtext-step-3" data-step="3">
+                        <div class="newtext-step-title" id="newTextTemplatesTitle"></div>
+                        <div id="newTextTemplates" class="newtext-list"></div>
+                        <div class="newtext-actions">
+                            <button id="newTextUseRef" class="btn-full" type="button" data-i18n="newtext_use_reference">Usar como referência</button>
+                            <button id="newTextInsert" class="btn-half" type="button" data-i18n="newtext_insert_content">Inserir no texto</button>
+                        </div>
+                        <button class="newtext-link" type="button" data-action="blank" data-i18n="newtext_blank_link">Criar em branco</button>
+                        <button class="newtext-link" type="button" data-action="back" data-i18n="newtext_back">Voltar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <main class="panel">
     <div id="editorView">
+        <div id="workspace" class="workspace">
+            <div id="editorPane" class="editor-pane">
         <div id="editorWrap">
             <div id="pageMarkers" aria-hidden="true"></div>
             <div id="xrayOverlay" aria-hidden="true"></div>
@@ -450,6 +487,49 @@
             </aside>
             <div id="editor" contenteditable="true" spellcheck="false" data-i18n-placeholder="editor_placeholder"></div>
         </div>
+            </div>
+            <div id="templateSplit" class="template-split" role="separator" aria-hidden="true"></div>
+            <aside id="templatePane" class="template-pane" aria-hidden="true">
+                <div class="template-header">
+                    <div>
+                        <div id="templateTitle" class="template-title">Guia</div>
+                        <div id="templateSubtitle" class="template-subtitle"></div>
+                    </div>
+                    <div class="template-actions">
+                        <button id="templateMinimize" class="btn-icon" aria-label="Minimizar">–</button>
+                        <button id="templateClose" class="btn-icon" aria-label="Fechar">×</button>
+                    </div>
+                </div>
+                <div id="templateContent" class="template-content"></div>
+            </aside>
+            <button id="templateTab" class="template-tab" type="button" aria-hidden="true" data-i18n="template_tab">TEMPLATE</button>
+        </div>
+        <div id="guideRail" class="guide-rail" aria-label="Guias de escrita">
+            <button class="guide-rail-item" type="button" data-guide="conto-curto">
+                <span class="guide-rail-icon"></span>
+                <span class="guide-rail-label" data-i18n="guide_conto">Conto</span>
+            </button>
+            <button class="guide-rail-item" type="button" data-guide="romance-keypoints">
+                <span class="guide-rail-icon"></span>
+                <span class="guide-rail-label" data-i18n="guide_romance">Romance</span>
+            </button>
+            <button class="guide-rail-item" type="button" data-guide="roteiro-filme">
+                <span class="guide-rail-icon"></span>
+                <span class="guide-rail-label" data-i18n="guide_roteiro">Roteiro</span>
+            </button>
+            <button class="guide-rail-item" type="button" data-guide="ensaio-cronica">
+                <span class="guide-rail-icon"></span>
+                <span class="guide-rail-label" data-i18n="guide_ensaio">Ensaio · Crônica · Artigo</span>
+            </button>
+            <button class="guide-rail-item" type="button" data-guide="universitario-abnt">
+                <span class="guide-rail-icon"></span>
+                <span class="guide-rail-label" data-i18n="guide_universitario">Universitário</span>
+            </button>
+            <button class="guide-rail-item" type="button" data-guide="enem-redacao">
+                <span class="guide-rail-icon"></span>
+                <span class="guide-rail-label" data-i18n="guide_enem">ENEM</span>
+            </button>
+        </div>
     </div>
 
     <div id="booksView" style="display:none; width:100%; height:100%;">
@@ -502,8 +582,8 @@
             </div>
             <div class="divider"></div>
             <button class="btn" id="btnAudio" title="Música [Alt+M]" data-i18n-title="audio_title" data-i18n-tip="audio_title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-music-notes"></use></svg> <span data-i18n="audio_btn">SOM</span></button>
-            <button class="btn" id="btnReader" title="Modo Leitor" data-i18n-title="reader_title" data-i18n-tip="reader_title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-book-open-text"></use></svg> <span data-i18n="reader_btn">LEITOR</span></button>
-            <button class="btn" id="btnXray" title="RASTRO" data-i18n-title="xray_title" data-i18n-tip="xray_tooltip"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-list-bullets"></use></svg> <span data-i18n="xray_btn">RASTRO</span></button>
+            <button class="btn" id="btnReader" title="Modo Leitor" data-i18n-title="reader_title" data-i18n-tip="reader_title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-eyeglasses"></use></svg> <span data-i18n="reader_btn">LEITOR</span></button>
+            <button class="btn" id="btnXray" title="RASTRO" data-i18n-title="xray_title" data-i18n-tip="xray_tooltip"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-eye"></use></svg> <span data-i18n="xray_btn">RASTRO</span></button>
             
             <button class="btn" id="btnLock" title="Bloquear Tela [Alt+L]" data-i18n-title="lock_title" data-i18n-tip="lock_title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-lock-key"></use></svg> <span data-i18n="lock_btn">LOCK</span></button>
         </div>
@@ -514,14 +594,10 @@
             <div class="modal-header"><span data-i18n="export_title">PROTOCOLO DE EXPORTAÇÃO</span><button id="closeModalExport" class="btn-icon">×</button></div>
             <div class="modal-body">
                 <div class="export-grid">
-                    <div class="export-card" id="actionDownloadMd"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-file-text"></use></svg><span data-i18n="export_markdown">EXPORTAR MARKDOWN</span><small>.md</small></div>
-                    <div class="export-card" id="actionPrintReport"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-printer"></use></svg><span data-i18n="export_report_full">IMPRESSAO COMPLETA</span><small data-i18n="export_all">tudo</small></div>
                     <div class="export-card" id="actionDownloadJson" data-i18n-tip="export_capsule_tip"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-file"></use></svg><span data-i18n="export_json">EXPORTAR CÁPSULA</span><small>.skrv</small></div>
                     <div class="export-card" id="actionQrStream"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-qr-code"></use></svg><span data-i18n="export_qr_stream">STREAM QR</span><small data-i18n="export_light">luz</small></div>
                 </div>
                 <div class="export-social">
-                    <div class="export-note help-text" data-i18n="export_note">Este arquivo preserva a autoria do texto.</div>
-                    <button class="export-support-link" type="button" data-i18n="support_title">Compre-me uma caneta</button>
                     <div class="export-social-title" data-i18n="export_social_title">REDES FEDERADAS</div>
                     <div class="export-social-links">
                         <button class="social-link" type="button" data-network="Mastodon" data-url="https://mastodon.social">
@@ -544,12 +620,7 @@
                             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-chats-circle"></use></svg>
                             <span>Element</span>
                         </button>
-                        <button class="social-link" type="button" data-network="PeerTube" data-url="https://joinpeertube.org">
-                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-play-circle"></use></svg>
-                            <span>PeerTube</span>
-                        </button>
                     </div>
-                    <button id="btnFediverseHelp" class="btn-full" data-i18n="fediverse_help">NAO SABE O QUE E O FEDIVERSO?</button>
                     <div class="export-social-title" data-i18n="export_social_bigtech">REDES NAO FEDERADAS (ONDE VOCE NAO TEM CONTROLE SOBRE SEU CONTEUDO)</div>
                     <div class="export-social-links">
                         <button class="social-link" type="button" data-network="X" data-url="https://x.com">
@@ -563,10 +634,6 @@
                         <button class="social-link" type="button" data-network="Facebook" data-url="https://facebook.com">
                             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-facebook-logo"></use></svg>
                             <span>Facebook</span>
-                        </button>
-                        <button class="social-link" type="button" data-network="YouTube" data-url="https://youtube.com">
-                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-youtube-logo"></use></svg>
-                            <span>YouTube</span>
                         </button>
                         <button class="social-link" type="button" data-network="LinkedIn" data-url="https://linkedin.com">
                             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-linkedin-logo"></use></svg>
