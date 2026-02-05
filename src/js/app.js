@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     lang.init();
     window.skrvModal = initSystemModal();
+    window.skrvOnboarding = initOnboarding();
     auth.init();
 
     document.querySelectorAll('[data-manifesto-open]').forEach((el) => {
@@ -51,6 +52,30 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             auth.openPrivacyModal();
         });
+    });
+
+    const syncFullscreenIcon = () => {
+        const btn = document.getElementById("hudFs");
+        if (!btn) return;
+        const img = btn.querySelector("img.icon");
+        if (!img) return;
+        img.src = document.fullscreenElement
+            ? "src/assets/icons/minimize-2.svg"
+            : "src/assets/icons/maximize-2.svg";
+    };
+    document.addEventListener("fullscreenchange", syncFullscreenIcon);
+    document.addEventListener("click", (e) => {
+        const termsTrigger = e.target.closest("[data-terms-open]");
+        if (termsTrigger) {
+            e.preventDefault();
+            auth.openTermsModal();
+            return;
+        }
+        const privacyTrigger = e.target.closest("[data-privacy-open]");
+        if (privacyTrigger) {
+            e.preventDefault();
+            auth.openPrivacyModal();
+        }
     });
 
     
@@ -173,6 +198,133 @@ function setupLogoManifesto() {
     logo.addEventListener("click", () => {
         if (auth?.openFullManifesto) auth.openFullManifesto();
     });
+}
+
+function initOnboarding() {
+    const modal = document.getElementById("onboardingModal");
+    if (!modal) return null;
+    const steps = Array.from(modal.querySelectorAll(".onboarding-step"));
+    const backBtn = document.getElementById("onboardBack");
+    const nextBtn = document.getElementById("onboardNext");
+    const stepLabel = document.getElementById("onboardStepLabel");
+    const total = Math.max(steps.length - 1, 1);
+    let current = 0;
+
+    const animateOnce = (step) => {
+        if (!step || step.dataset.animated === "true") return;
+        step.dataset.animated = "true";
+        step.classList.add("animate");
+    };
+    const update = () => {
+        steps.forEach((step) => {
+            const stepIndex = parseInt(step.getAttribute("data-step"), 10);
+            step.classList.toggle("active", stepIndex === current);
+        });
+        if (stepLabel) {
+            if (current === 0) {
+                stepLabel.textContent = "";
+            } else {
+                stepLabel.textContent = `${current}/${total}`;
+            }
+        }
+        if (backBtn) {
+            backBtn.disabled = current <= 1;
+            backBtn.style.visibility = current <= 1 ? "hidden" : "visible";
+        }
+        if (nextBtn) nextBtn.style.visibility = current >= total ? "hidden" : "visible";
+        if (current === total) {
+            setTimeout(() => {
+                const input = document.getElementById("setupProjectName");
+                if (input) input.focus();
+            }, 50);
+        } else if (nextBtn) {
+            nextBtn.focus();
+        }
+        const activeStep = steps.find((step) => parseInt(step.getAttribute("data-step"), 10) === current);
+        animateOnce(activeStep);
+            if (current === 0) {
+                if (backBtn) backBtn.style.visibility = "hidden";
+                if (nextBtn) nextBtn.style.visibility = "hidden";
+                if (stepLabel) stepLabel.style.visibility = "hidden";
+                setTimeout(() => {
+                    if (current === 0) {
+                        current = 1;
+                        if (nextBtn) nextBtn.style.visibility = "visible";
+                        if (stepLabel) stepLabel.style.visibility = "visible";
+                        update();
+                    }
+                }, 5200);
+            } else {
+            if (nextBtn) nextBtn.style.visibility = "visible";
+            if (stepLabel) stepLabel.style.visibility = "visible";
+        }
+    };
+
+    const open = (startStep = 0) => {
+        current = Math.min(Math.max(startStep, 1), total);
+        if (startStep === 0) current = 0;
+        modal.classList.add("active");
+        document.body.classList.add("modal-active");
+        update();
+    };
+
+    const close = () => {
+        modal.classList.remove("active");
+        document.body.classList.remove("modal-active");
+    };
+
+    const complete = () => {
+        localStorage.setItem("skrv_onboard_done", "true");
+        close();
+    };
+
+        if (backBtn) {
+            backBtn.addEventListener("click", () => {
+                if (current > 1) {
+                    current -= 1;
+                    update();
+                }
+            });
+        }
+    if (nextBtn) {
+        nextBtn.addEventListener("click", () => {
+            if (current < total) {
+                current += 1;
+                update();
+            }
+        });
+    }
+    const keyHandler = (e) => {
+        if (!modal.classList.contains("active")) return;
+        if (e.key === "ArrowRight") {
+            if (current < total) {
+                current += 1;
+                update();
+                e.preventDefault();
+            }
+        }
+        if (e.key === "ArrowLeft") {
+            if (current > 1) {
+                current -= 1;
+                update();
+                e.preventDefault();
+            }
+        }
+    };
+    document.addEventListener("keydown", keyHandler);
+
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            e.preventDefault();
+        }
+    });
+
+    return {
+        open,
+        close,
+        complete,
+        isOpen: () => modal.classList.contains("active")
+    };
 }
 
 let mobileModulePromise = null;
@@ -844,9 +996,9 @@ function setupEventListeners() {
         pinBtn.type = "button";
         pinBtn.className = "btn-icon notes-pin-btn" + (note.pinned ? " active" : "");
         if (note.pinned) {
-            pinBtn.innerHTML = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-push-pin-simple-fill"></use></svg>`;
+            pinBtn.innerHTML = `<img class="icon pin-icon" src="src/assets/icons/pin.svg" alt="" aria-hidden="true">`;
         } else {
-            pinBtn.innerHTML = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-push-pin-simple"></use></svg>`;
+            pinBtn.innerHTML = `<img class="icon pin-icon pin-icon-off" src="src/assets/icons/pin-off.svg" alt="" aria-hidden="true">`;
         }
         pinBtn.onclick = (event) => {
             event.stopPropagation();
@@ -1058,9 +1210,9 @@ function setupEventListeners() {
         if (pinToggle) {
             pinToggle.classList.toggle("active", !!note.pinned);
             if (note.pinned) {
-                pinToggle.innerHTML = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-push-pin-simple-fill"></use></svg>`;
+                pinToggle.innerHTML = `<img class="icon pin-icon" src="src/assets/icons/pin.svg" alt="" aria-hidden="true">`;
             } else {
-                pinToggle.innerHTML = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-push-pin-simple"></use></svg>`;
+                pinToggle.innerHTML = `<img class="icon pin-icon pin-icon-off" src="src/assets/icons/pin-off.svg" alt="" aria-hidden="true">`;
             }
         }
         setNotesStage("edit");
@@ -1159,9 +1311,9 @@ function setupEventListeners() {
             if (pinToggle) {
                 pinToggle.classList.toggle("active", note.pinned);
                 if (note.pinned) {
-                    pinToggle.innerHTML = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-push-pin-simple-fill"></use></svg>`;
+                    pinToggle.innerHTML = `<img class="icon pin-icon" src="src/assets/icons/pin.svg" alt="" aria-hidden="true">`;
                 } else {
-                    pinToggle.innerHTML = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-push-pin-simple"></use></svg>`;
+                    pinToggle.innerHTML = `<img class="icon pin-icon pin-icon-off" src="src/assets/icons/pin-off.svg" alt="" aria-hidden="true">`;
                 }
             }
         }
@@ -1618,6 +1770,8 @@ function setupEventListeners() {
     document.addEventListener("keydown", (e) => {
         const gate = document.getElementById("gatekeeper");
         if (gate && gate.classList.contains("active")) return;
+        const onboarding = document.getElementById("onboardingModal");
+        if (onboarding && onboarding.classList.contains("active")) return;
 
         const isCtrl = e.ctrlKey || e.metaKey;
         const key = e.key.toLowerCase();
@@ -1689,6 +1843,10 @@ function setupEventListeners() {
                 document.body.classList.remove("manifesto-open");
                 return;
             }
+            const onboarding = document.getElementById("onboardingModal");
+            if (onboarding && onboarding.classList.contains("active")) {
+                return;
+            }
             if (document.activeElement === searchInput) { document.getElementById("btnClear").click(); searchInput.blur(); }
             let closed = false;
             document.querySelectorAll(".modal-overlay.active").forEach(m => { 
@@ -1749,7 +1907,7 @@ function setupEventListeners() {
 
     document.querySelectorAll(".modal-overlay").forEach(overlay => {
         overlay.addEventListener("click", (e) => {
-            if (overlay.id === "gatekeeper" || overlay.id === "pomodoroModal" || overlay.id === "termsModal" || overlay.id === "manifestoModal") return;
+            if (overlay.id === "gatekeeper" || overlay.id === "pomodoroModal" || overlay.id === "termsModal" || overlay.id === "manifestoModal" || overlay.id === "onboardingModal") return;
             if (overlay.id === "systemModal") {
                 if (e.target === overlay && window.skrvModal?.cancel) window.skrvModal.cancel();
                 return;
@@ -2387,11 +2545,11 @@ function renderProjectList() {
         actionsDiv.className = "file-actions-inline"; actionsDiv.style.display = "flex"; actionsDiv.style.gap = "5px";
 
         const btnEdit = document.createElement("button");
-        btnEdit.className = "btn-icon-small"; btnEdit.innerHTML = "<svg class='icon' viewBox='0 0 24 24' aria-hidden='true'><use href='src/assets/icons/phosphor-sprite.svg#icon-pencil'></use></svg>";
+        btnEdit.className = "btn-icon-small"; btnEdit.innerHTML = "<svg class='icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M13 21h8'/><path d='M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z'/></svg>";
         btnEdit.onclick = (e) => { e.stopPropagation(); enableInlineRename(infoDiv, proj.id, proj.name); };
 
         const btnPrint = document.createElement("button");
-        btnPrint.className = "btn-icon-small"; btnPrint.innerHTML = "<svg class='icon' viewBox='0 0 24 24' aria-hidden='true'><use href='src/assets/icons/phosphor-sprite.svg#icon-printer'></use></svg>";
+        btnPrint.className = "btn-icon-small"; btnPrint.innerHTML = "<img class='icon' src='src/assets/icons/printer.svg' alt='' aria-hidden='true'>";
         btnPrint.onclick = (e) => {
             e.stopPropagation();
             const text = buildProjectReportText(proj);

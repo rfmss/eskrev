@@ -3227,8 +3227,22 @@ export const editorFeatures = {
     },
     
     toggleFullscreen() {
-        if (!document.fullscreenElement) document.documentElement.requestFullscreen();
-        else if (document.exitFullscreen) document.exitFullscreen();
+        const btn = document.getElementById("hudFs");
+        const updateIcon = (isFull) => {
+            if (!btn) return;
+            const src = isFull ? "src/assets/icons/minimize-2.svg" : "src/assets/icons/maximize-2.svg";
+            if (btn.tagName.toLowerCase() === "button") {
+                const img = btn.querySelector("img.icon");
+                if (img) img.src = src;
+            }
+        };
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+            setTimeout(() => updateIcon(true), 50);
+        } else if (document.exitFullscreen) {
+            document.exitFullscreen();
+            setTimeout(() => updateIcon(false), 50);
+        }
     },
 
     initGoal() {

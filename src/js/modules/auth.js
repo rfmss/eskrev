@@ -26,11 +26,6 @@ export const auth = {
     init() {
         this.setupTerms();
         this.setupPrivacy();
-        const accepted = localStorage.getItem('skrv_manifest_signed') || localStorage.getItem('tot_manifest_signed');
-        if (!accepted) {
-            this.showManifesto();
-            return;
-        }
         this.runGatekeeper();
     },
 
@@ -169,6 +164,9 @@ export const auth = {
             }
             if (Number.isFinite(duration) && duration > 0) {
                 ui.startWork(duration);
+            }
+            if (window.skrvOnboarding && typeof window.skrvOnboarding.complete === "function") {
+                window.skrvOnboarding.complete();
             }
             this.unlock();
         };
@@ -521,18 +519,23 @@ export const auth = {
 
     showSetup() {
         const gate = document.getElementById('gatekeeper');
-        gate.classList.add('active');
-        gate.style.display = 'flex';
-        document.getElementById('viewSetup').style.display = 'flex';
-        document.getElementById('viewLock').style.display = 'none';
+        if (gate) {
+            gate.classList.remove('active');
+            gate.style.display = 'none';
+            document.getElementById('viewLock').style.display = 'none';
+        }
         const projectInput = document.getElementById('setupProjectName');
         if (projectInput) projectInput.value = "";
         const msg = document.getElementById("setupMsg");
         if (msg) msg.textContent = "";
-        setTimeout(() => {
-            const input = document.getElementById('setupProjectName');
-            if (input) input.focus();
-        }, 100);
+        if (window.skrvOnboarding && typeof window.skrvOnboarding.open === "function") {
+            window.skrvOnboarding.open(0);
+        } else {
+            setTimeout(() => {
+                const input = document.getElementById('setupProjectName');
+                if (input) input.focus();
+            }, 100);
+        }
     },
 
     shakeInput(el) {

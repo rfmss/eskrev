@@ -17,45 +17,8 @@
 <body class="modal-active">
 
 <div id="gatekeeper" class="modal-overlay" style="z-index: 9999; background: var(--bg-core); flex-direction: column;">
-    
-    <div id="viewSetup" class="setup-view" style="display:none; flex-direction:column; align-items:center; gap:6px; text-align:center;">
-        <h2 data-i18n="welcome" style="letter-spacing:2px; margin:0 0 2px;">INICIALIZANDO SISTEMA</h2>
-        <div class="setup-lang">
-            <button id="setupLangToggle" class="flag-btn" data-i18n="lang_label">🇧🇷 PT</button>
-        </div>
-        <div class="setup-form">
-            <p data-i18n="setup_project_label" class="help-text">Nome do projeto</p>
-            <input type="text" id="setupProjectName" class="search-input" autocomplete="off" data-i18n-ph="setup_project_ph" placeholder="Nome do projeto">
-            <p data-i18n="create_pass" class="help-text">Crie a senha da sessão</p>
-            <div class="setup-field">
-                <input type="password" id="setupPass1" class="search-input" data-eye-input="true">
-                <button type="button" class="password-toggle" data-target="setupPass1" data-i18n-title="toggle_password_show">
-                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                        <use href="src/assets/icons/phosphor-sprite.svg#icon-eye"></use>
-                    </svg>
-                </button>
-            </div>
-            <div class="setup-field">
-                <input type="password" id="setupPass2" class="search-input" data-i18n-ph="repeat_pass" placeholder="Confirmar" data-eye-input="true">
-                <button type="button" class="password-toggle" data-target="setupPass2" data-i18n-title="toggle_password_show">
-                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                        <use href="src/assets/icons/phosphor-sprite.svg#icon-eye"></use>
-                    </svg>
-                </button>
-            </div>
-            <div class="setup-choices">
-                <button id="setupPomo25" class="btn-half" data-duration="25" data-i18n="pomo_25">25 MIN</button>
-                <button id="setupPomo50" class="btn-half" data-duration="50" data-i18n="pomo_55">50 MIN</button>
-            </div>
-            <div id="setupMsg" class="help-text" aria-live="polite"></div>
-            <div class="manifesto-terms-note setup-password-note" data-i18n-html="setup_password_note">Com essa senha, você controla esta sessão: trava, exporta e apaga.<br>O que for exportado funciona em qualquer outra.</div>
-        </div>
-    </div>
-
     <div id="viewLock" style="display:none; flex-direction:column; align-items:center; gap:14px;">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="font-size:48px; color:var(--color-accent);">
-            <use href="src/assets/icons/phosphor-sprite.svg#icon-lock-key"></use>
-        </svg>
+        <img class="icon" src="src/assets/icons/lock.svg" alt="" aria-hidden="true" style="font-size:48px; color:var(--color-accent);">
         <h2 data-i18n="locked">BLOQUEADO</h2>
         <input type="password" id="authPass" class="search-input lock-input" data-i18n-ph="lock_pass_ph" placeholder="Senha da sessão">
         <button id="btnUnlock" class="btn-full" style="width:200px;" data-i18n="unlock_btn">DESBLOQUEAR</button>
@@ -63,10 +26,129 @@
         
         <div style="margin-top:50px;">
         <button id="emergencyReset" class="btn-icon danger-trigger" title="HARD RESET" data-i18n-title="hard_reset_title" data-i18n-tip="hard_reset_title">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                <use href="src/assets/icons/phosphor-sprite.svg#icon-bomb"></use>
-            </svg>
+            <img class="icon" src="src/assets/icons/shredder.svg" alt="" aria-hidden="true">
         </button>
+        </div>
+    </div>
+</div>
+
+<div id="onboardingModal" class="modal-overlay onboarding-modal" style="z-index: 9998;">
+    <div class="onboarding-box">
+        <div class="onboarding-steps">
+            <section class="onboarding-step" data-step="0">
+                <div class="onboarding-art logo-intro" aria-hidden="true">
+                    <svg class="onboard-logo" viewBox="0 0 686 689">
+                        <path d="m192.01 33l-152.17 586.3c0 0-17.9 34.46 8.95 35.81 26.86 1.35 40.28-35.81 40.28-35.81l80.57-246.15 398.32-205.88-274.5 259.44-74.59 112.03 434.13 98.47"/>
+                    </svg>
+                </div>
+                <p class="onboard-logo-tagline">for all writers. free and everywhere</p>
+            </section>
+            <section class="onboarding-step" data-step="1">
+                <div class="onboarding-art" aria-hidden="true">
+                    <svg class="onboard-icon" viewBox="0 0 24 24">
+                        <path d="M15 5h6"/><path d="M15 12h6"/><path d="M3 19h18"/><path d="m3 12 3.553-7.724a.5.5 0 0 1 .894 0L11 12"/><path d="M3.92 10h6.16"/>
+                    </svg>
+                    <svg class="onboard-icon" viewBox="0 0 24 24">
+                        <path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"/><path d="M20.054 15.987H3.946"/>
+                    </svg>
+                    <svg class="onboard-icon" viewBox="0 0 24 24">
+                        <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/>
+                    </svg>
+                </div>
+                <div class="onboarding-copy">
+                    <h2 data-i18n="onboard_title_1">Escreva no desktop ou tablet.</h2>
+                    <p data-i18n="onboard_body_1">É aqui que o texto ganha corpo. Funciona offline e salva automaticamente.</p>
+                </div>
+            </section>
+            <section class="onboarding-step" data-step="2">
+                <div class="onboarding-art" aria-hidden="true">
+                    <img class="onboard-icon" src="src/assets/icons/monitor-smartphone.svg" alt="" aria-hidden="true">
+                    <img class="onboard-icon" src="src/assets/icons/qr-code.svg" alt="" aria-hidden="true">
+                    <img class="onboard-icon" src="src/assets/icons/sticky-note.svg" alt="" aria-hidden="true">
+                </div>
+                <h2 data-i18n="onboard_title_2">E no celular?</h2>
+                <p data-i18n="onboard_body_2">O celular serve para transportar projetos, restaurar cápsulas e começar ideias por notas.</p>
+            </section>
+            <section class="onboarding-step" data-step="3">
+                <div class="onboarding-art" aria-hidden="true">
+                    <img class="onboard-icon" src="src/assets/icons/file-down.svg" alt="" aria-hidden="true">
+                    <img class="onboard-icon" src="src/assets/icons/sticky-note.svg" alt="" aria-hidden="true">
+                    <img class="onboard-icon" src="src/assets/icons/wifi-off.svg" alt="" aria-hidden="true">
+                </div>
+                <h2 data-i18n="onboard_title_3">Notas no celular</h2>
+                <p data-i18n="onboard_body_3">Você pode anotar em um projeto importado ou começar um novo projeto só pelas notas. Tudo local. Tudo offline.</p>
+            </section>
+            <section class="onboarding-step" data-step="4">
+                <div class="onboarding-art" aria-hidden="true">
+                    <svg class="onboard-icon" viewBox="0 0 24 24">
+                        <path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/>
+                    </svg>
+                    <svg class="onboard-icon" viewBox="0 0 24 24">
+                        <path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/>
+                    </svg>
+                    <img class="onboard-icon" src="src/assets/icons/package-open.svg" alt="" aria-hidden="true">
+                </div>
+                <h2 data-i18n="onboard_title_4">Transporte do jeito certo</h2>
+                <p data-i18n="onboard_body_4">Você decide quando mover o texto. QR code, cápsula, pendrive ou pasta. Nada acontece sozinho.</p>
+            </section>
+            <section class="onboarding-step" data-step="5">
+                <div class="onboarding-art" aria-hidden="true">
+                    <img class="onboard-icon" src="src/assets/icons/venetian-mask.svg" alt="" aria-hidden="true">
+                    <img class="onboard-icon" src="src/assets/icons/wifi-off.svg" alt="" aria-hidden="true">
+                    <img class="onboard-icon" src="src/assets/icons/wallet-minimal.svg" alt="" aria-hidden="true">
+                </div>
+                <h2 data-i18n="onboard_title_5">No seu controle</h2>
+                <p data-i18n="onboard_body_5">Nada é enviado. Nada é acompanhado. Se apagar, acabou. O conteúdo é seu.</p>
+            </section>
+            <section class="onboarding-step onboarding-setup" data-step="6">
+                <div id="viewSetup" class="setup-view" style="display:flex; flex-direction:column; align-items:center; gap:6px; text-align:center;">
+                    <h2 data-i18n="welcome" style="letter-spacing:2px; margin:0 0 2px;">INICIALIZANDO SISTEMA</h2>
+                    <div class="setup-lang">
+                        <button id="setupLangToggle" class="flag-btn" data-i18n="lang_label">🇧🇷 PT</button>
+                    </div>
+                    <div class="setup-form">
+                        <p data-i18n="setup_project_label" class="help-text">Nome do projeto</p>
+                        <input type="text" id="setupProjectName" class="search-input" autocomplete="off" data-i18n-ph="setup_project_ph" placeholder="Nome do projeto">
+                        <p data-i18n="create_pass" class="help-text">Crie a senha da sessão</p>
+                        <div class="setup-field">
+                            <input type="password" id="setupPass1" class="search-input" data-eye-input="true">
+                            <button type="button" class="password-toggle" data-target="setupPass1" data-i18n-title="toggle_password_show">
+                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                    <use href="src/assets/icons/phosphor-sprite.svg#icon-eye"></use>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="setup-field">
+                            <input type="password" id="setupPass2" class="search-input" data-i18n-ph="repeat_pass" placeholder="Confirmar" data-eye-input="true">
+                            <button type="button" class="password-toggle" data-target="setupPass2" data-i18n-title="toggle_password_show">
+                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                    <use href="src/assets/icons/phosphor-sprite.svg#icon-eye"></use>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="setup-choices">
+                            <button id="setupPomo25" class="btn-half" data-duration="25" data-i18n="pomo_25">25 MIN</button>
+                            <button id="setupPomo50" class="btn-half" data-duration="50" data-i18n="pomo_55">50 MIN</button>
+                        </div>
+                        <div id="setupMsg" class="help-text" aria-live="polite"></div>
+                        <div class="manifesto-terms-note setup-password-note" data-i18n-html="setup_password_note">Com essa senha, você controla esta sessão: trava, exporta e apaga.<br>O que for exportado funciona em qualquer outra.</div>
+                        <div class="setup-disclaimer" data-i18n-html="setup_disclaimer">
+                            Ao continuar, você concorda com a <span data-privacy-open="true">Política de Privacidade</span> e os <span data-terms-open="true">Termos de uso</span>.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="onboarding-nav">
+            <button id="onboardBack" class="btn-ghost" data-i18n-title="onboard_back" aria-label="Voltar">
+                <img class="icon" src="src/assets/icons/move-left.svg" alt="" aria-hidden="true">
+            </button>
+            <div class="onboarding-progress" aria-live="polite">
+                <span id="onboardStepLabel" data-i18n="onboard_step">1/6</span>
+            </div>
+            <button id="onboardNext" class="btn-ghost" data-i18n-title="onboard_next" aria-label="Avançar">
+                <img class="icon" src="src/assets/icons/move-right.svg" alt="" aria-hidden="true">
+            </button>
         </div>
     </div>
 </div>
@@ -118,7 +200,9 @@
 <div id="frame">
 
     <div class="logo-area">
-        <button class="logo-dot" type="button" data-manifesto-open="true" data-i18n-title="manifesto_open">•</button>
+        <button class="logo-dot" type="button" data-manifesto-open="true" data-i18n-title="manifesto_open">
+            <img class="icon" src="src/assets/icons/coffee.svg" alt="" aria-hidden="true">
+        </button>
         <div class="marquee-container">
             <div class="marquee-content" data-i18n="marquee_ready">
                 /// SYSTEM READY ///
@@ -132,14 +216,28 @@
 
     <div class="hud">
         <div class="hud-rail"></div>
-        <button class="hud-btn" id="tabNav" title="Navegação [Alt+2]" data-i18n-title="tab_nav" data-i18n-tip="tab_nav"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-list-bullets"></use></svg></button>
-        <button class="hud-btn" id="tabNotes" title="Notas [Alt+3]" data-i18n-title="tab_notes" data-i18n-tip="tab_notes"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-notepad"></use></svg></button>
-        <button class="hud-btn" id="tabMemo" title="Transferência [Alt+M]" data-i18n-title="tab_memo" data-i18n-tip="tab_memo"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-pencil"></use></svg></button>
-        <button class="hud-btn" id="tabBooks" title=".skrBooks [Alt+4]" data-i18n-title="tab_books" data-i18n-tip="tab_books"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-book-open-text"></use></svg></button>
+        <button class="hud-btn" id="tabNav" title="Navegação [Alt+2]" data-i18n-title="tab_nav" data-i18n-tip="tab_nav">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 14h6"/><path d="M4 2h10"/><rect x="4" y="18" width="16" height="4" rx="1"/><rect x="4" y="6" width="16" height="4" rx="1"/>
+            </svg>
+        </button>
+        <button class="hud-btn" id="tabNotes" title="Notas [Alt+3]" data-i18n-title="tab_notes" data-i18n-tip="tab_notes">
+            <img class="icon" src="src/assets/icons/pen-line.svg" alt="" aria-hidden="true">
+        </button>
+        <button class="hud-btn" id="tabMemo" title="Transferência [Alt+M]" data-i18n-title="tab_memo" data-i18n-tip="tab_memo">
+            <img class="icon" src="src/assets/icons/squares-subtract.svg" alt="" aria-hidden="true">
+        </button>
+        <button class="hud-btn" id="tabBooks" title=".skrBooks [Alt+4]" data-i18n-title="tab_books" data-i18n-tip="tab_books">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/><path d="m8 13 4-7 4 7"/><path d="M9.1 11h5.7"/>
+            </svg>
+        </button>
         <div class="hud-separator"></div>
         <button class="hud-btn" id="tabFiles" title="Arquivos [Alt+1]" data-i18n-title="tab_files" data-i18n-tip="tab_files"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-folder-open"></use></svg></button>
         <div class="hud-separator"></div>
-        <button class="hud-btn" id="btnThemeToggle" title="Tema [Alt+T]" data-i18n-title="tab_theme" data-i18n-tip="tab_theme"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-sun"></use></svg></button>
+        <button class="hud-btn" id="btnThemeToggle" title="Tema [Alt+T]" data-i18n-title="tab_theme" data-i18n-tip="tab_theme">
+            <img class="icon" src="src/assets/icons/palette.svg" alt="" aria-hidden="true">
+        </button>
         <div class="hud-separator"></div>
         <div style="flex:1"></div> 
         
@@ -154,7 +252,9 @@
                 <use href="src/assets/icons/phosphor-sprite.svg#icon-bomb"></use>
             </svg>
         </button>
-        <button class="hud-btn" id="hudFs" title="Tela Cheia [F11]" data-i18n-title="fullscreen_title" data-i18n-tip="fullscreen_title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-corners-out"></use></svg></button>
+        <button class="hud-btn" id="hudFs" title="Tela Cheia [F11]" data-i18n-title="fullscreen_title" data-i18n-tip="fullscreen_title">
+            <img class="icon" src="src/assets/icons/maximize-2.svg" alt="" aria-hidden="true">
+        </button>
         <div class="hud-scroll-hint" aria-hidden="true">
             <svg class="icon hint-up" viewBox="0 0 24 24"><use href="src/assets/icons/phosphor-sprite.svg#icon-caret-up"></use></svg>
             <svg class="icon hint-down" viewBox="0 0 24 24"><use href="src/assets/icons/phosphor-sprite.svg#icon-caret-down"></use></svg>
@@ -177,7 +277,7 @@
                 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-notepad"></use></svg>
             </button>
             <button class="drawer-tab-btn" id="mobileTabTheme" data-i18n-title="tab_theme">
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-sun"></use></svg>
+                <img class="icon" src="src/assets/icons/palette.svg" alt="" aria-hidden="true">
             </button>
             <button class="drawer-tab-btn" id="mobileTabBooks" data-i18n-title="tab_books">
                 <span class="icon-text">B</span>
@@ -208,7 +308,7 @@
                     <span data-i18n="help_font">MUDAR FONTE</span>
                 </button>
                 <button class="btn-full" id="drawerLock">
-                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-lock-key"></use></svg>
+                    <img class="icon" src="src/assets/icons/lock.svg" alt="" aria-hidden="true">
                     <span data-i18n="lock_btn">LOCK</span>
                 </button>
                 <button class="btn-full" id="drawerPomodoro" data-i18n-title="pomo_tip" data-i18n-tip="pomo_tip">
@@ -238,7 +338,12 @@
             <div class="file-actions">
                 <button class="btn-half" id="btnNewProject" data-i18n="btn_new_project">+ NOVO</button>
                 <button class="btn-half" id="btnImport" title="Importar JSON/TXT" data-i18n-title="btn_import_title" data-i18n-tip="btn_import_title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-upload-simple"></use></svg> <span data-i18n="btn_open">ABRIR</span></button>
-                <button class="btn-half" id="btnScanQr" title="Scan QR" data-i18n-title="btn_scan_qr" data-i18n-tip="btn_scan_qr"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-qr-code"></use></svg> <span data-i18n="btn_scan">SCAN QR</span></button>
+                <button class="btn-half" id="btnScanQr" title="Scan QR" data-i18n-title="btn_scan_qr" data-i18n-tip="btn_scan_qr">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 5v14"/><path d="M8 5v14"/><path d="M12 5v14"/><path d="M17 5v14"/><path d="M21 5v14"/>
+                    </svg>
+                    <span data-i18n="btn_scan">SCAN QR</span>
+                </button>
                 <input type="file" id="fileInput" style="display:none;" accept=".json,.txt,.md,.skr,.skrv,.b64,.qr">
             </div>
             <div id="projectList" class="list-container"></div>
@@ -340,7 +445,12 @@
                 <div class="notes-stage notes-stage-edit" data-stage="edit">
                     <div class="notes-stage-header">
                         <button id="notesBackToPreview" class="btn-icon" data-i18n-title="notes_back" aria-label="VOLTAR"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-caret-left"></use></svg></button>
-                        <button id="notesPinToggle" class="btn-icon notes-pin-toggle" data-i18n-title="notes_pin" aria-label="FIXAR"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-push-pin-simple"></use></svg></button>
+                        <button id="notesPinToggle" class="btn-icon notes-pin-toggle" data-i18n-title="notes_pin" aria-label="FIXAR">
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z"/>
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </button>
                         <button id="notesDelete" class="btn-icon danger" data-i18n-title="notes_delete" aria-label="APAGAR"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-trash"></use></svg></button>
                     </div>
                     <div class="notes-edit">
@@ -564,11 +674,11 @@
             <button id="mobileControlsClose" class="btn-icon mobile-controls-close" data-i18n-title="controls_close">×</button>
             <span id="currentDocLabel" class="status-label">UNTITLED</span>
             <span id="liveStats" class="status-label" data-i18n="stats_label">CHARS: 0 | WORDS: 0</span>
-            <button class="btn" id="btnFontType" title="Mudar Fonte [Alt+F]" data-i18n-title="font_title" data-i18n-tip="font_title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-text-aa"></use></svg></button>
+            <button class="btn" id="btnFontType" title="Mudar Fonte [Alt+F]" data-i18n-title="font_title" data-i18n-tip="font_title"><img class="icon" src="src/assets/icons/case-sensitive.svg" alt="" aria-hidden="true"></button>
             <button class="btn" id="fontMinus" data-i18n-title="font_minus_title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-minus"></use></svg></button>
             <button class="btn" id="fontPlus" data-i18n-title="font_plus_title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-plus"></use></svg></button>
             <div class="divider"></div>
-            <button class="btn" id="btnSave" title="Salvar [Ctrl+S]" data-i18n-title="save_title" data-i18n-tip="save_title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-floppy-disk"></use></svg> <span data-i18n="export_btn">EXPORTAR</span></button>
+            <button class="btn" id="btnSave" title="Salvar [Ctrl+S]" data-i18n-title="save_title" data-i18n-tip="save_title"><img class="icon" src="src/assets/icons/folder-up.svg" alt="" aria-hidden="true"> <span data-i18n="export_btn">EXPORTAR</span></button>
             <div style="flex:1"></div> 
             <div class="search-wrapper">
                 <svg class="icon search-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-magnifying-glass"></use></svg>
@@ -582,10 +692,10 @@
             </div>
             <div class="divider"></div>
             <button class="btn" id="btnAudio" title="Música [Alt+M]" data-i18n-title="audio_title" data-i18n-tip="audio_title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-music-notes"></use></svg> <span data-i18n="audio_btn">SOM</span></button>
-            <button class="btn" id="btnReader" title="Modo Leitor" data-i18n-title="reader_title" data-i18n-tip="reader_title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-eyeglasses"></use></svg> <span data-i18n="reader_btn">LEITOR</span></button>
-            <button class="btn" id="btnXray" title="RASTRO" data-i18n-title="xray_title" data-i18n-tip="xray_tooltip"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-eye"></use></svg> <span data-i18n="xray_btn">RASTRO</span></button>
+            <button class="btn" id="btnReader" title="Modo Leitor" data-i18n-title="reader_title" data-i18n-tip="reader_title"><img class="icon" src="src/assets/icons/book-open-check.svg" alt="" aria-hidden="true"> <span data-i18n="reader_btn">LEITOR</span></button>
+            <button class="btn" id="btnXray" title="RASTRO" data-i18n-title="xray_title" data-i18n-tip="xray_tooltip"><img class="icon" src="src/assets/icons/chart-column.svg" alt="" aria-hidden="true"> <span data-i18n="xray_btn">RASTRO</span></button>
             
-            <button class="btn" id="btnLock" title="Bloquear Tela [Alt+L]" data-i18n-title="lock_title" data-i18n-tip="lock_title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-lock-key"></use></svg> <span data-i18n="lock_btn">LOCK</span></button>
+            <button class="btn" id="btnLock" title="Bloquear Tela [Alt+L]" data-i18n-title="lock_title" data-i18n-tip="lock_title"><img class="icon" src="src/assets/icons/lock.svg" alt="" aria-hidden="true"> <span data-i18n="lock_btn">LOCK</span></button>
         </div>
     </div>
 
@@ -595,7 +705,13 @@
             <div class="modal-body">
                 <div class="export-grid">
                     <div class="export-card" id="actionDownloadJson" data-i18n-tip="export_capsule_tip"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-file"></use></svg><span data-i18n="export_json">EXPORTAR CÁPSULA</span><small>.skrv</small></div>
-                    <div class="export-card" id="actionQrStream"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-qr-code"></use></svg><span data-i18n="export_qr_stream">STREAM QR</span><small data-i18n="export_light">luz</small></div>
+                    <div class="export-card" id="actionQrStream">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M3 5v14"/><path d="M8 5v14"/><path d="M12 5v14"/><path d="M17 5v14"/><path d="M21 5v14"/>
+                        </svg>
+                        <span data-i18n="export_qr_stream">STREAM QR</span>
+                        <small data-i18n="export_light">luz</small>
+                    </div>
                 </div>
                 <div class="export-social">
                     <div class="export-social-title" data-i18n="export_social_title">REDES FEDERADAS</div>
@@ -676,10 +792,10 @@
                 <span data-i18n="reader_title">MODO LEITOR</span>
                 <div class="reader-actions">
                     <button id="btnReaderGlossary" class="btn-icon" title="Glossário" data-i18n-title="reader_glossary_title" data-i18n-tip="reader_glossary_title">
-                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-list-bullets"></use></svg>
+                        <img class="icon" src="src/assets/icons/whole-word.svg" alt="" aria-hidden="true">
                     </button>
                     <button id="btnReaderRuler" class="btn-icon" title="Régua" data-i18n-title="reader_ruler_title" data-i18n-tip="reader_ruler_title">
-                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-eyeglasses"></use></svg>
+                        <img class="icon" src="src/assets/icons/ruler.svg" alt="" aria-hidden="true">
                     </button>
                     <button id="btnReaderFont" class="btn-icon" title="Fonte" data-i18n-title="reader_font_title" data-i18n-tip="reader_font_title">
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-text-aa"></use></svg>

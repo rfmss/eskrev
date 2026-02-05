@@ -227,7 +227,7 @@ export const ui = {
             const div = document.createElement("div"); div.className = "divider"; controls.appendChild(div);
             const btn = document.createElement("button");
             btn.className = "btn"; btn.id = "pomodoroBtn";
-            btn.innerHTML = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-tomato"></use></svg> 25:00`;
+            btn.innerHTML = `<img class="icon" src="src/assets/icons/timer.svg" alt="" aria-hidden="true"> 25:00`;
             const pomoHint = lang.t("help_pomo_short") || lang.t("pomo_btn") || "Pomodoro";
             btn.setAttribute("data-i18n-title", "help_pomo_short");
             btn.setAttribute("data-i18n-tip", "help_pomo_short");
