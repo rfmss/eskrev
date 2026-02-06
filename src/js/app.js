@@ -243,6 +243,7 @@ function initOnboarding() {
     const backBtn = document.getElementById("onboardBack");
     const nextBtn = document.getElementById("onboardNext");
     const stepLabel = document.getElementById("onboardStepLabel");
+    const langBtn = document.getElementById("onboardLangToggle");
     const total = Math.max(steps.length - 1, 1);
     let current = 0;
 
@@ -329,6 +330,9 @@ function initOnboarding() {
                 update();
             }
         });
+    }
+    if (langBtn) {
+        langBtn.addEventListener("click", () => lang.cycleLang());
     }
     const keyHandler = (e) => {
         if (!modal.classList.contains("active")) return;

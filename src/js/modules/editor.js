@@ -432,7 +432,17 @@ export const editorFeatures = {
     playSound(name) {
         if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
         const b = this.sfxBuffers[name];
-        if (!b) return;
+        if (!b) {
+            const fallback = this.sfx && this.sfx[name];
+            if (fallback) {
+                try {
+                    fallback.currentTime = 0;
+                    fallback.volume = 0.3;
+                    fallback.play().catch(() => {});
+                } catch (_) {}
+            }
+            return;
+        }
         const s = this.audioCtx.createBufferSource();
         s.buffer = b; s.connect(this.gainNode); s.start(0);
     },
