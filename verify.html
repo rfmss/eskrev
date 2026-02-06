@@ -333,6 +333,8 @@
           <div class="row"><span class="label" data-i18n="verify_metric_events">Eventos de digitação</span><span class="value" id="metricEvents">—</span></div>
           <div class="row"><span class="label" data-i18n="verify_metric_pauses">Ritmo e pausas</span><span class="value" id="metricPauses">—</span></div>
           <div class="row"><span class="label" data-i18n="verify_metric_sequence">Sequência temporal do processo</span><span class="value" id="metricSequence">—</span></div>
+          <div class="row"><span class="label" data-i18n="verify_metric_manifest">Manifesto</span><span class="value" id="metricManifest">—</span></div>
+          <div class="row"><span class="label" data-i18n="verify_metric_manifest_at">Manifesto · data</span><span class="value" id="metricManifestAt">—</span></div>
         </div>
         <p class="verify-note" data-i18n="verify_report_note">Este relatório descreve dados técnicos. A interpretação cabe a quem avalia.</p>
       </div>
@@ -417,6 +419,8 @@
     const metricEvents = document.getElementById("metricEvents");
     const metricPauses = document.getElementById("metricPauses");
     const metricSequence = document.getElementById("metricSequence");
+    const metricManifest = document.getElementById("metricManifest");
+    const metricManifestAt = document.getElementById("metricManifestAt");
     [metricHash, metricDuration, metricEvents, metricPauses, metricSequence].forEach((el) => {
       if (el) el.setAttribute("data-copied-label", t("verify_copied"));
     });
@@ -523,6 +527,17 @@
       if (started && ended) return `${started} → ${ended}`;
       return t("verify_dash");
     };
+    const formatManifest = (parsed) => {
+      const accepted = parsed?.MANIFEST?.accepted;
+      if (accepted === true) return t("verify_manifest_yes");
+      if (accepted === false) return t("verify_manifest_no");
+      return t("verify_dash");
+    };
+    const formatManifestAt = (parsed) => {
+      const at = parsed?.MANIFEST?.accepted_at;
+      if (at) return at;
+      return t("verify_dash");
+    };
 
     const verifyTot = async () => {
       if (!pendingText) return;
@@ -545,14 +560,18 @@
         metricEvents.textContent = formatEvents(parsed);
         metricPauses.textContent = formatPauses(parsed);
         metricSequence.textContent = formatSequence(parsed);
+        if (metricManifest) metricManifest.textContent = formatManifest(parsed);
+        if (metricManifestAt) metricManifestAt.textContent = formatManifestAt(parsed);
       } catch (e) {
-        setStatus([{ text: "✖ Falha ao ler o arquivo .skr", type: "warn" }]);
+        setStatus([{ text: t("verify_status_read_fail"), type: "warn" }]);
         metricHash.textContent = "—";
         metricHash.title = "";
         metricDuration.textContent = "—";
         metricEvents.textContent = "—";
         metricPauses.textContent = "—";
         metricSequence.textContent = "—";
+        if (metricManifest) metricManifest.textContent = "—";
+        if (metricManifestAt) metricManifestAt.textContent = "—";
       }
     };
 

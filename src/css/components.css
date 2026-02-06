@@ -3598,6 +3598,7 @@ kbd {
     overflow: visible;
     color: var(--color-text);
     stroke: currentColor;
+    fill: currentColor;
 }
 .onboarding-step[data-step="0"] .onboarding-art {
     height: 190px;
@@ -3822,6 +3823,9 @@ kbd {
 }
 .onboarding-modal.onboard-step-zero .onboarding-nav {
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
 }
 .onboard-lang {
     display: flex;
@@ -3843,6 +3847,17 @@ kbd {
     align-items: center;
     gap: 4px;
 }
+.onboarding-modal.onboard-step-zero .onboarding-next {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2px;
+}
+.onboarding-modal.onboard-step-zero .onboarding-progress {
+    order: 2;
+    flex-direction: column;
+}
 .onboard-enter-hint {
     font-size: 9px;
     letter-spacing: 1px;
@@ -3857,7 +3872,10 @@ kbd {
     justify-content: center;
     width: 42px;
     height: 42px;
-    border-radius: 999px;
+    border-radius: 0;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
 }
 .onboarding-nav .btn-ghost .icon {
     width: 18px;
@@ -3894,7 +3912,13 @@ kbd {
     background: transparent; border: 1px solid var(--color-muted); color: var(--color-muted);
     padding: 8px; cursor: pointer; border-radius: var(--radius); opacity: 0.5; transition: 0.3s;
 }
-.flag-btn.active, .flag-btn:hover { border-color: var(--color-accent); color: var(--color-accent); opacity: 1; transform: scale(1.1); }
+.flag-btn.active, .flag-btn:hover {
+    opacity: 1;
+    transform: none;
+    border-color: var(--color-text);
+    background: var(--color-text);
+    color: var(--bg-core);
+}
 
 .shake { animation: shake 0.25s; border-color: #ff4444 !important; }
 @keyframes shake { 0%, 100% {transform: translateX(0);} 25% {transform: translateX(-2px);} 75% {transform: translateX(2px);} }

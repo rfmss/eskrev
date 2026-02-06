@@ -301,7 +301,7 @@ function initOnboarding() {
             langHint.style.display = current === 0 ? "block" : "none";
         }
         if (nextBtn) {
-            const canAdvance = current < total && (langChosen || current > 0);
+            const canAdvance = current < total && (current > 0 || langChosen || lang.current === "pt");
             nextBtn.style.display = canAdvance ? "inline-flex" : "none";
         }
         if (current === total) {
@@ -369,7 +369,7 @@ function initOnboarding() {
     const keyHandler = (e) => {
         if (!modal.classList.contains("active")) return;
         if (e.key === "Enter") {
-            if ((current === 0 || current === 1) && !langChosen) {
+            if ((current === 0 || current === 1) && !langChosen && lang.current !== "pt") {
                 e.preventDefault();
                 return;
             }

@@ -176,13 +176,19 @@ async function buildBirthChain(text) {
   if (!Array.isArray(history)) history = [];
 
   const prevHash = prev && prev.hash ? prev.hash : "";
+  const manifestAccepted = localStorage.getItem("skrv_manifest_signed") || localStorage.getItem("tot_manifest_signed") || "";
+  const manifestAcceptedAt = localStorage.getItem("skrv_manifest_signed_at") || localStorage.getItem("tot_manifest_signed_at") || "";
+  const manifestText = localStorage.getItem("skrv_manifest_text") || localStorage.getItem("tot_manifest_text") || "";
+  const manifestFingerprint = `${manifestAccepted}|${manifestAcceptedAt}|${manifestText}`;
   const createdAt = new Date().toISOString();
-  const hash = await sha256Hex(`${text}\n${prevHash}`);
+  const hash = await sha256Hex(`${text}\n${prevHash}\n${manifestFingerprint}`);
   const entry = {
     algo: "SHA-256",
     created_at: createdAt,
     prev_hash: prevHash || null,
-    hash
+    hash,
+    manifest_accepted: manifestAccepted === "true",
+    manifest_accepted_at: manifestAcceptedAt || null
   };
   history.push(entry);
   const chain = {
