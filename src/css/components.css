@@ -3556,16 +3556,9 @@ kbd {
     line-height: 1.6;
     min-height: 280px;
 }
-.onboarding-step p {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
 .onboarding-step.active {
     display: block;
-    animation: onboardFade 0.5s ease;
+    animation: none;
 }
 .onboarding-step h2 {
     font-size: 18px;
@@ -3603,6 +3596,8 @@ kbd {
     height: 168px;
     stroke-width: 28px;
     overflow: visible;
+    color: var(--color-text);
+    stroke: currentColor;
 }
 .onboarding-step[data-step="0"] .onboarding-art {
     height: 190px;
@@ -3615,36 +3610,40 @@ kbd {
     margin: 6px 0 0;
     color: var(--color-muted);
     font-size: 14px;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.4px;
     opacity: 0;
     transform: translateY(4px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    white-space: nowrap;
+    word-spacing: 0;
 }
 .onboard-logo-tagline .tagline-main {
     display: inline-block;
-    overflow: hidden;
     white-space: nowrap;
-    width: 0;
+    width: auto;
     vertical-align: bottom;
 }
 .onboard-logo-tagline .tagline-sub {
     display: inline-block;
-    margin-left: 6px;
-    opacity: 0;
-    transform: translateY(4px);
+    opacity: 1;
+    transform: translateY(0);
 }
 .onboarding-art .onboard-logo path {
     stroke-dasharray: 2000;
     stroke-dashoffset: 2000;
 }
 .onboarding-copy {
-    opacity: 0;
-    transform: translateY(6px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    opacity: 1;
+    transform: none;
+    transition: none;
 }
 .onboarding-step.animate .onboarding-copy {
     opacity: 1;
-    transform: translateY(0);
-    transition-delay: 4s;
+    transform: none;
+    transition-delay: 0s;
 }
 .onboarding-step.animate .onboarding-art svg,
 .onboarding-step.animate .onboarding-art img {
@@ -3663,26 +3662,26 @@ kbd {
     transform: translateY(0);
 }
 .onboarding-step.animate .onboard-logo-tagline .tagline-main {
-    animation: taglineType 1.4s steps(16, end) forwards 2.2s;
+    animation: none;
 }
 .onboarding-step.animate .onboard-logo-tagline .tagline-sub {
-    animation: taglineFade 0.6s ease forwards 3.2s;
+    animation: none;
 }
 .onboarding-step.animate .onboarding-art svg:nth-child(1),
 .onboarding-step.animate .onboarding-art img:nth-child(1) {
-    animation: drawIcon 1.4s ease-out forwards;
+    animation: none;
 }
 .onboarding-step.animate .onboarding-art svg:nth-child(2),
 .onboarding-step.animate .onboarding-art img:nth-child(2) {
-    animation: drawIcon 1.4s ease-out 1.6s forwards;
+    animation: none;
 }
 .onboarding-step.animate .onboarding-art svg:nth-child(3),
 .onboarding-step.animate .onboarding-art img:nth-child(3) {
-    animation: drawIcon 1.4s ease-out 3.2s forwards;
+    animation: none;
 }
 .onboarding-step[data-step="1"].animate .onboarding-art svg:nth-child(3) {
     transform-origin: 50% 50%;
-    animation: drawIcon 1.4s ease-out 3.2s forwards, tabletFlip 0.6s ease-out 4.8s forwards;
+    animation: none;
 }
 .onboarding-art svg path,
 .onboarding-art svg rect,
@@ -3693,17 +3692,17 @@ kbd {
 .onboarding-step.animate .onboarding-art svg path,
 .onboarding-step.animate .onboarding-art svg rect,
 .onboarding-step.animate .onboarding-art svg circle {
-    animation: drawStroke 1.2s ease-out forwards;
+    animation: none;
 }
 .onboarding-step.animate .onboarding-art svg:nth-child(2) path,
 .onboarding-step.animate .onboarding-art svg:nth-child(2) rect,
 .onboarding-step.animate .onboarding-art svg:nth-child(2) circle {
-    animation-delay: 1.4s;
+    animation-delay: 0s;
 }
 .onboarding-step.animate .onboarding-art svg:nth-child(3) path,
 .onboarding-step.animate .onboarding-art svg:nth-child(3) rect,
 .onboarding-step.animate .onboarding-art svg:nth-child(3) circle {
-    animation-delay: 2.8s;
+    animation-delay: 0s;
 }
 @keyframes onboardFade {
     from { opacity: 0; transform: translateY(6px); }
@@ -3821,6 +3820,36 @@ kbd {
     justify-content: space-between;
     gap: 12px;
 }
+.onboarding-modal.onboard-step-zero .onboarding-nav {
+    justify-content: center;
+}
+.onboard-lang {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+.onboard-lang-hint {
+    font-size: 9px;
+    letter-spacing: 0.6px;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    text-align: center;
+    max-width: 180px;
+}
+.onboarding-next {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+.onboard-enter-hint {
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--color-muted);
+    opacity: 0.8;
+    display: none;
+}
 .onboarding-nav .btn-ghost {
     min-width: 110px;
     display: inline-flex;
@@ -3841,12 +3870,25 @@ kbd {
     font-size: 11px;
     color: var(--color-muted);
     letter-spacing: 1px;
-    gap: 8px;
+    gap: 4px;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
 }
 .onboarding-nav .flag-btn {
     display: none;
+}
+.onboarding-nav .flag-btn {
+    padding: 6px 18px;
+    border-radius: 999px;
+    min-width: 84px;
+    line-height: 1;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    letter-spacing: 1px;
 }
 .flag-btn {
     background: transparent; border: 1px solid var(--color-muted); color: var(--color-muted);

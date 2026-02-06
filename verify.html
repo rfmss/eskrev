@@ -402,10 +402,12 @@
     applyTheme();
     window.addEventListener("storage", (e) => {
       if (e.key === "lit_theme_pref") applyTheme(e.newValue);
+      if (e.key === "lit_lang" && e.newValue) lang.setLang(e.newValue);
     });
     window.addEventListener("message", (e) => {
       if (e.origin !== window.location.origin) return;
       if (e.data && e.data.type === "theme") applyTheme(e.data.value);
+      if (e.data && e.data.type === "lang") lang.setLang(e.data.value);
     });
 
     const fileInput = document.getElementById("fileInput");

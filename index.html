@@ -41,7 +41,7 @@
             <section class="onboarding-step" data-step="0">
                 <div class="onboarding-art logo-intro" aria-hidden="true">
                     <svg class="onboard-logo" viewBox="0 0 686 689">
-                        <path d="m192.01 33l-152.17 586.3c0 0-17.9 34.46 8.95 35.81 26.86 1.35 40.28-35.81 40.28-35.81l80.57-246.15 398.32-205.88-274.5 259.44-74.59 112.03 434.13 98.47"/>
+                        <path d="M 186.11164,28.015605 26.06964,614.11008 c -8.48849,39.90251 30.459753,73.15206 60.587182,44.74246 9.570051,-9.02438 17.657868,-20.64619 21.895958,-33.17481 L 186.51172,387.50586 448.21289,252.24023 279.37891,411.81055 c -1.12454,1.06334 -2.12505,2.25059 -2.98243,3.53906 l -72.94656,119.6588 c -7.95725,11.95491 -5.70107,16.90675 8.30373,20.08532 l 446.80561,86.14613 c 8.33842,2.63759 12.02982,-6.42319 2.26245,-8.76211 L 252.42578,525.33008 309.23437,440.00977 579.55108,176.02612 c 17.0107,-16.10234 6.61784,-29.07508 -14.19837,-18.33574 L 160.22656,354.93945 c -4.7795,2.47051 -8.39634,6.72078 -10.07031,11.83399 L 69.755859,612.4082 c -3.984225,10.46175 -9.538958,6.57266 -7.418281,-1.23866 L 189.77604,28.688616 c 0.37989,-3.731246 -0.26834,-9.458189 -3.6644,-0.673011 z"/>
                     </svg>
                 </div>
                 <p class="onboard-logo-tagline">
@@ -146,16 +146,21 @@
             </section>
         </div>
         <div class="onboarding-nav">
-            <button id="onboardBack" class="btn-ghost" data-i18n-title="onboard_back" aria-label="Voltar">
+            <button id="onboardBack" class="btn-ghost" data-i18n-title="onboard_back">
                 <img class="icon" src="src/assets/icons/move-left.svg" alt="" aria-hidden="true">
             </button>
             <div class="onboarding-progress" aria-live="polite">
                 <span id="onboardStepLabel" data-i18n="onboard_step">1/6</span>
-                <button id="onboardLangToggle" class="flag-btn" data-i18n="lang_label">🇧🇷 PT</button>
+                <div class="onboard-lang">
+                    <button id="onboardLangToggle" class="flag-btn">EN</button>
+                    <span id="onboardLangHint" class="onboard-lang-hint" data-i18n="onboard_lang_hint">escolha idioma e pressione ENTER</span>
+                </div>
             </div>
-            <button id="onboardNext" class="btn-ghost" data-i18n-title="onboard_next" aria-label="Avançar">
-                <img class="icon" src="src/assets/icons/move-right.svg" alt="" aria-hidden="true">
-            </button>
+            <div class="onboarding-next">
+                <button id="onboardNext" class="btn-ghost" data-i18n-title="onboard_next">
+                    <img class="icon" src="src/assets/icons/move-right.svg" alt="" aria-hidden="true">
+                </button>
+            </div>
         </div>
     </div>
 </div>
@@ -430,7 +435,7 @@
                 <textarea id="mobileMemoInput" class="mobile-memo-input" data-i18n-ph="mobile_memo_ph" placeholder="Nota rápida..."></textarea>
                 <input id="mobileMemoTags" class="mobile-memo-tags" data-i18n-ph="mobile_memo_tags" placeholder="Tags (separe por vírgula)" />
                 <div class="mobile-memo-tags-fixed mobile-only" aria-hidden="true">
-                    <span class="mobile-memo-tag locked">#mobile <span class="tag-lock">fixo</span></span>
+                    <span class="mobile-memo-tag locked"><span data-i18n="mobile_tag_fixed_label">#mobile</span> <span class="tag-lock" data-i18n="mobile_tag_fixed_status">fixo</span></span>
                 </div>
                 <input id="mobileMemoFolder" class="mobile-memo-folder" data-i18n-ph="mobile_memo_folder" placeholder="Pasta (opcional)" />
                 <button class="btn-full" id="btnAddMobileMemo" data-i18n="mobile_memo_add">SALVAR NOTA</button>
@@ -481,18 +486,18 @@
                         <button id="notesEmptyCreate" class="btn-full" data-i18n="notes_empty_cta">CRIAR PRIMEIRA NOTA</button>
                     </div>
                     <div id="notesList" class="notes-list"></div>
-                    <button id="notesFab" class="notes-fab" type="button" data-i18n-title="notes_new" aria-label="NOVA NOTA"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-plus"></use></svg></button>
+                    <button id="notesFab" class="notes-fab" type="button" data-i18n-title="notes_new"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-plus"></use></svg></button>
                 </div>
                 <div class="notes-stage notes-stage-edit" data-stage="edit">
                     <div class="notes-stage-header">
-                        <button id="notesBackToPreview" class="btn-icon" data-i18n-title="notes_back" aria-label="VOLTAR"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-caret-left"></use></svg></button>
-                        <button id="notesPinToggle" class="btn-icon notes-pin-toggle" data-i18n-title="notes_pin" aria-label="FIXAR">
+                        <button id="notesBackToPreview" class="btn-icon" data-i18n-title="notes_back"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-caret-left"></use></svg></button>
+                        <button id="notesPinToggle" class="btn-icon notes-pin-toggle" data-i18n-title="notes_pin">
                             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                                 <path d="M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z"/>
                                 <circle cx="12" cy="12" r="10"/>
                             </svg>
                         </button>
-                        <button id="notesDelete" class="btn-icon danger" data-i18n-title="notes_delete" aria-label="APAGAR"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-trash"></use></svg></button>
+                        <button id="notesDelete" class="btn-icon danger" data-i18n-title="notes_delete"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-trash"></use></svg></button>
                     </div>
                     <div class="notes-edit">
                         <input id="notesTitle" class="notes-input" data-i18n-ph="notes_title_ph" placeholder="Titulo" />
@@ -508,8 +513,8 @@
                     <div class="notes-overlay-header">
                         <span id="notesOverlayTitle"></span>
                         <div class="notes-overlay-actions">
-                            <button id="notesOverlayNew" class="btn-icon" data-i18n-title="notes_new" aria-label="NOVA NOTA"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-plus"></use></svg></button>
-                            <button id="notesOverlayClose" class="btn-icon" data-i18n-title="notes_back" aria-label="VOLTAR"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-caret-left"></use></svg></button>
+                            <button id="notesOverlayNew" class="btn-icon" data-i18n-title="notes_new"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-plus"></use></svg></button>
+                            <button id="notesOverlayClose" class="btn-icon" data-i18n-title="notes_back"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-caret-left"></use></svg></button>
                         </div>
                     </div>
                     <div id="notesOverlayList" class="notes-list"></div>
@@ -525,7 +530,7 @@
                         <h2 data-i18n="newtext_title">Novo texto</h2>
                         <p data-i18n="newtext_subtitle">Como você quer começar?</p>
                     </div>
-                    <button id="newTextClose" class="btn-icon" aria-label="Fechar">×</button>
+                    <button id="newTextClose" class="btn-icon" data-i18n-title="close_label">×</button>
                 </div>
                 <div class="newtext-body">
                     <div class="newtext-step newtext-step-1 is-active" data-step="1">
@@ -579,9 +584,9 @@
                 </div>
 
                 <div class="xray-summary" id="xraySummary">
-                    <div class="xray-summary-item" id="xraySummaryVerbs">Verbos: 0 ocorrências · 0 lemas</div>
-                    <div class="xray-summary-item" id="xraySummaryAdjs">Adjetivos: 0 ocorrências · 0 lemas</div>
-                    <div class="xray-summary-item xray-summary-click" id="xraySummaryAmb">Ambíguos: 0</div>
+                    <div class="xray-summary-item" id="xraySummaryVerbs"></div>
+                    <div class="xray-summary-item" id="xraySummaryAdjs"></div>
+                    <div class="xray-summary-item xray-summary-click" id="xraySummaryAmb"></div>
                 </div>
 
                 <div class="xray-controls">
@@ -643,19 +648,19 @@
             <aside id="templatePane" class="template-pane" aria-hidden="true">
                 <div class="template-header">
                     <div>
-                        <div id="templateTitle" class="template-title">Guia</div>
+                        <div id="templateTitle" class="template-title" data-i18n="guide_title">Guia</div>
                         <div id="templateSubtitle" class="template-subtitle"></div>
                     </div>
                     <div class="template-actions">
-                        <button id="templateMinimize" class="btn-icon" aria-label="Minimizar">–</button>
-                        <button id="templateClose" class="btn-icon" aria-label="Fechar">×</button>
+                        <button id="templateMinimize" class="btn-icon" data-i18n-title="minimize_label">-</button>
+                        <button id="templateClose" class="btn-icon" data-i18n-title="close_label">×</button>
                     </div>
                 </div>
                 <div id="templateContent" class="template-content"></div>
             </aside>
             <button id="templateTab" class="template-tab" type="button" aria-hidden="true" data-i18n="template_tab">TEMPLATE</button>
         </div>
-        <div id="guideRail" class="guide-rail" aria-label="Guias de escrita">
+        <div id="guideRail" class="guide-rail" data-i18n-title="guide_rail_label">
             <button class="guide-rail-item" type="button" data-guide="conto-curto">
                 <span class="guide-rail-icon"></span>
                 <span class="guide-rail-label" data-i18n="guide_conto">Conto</span>
@@ -688,7 +693,7 @@
             id="booksFrame"
             src="totbooks.html"
             style="width:100%; height:100%; border:0; background:transparent;"
-            title=".skrBooks"
+            data-i18n-title="books_iframe_title"
         ></iframe>
     </div>
 
@@ -697,7 +702,7 @@
             id="verifyFrame"
             src="verify.html"
             style="width:100%; height:100%; border:0; background:transparent;"
-            title=".skr Verify"
+            data-i18n-title="verify_iframe_title"
         ></iframe>
     </div>
 </main>
@@ -713,7 +718,7 @@
                 <svg class="icon hint-right" viewBox="0 0 24 24"><use href="src/assets/icons/phosphor-sprite.svg#icon-caret-right"></use></svg>
             </div>
             <button id="mobileControlsClose" class="btn-icon mobile-controls-close" data-i18n-title="controls_close">×</button>
-            <span id="currentDocLabel" class="status-label">UNTITLED</span>
+            <span id="currentDocLabel" class="status-label" data-i18n="doc_untitled">UNTITLED</span>
             <span id="liveStats" class="status-label" data-i18n="stats_label">CHARS: 0 | WORDS: 0</span>
             <button class="btn" id="btnFontType" title="Mudar Fonte [Alt+F]" data-i18n-title="font_title" data-i18n-tip="font_title">
                 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -910,13 +915,13 @@
                             <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
                         </svg>
                     </button>
-                    <button id="btnReaderSpeedDown" class="btn-icon" title="Lento">
+                    <button id="btnReaderSpeedDown" class="btn-icon" data-i18n-title="reader_speed_slow">
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-minus"></use></svg>
                     </button>
                     <button id="btnReaderPlay" class="btn-icon" title="Play" data-i18n-title="reader_play_title" data-i18n-tip="reader_play_title">
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-play-circle"></use></svg>
                     </button>
-                    <button id="btnReaderSpeedUp" class="btn-icon" title="Rápido">
+                    <button id="btnReaderSpeedUp" class="btn-icon" data-i18n-title="reader_speed_fast">
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-plus"></use></svg>
                     </button>
                 </div>
@@ -937,7 +942,7 @@
                     <div id="qrStreamCode" class="qr-canvas"></div>
                     <div class="qr-stream-panel">
                         <div id="qrStreamStatus" class="help-text" data-i18n="qr_stream_active">STREAM ATIVO</div>
-                        <div id="qrStreamMeta" class="qr-meta help-text">FRAME 000 / 000</div>
+                        <div id="qrStreamMeta" class="qr-meta help-text"></div>
                         <div class="qr-stream-instructions" data-i18n-html="qr_stream_instructions">
                             <p>1) No celular, abra o .skr e vá em Arquivos → Scan QR.</p>
                             <p>2) Aponte para esta tela até completar.</p>
@@ -1119,15 +1124,15 @@
     <div id="systemModal" class="modal-overlay system-modal">
         <div class="modal-box">
             <div class="modal-header">
-                <span id="systemModalTitle">ALERTA</span>
-                <button id="closeSystemModal" class="btn-icon">×</button>
+                <span id="systemModalTitle" data-i18n="system_modal_title">ALERTA</span>
+                <button id="closeSystemModal" class="btn-icon" data-i18n-title="close_label">×</button>
             </div>
             <div class="modal-body">
                 <div id="systemModalMessage" class="system-modal-message"></div>
                 <input id="systemModalInput" class="system-modal-input" style="display:none;" />
                 <div class="system-modal-actions">
-                    <button id="systemModalCancel" class="btn-full">CANCELAR</button>
-                    <button id="systemModalConfirm" class="btn-full">OK</button>
+                    <button id="systemModalCancel" class="btn-full" data-i18n="modal_cancel">CANCELAR</button>
+                    <button id="systemModalConfirm" class="btn-full" data-i18n="modal_ok">OK</button>
                 </div>
             </div>
         </div>
@@ -1136,13 +1141,13 @@
 </div>
 
 <div id="selectionToolbar" class="selection-toolbar" aria-hidden="true">
-    <button class="selection-btn" data-cmd="bold" title="Negrito"><strong>B</strong></button>
-    <button class="selection-btn" data-cmd="italic" title="Itálico"><em>I</em></button>
-    <button class="selection-btn" data-cmd="h1" title="Título 1">H1</button>
-    <button class="selection-btn" data-cmd="h2" title="Título 2">H2</button>
-    <button class="selection-btn" data-cmd="justifyLeft" title="Alinhar à esquerda">L</button>
-    <button class="selection-btn" data-cmd="justifyCenter" title="Centralizar">C</button>
-    <button class="selection-btn" data-cmd="justifyFull" title="Justificar">J</button>
+    <button class="selection-btn" data-cmd="bold" data-i18n-title="format_bold_title"><strong>B</strong></button>
+    <button class="selection-btn" data-cmd="italic" data-i18n-title="format_italic_title"><em>I</em></button>
+    <button class="selection-btn" data-cmd="h1" data-i18n-title="format_h1_title">H1</button>
+    <button class="selection-btn" data-cmd="h2" data-i18n-title="format_h2_title">H2</button>
+    <button class="selection-btn" data-cmd="justifyLeft" data-i18n-title="format_align_left_title">L</button>
+    <button class="selection-btn" data-cmd="justifyCenter" data-i18n-title="format_align_center_title">C</button>
+    <button class="selection-btn" data-cmd="justifyFull" data-i18n-title="format_align_justify_title">J</button>
     <button class="selection-btn" data-cmd="consult" data-i18n-title="consult_title"><span data-i18n="consult_button">CONSULTAR</span></button>
 </div>
 
@@ -1250,7 +1255,7 @@
 </div>
 <div id="pageOverlay" class="page-overlay" aria-hidden="true">
     <div class="page-overlay-inner">
-        <div class="page-overlay-title">PG</div>
+        <div class="page-overlay-title" data-i18n="page_overlay_label">PG</div>
         <div id="pageOverlayNumber" class="page-overlay-number">01</div>
     </div>
 </div>

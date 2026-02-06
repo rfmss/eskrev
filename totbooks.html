@@ -647,9 +647,7 @@ body.is-dragging #trash-zone {
 
 <body>
 
-<div class="bg-hint" id="hint-text">
-  Duplo clique para criar • Arraste para organizar
-</div>
+<div class="bg-hint" id="hint-text"></div>
 
 <div class="overlay" id="overlay"></div>
 <div class="library" id="library"></div>
@@ -662,17 +660,17 @@ body.is-dragging #trash-zone {
       <path d="M200,56V208a8,8,0,0,1-8,8H64a8,8,0,0,1-8-8V56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
       <path d="M168,56V40a16,16,0,0,0-16-16H104A16,16,0,0,0,88,40V56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
     </svg>
-    <span>Solte para descartar</span>
+    <span></span>
 </div>
 
 <div class="modal" id="modal">
   <div class="scrim"></div>
   <div class="card">
-    <h3 id="modalTitle">.skrBook novo</h3>
+    <h3 id="modalTitle"></h3>
     <input id="modalInput" type="text" maxlength="8" placeholder="">
     <div class="actions">
-      <button class="btn-cancel" id="modalCancel">Cancelar</button>
-      <button class="btn-ok" id="modalOk">Criar</button>
+      <button class="btn-cancel" id="modalCancel"></button>
+      <button class="btn-ok" id="modalOk"></button>
     </div>
   </div>
 </div>
@@ -709,7 +707,7 @@ let isSpawning = false;
 let lastSpawnAt = 0;
 let pendingSpawn = null;
 
-const langCode = localStorage.getItem('lit_lang') || 'pt';
+let langCode = localStorage.getItem('lit_lang') || 'pt';
 const i18n = {
   pt: {
     totbooks_hint: "Duplo clique cria um .skrBook. Ao criar, arraste e clique para abrir.",
@@ -722,7 +720,10 @@ const i18n = {
     totbooks_prev: "Página anterior",
     totbooks_next: "Próxima página",
     totbooks_pages_label: "Páginas {title}",
-    totbooks_cover_label: "Capa {title}"
+    totbooks_cover_label: "Capa {title}",
+    totbooks_default_projects: "PROJETOS",
+    totbooks_default_ideas: "IDEIAS",
+    totbooks_default_title: "Sem título"
   },
   "en-uk": {
     totbooks_hint: "Double-click creates a .skrBook. After creating, drag to organise and click to open.",
@@ -735,7 +736,10 @@ const i18n = {
     totbooks_prev: "Previous page",
     totbooks_next: "Next page",
     totbooks_pages_label: "Pages {title}",
-    totbooks_cover_label: "Cover {title}"
+    totbooks_cover_label: "Cover {title}",
+    totbooks_default_projects: "PROJECTS",
+    totbooks_default_ideas: "IDEAS",
+    totbooks_default_title: "Untitled"
   },
   es: {
     totbooks_hint: "Doble clic crea un .skrBook. Al crear, arrastra y toca para abrir.",
@@ -748,7 +752,10 @@ const i18n = {
     totbooks_prev: "Página anterior",
     totbooks_next: "Página siguiente",
     totbooks_pages_label: "Páginas {title}",
-    totbooks_cover_label: "Portada {title}"
+    totbooks_cover_label: "Portada {title}",
+    totbooks_default_projects: "PROYECTOS",
+    totbooks_default_ideas: "IDEAS",
+    totbooks_default_title: "Sin título"
   },
   fr: {
     totbooks_hint: "Double-cliquez crée un .skrBook. Après créer, glissez et cliquez pour ouvrir.",
@@ -761,7 +768,10 @@ const i18n = {
     totbooks_prev: "Page précédente",
     totbooks_next: "Page suivante",
     totbooks_pages_label: "Pages {title}",
-    totbooks_cover_label: "Couverture {title}"
+    totbooks_cover_label: "Couverture {title}",
+    totbooks_default_projects: "PROJETS",
+    totbooks_default_ideas: "IDÉES",
+    totbooks_default_title: "Sans titre"
   }
 };
 
@@ -781,6 +791,22 @@ function applyUiText() {
 }
 
 applyUiText();
+
+const setLang = (code) => {
+  if (!code || !i18n[code]) return;
+  langCode = code;
+  applyUiText();
+};
+
+window.addEventListener("storage", (e) => {
+  if (e.key === "lit_lang" && e.newValue) {
+    setLang(e.newValue);
+  }
+});
+window.addEventListener("message", (e) => {
+  if (e.origin !== window.location.origin) return;
+  if (e.data && e.data.type === "lang") setLang(e.data.value);
+});
 
 // Paleta variada + shuffle-bag
 const strapColors = [
@@ -818,8 +844,8 @@ function removeFromRegistry(id) {
   
   if (registry.length === 0) {
     // Se for a primeira vez (ou se deletou tudo), cria os padrões
-    createBook('PROJETOS', 160, 240, { pinnedTitle: true });
-    createBook('IDEIAS',   420, 200, { pinnedTitle: true });
+    createBook(t('totbooks_default_projects'), 160, 240, { pinnedTitle: true });
+    createBook(t('totbooks_default_ideas'),   420, 200, { pinnedTitle: true });
   } else {
     // Carrega posições salvas UMA vez para evitar leitura repetida em disco
     const savedPositions = JSON.parse(localStorage.getItem(BOOK_POSITIONS_KEY) || localStorage.getItem(BOOK_POSITIONS_KEY_LEGACY) || '{}');
@@ -827,7 +853,7 @@ function removeFromRegistry(id) {
     // Itera sobre o registro oficial
     registry.forEach((id, i) => {
       try {
-        const savedTitle = localStorage.getItem(titleKey(id)) || 'Sem Título';
+        const savedTitle = localStorage.getItem(titleKey(id)) || t('totbooks_default_title');
 
         // Configurações do grid (caso não tenha posição salva)
         const colW = 180;   

@@ -31,6 +31,21 @@ document.addEventListener('DOMContentLoaded', () => {
     ui.init();
     
     lang.init();
+    const syncLangToFrames = (code) => {
+        const frames = [
+            document.getElementById("booksFrame"),
+            document.getElementById("verifyFrame")
+        ].filter(Boolean);
+        frames.forEach((frame) => {
+            try {
+                frame.contentWindow?.postMessage({ type: "lang", value: code }, window.location.origin);
+            } catch (_) {}
+        });
+    };
+    document.addEventListener("lang:changed", (e) => {
+        syncLangToFrames(e.detail?.code || lang.current);
+    });
+    syncLangToFrames(lang.current);
     window.skrvModal = initSystemModal();
     window.skrvOnboarding = initOnboarding();
     auth.init();
@@ -244,6 +259,7 @@ function initOnboarding() {
     const nextBtn = document.getElementById("onboardNext");
     const stepLabel = document.getElementById("onboardStepLabel");
     const langBtn = document.getElementById("onboardLangToggle");
+    const langHint = document.getElementById("onboardLangHint");
     const total = Math.max(steps.length - 1, 1);
     let current = 0;
     let langChosen = localStorage.getItem("skrv_onboard_lang_chosen") === "1";
@@ -253,6 +269,13 @@ function initOnboarding() {
         step.dataset.animated = "true";
         step.classList.add("animate");
     };
+    const formatLangLabel = (label) => String(label || "").replace(/^[^\w]*\s*/u, "");
+    const updateLangButton = () => {
+        if (!langBtn) return;
+        const idx = lang.languages.findIndex((l) => l.code === lang.current);
+        const next = lang.languages[(idx + 1 + lang.languages.length) % lang.languages.length];
+        if (next) langBtn.textContent = formatLangLabel(next.label);
+    };
     const update = () => {
         steps.forEach((step) => {
             const stepIndex = parseInt(step.getAttribute("data-step"), 10);
@@ -261,20 +284,25 @@ function initOnboarding() {
         if (stepLabel) {
             if (current === 0) {
                 stepLabel.textContent = "";
+                stepLabel.style.display = "none";
             } else {
                 stepLabel.textContent = `${current}/${total}`;
+                stepLabel.style.display = "inline-flex";
             }
         }
         if (backBtn) {
-            backBtn.disabled = current <= 1;
-            backBtn.style.visibility = current <= 1 ? "hidden" : "visible";
+            backBtn.disabled = current <= 0;
+            backBtn.style.display = current <= 0 ? "none" : "inline-flex";
         }
         if (langBtn) {
-            langBtn.style.display = current === 1 ? "inline-flex" : "none";
+            langBtn.style.display = current === 0 ? "inline-flex" : "none";
         }
-        if (nextBtn) nextBtn.style.visibility = current >= total ? "hidden" : "visible";
-        if (current === 1 && !langChosen && nextBtn) {
-            nextBtn.style.visibility = "hidden";
+        if (langHint) {
+            langHint.style.display = current === 0 ? "block" : "none";
+        }
+        if (nextBtn) {
+            const canAdvance = current < total && (langChosen || current > 0);
+            nextBtn.style.display = canAdvance ? "inline-flex" : "none";
         }
         if (current === total) {
             setTimeout(() => {
@@ -286,22 +314,13 @@ function initOnboarding() {
         }
         const activeStep = steps.find((step) => parseInt(step.getAttribute("data-step"), 10) === current);
         animateOnce(activeStep);
+        updateLangButton();
+        modal.classList.toggle("onboard-step-zero", current === 0);
             if (current === 0) {
-                if (backBtn) backBtn.style.visibility = "hidden";
-                if (nextBtn) nextBtn.style.visibility = "hidden";
-                if (stepLabel) stepLabel.style.visibility = "hidden";
-                setTimeout(() => {
-                    if (current === 0) {
-                        current = 1;
-                        if (nextBtn) nextBtn.style.visibility = "visible";
-                        if (stepLabel) stepLabel.style.visibility = "visible";
-                        update();
-                    }
-                }, 5200);
-            } else {
-            if (nextBtn) nextBtn.style.visibility = "visible";
-            if (stepLabel) stepLabel.style.visibility = "visible";
-        }
+                if (backBtn) backBtn.style.display = "none";
+                if (nextBtn) nextBtn.style.display = langChosen ? "inline-flex" : "none";
+                if (stepLabel) stepLabel.style.display = "none";
+            }
     };
 
     const open = (startStep = 0) => {
@@ -324,12 +343,12 @@ function initOnboarding() {
 
         if (backBtn) {
             backBtn.addEventListener("click", () => {
-                if (current > 1) {
-                    current -= 1;
-                    update();
-                }
-            });
-        }
+            if (current > 0) {
+                current -= 1;
+                update();
+            }
+        });
+    }
     if (nextBtn) {
         nextBtn.addEventListener("click", () => {
             if (current < total) {
@@ -346,8 +365,20 @@ function initOnboarding() {
             if (current === 1 && nextBtn) nextBtn.style.visibility = "visible";
         });
     }
+    document.addEventListener("lang:changed", updateLangButton);
     const keyHandler = (e) => {
         if (!modal.classList.contains("active")) return;
+        if (e.key === "Enter") {
+            if ((current === 0 || current === 1) && !langChosen) {
+                e.preventDefault();
+                return;
+            }
+            if (current < total) {
+                current += 1;
+                update();
+                e.preventDefault();
+            }
+        }
         if (e.key === "ArrowRight") {
             if (current < total) {
                 current += 1;
@@ -356,7 +387,7 @@ function initOnboarding() {
             }
         }
         if (e.key === "ArrowLeft") {
-            if (current > 1) {
+            if (current > 0) {
                 current -= 1;
                 update();
                 e.preventDefault();

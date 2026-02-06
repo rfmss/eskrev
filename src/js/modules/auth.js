@@ -23,10 +23,18 @@ export const auth = {
     privacyBody: null,
     privacyClose: null,
     privacyLoaded: false,
+    privacyLoadedLang: null,
     init() {
         this.setupTerms();
         this.setupPrivacy();
         this.runGatekeeper();
+        document.addEventListener("lang:changed", () => {
+            this.privacyLoaded = false;
+            this.privacyLoadedLang = null;
+            if (this.privacyModal && this.privacyModal.classList.contains("active")) {
+                this.loadPrivacyContent();
+            }
+        });
     },
 
     runGatekeeper() {
@@ -394,10 +402,22 @@ export const auth = {
     },
 
     async loadPrivacyContent() {
-        if (!this.privacyBody || this.privacyLoaded) return;
+        if (!this.privacyBody) return;
+        const langCode = lang.current || "pt";
+        if (this.privacyLoaded && this.privacyLoadedLang === langCode) return;
         try {
             this.privacyBody.innerHTML = `<div class="privacy-loading" data-i18n="privacy_loading">${lang.t("privacy_loading")}</div>`;
-            const res = await fetch("sobre/privacidade.html", { cache: "no-store" });
+            const map = {
+                "pt": "sobre/privacidade.html",
+                "en-uk": "sobre/privacidade.en.html",
+                "es": "sobre/privacidade.es.html",
+                "fr": "sobre/privacidade.fr.html"
+            };
+            const url = map[langCode] || map.pt;
+            let res = await fetch(url, { cache: "no-store" });
+            if (!res.ok && url !== map.pt) {
+                res = await fetch(map.pt, { cache: "no-store" });
+            }
             if (!res.ok) throw new Error("privacy fetch failed");
             const text = await res.text();
             const doc = new DOMParser().parseFromString(text, "text/html");
@@ -422,6 +442,7 @@ export const auth = {
                 this.privacyBody.innerHTML = doc.body.innerHTML;
             }
             this.privacyLoaded = true;
+            this.privacyLoadedLang = langCode;
         } catch (e) {
             this.privacyBody.innerHTML = `<div class="privacy-loading" data-i18n="privacy_error">${lang.t("privacy_error")}</div>`;
         }
