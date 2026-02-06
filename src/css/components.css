@@ -277,7 +277,7 @@ select:focus-visible {
     height: 36px;
     border-radius: 999px;
     background: var(--color-muted);
-    opacity: 0.55;
+    opacity: 0;
     transform: translate(-50%, -50%);
 }
 .template-header {
@@ -366,25 +366,32 @@ select:focus-visible {
     align-items: flex-end;
     z-index: 32;
     pointer-events: auto;
+    user-select: none;
+    -webkit-user-select: none;
+}
+body.template-open .guide-rail {
+    opacity: 0;
+    pointer-events: none;
 }
 .guide-rail-item {
     display: inline-flex;
     align-items: center;
     gap: 10px;
     height: 26px;
-    width: 26px;
-    padding: 0 10px 0 6px;
+    width: auto;
+    max-width: 26px;
+    padding: 0 24px 0 6px;
     border-radius: 999px 0 0 999px;
     border: var(--border-style);
     background: var(--bg-drawer-solid, var(--bg-drawer));
     color: var(--color-text);
     cursor: pointer;
     overflow: hidden;
-    transition: width 0.2s ease, opacity 0.2s ease;
+    transition: max-width 0.2s ease, opacity 0.2s ease;
     opacity: 0.6;
 }
 .guide-rail-item:hover {
-    width: 220px;
+    max-width: 420px;
     opacity: 1;
 }
 .guide-rail-icon {
@@ -416,7 +423,10 @@ select:focus-visible {
     white-space: nowrap;
     opacity: 0;
     transform: translateX(6px);
+    padding-right: 12px;
     transition: opacity 0.2s ease, transform 0.2s ease;
+    user-select: none;
+    -webkit-user-select: none;
 }
 .guide-rail-item:hover .guide-rail-label {
     opacity: 0.85;
@@ -2348,6 +2358,7 @@ body.consult-open .selection-toolbar {
 }
 .xray-panel.dragging {
     transition: none;
+    transform: translate(0, 0) !important;
 }
 .xray-panel.show {
     opacity: 1;
@@ -3686,7 +3697,7 @@ kbd {
 }
 .onboarding-step[data-step="1"].active .tablet-icon {
     transform-origin: 50% 50%;
-    animation: tabletFlip 0.7s ease-out;
+    animation: tabletFlip 0.9s ease-out both;
 }
 .onboarding-art svg path,
 .onboarding-art svg rect,

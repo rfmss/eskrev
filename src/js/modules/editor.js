@@ -1169,12 +1169,14 @@ export const editorFeatures = {
             const nextTop = Math.max(8, Math.min(maxY, clientY - offsetY));
             this.xrayPanel.style.left = `${nextLeft}px`;
             this.xrayPanel.style.top = `${nextTop}px`;
+            this.xrayPanel.style.transform = "translate(0, 0)";
         };
 
         const endDrag = () => {
             if (!dragging) return;
             dragging = false;
             if (this.xrayPanel) this.xrayPanel.classList.remove("dragging");
+            if (this.xrayPanel) this.xrayPanel.style.transform = "translate(0, 0)";
         };
 
         this.xrayDragHandle.addEventListener("mousedown", (e) => {

@@ -680,21 +680,28 @@ function setupEventListeners() {
         const container = document.createElement("div");
         container.className = "guide-content";
 
+        const toInlineHtml = (text) => {
+            const safe = String(text || "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+            return safe
+                .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+                .replace(/\*(.+?)\*/g, "<em>$1</em>");
+        };
+
         const appendParagraph = (lines) => {
             if (!lines.length) return;
             const p = document.createElement("p");
             p.className = "guide-paragraph";
-            lines.forEach((line, idx) => {
-                p.appendChild(document.createTextNode(line));
-                if (idx < lines.length - 1) p.appendChild(document.createElement("br"));
-            });
+            p.innerHTML = lines.map(toInlineHtml).join("<br>");
             container.appendChild(p);
         };
 
         const appendQuote = (text) => {
             const q = document.createElement("blockquote");
             q.className = "guide-quote";
-            q.textContent = text;
+            q.innerHTML = toInlineHtml(text);
             container.appendChild(q);
         };
 
@@ -798,7 +805,7 @@ function setupEventListeners() {
                     container.appendChild(listEl);
                 }
                 const li = document.createElement("li");
-                li.textContent = trimmed.replace(/^-\s+/, "");
+                li.innerHTML = toInlineHtml(trimmed.replace(/^-\s+/, ""));
                 listEl.appendChild(li);
                 return;
             }
@@ -829,6 +836,7 @@ function setupEventListeners() {
             split.classList.remove("active");
             tab.classList.remove("show");
         }
+        document.body.classList.toggle("template-open", templateState.open);
         pane.classList.toggle("minimized", templateState.minimized);
         localStorage.setItem("skrv_template_open", templateState.open ? "true" : "false");
         localStorage.setItem("skrv_template_min", templateState.minimized ? "true" : "false");

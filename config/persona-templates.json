@@ -49,6 +49,13 @@
       "templates": [
         { "id": "enem-redacao", "label": "template_enem_redacao", "file": "content/templates/enem-redacao.md" }
       ]
+    },
+    {
+      "id": "poesia",
+      "label": "persona_poesia",
+      "templates": [
+        { "id": "poesia", "label": "template_poesia", "file": "content/templates/poesia.md" }
+      ]
     }
   ]
 }

@@ -8,66 +8,61 @@ Um capítulo não é uma pausa.
 
 ---
 
-## 1) O que é um capítulo, de verdade
-Um capítulo existe para **mudar algo**.
+## 1) O que é um capítulo
+Um capítulo existe para mudar algo.
 
 Pode mudar:
 - a situação
 - a relação entre personagens
 - a informação disponível
-- o estado emocional de alguém
+- o estado emocional
 - a compreensão do leitor
 
-Se nada muda, o capítulo enfraquece o romance.
+Se nada muda, o capítulo enfraquece o livro.
 
 ---
 
 ## 2) O narrador no capítulo
-Antes de escrever, vale responder:
-- quem está narrando esta parte da história?
-- o narrador vê tudo ou acompanha alguém?
-- o narrador sabe mais que os personagens?
+Antes de escrever, vale decidir:
+- quem é o narrador aqui?
+- ele observa de fora ou acompanha alguém?
+- ele sabe mais do que os personagens?
 
-Mesmo com narrador onipresente, é comum **escolher um foco** por capítulo.
+Mesmo com narrador onipresente, é comum escolher
+um foco principal por capítulo.
 
 ---
 
 ## 3) Narrador onipresente (uso consciente)
 O narrador onipresente:
-- conhece o passado e o futuro
+- conhece passado e futuro
 - pode entrar e sair da mente dos personagens
 - observa a cena de fora e de dentro
 
-Mas atenção:
-- saber tudo não significa contar tudo
-- excesso de explicação quebra o ritmo
-
-O narrador onipresente funciona melhor quando **seleciona** o que mostrar.
+Saber tudo não significa contar tudo.
+Seleção é parte do trabalho.
 
 ---
 
 ## 4) Abertura do capítulo
-O início do capítulo precisa situar o leitor.
+O início precisa situar o leitor sem recomeçar a história.
 
 Pode começar com:
 - uma ação em andamento
 - um pensamento em conflito
-- uma imagem forte
+- uma imagem marcante
 - uma frase que muda o clima
 
-Evite recomeçar do zero.  
 O capítulo conversa com o anterior.
 
 ---
 
 ## 5) Foco (mesmo com onipresença)
-Mesmo narradores amplos costumam manter um foco principal.
-
 Pergunte:
 - de quem é este capítulo?
 - quem mais perde ou ganha aqui?
 
-Isso ajuda a manter coesão.
+Manter foco evita dispersão.
 
 ---
 
@@ -80,17 +75,16 @@ Um capítulo pode misturar:
 Tudo em cena cansa.  
 Tudo resumido esvazia.
 
-Equilíbrio sustenta o fôlego do romance.
-
 ---
 
 ## 7) Ritmo interno
-Dentro do capítulo:
-- momentos intensos pedem pausa
+O ritmo também conta a história.
+
 - frases longas criam fluxo
 - frases curtas criam impacto
+- pausas dão respiro
 
-O ritmo do capítulo também conta a história.
+Leia em voz alta.
 
 ---
 
@@ -102,7 +96,7 @@ Um capítulo pode terminar com:
 - uma pergunta implícita
 - uma quebra de expectativa
 
-Não precisa ser gancho explícito.  
+Não precisa ser gancho explícito.
 Precisa justificar a virada de página.
 
 ---
@@ -117,20 +111,19 @@ A consequência vem depois.
 
 ---
 
-## 10) O que geralmente não funciona em capítulos
-Alguns problemas comuns:
+## 10) O que geralmente não funciona
 - capítulos que repetem o anterior
 - excesso de explicação do narrador
 - mudanças de foco sem propósito
 - cenas que não levam a lugar nenhum
 - finais que interrompem sem sentido
 
-Capítulo não é intervalo.  
+Capítulo não é intervalo.
 É avanço.
 
 ---
 
-## 11) Revisão de capítulo (checagem prática)
+## 11) Revisão prática
 Ao reler, pergunte:
 - algo mudou do início ao fim?
 - o narrador manteve coerência?
