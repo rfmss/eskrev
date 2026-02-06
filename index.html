@@ -41,7 +41,7 @@
                         <path d="m192.01 33l-152.17 586.3c0 0-17.9 34.46 8.95 35.81 26.86 1.35 40.28-35.81 40.28-35.81l80.57-246.15 398.32-205.88-274.5 259.44-74.59 112.03 434.13 98.47"/>
                     </svg>
                 </div>
-                <p class="onboard-logo-tagline">for all writers. free and everywhere</p>
+                <p class="onboard-logo-tagline">For all writers. Anywhere.</p>
             </section>
             <section class="onboarding-step" data-step="1">
                 <div class="onboarding-art" aria-hidden="true">
@@ -204,7 +204,7 @@
             <img class="icon" src="src/assets/icons/coffee.svg" alt="" aria-hidden="true">
         </button>
         <div class="marquee-container">
-            <div class="marquee-content" data-i18n="marquee_ready">
+            <div class="marquee-content" data-i18n-html="marquee_ready">
                 /// SYSTEM READY ///
             </div>
         </div>
@@ -324,8 +324,12 @@
                     <button class="btn-icon" id="drawerSearchGo" data-i18n="search_go">IR</button>
                 </div>
                 <div class="drawer-search-actions">
-                    <button class="btn-icon" id="drawerSearchPrev" title="Anterior">▲</button>
-                    <button class="btn-icon" id="drawerSearchNext" title="Próximo">▼</button>
+                    <button class="btn-icon" id="drawerSearchPrev" title="Anterior" data-i18n-title="search_prev_title">
+                        <img class="icon" src="src/assets/icons/arrow-up.svg" alt="" aria-hidden="true">
+                    </button>
+                    <button class="btn-icon" id="drawerSearchNext" title="Próximo" data-i18n-title="search_next_title">
+                        <img class="icon" src="src/assets/icons/arrow-down.svg" alt="" aria-hidden="true">
+                    </button>
                     <button class="btn-icon" id="drawerSearchClear" data-i18n-title="search_clear_title">
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-x"></use></svg>
                     </button>

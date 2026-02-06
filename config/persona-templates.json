@@ -29,6 +29,7 @@
       "label": "persona_ensaio",
       "templates": [
         { "id": "ensaio-cronica", "label": "template_ensaio_cronica", "file": "content/templates/ensaio-cronica.md" },
+        { "id": "cronica", "label": "template_cronica", "file": "content/templates/cronica.md" },
         { "id": "ensaio-pessoal", "label": "template_ensaio_pessoal", "file": "content/templates/ensaio-pessoal.md" },
         { "id": "ensaio-opiniao", "label": "template_ensaio_opiniao", "file": "content/templates/ensaio-opiniao.md" }
       ]
@@ -38,7 +39,8 @@
       "label": "persona_universitario",
       "templates": [
         { "id": "universitario-abnt", "label": "template_universitario_abnt", "file": "content/templates/universitario-abnt.md" },
-        { "id": "universitario-artigo", "label": "template_universitario_artigo", "file": "content/templates/universitario-artigo.md" }
+        { "id": "universitario-artigo", "label": "template_universitario_artigo", "file": "content/templates/universitario-artigo.md" },
+        { "id": "universitario-citacoes-referencias", "label": "template_universitario_citacoes_referencias", "file": "content/templates/citacoes-referencias-abnt.md" }
       ]
     },
     {

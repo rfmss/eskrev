@@ -569,8 +569,34 @@ body.mobile-lite .guide-rail {
     justify-self: start;
 }
 
-.marquee-container { flex: 1; overflow: hidden; white-space: nowrap; position: relative; mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); }
+.marquee-container { flex: 1; overflow: hidden; white-space: nowrap; position: relative; mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); text-align: center; }
 .marquee-content { display: inline-block; animation: signalPulse 12s ease-in-out infinite; font-size: 11px; letter-spacing: 2px; color: var(--color-muted); text-transform: uppercase; margin-top: 4px; opacity: 0; transition: opacity 0.4s ease; }
+.marquee-copy {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: rgba(120, 120, 120, 0.28);
+    border: 1px solid rgba(120, 120, 120, 0.35);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.marquee-copy:hover { background: rgba(120, 120, 120, 0.38); }
+.marquee-copy.is-copied {
+    background: #cfead6;
+    border-color: #b3d9bf;
+    color: #2f4a39;
+}
+.marquee-copy.is-copied::after {
+    content: attr(data-copied-label);
+    font-size: 10px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
 .logo-area:hover .marquee-content { opacity: 1; animation: none; }
 @keyframes signalPulse { 0%, 70%, 100% { opacity: 0; } 75%, 85% { opacity: 0.6; } }
 
@@ -2460,6 +2486,7 @@ input[type="checkbox"]:focus-visible {
 }
 .xray-panel [data-tip],
 .manifesto-box [data-tip],
+.logo-area [data-tip],
 .hud [data-tip],
 .controls [data-tip],
 .selection-toolbar [data-tip],
@@ -2467,6 +2494,7 @@ input[type="checkbox"]:focus-visible {
 
 .xray-panel [data-tip]::after,
 .manifesto-box [data-tip]::after,
+.logo-area [data-tip]::after,
 .hud [data-tip]::after,
 .controls [data-tip]::after,
 .selection-toolbar [data-tip]::after,
@@ -2553,8 +2581,10 @@ input[type="checkbox"]:focus-visible {
 }
 .xray-panel [data-tip]:hover::after,
 .manifesto-box [data-tip]:hover::after,
+.logo-area [data-tip]:hover::after,
 .xray-panel [data-tip]:focus::after,
 .manifesto-box [data-tip]:focus::after,
+.logo-area [data-tip]:focus::after,
 .controls [data-tip]:hover::after,
 .controls [data-tip]:focus::after,
 .selection-toolbar [data-tip]:hover::after,
@@ -3514,12 +3544,14 @@ kbd {
 .onboarding-steps {
     display: grid;
     gap: 8px;
+    min-height: 280px;
 }
 .onboarding-step {
     display: none;
     text-align: center;
     font-size: 14px;
     line-height: 1.6;
+    min-height: 280px;
 }
 .onboarding-step.active {
     display: block;
@@ -3540,6 +3572,7 @@ kbd {
     align-items: center;
     gap: 32px;
     justify-content: center;
+    overflow: visible;
 }
 .onboarding-art .onboard-icon,
 .onboarding-art svg,
@@ -3560,6 +3593,13 @@ kbd {
     height: 168px;
     stroke-width: 28px;
     overflow: visible;
+}
+.onboarding-step[data-step="0"] .onboarding-art {
+    height: 190px;
+    margin-bottom: 0;
+}
+.onboarding-step[data-step="0"] .onboard-logo-tagline {
+    margin-top: 12px;
 }
 .onboard-logo-tagline {
     margin: 6px 0 0;

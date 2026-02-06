@@ -106,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ensureMobileModule().catch(() => {});
     }
     setupSupportCopy();
+    setupMarqueeCopy();
     setupSupportLinks();
     setupLogoManifesto();
 
@@ -168,6 +169,41 @@ function setupSupportCopy() {
                 item.setAttribute("data-tip", done);
                 setTimeout(() => {
                     item.setAttribute("data-tip", original);
+                }, 900);
+            });
+        });
+    });
+}
+
+function setupMarqueeCopy() {
+    const items = document.querySelectorAll(".marquee-copy[data-copy]");
+    if (!items.length) return;
+    const copyText = (text) => {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            return navigator.clipboard.writeText(text);
+        }
+        return new Promise((resolve) => {
+            const area = document.createElement("textarea");
+            area.value = text;
+            area.setAttribute("readonly", "true");
+            area.style.position = "fixed";
+            area.style.opacity = "0";
+            document.body.appendChild(area);
+            area.select();
+            document.execCommand("copy");
+            document.body.removeChild(area);
+            resolve();
+        });
+    };
+    items.forEach((item) => {
+        item.addEventListener("click", () => {
+            const value = item.getAttribute("data-copy");
+            if (!value) return;
+            copyText(value).then(() => {
+                item.setAttribute("data-copied-label", lang.t("support_copy_done"));
+                item.classList.add("is-copied");
+                setTimeout(() => {
+                    item.classList.remove("is-copied");
                 }, 900);
             });
         });
