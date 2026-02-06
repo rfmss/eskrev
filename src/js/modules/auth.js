@@ -72,8 +72,16 @@ export const auth = {
         document.body.classList.add("manifesto-open");
         applyManifestoText();
         document.addEventListener("lang:changed", applyManifestoText);
+        const updateLangToggle = () => {
+            if (!langToggle) return;
+            const idx = lang.languages.findIndex((l) => l.code === lang.current);
+            const next = lang.languages[(idx + 1 + lang.languages.length) % lang.languages.length];
+            const label = String(next?.label || "").replace(/^[^\w]*\s*/u, "");
+            langToggle.textContent = label || lang.t("lang_label");
+        };
         if (langToggle) {
             langToggle.onclick = () => lang.cycleLang();
+            updateLangToggle();
         }
         const acceptManifesto = () => {
             const text = document.getElementById("manifestoText");
@@ -99,6 +107,7 @@ export const auth = {
             if (panel) panel.classList.add("books-active");
             localStorage.setItem("lit_ui_view", "verify");
         };
+        document.addEventListener("lang:changed", updateLangToggle);
     },
 
     openFullManifesto() {

@@ -3588,7 +3588,7 @@ kbd {
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
-    opacity: 0;
+    opacity: 1;
     object-fit: contain;
 }
 .onboarding-art .onboard-logo {
@@ -3684,11 +3684,15 @@ kbd {
     transform-origin: 50% 50%;
     animation: none;
 }
+.onboarding-step[data-step="1"].active .tablet-icon {
+    transform-origin: 50% 50%;
+    animation: tabletFlip 0.7s ease-out;
+}
 .onboarding-art svg path,
 .onboarding-art svg rect,
 .onboarding-art svg circle {
-    stroke-dasharray: 120;
-    stroke-dashoffset: 120;
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
 }
 .onboarding-step.animate .onboarding-art svg path,
 .onboarding-step.animate .onboarding-art svg rect,
