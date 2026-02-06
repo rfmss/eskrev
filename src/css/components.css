@@ -223,8 +223,8 @@ select:focus-visible {
     min-width: 220px;
     max-width: 520px;
     background: var(--bg-drawer-solid, var(--bg-drawer));
-    border-left: var(--border-style);
-    box-shadow: var(--shadow-float);
+    border-left: none;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     display: none;
     flex-direction: column;
     gap: 10px;
