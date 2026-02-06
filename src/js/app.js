@@ -246,6 +246,7 @@ function initOnboarding() {
     const langBtn = document.getElementById("onboardLangToggle");
     const total = Math.max(steps.length - 1, 1);
     let current = 0;
+    let langChosen = localStorage.getItem("skrv_onboard_lang_chosen") === "1";
 
     const animateOnce = (step) => {
         if (!step || step.dataset.animated === "true") return;
@@ -268,7 +269,13 @@ function initOnboarding() {
             backBtn.disabled = current <= 1;
             backBtn.style.visibility = current <= 1 ? "hidden" : "visible";
         }
+        if (langBtn) {
+            langBtn.style.display = current === 1 ? "inline-flex" : "none";
+        }
         if (nextBtn) nextBtn.style.visibility = current >= total ? "hidden" : "visible";
+        if (current === 1 && !langChosen && nextBtn) {
+            nextBtn.style.visibility = "hidden";
+        }
         if (current === total) {
             setTimeout(() => {
                 const input = document.getElementById("setupProjectName");
@@ -332,7 +339,12 @@ function initOnboarding() {
         });
     }
     if (langBtn) {
-        langBtn.addEventListener("click", () => lang.cycleLang());
+        langBtn.addEventListener("click", () => {
+            lang.cycleLang();
+            langChosen = true;
+            localStorage.setItem("skrv_onboard_lang_chosen", "1");
+            if (current === 1 && nextBtn) nextBtn.style.visibility = "visible";
+        });
     }
     const keyHandler = (e) => {
         if (!modal.classList.contains("active")) return;

@@ -3841,6 +3841,12 @@ kbd {
     font-size: 11px;
     color: var(--color-muted);
     letter-spacing: 1px;
+    gap: 8px;
+    display: inline-flex;
+    align-items: center;
+}
+.onboarding-nav .flag-btn {
+    display: none;
 }
 .flag-btn {
     background: transparent; border: 1px solid var(--color-muted); color: var(--color-muted);
