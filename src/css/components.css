@@ -426,7 +426,7 @@ select:focus-visible {
     bottom: 120px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
     align-items: flex-end;
     z-index: 32;
     pointer-events: auto;
@@ -440,9 +440,9 @@ body.template-open .guide-rail {
 .guide-rail-item {
     display: inline-flex;
     align-items: center;
-    height: 10px;
+    height: 12px;
     width: auto;
-    max-width: 12px;
+    max-width: 14px;
     padding: 0 6px 0 0;
     border-radius: 0;
     border: none;
@@ -459,15 +459,15 @@ body.template-open .guide-rail {
     max-width: 180px;
     padding-right: 6px;
     opacity: 1;
-    height: 26px;
+    height: 28px;
 }
 .guide-rail-item::before {
     content: "";
     position: absolute;
-    right: -4px;
-    top: -6px;
-    bottom: -6px;
-    width: 18px;
+    right: -10px;
+    top: -10px;
+    bottom: -10px;
+    width: 30px;
 }
 .guide-rail-label {
     font-size: 11px;
@@ -1057,7 +1057,7 @@ body.xray-active #editor *::selection {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 8px;
+    gap: 12px;
     font-size: 10px;
     color: var(--color-muted);
     opacity: 1;
