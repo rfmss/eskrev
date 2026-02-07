@@ -228,6 +228,7 @@ select:focus-visible {
     min-width: 220px;
     max-width: 520px;
     background: var(--bg-drawer-solid, var(--bg-drawer));
+    border: 1px dashed var(--color-accent-dim);
     border-left: none;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     display: none;
@@ -250,7 +251,8 @@ select:focus-visible {
     bottom: auto;
     transform: translateY(-50%);
     padding: 10px 8px;
-    border-radius: 16px;
+    border-radius: 12px;
+    border: 1px dashed var(--color-accent);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
     gap: 8px;
     align-items: center;
@@ -274,6 +276,10 @@ select:focus-visible {
     padding: 0;
     justify-content: center;
     font-size: 12px;
+}
+.template-actions .btn-icon .icon {
+    width: 16px;
+    height: 16px;
 }
 .template-split {
     position: fixed;
