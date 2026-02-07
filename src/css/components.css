@@ -137,6 +137,7 @@ select:focus-visible {
     border-radius: 0;
     background: transparent;
     line-height: 1.6;
+    color: var(--color-text);
 }
 #editorView, #editorWrap, #editor, .panel, .reader-content {
     overflow-x: hidden;
