@@ -442,8 +442,8 @@ body.template-open .guide-rail {
     align-items: center;
     height: 10px;
     width: auto;
-    max-width: 10px;
-    padding: 0 24px 0 12px;
+    max-width: 12px;
+    padding: 0 6px 0 0;
     border-radius: 0;
     border: none;
     background: transparent;
@@ -453,12 +453,21 @@ body.template-open .guide-rail {
     transition: max-width 0.2s ease, opacity 0.2s ease, padding 0.2s ease;
     opacity: 0.6;
     position: relative;
+    justify-content: flex-end;
 }
 .guide-rail-item:hover {
-    max-width: 420px;
-    padding-right: 28px;
+    max-width: 180px;
+    padding-right: 6px;
     opacity: 1;
     height: 26px;
+}
+.guide-rail-item::before {
+    content: "";
+    position: absolute;
+    right: -4px;
+    top: -6px;
+    bottom: -6px;
+    width: 18px;
 }
 .guide-rail-label {
     font-size: 11px;
@@ -467,7 +476,7 @@ body.template-open .guide-rail {
     white-space: nowrap;
     opacity: 0;
     transform: translateX(6px);
-    padding-right: 24px;
+    padding-right: 0;
     transition: opacity 0.2s ease, transform 0.2s ease;
     user-select: none;
     -webkit-user-select: none;
