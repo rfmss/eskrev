@@ -220,11 +220,14 @@ export const auth = {
             }
         };
 
-        document.getElementById('btnUnlock').onclick = tryUnlock;
-        document.getElementById('authPass').onkeydown = (e) => { if(e.key === 'Enter') tryUnlock(); };
+        const unlockBtn = document.getElementById('btnUnlock');
+        if (unlockBtn) unlockBtn.onclick = tryUnlock;
+        const authInput = document.getElementById('authPass');
+        if (authInput) authInput.onkeydown = (e) => { if(e.key === 'Enter') tryUnlock(); };
 
         // Botão de Pânico (Caveira) - AGORA COM PROTEÇÃO
-        document.getElementById('emergencyReset').onclick = async () => {
+        const emergencyBtn = document.getElementById('emergencyReset');
+        if (emergencyBtn) emergencyBtn.onclick = async () => {
             const stored = localStorage.getItem('lit_auth_key');
             // Pede a senha para confirmar a destruição
             if (!window.skrvModal) return;
