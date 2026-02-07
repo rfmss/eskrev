@@ -21,6 +21,12 @@
   opacity: 0.6;
   cursor: pointer;
 }
+.logo-dot .icon {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+}
 .logo-dot:hover { opacity: 1; }
 
 .hud {
@@ -30,8 +36,9 @@
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   /* Sem borda lateral dura, apenas o fim do background */
   overflow-y: auto;
+  overflow-x: hidden;
   overscroll-behavior: contain;
-  opacity: 0.55;
+  opacity: 1;
 }
 .hud-separator {
   width: 18px;
@@ -46,8 +53,8 @@
     width: 0; background: var(--bg-drawer); 
     
     /* Borda sutil + Sombra flutuante */
-    border-right: var(--border-style);
-    box-shadow: var(--shadow-float);
+    border-right: none;
+    box-shadow: none;
     
     border-top-right-radius: var(--radius);
     border-bottom-right-radius: var(--radius);
@@ -56,7 +63,11 @@
     z-index: 35; display: flex; flex-direction: column; 
     backdrop-filter: blur(12px); /* Blur mais forte */
 }
-.drawer.open { width: var(--drawer-w); }
+.drawer.open { 
+  width: var(--drawer-w); 
+  border-right: var(--border-style);
+  box-shadow: var(--shadow-float);
+}
 .drawer-header { height: 50px; border-bottom: var(--border-style); display: flex; align-items: center; justify-content: center; padding: 0 15px; flex-shrink: 0; position: relative; }
 #closeDrawer { position: absolute; right: 12px; }
 .drawer-content { flex: 1; padding: 16px; overflow-y: auto; opacity: 0; transition: opacity 0.2s; }
@@ -246,6 +257,8 @@ body.mobile-typing .mobile-trigger {
   max-height: none;
   height: auto;
   text-align: left;
+  border: none;
+  padding: 10px 12px 180px;
 }
 
 /* CONTROLS (Correção de posição e tamanho) */
@@ -257,9 +270,9 @@ body.mobile-typing .mobile-trigger {
 
 .controls-inner {
   display: flex; align-items: center; gap: 10px; padding: 0 16px;
-  background: var(--bg-controls); 
+  background: var(--bg-drawer-solid, var(--bg-drawer));
   border: var(--border-style); /* Borda Glass */
-  box-shadow: var(--shadow-float); /* Sombra */
+  box-shadow: none;
   border-radius: var(--radius);
   position: relative;
   
@@ -277,7 +290,7 @@ body.mobile-typing .mobile-trigger {
   height: auto;
   min-height: var(--controls-h);
   
-  backdrop-filter: blur(10px); 
+  backdrop-filter: none; 
 }
 .controls-inner > * {
   flex-shrink: 0;

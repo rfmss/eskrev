@@ -15,7 +15,7 @@ import { qrTransfer } from './modules/qr_transfer.js';
 document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add("booting");
     setTimeout(() => document.body.classList.remove("booting"), 2000);
-    console.log("🚀 .skr SYSTEM BOOTING v5.5...");
+    // console.log("🚀 .skr SYSTEM BOOTING v5.5...");
 
     if (sessionStorage.getItem("skrv_force_clean") === "1") {
         try { localStorage.clear(); } catch (_) {}
@@ -44,6 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     document.addEventListener("lang:changed", (e) => {
         syncLangToFrames(e.detail?.code || lang.current);
+        if (templateState && templateState.activeTemplate && templateState.activeRaw) {
+            renderGuidePane(templateState.activeTemplate, templateState.activeRaw);
+            const tab = document.getElementById("templateTab");
+            if (tab) tab.textContent = (lang.t(templateState.activeTemplate.label) || templateState.activeTemplate.label).toUpperCase();
+        }
     });
     syncLangToFrames(lang.current);
     window.skrvModal = initSystemModal();
@@ -276,6 +281,7 @@ function initOnboarding() {
         const next = lang.languages[(idx + 1 + lang.languages.length) % lang.languages.length];
         if (next) langBtn.textContent = formatLangLabel(next.label);
     };
+    let keyboardTimer = null;
     const update = () => {
         steps.forEach((step) => {
             const stepIndex = parseInt(step.getAttribute("data-step"), 10);
@@ -314,6 +320,19 @@ function initOnboarding() {
         }
         const activeStep = steps.find((step) => parseInt(step.getAttribute("data-step"), 10) === current);
         animateOnce(activeStep);
+        if (activeStep && current === 1) {
+            const tabletIcons = Array.from(activeStep.querySelectorAll(".tablet-icon"));
+            const tabletIcon = tabletIcons[tabletIcons.length - 1];
+            if (tabletIcon) {
+                tabletIcon.classList.remove("animate-tablet");
+                void tabletIcon.offsetWidth;
+                tabletIcon.classList.add("animate-tablet");
+            }
+            if (keyboardTimer) {
+                clearTimeout(keyboardTimer);
+                keyboardTimer = null;
+            }
+        }
         updateLangButton();
         modal.classList.toggle("onboard-step-zero", current === 0);
             if (current === 0) {
@@ -821,13 +840,14 @@ function setupEventListeners() {
         const split = document.getElementById("templateSplit");
         const tab = document.getElementById("templateTab");
         if (!pane || !split || !tab) return;
-        if (workspace) workspace.style.setProperty("--template-pane-w", `${templateState.width}px`);
-        pane.style.setProperty("--template-pane-w", `${templateState.width}px`);
+        const effectiveWidth = templateState.minimized ? 40 : templateState.width;
+        if (workspace) workspace.style.setProperty("--template-pane-w", `${effectiveWidth}px`);
+        pane.style.setProperty("--template-pane-w", `${effectiveWidth}px`);
         if (!templateState.activeTemplate) {
             templateState.open = false;
             templateState.minimized = false;
         }
-        if (templateState.open) {
+        if (templateState.open && !templateState.minimized) {
             pane.classList.add("open");
             split.classList.add("active");
             tab.classList.remove("show");
@@ -836,6 +856,11 @@ function setupEventListeners() {
             split.classList.remove("active");
             tab.classList.remove("show");
         }
+        if (templateState.open && templateState.minimized) {
+            pane.classList.add("open");
+            split.classList.remove("active");
+        }
+        pane.setAttribute("aria-hidden", templateState.open ? "false" : "true");
         document.body.classList.toggle("template-open", templateState.open);
         pane.classList.toggle("minimized", templateState.minimized);
         localStorage.setItem("skrv_template_open", templateState.open ? "true" : "false");
@@ -853,6 +878,7 @@ function setupEventListeners() {
         templateState.open = true;
         templateState.minimized = false;
         templateState.activeTemplate = template;
+        templateState.activeRaw = raw;
         applyTemplateLayout();
         renderGuidePane(template, raw);
         const tab = document.getElementById("templateTab");
@@ -863,6 +889,8 @@ function setupEventListeners() {
         templateState.open = false;
         templateState.minimized = false;
         applyTemplateLayout();
+        const editorEl = document.getElementById("editor");
+        if (editorEl) editorEl.focus();
     };
 
     const minimizeTemplatePane = () => {
@@ -874,6 +902,7 @@ function setupEventListeners() {
     const setupTemplateResize = () => {
         const split = document.getElementById("templateSplit");
         const pane = document.getElementById("templatePane");
+        const workspace = document.getElementById("workspace");
         if (!split || !pane) return;
         let dragging = false;
         const onMove = (e) => {
@@ -884,6 +913,7 @@ function setupEventListeners() {
             const width = Math.min(520, Math.max(220, total - clientX));
             templateState.width = width;
             pane.style.setProperty("--template-pane-w", `${width}px`);
+            if (workspace) workspace.style.setProperty("--template-pane-w", `${width}px`);
         };
         const onUp = () => {
             if (!dragging) return;
@@ -1583,8 +1613,27 @@ function setupEventListeners() {
     const templateClose = document.getElementById("templateClose");
     const templateMinimize = document.getElementById("templateMinimize");
     const templateTab = document.getElementById("templateTab");
-    if (templateClose) templateClose.onclick = () => closeTemplatePane();
-    if (templateMinimize) templateMinimize.onclick = () => minimizeTemplatePane();
+    if (templateClose) templateClose.onclick = (e) => {
+        if (e) e.stopPropagation();
+        closeTemplatePane();
+    };
+    if (templateMinimize) templateMinimize.onclick = (e) => {
+        if (e) e.stopPropagation();
+        minimizeTemplatePane();
+    };
+    const templatePane = document.getElementById("templatePane");
+    if (templatePane) {
+        templatePane.addEventListener("click", (e) => {
+            if (!templateState.open || !templateState.minimized) return;
+            if (e.target && e.target.closest(".template-actions")) {
+                templateState.minimized = false;
+                applyTemplateLayout();
+                return;
+            }
+            templateState.minimized = false;
+            applyTemplateLayout();
+        });
+    }
     if (templateTab) templateTab.onclick = () => {
         if (!templateState.activeTemplate) return;
         templateState.open = true;
@@ -1837,6 +1886,7 @@ function setupEventListeners() {
         const overlay = document.getElementById("helpModal");
         if (!overlay) return;
         overlay.classList.remove("active");
+        document.body.classList.remove("help-open");
         const tabs = overlay.querySelectorAll(".help-tab");
         const panels = overlay.querySelectorAll(".help-panel");
         if (tabs.length && panels.length) {
@@ -1895,6 +1945,7 @@ function setupEventListeners() {
                 window.totHelpOpen();
             } else {
                 document.getElementById("helpModal").classList.add("active");
+                document.body.classList.add("help-open");
             }
         } 
         
@@ -1943,6 +1994,9 @@ function setupEventListeners() {
             document.querySelectorAll(".modal-overlay.active").forEach(m => { 
                 if (m.id !== "gatekeeper" && m.id !== "pomodoroModal" && m.id !== "termsModal") {
                     m.classList.remove("active"); 
+                    if (m.id === "helpModal") {
+                        document.body.classList.remove("help-open");
+                    }
                     if(m.id==="resetModal") {
                         document.getElementById("step2Reset").style.display="none"; 
                         document.getElementById("resetPassInput").value = "";
@@ -2640,7 +2694,7 @@ function renderProjectList() {
         btnEdit.onclick = (e) => { e.stopPropagation(); enableInlineRename(infoDiv, proj.id, proj.name); };
 
         const btnPrint = document.createElement("button");
-        btnPrint.className = "btn-icon-small"; btnPrint.innerHTML = "<img class='icon' src='src/assets/icons/printer.svg' alt='' aria-hidden='true'>";
+        btnPrint.className = "btn-icon-small"; btnPrint.innerHTML = "<svg class='icon' viewBox='0 0 24 24' aria-hidden='true' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2'/><path d='M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6'/><rect x='6' y='14' width='12' height='8' rx='1'/></svg>";
         btnPrint.onclick = (e) => {
             e.stopPropagation();
             const text = buildProjectReportText(proj);

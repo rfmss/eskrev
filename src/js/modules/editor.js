@@ -195,6 +195,7 @@ export const editorFeatures = {
                         const helpModal = document.getElementById('helpModal');
                         if (!helpModal) return false;
                         helpModal.classList.add('active');
+                        document.body.classList.add("help-open");
                     }
                 }
                 // Foca na aba ativa para navegação imediata via teclado
@@ -407,18 +408,30 @@ export const editorFeatures = {
 
     // --- AUDIO ENGINE ---
     initAudioEngine() {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        this.audioCtx = new AudioContext();
-        this.gainNode = this.audioCtx.createGain();
-        this.gainNode.gain.value = 0.3; 
-        this.gainNode.connect(this.audioCtx.destination);
+        const initContext = () => {
+            if (this.audioCtx) return;
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContext) return;
+            this.audioCtx = new AudioContext();
+            this.gainNode = this.audioCtx.createGain();
+            this.gainNode.gain.value = 0.3; 
+            this.gainNode.connect(this.audioCtx.destination);
 
-        this.loadBuffer('type', 'src/assets/audio/type.wav');
-        this.loadBuffer('enter', 'src/assets/audio/enter.wav');
-        this.loadBuffer('backspace', 'src/assets/audio/backspace.wav');
-        
-        this.musicPlayer.volume = 0.5;
-        this.musicPlayer.loop = true;
+            this.loadBuffer('type', 'src/assets/audio/type.wav');
+            this.loadBuffer('enter', 'src/assets/audio/enter.wav');
+            this.loadBuffer('backspace', 'src/assets/audio/backspace.wav');
+
+            this.musicPlayer.volume = 0.5;
+            this.musicPlayer.loop = true;
+        };
+
+        const unlock = () => {
+            initContext();
+            document.removeEventListener("pointerdown", unlock);
+            document.removeEventListener("keydown", unlock);
+        };
+        document.addEventListener("pointerdown", unlock, { once: true });
+        document.addEventListener("keydown", unlock, { once: true });
     },
 
     async loadBuffer(name, url) {
@@ -430,6 +443,17 @@ export const editorFeatures = {
     },
 
     playSound(name) {
+        if (!this.audioCtx) {
+            const fallback = this.sfx && this.sfx[name];
+            if (fallback) {
+                try {
+                    fallback.currentTime = 0;
+                    fallback.volume = 0.3;
+                    fallback.play().catch(() => {});
+                } catch (_) {}
+            }
+            return;
+        }
         if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
         const b = this.sfxBuffers[name];
         if (!b) {
@@ -450,6 +474,25 @@ export const editorFeatures = {
     // --- SENSORY ---
     initSensoryFeatures() {
         const panel = document.querySelector(".panel");
+        const hud = document.querySelector(".hud");
+        const controls = document.querySelector(".controls");
+        const logoArea = document.querySelector(".logo-area");
+        const drawer = document.querySelector(".drawer");
+        const templatePane = document.getElementById("templatePane");
+        let idleTimer = null;
+        const showChrome = () => {
+            document.body.classList.remove("chrome-hidden");
+            this.writingStarted = false;
+        };
+        const hideChrome = () => {
+            document.body.classList.add("chrome-hidden");
+        };
+        const scheduleIdleShow = () => {
+            if (idleTimer) clearTimeout(idleTimer);
+            idleTimer = setTimeout(() => {
+                showChrome();
+            }, 3000);
+        };
         if (panel) {
             panel.addEventListener("scroll", () => {
                 this.lastUserScrollTime = Date.now();
@@ -458,14 +501,11 @@ export const editorFeatures = {
                 this.lastUserScrollTime = Date.now();
             }, { passive: true });
         }
+        const shouldProtectChapterMarker = this.shouldProtectChapterMarker.bind(this);
         this.editor.addEventListener("keydown", (e) => {
-            if (e.key === "Backspace" && this.shouldProtectChapterMarker()) {
+            if (e.key === "Backspace" && shouldProtectChapterMarker()) {
                 e.preventDefault();
                 return;
-            }
-            if (!this.writingStarted && (e.key.length === 1 || e.key === "Enter")) {
-                this.writingStarted = true;
-                document.body.classList.add("writing-active");
             }
             this.focusReady = true;
             if (e.key === "Enter") this.playSound('enter');
@@ -477,6 +517,15 @@ export const editorFeatures = {
             this.scheduleFocusBlockUpdate();
         });
         this.editor.addEventListener("input", () => {
+            const text = (this.editor.innerText || "").trim();
+            const words = text ? text.split(/\s+/).filter(Boolean) : [];
+            if (words.length >= 1) {
+                this.writingStarted = true;
+                hideChrome();
+                scheduleIdleShow();
+            } else {
+                showChrome();
+            }
             this.handleTypewriterScroll();
         });
         this.editor.addEventListener("keyup", () => {
@@ -486,7 +535,6 @@ export const editorFeatures = {
         this.editor.addEventListener("input", () => this.scheduleFocusBlockUpdate());
         this.editor.addEventListener("click", () => {
             this.focusReady = true;
-            this.triggerFocusMode();
             this.scheduleFocusBlockUpdate();
         });
         this.editor.addEventListener("keyup", () => this.scheduleFocusBlockUpdate());
@@ -498,7 +546,6 @@ export const editorFeatures = {
                 ? sel.focusNode.parentElement
                 : sel.focusNode;
             if (node && this.editor.contains(node)) {
-                this.triggerFocusMode();
                 this.scheduleFocusBlockUpdate();
             }
         });
@@ -2318,6 +2365,19 @@ export const editorFeatures = {
         this.readerPlay = document.getElementById("btnReaderPlay");
         this.readerSpeedDown = document.getElementById("btnReaderSpeedDown");
         this.readerSpeedUp = document.getElementById("btnReaderSpeedUp");
+        this.readerLibraryBtn = document.getElementById("btnReaderLibrary");
+        this.readerLibraryPanel = document.getElementById("readerLibrary");
+        this.readerLibraryList = document.getElementById("readerLibraryList");
+        this.readerLibraryBack = document.getElementById("readerLibraryBack");
+        this.readerLibraryLangBtns = this.readerLibraryPanel
+            ? Array.from(this.readerLibraryPanel.querySelectorAll(".reader-library-lang-btn"))
+            : [];
+        this.readerLibraryBooks = null;
+        this.readerLibraryActiveId = localStorage.getItem("skrv_reader_book_active") || null;
+        this.readerLibraryMode = "user";
+        this.readerUserText = "";
+        this.readerUserScroll = 0;
+        this.readerLibraryLang = null;
         this.readerAutoScroll = false;
         this.readerAutoScrollRaf = null;
         this.readerAutoScrollSpeed = 1;
@@ -2344,6 +2404,13 @@ export const editorFeatures = {
         }
         if (this.readerModal) {
             this.readerModal.addEventListener("pointerdown", glossaryOutsideHandler);
+            this.readerModal.addEventListener("pointerdown", (e) => {
+                if (!this.readerBox || !this.readerBox.classList.contains("show-library")) return;
+                const target = e.target;
+                if (!target) return;
+                if (target.closest && (target.closest("#readerLibrary") || target.closest("#btnReaderLibrary"))) return;
+                this.closeReaderLibraryPanel();
+            });
         }
         if (btnRuler) {
             btnRuler.onclick = () => {
@@ -2377,6 +2444,23 @@ export const editorFeatures = {
             btnTheme.onclick = () => {
                 if (this.readerBox) this.readerBox.classList.toggle("reader-theme-light");
             };
+        }
+        if (this.readerLibraryBtn) {
+            this.readerLibraryBtn.onclick = () => this.toggleReaderLibraryPanel();
+        }
+        if (this.readerLibraryBack) {
+            this.readerLibraryBack.onclick = () => {
+                this.restoreReaderUserText();
+                this.closeReaderLibraryPanel();
+            };
+        }
+        if (this.readerLibraryLangBtns.length) {
+            this.readerLibraryLangBtns.forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    const lang = btn.getAttribute("data-lang");
+                    if (lang) this.setReaderLibraryLang(lang);
+                });
+            });
         }
         if (this.readerPlay) {
             this.readerPlay.onclick = () => this.toggleReaderAutoScroll();
@@ -2491,7 +2575,12 @@ export const editorFeatures = {
         }
         document.addEventListener("keydown", (e) => {
             if (e.key === "Escape" && this.readerModal && this.readerModal.classList.contains("active")) {
-                this.closeReaderMode();
+                if (this.readerLibraryMode === "library") {
+                    this.restoreReaderUserText();
+                    this.closeReaderLibraryPanel();
+                } else {
+                    this.closeReaderMode();
+                }
             }
             if (!this.readerModal || !this.readerModal.classList.contains("active")) return;
             if (!this.readerContent) return;
@@ -2509,7 +2598,22 @@ export const editorFeatures = {
         if (this.readerContent) {
             this.readerContent.addEventListener("wheel", () => this.stopReaderAutoScroll(), { passive: true });
             this.readerContent.addEventListener("touchstart", () => this.stopReaderAutoScroll(), { passive: true });
+            this.readerContent.addEventListener("scroll", () => {
+                if (this.readerLibraryMode === "library" && this.readerLibraryActiveId) {
+                    localStorage.setItem(
+                        `skrv_reader_book_scroll_${this.readerLibraryActiveId}`,
+                        String(this.readerContent.scrollTop || 0)
+                    );
+                } else {
+                    this.readerUserScroll = this.readerContent.scrollTop || 0;
+                }
+            }, { passive: true });
         }
+        document.addEventListener("lang:changed", () => {
+            if (this.readerBox && this.readerBox.classList.contains("show-library")) {
+                this.renderReaderLibrary();
+            }
+        });
         if (this.readerBody) {
             this.readerBody.addEventListener("wheel", () => this.stopReaderAutoScroll(), { passive: true });
             this.readerBody.addEventListener("touchstart", () => this.stopReaderAutoScroll(), { passive: true });
@@ -2527,6 +2631,142 @@ export const editorFeatures = {
         const adjustedHeight = Math.max(40, height - inset * 2);
         this.readerBody.style.setProperty("--ruler-top", `${adjustedTop}px`);
         this.readerBody.style.setProperty("--ruler-height", `${adjustedHeight}px`);
+    },
+
+    mapReaderLang(code) {
+        if (!code) return "ptbr";
+        if (code.startsWith("pt")) return "ptbr";
+        if (code.startsWith("en")) return "en";
+        if (code.startsWith("es")) return "es";
+        if (code.startsWith("fr")) return "fr";
+        return "ptbr";
+    },
+
+    async loadReaderLibraryBooks() {
+        if (this.readerLibraryBooks) return this.readerLibraryBooks;
+        try {
+            const res = await fetch("src/library/books.json");
+            const data = await res.json();
+            this.readerLibraryBooks = Array.isArray(data?.books) ? data.books : [];
+            this.readerLibraryError = false;
+        } catch (_) {
+            this.readerLibraryBooks = [];
+            this.readerLibraryError = true;
+        }
+        return this.readerLibraryBooks;
+    },
+
+    setReaderLibraryLang(langCode) {
+        this.readerLibraryLang = langCode;
+        this.renderReaderLibrary();
+    },
+
+    async renderReaderLibrary() {
+        if (!this.readerLibraryList) return;
+        this.readerLibraryList.innerHTML = "";
+        const loading = document.createElement("div");
+        loading.className = "reader-library-empty";
+        loading.textContent = lang.t("reader_library_loading");
+        this.readerLibraryList.appendChild(loading);
+        const books = await this.loadReaderLibraryBooks();
+        this.readerLibraryList.innerHTML = "";
+        const langCode = this.readerLibraryLang || this.mapReaderLang(lang.current);
+        this.readerLibraryLang = langCode;
+        this.readerLibraryLangBtns.forEach((btn) => {
+            btn.classList.toggle("active", btn.getAttribute("data-lang") === langCode);
+        });
+        const filtered = books.filter((b) => b.language === langCode);
+        if (this.readerLibraryError) {
+            const empty = document.createElement("div");
+            empty.className = "reader-library-empty";
+            empty.textContent = lang.t("reader_library_error");
+            this.readerLibraryList.appendChild(empty);
+            return;
+        }
+        if (!filtered.length) {
+            const empty = document.createElement("div");
+            empty.className = "reader-library-empty";
+            empty.textContent = lang.t("reader_library_empty");
+            this.readerLibraryList.appendChild(empty);
+            return;
+        }
+        filtered.forEach((book) => {
+            const item = document.createElement("div");
+            item.className = "reader-library-item";
+            item.dataset.bookId = book.id;
+            item.innerHTML = `<div class="reader-library-item-title">${this.escapeHtml(book.title)}</div><div class="reader-library-item-author">${this.escapeHtml(book.author)}</div>`;
+            item.addEventListener("click", () => this.openReaderLibraryBook(book));
+            this.readerLibraryList.appendChild(item);
+        });
+    },
+
+    toggleReaderLibraryPanel() {
+        if (!this.readerBox) return;
+        if (this.readerBox.classList.contains("show-library")) {
+            this.closeReaderLibraryPanel();
+        } else {
+            this.openReaderLibraryPanel();
+        }
+    },
+
+    openReaderLibraryPanel() {
+        if (!this.readerBox) return;
+        this.readerBox.classList.add("show-library");
+        if (!this.readerLibraryLang) {
+            this.readerLibraryLang = this.mapReaderLang(lang.current);
+        }
+        this.renderReaderLibrary();
+    },
+
+    closeReaderLibraryPanel() {
+        if (!this.readerBox) return;
+        this.readerBox.classList.remove("show-library");
+    },
+
+    setReaderContentFromText(text) {
+        if (!this.readerContent) return;
+        const blocks = String(text || "").split(/\n{2,}/g).map(s => s.trim()).filter(Boolean);
+        const html = blocks.map((block) => {
+            const safe = this.escapeHtml(block).replace(/\n/g, "<br>");
+            return `<p>${safe}</p>`;
+        }).join("");
+        this.readerContent.innerHTML = html || "<p></p>";
+    },
+
+    openReaderLibraryBook(book) {
+        if (!book || !this.readerContent) return;
+        if (this.readerLibraryMode !== "library") {
+            this.readerUserText = this.editor?.innerText || "";
+            this.readerUserScroll = this.readerContent.scrollTop || 0;
+        }
+        this.readerLibraryMode = "library";
+        this.readerLibraryActiveId = book.id;
+        localStorage.setItem("skrv_reader_book_active", book.id);
+        fetch(book.file)
+            .then((res) => res.text())
+            .then((text) => {
+                this.setReaderContentFromText(text);
+                if (this.readerGlossary) {
+                    this.readerGlossary.innerHTML = "";
+                    this.updateGlossary(text);
+                }
+                const saved = parseFloat(localStorage.getItem(`skrv_reader_book_scroll_${book.id}`) || "0");
+                this.readerContent.scrollTop = saved;
+            })
+            .catch(() => {
+                this.readerContent.innerHTML = `<p>${this.escapeHtml(lang.t("reader_library_error"))}</p>`;
+            });
+    },
+
+    restoreReaderUserText() {
+        if (!this.readerContent) return;
+        this.readerLibraryMode = "user";
+        this.readerContent.textContent = this.readerUserText || (this.editor?.innerText || "");
+        this.readerContent.scrollTop = this.readerUserScroll || 0;
+        if (this.readerGlossary) {
+            this.readerGlossary.innerHTML = "";
+            this.updateGlossary(this.readerUserText || "");
+        }
     },
 
     getReaderScrollEl() {
@@ -2583,6 +2823,9 @@ export const editorFeatures = {
     openReaderMode() {
         if (!this.readerModal || !this.readerContent || !this.readerGlossary || !this.readerBox) return;
         const text = this.editor.innerText || "";
+        this.readerUserText = text;
+        this.readerUserScroll = 0;
+        this.readerLibraryMode = "user";
         this.readerContent.textContent = text;
         this.readerContent.scrollTop = 0;
         this.readerGlossary.innerHTML = "";
@@ -2591,6 +2834,7 @@ export const editorFeatures = {
         document.body.classList.add("reader-open");
         this.readerBox.classList.remove("show-glossary");
         this.readerBox.classList.remove("show-ruler");
+        this.readerBox.classList.remove("show-library");
         this.readerBox.classList.remove("reader-theme-light");
         if (this.readerContent) this.readerContent.classList.add("reader-font-serif");
         if (this.readerModal.requestFullscreen) {
@@ -3242,11 +3486,7 @@ export const editorFeatures = {
         const btn = document.getElementById("hudFs");
         const updateIcon = (isFull) => {
             if (!btn) return;
-            const src = isFull ? "src/assets/icons/minimize-2.svg" : "src/assets/icons/maximize-2.svg";
-            if (btn.tagName.toLowerCase() === "button") {
-                const img = btn.querySelector("img.icon");
-                if (img) img.src = src;
-            }
+            btn.classList.toggle("is-full", !!isFull);
         };
         if (!document.fullscreenElement) {
             document.documentElement.requestFullscreen();

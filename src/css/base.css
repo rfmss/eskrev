@@ -408,10 +408,7 @@ mark.search-active { box-shadow: 0 0 0 2px var(--color-accent-dim); }
 
 .hud, .controls, .logo-area, .drawer { opacity: 1; transition: opacity 3s ease; }
 
-body.focus-active .hud,
-body.focus-active .controls, 
-body.focus-active .logo-area,
-body.focus-active .drawer { opacity: 0.15; }
+/* focus-active no longer dims chrome */
 
 
 body.slow-return .hud,
