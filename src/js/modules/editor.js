@@ -354,7 +354,7 @@ export const editorFeatures = {
         };
         const isNativeClipboard = (clip) => {
             if (!clip) return false;
-            return clip.getData("text/x-skrv") === "native";
+            return clip.getData("text/x-skv") === "native";
         };
         this.editor.addEventListener("copy", (e) => {
             const sel = window.getSelection();
@@ -362,7 +362,7 @@ export const editorFeatures = {
             if (e.clipboardData) {
                 e.preventDefault();
                 e.clipboardData.setData("text/plain", text);
-                e.clipboardData.setData("text/x-skrv", "native");
+                e.clipboardData.setData("text/x-skv", "native");
             }
         });
         this.editor.addEventListener("cut", (e) => {
@@ -371,7 +371,7 @@ export const editorFeatures = {
             if (e.clipboardData) {
                 e.preventDefault();
                 e.clipboardData.setData("text/plain", text);
-                e.clipboardData.setData("text/x-skrv", "native");
+                e.clipboardData.setData("text/x-skv", "native");
                 document.execCommand("delete");
             }
         });

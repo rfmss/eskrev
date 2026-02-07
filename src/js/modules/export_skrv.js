@@ -15,7 +15,7 @@ function downloadTextAsFile(text, filename) {
 
 export function exportSkrv(store) {
   buildSkrvPayloadWithChain(store).then((payload) => {
-    const filename = `SKRV_${Date.now()}.skrv`;
+    const filename = `SKRV_${Date.now()}.skv`;
     downloadTextAsFile(JSON.stringify(payload, null, 2), filename);
   });
 }
@@ -88,9 +88,9 @@ export function buildSkrvPayload(store) {
     : 0;
 
   return {
-    protocol: ".skr Proof",
+    protocol: ".skv Proof",
     version: "1.0",
-    format: ".skr",
+    format: ".skv",
     created_with: "eskrev",
     environment: "offline-first",
     language: langMap[langRaw] || "pt-BR",
@@ -127,8 +127,8 @@ export function buildSkrvPayload(store) {
       responsibility: "User-owned content"
     },
     HEADER: {
-      VERSION: "SKRV/2",
-      APP: ".skr Writer - eskrev",
+      VERSION: "SKV/2",
+      APP: ".skv Writer - eskrev",
       CREATED: new Date().toISOString(),
       CERT: birth && birth.cert ? birth.cert : "UNKNOWN"
     },

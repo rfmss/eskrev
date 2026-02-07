@@ -190,7 +190,7 @@ const renderMobileProjects = () => {
         const card = document.createElement("div");
         card.className = "mobile-memo-card";
         const title = document.createElement("div");
-        title.textContent = proj.name || ".skr";
+        title.textContent = proj.name || ".skv";
         title.className = "mobile-memo-meta";
         card.appendChild(title);
         const excerpt = document.createElement("div");
@@ -198,12 +198,12 @@ const renderMobileProjects = () => {
         card.appendChild(excerpt);
         card.onclick = () => {
             store.setActive(proj.id);
-            if (typeof window.skrvLoadActiveDocument === "function") {
-                window.skrvLoadActiveDocument();
+            if (typeof window.skvLoadActiveDocument === "function") {
+                window.skvLoadActiveDocument();
             }
             openMobileProjectNote(store.getActive());
             if (sessionStorage.getItem("mobile_project_hint") !== "1") {
-                if (window.skrvModal) window.skrvModal.alert(lang.t("mobile_project_hint"));
+                if (window.skvModal) window.skvModal.alert(lang.t("mobile_project_hint"));
                 sessionStorage.setItem("mobile_project_hint", "1");
             }
         };
@@ -326,8 +326,8 @@ const addOrUpdateMobileNote = (text, tagsRaw, folderRaw) => {
     } else {
         if (mobileNotesCache.length >= MOBILE_NOTES_LIMIT) {
             const msg = lang.t("mobile_limit_notes") || "Limite de notas atingido.";
-            if (window.skrvModal && typeof window.skrvModal.alert === "function") {
-                window.skrvModal.alert(msg);
+            if (window.skvModal && typeof window.skvModal.alert === "function") {
+                window.skvModal.alert(msg);
             } else {
                 alert(msg);
             }
@@ -337,8 +337,8 @@ const addOrUpdateMobileNote = (text, tagsRaw, folderRaw) => {
             const folders = Array.from(new Set(mobileNotesCache.map(n => normalizeFolder(n.folder)).filter(Boolean)));
             if (!folders.includes(folder) && folders.length >= MOBILE_FOLDERS_LIMIT) {
                 const msg = lang.t("mobile_limit_folders") || "Limite de pastas atingido.";
-                if (window.skrvModal && typeof window.skrvModal.alert === "function") {
-                    window.skrvModal.alert(msg);
+                if (window.skvModal && typeof window.skvModal.alert === "function") {
+                    window.skvModal.alert(msg);
                 } else {
                     alert(msg);
                 }
@@ -483,12 +483,12 @@ const initMobileMemos = () => {
             const active = getActiveProject();
             if (!active) return;
             const payload = {
-                protocol: ".skr Mobile Project",
+                protocol: ".skv Mobile Project",
                 version: "1.0",
                 created_at: new Date().toISOString(),
                 project: active
             };
-            qrTransfer.startCustomStream(payload, active.name || ".skr");
+            qrTransfer.startCustomStream(payload, active.name || ".skv");
         };
     }
     if (projectJson) {
@@ -496,7 +496,7 @@ const initMobileMemos = () => {
             const active = getActiveProject();
             if (!active) return;
             const payload = {
-                protocol: ".skr Mobile Project",
+                protocol: ".skv Mobile Project",
                 version: "1.0",
                 created_at: new Date().toISOString(),
                 project: active
@@ -616,7 +616,7 @@ export const initMobileFeatures = () => {
     initMobileTapToEdit();
     initMobileEdgeHandle();
 
-    window.skrvMobileRenderProjects = renderMobileProjects;
-    window.skrvMobileCreateProject = createMobileProject;
-    window.skrvMobileOpenProjectNote = openMobileProjectNote;
+    window.skvMobileRenderProjects = renderMobileProjects;
+    window.skvMobileCreateProject = createMobileProject;
+    window.skvMobileOpenProjectNote = openMobileProjectNote;
 };

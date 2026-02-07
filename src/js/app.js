@@ -1,4 +1,4 @@
-/* * .skr Writer - CORE MODULE
+/* * .skv Writer - CORE MODULE
  * Fixes: Memo persistence bug (Ghost Data)
  */
 
@@ -15,7 +15,7 @@ import { qrTransfer } from './modules/qr_transfer.js';
 document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add("booting");
     setTimeout(() => document.body.classList.remove("booting"), 2000);
-    // console.log("🚀 .skr SYSTEM BOOTING v5.5...");
+    // console.log("🚀 .skv SYSTEM BOOTING v5.5...");
 
     if (sessionStorage.getItem("skrv_force_clean") === "1") {
         try { localStorage.clear(); } catch (_) {}
@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     syncLangToFrames(lang.current);
-    window.skrvModal = initSystemModal();
-    window.skrvOnboarding = initOnboarding();
+    window.skvModal = initSystemModal();
+    window.skvOnboarding = initOnboarding();
     auth.init();
 
     document.querySelectorAll('[data-manifesto-open]').forEach((el) => {
@@ -103,10 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
     qrTransfer.init({
         onRestore: (payload) => {
             if (payload && applySkrvPayload(payload)) {
-                if (window.skrvModal) window.skrvModal.alert(lang.t("alert_backup_restored"));
+                if (window.skvModal) window.skvModal.alert(lang.t("alert_backup_restored"));
                 location.reload();
             } else {
-                if (window.skrvModal) window.skrvModal.alert(lang.t("alert_backup_invalid"));
+                if (window.skvModal) window.skvModal.alert(lang.t("alert_backup_invalid"));
             }
         }
     });
@@ -1361,7 +1361,7 @@ function setupEventListeners() {
         }
         const notes = notesCache();
         if (notes.length >= NOTES_LIMIT) {
-            if (window.skrvModal?.alert) window.skrvModal.alert(lang.t("mobile_limit_notes"));
+            if (window.skvModal?.alert) window.skvModal.alert(lang.t("mobile_limit_notes"));
             else alert(lang.t("mobile_limit_notes"));
             return;
         }
@@ -1383,7 +1383,7 @@ function setupEventListeners() {
     const createNewNote = (preset = {}) => {
         const notes = notesCache();
         if (notes.length >= NOTES_LIMIT) {
-            if (window.skrvModal?.alert) window.skrvModal.alert(lang.t("mobile_limit_notes"));
+            if (window.skvModal?.alert) window.skvModal.alert(lang.t("mobile_limit_notes"));
             else alert(lang.t("mobile_limit_notes"));
             return;
         }
@@ -1391,7 +1391,7 @@ function setupEventListeners() {
         if (presetFolder) {
             const folders = Array.from(new Set(notes.map(n => normalizeFolder(n.folder)).filter(Boolean)));
             if (!folders.includes(presetFolder) && folders.length >= FOLDERS_LIMIT) {
-                if (window.skrvModal?.alert) window.skrvModal.alert(lang.t("mobile_limit_folders"));
+                if (window.skvModal?.alert) window.skvModal.alert(lang.t("mobile_limit_folders"));
                 else alert(lang.t("mobile_limit_folders"));
                 return;
             }
@@ -1420,7 +1420,7 @@ function setupEventListeners() {
         if (!note) return;
         const pinnedCount = notes.filter(n => n.pinned).length;
         if (!note.pinned && pinnedCount >= PINNED_LIMIT) {
-            if (window.skrvModal?.alert) window.skrvModal.alert(lang.t("mobile_limit_pins"));
+            if (window.skvModal?.alert) window.skvModal.alert(lang.t("mobile_limit_pins"));
             else alert(lang.t("mobile_limit_pins"));
             return;
         }
@@ -1453,7 +1453,7 @@ function setupEventListeners() {
         if (folder) {
             const folders = Array.from(new Set(notes.map(n => normalizeFolder(n.folder)).filter(Boolean)));
             if (!folders.includes(folder) && folders.length >= FOLDERS_LIMIT) {
-                if (window.skrvModal?.alert) window.skrvModal.alert(lang.t("mobile_limit_folders"));
+                if (window.skvModal?.alert) window.skvModal.alert(lang.t("mobile_limit_folders"));
                 else alert(lang.t("mobile_limit_folders"));
                 return;
             }
@@ -1550,7 +1550,7 @@ function setupEventListeners() {
             const notes = notesCache();
             const note = notes.find(n => n.id === notesState.activeId);
             if (!note) return;
-            const ok = window.skrvModal?.confirm ? await window.skrvModal.confirm(lang.t("notes_delete_confirm")) : confirm(lang.t("notes_delete_confirm"));
+            const ok = window.skvModal?.confirm ? await window.skvModal.confirm(lang.t("notes_delete_confirm")) : confirm(lang.t("notes_delete_confirm"));
             if (!ok) return;
             const next = notes.filter(n => n.id !== notesState.activeId);
             saveNotes(next);
@@ -1771,25 +1771,25 @@ function setupEventListeners() {
         if (!file) return;
         const reader = new FileReader();
         reader.onload = (evt) => {
-            if (file.name.endsWith('.skr') || file.name.endsWith('.skrv')) {
+            if (file.name.endsWith('.skv')) {
                 const payload = importSkrv(evt.target.result);
                 if (payload && applySkrvPayload(payload)) {
-                    if (window.skrvModal) window.skrvModal.alert(lang.t("alert_capsule_restored"));
+                    if (window.skvModal) window.skvModal.alert(lang.t("alert_capsule_restored"));
                     location.reload();
                 } else {
-                    if (window.skrvModal) window.skrvModal.alert(lang.t("alert_capsule_invalid"));
+                    if (window.skvModal) window.skvModal.alert(lang.t("alert_capsule_invalid"));
                 }
             } else if (file.name.endsWith('.b64') || file.name.endsWith('.qr')) {
                 const payload = qrTransfer.decodeBackupBase64(evt.target.result);
                 if (payload && applySkrvPayload(payload)) {
-                    if (window.skrvModal) window.skrvModal.alert(lang.t("alert_backup_restored"));
+                    if (window.skvModal) window.skvModal.alert(lang.t("alert_backup_restored"));
                     location.reload();
                 } else {
-                    if (window.skrvModal) window.skrvModal.alert(lang.t("alert_backup_invalid"));
+                    if (window.skvModal) window.skvModal.alert(lang.t("alert_backup_invalid"));
                 }
             } else if (file.name.endsWith('.json')) {
                 if (store.importData(evt.target.result)) { 
-                    if (window.skrvModal) window.skrvModal.alert(lang.t("alert_backup_restored")); 
+                    if (window.skvModal) window.skvModal.alert(lang.t("alert_backup_restored")); 
                     location.reload(); 
                 }
             } else {
@@ -1831,7 +1831,7 @@ function setupEventListeners() {
     });
 
     // Downloads e QR
-    // Downloads (JSON / TXT / SKRV)
+    // Downloads (JSON / TXT / SKV)
     const btnMd = document.getElementById("actionDownloadMd");
     if (btnMd) {
         btnMd.onclick = () => {
@@ -1853,7 +1853,7 @@ function setupEventListeners() {
                 document.getElementById("memoArea").value
             );
             const text = buildReportText();
-            printRawText(text, ".skr Writer - CÁPSULA");
+            printRawText(text, ".skv Writer - CÁPSULA");
             document.getElementById("exportModal").classList.remove("active");
         };
     }
@@ -1866,21 +1866,21 @@ function setupEventListeners() {
                 document.getElementById("memoArea").value
             );
             const active = store.getActive && store.getActive();
-            const baseName = active && active.name ? active.name : ".skr";
+            const baseName = active && active.name ? active.name : ".skv";
             const safeName = baseName
                 .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
                 .replace(/[^a-zA-Z0-9]+/g, "-")
                 .replace(/^-+|-+$/g, "")
                 .toLowerCase();
-            const slug = safeName || "skrv";
+            const slug = safeName || "skv";
             buildSkrvPayloadWithChain(store).then((payload) => {
-                downloadText(JSON.stringify(payload, null, 2), `${slug}-${Date.now()}.skrv`, "application/json");
+                downloadText(JSON.stringify(payload, null, 2), `${slug}-${Date.now()}.skv`, "application/json");
                 document.getElementById("exportModal").classList.remove("active");
             });
         };
     }
 
-    // Nota: export .skrv já é o caminho oficial (actionDownloadJson).
+    // Nota: export .skv já é o caminho oficial (actionDownloadJson).
 
     document.getElementById("closeModalHelp").onclick = () => {
         const overlay = document.getElementById("helpModal");
@@ -1975,8 +1975,8 @@ function setupEventListeners() {
                 return;
             }
             const systemModal = document.getElementById("systemModal");
-            if (systemModal && systemModal.classList.contains("active") && window.skrvModal?.cancel) {
-                window.skrvModal.cancel();
+            if (systemModal && systemModal.classList.contains("active") && window.skvModal?.cancel) {
+                window.skvModal.cancel();
                 return;
             }
             const manifestoModal = document.getElementById("manifestoModal");
@@ -2054,7 +2054,7 @@ function setupEventListeners() {
         overlay.addEventListener("click", (e) => {
             if (overlay.id === "gatekeeper" || overlay.id === "pomodoroModal" || overlay.id === "termsModal" || overlay.id === "manifestoModal" || overlay.id === "onboardingModal") return;
             if (overlay.id === "systemModal") {
-                if (e.target === overlay && window.skrvModal?.cancel) window.skrvModal.cancel();
+                if (e.target === overlay && window.skvModal?.cancel) window.skvModal.cancel();
                 return;
             }
             if (e.target === overlay) {
@@ -2226,7 +2226,7 @@ function setupEventListeners() {
     const mobileThemeBtn = document.getElementById("btnMobileTheme");
     if (mobileThemeBtn) {
         mobileThemeBtn.onclick = () => {
-            if (window.innerWidth <= 900 && !window.skrvMobileRenderProjects) {
+            if (window.innerWidth <= 900 && !window.skvMobileRenderProjects) {
                 ensureMobileModule().catch(() => {});
             }
             ui.toggleTheme();
@@ -2426,7 +2426,7 @@ function downloadText(text, filename, mime) {
 function buildMarkdownExport() {
     const projects = Array.isArray(store.data.projects) ? store.data.projects : [];
     const blocks = [];
-    blocks.push("# .skr Writer Export\n");
+    blocks.push("# .skv Writer Export\n");
     blocks.push(`_Gerado em ${new Date().toISOString()}_\n`);
     const manifestText = localStorage.getItem("skrv_manifest_text") || localStorage.getItem("tot_manifest_text");
     const manifestSignedAt = localStorage.getItem("skrv_manifest_signed_at") || localStorage.getItem("tot_manifest_signed_at");
@@ -2468,11 +2468,11 @@ function buildMarkdownExport() {
     let registry = [];
     try { registry = JSON.parse(registryRaw || "[]"); } catch (_) { registry = []; }
     if (registry.length) {
-        blocks.push("\n## .skrBooks\n");
+        blocks.push("\n## .skvBooks\n");
         registry.forEach((entry, idx) => {
             const id = typeof entry === "string" ? entry : entry.id;
             if (!id) return;
-            const title = localStorage.getItem(`title_${id}`) || `.skrBook ${idx + 1}`;
+            const title = localStorage.getItem(`title_${id}`) || `.skvBook ${idx + 1}`;
             blocks.push(`\n### ${title}\n`);
             let pages = [];
             try { pages = JSON.parse(localStorage.getItem(`pages_${id}`) || "[]"); } catch (_) { pages = []; }
@@ -2519,11 +2519,11 @@ function buildReportText() {
     let registry = [];
     try { registry = JSON.parse(registryRaw || "[]"); } catch (_) { registry = []; }
     if (registry.length) {
-        blocks.push("=== .skrBooks ===");
+        blocks.push("=== .skvBooks ===");
         registry.forEach((entry, idx) => {
             const id = typeof entry === "string" ? entry : entry.id;
             if (!id) return;
-            const title = localStorage.getItem(`title_${id}`) || `.skrBook ${idx + 1}`;
+            const title = localStorage.getItem(`title_${id}`) || `.skvBook ${idx + 1}`;
             blocks.push(`\n--- ${title} ---`);
             let pages = [];
             try { pages = JSON.parse(localStorage.getItem(`pages_${id}`) || "[]"); } catch (_) { pages = []; }
@@ -2552,14 +2552,14 @@ function buildProjectReportText(project) {
 }
 
 // Exposição mínima para módulo mobile (carregamento condicional)
-window.skrvLoadActiveDocument = loadActiveDocument;
-window.skrvRenderProjectList = renderProjectList;
+window.skvLoadActiveDocument = loadActiveDocument;
+window.skvRenderProjectList = renderProjectList;
 
 function printRawText(text, title) {
     const w = window.open("", "_blank", "noopener,noreferrer");
     if (!w) {
-        if (window.skrvModal && typeof window.skrvModal.alert === "function") {
-            window.skrvModal.alert(lang.t("print_popup_blocked"));
+        if (window.skvModal && typeof window.skvModal.alert === "function") {
+            window.skvModal.alert(lang.t("print_popup_blocked"));
         } else {
             alert(lang.t("print_popup_blocked"));
         }
@@ -2672,17 +2672,17 @@ function renderProjectList() {
                 store.setActive(proj.id);
                 renderProjectList();
                 const run = () => {
-                    if (window.skrvMobileOpenProjectNote) {
-                        window.skrvMobileOpenProjectNote(proj);
+                    if (window.skvMobileOpenProjectNote) {
+                        window.skvMobileOpenProjectNote(proj);
                     }
                 };
-                if (!window.skrvMobileOpenProjectNote) {
+                if (!window.skvMobileOpenProjectNote) {
                     ensureMobileModule().then(run).catch(() => {});
                 } else {
                     run();
                 }
                 if (sessionStorage.getItem("mobile_project_hint") !== "1") {
-                    if (window.skrvModal) window.skrvModal.alert(lang.t("mobile_project_hint"));
+                    if (window.skvModal) window.skvModal.alert(lang.t("mobile_project_hint"));
                     sessionStorage.setItem("mobile_project_hint", "1");
                 }
                 return;
@@ -2704,15 +2704,15 @@ function renderProjectList() {
         btnPrint.onclick = (e) => {
             e.stopPropagation();
             const text = buildProjectReportText(proj);
-            printRawText(text, `.skr Writer - ${proj.name || "Documento"}`);
+            printRawText(text, `.skv Writer - ${proj.name || "Documento"}`);
         };
 
         const btnDel = document.createElement("button");
         btnDel.className = "btn-icon-small danger"; btnDel.innerHTML = "<svg class='icon' viewBox='0 0 24 24' aria-hidden='true'><use href='src/assets/icons/phosphor-sprite.svg#icon-trash'></use></svg>";
         btnDel.onclick = async (e) => {
             e.stopPropagation();
-            if (!window.skrvModal) return;
-            const ok = await window.skrvModal.confirm(`${lang.t("project_delete_confirm")} "${proj.name}"?`);
+            if (!window.skvModal) return;
+            const ok = await window.skvModal.confirm(`${lang.t("project_delete_confirm")} "${proj.name}"?`);
             if (ok) {
                 store.deleteProject(proj.id);
                 renderProjectList();
@@ -2724,8 +2724,8 @@ function renderProjectList() {
         div.appendChild(infoDiv); div.appendChild(actionsDiv);
         list.appendChild(div);
     });
-    if (document.getElementById("mobileProjectList") && window.skrvMobileRenderProjects) {
-        window.skrvMobileRenderProjects();
+    if (document.getElementById("mobileProjectList") && window.skvMobileRenderProjects) {
+        window.skvMobileRenderProjects();
     }
 }
 
@@ -2780,8 +2780,8 @@ function renderNavigation() {
         btnDel.onclick = async (e) => {
             e.stopPropagation();
             const label = header.innerText || `Capítulo ${index + 1}`;
-            if (!window.skrvModal) return;
-            const ok = await window.skrvModal.confirm(`${lang.t("nav_delete_confirm")} "${label}"?`);
+            if (!window.skvModal) return;
+            const ok = await window.skvModal.confirm(`${lang.t("nav_delete_confirm")} "${label}"?`);
             if (ok) {
                 header.remove();
                 renderNavigation();

@@ -42,7 +42,7 @@ export const ui = {
             const selected = value.slice(start, end);
             e.preventDefault();
             e.clipboardData.setData("text/plain", selected);
-            e.clipboardData.setData("text/x-skrv", "native");
+            e.clipboardData.setData("text/x-skv", "native");
             if (e.type === "cut") {
                 target.value = value.slice(0, start) + value.slice(end);
                 const next = start;
@@ -140,7 +140,7 @@ export const ui = {
             memoArea.value = value.slice(0, start) + clean + value.slice(end);
             const cursor = start + clean.length;
             memoArea.setSelectionRange(cursor, cursor);
-            const nativeFlag = clip && clip.getData("text/x-skrv") === "native";
+            const nativeFlag = clip && clip.getData("text/x-skv") === "native";
             applyReplace(start, end, clean.length, nativeFlag ? "n" : "e");
             memoArea._skrvSkipInput = true;
             memoArea.dispatchEvent(new Event("input"));
@@ -182,7 +182,7 @@ export const ui = {
             if (!e.clipboardData) return;
             e.preventDefault();
             e.clipboardData.setData("text/plain", native);
-            if (native) e.clipboardData.setData("text/x-skrv", "native");
+            if (native) e.clipboardData.setData("text/x-skv", "native");
             if (hasExternal) warnExternal();
         });
         memoArea.addEventListener("cut", (e) => {
@@ -206,7 +206,7 @@ export const ui = {
             if (!e.clipboardData) return;
             e.preventDefault();
             e.clipboardData.setData("text/plain", native);
-            if (native) e.clipboardData.setData("text/x-skrv", "native");
+            if (native) e.clipboardData.setData("text/x-skv", "native");
             if (hasExternal) warnExternal();
             const before = value.slice(0, start);
             const after = value.slice(end);

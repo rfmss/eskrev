@@ -1,8 +1,8 @@
 import { lang } from './lang.js';
 
 const showAlert = (message) => {
-    if (window.skrvModal && typeof window.skrvModal.alert === "function") {
-        window.skrvModal.alert(message);
+    if (window.skvModal && typeof window.skvModal.alert === "function") {
+        window.skvModal.alert(message);
     } else {
         console.warn(message);
     }
@@ -125,7 +125,7 @@ export const store = {
         try {
             const imported = JSON.parse(jsonString);
             
-            // Valida se é um backup válido do .skr
+            // Valida se é um backup válido do .skv
             if (!imported.projects || !Array.isArray(imported.projects)) {
                 showAlert(lang.t("alert_backup_invalid"));
                 return false;
