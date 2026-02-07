@@ -297,7 +297,7 @@ select:focus-visible {
     border: none;
     border-radius: 6px;
     position: relative;
-    color: rgba(199, 199, 199, 0.65);
+    color: rgba(199, 199, 199, 0.78);
 }
 .template-pane.minimized .template-actions .btn-icon::before {
     display: none;
