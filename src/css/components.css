@@ -421,7 +421,7 @@ select:focus-visible {
 /* GUIDE RAIL */
 .guide-rail {
     position: absolute;
-    right: 18px;
+    right: 20px;
     top: 120px;
     bottom: 120px;
     display: flex;
