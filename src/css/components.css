@@ -441,23 +441,21 @@ body.template-open .guide-rail {
     display: inline-flex;
     align-items: center;
     height: 12px;
-    width: auto;
-    max-width: 14px;
-    padding: 0 2px 0 0;
+    width: 0;
+    max-width: 0;
+    padding: 0;
     border-radius: 0;
     border: none;
     background: transparent;
     color: var(--color-text);
     cursor: pointer;
     overflow: hidden;
-    transition: max-width 0.2s ease, opacity 0.2s ease, padding 0.2s ease;
+    transition: opacity 0.2s ease;
     opacity: 0.6;
     position: relative;
     justify-content: flex-end;
 }
 .guide-rail-item:hover {
-    max-width: 180px;
-    padding-right: 2px;
     opacity: 1;
     height: 28px;
 }
@@ -475,19 +473,21 @@ body.template-open .guide-rail {
     text-transform: uppercase;
     white-space: nowrap;
     opacity: 0;
-    transform: translateX(2px);
+    transform: translateY(-50%) translateX(6px);
     padding-right: 0;
     transition: opacity 0.2s ease, transform 0.2s ease;
     user-select: none;
     -webkit-user-select: none;
-    position: relative;
+    position: absolute;
     z-index: 1;
     color: var(--color-text);
     line-height: 12px;
+    right: 14px;
+    top: 50%;
 }
 .guide-rail-item:hover .guide-rail-label {
     opacity: 0.85;
-    transform: translateX(0);
+    transform: translateY(-50%) translateX(0);
 }
 
 body.mobile-lite .guide-rail {
