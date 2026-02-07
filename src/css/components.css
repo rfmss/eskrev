@@ -245,19 +245,20 @@ select:focus-visible {
     display: flex;
 }
 .template-pane.minimized {
-    width: 64px;
-    min-width: 64px;
-    height: 120px;
+    width: auto;
+    min-width: 0;
+    height: auto;
     top: 50%;
     bottom: auto;
     transform: translateY(-50%);
-    padding: 10px 8px;
-    border-radius: 12px;
-    border: 1px dashed var(--color-accent);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
-    gap: 8px;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    gap: 0;
     align-items: center;
     cursor: pointer;
+    background: transparent;
 }
 .template-pane.minimized .template-content,
 .template-pane.minimized .template-header > div:first-child {
@@ -269,7 +270,10 @@ select:focus-visible {
 }
 .template-pane.minimized .template-actions {
     justify-content: center;
-    width: 100%;
+    width: auto;
+}
+.template-pane.minimized #templateClose {
+    display: none;
 }
 .template-actions .btn-icon {
     width: 26px;
@@ -288,23 +292,15 @@ select:focus-visible {
     stroke-width: 1.5;
 }
 .template-pane.minimized .template-actions .btn-icon {
-    width: 40px;
-    height: 64px;
+    width: 28px;
+    height: 28px;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     position: relative;
     color: var(--color-muted);
 }
 .template-pane.minimized .template-actions .btn-icon::before {
-    content: "";
-    position: absolute;
-    width: 16px;
-    height: 26px;
-    border: 2px solid currentColor;
-    border-radius: 2px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: none;
 }
 .template-pane.minimized .template-actions .btn-icon:hover {
     color: var(--color-text);
