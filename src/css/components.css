@@ -473,7 +473,7 @@ body.template-open .guide-rail {
     text-transform: uppercase;
     white-space: nowrap;
     opacity: 0;
-    transform: translateY(-64%) translateX(4px);
+    transform: translateY(-68%) translateX(4px);
     padding-right: 0;
     transition: opacity 0.2s ease, transform 0.2s ease;
     user-select: none;
@@ -488,7 +488,7 @@ body.template-open .guide-rail {
 }
 .guide-rail-item:hover .guide-rail-label {
     opacity: 0.85;
-    transform: translateY(-64%) translateX(4px);
+    transform: translateY(-68%) translateX(4px);
 }
 
 body.mobile-lite .guide-rail {
