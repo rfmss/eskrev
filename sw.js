@@ -1,9 +1,9 @@
-const CACHE_NAME = "skrv-cache-v7";
+const CACHE_NAME = "skrv-cache-v8";
 const CACHE_ASSETS = [
   "./",
   "./index.html",
   "./totbooks.html",
-  "./manifest.json",
+  "./manifest.json?v=2",
   "./src/css/main.css",
   "./src/css/fonts.css",
   "./src/css/base.css",
