@@ -421,12 +421,12 @@ select:focus-visible {
 /* GUIDE RAIL */
 .guide-rail {
     position: fixed;
-    right: 18px;
+    right: 16px;
     top: 120px;
     bottom: 120px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
     align-items: flex-end;
     z-index: 32;
     pointer-events: auto;
@@ -443,7 +443,7 @@ body.template-open .guide-rail {
     height: 12px;
     width: auto;
     max-width: 14px;
-    padding: 0 6px 0 0;
+    padding: 0 2px 0 0;
     border-radius: 0;
     border: none;
     background: transparent;
@@ -457,17 +457,17 @@ body.template-open .guide-rail {
 }
 .guide-rail-item:hover {
     max-width: 180px;
-    padding-right: 6px;
+    padding-right: 2px;
     opacity: 1;
     height: 28px;
 }
 .guide-rail-item::before {
     content: "";
     position: absolute;
-    right: -10px;
-    top: -10px;
-    bottom: -10px;
-    width: 30px;
+    right: -12px;
+    top: -12px;
+    bottom: -12px;
+    width: 36px;
 }
 .guide-rail-label {
     font-size: 11px;
@@ -475,7 +475,7 @@ body.template-open .guide-rail {
     text-transform: uppercase;
     white-space: nowrap;
     opacity: 0;
-    transform: translateX(6px);
+    transform: translateX(2px);
     padding-right: 0;
     transition: opacity 0.2s ease, transform 0.2s ease;
     user-select: none;
@@ -483,6 +483,7 @@ body.template-open .guide-rail {
     position: relative;
     z-index: 1;
     color: var(--color-text);
+    line-height: 12px;
 }
 .guide-rail-item:hover .guide-rail-label {
     opacity: 0.85;
@@ -1051,18 +1052,25 @@ body.xray-active #editor *::selection {
 /* GOAL STARS */
 .goal-stars {
     position: fixed;
-    right: 18px;
+    right: 16px;
     top: 120px;
     bottom: 120px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 12px;
+    gap: 14px;
     font-size: 10px;
+    line-height: 1;
     color: var(--color-muted);
     opacity: 1;
     z-index: 5;
     pointer-events: none;
+}
+.goal-star {
+    display: flex;
+    align-items: center;
+    height: 12px;
+    line-height: 1;
 }
 body.pomo-active .goal-stars {
     display: none;
