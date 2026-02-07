@@ -81,6 +81,11 @@ select:focus-visible {
     border-radius: var(--radius); display: flex; justify-content: center; align-items: center; gap: 5px;
     text-align: center;
 }
+.btn-full .icon,
+.btn-half .icon {
+    fill: none;
+    stroke: currentColor;
+}
 .btn-full { width: 100%; }
 .btn-half { flex: 1; font-size: 12px; }
 .btn-full:hover, .btn-half:hover { background: var(--color-accent); color: #F4F1EA; border-style: solid;}
