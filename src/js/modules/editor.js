@@ -3523,7 +3523,7 @@ export const editorFeatures = {
                 if (wrap) wrap.classList.remove("goal-complete");
             }
         }
-        const milestones = [500, 1000, 1500, 2000];
+        const milestones = [50, 150, 300, 600, 1000, 2000];
         const reached = milestones.filter((m) => count >= m);
         const latest = reached[reached.length - 1];
         if (latest && !this.goalMilestonesDone.includes(latest)) {
@@ -3541,17 +3541,25 @@ export const editorFeatures = {
     showGoalMessage(milestone) {
         if (!this.goalModal || !this.goalTitle || !this.goalBody) return;
         const copy = {
-            500: {
-                title: lang.t("goal_500_title"),
-                body: lang.t("goal_500_body")
+            50: {
+                title: lang.t("goal_50_title"),
+                body: lang.t("goal_50_body")
+            },
+            150: {
+                title: lang.t("goal_150_title"),
+                body: lang.t("goal_150_body")
+            },
+            300: {
+                title: lang.t("goal_300_title"),
+                body: lang.t("goal_300_body")
+            },
+            600: {
+                title: lang.t("goal_600_title"),
+                body: lang.t("goal_600_body")
             },
             1000: {
                 title: lang.t("goal_1000_title"),
                 body: lang.t("goal_1000_body")
-            },
-            1500: {
-                title: lang.t("goal_1500_title"),
-                body: lang.t("goal_1500_body")
             },
             2000: {
                 title: lang.t("goal_2000_title"),
