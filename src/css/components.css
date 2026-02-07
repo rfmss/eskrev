@@ -1293,6 +1293,20 @@ body.pomo-active .goal-stars {
     text-align: center;
     color: var(--color-muted);
 }
+.notes-empty-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--color-muted);
+}
+.notes-empty-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
 .notes-empty-title {
     font-size: 13px;
     color: var(--color-text);
