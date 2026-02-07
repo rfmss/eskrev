@@ -409,42 +409,39 @@ body.template-open .guide-rail {
     height: 26px;
     width: auto;
     max-width: 26px;
-    padding: 0 24px 0 6px;
+    padding: 0 28px 0 6px;
     border-radius: 999px 0 0 999px;
     border: var(--border-style);
     background: var(--bg-drawer-solid, var(--bg-drawer));
     color: var(--color-text);
     cursor: pointer;
     overflow: hidden;
-    transition: max-width 0.2s ease, opacity 0.2s ease;
+    transition: max-width 0.2s ease, opacity 0.2s ease, padding 0.2s ease;
     opacity: 0.6;
 }
 .guide-rail-item:hover {
     max-width: 420px;
+    padding-right: 34px;
     opacity: 1;
 }
 .guide-rail-icon {
-    width: 10px;
+    width: 18px;
     height: 18px;
-    border-radius: 6px;
-    border: 1px solid var(--color-accent-dim);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
     flex-shrink: 0;
 }
-.guide-rail-icon::before,
-.guide-rail-icon::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    width: 6px;
-    height: 2px;
-    border-radius: 2px;
-    background: var(--color-accent);
-    transform: translateX(-50%);
-    opacity: 0.7;
+.guide-rail-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
-.guide-rail-icon::before { top: 6px; }
-.guide-rail-icon::after { bottom: 6px; }
 .guide-rail-label {
     font-size: 11px;
     letter-spacing: 0.4px;
