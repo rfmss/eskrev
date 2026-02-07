@@ -2597,10 +2597,13 @@ function initHelpTabs() {
         if (!panel) return;
         const header = helpModal.querySelector(".modal-header");
         const tabsRow = helpModal.querySelector(".help-tabs-container");
-        const padding = 24;
+        const padding = 28;
         const panelHeight = panel.scrollHeight;
         const base = (header?.offsetHeight || 0) + (tabsRow?.offsetHeight || 0) + padding;
-        helpModal.style.height = `${Math.min(520, panelHeight + base)}px`;
+        const maxModal = Math.min(window.innerHeight * 0.72, 560);
+        const target = Math.min(maxModal, panelHeight + base);
+        helpModal.style.height = `${target}px`;
+        panel.style.maxHeight = `${Math.max(200, target - base)}px`;
     };
     const openHelpModal = () => {
         const overlay = document.getElementById("helpModal");
@@ -2614,8 +2617,11 @@ function initHelpTabs() {
         const activeTab = tabs[0];
         sizeHelpModal();
         setTimeout(() => {
-            if (activeTab) activeTab.focus();
-        }, 50);
+            if (activeTab) activeTab.focus({ preventScroll: true });
+        }, 80);
+        setTimeout(() => {
+            if (activeTab) activeTab.focus({ preventScroll: true });
+        }, 180);
     };
     window.totHelpOpen = openHelpModal;
 
