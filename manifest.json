@@ -1,19 +1,19 @@
 {
-  "name": ".skr Writer",
-  "short_name": ".skr",
+  "name": "eskrev - editor de textos",
+  "short_name": "eskrev",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#f5f2ea",
   "theme_color": "#f5f2ea",
   "icons": [
     {
-      "src": "src/assets/icons/logoEskrev.svg",
+      "src": "src/assets/icons/icon-192.svg",
       "sizes": "192x192",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "src/assets/icons/logoEskrev.svg",
+      "src": "src/assets/icons/icon-512.svg",
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any"
