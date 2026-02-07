@@ -285,6 +285,7 @@ select:focus-visible {
 .template-pane.minimized .template-actions .btn-icon .icon {
     width: 18px;
     height: 18px;
+    stroke-width: 1.5;
 }
 .template-pane.minimized .template-actions .btn-icon {
     width: 40px;
@@ -292,17 +293,21 @@ select:focus-visible {
     border: none;
     border-radius: 8px;
     position: relative;
+    color: var(--color-muted);
 }
 .template-pane.minimized .template-actions .btn-icon::before {
     content: "";
     position: absolute;
-    width: 18px;
-    height: 30px;
+    width: 16px;
+    height: 26px;
     border: 2px solid currentColor;
-    border-radius: 3px;
+    border-radius: 2px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.template-pane.minimized .template-actions .btn-icon:hover {
+    color: var(--color-text);
 }
 .template-split {
     position: fixed;
