@@ -3680,6 +3680,17 @@ kbd {
     color: var(--color-text);
     backdrop-filter: blur(6px);
 }
+#gatekeeper #viewLock {
+    gap: 10px;
+}
+#gatekeeper #viewLock .icon {
+    font-size: 36px;
+}
+#gatekeeper #viewLock h2 {
+    font-size: 14px;
+    letter-spacing: 1.2px;
+    margin: 0;
+}
 #gatekeeper .search-input {
     border: 1px solid var(--color-accent-dim) !important;
     border-radius: 6px;
