@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     syncLangToFrames(lang.current);
-    window.skvModal = initSystemModal();
-    window.skvOnboarding = initOnboarding();
+    window.skrvModal = initSystemModal();
+    window.skrvOnboarding = initOnboarding();
     auth.init();
 
     document.querySelectorAll('[data-manifesto-open]').forEach((el) => {
