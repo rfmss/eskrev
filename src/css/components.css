@@ -3990,6 +3990,7 @@ kbd {
     width: 100%;
     opacity: 0;
     transform: translateY(6px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 .onboard-donate .marquee-container {
     max-width: 520px;
@@ -4011,6 +4012,7 @@ kbd {
 .onboard-logo {
     opacity: 0;
     transform: translateY(6px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 .onboard-logo-tagline {
     margin: 6px 0 0;
@@ -4019,12 +4021,19 @@ kbd {
     letter-spacing: 0.4px;
     opacity: 0;
     transform: translateY(4px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 2px;
     white-space: nowrap;
     word-spacing: 0;
+}
+.onboarding-step.active .onboard-logo,
+.onboarding-step.active .onboard-logo-tagline,
+.onboarding-step.active .onboard-donate {
+    opacity: 1;
+    transform: translateY(0);
 }
 .onboard-logo-tagline .tagline-main {
     display: inline-block;
