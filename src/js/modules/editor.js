@@ -506,14 +506,14 @@ export const editorFeatures = {
         }
         const shouldProtectChapterMarker = this.shouldProtectChapterMarker.bind(this);
         this.editor.addEventListener("keydown", (e) => {
+            if (e.key === "Backspace") this.playSound('backspace');
             if (e.key === "Backspace" && shouldProtectChapterMarker()) {
                 e.preventDefault();
                 return;
             }
             this.focusReady = true;
             if (e.key === "Enter") this.playSound('enter');
-            else if (e.key === "Backspace") this.playSound('backspace');
-            else if (!e.metaKey && !e.ctrlKey) this.playSound('type');
+            else if (e.key !== "Backspace" && !e.metaKey && !e.ctrlKey) this.playSound('type');
             
             this.triggerFocusMode();
             this.handleTypewriterScroll();
