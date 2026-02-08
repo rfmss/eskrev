@@ -1878,8 +1878,17 @@ function setupEventListeners() {
                 .replace(/^-+|-+$/g, "")
                 .toLowerCase();
             const slug = safeName || "skv";
+            const now = new Date();
+            const stamp = [
+                now.getFullYear(),
+                String(now.getMonth() + 1).padStart(2, "0"),
+                String(now.getDate()).padStart(2, "0")
+            ].join("-") + "_" + [
+                String(now.getHours()).padStart(2, "0"),
+                String(now.getMinutes()).padStart(2, "0")
+            ].join("");
             buildSkrvPayloadWithChain(store).then((payload) => {
-                downloadText(JSON.stringify(payload, null, 2), `${slug}-${Date.now()}.skv`, "application/json");
+                downloadText(JSON.stringify(payload, null, 2), `${slug}_${stamp}.skv`, "application/json");
                 document.getElementById("exportModal").classList.remove("active");
             });
         };

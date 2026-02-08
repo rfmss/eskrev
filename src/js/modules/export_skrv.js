@@ -15,7 +15,16 @@ function downloadTextAsFile(text, filename) {
 
 export function exportSkrv(store) {
   buildSkrvPayloadWithChain(store).then((payload) => {
-    const filename = `SKRV_${Date.now()}.skv`;
+    const now = new Date();
+    const stamp = [
+      now.getFullYear(),
+      String(now.getMonth() + 1).padStart(2, "0"),
+      String(now.getDate()).padStart(2, "0")
+    ].join("-") + "_" + [
+      String(now.getHours()).padStart(2, "0"),
+      String(now.getMinutes()).padStart(2, "0")
+    ].join("");
+    const filename = `SKRV_${stamp}.skv`;
     downloadTextAsFile(JSON.stringify(payload, null, 2), filename);
   });
 }
