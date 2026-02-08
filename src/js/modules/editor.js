@@ -52,6 +52,7 @@ export const editorFeatures = {
     xraySummaryVerbs: null,
     xraySummaryAdjs: null,
     xraySummaryAmb: null,
+    xraySummaryTotal: null,
     xrayActiveTab: "verbs",
     xrayData: null,
     lastPasteNoticeAt: 0,
@@ -1132,6 +1133,7 @@ export const editorFeatures = {
         this.xraySummaryVerbs = document.getElementById("xraySummaryVerbs");
         this.xraySummaryAdjs = document.getElementById("xraySummaryAdjs");
         this.xraySummaryAmb = document.getElementById("xraySummaryAmb");
+        this.xraySummaryTotal = document.getElementById("xraySummaryTotal");
         const btn = document.getElementById("btnXray");
         if (!btn || !this.xrayPanel) return;
         btn.onclick = () => this.setXrayActive(!this.xrayActive);
@@ -1579,6 +1581,7 @@ export const editorFeatures = {
             adjs: Array.from(groups.adjs.values()),
             review: Array.from(groups.review.values()),
             totals: {
+                words: tokens.length,
                 verbs: occurrences.filter(o => o.type === "verb").length,
                 adjs: occurrences.filter(o => o.type === "adj").length,
                 amb: occurrences.filter(o => o.amb).length,
@@ -1674,6 +1677,10 @@ export const editorFeatures = {
         const occLabel = lang.t("xray_label_occurrences");
         const lemmaLabel = lang.t("xray_label_lemmas");
         const ambLabel = lang.t("xray_label_amb");
+        const wordsLabel = lang.t("xray_label_words");
+        if (this.xraySummaryTotal) {
+            this.xraySummaryTotal.textContent = `${wordsLabel}: ${data.totals.words}`;
+        }
         if (this.xraySummaryVerbs) {
             this.xraySummaryVerbs.textContent = `${verbLabel}: ${data.totals.verbs} ${occLabel} · ${data.totals.verbLemmas} ${lemmaLabel}`;
         }

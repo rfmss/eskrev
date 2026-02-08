@@ -2618,6 +2618,11 @@ body.help-open .xray-panel {
     margin-bottom: 12px;
 }
 .xray-summary-click { cursor: pointer; color: var(--color-accent); }
+.xray-focus-note {
+    font-size: 12px;
+    color: var(--color-muted);
+    margin-bottom: 10px;
+}
 
 .xray-controls {
     display: grid;
