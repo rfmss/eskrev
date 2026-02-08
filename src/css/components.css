@@ -4139,6 +4139,15 @@ kbd {
 .dedication-marquee .marquee-content {
     font-size: 11px;
     letter-spacing: 0.8px;
+    opacity: 1;
+    animation: none;
+    white-space: normal;
+}
+.dedication-marquee.marquee-container {
+    mask-image: none;
+    -webkit-mask-image: none;
+    white-space: normal;
+    overflow: visible;
 }
 .dedication-signature {
     margin-top: 16px;
