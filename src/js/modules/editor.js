@@ -105,6 +105,7 @@ export const editorFeatures = {
     // Audio Engine
     audioCtx: null, sfxBuffers: {}, gainNode: null,
     musicPlayer: new Audio("src/assets/audio/music.mp3"),
+    sfxMuted: false,
     focusTimer: null,
     focusBlockRaf: null,
     activeBlock: null,
@@ -116,6 +117,7 @@ export const editorFeatures = {
         this.editor = editorElement;
         this.initFonts();
         this.initHardwareKeyboard();
+        this.sfxMuted = (localStorage.getItem("skrv_sfx_muted") === "true");
         this.initAudioEngine(); 
         this.initAudioUI();
         this.initSearch();
@@ -227,6 +229,14 @@ export const editorFeatures = {
                 return this.flashInlineData();
             case '--music':
                 document.getElementById('btnAudio').click();
+                return this.flashInlineData();
+            case '--mute':
+                this.sfxMuted = true;
+                localStorage.setItem("skrv_sfx_muted", "true");
+                return this.flashInlineData();
+            case '--unmute':
+                this.sfxMuted = false;
+                localStorage.removeItem("skrv_sfx_muted");
                 return this.flashInlineData();
             case '--pomo':
                 const pBtn = document.getElementById('pomodoroBtn');
@@ -443,6 +453,7 @@ export const editorFeatures = {
     },
 
     playSound(name) {
+        if (this.sfxMuted) return;
         if (!this.audioCtx) {
             const fallback = this.sfx && (this.sfx[name] || (name === "backspace" ? this.sfx.type : null));
             if (fallback) {
