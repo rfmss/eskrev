@@ -4035,6 +4035,60 @@ kbd {
 #onboardingModal.active {
     display: flex;
 }
+.dedication-modal {
+    background: var(--bg-core);
+    color: var(--color-text);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+.dedication-modal.active {
+    display: flex;
+}
+.dedication-box {
+    width: min(820px, 90vw);
+    display: grid;
+    gap: 16px;
+    text-align: left;
+}
+.dedication-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.dedication-title {
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+.dedication-body {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--color-text);
+}
+.dedication-body p {
+    margin: 0 0 12px;
+}
+.dedication-body strong {
+    font-weight: 600;
+}
+.dedication-photos {
+    display: grid;
+    gap: 12px;
+}
+.dedication-photos img {
+    width: 100%;
+    border-radius: 6px;
+    display: block;
+}
+.dedication-hint {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-muted);
+}
 .onboarding-box {
     width: min(720px, calc(100vw - 40px));
     background: transparent;

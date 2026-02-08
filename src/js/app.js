@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ui.init();
     
     lang.init();
+    initDedication();
     const syncLangToFrames = (code) => {
         const frames = [
             document.getElementById("booksFrame"),
@@ -197,6 +198,68 @@ function setupSupportCopy() {
             });
         });
     });
+}
+
+function initDedication() {
+    const modal = document.getElementById("dedicationModal");
+    if (!modal) return;
+    const body = document.getElementById("dedicationBody");
+    const langBtn = document.getElementById("dedicationLangToggle");
+    const done = localStorage.getItem("skrv_dedication_done") === "1";
+    if (done) return;
+
+    const formatLangLabel = (label) => String(label || "").replace(/^[^\w]*\s*/u, "");
+    const updateLangButton = () => {
+        if (!langBtn) return;
+        const idx = lang.languages.findIndex((l) => l.code === lang.current);
+        const next = lang.languages[(idx + 1 + lang.languages.length) % lang.languages.length];
+        if (next) langBtn.textContent = formatLangLabel(next.label);
+    };
+    const renderMarkdown = (md) => {
+        const escape = (text) => String(text || "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/\"/g, "&quot;")
+            .replace(/'/g, "&#39;");
+        const text = escape(md || "");
+        const strong = text.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+        const paras = strong.split(/\n{2,}/g).map((chunk) => {
+            const html = chunk.replace(/\n/g, "<br>");
+            return `<p>${html}</p>`;
+        }).join("");
+        return paras;
+    };
+    const updateContent = () => {
+        if (body) {
+            const md = lang.t("dedication_body_md");
+            body.innerHTML = renderMarkdown(md);
+        }
+        updateLangButton();
+    };
+    updateContent();
+    document.addEventListener("lang:changed", updateContent);
+
+    if (langBtn) {
+        langBtn.addEventListener("click", () => lang.cycleLang());
+    }
+
+    const handleEnter = (e) => {
+        if (e.key !== "Enter") return;
+        e.preventDefault();
+        modal.classList.remove("active");
+        document.body.classList.remove("modal-active");
+        localStorage.setItem("skrv_dedication_done", "1");
+        const onboardDone = localStorage.getItem("skrv_onboard_done") === "true";
+        if (!onboardDone && window.skrvOnboarding && typeof window.skrvOnboarding.open === "function") {
+            window.skrvOnboarding.open(0);
+        }
+        document.removeEventListener("keydown", handleEnter);
+    };
+
+    modal.classList.add("active");
+    document.body.classList.add("modal-active");
+    document.addEventListener("keydown", handleEnter);
 }
 
 function setupOfflineProgress() {
@@ -1994,6 +2057,8 @@ function setupEventListeners() {
     document.addEventListener("keydown", (e) => {
         const gate = document.getElementById("gatekeeper");
         if (gate && gate.classList.contains("active")) return;
+        const dedication = document.getElementById("dedicationModal");
+        if (dedication && dedication.classList.contains("active")) return;
         const onboarding = document.getElementById("onboardingModal");
         if (onboarding && onboarding.classList.contains("active")) return;
 
@@ -2072,6 +2137,10 @@ function setupEventListeners() {
             if (onboarding && onboarding.classList.contains("active")) {
                 return;
             }
+            const dedication = document.getElementById("dedicationModal");
+            if (dedication && dedication.classList.contains("active")) {
+                return;
+            }
             if (document.activeElement === searchInput) { document.getElementById("btnClear").click(); searchInput.blur(); }
             let closed = false;
             document.querySelectorAll(".modal-overlay.active").forEach(m => { 
@@ -2135,7 +2204,7 @@ function setupEventListeners() {
 
     document.querySelectorAll(".modal-overlay").forEach(overlay => {
         overlay.addEventListener("click", (e) => {
-            if (overlay.id === "gatekeeper" || overlay.id === "pomodoroModal" || overlay.id === "termsModal" || overlay.id === "manifestoModal" || overlay.id === "onboardingModal") return;
+            if (overlay.id === "gatekeeper" || overlay.id === "pomodoroModal" || overlay.id === "termsModal" || overlay.id === "manifestoModal" || overlay.id === "onboardingModal" || overlay.id === "dedicationModal") return;
             if (overlay.id === "systemModal") {
                 if (e.target === overlay && window.skvModal?.cancel) window.skvModal.cancel();
                 return;

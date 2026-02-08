@@ -104,6 +104,8 @@ const CACHE_ASSETS = [
   "./src/assets/icons/logoEskrev.svg",
   "./src/assets/icons/logoEskrev-favicon-dark.svg",
   "./src/assets/icons/logoEskrev-favicon-cream.svg",
+  "./src/assets/icons/carta_fluck.jpg",
+  "./src/assets/icons/tatuagem.jpg",
   "./src/assets/fiodoverso/index.json",
   "./config/persona-templates.json",
   "./content/templates/conto-curto.md",
