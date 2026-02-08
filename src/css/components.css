@@ -1448,8 +1448,8 @@ body.pomo-active .goal-stars {
     justify-content: center;
 }
 .notes-pin-btn .icon {
-    width: 5px;
-    height: 5px;
+    width: 10px;
+    height: 10px;
 }
 .notes-pin-btn .pin-icon {
     width: 10px;
@@ -1458,6 +1458,22 @@ body.pomo-active .goal-stars {
 }
 .notes-pin-btn .pin-icon-off {
     opacity: 0.55;
+}
+.notes-print-btn {
+    height: 14px;
+    min-width: 14px;
+    padding: 0;
+    border-radius: 999px;
+    color: var(--color-muted);
+    background: transparent;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.notes-print-btn .icon {
+    width: 10px;
+    height: 10px;
 }
 .notes-pin-btn.active {
     color: var(--color-text);

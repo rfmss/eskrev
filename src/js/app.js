@@ -1125,6 +1125,17 @@ function setupEventListeners() {
             event.stopPropagation();
             toggleNotePin(note.id);
         };
+        const printBtn = document.createElement("button");
+        printBtn.type = "button";
+        printBtn.className = "btn-icon notes-print-btn";
+        printBtn.innerHTML = "<svg class='icon' viewBox='0 0 24 24' aria-hidden='true' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2'/><path d='M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6'/><rect x='6' y='14' width='12' height='8' rx='1'/></svg>";
+        printBtn.onclick = (event) => {
+            event.stopPropagation();
+            const titleText = noteTitle(note);
+            const bodyText = String(note.text || "").trim();
+            const text = `=== ${titleText} ===\n\n${bodyText}`;
+            printRawText(text, `.skv Writer - ${titleText || "Nota"}`);
+        };
         const meta = document.createElement("div");
         meta.className = "notes-card-meta";
         meta.textContent = note.folder ? `${note.folder} · ${formatDate(note.updatedAt || note.createdAt)}` : formatDate(note.updatedAt || note.createdAt);
@@ -1141,6 +1152,7 @@ function setupEventListeners() {
         });
         header.appendChild(title);
         header.appendChild(pinBtn);
+        header.appendChild(printBtn);
         card.appendChild(header);
         card.appendChild(meta);
         if (excerpt.textContent) card.appendChild(excerpt);

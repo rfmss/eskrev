@@ -366,6 +366,11 @@ export const editorFeatures = {
             if (!clip) return false;
             return clip.getData("text/x-skv") === "native";
         };
+        const matchesInternalClipboard = (clip) => {
+            if (!clip) return false;
+            const text = clip.getData("text/plain") || "";
+            return this.lastInternalClipboardText && text === this.lastInternalClipboardText;
+        };
         this.editor.addEventListener("copy", (e) => {
             const sel = window.getSelection();
             const text = sel ? sel.toString() : "";
@@ -373,6 +378,7 @@ export const editorFeatures = {
                 e.preventDefault();
                 e.clipboardData.setData("text/plain", text);
                 e.clipboardData.setData("text/x-skv", "native");
+                this.lastInternalClipboardText = text;
             }
         });
         this.editor.addEventListener("cut", (e) => {
@@ -382,13 +388,14 @@ export const editorFeatures = {
                 e.preventDefault();
                 e.clipboardData.setData("text/plain", text);
                 e.clipboardData.setData("text/x-skv", "native");
+                this.lastInternalClipboardText = text;
                 document.execCommand("delete");
             }
         });
         this.editor.addEventListener("beforeinput", (e) => {
             if (e.inputType === "insertFromPaste" || e.inputType === "insertFromDrop") {
                 const clip = e.clipboardData || window.clipboardData;
-                if (!isNativeClipboard(clip)) {
+                if (!isNativeClipboard(clip) && !matchesInternalClipboard(clip)) {
                     e.preventDefault();
                     notifyPasteBlocked();
                 }
@@ -396,7 +403,7 @@ export const editorFeatures = {
         });
         this.editor.addEventListener("paste", (e) => {
             const clip = e.clipboardData || window.clipboardData;
-            if (isNativeClipboard(clip)) {
+            if (isNativeClipboard(clip) || matchesInternalClipboard(clip)) {
                 e.preventDefault();
                 const text = clip ? clip.getData("text/plain") : "";
                 const clean = this.sanitizePlainText(text);
