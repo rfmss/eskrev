@@ -194,6 +194,44 @@
       font-size: 11px;
       color: var(--color-muted);
     }
+    .verify-report {
+      border-top: var(--border-style);
+      padding-top: 16px;
+      display: grid;
+      gap: 10px;
+    }
+    .verify-report-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .verify-report-title {
+      margin: 0;
+      font-size: 12px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--color-muted);
+    }
+    .verify-report-box {
+      border: var(--border-style);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      background: var(--xray-surface);
+      font-family: var(--font-ui);
+      font-size: 12px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      color: var(--color-text);
+    }
+    .verify-report-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .verify-report-actions .btn-ghost {
+      padding: 8px 12px;
+    }
     .verify-footer {
       margin-top: 16px;
       padding-top: 16px;
@@ -343,6 +381,16 @@
           <div class="row"><span class="label" data-i18n="verify_metric_manifest_at">Manifesto · data</span><span class="value" id="metricManifestAt">—</span></div>
         </div>
         <p class="verify-note" data-i18n="verify_report_note">Este relatório descreve dados técnicos. A interpretação cabe a quem avalia.</p>
+        <div class="verify-report">
+          <div class="verify-report-header">
+            <h4 class="verify-report-title" data-i18n="verify_report_title">Relatório técnico (formato pericial)</h4>
+            <div class="verify-report-actions">
+              <button class="btn-ghost" id="btnReportCopy" data-i18n="verify_report_copy">Copiar relatório</button>
+            </div>
+          </div>
+          <div class="verify-report-box" id="verifyReportBox" aria-live="polite">—</div>
+          <div class="verify-note" data-i18n="verify_report_hint">Use este texto como anexo técnico.</div>
+        </div>
       </div>
 
       <div class="verify-footer">
@@ -433,6 +481,8 @@
     const metricVersion = document.getElementById("metricVersion");
     const metricManifest = document.getElementById("metricManifest");
     const metricManifestAt = document.getElementById("metricManifestAt");
+    const reportBox = document.getElementById("verifyReportBox");
+    const btnReportCopy = document.getElementById("btnReportCopy");
     [metricHash, metricDuration, metricEvents, metricPauses, metricSequence].forEach((el) => {
       if (el) el.setAttribute("data-copied-label", t("verify_copied"));
     });
@@ -519,6 +569,48 @@
     const formatNumber = (value) => {
       if (!Number.isFinite(value)) return t("verify_dash");
       return value.toLocaleString();
+    };
+
+    const formatBoolean = (value) => {
+      if (value === true) return t("verify_yes");
+      if (value === false) return t("verify_no");
+      return t("verify_dash");
+    };
+
+    const buildReportText = (parsed, fileName, fileBytes, fullHash) => {
+      const dash = t("verify_dash");
+      const chain = parsed?.BIRTH_CHAIN || {};
+      const history = Array.isArray(chain.history) ? chain.history.length : 0;
+      const cert = parsed?.HEADER?.CERT || dash;
+      const imported = parsed?.proof?.imported_text === true;
+      const started = parsed?.session?.started_at || "";
+      const ended = parsed?.session?.ended_at || "";
+      const duration = formatDuration(parsed);
+      const words = countWords(parsed?.content?.text || parsed?.MASTER_TEXT || "");
+      return [
+        t("verify_report_header"),
+        `${t("verify_report_file")}: ${fileName || dash}`,
+        `${t("verify_report_file_size")}: ${formatNumber(fileBytes)} bytes`,
+        `${t("verify_metric_hash")}: ${fullHash || dash}`,
+        `${t("verify_metric_format")}: ${parsed?.format || parsed?.protocol || dash}`,
+        `${t("verify_metric_version")}: ${parsed?.HEADER?.VERSION || parsed?.version || dash}`,
+        `${t("verify_report_cert")}: ${cert}`,
+        `${t("verify_report_imported")}: ${formatBoolean(imported)}`,
+        `${t("verify_metric_manifest")}: ${formatBoolean(parsed?.MANIFEST?.accepted)}`,
+        `${t("verify_metric_manifest_at")}: ${parsed?.MANIFEST?.accepted_at || dash}`,
+        `${t("verify_metric_sequence")}: ${chain.hash ? chain.hash : dash}`,
+        `${t("verify_report_chain_prev")}: ${chain.prev_hash || dash}`,
+        `${t("verify_report_chain_entries")}: ${history}`,
+        `${t("verify_metric_duration")}: ${duration}`,
+        `${t("verify_report_started")}: ${started || dash}`,
+        `${t("verify_report_ended")}: ${ended || dash}`,
+        `${t("verify_metric_events")}: ${formatNumber(parsed?.writing_process?.keystrokes_total || 0)}`,
+        `${t("verify_report_insertions")}: ${formatNumber(parsed?.writing_process?.insertions || 0)}`,
+        `${t("verify_report_deletions")}: ${formatNumber(parsed?.writing_process?.deletions || 0)}`,
+        `${t("verify_report_revisions")}: ${formatNumber(parsed?.writing_process?.revisions || 0)}`,
+        `${t("verify_metric_pauses")}: ${formatPauses(parsed)}`,
+        `${t("verify_metric_words")}: ${formatNumber(words)}`
+      ].join("\\n");
     };
 
     const formatTextSize = (text) => {
@@ -637,6 +729,7 @@
         if (metricVersion) metricVersion.textContent = formatVersion(version);
         if (metricManifest) metricManifest.textContent = formatManifest(parsed);
         if (metricManifestAt) metricManifestAt.textContent = formatManifestAt(parsed);
+        if (reportBox) reportBox.textContent = buildReportText(parsed, (fileInput.files[0] && fileInput.files[0].name) || "", pendingBytes, fullHash);
       } catch (e) {
         setStatus([{ text: t("verify_status_read_fail"), type: "warn" }]);
         metricHash.textContent = "—";
@@ -653,10 +746,24 @@
         if (metricVersion) metricVersion.textContent = "—";
         if (metricManifest) metricManifest.textContent = "—";
         if (metricManifestAt) metricManifestAt.textContent = "—";
+        if (reportBox) reportBox.textContent = "—";
       }
     };
 
     bindCopy(metricHash, () => metricHash.title);
+    if (btnReportCopy && reportBox) {
+      btnReportCopy.addEventListener("click", async () => {
+        const text = reportBox.textContent || "";
+        if (!text || text === "—") return;
+        try {
+          await navigator.clipboard.writeText(text);
+          btnReportCopy.classList.add("copied");
+          setTimeout(() => btnReportCopy.classList.remove("copied"), 900);
+        } catch (_) {
+          // ignore clipboard errors
+        }
+      });
+    }
 
     fileInput.addEventListener("change", async (e) => {
       const file = e.target.files[0];
