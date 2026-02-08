@@ -304,22 +304,22 @@
 <body>
   <div class="verify-shell">
     <div class="verify-header">
-      <h1 class="verify-title" data-i18n="verify_title">.skr Verify</h1>
+      <h1 class="verify-title" data-i18n="verify_title">.skv Verify</h1>
       <p class="verify-subtitle" data-i18n="verify_subtitle">eskrev · Verificação técnica de escrita humana</p>
       <div class="verify-mark" data-i18n="verify_mark">Relatório técnico</div>
     </div>
 
     <div class="verify-body">
-      <p data-i18n="verify_intro">Verifique a integridade técnica de um arquivo .skr.</p>
+      <p data-i18n="verify_intro">Verifique a integridade técnica de um arquivo .skv.</p>
       <p class="verify-note" data-i18n="verify_note_plain">Não é análise de estilo. Não é detecção de IA.</p>
       <p data-i18n="verify_process">É verificação técnica do processo.</p>
 
       <div class="verify-drop" id="dropZone">
-        <strong data-i18n="verify_drop_title">Envie seu arquivo .skr</strong>
-        <div data-i18n="verify_drop_drag">Arraste o arquivo .skr</div>
+        <strong data-i18n="verify_drop_title">Envie seu arquivo .skv</strong>
+        <div data-i18n="verify_drop_drag">Arraste o arquivo .skv</div>
         <div data-i18n="verify_drop_or">ou</div>
         <label class="btn-full" for="fileInput" data-i18n="verify_drop_button">Selecionar arquivo</label>
-        <input id="fileInput" type="file" accept=".skr,application/json">
+        <input id="fileInput" type="file" accept=".skv,application/json">
       </div>
 
       <div class="verify-result" id="verifyResult">
@@ -333,6 +333,12 @@
           <div class="row"><span class="label" data-i18n="verify_metric_events">Eventos de digitação</span><span class="value" id="metricEvents">—</span></div>
           <div class="row"><span class="label" data-i18n="verify_metric_pauses">Ritmo e pausas</span><span class="value" id="metricPauses">—</span></div>
           <div class="row"><span class="label" data-i18n="verify_metric_sequence">Sequência temporal do processo</span><span class="value" id="metricSequence">—</span></div>
+          <div class="row"><span class="label" data-i18n="verify_metric_text_size">Tamanho do texto</span><span class="value" id="metricTextSize">—</span></div>
+          <div class="row"><span class="label" data-i18n="verify_metric_words">Palavras</span><span class="value" id="metricWords">—</span></div>
+          <div class="row"><span class="label" data-i18n="verify_metric_kpm">Ritmo (teclas/min)</span><span class="value" id="metricKpm">—</span></div>
+          <div class="row"><span class="label" data-i18n="verify_metric_file_size">Tamanho do arquivo</span><span class="value" id="metricFileSize">—</span></div>
+          <div class="row"><span class="label" data-i18n="verify_metric_format">Formato</span><span class="value" id="metricFormat">—</span></div>
+          <div class="row"><span class="label" data-i18n="verify_metric_version">Versão</span><span class="value" id="metricVersion">—</span></div>
           <div class="row"><span class="label" data-i18n="verify_metric_manifest">Manifesto</span><span class="value" id="metricManifest">—</span></div>
           <div class="row"><span class="label" data-i18n="verify_metric_manifest_at">Manifesto · data</span><span class="value" id="metricManifestAt">—</span></div>
         </div>
@@ -345,7 +351,7 @@
 
       <div class="verify-faq">
         <h3 data-i18n="verify_faq_title">Guia rápido para editoras e avaliadores</h3>
-        <p class="verify-faq-summary" data-i18n="verify_faq_summary">Resumo curto: o Verify confirma a integridade técnica de um arquivo .skr e descreve o processo de escrita.</p>
+      <p class="verify-faq-summary" data-i18n="verify_faq_summary">Resumo curto: o Verify confirma a integridade técnica de um arquivo .skv e descreve o processo de escrita.</p>
         <div class="verify-faq-actions">
           <button id="btnFaqPdf" class="btn-ghost" data-i18n="verify_faq_pdf">Baixar resumo PDF</button>
           <span class="verify-note" data-i18n="verify_faq_pdf_note">A impressão abre para salvar em PDF.</span>
@@ -371,7 +377,7 @@
 
         <div class="verify-faq-item" id="faq-o-que-faz">
           <h4><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-book-open-text"></use></svg><span data-i18n="verify_faq_q3">O que o Verify faz?</span></h4>
-          <p data-i18n="verify_faq_a3">Carrega um arquivo .skr, recalcula o hash, compara com o registro e apresenta um relatório técnico do processo.</p>
+          <p data-i18n="verify_faq_a3">Carrega um arquivo .skv, recalcula o hash, compara com o registro e apresenta um relatório técnico do processo.</p>
         </div>
 
         <div class="verify-faq-item" id="faq-nao-faz">
@@ -419,6 +425,12 @@
     const metricEvents = document.getElementById("metricEvents");
     const metricPauses = document.getElementById("metricPauses");
     const metricSequence = document.getElementById("metricSequence");
+    const metricTextSize = document.getElementById("metricTextSize");
+    const metricWords = document.getElementById("metricWords");
+    const metricKpm = document.getElementById("metricKpm");
+    const metricFileSize = document.getElementById("metricFileSize");
+    const metricFormat = document.getElementById("metricFormat");
+    const metricVersion = document.getElementById("metricVersion");
     const metricManifest = document.getElementById("metricManifest");
     const metricManifestAt = document.getElementById("metricManifestAt");
     [metricHash, metricDuration, metricEvents, metricPauses, metricSequence].forEach((el) => {
@@ -440,6 +452,7 @@
     };
     const dropZone = document.getElementById("dropZone");
     let pendingText = "";
+    let pendingBytes = 0;
 
     const setStatus = (lines) => {
       verifyStatus.innerHTML = "";
@@ -471,7 +484,9 @@
       const contentText = parsed?.content?.text || parsed?.MASTER_TEXT || "";
       const proofHash = parsed?.proof?.content_hash || "";
       const keystrokes = parsed?.writing_process?.keystrokes_total || parsed?.HEADER?.KEYSTROKES || 0;
-      return { parsed, contentText, proofHash, keystrokes };
+      const format = parsed?.format || parsed?.protocol || "";
+      const version = parsed?.HEADER?.VERSION || parsed?.HEADER?.APP || "";
+      return { parsed, contentText, proofHash, keystrokes, format, version };
     };
 
     const formatHash = (hash) => {
@@ -493,6 +508,53 @@
         return m > 0 ? t("verify_minutes").replace("{min}", m) : dash;
       }
       return dash;
+    };
+
+    const countWords = (text) => {
+      const cleaned = (text || "").trim();
+      if (!cleaned) return 0;
+      return cleaned.split(/\s+/).length;
+    };
+
+    const formatNumber = (value) => {
+      if (!Number.isFinite(value)) return t("verify_dash");
+      return value.toLocaleString();
+    };
+
+    const formatTextSize = (text) => {
+      const chars = (text || "").length;
+      if (!chars) return t("verify_dash");
+      return t("verify_chars_format").replace("{n}", formatNumber(chars));
+    };
+
+    const formatWords = (text) => {
+      const words = countWords(text || "");
+      if (!words) return t("verify_dash");
+      return t("verify_words_format").replace("{n}", formatNumber(words));
+    };
+
+    const formatKpm = (parsed, keystrokes) => {
+      const mins = parsed?.session?.duration_minutes;
+      if (!Number.isFinite(mins) || mins <= 0 || !Number.isFinite(keystrokes) || keystrokes <= 0) {
+        return t("verify_dash");
+      }
+      const kpm = Math.round((keystrokes / mins) * 10) / 10;
+      return t("verify_kpm_format").replace("{n}", kpm.toLocaleString());
+    };
+
+    const formatBytes = (bytes) => {
+      if (!Number.isFinite(bytes) || bytes <= 0) return t("verify_dash");
+      return t("verify_bytes_format").replace("{n}", formatNumber(bytes));
+    };
+
+    const formatFormat = (format) => {
+      if (!format) return t("verify_dash");
+      return format;
+    };
+
+    const formatVersion = (version) => {
+      if (!version) return t("verify_dash");
+      return version;
     };
 
     const formatEvents = (parsed) => {
@@ -542,16 +604,23 @@
     const verifyTot = async () => {
       if (!pendingText) return;
       try {
-        const { parsed, contentText, proofHash, keystrokes } = parseTot(pendingText);
+        const { parsed, contentText, proofHash, keystrokes, format, version } = parseTot(pendingText);
         const hash = await sha256Hex(contentText || "");
         const hashOk = proofHash && hash === proofHash;
         const humanOk = keystrokes > 0;
+        const missingText = !contentText;
+        const missingHash = !proofHash;
+        const missingProcess = !parsed?.writing_process;
+        const formatOk = !format || format === ".skv" || String(format).toLowerCase().includes(".skv");
 
-        const lines = [
-          { text: hashOk ? t("verify_status_file_ok") : t("verify_status_file_fail"), type: hashOk ? "ok" : "warn" },
-          { text: hashOk ? t("verify_status_hash_ok") : t("verify_status_hash_fail"), type: hashOk ? "ok" : "warn" },
-          { text: humanOk ? t("verify_status_human_ok") : t("verify_status_human_warn"), type: humanOk ? "ok" : "warn" }
-        ];
+        const lines = [];
+        lines.push({ text: !missingText ? t("verify_status_file_ok") : t("verify_status_file_fail"), type: !missingText ? "ok" : "warn" });
+        lines.push({ text: hashOk ? t("verify_status_hash_ok") : t("verify_status_hash_fail"), type: hashOk ? "ok" : "warn" });
+        lines.push({ text: humanOk ? t("verify_status_human_ok") : t("verify_status_human_warn"), type: humanOk ? "ok" : "warn" });
+        if (missingText) lines.push({ text: t("verify_status_missing_text"), type: "warn" });
+        if (missingHash) lines.push({ text: t("verify_status_missing_hash"), type: "warn" });
+        if (missingProcess) lines.push({ text: t("verify_status_missing_process"), type: "warn" });
+        if (!formatOk) lines.push({ text: t("verify_status_format_warn"), type: "warn" });
         setStatus(lines);
         const fullHash = hashOk ? proofHash : hash;
         metricHash.textContent = formatHash(fullHash);
@@ -560,6 +629,12 @@
         metricEvents.textContent = formatEvents(parsed);
         metricPauses.textContent = formatPauses(parsed);
         metricSequence.textContent = formatSequence(parsed);
+        if (metricTextSize) metricTextSize.textContent = formatTextSize(contentText);
+        if (metricWords) metricWords.textContent = formatWords(contentText);
+        if (metricKpm) metricKpm.textContent = formatKpm(parsed, keystrokes);
+        if (metricFileSize) metricFileSize.textContent = formatBytes(pendingBytes);
+        if (metricFormat) metricFormat.textContent = formatFormat(format);
+        if (metricVersion) metricVersion.textContent = formatVersion(version);
         if (metricManifest) metricManifest.textContent = formatManifest(parsed);
         if (metricManifestAt) metricManifestAt.textContent = formatManifestAt(parsed);
       } catch (e) {
@@ -570,6 +645,12 @@
         metricEvents.textContent = "—";
         metricPauses.textContent = "—";
         metricSequence.textContent = "—";
+        if (metricTextSize) metricTextSize.textContent = "—";
+        if (metricWords) metricWords.textContent = "—";
+        if (metricKpm) metricKpm.textContent = "—";
+        if (metricFileSize) metricFileSize.textContent = "—";
+        if (metricFormat) metricFormat.textContent = "—";
+        if (metricVersion) metricVersion.textContent = "—";
         if (metricManifest) metricManifest.textContent = "—";
         if (metricManifestAt) metricManifestAt.textContent = "—";
       }
@@ -580,6 +661,7 @@
     fileInput.addEventListener("change", async (e) => {
       const file = e.target.files[0];
       if (!file) return;
+      pendingBytes = file.size || 0;
       pendingText = await readFile(file);
       await verifyTot();
     });
@@ -596,6 +678,7 @@
       dropZone.style.borderColor = "";
       const file = e.dataTransfer.files[0];
       if (!file) return;
+      pendingBytes = file.size || 0;
       pendingText = await readFile(file);
       await verifyTot();
     });
@@ -606,7 +689,7 @@
       <html lang="pt-BR">
         <head>
           <meta charset="UTF-8">
-          <title>.skr Verify — Resumo A4</title>
+          <title>.skv Verify — Resumo A4</title>
           <style>
             @page { size: A4; margin: 28mm 24mm; }
             html, body { margin: 0; padding: 0; }
@@ -628,15 +711,15 @@
         <body>
           <div class="title-row">
             <span class="logo">
-              <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-label=".skr">
+              <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-label=".skv">
                 <circle cx="16" cy="16" r="13" fill="none" stroke="#1f1f1f" stroke-width="2.5"/>
                 <path d="M16 6 v20 M10 10 h12" stroke="#1f1f1f" stroke-width="2.5" fill="none" stroke-linecap="round"/>
               </svg>
             </span>
-            <h1>.skr Verify — Resumo para editoras e avaliadores</h1>
+            <h1>.skv Verify — Resumo para editoras e avaliadores</h1>
           </div>
-          <p>O .skr Verify confirma a integridade técnica de um arquivo .skr, recalculando o hash do texto e exibindo dados do processo de escrita. Não certifica autoria legal, não detecta IA e não julga qualidade literária. O relatório é evidência técnica complementar.</p>
-          <p><strong>O que o .skr registra:</strong></p>
+          <p>O .skv Verify confirma a integridade técnica de um arquivo .skv, recalculando o hash do texto e exibindo dados do processo de escrita. Não certifica autoria legal, não detecta IA e não julga qualidade literária. O relatório é evidência técnica complementar.</p>
+          <p><strong>O que o .skv registra:</strong></p>
           <ul>
             <li>Hash criptográfico do texto final</li>
             <li>Duração da sessão</li>
@@ -644,7 +727,7 @@
             <li>Ritmo e pausas</li>
             <li>Sequência temporal do processo</li>
           </ul>
-          <p><strong>O que o Verify faz:</strong> carrega um arquivo .skr, recalcula o hash, compara com o registro e apresenta um relatório técnico do processo.</p>
+          <p><strong>O que o Verify faz:</strong> carrega um arquivo .skv, recalcula o hash, compara com o registro e apresenta um relatório técnico do processo.</p>
           <p><strong>O que o Verify não faz:</strong> não certifica autoria legal, não garante exclusividade intelectual e não analisa estilo literário.</p>
           <p><strong>Como interpretar:</strong> evidência técnica complementar, similar a logs de criação e históricos de versão. A decisão permanece humana.</p>
         </body>

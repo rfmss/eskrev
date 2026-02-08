@@ -1,9 +1,9 @@
-const CACHE_NAME = "skrv-cache-v8";
+const CACHE_NAME = "skrv-cache-v9";
 const CACHE_ASSETS = [
   "./",
   "./index.html",
   "./totbooks.html",
-  "./manifest.json?v=2",
+  "./manifest.json?v=3",
   "./src/css/main.css",
   "./src/css/fonts.css",
   "./src/css/base.css",
@@ -162,4 +162,26 @@ self.addEventListener("fetch", (event) => {
         .catch(() => cached);
     })
   );
+});
+
+self.addEventListener("message", (event) => {
+  const data = event.data || {};
+  if (data.type !== "cache-status") return;
+  event.waitUntil((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    let cached = 0;
+    await Promise.all(
+      CACHE_ASSETS.map(async (asset) => {
+        const match = await cache.match(asset);
+        if (match) cached += 1;
+      })
+    );
+    const payload = { type: "cache-status", cached, total: CACHE_ASSETS.length };
+    if (event.source && event.source.postMessage) {
+      event.source.postMessage(payload);
+      return;
+    }
+    const clients = await self.clients.matchAll({ type: "window" });
+    clients.forEach((client) => client.postMessage(payload));
+  })());
 });

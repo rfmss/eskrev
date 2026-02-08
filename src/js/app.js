@@ -154,6 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
             navigator.serviceWorker.register("./sw.js").catch(() => {});
         });
     }
+
+    setupOfflineProgress();
 });
 
 function setupSupportCopy() {
@@ -193,6 +195,59 @@ function setupSupportCopy() {
             });
         });
     });
+}
+
+function setupOfflineProgress() {
+    const bar = document.querySelector(".offline-bar");
+    const label = document.querySelector(".offline-label");
+    if (!bar || !label || !("serviceWorker" in navigator)) return;
+
+    let finished = false;
+    const setProgress = (cached, total) => {
+        if (!Number.isFinite(total) || total <= 0) return;
+        const pct = Math.max(0, Math.min(100, Math.round((cached / total) * 100)));
+        bar.style.width = `${pct}%`;
+        if (pct >= 100) {
+            label.textContent = lang.t("onboard_offline_ready");
+            finished = true;
+        } else {
+            label.textContent = lang.t("onboard_offline_loading").replace("{pct}", pct);
+        }
+    };
+
+    const requestStatus = (target) => {
+        if (!target) return;
+        try {
+            target.postMessage({ type: "cache-status" });
+        } catch (_) {
+            // ignore
+        }
+    };
+
+    navigator.serviceWorker.addEventListener("message", (e) => {
+        if (!e.data || e.data.type !== "cache-status") return;
+        setProgress(e.data.cached, e.data.total);
+    });
+
+    const poll = () => {
+        if (finished) return;
+        if (navigator.serviceWorker.controller) {
+            requestStatus(navigator.serviceWorker.controller);
+            return;
+        }
+        navigator.serviceWorker.ready.then((reg) => {
+            if (reg && reg.active) requestStatus(reg.active);
+        });
+    };
+
+    poll();
+    const timer = setInterval(() => {
+        if (finished) {
+            clearInterval(timer);
+            return;
+        }
+        poll();
+    }, 1200);
 }
 
 function setupMarqueeCopy() {
