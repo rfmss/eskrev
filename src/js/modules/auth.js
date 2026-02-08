@@ -100,6 +100,8 @@ export const auth = {
             body.innerHTML = `${logoMarkup}${lang.t(key) || lang.t("manifesto_body")}`;
         };
         this.applyManifestoText = applyManifestoText;
+        this.renderDedicationHtml = buildDedicationHtml;
+        this.renderManifestoMarkdown = renderMarkdown;
         if (!modal) return;
         modal.classList.add("active");
         modal.classList.remove("manifesto-full");
@@ -174,7 +176,15 @@ export const auth = {
         modal.classList.add("active", "manifesto-full");
         document.body.classList.add("manifesto-open");
         if (supportBlock) supportBlock.classList.add("active");
-        if (typeof this.applyManifestoText === "function") {
+        if (typeof this.renderDedicationHtml === "function" && typeof this.renderManifestoMarkdown === "function") {
+            const logoMarkup = `<div class="manifesto-logo" aria-hidden="true"><svg class="manifesto-logo-icon" viewBox="0 0 686 689"><path d="M 186.11164,28.015605 26.06964,614.11008 c -8.48849,39.90251 30.459753,73.15206 60.587182,44.74246 9.570051,-9.02438 17.657868,-20.64619 21.895958,-33.17481 L 186.51172,387.50586 448.21289,252.24023 279.37891,411.81055 c -1.12454,1.06334 -2.12505,2.25059 -2.98243,3.53906 l -72.94656,119.6588 c -7.95725,11.95491 -5.70107,16.90675 8.30373,20.08532 l 446.80561,86.14613 c 8.33842,2.63759 12.02982,-6.42319 2.26245,-8.76211 L 252.42578,525.33008 309.23437,440.00977 579.55108,176.02612 c 17.0107,-16.10234 6.61784,-29.07508 -14.19837,-18.33574 L 160.22656,354.93945 c -4.7795,2.47051 -8.39634,6.72078 -10.07031,11.83399 L 69.755859,612.4082 c -3.984225,10.46175 -9.538958,6.57266 -7.418281,-1.23866 L 189.77604,28.688616 c 0.37989,-3.731246 -0.26834,-9.458189 -3.6644,-0.673011 z"/></svg></div>`;
+            const dedicationHtml = this.renderDedicationHtml();
+            if (dedicationHtml) {
+                body.innerHTML = `${logoMarkup}${dedicationHtml}`;
+            } else {
+                body.innerHTML = `${logoMarkup}${lang.t("manifesto_body_full") || lang.t("manifesto_body")}`;
+            }
+        } else if (typeof this.applyManifestoText === "function") {
             this.applyManifestoText();
         } else {
             body.innerHTML = lang.t("manifesto_body_full") || lang.t("manifesto_body");
