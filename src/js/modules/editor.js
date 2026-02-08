@@ -586,6 +586,20 @@ export const editorFeatures = {
         return false;
     },
 
+    getBlockElement(node) {
+        if (!node || !this.editor) return null;
+        let current = node.nodeType === Node.TEXT_NODE ? node.parentElement : node;
+        if (!current) return null;
+        if (!this.editor.contains(current)) return null;
+        while (current && current.parentElement && current.parentElement !== this.editor) {
+            current = current.parentElement;
+        }
+        if (current && current.parentElement === this.editor && current.matches("p, div, h1, h2, h3, li, blockquote")) {
+            return current;
+        }
+        return null;
+    },
+
     isCaretAtBlockStart(range, block) {
         const start = range.cloneRange();
         start.selectNodeContents(block);
@@ -2390,11 +2404,21 @@ export const editorFeatures = {
         this.readerLibraryPanel = document.getElementById("readerLibrary");
         this.readerLibraryList = document.getElementById("readerLibraryList");
         this.readerLibraryBack = document.getElementById("readerLibraryBack");
+        this.readerLibraryNote = this.readerLibraryPanel ? this.readerLibraryPanel.querySelector(".reader-library-note") : null;
+        this.readerLibraryTabBooks = document.getElementById("readerLibraryTabBooks");
+        this.readerLibraryTabFio = document.getElementById("readerLibraryTabFio");
+        this.readerFioPanel = document.getElementById("readerFioPanel");
+        this.readerFioTabs = document.getElementById("readerFioTabs");
+        this.readerFioList = document.getElementById("readerFioList");
         this.readerLibraryLangBtns = this.readerLibraryPanel
             ? Array.from(this.readerLibraryPanel.querySelectorAll(".reader-library-lang-btn"))
             : [];
         this.readerLibraryBooks = null;
         this.readerLibraryActiveId = localStorage.getItem("skrv_reader_book_active") || null;
+        this.readerFioIndex = null;
+        this.readerFioActiveId = localStorage.getItem("skrv_reader_fio_active") || null;
+        this.readerFioMonth = localStorage.getItem("skrv_reader_fio_month") || null;
+        this.readerLibraryView = localStorage.getItem("skrv_reader_library_view") || "books";
         this.readerLibraryMode = "user";
         this.readerUserText = "";
         this.readerUserScroll = 0;
@@ -2468,6 +2492,22 @@ export const editorFeatures = {
         }
         if (this.readerLibraryBtn) {
             this.readerLibraryBtn.onclick = () => this.toggleReaderLibraryPanel();
+        }
+        if (this.readerLibraryTabBooks) {
+            this.readerLibraryTabBooks.onclick = () => {
+                this.readerLibraryView = "books";
+                localStorage.setItem("skrv_reader_library_view", "books");
+                this.setReaderLibraryView("books");
+                this.renderReaderLibrary();
+            };
+        }
+        if (this.readerLibraryTabFio) {
+            this.readerLibraryTabFio.onclick = () => {
+                this.readerLibraryView = "fiodoverso";
+                localStorage.setItem("skrv_reader_library_view", "fiodoverso");
+                this.setReaderLibraryView("fiodoverso");
+                this.renderReaderFiodoverso();
+            };
         }
         if (this.readerLibraryBack) {
             this.readerLibraryBack.onclick = () => {
@@ -2625,6 +2665,11 @@ export const editorFeatures = {
                         `skrv_reader_book_scroll_${this.readerLibraryActiveId}`,
                         String(this.readerContent.scrollTop || 0)
                     );
+                } else if (this.readerLibraryMode === "fiodoverso" && this.readerFioActiveId) {
+                    localStorage.setItem(
+                        `skrv_reader_fio_scroll_${this.readerFioActiveId}`,
+                        String(this.readerContent.scrollTop || 0)
+                    );
                 } else {
                     this.readerUserScroll = this.readerContent.scrollTop || 0;
                 }
@@ -2685,6 +2730,11 @@ export const editorFeatures = {
     async renderReaderLibrary() {
         if (!this.readerLibraryList) return;
         this.readerLibraryList.innerHTML = "";
+        if (this.readerLibraryView === "fiodoverso") {
+            this.setReaderLibraryView("fiodoverso");
+            this.renderReaderFiodoverso();
+            return;
+        }
         const loading = document.createElement("div");
         loading.className = "reader-library-empty";
         loading.textContent = lang.t("reader_library_loading");
@@ -2721,6 +2771,115 @@ export const editorFeatures = {
         });
     },
 
+    setReaderLibraryView(view) {
+        if (!this.readerLibraryPanel) return;
+        const isFio = view === "fiodoverso";
+        this.readerLibraryPanel.classList.toggle("fio-mode", isFio);
+        if (this.readerLibraryTabBooks) this.readerLibraryTabBooks.classList.toggle("active", !isFio);
+        if (this.readerLibraryTabFio) this.readerLibraryTabFio.classList.toggle("active", isFio);
+        this.readerLibraryLangBtns.forEach((btn) => {
+            btn.style.display = isFio ? "none" : "inline-flex";
+        });
+        if (this.readerLibraryNote) {
+            this.readerLibraryNote.textContent = isFio ? lang.t("reader_fio_note") : lang.t("reader_library_note");
+        }
+    },
+
+    async loadFiodoversoIndex() {
+        if (this.readerFioIndex) return this.readerFioIndex;
+        try {
+            const res = await fetch("src/assets/fiodoverso/index.json");
+            this.readerFioIndex = await res.json();
+        } catch (_) {
+            this.readerFioIndex = null;
+        }
+        return this.readerFioIndex;
+    },
+
+    async renderReaderFiodoverso() {
+        if (!this.readerFioTabs || !this.readerFioList) return;
+        this.readerFioTabs.innerHTML = "";
+        this.readerFioList.innerHTML = "";
+        const loading = document.createElement("div");
+        loading.className = "reader-library-empty";
+        loading.textContent = lang.t("reader_library_loading");
+        this.readerFioList.appendChild(loading);
+        const index = await this.loadFiodoversoIndex();
+        this.readerFioList.innerHTML = "";
+        if (!index || !Array.isArray(index.months) || !index.months.length) {
+            const empty = document.createElement("div");
+            empty.className = "reader-library-empty";
+            empty.textContent = lang.t("reader_library_error");
+            this.readerFioList.appendChild(empty);
+            return;
+        }
+        const months = index.months;
+        const active = this.readerFioMonth || months[0].id;
+        this.readerFioMonth = active;
+        localStorage.setItem("skrv_reader_fio_month", active);
+        months.forEach((month) => {
+            const btn = document.createElement("button");
+            btn.className = "reader-fio-tab";
+            btn.textContent = month.label;
+            if (month.id === active) btn.classList.add("active");
+            btn.addEventListener("click", () => {
+                this.readerFioMonth = month.id;
+                localStorage.setItem("skrv_reader_fio_month", month.id);
+                this.renderFiodoversoMonth(month);
+                Array.from(this.readerFioTabs.querySelectorAll(".reader-fio-tab")).forEach((el) => {
+                    el.classList.toggle("active", el === btn);
+                });
+            });
+            this.readerFioTabs.appendChild(btn);
+        });
+        const month = months.find((m) => m.id === active) || months[0];
+        this.renderFiodoversoMonth(month);
+    },
+
+    renderFiodoversoMonth(month) {
+        if (!this.readerFioList) return;
+        this.readerFioList.innerHTML = "";
+        if (!month || !Array.isArray(month.entries) || !month.entries.length) {
+            const empty = document.createElement("div");
+            empty.className = "reader-library-empty";
+            empty.textContent = lang.t("reader_library_empty");
+            this.readerFioList.appendChild(empty);
+            return;
+        }
+        month.entries.forEach((entry) => {
+            const item = document.createElement("div");
+            item.className = "reader-fio-item";
+            item.innerHTML = `<div class="date">${this.escapeHtml(entry.date)}</div><div class="title">${this.escapeHtml(entry.title || "")}</div>`;
+            item.addEventListener("click", () => this.openReaderFiodoversoEntry(entry));
+            this.readerFioList.appendChild(item);
+        });
+    },
+
+    openReaderFiodoversoEntry(entry) {
+        if (!entry || !this.readerContent) return;
+        if (this.readerLibraryMode !== "fiodoverso") {
+            this.readerUserText = this.editor?.innerText || "";
+            this.readerUserScroll = this.readerContent.scrollTop || 0;
+        }
+        this.readerLibraryMode = "fiodoverso";
+        this.readerFioActiveId = entry.id;
+        localStorage.setItem("skrv_reader_fio_active", entry.id);
+        fetch(`src/assets/fiodoverso/${entry.file}`)
+            .then((res) => res.text())
+            .then((text) => {
+                this.setReaderContentFromText(text);
+                if (this.readerGlossary) {
+                    this.readerGlossary.innerHTML = "";
+                    this.updateGlossary(text);
+                }
+                const saved = parseFloat(localStorage.getItem(`skrv_reader_fio_scroll_${entry.id}`) || "0");
+                this.readerContent.scrollTop = saved;
+            })
+            .catch(() => {
+                this.readerContent.innerHTML = `<p>${this.escapeHtml(lang.t("reader_library_error"))}</p>`;
+            });
+    },
+
     toggleReaderLibraryPanel() {
         if (!this.readerBox) return;
         if (this.readerBox.classList.contains("show-library")) {
@@ -2736,7 +2895,13 @@ export const editorFeatures = {
         if (!this.readerLibraryLang) {
             this.readerLibraryLang = this.mapReaderLang(lang.current);
         }
-        this.renderReaderLibrary();
+        const view = this.readerLibraryView || "books";
+        this.setReaderLibraryView(view);
+        if (view === "fiodoverso") {
+            this.renderReaderFiodoverso();
+        } else {
+            this.renderReaderLibrary();
+        }
     },
 
     closeReaderLibraryPanel() {

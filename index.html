@@ -899,7 +899,12 @@
             <div class="modal-body">
                 <div class="export-grid">
                     <div class="export-card" id="actionDownloadJson" data-i18n-tip="export_capsule_tip">
-                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-file"></use></svg>
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"></path>
+                            <path d="M12 22V12"></path>
+                            <polyline points="3.29 7 12 12 20.71 7"></polyline>
+                            <path d="m7.5 4.27 9 5.15"></path>
+                        </svg>
                         <span data-i18n="export_json">EXPORTAR CÁPSULA</span>
                         <small>.skv</small>
                         <small class="export-card-note" data-i18n="export_capsule_note">salve ou envie todo o projeto atual</small>
@@ -1084,9 +1089,17 @@
                             <button class="reader-library-lang-btn" type="button" data-lang="fr">FR</button>
                         </div>
                     </div>
+                    <div class="reader-library-tabs">
+                        <button id="readerLibraryTabBooks" class="reader-library-tab active" type="button" data-i18n="reader_library_tab_books">Biblioteca</button>
+                        <button id="readerLibraryTabFio" class="reader-library-tab" type="button" data-i18n="reader_library_tab_fio">Fio do Verso 2020</button>
+                    </div>
                     <div class="reader-library-note" data-i18n="reader_library_note">Texto na língua original.</div>
                     <button id="readerLibraryBack" class="reader-library-back" type="button" data-i18n="reader_library_back">Voltar ao meu texto</button>
                     <div id="readerLibraryList" class="reader-library-list"></div>
+                    <div id="readerFioPanel" class="reader-fio-panel" aria-hidden="true">
+                        <div id="readerFioTabs" class="reader-fio-tabs"></div>
+                        <div id="readerFioList" class="reader-fio-list"></div>
+                    </div>
                 </aside>
                 <div class="reader-ruler" aria-hidden="true"></div>
             </div>

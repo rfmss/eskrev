@@ -83,6 +83,9 @@ export function buildSkrvPayload(store) {
   const birthRaw = localStorage.getItem("lit_birth_tracker");
   let birth = null;
   try { birth = birthRaw ? JSON.parse(birthRaw) : null; } catch (_) { birth = null; }
+  const processRaw = localStorage.getItem("skrv_process_tracker");
+  let process = null;
+  try { process = processRaw ? JSON.parse(processRaw) : null; } catch (_) { process = null; }
   const langRaw = localStorage.getItem("lit_lang") || "pt-br";
   const langMap = {
     "pt-br": "pt-BR",
@@ -90,11 +93,17 @@ export function buildSkrvPayload(store) {
     "es": "es",
     "fr": "fr"
   };
-  const startedAt = birth && birth.firstKeyTime ? new Date(birth.firstKeyTime).toISOString() : "";
-  const endedAt = birth && birth.lastKeyTime ? new Date(birth.lastKeyTime).toISOString() : "";
-  const durationMinutes = (birth && birth.firstKeyTime && birth.lastKeyTime)
-    ? Math.max(0, Math.round((birth.lastKeyTime - birth.firstKeyTime) / 60000))
-    : 0;
+  const startedAt = process && process.started_at
+    ? process.started_at
+    : (birth && birth.firstKeyTime ? new Date(birth.firstKeyTime).toISOString() : "");
+  const endedAt = process && process.ended_at
+    ? process.ended_at
+    : (birth && birth.lastKeyTime ? new Date(birth.lastKeyTime).toISOString() : "");
+  const durationMinutes = (process && process.started_at && process.ended_at)
+    ? Math.max(0, Math.round((new Date(process.ended_at) - new Date(process.started_at)) / 60000))
+    : ((birth && birth.firstKeyTime && birth.lastKeyTime)
+      ? Math.max(0, Math.round((birth.lastKeyTime - birth.firstKeyTime) / 60000))
+      : 0);
 
   return {
     protocol: ".skv Proof",
@@ -110,14 +119,22 @@ export function buildSkrvPayload(store) {
     },
     writing_process: {
       input_method: "human_typing",
-      keystrokes_total: birth && birth.keystrokeCount ? birth.keystrokeCount : 0,
-      insertions: 0,
-      deletions: 0,
-      revisions: 0,
+      keystrokes_total: process && Number.isFinite(process.keystrokes_total)
+        ? process.keystrokes_total
+        : (birth && birth.keystrokeCount ? birth.keystrokeCount : 0),
+      insertions: process && Number.isFinite(process.insertions) ? process.insertions : 0,
+      deletions: process && Number.isFinite(process.deletions) ? process.deletions : 0,
+      revisions: process && Number.isFinite(process.revisions) ? process.revisions : 0,
       pause_profile: {
-        short: 0,
-        medium: 0,
-        long: 0
+        short: process && process.pause_profile && Number.isFinite(process.pause_profile.short)
+          ? process.pause_profile.short
+          : 0,
+        medium: process && process.pause_profile && Number.isFinite(process.pause_profile.medium)
+          ? process.pause_profile.medium
+          : 0,
+        long: process && process.pause_profile && Number.isFinite(process.pause_profile.long)
+          ? process.pause_profile.long
+          : 0
       }
     },
     content: {

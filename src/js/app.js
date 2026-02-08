@@ -9,6 +9,7 @@ import { lang } from './modules/lang.js';
 import { auth } from './modules/auth.js';
 import { exportSkrv, importSkrv, buildSkrvPayloadWithChain } from './modules/export_skrv.js';
 import { birthTracker } from './modules/birth_tracker.js';
+import { processTracker } from './modules/process_tracker.js';
 import { qrTransfer } from './modules/qr_transfer.js';
 
 
@@ -114,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const editorEl = document.getElementById("editor");
     editorFeatures.init(editorEl);
     birthTracker.init(editorEl);
+    processTracker.init(editorEl);
     setupCopyGuard(editorEl);
     
     loadActiveDocument();

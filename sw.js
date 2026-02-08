@@ -15,6 +15,7 @@ const CACHE_ASSETS = [
   "./src/js/modules/editor.js",
   "./src/js/modules/export_skrv.js",
   "./src/js/modules/lang.js",
+  "./src/js/modules/process_tracker.js",
   "./src/js/modules/store.js",
   "./src/js/modules/ui.js",
   "./src/js/modules/qr_transfer.js",
@@ -103,6 +104,7 @@ const CACHE_ASSETS = [
   "./src/assets/icons/logoEskrev.svg",
   "./src/assets/icons/logoEskrev-favicon-dark.svg",
   "./src/assets/icons/logoEskrev-favicon-cream.svg",
+  "./src/assets/fiodoverso/index.json",
   "./config/persona-templates.json",
   "./content/templates/conto-curto.md",
   "./content/templates/romance-keypoints.md",
@@ -120,18 +122,50 @@ const CACHE_ASSETS = [
   "./qr-bitcoin.png"
 ];
 
+let FIODOVERSO_FILES = null;
+
+async function loadFiodoversoFiles() {
+  if (FIODOVERSO_FILES) return FIODOVERSO_FILES;
+  try {
+    const res = await fetch("./src/assets/fiodoverso/index.json");
+    const data = await res.json();
+    const files = [];
+    if (data && Array.isArray(data.months)) {
+      data.months.forEach((month) => {
+        if (!Array.isArray(month.entries)) return;
+        month.entries.forEach((entry) => {
+          if (entry && entry.file) files.push(`./src/assets/fiodoverso/${entry.file}`);
+        });
+      });
+    }
+    FIODOVERSO_FILES = files;
+  } catch (_) {
+    FIODOVERSO_FILES = [];
+  }
+  return FIODOVERSO_FILES;
+}
+
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) =>
-      Promise.all(
+    caches.open(CACHE_NAME).then(async (cache) => {
+      await Promise.all(
         CACHE_ASSETS.map((asset) =>
           cache.add(asset).catch((err) => {
             console.warn("[sw] cache failed:", asset, err);
             return null;
           })
         )
-      )
-    )
+      );
+      const fioFiles = await loadFiodoversoFiles();
+      await Promise.all(
+        fioFiles.map((asset) =>
+          cache.add(asset).catch((err) => {
+            console.warn("[sw] cache failed:", asset, err);
+            return null;
+          })
+        )
+      );
+    })
   );
   self.skipWaiting();
 });
@@ -176,7 +210,14 @@ self.addEventListener("message", (event) => {
         if (match) cached += 1;
       })
     );
-    const payload = { type: "cache-status", cached, total: CACHE_ASSETS.length };
+    const fioFiles = await loadFiodoversoFiles();
+    await Promise.all(
+      fioFiles.map(async (asset) => {
+        const match = await cache.match(asset);
+        if (match) cached += 1;
+      })
+    );
+    const payload = { type: "cache-status", cached, total: CACHE_ASSETS.length + fioFiles.length };
     if (event.source && event.source.postMessage) {
       event.source.postMessage(payload);
       return;
