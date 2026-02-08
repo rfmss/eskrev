@@ -444,7 +444,7 @@ export const editorFeatures = {
 
     playSound(name) {
         if (!this.audioCtx) {
-            const fallback = this.sfx && this.sfx[name];
+            const fallback = this.sfx && (this.sfx[name] || (name === "backspace" ? this.sfx.type : null));
             if (fallback) {
                 try {
                     fallback.currentTime = 0;
@@ -455,9 +455,12 @@ export const editorFeatures = {
             return;
         }
         if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
-        const b = this.sfxBuffers[name];
+        let b = this.sfxBuffers[name];
+        if (!b && name === "backspace") {
+            b = this.sfxBuffers.type;
+        }
         if (!b) {
-            const fallback = this.sfx && this.sfx[name];
+            const fallback = this.sfx && (this.sfx[name] || (name === "backspace" ? this.sfx.type : null));
             if (fallback) {
                 try {
                     fallback.currentTime = 0;
