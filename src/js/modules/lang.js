@@ -520,7 +520,7 @@ export const lang = {
             qr_scan_stop: "PARAR SCAN",
             qr_camera_blocked: "Câmera bloqueada. Permita o acesso no navegador.",
             qr_camera_missing: "Sem câmera disponível neste dispositivo.",
-            qr_fallback_hint: "Sem câmera? Importe o arquivo .b64 gerado no desktop ou cole aqui o texto base64 do QR.",
+            qr_fallback_hint: "Sem câmera? Importe o arquivo .b64 gerado no desktop ou cole aqui o texto base64 do QR. É o mesmo conteúdo, só em outro formato de exportação.",
             qr_fallback_import: "IMPORTAR ARQUIVO",
             qr_fallback_paste: "Cole o texto base64 do QR",
             qr_fallback_restore: "RESTAURAR",
