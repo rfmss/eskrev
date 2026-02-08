@@ -3023,15 +3023,30 @@ input[type="checkbox"]:focus-visible {
 .reader-library-btn {
     border: none;
     background: transparent;
-    padding: 0;
+    padding: 0 2px;
     margin: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     cursor: pointer;
     color: inherit;
     opacity: 0.75;
     transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.reader-library-btn .reader-title-icon {
+    margin-right: 2px;
+}
+.reader-library-sep {
+    opacity: 0.45;
+    font-size: 12px;
+    transform: translateY(1px);
+}
+.reader-library-text {
+    font-size: 11px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    opacity: 0.85;
 }
 .reader-library-btn:hover,
 .reader-library-btn:focus-visible {
