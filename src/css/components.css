@@ -2447,6 +2447,14 @@ body.consult-open .selection-toolbar {
     margin-top: 12px;
     padding-top: 8px;
     border-top: var(--border-style);
+    font-size: 10px;
+    line-height: 1.35;
+}
+.export-support--qr .export-support-body {
+    font-size: 10px;
+    line-height: 1.35;
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 /* PAGINACAO A4 */
