@@ -6,6 +6,15 @@
     <title data-i18n="page_title"></title>
     <meta name="theme-color" content="#c4c4c4" />
     
+    <script>
+        if (location.hostname === "eskrev.rafa.pro.br") {
+            const s = document.createElement("script");
+            s.async = true;
+            s.setAttribute("data-goatcounter", "https://eskrev.goatcounter.com/count");
+            s.src = "//gc.zgo.at/count.js";
+            document.head.appendChild(s);
+        }
+    </script>
     <link rel="manifest" href="manifest.json?v=3" />
     <link rel="icon" id="appFavicon" href="src/assets/icons/logoEskrev-favicon-dark.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="src/assets/icons/logoEskrev.svg" />
