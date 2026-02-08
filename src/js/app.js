@@ -32,7 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ui.init();
     
     lang.init();
-    initDedication();
+    const mobileGateActive = isMobile ? initMobileGate() : false;
+    if (!mobileGateActive) initDedication();
     const syncLangToFrames = (code) => {
         const frames = [
             document.getElementById("booksFrame"),
@@ -128,6 +129,15 @@ document.addEventListener('DOMContentLoaded', () => {
         setupMobileFallbackTriggers();
         ensureMobileModule().catch(() => {});
     }
+    window.skvOpenReader = () => editorFeatures.openReaderMode();
+    window.skvOpenExport = () => {
+        const modal = document.getElementById("exportModal");
+        if (modal) modal.classList.add("active");
+    };
+    window.skvOpenReset = () => {
+        const btn = document.getElementById("btnHardReset");
+        if (btn) btn.click();
+    };
     setupSupportCopy();
     setupMarqueeCopy();
     setupSupportLinks();
@@ -269,6 +279,50 @@ function initDedication() {
     modal.classList.add("active");
     document.body.classList.add("modal-active");
     document.addEventListener("keydown", handleEnter);
+}
+
+function initMobileGate() {
+    const modal = document.getElementById("mobileGateModal");
+    if (!modal) return false;
+    if (window.innerWidth > 900) return false;
+    if (sessionStorage.getItem("skrv_mobile_gate_done") === "1") return false;
+
+    const btnScan = document.getElementById("mobileGateScan");
+    const qrBtn = document.getElementById("btnScanQr");
+    const closeGate = (showDedication = true) => {
+        modal.classList.remove("active");
+        document.body.classList.remove("modal-active");
+        sessionStorage.setItem("skrv_mobile_gate_done", "1");
+        if (showDedication) initDedication();
+    };
+
+    if (btnScan) {
+        btnScan.onclick = () => {
+            if (qrBtn) qrBtn.click();
+            closeGate(false);
+        };
+    }
+
+    let startY = null;
+    modal.addEventListener("touchstart", (e) => {
+        const touch = e.touches && e.touches[0];
+        if (!touch) return;
+        startY = touch.clientY;
+    }, { passive: true });
+    modal.addEventListener("touchend", (e) => {
+        if (startY === null) return;
+        const touch = e.changedTouches && e.changedTouches[0];
+        if (!touch) return;
+        const delta = startY - touch.clientY;
+        startY = null;
+        if (delta > 60) {
+            closeGate(true);
+        }
+    });
+
+    modal.classList.add("active");
+    document.body.classList.add("modal-active");
+    return true;
 }
 
 function setupOfflineProgress() {

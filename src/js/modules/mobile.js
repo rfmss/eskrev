@@ -475,6 +475,24 @@ const initMobileMemos = () => {
             if (scanBtn) scanBtn.click();
         };
     }
+    const btnMobileReader = document.getElementById("btnMobileReader");
+    if (btnMobileReader) {
+        btnMobileReader.onclick = () => {
+            if (typeof window.skvOpenReader === "function") window.skvOpenReader();
+        };
+    }
+    const btnMobileExport = document.getElementById("btnMobileExport");
+    if (btnMobileExport) {
+        btnMobileExport.onclick = () => {
+            if (typeof window.skvOpenExport === "function") window.skvOpenExport();
+        };
+    }
+    const btnMobileReset = document.getElementById("btnMobileReset");
+    if (btnMobileReset) {
+        btnMobileReset.onclick = () => {
+            if (typeof window.skvOpenReset === "function") window.skvOpenReset();
+        };
+    }
 
     const projectQr = document.getElementById("btnMobileProjectQr");
     const projectJson = document.getElementById("btnMobileProjectJson");
@@ -509,6 +527,7 @@ const initMobileMemos = () => {
 
 const initMobileIntro = () => {
     if (window.innerWidth > 900) return;
+    if (document.getElementById("mobileGateModal")) return;
     const intro = document.getElementById("mobileIntroModal");
     const close = document.getElementById("closeMobileIntro");
     const ok = document.getElementById("mobileIntroOk");
