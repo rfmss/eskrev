@@ -205,6 +205,7 @@ function initDedication() {
     if (!modal) return;
     const body = document.getElementById("dedicationBody");
     const langBtn = document.getElementById("dedicationLangToggle");
+    const fioNote = document.getElementById("dedicationFioNote");
     const done = localStorage.getItem("skrv_dedication_done") === "1";
     if (done) return;
 
@@ -234,6 +235,10 @@ function initDedication() {
         if (body) {
             const md = lang.t("dedication_body_md");
             body.innerHTML = renderMarkdown(md);
+        }
+        if (fioNote) {
+            const md = lang.t("dedication_fio_note_md");
+            fioNote.innerHTML = renderMarkdown(md);
         }
         updateLangButton();
     };
