@@ -42,6 +42,8 @@ const qrTransfer = (() => {
     els.streamStatus = document.getElementById('qrStreamStatus');
     els.streamMeta = document.getElementById('qrStreamMeta');
     els.streamPause = document.getElementById('qrStreamPause');
+    els.streamCopy = document.getElementById('qrStreamCopy');
+    els.streamSave = document.getElementById('qrStreamSave');
 
     els.scanModal = document.getElementById('qrScanModal');
     els.scanVideo = document.getElementById('qrScanVideo');
@@ -165,6 +167,18 @@ const qrTransfer = (() => {
     }
     const base64 = buildBackupBase64();
     setupStreamFromBase64(base64);
+    if (els.streamCopy) {
+      els.streamCopy.onclick = async () => {
+        try {
+          await navigator.clipboard.writeText(base64);
+          if (els.streamCopy) els.streamCopy.textContent = lang.t('qr_stream_copied');
+          setTimeout(() => { if (els.streamCopy) els.streamCopy.textContent = lang.t('qr_stream_copy'); }, 1200);
+        } catch (_) {}
+      };
+    }
+    if (els.streamSave) {
+      els.streamSave.onclick = () => downloadBase64Backup();
+    }
   }
 
   async function startCustomStream(payload, label) {
