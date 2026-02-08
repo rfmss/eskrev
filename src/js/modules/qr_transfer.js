@@ -452,6 +452,11 @@ const qrTransfer = (() => {
         document.getElementById('exportModal').classList.remove('active');
         if (els.streamModal) els.streamModal.classList.add('active');
         initStream();
+        const support = document.getElementById('qrStreamSupport');
+        if (support) {
+          support.classList.add('active');
+          support.setAttribute('aria-hidden', 'false');
+        }
       };
     }
 

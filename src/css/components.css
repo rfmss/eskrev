@@ -2421,6 +2421,33 @@ body.consult-open .selection-toolbar {
     letter-spacing: 0.6px;
     cursor: pointer;
 }
+.export-support {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: var(--border-style);
+    display: none;
+    text-align: center;
+}
+.export-support.active {
+    display: block;
+}
+.export-support-title {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 6px;
+}
+.export-support-body {
+    font-size: 11px;
+    color: var(--color-muted);
+    line-height: 1.4;
+}
+.export-support--qr {
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: var(--border-style);
+}
 
 /* PAGINACAO A4 */
 #pageMarkers {

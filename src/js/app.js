@@ -1976,6 +1976,13 @@ function setupEventListeners() {
         });
     });
 
+    const revealExportSupport = () => {
+        const support = document.getElementById("exportSupport");
+        if (!support) return;
+        support.classList.add("active");
+        support.setAttribute("aria-hidden", "false");
+    };
+
     // Downloads e QR
     // Downloads (JSON / TXT / SKV)
     const btnMd = document.getElementById("actionDownloadMd");
@@ -1987,7 +1994,7 @@ function setupEventListeners() {
             );
             const markdown = buildMarkdownExport();
             downloadText(markdown, `SKRV_EXPORT_${Date.now()}.md`, "text/markdown");
-            document.getElementById("exportModal").classList.remove("active");
+            revealExportSupport();
         };
     }
 
@@ -2000,7 +2007,7 @@ function setupEventListeners() {
             );
             const text = buildReportText();
             printRawText(text, ".skv Writer - CÁPSULA");
-            document.getElementById("exportModal").classList.remove("active");
+            revealExportSupport();
         };
     }
 
@@ -2030,7 +2037,7 @@ function setupEventListeners() {
             ].join("");
             buildSkrvPayloadWithChain(store).then((payload) => {
                 downloadText(JSON.stringify(payload, null, 2), `${slug}_${stamp}.skv`, "application/json");
-                document.getElementById("exportModal").classList.remove("active");
+                revealExportSupport();
             });
         };
     }
