@@ -2887,7 +2887,7 @@ export const editorFeatures = {
         fetch(`src/assets/fiodoverso/${entry.file}`)
             .then((res) => res.text())
             .then((text) => {
-                this.setReaderContentFromText(text);
+                this.setReaderContentFromText(text, { preserveLineBreaks: true });
                 if (this.readerGlossary) {
                     this.readerGlossary.innerHTML = "";
                     this.updateGlossary(text);
@@ -2929,14 +2929,40 @@ export const editorFeatures = {
         this.readerBox.classList.remove("show-library");
     },
 
-    setReaderContentFromText(text) {
+    setReaderContentFromText(text, opts = {}) {
         if (!this.readerContent) return;
+        const preserveLineBreaks = Boolean(opts.preserveLineBreaks);
         const blocks = String(text || "").split(/\n{2,}/g).map(s => s.trim()).filter(Boolean);
         const html = blocks.map((block) => {
-            const safe = this.escapeHtml(block).replace(/\n/g, "<br>");
-            return `<p>${safe}</p>`;
+            const safe = this.escapeHtml(block);
+            const body = preserveLineBreaks ? safe.replace(/\n/g, "<br>") : safe.replace(/\n+/g, " ");
+            const clean = body.replace(/\s{2,}/g, " ").trim();
+            return `<p>${clean}</p>`;
         }).join("");
         this.readerContent.innerHTML = html || "<p></p>";
+    },
+
+    normalizeLibraryText(raw) {
+        let text = String(raw || "");
+        text = text.replace(/\r\n/g, "\n");
+        const startRe = /\*\*\*\s*START OF (THIS|THE) PROJECT GUTENBERG EBOOK[\s\S]*?\*\*\*/i;
+        const endRe = /\*\*\*\s*END OF (THIS|THE) PROJECT GUTENBERG EBOOK[\s\S]*?\*\*\*/i;
+        const startMatch = text.match(startRe);
+        if (startMatch) {
+            const idx = startMatch.index + startMatch[0].length;
+            text = text.slice(idx);
+        }
+        const endMatch = text.match(endRe);
+        if (endMatch) {
+            text = text.slice(0, endMatch.index);
+        }
+        text = text.replace(/[ \t]+\n/g, "\n");
+        text = text.replace(/\n{3,}/g, "\n\n");
+        const paras = text.split(/\n{2,}/).map((para) => {
+            const single = para.replace(/\n+/g, " ");
+            return single.replace(/\s{2,}/g, " ").trim();
+        }).filter(Boolean);
+        return paras.join("\n\n").trim();
     },
 
     openReaderLibraryBook(book) {
@@ -2951,10 +2977,11 @@ export const editorFeatures = {
         fetch(book.file)
             .then((res) => res.text())
             .then((text) => {
-                this.setReaderContentFromText(text);
+                const clean = this.normalizeLibraryText(text);
+                this.setReaderContentFromText(clean);
                 if (this.readerGlossary) {
                     this.readerGlossary.innerHTML = "";
-                    this.updateGlossary(text);
+                    this.updateGlossary(clean);
                 }
                 const saved = parseFloat(localStorage.getItem(`skrv_reader_book_scroll_${book.id}`) || "0");
                 this.readerContent.scrollTop = saved;

@@ -3109,9 +3109,9 @@ input[type="checkbox"]:focus-visible {
 .reader-content {
     font-family: var(--font-body);
     font-size: 18px;
-    line-height: 1.9;
+    line-height: 1.7;
     color: #d6d3cf;
-    white-space: pre-wrap;
+    white-space: normal;
     overflow-y: auto;
     overflow-x: hidden;
     height: calc(100vh - 60px);
@@ -3121,6 +3121,12 @@ input[type="checkbox"]:focus-visible {
     min-width: 320px;
     margin: 0 auto;
     padding: 24px 0 24px;
+}
+.reader-content p {
+    margin: 0 0 0.9em;
+}
+.reader-content p:last-child {
+    margin-bottom: 0;
 }
 .reader-content.reader-font-serif {
     font-family: "Source Serif 4", "Georgia", "Times New Roman", serif;
