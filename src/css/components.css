@@ -4133,6 +4133,13 @@ kbd {
     color: var(--color-muted);
     line-height: 1.5;
 }
+.dedication-marquee {
+    margin-top: 12px;
+}
+.dedication-marquee .marquee-content {
+    font-size: 11px;
+    letter-spacing: 0.8px;
+}
 .dedication-signature {
     margin-top: 16px;
     display: grid;
