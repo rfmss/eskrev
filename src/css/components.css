@@ -2332,6 +2332,11 @@ body.consult-open .selection-toolbar {
 .export-card { width: 100%; max-width: 190px; }
 .export-card:hover { background: var(--color-accent-dim); border-color: var(--color-accent); transform: translateY(-1px); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
 .export-card i { font-size: 24px; color: var(--color-accent); }
+.export-card .icon {
+    fill: none !important;
+    stroke: currentColor;
+}
+.export-card .icon use { fill: none; }
 .export-card span { font-size: 11px; font-weight: bold; letter-spacing: 1px; }
 .export-card small { font-size: 9px; opacity: 0.6; }
 .export-qr-hint {

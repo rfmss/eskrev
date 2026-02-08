@@ -1822,9 +1822,14 @@ function setupEventListeners() {
             const shareText = lang.t("share_message");
             const baseUrl = btn.dataset.url || "";
             const network = (btn.dataset.network || "").toLowerCase();
+            const encoded = encodeURIComponent(shareText);
             let targetUrl = baseUrl;
-            if (network === "x") {
-                targetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+            if (network === "x" || network === "element" || network === "linkedin") {
+                targetUrl = `https://twitter.com/intent/tweet?text=${encoded}`;
+            } else if (network === "mastodon" || network === "lemmy" || network === "facebook") {
+                targetUrl = `https://mastodon.social/share?text=${encoded}`;
+            } else if (network === "bluesky") {
+                targetUrl = `https://bsky.app/intent/compose?text=${encoded}`;
             }
             if (targetUrl) window.open(targetUrl, "_blank", "noopener");
         });
