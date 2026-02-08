@@ -1,4 +1,4 @@
-const CACHE_NAME = "skrv-cache-v9";
+const CACHE_NAME = "skrv-cache-v10";
 const CACHE_ASSETS = [
   "./",
   "./index.html",
@@ -150,23 +150,21 @@ async function loadFiodoversoFiles() {
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(async (cache) => {
-      await Promise.all(
-        CACHE_ASSETS.map((asset) =>
-          cache.add(asset).catch((err) => {
-            console.warn("[sw] cache failed:", asset, err);
-            return null;
-          })
-        )
-      );
+      const cacheAsset = async (asset) => {
+        try {
+          const res = await fetch(asset, { cache: "reload" });
+          if (res && res.status === 200) {
+            await cache.put(asset, res.clone());
+          } else {
+            console.warn("[sw] cache skipped:", asset, res && res.status);
+          }
+        } catch (err) {
+          console.warn("[sw] cache failed:", asset, err);
+        }
+      };
+      await Promise.all(CACHE_ASSETS.map((asset) => cacheAsset(asset)));
       const fioFiles = await loadFiodoversoFiles();
-      await Promise.all(
-        fioFiles.map((asset) =>
-          cache.add(asset).catch((err) => {
-            console.warn("[sw] cache failed:", asset, err);
-            return null;
-          })
-        )
-      );
+      await Promise.all(fioFiles.map((asset) => cacheAsset(asset)));
     })
   );
   self.skipWaiting();
