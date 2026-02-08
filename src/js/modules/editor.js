@@ -242,6 +242,19 @@ export const editorFeatures = {
                 const pBtn = document.getElementById('pomodoroBtn');
                 if(pBtn) pBtn.click();
                 return this.flashInlineData();
+            case '--visitas':
+                {
+                    const visitsKey = "skrv_dedication_enter_count";
+                    const count = parseInt(localStorage.getItem(visitsKey) || "0", 10);
+                    const safeCount = Number.isFinite(count) ? count : 0;
+                    const modal = window.skrvModal || window.skvModal;
+                    if (modal && typeof modal.alert === "function") {
+                        modal.alert(lang.t("visits_message").replace("{count}", safeCount));
+                    } else {
+                        alert(lang.t("visits_message").replace("{count}", safeCount));
+                    }
+                }
+                return this.flashInlineData();
             case '--roll':
             case '--dice':
             case '--dado':

@@ -252,6 +252,10 @@ function initDedication() {
     const handleEnter = (e) => {
         if (e.key !== "Enter") return;
         e.preventDefault();
+        const visitsKey = "skrv_dedication_enter_count";
+        const current = parseInt(localStorage.getItem(visitsKey) || "0", 10);
+        const nextCount = Number.isFinite(current) ? current + 1 : 1;
+        localStorage.setItem(visitsKey, String(nextCount));
         modal.classList.remove("active");
         document.body.classList.remove("modal-active");
         localStorage.setItem("skrv_dedication_done", "1");
