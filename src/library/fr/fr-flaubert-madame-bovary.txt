@@ -1,5 +1,5 @@
 ﻿The Project Gutenberg eBook of Madame Bovary
-    
+
 This ebook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
 whatsoever. You may copy it, give it away or re-use it under the terms
@@ -19,11 +19,7 @@ Language: French
 
 Credits: Produced by Ebooks libres et gratuits at http://www.ebooksgratuits.com
 
-
 *** START OF THE PROJECT GUTENBERG EBOOK MADAME BOVARY ***
-
-
-
 
                             Gustave Flaubert
 
@@ -31,11 +27,7 @@ Credits: Produced by Ebooks libres et gratuits at http://www.ebooksgratuits.com
 
                                  (1857)
 
-
-
-
                            Table des matières
-
 
   PREMIÈRE PARTIE
   I
@@ -76,16 +68,12 @@ Credits: Produced by Ebooks libres et gratuits at http://www.ebooksgratuits.com
   X
   XI
 
-
-
-
                                     À
                        Marie-Antoine-Jules Senard
 
                        MEMBRE DU BARREAU DE PARIS
                   EX-PRESIDENT DE L’ASSEMBLÉE NATIONALE
                     ET ANCIEN MINISTRE DE L’INTÉRIEUR
-
 
 Cher et illustre ami,
 
@@ -100,16 +88,11 @@ GUSTAVE FLAUBERT
 
 Paris, 12 avril 1857
 
-
 À Louis Bouilhet
-
-
-
 
 PREMIÈRE PARTIE
 
 I
-
 
 Nous étions à l’Étude, quand le Proviseur entra, suivi d’un nouveau
 habillé en bourgeois et d’un garçon de classe qui portait un grand
@@ -479,11 +462,7 @@ de ses chagrins: il l’oubliait, il en aimait une autre! On lui avait
 bien dit qu’elle serait malheureuse; et elle finissait en lui demandant
 quelque sirop pour sa santé et un peu plus d’amour.
 
-
-
-
 II
-
 
 Une nuit, vers onze heures, ils furent réveillés par le bruit d’un
 cheval qui s’arrêta juste à la porte. La bonne ouvrit la lucarne du
@@ -783,11 +762,7 @@ robe encore accrochée au pied de l’alcôve; alors, s’appuyant contre le
 secrétaire, il resta jusqu’au soir perdu dans une rêverie douloureuse.
 Elle l’avait aimé, après tout.
 
-
-
-
 III
-
 
 Un matin, le père Rouault vint apporter à Charles le payement de sa
 jambe remise: soixante et quinze francs en pièces de quarante sous, et
@@ -995,11 +970,7 @@ le père Rouault ne comprit rien à cette idée. Il y eut donc une noce,
 où vinrent quarante-trois personnes, où l’on resta seize heures à
 table, qui recommença le lendemain et quelque peu les jours suivants.
 
-
-
-
 IV
-
 
 Les conviés arrivèrent de bonne heure dans des voitures, carrioles à
 un cheval, chars à bancs à deux roues, vieux cabriolets sans capote,
@@ -1194,11 +1165,7 @@ La vieille bonne se présenta, lui fit ses salutations, s’excusa de
 ce que le dîner n’était pas prêt, et engagea Madame, en attendant, à
 prendre connaissance de sa maison.
 
-
-
-
 V
-
 
 La façade de briques était juste à l’alignement de la rue, ou de la
 route plutôt. Derrière la porte se trouvaient accrochés un manteau à
@@ -1319,11 +1286,7 @@ savoir ce que l’on entendait au juste dans la vie par les mots de
 félicité, de passion et d’ivresse, qui lui avaient paru si beaux dans
 les livres.
 
-
-
-
 VI
-
 
 Elle avait lu Paul et Virginie et elle avait rêvé la maisonnette de
 bambous, le nègre Domingo, le chien Fidèle, mais surtout l’amitié douce
@@ -1507,11 +1470,7 @@ tenue comme un grand oiseau au plumage rose planant dans la splendeur
 des ciels poétiques; — et elle ne pouvait s’imaginer à présent que ce
 calme où elle vivait fût le bonheur qu’elle avait rêvé.
 
-
-
-
 VII
-
 
 Elle songeait quelquefois que c’étaient là pourtant les plus beaux
 jours de sa vie, la lune de miel, comme on disait. Pour en goûter la
@@ -1747,11 +1706,7 @@ Charles avait, de plus, un carton entre les jambes.
 Ils arrivèrent à la nuit tombante, comme on commençait à allumer des
 lampions dans le parc, afin d’éclairer les voitures.
 
-
-
-
 VIII
-
 
 Le château, de construction moderne, à l’Italienne, avec deux ailes
 avançant et trois perrons, se déployait au bas d’une immense pelouse
@@ -2146,11 +2101,7 @@ elle oublia l’air des contredanses, elle ne vit plus si nettement les
 livrées et les appartements; quelques détails s’en allèrent; mais le
 regret lui resta.
 
-
-
-
 IX
-
 
 Souvent, lorsque Charles était sorti, elle allait prendre dans
 l’armoire, entre les plis du linge où elle l’avait laissé, le
@@ -2580,13 +2531,9 @@ comme des papillons noirs, enfin s’envolèrent par la cheminée.
 Quand on partit de Tostes, au mois de mars, madame Bovary était
 enceinte.
 
-
-
-
 DEUXIÈME PARTIE
 
 I
-
 
 Yonville-l’Abbaye (ainsi nommé à cause d’une ancienne abbaye de
 Capucins dont les ruines n’existent même plus) est un bourg à huit
@@ -2957,11 +2904,7 @@ rivières à la nage; et son père à lui-même avait possédé un caniche
 qui, après douze ans d’absence, lui avait tout à coup sauté sur le dos,
 un soir, dans la rue, comme il allait dîner en ville.
 
-
-
-
 II
-
 
 Emma descendit la première, puis Félicité, M. Lheureux, une nourrice,
 et l’on fut obligé de réveiller Charles dans son coin, où il s’était
@@ -3227,11 +3170,7 @@ pussent se représenter les mêmes à des places différentes, et, puisque
 la portion vécue avait été mauvaise, sans doute ce qui restait à
 consommer serait meilleur.
 
-
-
-
 III
-
 
 Le lendemain, à son réveil, elle aperçut le clerc sur la place.
 Elle était en peignoir. Il leva la tête et la salua. Elle fit une
@@ -3662,11 +3601,7 @@ de le recevoir; et Léon ne savait comment s’y prendre entre la peur
 d’être indiscret et le désir d’une intimité qu’il estimait presque
 impossible.
 
-
-
-
 IV
-
 
 Dès les premiers froids, Emma quitta sa chambre pour habiter la salle,
 longue pièce à plafond bas où il y avait, sur la cheminée, un polypier
@@ -3809,11 +3744,7 @@ maisons, la pluie fait des lacs quand les gouttières sont bouchées,
 et elle fût ainsi demeurée en sa sécurité, lorsqu’elle découvrit
 subitement une lézarde dans le mur.
 
-
-
-
 V
-
 
 Ce fut un dimanche de février, une après-midi qu’il neigeait.
 
@@ -4190,11 +4121,7 @@ mariage, ça lui a passé, dit-on.
 
 — Mais, moi, reprenait Emma, c’est après le mariage que ça m’est venu.
 
-
-
-
 VI
-
 
 Un soir que la fenêtre était ouverte, et que, assise au bord, elle
 venait de regarder Lestiboudois, le bedeau, qui taillait le buis, elle
@@ -4786,11 +4713,7 @@ chose. Ce serait pour notre arrondissement de la dernière importance!
 Mais nous en causerons plus tard. J’y vois, je vous remercie; Justin a
 la lanterne.
 
-
-
-
 VII
-
 
 Le lendemain fut, pour Emma, une journée funèbre. Tout lui parut
 enveloppé par une atmosphère noire qui flottait confusément sur
@@ -5149,11 +5072,7 @@ moi... Ah! parbleu! ajouta-t-il, voilà les comices bientôt; elle y
 sera, je la verrai. Nous commencerons, et hardiment, car c’est le plus
 sûr.
 
-
-
-
 VIII
-
 
 Ils arrivèrent, en effet, ces fameux Comices! Dès le matin de la
 solennité, tous les habitants, sur leurs portes, s’entretenaient des
@@ -6098,11 +6017,7 @@ Et il ajoutait: «On y a seulement remarqué l’absence du clergé. Sans
 doute les sacristies entendent le progrès d’une autre manière. Libre à
 vous, messieurs de Loyola!»
 
-
-
-
 IX
-
 
 Six semaines s’écoulèrent. Rodolphe ne revint pas. Un soir, enfin, il
 parut.
@@ -6573,11 +6488,7 @@ contrarié.
 Enfin il déclara, d’un air sérieux, que ses visites devenaient
 imprudentes et qu’elle se compromettait.
 
-
-
-
 X
-
 
 Peu à peu, ces craintes de Rodolphe la gagnèrent. L’amour l’avait
 enivrée d’abord, et elle n’avait songé à rien au delà. Mais, à présent
@@ -6954,11 +6865,7 @@ grande prise à ces retours du sentiment, si bien qu’elle demeurait fort
 embarrassée dans sa velléité de sacrifice, lorsque l’apothicaire vint à
 propos lui fournir une occasion.
 
-
-
-
 XI
-
 
 Il avait lu dernièrement l’éloge d’une nouvelle méthode pour la cure
 des pieds-bots; et comme il était partisan du progrès, il conçut cette
@@ -7454,11 +7361,7 @@ qui l’attendait au bas du perron, sur la première marche. Ils
 s’étreignirent, et toute leur rancune se fondit comme une neige sous la
 chaleur de ce baiser.
 
-
-
-
 XII
-
 
 Ils recommencèrent à s’aimer. Souvent même, au milieu de la journée,
 Emma lui écrivait tout à coup; puis, à travers les carreaux, faisait
@@ -8065,11 +7968,7 @@ Il se disait ces choses pour s’affermir davantage.
 — Et, d’ailleurs, les embarras, la dépense... Ah! non, non, mille fois
 non! cela eût été trop bête!
 
-
-
-
 XIII
-
 
 À peine arrivé chez lui, Rodolphe s’assit brusquement à son bureau,
 sous la tête de cerf faisant trophée contre la muraille. Mais, quand
@@ -8496,11 +8395,7 @@ Charles crut apercevoir les premiers symptômes d’un cancer.
 
 Et le pauvre garçon, par là-dessus, avait des inquiétudes d’argent!
 
-
-
-
 XIV
-
 
 D’abord, il ne savait comment faire pour dédommager M. Homais de tous
 les médicaments pris chez lui; et, quoiqu’il eût pu, comme médecin,
@@ -8909,11 +8804,7 @@ beaucoup de manquer le commencement; et, sans avoir eu le temps
 d’avaler un bouillon, ils se présentèrent devant les portes du théâtre,
 qui étaient encore fermées.
 
-
-
-
 XV
-
 
 La foule stationnait contre le mur, parquée symétriquement entre des
 balustrades. À l’angle des rues voisines, de gigantesques affiches
@@ -9267,13 +9158,9 @@ se rendre à Yonville pour une affaire de son étude. Et l’on se sépara
 devant le passage Saint-Herbland, au moment où onze heures et demie
 sonnaient à la cathédrale.
 
-
-
-
 TROISIÈME PARTIE
 
 I
-
 
 M. Léon, tout en étudiant son droit, avait passablement fréquenté la
 Chaumière, où il obtint même de fort jolis succès près des grisettes,
@@ -9946,11 +9833,7 @@ Puis, vers six heures, la voiture s’arrêta dans une ruelle du quartier
 Beauvoisine, et une femme en descendit qui marchait le voile baissé,
 sans détourner la tête.
 
-
-
-
 II
-
 
 En arrivant à l’auberge, madame Bovary fut étonnée de ne pas apercevoir
 la diligence. Hivert, qui l’avait attendue cinquante-trois minutes,
@@ -10386,11 +10269,7 @@ factice:
 Dès le lendemain, elle s’embarqua dans l’Hirondelle pour aller à Rouen
 consulter M. Léon; et elle y resta trois jours.
 
-
-
-
 III
-
 
 Ce furent trois jours pleins, exquis, splendides, une vraie lune de
 miel.
@@ -10486,11 +10365,7 @@ baiser.
 — Oui certes! — Mais pourquoi donc, songea-t-il après, en s’en revenant
 seul par les rues, tient-elle si fort à cette procuration?
 
-
-
-
 IV
-
 
 Léon, bientôt, prit devant ses camarades un air de supériorité,
 s’abstint de leur compagnie, et négligea complètement les dossiers.
@@ -10626,11 +10501,7 @@ Et voilà comme elle s’y prit pour obtenir de son époux la permission
 d’aller à la ville, une fois la semaine, voir son amant. On trouva
 même, au bout d’un mois, qu’elle avait fait des progrès considérables.
 
-
-
-
 V
-
 
 C’était le jeudi. Elle se levait, et elle s’habillait silencieusement
 pour ne point éveiller Charles qui lui aurait fait des observations
@@ -11354,11 +11225,7 @@ tendres avec des baisers qui lui emportaient l’âme. Où donc avait-elle
 appris cette corruption, presque immatérielle à force d’être profonde
 et dissimulée?
 
-
-
-
 VI
-
 
 Dans les voyages qu’il faisait pour la voir, Léon souvent avait dîné
 chez le pharmacien, et s’était cru contraint, par politesse, de
@@ -12108,11 +11975,7 @@ Elle sanglotait.
 
 — Je m’en moque pas mal! dit-il en refermant la porte.
 
-
-
-
 VII
-
 
 Elle fut stoïque, le lendemain, lorsque maître Hareng, l’huissier, avec
 deux témoins, se présenta chez elle pour faire le procès-verbal de la
@@ -12732,11 +12595,7 @@ clin d’œil leur amour perdu. Elle partit donc vers la Huchette, sans
 s’apercevoir qu’elle courait s’offrir à ce qui l’avait tantôt si fort
 exaspérée, ni se douter le moins du monde de cette prostitution.
 
-
-
-
 VIII
-
 
 Elle se demandait tout en marchant: «Que vais-je dire? Par où
 commencerai-je?» Et à mesure qu’elle avançait, elle reconnaissait les
@@ -13541,11 +13400,7 @@ voir la face hideuse du misérable, qui se dressait dans les ténèbres
 Une convulsion la rabattit sur le matelas. Tous s’approchèrent. Elle
 n’existait plus.
 
-
-
-
 IX
-
 
 Il y a toujours après la mort de quelqu’un comme une stupéfaction qui
 se dégage, tant il est difficile de comprendre cette survenue du néant
@@ -13915,11 +13770,7 @@ grande la maison, et les gens d’Yonville commencèrent à affluer.
 Le père Rouault arriva. Il s’évanouit sur la Place en apercevant le
 drap noir.
 
-
-
-
 X
-
 
 Il n’avait reçu la lettre du pharmacien que trente-six heures après
 l’événement; et, par égard pour sa sensibilité, M. Homais l’avait
@@ -14169,11 +14020,7 @@ venait chercher sa bêche qu’il avait oubliée tantôt. Il reconnut Justin
 escaladant le mur, et sut alors à quoi s’en tenir sur le malfaiteur qui
 lui dérobait ses pommes de terre.
 
-
-
-
 XI
-
 
 Charles, le lendemain, fit revenir la petite. Elle demanda sa maman.
 On lui répondit qu’elle était absente, qu’elle lui rapporterait des
@@ -14530,13 +14377,7 @@ l’opinion publique le protège.
 
 Il vient de recevoir la croix d’honneur.
 
-
-
-
 *** END OF THE PROJECT GUTENBERG EBOOK MADAME BOVARY ***
-
-
-    
 
 Updated editions will replace the previous one—the old editions will
 be renamed.
@@ -14559,7 +14400,6 @@ Gutenberg eBooks may be modified and printed and given away—you may
 do practically ANYTHING in the United States with eBooks not protected
 by U.S. copyright law. Redistribution is subject to the trademark
 license, especially commercial redistribution.
-
 
 START: FULL LICENSE
 
@@ -14641,7 +14481,7 @@ performed, viewed, copied or distributed:
     at www.gutenberg.org. If you
     are not located in the United States, you will have to check the laws
     of the country where you are located before using this eBook.
-  
+
 1.E.2. If an individual Project Gutenberg™ electronic work is
 derived from texts not protected by U.S. copyright law (does not
 contain a notice indicating that it is posted with permission of the
@@ -14703,7 +14543,7 @@ provided that:
         Gutenberg Literary Archive Foundation at the address specified in
         Section 4, “Information about donations to the Project Gutenberg
         Literary Archive Foundation.”
-    
+
     • You provide a full refund of any money paid by a user who notifies
         you in writing (or by e-mail) within 30 days of receipt that s/he
         does not agree to the terms of the full Project Gutenberg™
@@ -14711,15 +14551,14 @@ provided that:
         copies of the works possessed in a physical medium and discontinue
         all use of and all access to other copies of Project Gutenberg™
         works.
-    
+
     • You provide, in accordance with paragraph 1.F.3, a full refund of
         any money paid for a work or a replacement copy, if a defect in the
         electronic work is discovered and reported to you within 90 days of
         receipt of the work.
-    
+
     • You comply with all other terms of this agreement for free
         distribution of Project Gutenberg™ works.
-    
 
 1.E.9. If you wish to charge a fee or distribute a Project
 Gutenberg™ electronic work or group of works on different terms than
@@ -14882,5 +14721,4 @@ This website includes information about Project Gutenberg™,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
 

@@ -1,5 +1,5 @@
 ﻿The Project Gutenberg eBook of Iracema
-    
+
 This ebook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
 whatsoever. You may copy it, give it away or re-use it under the terms
@@ -21,32 +21,21 @@ Original publication: Portugal: COMPANHIA NACIONAL EDITORA, 1890
 
 Credits: Laura Natal Rodrigues (Images generously made available by Hathi Trust Digital Library.)
 
-
 *** START OF THE PROJECT GUTENBERG EBOOK IRACEMA ***
 
 BIBLIOTHECA UNIVERSAL
 
 ANTIGA E MODERNA
 
-
-
-
 IRACEMA
-
-
-
 
 POR
 
 JOSÉ DE ALENCAR
 
-
 COM UMA NOTICIA BIOGRAPHICA DO AUCTOR
 
 13ª SERIE--NUMERO 49
-
-
-
 
 LISBOA
 
@@ -56,23 +45,15 @@ Successora de DAVID CCRAZZI e JUSTINO GUEDES
 
 40--Rua da Atalaya--52
 
-
 FILIAES: Praça de D. Pedro, 137, 1º andar, PORTO
 
 38, rua da Quitanda, Rio de Janeiro
 
-
 1890
-
-
-
 
 Á TERRA NATAL
 
 UM FILHO AUSENTE
-
-
-
 
 INDICE
 NOTICIA BIOGRAPHICA
@@ -114,11 +95,7 @@ CAPITULO XXXIII
 NOTAS
 CARTA AO DR. JAGUARIBE
 
-
-
-
 NOTICIA BIOGRAPHICA
-
 
 José Martiniano do Alencar. Este grande escriptor brazileiro, mais
 conhecido pelo nome de José de Alencar, nasceu no Ceará no dia 1 de
@@ -349,11 +326,7 @@ combatido _Senio_, pseudonymo querido de José de Alencar, foram os
 primeiros a render homenagem ao grande vulto, logo que elle desappareceu
 da scena publica.
 
-
 (Do _Diccionario Popular_).
-
-
-
 
 MEU AMIGO
 
@@ -440,21 +413,13 @@ em mais liberdade do que teriamos n'este portico do livro, onde as
 etiquetas mandam receber o publico com a gravidade e reverencia devida a
 tão alto senhor.
 
-
 Rio de Janeiro--Maio de 1865.
-
 
                              J. de Alencar.
 
-
-
-
 IRACEMA
 
-
-
 I
-
 
 Verdes mares bravios de minha terra natal, onde canta a jandaia nas
 frondes da carnaúba:
@@ -510,11 +475,7 @@ Em quanto vogas assim á discripção do vento, airoso barco, volva ás
 brancas areias a saudade, que te acompanha, mas não se parte da terra
 onde revoa.
 
-
-
-
 II
-
 
 Além, muito além d'aquella serra, que ainda azula no horisonte, nasceu
 Iracema:
@@ -581,11 +542,7 @@ irmãos já possuiram, e hoje tem os meus.
 --Bemvindo seja o extrangeiro aos campos dos Tabajaras, senhores das
 aldeias, e á cabana de Araken, pae de Iracema.
 
-
-
-
 III
-
 
 O extrangeiro seguiu a virgem através da floresta.
 
@@ -670,11 +627,7 @@ escuro da mata: respondeu o ancião.
 
 A cauâm piou, além. na extrema do valle. Cahia a noite.
 
-
-
-
 IV
-
 
 O Pagé vibrou a maracá, e sahiu da cabana: porém, o extrangeiro não
 ficou só.
@@ -756,11 +709,7 @@ A alva rêde que Iracema perfumara com a resina do beijoim guardava-lhe
 um somno calmo e doce. O christão adormeceu ouvindo suspirar, entre os
 murmurios da floresta, o canto mavioso da virgem indiana.
 
-
-
-
 V
-
 
 O gallo da campina ergue a poupa escarlate fora do ninho. Seu limpido
 trinado annuncia a aproximação do dia.
@@ -834,11 +783,7 @@ Irapuam leva a guerra no punho de seu tacape. O terror que elle inspira
 voa com o rouco som do boré. O Potyuara já tremeu ouvindo rugir na
 serra, mais forte que o ribombo do mar.
 
-
-
-
 VI
-
 
 Martim vae a passo e passo por entre os altos joaseiros que cercam a
 cabana do Pagé.
@@ -948,11 +893,7 @@ deixar-se colher.
 Subito a virgem tremeu; soltando-se rapida do braço que a cingia,
 travou do arco.
 
-
-
-
 VII
-
 
 Iracema passou entre as arvores, silenciosa como uma sombra: seu olhar
 scintillante coava entre as folhas, quaes frouxos raios de estrellas:
@@ -1042,11 +983,7 @@ arvores: suspirou a virgem.
 
 E afastou-se lentamente.
 
-
-
-
 VIII
-
 
 A alvorada abriu o dia e os olhos do guerreiro branco. A luz da manhã
 dissipou os sonhos da noite: e arrancou de sua alma a lembrança do que
@@ -1143,11 +1080,7 @@ caminhou para elle.
 
 O extrangeiro entrou só na cabana.
 
-
-
-
 IX
-
 
 O somno da manhã pousava nos olhos do Pagé como nevoas de bonança
 pairam ao romper do dia sobre as profundas cavernas da montanha.
@@ -1258,11 +1191,7 @@ mesma flôr.
 A voz de Cauby chamou o extrangeiro. Iracema abraçou para não cahir o
 tronco de uma palmeira.
 
-
-
-
 X
-
 
 Na cabana silenciosa medita o velho Pagé.
 
@@ -1361,11 +1290,7 @@ taba, que o inimigo talvez assaltava já.
 Os guerreiros precipitaram-se, levando por deante o chefe. Com o
 extrangeiro só ficou a filha de Araken.
 
-
-
-
 XI
-
 
 Os guerreiros tabajaras, acorridos á taba, esperavam o inimigo deante
 da caiçara.
@@ -1511,11 +1436,7 @@ O rumor extranho que sahia das profundezas da terra, apagou-se de
 repente: fez-se na cabana tão grande silencio, que ouvia-se pulsar o
 sangue na arteria do guerreiro, e tremer o suspiro no labio da virgem.
 
-
-
-
 XII
-
 
 O dia ennegreceu; era noite já.
 
@@ -1631,11 +1552,7 @@ cantou a inhuma.
 Tornou a sentar-se na rede o velho. A virgem partiu, cerrando a porta da
 cabana.
 
-
-
-
 XIII
-
 
 Avança a filha de Araken nas trevas; pára e escuta.
 
@@ -1769,11 +1686,7 @@ virgem, o antro mudo em principio retroou surdamente.
 Iracema cerra a mão do guerreiro, e o leva á borda do antro. Somem-se
 ambos nas entranhas da terra.
 
-
-
-
 XIV
-
 
 Os guerreiros tabajaras, excitados com as copiosas libações do
 espumante cauim, se inflammam á voz de Irapuam, que tantas vezes os
@@ -1897,11 +1810,7 @@ Pytiguara, prudente como o tamanduá, pensou e respondeu:
 --A sabedoria fallou pela bôcca da virgem tabajara Poty espera o
 nascimento da lua.
 
-
-
-
 XV
-
 
 Nasceu o dia e expirou.
 
@@ -2022,11 +1931,7 @@ A jandaia não tornou á cabana.
 
 Tupan já não tinha sua virgem na terra dos Tabajaras.
 
-
-
-
 XVI
-
 
 O alvo disco da lua surgiu no horisonte.
 
@@ -2153,11 +2058,7 @@ Poty olhou a mata e parou. Martim comprehendeu e disse a Iracema:
 --Teu hospede já não pisa os campos dos Tabajaras. É o instante de
 separar-te d'elle.
 
-
-
-
 XVII
-
 
 Iracema pousou a mão no peito do guerreiro branco:
 
@@ -2288,11 +2189,7 @@ só tem uma vida.
 
 O labio de Iracema não fallou: sorrio.
 
-
-
-
 XVIII
-
 
 Treme a selva com o estrupido da carreira do povo tabajara.
 
@@ -2379,11 +2276,7 @@ O pranto orvalhou seu lindo semblante.
 Martim affastou-se para não envergonhar a tristeza de Iracema. Deixou
 que sua dor núa se banhasse nas lagrimas.
 
-
-
-
 XIX
-
 
 Poty voltou de perseguir o inimigo. Seus olhos se encheram de alegria
 vendo salvo o guerreiro branco.
@@ -2445,11 +2338,7 @@ singelo canto mavioso.
 Martim a recebeu com a alma no semblante; e levando a esposa do lado do
 coração e o amigo do lado da força, voltou ao rancho dos pytiguaras.
 
-
-
-
 XX
-
 
 A lua cresceu.
 
@@ -2548,11 +2437,7 @@ Entretanto Poty, do alto do coqueiro, flexava o saboroso camoropim que
 brincava na pequena bahia do Mundahú; e preparava o moquem para a
 refeição.
 
-
-
-
 XXI
-
 
 Já descia o sol das alturas do céo.
 
@@ -2671,11 +2556,7 @@ taquára.
 Quando veiu a noite os dois esposos armaram a rede em sua nova cabana; e
 o amigo no copiar que olhava para o nascente.
 
-
-
-
 XXII
-
 
 Poty saudou o amigo e faltou assim:
 
@@ -2778,11 +2659,7 @@ Depois que plantou ortiga em frente á porta, para deffender contra os
 animaes a oca abandonada, Poty despediu-se triste d'aquelles logares, e
 tornou com seus companheiros á borda do mar.
 
-
-
-
 XXIII
-
 
 Quatro luas tinham alumiado o ceu depois que Iracema deixara os campos
 do Ipú; e tres depois que ella habitava nas praias do mar a cabana de
@@ -2886,11 +2763,7 @@ alva rede, para que o amor do guerreiro se deleitasse n'ella.
 
 Voltou Poty.
 
-
-
-
 XXIV
-
 
 Foi costume da raça, filha de Tupan, que o guerreiro trouxesse no corpo
 as cores de sua nação. Traçavam em principio negras riscas, sobre o
@@ -2970,11 +2843,7 @@ sombra protege a relva humilde.
 Os fogos da alegria arderam até que veio a manhã; e com elles durou o
 festim dos guerreiros.
 
-
-
-
 XXV
-
 
 A alegria ainda morou na cabana, todo o tempo que as espigas de milho
 levaram a amarellecer.
@@ -3080,11 +2949,7 @@ troa a inubia da guerra.
 Os dois amigos abraçaram-se; e seguiram com o rosto para as bandas do
 nascente.
 
-
-
-
 XXVI
-
 
 Caminhando, caminhando, chegaram os guerreiros á margem de um lago, que
 havia nos taboleiros.
@@ -3193,11 +3058,7 @@ não deixou mais sua senhora; ou porque depois da longa ausencia não se
 fartasse de a vêr, ou porque advinhasse que ella tinha necessidade de
 quem a acompanhasse em sua triste solidão.
 
-
-
-
 XXVII
-
 
 Uma tarde Iracema viu de longe dois guerreiros que avançavam pelas
 praias do mar. Seu coração palpitou mais apressado.
@@ -3247,11 +3108,7 @@ que os fez captivos.
 Ai d'ella!... Sentiu já o golpe no coração e como a copaiba ferida no
 amago, distilla lagrimas em fio.
 
-
-
-
 XXVIII
-
 
 Uma vez o christão ouviu dentro em sua alma o soluço de Iracema: seus
 olhos buscaram em torno e não a viram.
@@ -3327,11 +3184,7 @@ deve cahir, para que a alegria alumie teu seio.
 O christão cingio o talhe da formosa indiana e a estreitou ao peito.
 Seu labio levou ao labio da esposa um beijo, mas aspero e amargo.
 
-
-
-
 XXIX
-
 
 Poty voltou do banho.
 
@@ -3426,11 +3279,7 @@ N'essa hora em que o canto guerreiro dos pytiguaras celebrava a derrota
 dos guaraciabas, o primeiro filho que o sangue da raça branca gerara
 n'essa terra da liberdade, via a luz nos campos da Porangaba.
 
-
-
-
 XXX
-
 
 Iracema cuidou que o seio se lhe rompia: e buscou a margem do rio, onde
 crescia o coqueiro.
@@ -3543,11 +3392,7 @@ morava em teus labios.
 A voz do tabajara enrouquecera; seu passo inquieto volveu a esmo pela
 cabana.
 
-
-
-
 XXXI
-
 
 Iracema cantava docemente, embalando a rêde para acalentar o filho.
 
@@ -3624,11 +3469,7 @@ o labio amargo de tristeza recusava o alimento que devia restaurar-lhe
 as forças. O gemido e o suspiro tinham crestado com o sorriso o sabor
 em sua bocca formosa.
 
-
-
-
 XXXII
-
 
 Descamba o sol.
 
@@ -3731,11 +3572,7 @@ com a alma cheia de tristeza, do coqueiro onde cantava a jandaia. E foi
 assim que veiu a chamar-se Ceará o rio onde crescia o coqueiro, e os
 campos onde serpeia o rio.
 
-
-
-
 XXXIII
-
 
 O cajueiro floresceu quatro vezes depois que Martim partiu das praias do
 Ceará, levando no fragil barco o filho e o cão fiel. A jandaia não
@@ -3794,16 +3631,9 @@ mavioso nome de Iracema.
 
 Tudo passa sobre a terra.
 
-
-
-
 FIM
 
-
-
-
 NOTAS
-
 
 Pag. 10.--_Argumento historico._--Em 1603, Pero Coelho, homem nobre da
 Parahyba, partiu como capitão-mór de descoberta, levando uma força de
@@ -4400,12 +4230,8 @@ exercita a acção do verbo. _Cejana_--significa o que abandona. Junta a
 particula _mo_ do verbo _monhang_, fazer, vem a palavra a significar o
 que fez abandonar ou que foi lugar e occasião de abandonar.
 
-
-
-
 CARTA
 AO DR. JAGUARIBE
-
 
 Eis-me de novo, conforme o promettido.
 
@@ -4630,12 +4456,7 @@ de outros defeitos, que lhe descubram os entendidos.
 
                              J. DE ALENCAR.
 
-
-
 *** END OF THE PROJECT GUTENBERG EBOOK IRACEMA ***
-
-
-    
 
 Updated editions will replace the previous one—the old editions will
 be renamed.
@@ -4658,7 +4479,6 @@ Gutenberg eBooks may be modified and printed and given away—you may
 do practically ANYTHING in the United States with eBooks not protected
 by U.S. copyright law. Redistribution is subject to the trademark
 license, especially commercial redistribution.
-
 
 START: FULL LICENSE
 
@@ -4740,7 +4560,7 @@ performed, viewed, copied or distributed:
     at www.gutenberg.org. If you
     are not located in the United States, you will have to check the laws
     of the country where you are located before using this eBook.
-  
+
 1.E.2. If an individual Project Gutenberg™ electronic work is
 derived from texts not protected by U.S. copyright law (does not
 contain a notice indicating that it is posted with permission of the
@@ -4802,7 +4622,7 @@ provided that:
         Gutenberg Literary Archive Foundation at the address specified in
         Section 4, “Information about donations to the Project Gutenberg
         Literary Archive Foundation.”
-    
+
     • You provide a full refund of any money paid by a user who notifies
         you in writing (or by e-mail) within 30 days of receipt that s/he
         does not agree to the terms of the full Project Gutenberg™
@@ -4810,15 +4630,14 @@ provided that:
         copies of the works possessed in a physical medium and discontinue
         all use of and all access to other copies of Project Gutenberg™
         works.
-    
+
     • You provide, in accordance with paragraph 1.F.3, a full refund of
         any money paid for a work or a replacement copy, if a defect in the
         electronic work is discovered and reported to you within 90 days of
         receipt of the work.
-    
+
     • You comply with all other terms of this agreement for free
         distribution of Project Gutenberg™ works.
-    
 
 1.E.9. If you wish to charge a fee or distribute a Project
 Gutenberg™ electronic work or group of works on different terms than
@@ -4981,5 +4800,4 @@ This website includes information about Project Gutenberg™,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
 

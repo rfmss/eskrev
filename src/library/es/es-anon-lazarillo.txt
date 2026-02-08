@@ -1,5 +1,5 @@
 ﻿The Project Gutenberg eBook of Vida De Lazarillo De Tormes Y De Sus Fortunas Y Adversidades
-    
+
 This ebook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
 whatsoever. You may copy it, give it away or re-use it under the terms
@@ -17,12 +17,7 @@ Release date: September 1, 1995 [eBook #320]
 
 Language: Spanish
 
-
-
 *** START OF THE PROJECT GUTENBERG EBOOK VIDA DE LAZARILLO DE TORMES Y DE SUS FORTUNAS Y ADVERSIDADES ***
-
-
-
 
 LA VIDA DE LAZARILLO DE TORMES Y DE SUS FORTUNAS Y ADVERSIDADES
 
@@ -32,11 +27,7 @@ Edición de Burgos, 1554.
 
 {Interpolaciones de la edición de Alcalá}
 
-
-
-
 Prólogo
-
 
 Yo por bien tengo que cosas tan señaladas, y por ventura nunca oídas ni
 vistas, vengan a noticia de muchos y no se entierren en la sepultura
@@ -77,13 +68,9 @@ nobles estados cuán poco se les debe, pues Fortuna fue con ellos
 parcial, y cuánto más hicieron los que, siéndoles contraria, con fuerza
 y maña remando, salieron a buen puerto.
 
-
-
-
 Tratado Primero
 
 Cuenta Lázaro su vida, y cuyo hijo fue
-
 
 Pues sepa V.M. ante todas cosas que a mí llaman Lázaro de Tormes, hijo
 de Tomé González y de Antona Pérez, naturales de Tejares, aldea de
@@ -576,13 +563,9 @@ puerta de la villa en los pies de un trote, y antes que la noche
 viniese di conmigo en Torrijos. No supe más lo que Dios dél hizo, ni
 curé de lo saber.
 
-
-
-
 Tratado Segundo
 
 Cómo Lázaro se asentó con un clérigo, y de las cosas que con él pasó
-
 
 Otro día, no pareciéndome estar allí seguro, fuime a un lugar que
 llaman Maqueda, adonde me toparon mis pecados con un clérigo que,
@@ -982,13 +965,9 @@ que hayas sido mozo de ciego."
 Y santiguándose de mí como si yo estuviera endemoniado, tórnase a meter
 en casa y cierra su puerta.
 
-
-
-
 Tratado Tercero
 
 Cómo Lázaro se asentó con un escudero, y de lo que le acaeció con él
-
 
 Desta manera me fue forzado sacar fuerzas de flaqueza y, poco a poco,
 con ayuda de las buenas gentes di comigo en esta insigne ciudad de
@@ -1660,14 +1639,10 @@ mi ruin dicha, pues, señalándose todo lo que podría contra mí, hacía
 mis negocios tan al revés, que los amos, que suelen ser dejados de los
 mozos, en mí no fuese ansí, mas que mi amo me dejase y huyese de mí.
 
-
-
-
 Tratado Cuarto
 
 Cómo Lázaro se asentó con un fraile de la Merced, y de lo que le
 acaeció con él
-
 
 Hube de buscar el cuarto, y éste fue un fraile de la Merced, que las
 mujercillas que digo me encaminaron, al cual ellas le llamaban
@@ -1678,13 +1653,9 @@ primeros zapatos que rompí en mi vida, mas no me duraron ocho días, ni
 yo pude con su trote durar más. Y por esto y por otras cosillas que no
 digo, salí dél.
 
-
-
-
 Tratado Quinto
 
 Cómo Lázaro se asentó con un buldero, y de las cosas que con él pasó
-
 
 En el quinto por mi ventura di, que fue un buldero, el más desenvuelto
 y desvengonzado y el mayor echador dellas que jamás yo vi ni ver espero
@@ -1994,13 +1965,9 @@ Finalmente, estuve con este mi quinto amo cerca de cuatro meses, en los
 cuales pasé también hartas fatigas{, aunque me daba bien de comer a
 costa de los curas y otros clérigos do iba a predicar.}
 
-
-
-
 Tratado Sexto
 
 Cómo Lázaro se asentó con un capellán, y lo que con él pasó
-
 
 Después desto, asenté con un maestro de pintar panderos para molelle
 los colores, y también sufrí mil males.
@@ -2022,13 +1989,9 @@ sido frisada, y una espada de las viejas primeras de Cuéllar.
 Desque me vi en hábito de hombre de bien, dije a mi amo se tomase su
 asno, que no quería más seguir aquel oficio.
 
-
-
-
 Tratado Séptimo
 
 Cómo Lázaro se asentó con un alguacil, y de lo que le acaeció con él
-
 
 Despedido del capellán, asenté por hombre de justicia con un alguacil,
 mas muy poco viví con él, por parecerme oficio peligroso; mayormente,
@@ -2123,15 +2086,7 @@ en mi prosperidad y en la cumbre de toda buena fortuna.
 
 [De lo que de aquí adelante me sucediere avisaré a vuestra merced.]
 
-
-
-
-
-
 *** END OF THE PROJECT GUTENBERG EBOOK VIDA DE LAZARILLO DE TORMES Y DE SUS FORTUNAS Y ADVERSIDADES ***
-
-
-    
 
 Updated editions will replace the previous one—the old editions will
 be renamed.
@@ -2154,7 +2109,6 @@ Gutenberg eBooks may be modified and printed and given away—you may
 do practically ANYTHING in the United States with eBooks not protected
 by U.S. copyright law. Redistribution is subject to the trademark
 license, especially commercial redistribution.
-
 
 START: FULL LICENSE
 
@@ -2236,7 +2190,7 @@ performed, viewed, copied or distributed:
     at www.gutenberg.org. If you
     are not located in the United States, you will have to check the laws
     of the country where you are located before using this eBook.
-  
+
 1.E.2. If an individual Project Gutenberg™ electronic work is
 derived from texts not protected by U.S. copyright law (does not
 contain a notice indicating that it is posted with permission of the
@@ -2298,7 +2252,7 @@ provided that:
         Gutenberg Literary Archive Foundation at the address specified in
         Section 4, “Information about donations to the Project Gutenberg
         Literary Archive Foundation.”
-    
+
     • You provide a full refund of any money paid by a user who notifies
         you in writing (or by e-mail) within 30 days of receipt that s/he
         does not agree to the terms of the full Project Gutenberg™
@@ -2306,15 +2260,14 @@ provided that:
         copies of the works possessed in a physical medium and discontinue
         all use of and all access to other copies of Project Gutenberg™
         works.
-    
+
     • You provide, in accordance with paragraph 1.F.3, a full refund of
         any money paid for a work or a replacement copy, if a defect in the
         electronic work is discovered and reported to you within 90 days of
         receipt of the work.
-    
+
     • You comply with all other terms of this agreement for free
         distribution of Project Gutenberg™ works.
-    
 
 1.E.9. If you wish to charge a fee or distribute a Project
 Gutenberg™ electronic work or group of works on different terms than
@@ -2477,5 +2430,4 @@ This website includes information about Project Gutenberg™,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
 

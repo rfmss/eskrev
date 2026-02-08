@@ -1,13 +1,9 @@
 ﻿The Project Gutenberg EBook The Importance of Being Earnest by Oscar Wilde
 
-
-
 This eBook is for the use of anyone anywhere at no cost and with almost no
 restrictions whatsoever. You may copy it, give it away or re-use it under
 the terms of the Project Gutenberg License included with this eBook or
 online at http://www.gutenberg.org/license
-
-
 
 Title: The Importance of Being Earnest
 
@@ -17,11 +13,7 @@ Release Date: August 2008 [Ebook #26226]
 
 Language: English
 
-
-
 ***START OF THE PROJECT GUTENBERG EBOOK The Importance of Being Earnest***
-
-
 
 This audio reading of The Importance of Being Earnest is read by
 
@@ -35,10 +27,7 @@ Hon. Gwendolen Fairfax - Read by Deana Duncan
 Cecily Cardew - Read by Kara Shallenberg
 Miss Prism, Governess - Read by Sureka
 Narrator - Read by Betsie Bush
-Project Editor - Paula Berinstein 
-
-
-
+Project Editor - Paula Berinstein
 
 Contents
 
@@ -50,9 +39,6 @@ Contents
 
     * Act 3 - 00:30:22
       Read by: Various readers
-
-
-
 
 Librivox Audio Recording Public Domain Certification:
 
@@ -85,9 +71,6 @@ built upon, or otherwise exploited by anyone for any purpose, commercial
 or non-commercial, and in any way, including by methods that have not
 yet been invented or conceived.
 
-
-
-
 Audio formats available:
 
 64kbit MP3 - MP3 subfolder
@@ -95,14 +78,9 @@ Audio formats available:
 Apple AAC audiobook (16kbit mono) - M4B subfolder
 Speex - SPX subfolder
 
-
-
 ***END OF THE PROJECT GUTENBERG EBOOK The Importance of Being Earnest***
 
-
-
 CREDITS
-
 
 August 2008
 
@@ -110,18 +88,13 @@ August 2008
             Librivox (www.librivox.org) and
             Joshua Hutchinson
 
-
-
 A WORD FROM PROJECT GUTENBERG
-
 
 This file should be named 26226.txt.
 
 This and all associated files of various formats will be found in:
 
-
     http://www.gutenberg.org/dirs/2/6/2/2/26226/
-
 
 Updated editions will replace the previous one — the old editions will be
 renamed.
@@ -142,10 +115,7 @@ performances and research. They may be modified and printed and given away
 Redistribution is subject to the trademark license, especially commercial
 redistribution.
 
-
-
 THE FULL PROJECT GUTENBERG LICENSE
-
 
 _Please read this before you distribute or use this work._
 
@@ -156,15 +126,11 @@ you agree to comply with all the terms of the Full Project Gutenberg-tm
 License (available with this file or online at
 http://www.gutenberg.org/license).
 
-
 Section 1.
-
 
 General Terms of Use & Redistributing Project Gutenberg-tm electronic works
 
-
 1.A.
-
 
 By reading or using any part of this Project Gutenberg-tm electronic work,
 you indicate that you have read, understand, agree to and accept all the
@@ -177,9 +143,7 @@ and you do not agree to be bound by the terms of this agreement, you may
 obtain a refund from the person or entity to whom you paid the fee as set
 forth in paragraph 1.E.8.
 
-
 1.B.
-
 
 "Project Gutenberg" is a registered trademark. It may only be used on or
 associated in any way with an electronic work by people who agree to be
@@ -190,9 +154,7 @@ a lot of things you can do with Project Gutenberg-tm electronic works if you
 follow the terms of this agreement and help preserve free future access to
 Project Gutenberg-tm electronic works. See paragraph 1.E below.
 
-
 1.C.
-
 
 The Project Gutenberg Literary Archive Foundation ("the Foundation" or
 PGLAF), owns a compilation copyright in the collection of Project
@@ -210,9 +172,7 @@ easily comply with the terms of this agreement by keeping this work in the
 same format with its attached full Project Gutenberg-tm License when you
 share it without charge with others.
 
-
 1.D.
-
 
 The copyright laws of the place where you are located also govern what you
 can do with this work. Copyright laws in most countries are in a constant
@@ -223,15 +183,11 @@ derivative works based on this work or any other Project Gutenberg-tm work.
 The Foundation makes no representations concerning the copyright status of
 any work in any country outside the United States.
 
-
 1.E.
-
 
 Unless you have removed all references to Project Gutenberg:
 
-
 1.E.1.
-
 
 The following sentence, with active links to, or other immediate access
 to, the full Project Gutenberg-tm License must appear prominently whenever
@@ -240,15 +196,12 @@ any copy of a Project Gutenberg-tm work (any work on which the phrase
 is associated) is accessed, displayed, performed, viewed, copied or
 distributed:
 
-
     This eBook is for the use of anyone anywhere at no cost and with
     almost no restrictions whatsoever. You may copy it, give it away
     or re-use it under the terms of the Project Gutenberg License
     included with this eBook or online at http://www.gutenberg.org
 
-
 1.E.2.
-
 
 If an individual Project Gutenberg-tm electronic work is derived from the
 public domain (does not contain a notice indicating that it is posted with
@@ -260,9 +213,7 @@ must comply either with the requirements of paragraphs 1.E.1 through 1.E.7
 or obtain permission for the use of the work and the Project Gutenberg-tm
 trademark as set forth in paragraphs 1.E.8 or 1.E.9.
 
-
 1.E.3.
-
 
 If an individual Project Gutenberg-tm electronic work is posted with the
 permission of the copyright holder, your use and distribution must comply
@@ -271,26 +222,20 @@ by the copyright holder. Additional terms will be linked to the Project
 Gutenberg-tm License for all works posted with the permission of the
 copyright holder found at the beginning of this work.
 
-
 1.E.4.
-
 
 Do not unlink or detach or remove the full Project Gutenberg-tm License
 terms from this work, or any files containing a part of this work or any
 other work associated with Project Gutenberg-tm.
 
-
 1.E.5.
-
 
 Do not copy, display, perform, distribute or redistribute this electronic
 work, or any part of this electronic work, without prominently displaying
 the sentence set forth in paragraph 1.E.1 with active links or immediate
 access to the full terms of the Project Gutenberg-tm License.
 
-
 1.E.6.
-
 
 You may convert to and distribute this work in any binary, compressed,
 marked up, nonproprietary or proprietary form, including any word
@@ -304,17 +249,13 @@ request, of the work in its original "Plain Vanilla ASCII" or other form.
 Any alternate format must include the full Project Gutenberg-tm License as
 specified in paragraph 1.E.1.
 
-
 1.E.7.
-
 
 Do not charge a fee for access to, viewing, displaying, performing,
 copying or distributing any Project Gutenberg-tm works unless you comply
 with paragraph 1.E.8 or 1.E.9.
 
-
 1.E.8.
-
 
 You may charge a reasonable fee for copies of or providing access to or
 distributing Project Gutenberg-tm electronic works provided that
@@ -347,9 +288,7 @@ distributing Project Gutenberg-tm electronic works provided that
     - You comply with all other terms of this agreement for free
       distribution of Project Gutenberg-tm works.
 
-
 1.E.9.
-
 
 If you wish to charge a fee or distribute a Project Gutenberg-tm electronic
 work or group of works on different terms than are set forth in this
@@ -358,12 +297,9 @@ Gutenberg Literary Archive Foundation and Michael Hart, the owner of the
 Project Gutenberg-tm trademark. Contact the Foundation as set forth in
 Section 3 below.
 
-
 1.F.
 
-
 1.F.1.
-
 
 Project Gutenberg volunteers and employees expend considerable effort to
 identify, do copyright research on, transcribe and proofread public domain
@@ -375,9 +311,7 @@ or other intellectual property infringement, a defective or damaged disk
 or other medium, a computer virus, or computer codes that damage or cannot
 be read by your equipment.
 
-
 1.F.2.
-
 
 LIMITED WARRANTY, DISCLAIMER OF DAMAGES — Except for the "Right of
 Replacement or Refund" described in paragraph 1.F.3, the Project Gutenberg
@@ -392,9 +326,7 @@ WILL NOT BE LIABLE TO YOU FOR ACTUAL, DIRECT, INDIRECT, CONSEQUENTIAL,
 PUNITIVE OR INCIDENTAL DAMAGES EVEN IF YOU GIVE NOTICE OF THE POSSIBILITY
 OF SUCH DAMAGE.
 
-
 1.F.3.
-
 
 LIMITED RIGHT OF REPLACEMENT OR REFUND — If you discover a defect in this
 electronic work within 90 days of receiving it, you can receive a refund
@@ -408,18 +340,14 @@ to give you a second opportunity to receive the work electronically in
 lieu of a refund. If the second copy is also defective, you may demand a
 refund in writing without further opportunities to fix the problem.
 
-
 1.F.4.
-
 
 Except for the limited right of replacement or refund set forth in
 paragraph 1.F.3, this work is provided to you ’AS-IS,’ WITH NO OTHER
 WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
 WARRANTIES OF MERCHANTIBILITY OR FITNESS FOR ANY PURPOSE.
 
-
 1.F.5.
-
 
 Some states do not allow disclaimers of certain implied warranties or the
 exclusion or limitation of certain types of damages. If any disclaimer or
@@ -429,9 +357,7 @@ the maximum disclaimer or limitation permitted by the applicable state
 law. The invalidity or unenforceability of any provision of this agreement
 shall not void the remaining provisions.
 
-
 1.F.6.
-
 
 INDEMNITY — You agree to indemnify and hold the Foundation, the trademark
 owner, any agent or employee of the Foundation, anyone providing copies of
@@ -444,12 +370,9 @@ this or any Project Gutenberg-tm work, (b) alteration, modification, or
 additions or deletions to any Project Gutenberg-tm work, and (c) any Defect
 you cause.
 
-
 Section  2.
 
-
            Information about the Mission of Project Gutenberg-tm
-
 
 Project Gutenberg-tm is synonymous with the free distribution of electronic
 works in formats readable by the widest variety of computers including
@@ -467,12 +390,9 @@ Gutenberg Literary Archive Foundation and how your efforts and donations
 can help, see Sections 3 and 4 and the Foundation web page at
 http://www.pglaf.org.
 
-
 Section 3.
 
-
    Information about the Project Gutenberg Literary Archive Foundation
-
 
 The Project Gutenberg Literary Archive Foundation is a non profit
 501(c)(3) educational corporation organized under the laws of the state of
@@ -493,18 +413,14 @@ http://www.pglaf.org
 
 For additional contact information:
 
-
     Dr. Gregory B. Newby
     Chief Executive and Director
     gbnewby@pglaf.org
 
-
 Section 4.
-
 
   Information about Donations to the Project Gutenberg Literary Archive
                                 Foundation
-
 
 Project Gutenberg-tm depends upon and cannot survive without wide spread
 public support and donations to carry out its mission of increasing the
@@ -536,12 +452,9 @@ and addresses. Donations are accepted in a number of other ways including
 checks, online payments and credit card donations. To donate, please
 visit: http://www.gutenberg.org/fundraising/donate
 
-
 Section 5.
 
-
       General Information About Project Gutenberg-tm electronic works.
-
 
 Professor Michael S. Hart is the originator of the Project Gutenberg-tm
 concept of a library of electronic works that could be freely shared with
@@ -564,18 +477,11 @@ new filenames and etext numbers.
 
 Most people start at our Web site which has the main PG search facility:
 
-
     http://www.gutenberg.org
-
 
 This Web site includes information about Project Gutenberg-tm, including how
 to make donations to the Project Gutenberg Literary Archive Foundation,
 how to help produce our new eBooks, and how to subscribe to our email
 newsletter to hear about new eBooks.
-
-
-
-
-
 
 ***FINIS***

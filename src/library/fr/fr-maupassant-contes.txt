@@ -1,5 +1,5 @@
 ﻿The Project Gutenberg eBook of Contes du jour et de la nuit
-    
+
 This ebook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
 whatsoever. You may copy it, give it away or re-use it under the terms
@@ -22,14 +22,9 @@ Credits: Produced by Miranda van de Heijning, Chuck Greif and the Online
         generously made available by the Bibliothèque nationale de France
         (BnF/Gallica)
 
-
 *** START OF THE PROJECT GUTENBERG EBOOK CONTES DU JOUR ET DE LA NUIT ***
 
 [Illustration]
-
-
-
-
 
 GUY DE MAUPASSANT
 
@@ -42,9 +37,6 @@ C. MARPON & E. FLAMMARION
 ÉDITEURS
 
 26 Rue RACINE, à PARIS
-
-
-
 
 CONTES DU JOUR ET DE LA NUIT
 
@@ -100,9 +92,6 @@ C. MARPON ET E. FLAMMARION
 Tous droits réservés.
 
 [Illustration]
-
-
-
 
 LE CRIME AU PÈRE BONIFACE
 
@@ -360,9 +349,6 @@ criant, de loin, de grasses plaisanteries de caserne, regardaient
 s'éloigner son képi noir, sur la mer tranquille des récoltes.
 
 [Illustration]
-
-
-
 
 [Illustration]
 
@@ -644,9 +630,6 @@ garçon... eh bien! je pensais... à celle qu'il avait violée... et
 Et Mme Margot ne répondit pas. Elle regardait droit devant elle, d'un
 oeil fixe et singulier les deux boutons luisants de la livrée, avec ce
 sourire de sphinx qu'ont parfois les femmes.
-
-
-
 
 LE PÈRE
 
@@ -1095,9 +1078,6 @@ Mais François Tessier, brusquement, le remit à terre. Il cria:
 
 Et il s'enfuit comme un voleur.
 
-
-
-
 L'AVEU
 
 [Illustration]
@@ -1398,9 +1378,6 @@ remit en marche d'un pas lourd, en murmurant:
 --Pour sûr que j'y dirai point.
 
 [Illustration]
-
-
-
 
 LA PARURE
 
@@ -1844,9 +1821,6 @@ plus cinq cents francs!...
 
 [Illustration]
 
-
-
-
 LE BONHEUR
 
 C'était l'heure du thé, avant l'entrée des lampes. La villa dominait la
@@ -2151,9 +2125,6 @@ pour raconter elle-même l'histoire des deux humbles amants qu'abritait
 son rivage.
 
 [Illustration]
-
-
-
 
 LE VIEUX
 
@@ -2527,9 +2498,6 @@ Et le mari, plus résigné, répondit:
 --Ça n' serait pas à r'faire tous les jours.
 
 [Illustration]
-
-
-
 
 UN LÂCHE
 
@@ -2924,9 +2892,6 @@ mots:
 
 «Ceci est mon testament.»
 
-
-
-
 L'IVROGNE
 
 [Illustration: L'IVROGNE]
@@ -3088,11 +3053,7 @@ Lorsqu'ils furent dans la rue, Mathurin ferma la boutique; puis il dit:
 
 Et il disparut dans les ténèbres.
 
-
-
-
 II
-
 
 Jérémie fit trois pas, puis oscilla, étendit les mains, rencontra un mur
 qui le soutint debout et se remit en marche en trébuchant. Par moments
@@ -3192,9 +3153,6 @@ aperçut Jérémie qui ronflait sur le sol, où gisaient les débris d'une
 chaise, et, dans le lit, une bouillie de chair et de sang.
 
 [Illustration]
-
-
-
 
 UNE VENDETTA
 
@@ -3401,9 +3359,6 @@ nuit-là.
 
 [Illustration]
 
-
-
-
 COCO
 
 [Illustration]
@@ -3475,7 +3430,6 @@ Lucas, il économisait sur la nourriture du cheval, ne lui versant qu'une
 demi-mesure, ménageant sa litière et son foin. Et une haine grandissait
 en son esprit confus d'enfant, une haine de paysan rapace, de paysan
 sournois, féroce, brutal et lâche.
-
 
 Lorsque revint l'été, il lui fallut aller _remuer_ la bête dans sa côte.
 C'était loin. Le goujat, plus furieux chaque matin, partait de son pas
@@ -3583,9 +3537,6 @@ faim.
 
 Et l'herbe poussa drue, verdoyante, vigoureuse, nourrie par le pauvre
 corps.
-
-
-
 
 LA MAIN
 
@@ -3895,9 +3846,6 @@ Et le juge d'instruction, souriant toujours, conclut:
 
 [Illustration]
 
-
-
-
 LE GUEUX
 
 [Illustration: LE GUEUX]
@@ -4123,9 +4071,6 @@ Mais, quand on vint pour l'interroger, au petit matin, on le trouva
 mort, sur le sol. Quelle surprise!
 
 [Illustration]
-
-
-
 
 UN PARRICIDE
 
@@ -4385,9 +4330,6 @@ Voilà.--Maintenant, jugez-moi.
 L'accusé se rassit. Devant cette révélation, l'affaire a été reportée à
 la session suivante. Elle passera bientôt. Si nous étions jurés, que
 ferions-nous de ce parricide?
-
-
-
 
 LE PETIT
 
@@ -4652,9 +4594,6 @@ petit.»
 
 [Illustration]
 
-
-
-
 LA ROCHE AUX GUILLEMOTS
 
 [Illustration]
@@ -4859,9 +4798,6 @@ croque-mort:
 --Eh bien! mon ami, ce sera pour après-demain.
 
 [Illustration]
-
-
-
 
 TOMBOUCTOU
 
@@ -5195,9 +5131,6 @@ Tombouctou est un commencement de revanche.
 
 [Illustration]
 
-
-
-
 HISTOIRE VRAIE
 
 [Illustration]
@@ -5444,9 +5377,6 @@ un verre d'eau-de-vie:
 
 --Tout ce que vous voudrez, mais des femmes comme ça, il n'en faut pas!
 
-
-
-
 ADIEU
 
 [Illustration]
@@ -5642,9 +5572,6 @@ Le soir, tout seul, chez moi, je me regardai longtemps dans ma glace,
 très longtemps. Et je finis par me rappeler ce que j'avais été, par
 revoir en pensée, ma moustache brune et mes cheveux noirs, et la
 physionomie jeune de mon visage. Maintenant j'étais vieux. Adieu.
-
-
-
 
 SOUVENIR
 
@@ -5969,9 +5896,6 @@ sortes de folies... et même la plus grande de toutes.
 
 Ce fut mon premier adultère!
 
-
-
-
 LA CONFESSION
 
 [Illustration]
@@ -6076,8 +6000,6 @@ miséricorde.
 
 Et Marguerite se mit à parler. Les mots lui sortaient de la gorge un à
 un, rauques, scandés, comme exténués.
-
-
 
 --Pardon, pardon, grande soeur, pardonne-moi! Oh! si tu savais comme
 j'ai eu peur de ce moment-là, toute ma vie!...
@@ -6194,9 +6116,6 @@ balbutiant:
 
 --Je te pardonne, je te pardonne, petite....
 
-
-
-
 TABLE DES MATIÈRES
 
 Le Crime au père Boniface. 3
@@ -6243,18 +6162,9 @@ La Confession 343
 
 PARIS.--IMP. G. MARPON ET E. FLAMMARION, RUE RACINE, 26.
 
-
-
-
-
 End of Project Gutenberg's Contes du jour et de la nuit, by Guy de Maupassant
 
-
-
 *** END OF THE PROJECT GUTENBERG EBOOK CONTES DU JOUR ET DE LA NUIT ***
-
-
-    
 
 Updated editions will replace the previous one—the old editions will
 be renamed.
@@ -6277,7 +6187,6 @@ Gutenberg eBooks may be modified and printed and given away—you may
 do practically ANYTHING in the United States with eBooks not protected
 by U.S. copyright law. Redistribution is subject to the trademark
 license, especially commercial redistribution.
-
 
 START: FULL LICENSE
 
@@ -6359,7 +6268,7 @@ performed, viewed, copied or distributed:
     at www.gutenberg.org. If you
     are not located in the United States, you will have to check the laws
     of the country where you are located before using this eBook.
-  
+
 1.E.2. If an individual Project Gutenberg™ electronic work is
 derived from texts not protected by U.S. copyright law (does not
 contain a notice indicating that it is posted with permission of the
@@ -6421,7 +6330,7 @@ provided that:
         Gutenberg Literary Archive Foundation at the address specified in
         Section 4, “Information about donations to the Project Gutenberg
         Literary Archive Foundation.”
-    
+
     • You provide a full refund of any money paid by a user who notifies
         you in writing (or by e-mail) within 30 days of receipt that s/he
         does not agree to the terms of the full Project Gutenberg™
@@ -6429,15 +6338,14 @@ provided that:
         copies of the works possessed in a physical medium and discontinue
         all use of and all access to other copies of Project Gutenberg™
         works.
-    
+
     • You provide, in accordance with paragraph 1.F.3, a full refund of
         any money paid for a work or a replacement copy, if a defect in the
         electronic work is discovered and reported to you within 90 days of
         receipt of the work.
-    
+
     • You comply with all other terms of this agreement for free
         distribution of Project Gutenberg™ works.
-    
 
 1.E.9. If you wish to charge a fee or distribute a Project
 Gutenberg™ electronic work or group of works on different terms than
@@ -6600,5 +6508,4 @@ This website includes information about Project Gutenberg™,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
 

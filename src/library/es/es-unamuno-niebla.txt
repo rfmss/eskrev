@@ -1,5 +1,5 @@
 ﻿The Project Gutenberg eBook of Niebla (Nivola)
-    
+
 This ebook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
 whatsoever. You may copy it, give it away or re-use it under the terms
@@ -22,7 +22,6 @@ Credits: Produced by Roberto Marabini, Ramon Pajares Box and the
         (This file was produced from images generously made
         available by The Internet Archive/Canadian Libraries)
 
-
 *** START OF THE PROJECT GUTENBERG EBOOK NIEBLA (NIVOLA) ***
 
 NOTA DE TRANSCRIPCIÓN
@@ -40,16 +39,9 @@ NOTA DE TRANSCRIPCIÓN
 
   * En la p. 268, una línea que falta ha sido tomada de otra edición.
 
-
-
-
 NIEBLA
 
-
-
-
   MIGUEL DE UNAMUNO
-
 
   :: NIEBLA ::
   (NIVOLA)
@@ -59,7 +51,6 @@ NIEBLA
 
   [Ilustración]
 
-
   RENACIMIENTO
 
   MADRID                BUENOS AIRES
@@ -67,19 +58,11 @@ NIEBLA
 
   1914
 
-
-
-
   ES PROPIEDAD
-
 
   IMPRENTA RENACIMIENTO.—SAN MARCOS, 42.
 
-
-
-
 PRÓLOGO
-
 
 Se empeña don Miguel de Unamuno en que ponga yo un prólogo a este
 su libro en que se relata la tan lamentable historia de mi buen
@@ -360,11 +343,7 @@ Y con esto acabo.
 
   VÍCTOR GOTI.
 
-
-
-
 POST-PRÓLOGO
-
 
 De buena gana discutiría aquí alguna de las afirmaciones de mi
 prologuista, Víctor Goti, pero como estoy en el secreto de su
@@ -404,16 +383,9 @@ trabajo.
 
   M. DE U.
 
-
-
-
 NIEBLA
 
-
-
-
 I
-
 
 Al aparecer Augusto a la puerta de su casa extendió el brazo derecho,
 con la mano palma abajo y abierta, y dirigiendo los ojos al cielo
@@ -590,11 +562,7 @@ no es hogar. Hogar... hogar... ¡Cenicero más bien! ¡Ay, mi Eugenia!»
 
 Y se volvió Augusto a su casa.
 
-
-
-
 II
-
 
 Al abrirle el criado la puerta...
 
@@ -820,11 +788,7 @@ venceré. Tengo el secreto de la victoria. ¡Ah, Eugenia, mi Eugenia!»
 Y se encontró a la puerta del Casino, donde ya Víctor le esperaba
 para echar la cotidiana partida de ajedrez.
 
-
-
-
 III
-
 
 —Hoy te retrasaste un poco, chico—dijo Víctor a Augusto—, ¡tú, tan
 puntual siempre!
@@ -966,11 +930,7 @@ la tierra.
 «¡Pero esos diminutivos—pensó Augusto, esos terribles diminutivos!» Y
 salió a la calle.
 
-
-
-
 IV
-
 
 «¿Por qué el diminutivo es señal de cariño?—iba diciéndose Augusto
 camino de su casa—. ¿Es acaso que el amor achica la cosa amada?
@@ -1155,11 +1115,7 @@ y conmigo!»
 
 Y quedóse dormido.
 
-
-
-
 V
-
 
 Cruzaba las nubes, águila refulgente, con las poderosas alas
 perladas de rocío, fijos los ojos de presa en la niebla solar,
@@ -1444,11 +1400,7 @@ Fué melancólico el almuerzo de aquel día, melancólico el paseo, la
 partida de ajedrez melancólica y melancólico el sueño de aquella
 noche.
 
-
-
-
 VI
-
 
 «Tengo que tomar alguna determinación—se decía Augusto paseándose
 frente a la casa número 58 de la Avenida de la Alameda—; esto no
@@ -1691,11 +1643,7 @@ te presenta un gran partido.
 
 —¡Bueno, se verá!—terminó la tía.
 
-
-
-
 VII
-
 
 «¡Ay, Orfeo!—decía ya en su casa Augusto, dándole la leche a aquél—.
 ¡Ay, Orfeo! Di el gran paso, el paso decisivo; entré en su hogar,
@@ -1778,11 +1726,7 @@ Como Orfeo no había visto nunca un telar, es muy difícil que
 entendiera a su amo. Pero mirándole a los ojos mientras hablaba
 adivinaba su sentir.
 
-
-
-
 VIII
-
 
 Augusto temblaba y sentíase como en un potro de suplicio en su
 asiento; entrábanle furiosas ganas de levantarse de él, pasearse
@@ -2100,11 +2044,7 @@ Al servirle la comida su fiel Liduvina se le quedó mirando.
 Y los dos miraron al suelo, como si el secreto de la felicidad
 estuviese debajo de él.
 
-
-
-
 IX
-
 
 Al día siguiente de esto hablaba Eugenia en el reducido cuchitril
 de una portería con un joven, mientras la portera había salido
@@ -2243,11 +2183,7 @@ un organillo de manubrio encentaba una rabiosa polca. «¡Horror!
 ¡horror! ¡horror!», se dijo la muchacha, y más que se fué huyó calle
 abajo.
 
-
-
-
 X
-
 
 Como Augusto necesitaba confidencia se dirigió al Casino, a ver a
 Víctor, su amigote, al día siguiente de aquella su visita a casa de
@@ -2479,11 +2415,7 @@ dicho ni hecho todavía ninguna... me parece...
 
 Liduvina se calló, y Augusto se dijo: «¿Estaré de veras enamorado?»
 
-
-
-
 XI
-
 
 Cuando llamó aquel otro día Augusto a casa de don Fermín y doña
 Ermelinda, la criada le pasó a la sala diciéndole: «Ahora aviso».
@@ -2752,11 +2684,7 @@ Y se salió solemnemente. Y no bien hubo salido gritó doña Ermelinda:
 
 —¡Chiquilla!
 
-
-
-
 XII
-
 
 —Señorito—entró un día después a decir a Augusto Liduvina—, ahí está
 la del planchado.
@@ -2964,11 +2892,7 @@ el sueño común?»
 
 Y cayó en el sueño.
 
-
-
-
 XIII
-
 
 Pocos días después de esto entró una mañana Liduvina en el cuarto de
 Augusto diciéndole que una señorita preguntaba por él.
@@ -3197,11 +3121,7 @@ Cuando al cabo Augusto se despidió de don Avito dirigióse al Casino.
 Quería despejar la niebla de su cabeza y la de su corazón echando una
 partida de ajedrez con Víctor.
 
-
-
-
 XIV
-
 
 Notó Augusto que algo insólito le ocurría a su amigo Víctor; no
 acertaba ninguna jugada, estaba displicente y silencioso.
@@ -3486,11 +3406,7 @@ cuerpo; salían de mi alma. El alma es un manantial que sólo se revela
 en lágrimas. Hasta que se llora de veras no se sabe si se tiene o no
 alma. Y ahora vamos a dormir, Orfeo, si es que nos dejan.»
 
-
-
-
 XV
-
 
 —Pero ¿qué has hecho, chiquilla?—preguntaba doña Ermelinda a su
 sobrina.
@@ -3733,11 +3649,7 @@ Doña Ermelinda llamó a la criada, a la que dijo que llamase a
 Eugenia, pues don Augusto deseaba hablar con ella. «La señorita acaba
 de salir», contestó la criada.
 
-
-
-
 XVI
-
 
 —Eres imposible, Mauricio—le decía Eugenia a su novio, en el
 cuchitril aquel de la portería—, completamente imposible, y si sigues
@@ -3945,11 +3857,7 @@ pero me veré libre.
 —¡Quién sabe!... Pero lo dudo, porque tiene un geniecito... Y hoy la
 ofendí, la verdad, la ofendí.
 
-
-
-
 XVII
-
 
 —¿Te acuerdas, Augusto—le decía Víctor—, de aquel don Eloíno
 Rodríguez de Alburquerque y Álvarez de Castro?
@@ -4248,11 +4156,7 @@ aguardarse...
 
 —Voy allá.
 
-
-
-
 XVIII
-
 
 —¡Hola, Rosarito!—exclamó Augusto apenas la vio.
 
@@ -4457,11 +4361,7 @@ más. ¿Y el fisiológico? ¡Bah, eso fisiológico no es amor ni cosa que
 lo valga! ¡Por eso es verdad! Pero... vamos, Orfeo, vamos a cenar.
 ¡Esto sí que es verdad!»
 
-
-
-
 XIX
-
 
 A los dos días de esto anunciáronle a Augusto que una señora deseaba
 verle y hablarle. Salió a recibirla y se encontró con doña Ermelinda,
@@ -4737,11 +4637,7 @@ juega como con vosotros!»
 
 Levantóse y empezó a recorrer calles como un sonámbulo.
 
-
-
-
 XX
-
 
 Emprendería el viaje, ¿sí o no? Ya lo había anunciado, primero a
 Rosarito, sin saber bien lo que se decía, por decir algo, o más bien
@@ -5129,11 +5025,7 @@ sino el que le hacen los demás.
 —Así me llamaba el último amo que tuve antes. Pero yo creo lo que le
 ha dicho mi Liduvina, que usted debe dedicarse a la política.
 
-
-
-
 XXI
-
 
 —Sí, tiene usted razón—le decía don Antonio a Augusto aquella tarde,
 en el Casino, hablando a solas, en un rinconcito—, tiene usted razón,
@@ -5332,11 +5224,7 @@ mujercita ya; el mejor día se nos casa... Con mi nombre, por
 supuesto, con mi nombre, y haga luego la ley lo que quiera. Es mi
 hija y no del ladrón; yo la he criado.
 
-
-
-
 XXII
-
 
 —Y bien, ¿qué?—le preguntaba Augusto a Víctor—¿cómo habéis recibido
 al intruso?
@@ -5496,11 +5384,7 @@ razón—replicó Augusto—, y por filósofo, ¡ahí va, toma!», y le dio
 una peseta, que el buen hombre se fué al punto a gastar a la taberna
 próxima.
 
-
-
-
 XXIII
-
 
 El pobre Augusto estaba consternado. No era sólo que se encontrase,
 como el asno de Buridán, entre Eugenia y Rosario; era que aquello de
@@ -5880,11 +5764,7 @@ usted en una.
 
 —Tal es mi propósito.
 
-
-
-
 XXIV
-
 
 Cuando salió Augusto de su entrevista con Paparrigópulos íbase
 diciendo: «De modo que tengo que renunciar a una de las dos o buscar
@@ -6120,11 +6000,7 @@ Después de haberse desahogado con estas meditaciones callejeras,
 por en medio de la atareada muchedumbre indiferente a sus cuitas,
 sintióse ya tranquilo y se volvió a casa.
 
-
-
-
 XXV
-
 
 Fué Augusto a ver a Víctor, a acariciar al tardío hijo de éste, a
 recrearse en la contemplación de la nueva felicidad de aquel hogar,
@@ -6294,11 +6170,7 @@ justificar lo que yo estoy haciendo con ellos! Así cuando uno busca
 razones para justificarse no hace en rigor otra cosa que justificar a
 Dios. Y yo soy el Dios de estos dos pobres diablos_ nivolescos.»
 
-
-
-
 XXVI
-
 
 Augusto se dirigió a casa de Eugenia dispuesto a tentar la última
 experiencia psicológica, la definitiva, aunque temiendo que ella le
@@ -6457,11 +6329,7 @@ celebrarlo...—dijo doña Ermelinda.
 
 —¡Y qué remedio!—se le escapó al pobre rana.
 
-
-
-
 XXVII
-
 
 Empezó entonces para Augusto una nueva vida. Casi todo el día se lo
 pasaba en casa de su novia y estudiando no psicología, sino estética.
@@ -6493,7 +6361,6 @@ lo aborrezco. ¡Me ha costado tantas molestias!
 Sentóse Eugenia a tocar el piano y mientras lo tocaba escribió
 Augusto esto:
 
-
       Mi alma vagaba lejos de mi cuerpo
     en las brumas perdida de la idea,
     perdida allá en las notas de la música
@@ -6518,7 +6385,6 @@ Augusto esto:
     desuncidos espíritu y materia,
     perderíame en brumas celestiales
     y del profundo en la voraz tiniebla!
-
 
 —¿Qué te parecen?—le preguntó Augusto luego que se los hubo leído.
 
@@ -6626,11 +6492,7 @@ empleo.
 Y, en efecto, pudo encontrarle el empleo y conseguir que le
 destinasen bastante lejos.
 
-
-
-
 XXVIII
-
 
 Torció el gesto Augusto cuando una mañana le anunció Liduvina que un
 joven le esperaba y se encontró luego con que era Mauricio. Estuvo
@@ -6815,11 +6677,7 @@ fuera quien de casa te echa!»
 Y le apretó contra su seno, y el perro, que parecía en efecto llorar,
 le lamía la barba.
 
-
-
-
 XXIX
-
 
 Todo estaba dispuesto ya para la boda. Augusto la quería recojida y
 modesta, pero ella, su mujer futura, parecía preferir que se le diese
@@ -7013,11 +6871,7 @@ monólogo, sintió como si se le acorchase el alma y rompió a llorar.
 Y lloró, lloró, lloró. Y en el llanto silencioso se le derretía el
 pensamiento.
 
-
-
-
 XXX
-
 
 Víctor encontró a Augusto hundido en un rincón de un sofá, mirando
 más abajo del suelo.
@@ -7302,11 +7156,7 @@ no piensa no es.
 Y se salió Víctor, dejando a Augusto perdido y confundido en sus
 cavilaciones.
 
-
-
-
 XXXI
-
 
 Aquella tempestad del alma de Augusto terminó, como en terrible
 calma, en decisión de suicidarse. Quería acabar consigo mismo, que
@@ -7678,11 +7528,7 @@ Y le empujé a la puerta, por la que salió cabizbajo. Luego se tanteó
 como si dudase ya de su propia existencia. Yo me enjugué una lágrima
 furtiva.
 
-
-
-
 XXXII
-
 
 Aquella misma noche se partió Augusto de esta ciudad de Salamanca
 adonde vino a verme. Fuése con la sentencia de muerte sobre el
@@ -8036,11 +7882,7 @@ el entierro.
 
 Domingo lloraba.
 
-
-
-
 XXXIII
-
 
 Cuando recibí el telegrama comunicándome la muerte del pobre Augusto,
 y supe luego las circunstancias todas de ella, me quedé pensando en
@@ -8143,13 +7985,9 @@ el último respiro me desperté con cierta opresión en el pecho.
 
 Y aquí está la historia de Augusto Pérez.
 
-
-
-
 ORACIÓN FÚNEBRE
 
 POR MODO DE EPÍLOGO
-
 
 Suele ser costumbre al final de las novelas y luego que muere o se
 casa el héroe o protagonista dar noticia de la suerte que corrieron
@@ -8302,11 +8140,7 @@ lealtad y fidelidad. Y dijo:
 
 —¡Y luego dirán que no matan las penas!
 
-
-
-
 ÍNDICE
-
 
        PRÓLOGO   6
   POST-PRÓLOGO   19
@@ -8345,16 +8179,7 @@ lealtad y fidelidad. Y dijo:
         XXXIII   303
        EPÍLOGO   307
 
-
-
-
-
-
-
 *** END OF THE PROJECT GUTENBERG EBOOK NIEBLA (NIVOLA) ***
-
-
-    
 
 Updated editions will replace the previous one—the old editions will
 be renamed.
@@ -8377,7 +8202,6 @@ Gutenberg eBooks may be modified and printed and given away—you may
 do practically ANYTHING in the United States with eBooks not protected
 by U.S. copyright law. Redistribution is subject to the trademark
 license, especially commercial redistribution.
-
 
 START: FULL LICENSE
 
@@ -8459,7 +8283,7 @@ performed, viewed, copied or distributed:
     at www.gutenberg.org. If you
     are not located in the United States, you will have to check the laws
     of the country where you are located before using this eBook.
-  
+
 1.E.2. If an individual Project Gutenberg™ electronic work is
 derived from texts not protected by U.S. copyright law (does not
 contain a notice indicating that it is posted with permission of the
@@ -8521,7 +8345,7 @@ provided that:
         Gutenberg Literary Archive Foundation at the address specified in
         Section 4, “Information about donations to the Project Gutenberg
         Literary Archive Foundation.”
-    
+
     • You provide a full refund of any money paid by a user who notifies
         you in writing (or by e-mail) within 30 days of receipt that s/he
         does not agree to the terms of the full Project Gutenberg™
@@ -8529,15 +8353,14 @@ provided that:
         copies of the works possessed in a physical medium and discontinue
         all use of and all access to other copies of Project Gutenberg™
         works.
-    
+
     • You provide, in accordance with paragraph 1.F.3, a full refund of
         any money paid for a work or a replacement copy, if a defect in the
         electronic work is discovered and reported to you within 90 days of
         receipt of the work.
-    
+
     • You comply with all other terms of this agreement for free
         distribution of Project Gutenberg™ works.
-    
 
 1.E.9. If you wish to charge a fee or distribute a Project
 Gutenberg™ electronic work or group of works on different terms than
@@ -8700,5 +8523,4 @@ This website includes information about Project Gutenberg™,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
 

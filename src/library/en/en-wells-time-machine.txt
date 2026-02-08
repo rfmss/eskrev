@@ -1,5 +1,5 @@
 ﻿The Project Gutenberg eBook of The Time Machine
-    
+
 This ebook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
 whatsoever. You may copy it, give it away or re-use it under the terms
@@ -17,19 +17,13 @@ Release date: October 2, 2004 [eBook #35]
 
 Language: English
 
-
-
 *** START OF THE PROJECT GUTENBERG EBOOK THE TIME MACHINE ***
-
-
-
 
 The Time Machine
 
 An Invention
 
 by H. G. Wells
-
 
 CONTENTS
 
@@ -51,12 +45,8 @@ CONTENTS
  XVI After the Story
  Epilogue
 
-
-
-
  I.
  Introduction
-
 
 The Time Traveller (for so it will be convenient to speak of him) was
 expounding a recondite matter to us. His pale grey eyes shone and
@@ -273,12 +263,8 @@ tried to tell us about a conjuror he had seen at Burslem, but before he
 had finished his preface the Time Traveller came back, and Filby’s
 anecdote collapsed.
 
-
-
-
  II.
  The Machine
-
 
 The thing the Time Traveller held in his hand was a glittering metallic
 framework, scarcely larger than a small clock, and very delicately
@@ -427,12 +413,8 @@ None of us quite knew how to take it.
 I caught Filby’s eye over the shoulder of the Medical Man, and he
 winked at me solemnly.
 
-
-
-
  III.
  The Time Traveller Returns
-
 
 I think that at that time none of us quite believed in the Time
 Machine. The fact is, the Time Traveller was one of those men who are
@@ -626,12 +608,8 @@ illuminated. At first we glanced now and again at each other. After a
 time we ceased to do that, and looked only at the Time Traveller’s
 face.
 
-
-
-
  IV.
  Time Travelling
-
 
 “I told some of you last Thursday of the principles of the Time
 Machine, and showed you the actual thing itself, incomplete in the
@@ -822,12 +800,8 @@ kind of consumptive—that hectic beauty of which we used to hear so
 much. At the sight of him I suddenly regained confidence. I took my
 hands from the machine.
 
-
-
-
  V.
  In the Golden Age
-
 
 “In another moment we were standing face to face, I and this fragile
 thing out of futurity. He came straight up to me and laughed into my
@@ -983,12 +957,8 @@ to let them give their lessons in little doses when they felt inclined.
 And very little doses I found they were before long, for I never met
 people more indolent or more easily fatigued.
 
-
-
-
  VI.
  The Sunset of Mankind
-
 
 “A queer thing I soon discovered about my little hosts, and that was
 their lack of interest. They would come to me with eager cries of
@@ -1199,12 +1169,8 @@ numbers had rather diminished than kept stationary. That would account
 for the abandoned ruins. Very simple was my explanation, and plausible
 enough—as most wrong theories are!
 
-
-
-
  VII.
  A Sudden Shock
-
 
 “As I stood there musing over this too perfect triumph of man, the full
 moon, yellow and gibbous, came up out of an overflow of silver light in
@@ -1408,12 +1374,8 @@ in a corner of memory, until my growing knowledge would lead me back to
 them in a natural way. Yet a certain feeling, you may understand,
 tethered me in a circle of a few miles round the point of my arrival.
 
-
-
-
  VIII.
  Explanation
-
 
 “So far as I could see, all the world displayed the same exuberant
 richness as the Thames valley. From every hill I climbed I saw the same
@@ -1792,12 +1754,8 @@ the Morlocks, and was only concerned in banishing these signs of her
 human inheritance from Weena’s eyes. And very soon she was smiling and
 clapping her hands, while I solemnly burnt a match.
 
-
-
-
  IX.
  The Morlocks
-
 
 “It may seem odd to you, but it was two days before I could follow up
 the new-found clue in what was manifestly the proper way. I felt a
@@ -1989,12 +1947,8 @@ fell upon my face. Even the soil smelt sweet and clean. Then I remember
 Weena kissing my hands and ears, and the voices of others among the
 Eloi. Then, for a time, I was insensible.
 
-
-
-
  X.
  When Night Came
-
 
 “Now, indeed, I seemed in a worse case than before. Hitherto, except
 during my night’s anguish at the loss of the Time Machine, I had felt a
@@ -2216,12 +2170,8 @@ with me to our own time. And turning such schemes over in my mind I
 pursued our way towards the building which my fancy had chosen as our
 dwelling.
 
-
-
-
  XI.
  The Palace of Green Porcelain
-
 
 “I found the Palace of Green Porcelain, when we approached it about
 noon, deserted and falling into ruin. Only ragged vestiges of glass
@@ -2440,12 +2390,8 @@ refrained from forcing them, largely because of the mystery on the
 other side. They had never impressed me as being very strong, and I
 hoped to find my bar of iron not altogether inadequate for the work.
 
-
-
-
  XII.
  In the Darkness
-
 
 “We emerged from the Palace while the sun was still in part above the
 horizon. I was determined to reach the White Sphinx early the next
@@ -2673,12 +2619,8 @@ a longing that was pain.
 I made a discovery. In my trouser pocket were still some loose matches.
 The box must have leaked before it was lost.
 
-
-
-
  XIII.
  The Trap of the White Sphinx
-
 
 “About eight or nine in the morning I came to the same seat of yellow
 metal from which I had viewed the world upon the evening of my arrival.
@@ -2787,12 +2729,8 @@ scramble.
 slipped from me. The darkness presently fell from my eyes. I found
 myself in the same grey light and tumult I have already described.
 
-
-
-
  XIV.
  The Further Vision
-
 
 “I have already told you of the sickness and confusion that comes with
 time travelling. And this time I was not seated properly in the saddle,
@@ -2962,12 +2900,8 @@ I felt I was fainting. But a terrible dread of lying helpless in that
 remote and awful twilight sustained me while I clambered upon the
 saddle.
 
-
-
-
  XV.
  The Time Traveller’s Return
-
 
 “So I came back. For a long time I must have been insensible upon the
 machine. The blinking succession of the days and nights was resumed,
@@ -3015,12 +2949,8 @@ and the clatter of plates. I hesitated—I felt so sick and weak. Then I
 sniffed good wholesome meat, and opened the door on you. You know the
 rest. I washed, and dined, and now I am telling you the story.
 
-
-
-
  XVI.
  After the Story
-
 
 “I know,” he said, after a pause, “that all this will be absolutely
 incredible to you, but to me the one incredible thing is that I am here
@@ -3169,11 +3099,7 @@ with him. But I am beginning now to fear that I must wait a lifetime.
 The Time Traveller vanished three years ago. And, as everybody knows
 now, he has never returned.
 
-
-
-
  Epilogue
-
 
 One cannot choose but wonder. Will he ever return? It may be that he
 swept back into the past, and fell among the blood-drinking, hairy
@@ -3199,13 +3125,7 @@ flowers—shrivelled now, and brown and flat and brittle—to witness that
 even when mind and strength had gone, gratitude and a mutual tenderness
 still lived on in the heart of man.
 
-
-
-
 *** END OF THE PROJECT GUTENBERG EBOOK THE TIME MACHINE ***
-
-
-    
 
 Updated editions will replace the previous one—the old editions will
 be renamed.
@@ -3228,7 +3148,6 @@ Gutenberg eBooks may be modified and printed and given away—you may
 do practically ANYTHING in the United States with eBooks not protected
 by U.S. copyright law. Redistribution is subject to the trademark
 license, especially commercial redistribution.
-
 
 START: FULL LICENSE
 
@@ -3310,7 +3229,7 @@ performed, viewed, copied or distributed:
     at www.gutenberg.org. If you
     are not located in the United States, you will have to check the laws
     of the country where you are located before using this eBook.
-  
+
 1.E.2. If an individual Project Gutenberg™ electronic work is
 derived from texts not protected by U.S. copyright law (does not
 contain a notice indicating that it is posted with permission of the
@@ -3372,7 +3291,7 @@ provided that:
         Gutenberg Literary Archive Foundation at the address specified in
         Section 4, “Information about donations to the Project Gutenberg
         Literary Archive Foundation.”
-    
+
     • You provide a full refund of any money paid by a user who notifies
         you in writing (or by e-mail) within 30 days of receipt that s/he
         does not agree to the terms of the full Project Gutenberg™
@@ -3380,15 +3299,14 @@ provided that:
         copies of the works possessed in a physical medium and discontinue
         all use of and all access to other copies of Project Gutenberg™
         works.
-    
+
     • You provide, in accordance with paragraph 1.F.3, a full refund of
         any money paid for a work or a replacement copy, if a defect in the
         electronic work is discovered and reported to you within 90 days of
         receipt of the work.
-    
+
     • You comply with all other terms of this agreement for free
         distribution of Project Gutenberg™ works.
-    
 
 1.E.9. If you wish to charge a fee or distribute a Project
 Gutenberg™ electronic work or group of works on different terms than
@@ -3551,5 +3469,4 @@ This website includes information about Project Gutenberg™,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
 

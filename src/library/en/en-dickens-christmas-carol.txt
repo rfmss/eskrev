@@ -1,5 +1,5 @@
 ﻿The Project Gutenberg eBook of A Christmas Carol
-    
+
 This ebook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
 whatsoever. You may copy it, give it away or re-use it under the terms
@@ -23,30 +23,15 @@ Original publication: Philadelphia and New York: J. B. Lippincott Company,, 1915
 Credits: Produced by Suzanne Shell, Janet Blenkinship and the Online
         Distributed Proofreading Team at http://www.pgdp.net
 
-
 *** START OF THE PROJECT GUTENBERG EBOOK A CHRISTMAS CAROL ***
-
-
-
 
 Produced by Suzanne Shell, Janet Blenkinship and the Online
 Distributed Proofreading Team at http://www.pgdp.net
-
-
-
-
-
-
-
-
-
-
 
   A CHRISTMAS CAROL
 
   [Illustration: _"How now?" said Scrooge, caustic and cold as ever.
   "What do you want with me?"_]
-
 
   A CHRISTMAS CAROL
 
@@ -73,9 +58,6 @@ Distributed Proofreading Team at http://www.pgdp.net
 
   PRINTED IN GREAT BRITAIN
 
-
-
-
   PREFACE
 
   I have endeavoured in this Ghostly little book to raise the Ghost of an
@@ -88,9 +70,6 @@ Distributed Proofreading Team at http://www.pgdp.net
   C. D.
 
   _December, 1843._
-
-
-
 
   CHARACTERS
 
@@ -120,9 +99,6 @@ Distributed Proofreading Team at http://www.pgdp.net
   Fan, the sister of Scrooge.
   Mrs. Fezziwig, the worthy partner of Mr. Fezziwig.
 
-
-
-
   CONTENTS
 
   STAVE ONE--MARLEY'S GHOST                                             3
@@ -131,11 +107,9 @@ Distributed Proofreading Team at http://www.pgdp.net
   STAVE FOUR--THE LAST OF THE SPIRITS                                 111
   STAVE FIVE--THE END OF IT                                           137
 
-
   LIST OF ILLUSTRATIONS
 
   _IN COLOUR_
-
 
   "How now?" said Scrooge, caustic
     and cold as ever. "What do you
@@ -199,7 +173,6 @@ Distributed Proofreading Team at http://www.pgdp.net
 
 _IN BLACK AND WHITE_
 
-
   Tailpiece                                                           vi
   Tailpiece to List of Coloured Illustrations                          x
   Tailpiece to List of Black and White Illustrations                  xi
@@ -222,17 +195,11 @@ _IN BLACK AND WHITE_
 
 [Illustration]
 
-
 STAVE ONE
-
 
 [Illustration]
 
-
-
-
 MARLEY'S GHOST
-
 
 Marley was dead, to begin with. There is no doubt whatever about that.
 The register of his burial was signed by the clergyman, the clerk, the
@@ -1019,16 +986,11 @@ upon the instant.
 
 [Illustration]
 
-
 STAVE TWO
 
 [Illustration]
 
-
-
-
 THE FIRST OF THE THREE SPIRITS
-
 
 When Scrooge awoke it was so dark, that, looking out of bed, he could
 scarcely distinguish the transparent window from the opaque walls of his
@@ -1746,17 +1708,11 @@ to bed, before he sank into a heavy sleep.
 
 [Illustration]
 
-
 STAVE THREE
-
 
 [Illustration]
 
-
-
-
 THE SECOND OF THE THREE SPIRITS
-
 
 Awaking in the middle of a prodigiously tough snore, and sitting up in
 bed to get his thoughts together, Scrooge had no occasion to be told
@@ -2634,14 +2590,9 @@ stroke ceased to vibrate, he remembered the prediction of old Jacob
 Marley, and, lifting up his eyes, beheld a solemn Phantom, draped and
 hooded, coming like a mist along the ground towards him.
 
-
 STAVE FOUR
 
-
-
-
 THE LAST OF THE SPIRITS
-
 
 The Phantom slowly, gravely, silently approached. When it came near him,
 Scrooge bent down upon his knee; for in the very air through which this
@@ -2899,7 +2850,6 @@ that there was nothing more to come.
 
 'That's your account,' said Joe, 'and I wouldn't give another sixpence,
 if I was to be boiled for not doing it. Who's next?'
-
 
 [Illustration: _"What do you call this?" said Joe. "Bed-curtains."_]
 
@@ -3307,17 +3257,11 @@ Holding up his hands in a last prayer to have his fate reversed, he saw
 an alteration in the Phantom's hood and dress. It shrunk, collapsed, and
 dwindled down into a bedpost.
 
-
 STAVE FIVE
-
 
 [Illustration]
 
-
-
-
 THE END OF IT
-
 
 Yes! and the bedpost was his own. The bed was his own, the room was his
 own. Best and happiest of all, the Time before him was his own, to make
@@ -3613,16 +3557,7 @@ Tiny Tim observed, God bless Us, Every One!
 |Transcriber's note: The Contents were added by the transcriber.|
 +---------------------------------------------------------------+
 
-
-
-
-
-
-
 *** END OF THE PROJECT GUTENBERG EBOOK A CHRISTMAS CAROL ***
-
-
-    
 
 Updated editions will replace the previous one—the old editions will
 be renamed.
@@ -3645,7 +3580,6 @@ Gutenberg eBooks may be modified and printed and given away—you may
 do practically ANYTHING in the United States with eBooks not protected
 by U.S. copyright law. Redistribution is subject to the trademark
 license, especially commercial redistribution.
-
 
 START: FULL LICENSE
 
@@ -3727,7 +3661,7 @@ performed, viewed, copied or distributed:
     at www.gutenberg.org. If you
     are not located in the United States, you will have to check the laws
     of the country where you are located before using this eBook.
-  
+
 1.E.2. If an individual Project Gutenberg™ electronic work is
 derived from texts not protected by U.S. copyright law (does not
 contain a notice indicating that it is posted with permission of the
@@ -3789,7 +3723,7 @@ provided that:
         Gutenberg Literary Archive Foundation at the address specified in
         Section 4, “Information about donations to the Project Gutenberg
         Literary Archive Foundation.”
-    
+
     • You provide a full refund of any money paid by a user who notifies
         you in writing (or by e-mail) within 30 days of receipt that s/he
         does not agree to the terms of the full Project Gutenberg™
@@ -3797,15 +3731,14 @@ provided that:
         copies of the works possessed in a physical medium and discontinue
         all use of and all access to other copies of Project Gutenberg™
         works.
-    
+
     • You provide, in accordance with paragraph 1.F.3, a full refund of
         any money paid for a work or a replacement copy, if a defect in the
         electronic work is discovered and reported to you within 90 days of
         receipt of the work.
-    
+
     • You comply with all other terms of this agreement for free
         distribution of Project Gutenberg™ works.
-    
 
 1.E.9. If you wish to charge a fee or distribute a Project
 Gutenberg™ electronic work or group of works on different terms than
@@ -3968,5 +3901,4 @@ This website includes information about Project Gutenberg™,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
 

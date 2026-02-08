@@ -1,5 +1,5 @@
 ﻿The Project Gutenberg eBook of El Estudiante de Salamanca and Other Selections
-    
+
 This ebook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
 whatsoever. You may copy it, give it away or re-use it under the terms
@@ -22,20 +22,10 @@ Language: English, Spanish
 Credits: Produced by Stan Goodman, Miranda van de Heijning, Renald
         Levesque and the Online Distributed Proofreading Team.
 
-
 *** START OF THE PROJECT GUTENBERG EBOOK EL ESTUDIANTE DE SALAMANCA AND OTHER SELECTIONS ***
-
-
-
 
 Produced by Stan Goodman, Miranda van de Heijning, Renald
 Levesque and the Online Distributed Proofreading Team.
-
-
-
-
-
-
 
 [Illustration: D. JOSÉ DE ESPRONCEDA]
 
@@ -49,7 +39,6 @@ Levesque and the Online Distributed Proofreading Team.
   GEORGE TYLER NORTHUP, PH.D.
   PROFESSOR OF SPANISH LITERATURE
   UNIVERSITY OF CHICAGO
-
 
 PREFACE
 
@@ -124,11 +113,7 @@ CONTENTS
   NOTES
   VOCABULARY
 
-
-
-
 INTRODUCTION
-
 
 THE LIFE OF ESPRONCEDA
 
@@ -850,7 +835,6 @@ ideals. Years afterward, when Escosura passed in review the little
 circle of the Colegio de San Mateo, Espronceda was the only one of them
 whom he could truly say he loved.
 
-
 THE WORKS OF ESPRONCEDA
 
 Of all the Spanish poets of the period of Romanticism, Espronceda is the
@@ -1099,7 +1083,6 @@ rather than to his grief, that it is the _menos hidalgo_ of all his
 writings. But for once we may be sure that the poet is writing under the
 stress of genuine emotion. For once he is free from posing.
 
-
 "THE STUDENT OF SALAMANCA"
 
 "El Estudiante de Salamanca" represents the synthesis of two well-known
@@ -1255,7 +1238,6 @@ vigorously and sweetly. It does not abound in quotable passages like the
 "Diablo Mundo." It is neither philosophic nor introspective. It teaches
 no lesson. Its merit is its perfection of form.
 
-
 BIBLIOGRAPHICAL NOTE
 
 The best biography of Espronceda is that of José Cascales y Muñoz, "D.
@@ -1316,9 +1298,7 @@ Also Farinelli, _Giornale Storico_, XXVII, and "Homenaje a Menéndez
 y Pelayo," Vol. I, p. 295; A.L. Stiefel, _Jahresberichte für neuere
 deutsche Litteraturgeschichte_, 1898-1899, Vol. I, 7, pp. 74-79.
 
-
 NOTES ON ESPRONCEDA'S VERSIFICATION
-
 
 GENERAL CONSIDERATIONS
 
@@ -1881,8 +1861,6 @@ general terms; most verse-forms are designated by special names. The
 following verse-forms are found in the selections contained in this
 book:
 
-
-
 "EL ESTUDIANTE DE SALAMANCA"
 
 Lines 1-40. Ballad meter or _verso de romance_ (8 syllables) with
@@ -2037,8 +2015,6 @@ the _diminuendo_ effect ends here.
 
 Lines 1681-1704. _Octavas reales_.
 
-
-
 "CANCIÓN DEL PIRATA"
 
 Lines 1-16. _Octavillas italianas_ (8-syllable verse).
@@ -2071,15 +2047,11 @@ Lines 86-93. _Octavilla italiana_.
 
 Lines 94-97. _Cuarteta_.
 
-
-
 "EL CANTO DEL COSACO"
 
 This poem is written in _cuartetas_ of 11-syllable verse with _rima
 cruzada_. Verses 1 and 3 rime and 2 and 4 assonate, except in the
 refrain, where 1 and 3 are blank.
-
-
 
 "EL MENDIGO"
 
@@ -2116,22 +2088,15 @@ Lines 118-121. _Cuarteta_, same as the irregular ones above.
 
 Lines 122-125. _Cuarteta_, like the normal one above.
 
-
-
 "SONETO"
 
 Lines 1-14. Sonnet. 11-syllable verse. Rime-scheme _abba, abba, cde,
 cde_.
 
-
-
 "A TERESA. DESCANSA EN PAZ"
 
 Written throughout in _octavas reales_ (11-syllable verse); rime-scheme
 _abababcc_.
-
-
-
 
 BIBLIOGRAPHY
 
@@ -2156,19 +2121,13 @@ FORD. "A Spanish Anthology" (Silver, Burdett and Company).
 
 HILLS and MORLEY. "Modern Spanish Lyrics" (Henry Holt and Company).
 
-
-
-
 "EL ESTUDIANTE DE SALAMANCA"
 AND OTHER SELECTIONS
 FROM ESPRONCEDA
 
-
-
                                    CUENTO.
 
                          EL ESTUDIANTE DE SALAMANCA
-
 
                                PARTE PRIMERA
 
@@ -2373,13 +2332,11 @@ FROM ESPRONCEDA
       Embriagada del dios que la enamora,
       Dulce le mira, extática le adora.
 
-
                                 PARTE SEGUNDA
 
                                No dirge except the hollow sea's
                                Mourns o'er the beauty of the Cyclades.
                                             BYRON, "Don Juan," Canto 4
-
 
             Está la noche serena                                [180]
           De luceros coronada,
@@ -2692,7 +2649,6 @@ FROM ESPRONCEDA
      Y allá en la tarde, cuando el sol declina,
      Baña su tumba en paz su último rayo....
 
-
                                 PARTE TERCERA
 
                               CUADRO DRAMÁTICO
@@ -2706,13 +2662,11 @@ FROM ESPRONCEDA
                                   Del que los hizo para tal empleo.
                                           MORETO, "San Franco de Sena"
 
-
                                   PERSONAS
 
                             D. FÉLIX DE MONTEMAR
                             D. DIEGO DE PASTRANA
                             SEIS JUGADORES
-
 
                 En derredor de una mesa                          [435]
               Hasta seis hombres están,
@@ -2738,7 +2692,6 @@ FROM ESPRONCEDA
               Se escucha del huracán,
               Que azota los vidrios frágiles
               Con sus alas al pasar.
-
 
                                   ESCENA I
 
@@ -2784,8 +2737,6 @@ FROM ESPRONCEDA
 
                               JUGADOR PRIMERO
                                  Quiero.
-
-
 
                                   ESCENA II
 
@@ -3020,8 +2971,6 @@ FROM ESPRONCEDA
               A otra suerte de esos dados;
               Y el diablo les prenda fuego.
 
-
-
                                  ESCENA III
 
                 Pálido el rostro, cejijunto el ceño,
@@ -3137,7 +3086,6 @@ FROM ESPRONCEDA
 
   (_Tira de la espada; todos los jugadores se interponen_.)
 
-
                                   TODOS
                           Fuera de aquí
               A armar quimera.
@@ -3220,12 +3168,9 @@ FROM ESPRONCEDA
  D. FÉLIX _(sale tras de él, embolsándose el dinero con indiferencia)_
               Son mil trescientos ducados.
 
-
-
                                   ESCENA IV
 
                                 LOS JUGADORES
-
 
                                JUGADOR PRIMERO
               Este Don Diego Pastrana                             [685]
@@ -3243,7 +3188,6 @@ FROM ESPRONCEDA
                                JUGADOR CUARTO
               Me alegraré que lo mate.
 
-
                                PARTE CUARTA
 
                         Salió, en fin, de aquel estado, para caer en
@@ -3260,7 +3204,6 @@ FROM ESPRONCEDA
 
                         SPIRITUS QUIDEM PROMPTUS EST; CARO VERO
                         INFIRMA.--S. MARCOS, "Evangelio"
-
 
         Vedle, Don Félix es, espada en mano,
       Sereno el rostro, firme el corazón;
@@ -4447,9 +4390,6 @@ FROM ESPRONCEDA
     _Y si, lector, dijerdes ser comento,
     Como me lo contaron, te lo cuento._
 
-
-
-
                         CANCIÓN DEL PIRATA
 
     Con diez cañones por banda,
@@ -4568,14 +4508,10 @@ FROM ESPRONCEDA
   Mi ley la fuerza y el viento,
   Mi única patria la mar.»
 
-
-
-
                        EL CANTO DEL COSACO
 
                           Donde sienta mi caballo los pies no vuelve
                           a nacer yerba.--Palabras de Átila
-
 
   CORO
     ¡Hurra, Cosacos del desierto! ¡Hurra!
@@ -4695,9 +4631,6 @@ FROM ESPRONCEDA
   La Europa os brinda espléndido botín.                            [95]
   Sangrienta charca sus campiñas sean,
   De los grajos su ejército festín.
-
-
-
 
                             EL MENDIGO
 
@@ -4843,9 +4776,6 @@ FROM ESPRONCEDA
   Todos se ablandan, si doliente pido
   Una limosna por amor de Dios.                                  [125]
 
-
-
-
                   SONETO
 
     Fresca, lozana, pura y olorosa,
@@ -4866,9 +4796,6 @@ FROM ESPRONCEDA
   Y deshojada por los aires sube
   La dulce flor de la esperanza mía.
 
-
-
-
                                A TERESA
                            DESCANSA EN PAZ
 
@@ -4881,7 +4808,6 @@ FROM ESPRONCEDA
                           ¡Paz a los hombres! ¡gloria en las alturas!
                           ¡Cantad en vuestra jaula, crïaturas!
                           DON MIGUEL DE LOS SANTOS ÁLVAREZ, "María"
-
 
     ¿Por qué volvéis a la memoria mía,
   Tristes recuerdos del placer perdido,
@@ -5279,15 +5205,9 @@ FROM ESPRONCEDA
   Truéquese en risa mi dolor profundo....
   ¡Que haya un cadáver más! ¿Qué importa al mundo?
 
-
-
-
                             NOTES
 
-
-
 EL ESTUDIANTE DE SALAMANCA
-
 
 PARTE PRIMERA
 
@@ -5394,7 +5314,6 @@ edition of the prose romance of Don Miguel de Mañara.
 
 =100. Segundo Don Juan Tenorio=: see the Introduction.
 
-
 PARTE SEGUNDA
 
 The quotation is taken from Byron's "Don Juan," Canto IV, stanza 72, the
@@ -5475,7 +5394,6 @@ has been discovered and whose husband is forcing her to enter a convent.
 Doña Elvira's letter, written with death in view, is tender and
 pathetic. For details see Churchman, "Byron and Espronceda," _Revue
 Hispanique_, Vol. XX, p. 161.
-
 
 PARTE TERCERA
 
@@ -5672,7 +5590,6 @@ the most skeptical regarding changes of luck, because he himself has
 experienced the greatest ups and downs of fortune in the game just
 finished.
 
-
 PARTE CUARTA
 
 Miguel de los Santos Álvarez (1818-1892) was a friend and imitator of
@@ -5837,9 +5754,6 @@ of their poems. Thus Zorrilla concludes his "Capitán Montoya":
   Con sus mismas espresiones
   Se lo cuento al pueblo yo.
 
-
-
-
 CANCIÓN DEL PIRATA
 
 =7. en todo mar conocido=: I follow the reading of the text as it
@@ -5848,9 +5762,6 @@ peculiar in the reading =en todo el mar conocido=. We cannot be certain
 that this is a change made by Espronceda himself.
 
 =84.= Instead of =negro= the 1840 edition reads =ronco=.
-
-
-
 
 EL CANTO DEL COSACO
 
@@ -5887,17 +5798,11 @@ Fire and Sword."
 =79.= The Huns are said to have carried raw meat beneath their saddles
 as they rode. At the end of the day's ride they would eat it.
 
-
-
-
 EL MENDIGO
 
 =108.= The poet has paraphrased the proverb =Allá van leyes do quieren
 reyes=, the idea of which is that a tyrant can twist the law to serve
 the purposes of his tyranny.
-
-
-
 
 A TERESA. DESCANSA EN PAZ
 
@@ -5979,16 +5884,10 @@ inferred from the preceding verse.
 Hugo, "Les Feuilles d'automne, XXXV, Soleils couchants." See _Revue
 hispanique_, XXI, p. 667.
 
-
-
-
-
 VOCABULARY
 
 The sign "-" means the word which stands in black type at the head of
 the paragraph; thus, =-se= under =abrir= means =abrirse=.
-
-
 
   _acc._ = accusative.
   _adj._ = adjective.
@@ -6019,8 +5918,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   _sc._ = to wit.
   _sing._ = singular.
   _viz._ = namely.
-
-
 
   =a= _prep._ to, at, on, upon, over, in, towards, with, from, for,
      around, by, of, when, as; _as sign of the accusative, not to be
@@ -6303,7 +6200,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   =azorar= terrify.
   =azotar= lash, flog, whip.
   =azul= _adj._ blue, azure.
-
 
   =bajar= lower, descend, bow, hang down.
   =bajel= _m._ ship.
@@ -6651,7 +6547,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   =curso= _m._ course.
   =cuyo, -a= _pron. rel._ whose.
 
-
   =chancearse= joke, jest.
   =charca= _f._ pool.
   =chasco= _m._ joke, fiasco, disappointment.
@@ -6659,7 +6554,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   =chispa= _f._ spark, flash.
   =chiste= _m._ jest.
   =chocar= strike, combat, clash, encounter, collide.
-
 
   =dado= _m._ die.
   =dale= _interj._ (_expressive of displeasure_) hang it, come, again;
@@ -6850,7 +6744,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   =durar= last, endure.
   =duro, -a= hard, cruel, unbearable, heavy.
 
-
   =e= _conj._ and.
   =eco= _m._ echo.
   =echar= throw, cast, cast away, deal, put.
@@ -7034,7 +6927,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   =extraño, -a= strange.
   =extremo= _m._ end; =llevar al ----= terminate.
 
-
   =fábrica= _f._ structure.
   =fácil= _adj._ easy, easily persuaded.
   =fada= _f._ fairy, sprite.
@@ -7141,7 +7033,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   =furor= _m._ rage, fury.
   =futuro, -a= future.
 
-
   =gala= _f._ grace, gem, choicest part (of a thing); =----s= finery.
   =galán= _m._ gallant, dandy.
   =galanura= _f._ elegance, showiness, gorgeousness.
@@ -7192,7 +7083,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   =guiar= guide, direct.
   =guirnalda= _f._ garland, wreath.
   =gustar= please.
-
 
   =haber= have; _impers._ be; =---- de= have to, be to, be going
        to, must, can; =hay= there is; =no haya= let there not be.
@@ -7280,7 +7170,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   =hundir= sink.
   =huracán= _m._ hurricane, storm.
   =hurra= _interj._ hurrah.
-
 
   =ideal= _adj._ ideal, imaginary.
   =iglesia= _f._ church.
@@ -7379,7 +7268,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   =irritar= anger, excite, arouse, provoke, nettle, exasperate.
   =izquierdo, -a= left.
 
-
   =jamás= _adv._ never, ever.
   =jardín= _m._ garden.
   =jaula= _f._ cage.
@@ -7404,7 +7292,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   =jurar= swear.
   =juventud= _f._ youth.
   =juzgar= judge, think.
-
 
   =la= _art. f._ the; _pron. pers. acc._ her, it; _pl._
       them; _pron. pers. dat._ to her, to it; =---- que= _pron. dem.
@@ -7493,7 +7380,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   =luz= _f._ light, illumination, flame, taper, lamp.
   =Luzbel= _pr. n. m._ Lucifer, Satan.
 
-
   =llagar= wound.
   =llama= _f._ flame, light.
   =llamar= call, summon, knock, name, call upon, invoke; =--se= be
@@ -7508,7 +7394,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
       have; =---- al extremo= terminate; =--se algo= take something
       away.
   =llorar= weep, mourn, weep for, mourn for.
-
 
   =macedonio, -a= Macedonian.
   =macizo, -a= solid, massive.
@@ -7665,7 +7550,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   =mutuo, -a= mutual.
   =muy= _adv._ very, very much.
 
-
   =nacarado, -a= pearly, nacreous.
   =nacer= be born, spring up.
   =naciente= _adj._ nascent, growing, budding, dawning.
@@ -7711,7 +7595,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   =nunca= _adv._ never, ever.
   =nupcial= _adj._ nuptial.
   =nutrir= nourish.
-
 
   =o= _interj._ oh.
   =o= _conj._ or, either; =---- ... ----= either ... or.
@@ -7760,7 +7643,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   =ostentar= show, display.
   =otero= _m._ hill.
   =otro, -a= _adj. pron._ other, another.
-
 
   =padecer= _m._ suffering, pain.
   =padre= _m._ father; =----s= fathers, parents, ancestors.
@@ -7958,7 +7840,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   =puro, -a= pure, chaste, holy, clear, unsullied, unblemished, mere,
       sheer, absolute.
 
-
   =que= _conj._ than, for, as, since, that, so that, let; =de ----= that.
   =que= _pron. rel._ which, that, who, whom; =en ----= when.
   =qué= _interj._ what, how.
@@ -7983,7 +7864,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   =quinto, -a= fifth.
   =quitar(se)= take away, remove, take off.
   =quizá= _adv._ perhaps.
-
 
   =rabia= _f._ rage, fury.
   =ración= _f._ ration, allowance of food.
@@ -8133,7 +8013,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   =ruiseñor= _m._ nightingale.
   =rumbo= _m._ course.
   =rumor= _m._ noise, sound.
-
 
   =sábado= _m._ Saturday, Sabbath.
   =saber= know, learn, find out.
@@ -8296,7 +8175,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   =susurro= _m._ whispering, murmuring.
   =suyo, -a= _adj. poss._ his; =el ----= _pron. poss._ his.
 
-
   =tabla= _f._ board, plank.
   =tácito, -a= silent, quiet, stealthy.
   =tacto= _m._ touch.
@@ -8447,7 +8325,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   =turbulento, -a= turbulent, tumultuous, disorderly.
   =Turco, -a= _m. f._ Turk.
 
-
   =u= _conj._ (_before_ =o= _or_ =ho=) or.
   =ufano, -a= proud, content.
   =último, -a= last, final.
@@ -8461,7 +8338,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   =uno, -a= _adj. pron._ one; =----s= some; =de ----a en ---a=   one by
      one.
   =urna= _f._ urn.
-
 
   =vadear= ford.
   =vagar= wander, roam, flit, drift, hover.
@@ -8566,7 +8442,6 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
      thousand times, revolve a thousand times.
   =vuestro -a= your.
 
-
   =y= _conj._ and; =---- ... ----= both ... and.
   =ya= _adv._ now, already, indeed, then, finally; =no ... ----= no
      longer; =---- ... ----= now ... now, at one time ... at another.
@@ -8580,22 +8455,11 @@ the paragraph; thus, =-se= under =abrir= means =abrirse=.
   =yo= _pron. pers._ I.
   =yugo= _m._ yoke.
 
-
   =zafir= _m._ sapphire.
   =zozobra= _f._ worry, anguish, anxiety.
   =zumbar= resound
 
-
-
-
-
-
-
-
 *** END OF THE PROJECT GUTENBERG EBOOK EL ESTUDIANTE DE SALAMANCA AND OTHER SELECTIONS ***
-
-
-    
 
 Updated editions will replace the previous one—the old editions will
 be renamed.
@@ -8618,7 +8482,6 @@ Gutenberg eBooks may be modified and printed and given away—you may
 do practically ANYTHING in the United States with eBooks not protected
 by U.S. copyright law. Redistribution is subject to the trademark
 license, especially commercial redistribution.
-
 
 START: FULL LICENSE
 
@@ -8700,7 +8563,7 @@ performed, viewed, copied or distributed:
     at www.gutenberg.org. If you
     are not located in the United States, you will have to check the laws
     of the country where you are located before using this eBook.
-  
+
 1.E.2. If an individual Project Gutenberg™ electronic work is
 derived from texts not protected by U.S. copyright law (does not
 contain a notice indicating that it is posted with permission of the
@@ -8762,7 +8625,7 @@ provided that:
         Gutenberg Literary Archive Foundation at the address specified in
         Section 4, “Information about donations to the Project Gutenberg
         Literary Archive Foundation.”
-    
+
     • You provide a full refund of any money paid by a user who notifies
         you in writing (or by e-mail) within 30 days of receipt that s/he
         does not agree to the terms of the full Project Gutenberg™
@@ -8770,15 +8633,14 @@ provided that:
         copies of the works possessed in a physical medium and discontinue
         all use of and all access to other copies of Project Gutenberg™
         works.
-    
+
     • You provide, in accordance with paragraph 1.F.3, a full refund of
         any money paid for a work or a replacement copy, if a defect in the
         electronic work is discovered and reported to you within 90 days of
         receipt of the work.
-    
+
     • You comply with all other terms of this agreement for free
         distribution of Project Gutenberg™ works.
-    
 
 1.E.9. If you wish to charge a fee or distribute a Project
 Gutenberg™ electronic work or group of works on different terms than
@@ -8941,5 +8803,4 @@ This website includes information about Project Gutenberg™,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
 

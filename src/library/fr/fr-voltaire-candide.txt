@@ -1,5 +1,5 @@
 ﻿The Project Gutenberg eBook of Candide, ou l'optimisme
-    
+
 This ebook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
 whatsoever. You may copy it, give it away or re-use it under the terms
@@ -19,11 +19,7 @@ Language: French
 
 Credits: Carlo Traverso
 
-
 *** START OF THE PROJECT GUTENBERG EBOOK CANDIDE, OU L'OPTIMISME ***
-
-
-
 
 OEUVRES
 
@@ -34,7 +30,6 @@ VOLTAIRE.
 TOME XXXIII
 
 DE L’ IMPRIMERIE DE A. FIRMIN DIDOT,
-
 
 RUE JACOB, Nº 24.
 
@@ -56,9 +51,7 @@ A PARIS,
 
 CHEZ LEFÈVRE, LIBRAIRE,
 
-
 RUE DE L’ÉPERON, Kº 6. WERDET ET LEQUIEN FILS,
-
 
 RUE DU BATTOIR, Nº 20.
 
@@ -67,9 +60,6 @@ MDCCCXXIX.
 CANDIDE,
 
 OU L’OPTIMISME
-
-
-
 
  Préface de l’Éditeur
  CHAPITRE I. Comment Candide fut élevé dans un beau château, et comment il fut chassé d’icelui.
@@ -103,11 +93,7 @@ OU L’OPTIMISME
  CHAPITRE XXIX. Comment Candide retrouva Cunégonde et la vieille.
  CHAPITRE XXX. Conclusion.
 
-
-
-
 Préface de l’Éditeur
-
 
 _Candide_ parut au plus tard en mars 1759. Le roi de Prusse en accuse
 réception par sa lettre du 28 du mois d’avril.
@@ -124,7 +110,6 @@ L’optimisme, dit-il ailleurs[1], n’est qu’une fatalité désespérante.
 
 [1] _Homélie sur l’athéisme_. Voyez les _Mélanges_, année 1767; et
 aussi, tome XII, une des notes du troisième _Discours sur l’homme_.
-
 
 Voltaire écrivit, sous le nom de Mead, une lettre relative à Candide,
 qui fut insérée dans le _Journal encyclopédique_, du 15 juillet 1759:
@@ -174,7 +159,6 @@ Candide parut dix mois après_.
 
 [2] Lettre de J. J. Rousseau au prince de Wirtemberg, du 11 mars 1764.
 
-
 Ce que Rousseau appelle sa _Lettre sur la Providence_, est sa lettre à
 Voltaire du 18 août 1756; la réponse de Voltaire est du 21 septembre
 1766; Candide ne vit le jour que vingt-sept à vingt-neuf mois plus
@@ -194,14 +178,9 @@ signées de l’initiale de mon nom.
 
 BEUCHOT.
 
-
 4 octobre 1829.
 
-
-
-
 CANDIDE,
-
 
 ou
 
@@ -217,16 +196,11 @@ QU’ON A TROUVÉES DANS LA POCHE DU DOCTEUR, LORSQU’IL MOURUT
 
 À MINDEN, L’AN DE GRÂCE 1759
 
-
 1759
-
-
-
 
 CHAPITRE I.
 Comment Candide fut élevé dans un beau château, et comment il fut
 chassé d’icelui.
-
 
 Il y avait en Vestphalie, dans le château de M. le baron de
 Thunder-ten-tronckh, un jeune garçon à qui la nature avait donné les
@@ -258,7 +232,6 @@ de son âge et de son caractère.
 
 [1] De _pan_, tout, et _glossa_, langue. B.
 
-
 Pangloss enseignait la métaphysico-théologo-cosmolonigologie. Il
 prouvait admirablement qu’il n’y a point d’effet sans cause, et que,
 dans ce meilleur des mondes possibles, le château de monseigneur le
@@ -281,7 +254,6 @@ est au mieux.
 chapitre XI de la troisième partie des _Éléments de la philosophie de
 Newton_; et année 1768, le chapitre X des _Singularités de la nature_.
 B.
-
 
 Candide écoutait attentivement, et croyait innocemment; car il trouvait
 mademoiselle Cunégonde extrêmement belle, quoiqu’il ne prît jamais la
@@ -317,12 +289,8 @@ pied dans le derrière. Cunégonde s’évanouit: elle fut souffletée par
 madame la baronne dès qu’elle fut revenue à elle-même; et tout fut
 consterné dans le plus beau et le plus agréable des châteaux possibles.
 
-
-
-
 CHAPITRE II
 Ce que devint Candide parmi les Bulgares.
-
 
 Candide, chassé du paradis terrestre, marcha longtemps sans savoir où,
 pleurant, levant les yeux au ciel, les tournant souvent vers le plus
@@ -388,12 +356,8 @@ siècles. Un brave chirurgien guérit Candide en trois semaines avec les
 pouvait marcher, quand le roi des Bulgares livra bataille au roi des
 Abares.
 
-
-
-
 CHAPITRE III.
 Comment Candide se sauva d’entre les Bulgares, et ce qu’il devint.
-
 
 Rien n’était si beau, si leste, si brillant, si bien ordonné que les
 deux armées. Les trompettes, les fifres, les hautbois, les tambours,
@@ -467,13 +431,9 @@ pustules, les yeux morts, le bout du nez rongé, la bouche de travers,
 les dents noires, et parlant de la gorge, tourmenté d’une toux
 violente, et crachant une dent à chaque effort.
 
-
-
-
 CHAPITRE IV.
 Comment Candide rencontra son ancien maître de philosophie, le docteur
 Pangloss, et ce qui en advint.
-
 
 Candide, plus ému encore de compassion que d’horreur, donna à cet
 épouvantable gueux les deux florins qu’il avait reçus de son honnête
@@ -544,7 +504,6 @@ vingt mille vérolés de chaque côté.
 
 [1] Voyez tome XXXI, page 7. B.
 
-
 Voilà qui est admirable, dit Candide; mais il faut vous faire guérir.
 Et comment le puis-je? dit Pangloss; je n’ai pas le sou, mon ami, et
 dans toute l’étendue de ce globe on ne peut ni se faire saigner, ni
@@ -574,13 +533,9 @@ s’obscurcit, les vents soufflèrent des quatre coins du monde, et le
 vaisseau fut assailli de la plus horrible tempête, à la vue du port de
 Lisbonne.
 
-
-
-
 CHAPITRE V.
 Tempête, naufrage, tremblement de terre, et ce qui advint du docteur
 Pangloss, de Candide, et de l’anabaptiste Jacques.
-
 
 La moitié des passagers affaiblis, expirants de ces angoisses
 inconcevables que le roulis d’un vaisseau porte dans les nerfs et dans
@@ -632,9 +587,7 @@ homme avec ta raison universelle!
 
 [1] Le tremblement de terre de Lisbonne est du 1er novembre 1755. B.
 
-
 [2] Voyez tome XVIII, page 470. B.
-
 
 Quelques éclats de pierre avaient blessé Candide; il était étendu dans
 la rue et couvert de débris. Il disait à Pangloss: Hélas! procure-moi
@@ -675,13 +628,9 @@ car enfin la volonté déterminée…… Pangloss était au milieu de sa
 phrase, quand le familier fit un signe de tête à son estafier qui lui
 servait à boire du vin de Porto ou d’Oporto.
 
-
-
-
 CHAPITRE VI.
 Comment on fit un bel auto-da-fé pour empêcher les tremblements de
 terre, et comment Candide fut fessé.
-
 
 Après le tremblement de terre qui avait détruit les trois quarts de
 Lisbonne, les sages du pays n’avaient pas trouvé un moyen plus efficace
@@ -694,7 +643,6 @@ trembler.
 [1] Après le tremblement de terre de Lisbonne, on y fit en effet un
 autoda-fé, le 20 juin 1756; voyez, tome XXI, le chapitre XXXI du
 _Précis du Siècle de Louis XV_. B.
-
 
 On avait en conséquence saisi un Biscayen convaincu d’avoir épousé sa
 commère, et deux Portugais qui en mangeant un poulet en avaient arraché
@@ -727,13 +675,9 @@ Il s’en retournait, se soutenant à peine, prêché, fessé, absous, et
 béni, lorsqu’une vieille l’aborda, et lui dit: Mon fils, prenez
 courage, suivez-moi.
 
-
-
-
 CHAPITRE VII
 Comment une vieille prit soin de Candide, et comment il retrouva ce
 qu’il aimait.
-
 
 Candide ne prit point courage, mais il suivit la vieille dans une
 masure: elle lui donna un pot de pommade pour se frotter, lui laissa à
@@ -750,7 +694,6 @@ pommade, mangez et dormez.
 [1] Sur Notre-Dame d’Atocha, voyez dans les _Mélanges_, année 1769, une
 des notes de Voltaire sur son _Extrait d’un journal_ (ou Mémoires de
 Dangeau). B.
-
 
 Candide, malgré tant de malheurs, mangea et dormit. Le lendemain la
 vieille lui apporte à déjeuner, visite son dos, le frotte elle-même
@@ -800,12 +743,8 @@ levait les yeux au ciel: elle donna des larmes à la mort du bon
 anabaptiste et de Pangloss; après quoi elle parla en ces termes à
 Candide, qui ne perdait pas une parole, et qui la dévorait des yeux.
 
-
-
-
 CHAPITRE VIII.
 Histoire de Cunégonde.
-
 
 J’étais dans mon lit et je dormais profondément, quand il plut au ciel
 d’envoyer les Bulgares dans notre beau château de Thunder-ten-tronckh;
@@ -899,13 +838,9 @@ le signor don Issachar, l’un des maîtres de la maison, arriva. C’était
 le jour du sabbat. Il venait jouir de ses droits, et expliquer son
 tendre amour.
 
-
-
-
 CHAPITRE IX.
 Ce qui advint de Cunégonde, de Candide, du grand-inquisiteur, et d’un
 Juif.
-
 
 Cet Issachar était le plus colérique Hébreu qu’on eût vu dans Israël,
 depuis la captivité en Babylone. Quoi! dit-il, chienne de galiléenne,
@@ -957,13 +892,9 @@ Candide, Cunégonde, et la vieille, étaient déjà dans la petite ville
 d’Avacéna, au milieu des montagnes de la Sierra-Morena; et ils
 parlaient ainsi dans un cabaret.
 
-
-
-
 CHAPITRE X.
 Dans quelle détresse Candide, Cunégonde, et la vieille, arrivent à
 Cadix, et leur embarquement.
-
 
 Qui a donc pu me voler mes pistoles et mes diamants? disait en pleurant
 Cunégonde; de quoi vivrons-nous? comment ferons-nous? où trouver des
@@ -997,7 +928,6 @@ grand-inquisiteur de Portugal.
 [1] Voyez tome XVII, page 470; et dans les _Mélanges_, année 1759, la
 _Lettre_ de M. Mead _aux auteurs du Journal encyclopédique_. B.
 
-
 Pendant toute la traversée ils raisonnèrent beaucoup sur la philosophie
 du pauvre Pangloss. Nous allons dans un autre univers, disait Candide;
 c’est dans celui-là, sans doute, que tout est bien: car il faut avouer
@@ -1026,12 +956,8 @@ et vous suspendriez votre jugement. Ce discours fit naître une extrême
 curiosité dans l’esprit de Cunégonde et de Candide. La vieille leur
 parla en ces termes.
 
-
-
-
 CHAPITRE XI.
 Histoire de la vieille.
-
 
 Je n’ai pas eu toujours les yeux éraillés et bordés d’écarlate; mon nez
 n’a pas toujours touché à mon menton, et je n’ai pas toujours été
@@ -1055,7 +981,6 @@ connu. Quelle circonspection! quelle délicatesse de conscience!—Cette
 note de Voltaire est posthume. Elle n’était même pas dans les éditions
 de Kehl. Je la tiens de feu Décrois. Le dernier pape du nom d’Urbain
 est Urbain VIII, mort en 1644. B.
-
 
 Je fus fiancée à un prince souverain de Massa-Carrara: quel prince!
 aussi beau que moi, pétri de douceur et d’agréments, brillant d’esprit
@@ -1114,7 +1039,6 @@ c’était un carnage continuel dans toute l’étendue de l’empire.
 voyez tome XVI, page 197; tome XVIII, page 420; tome XX, le chapitre
 XVIII du _Siècle de Louis XIV_; tome XXX, page 126. B.
 
-
 A peine fûmes-nous débarquées, que des noirs d’une faction ennemie de
 celle de mon corsaire se présentèrent pour lui enlever son butin. Nous
 étions, après les diamants et l’or, ce qu’il avait de plus précieux. Je
@@ -1150,12 +1074,8 @@ s’agitait sur mon corps; j’ouvris les yeux, je vis un homme blanc et de
 bonne mine qui soupirait, et qui disait entre ses dents: _O che
 sciagura d’essere senza coglioni!_
 
-
-
-
 CHAPITRE XII.
 Suite des malheurs de la vieille.
-
 
 Étonnée et ravie d’entendre la langue de ma patrie, et non moins
 surprise des paroles que proférait cet homme, je lui répondis qu’il y
@@ -1179,7 +1099,6 @@ quatre cents pas d’ici coupée en quartiers sous un tas de morts…..
 ministre, gouvernait l’Espagne sous Ferdinand VI; il est mort en 1782.
 Voltaire reparle de ce Farinelli dans la _Conversation de l’Intendant
 des menus en exercice_: voyez les _Mélanges_, année 1761. B.
-
 
 Je lui contai tout ce qui m’était arrivé; il me conta aussi ses
 aventures, et m’apprit comment il avait été envoyé chez le roi de Maroc
@@ -1230,7 +1149,6 @@ rendirent à la paix, en 1711; la reprirent en 1739, la fortifièrent;
 mais à la paix de 1789, ils la rendirent après l’avoir démantelée. La
 prise d’Azof, sous Catherine II, est postérieure de dix ans à
 _Candide_. B.
-
 
 Nous avions un iman très pieux et très compatissant, qui leur fit un
 beau sermon par lequel il leur persuada de ne nous pas tuer
@@ -1290,13 +1208,9 @@ malheureux des hommes, jetez-moi dans la mer la tête la première.
 volontairement en 1739. J.-J. Rousseau parle de Robeck dans sa
 _Nouvelle Héloïse_, lettre vingt et unième de la troisième partie. B.
 
-
-
-
 CHAPITRE XIII.
 Comment Candide fut obligé de se séparer de la belle Cunégonde et de la
 vieille.
-
 
 La belle Cunégonde, ayant entendu l’histoire de la vieille, lui fit
 toutes les politesses qu’on devait à une personne de son rang et de son
@@ -1330,7 +1244,6 @@ faire l’honneur de m’épouser, et nous supplions votre excellence de
 daigner faire notre noce.
 
 [1] Voyez l’article ABRAHAM, tome XXVI, page 48. B.
-
 
 Don Fernando d’Ibaraa, y Figueora, y Mascarenes, y Lampourdos, y Souza,
 relevant sa moustache, sourit amèrement, et ordonna au capitaine
@@ -1372,12 +1285,8 @@ demeurez. Elle court sur-le-champ à Candide: Fuyez, dit-elle, ou dans
 une heure vous allez être brûlé. Il n’y avait pas un moment à perdre;
 mais comment se séparer de Cunégonde, et où se réfugier?
 
-
-
-
 CHAPITRE XIV.
 Comment Candide et Cacambo furent reçus chez les jésuites du Paraguai.
-
 
 Candide avait amené de Cadix un valet tel qu’on en trouve beaucoup sur
 les côtes d’Espagne et dans les colonies. C’était un quart d’Espagnol,
@@ -1482,12 +1391,8 @@ dans leurs oreilles, et étincelante dans leurs yeux. Comme ils étaient
 Allemands, ils tinrent table long-temps, en attendant le révérend père
 provincial; et le commandant parla ainsi à son cher Candide.
 
-
-
-
 CHAPITRE XV.
 Comment Candide tua le frère de sa chère Cunégonde.
-
 
 J’aurai toute ma vie présent à la mémoire le jour horrible où je vis
 tuer mon père et ma mère, et violer ma soeur. Quand les Bulgares furent
@@ -1520,7 +1425,6 @@ rien n’était plus vrai. Leurs larmes recommencèrent à couler.
 Mais l’édition fesant partie du volume intitulé: _Seconde suite des
 Mélanges_, 1761, porte déjà Croust. Il est question du révérend P.
 Croust, _le plus brutal de la société_, dans le tome XXX, page 429. B.
-
 
 Le baron ne pouvait se lasser d’embrasser Candide; il l’appelait son
 frère, son sauveur. Ah! peut-être, lui dit-il, nous pourrons ensemble,
@@ -1555,13 +1459,9 @@ passé les frontières avant qu’on puisse courir après nous. Il volait
 déjà en prononçant ces paroles, et en criant en espagnol: Place, place
 pour le révérend père colonel!
 
-
-
-
 CHAPITRE XVI.
 Ce qui advint aux deux voyageurs avec deux filles, deux singes, et les
 sauvages nommés Oreillons.
-
 
 Candide et son valet furent au-delà des barrières, et personne ne
 savait encore dans le camp la mort du jésuite allemand. Le vigilant
@@ -1581,7 +1481,6 @@ remords et dans le désespoir? et que dira le Journal de Trévoux[1]?
 ville où il s’imprima, est intitulé: _Mémoires pour servir à l’histoire
 des sciences et des beaux-arts_. Ce titre a subi plusieurs changements.
 B.
-
 
 En parlant ainsi, il ne laissa pas de manger. Le soleil se couchait.
 Les deux égarés entendirent quelques petits cris qui paraissaient
@@ -1684,13 +1583,9 @@ tout, la pure nature est bonne, puisque ces gens-ci, au lieu de me
 manger, m’ont fait mille honnêtetés, dès qu’ils ont su que je n’étais
 pas jésuite.
 
-
-
-
 CHAPITRE XVII.
 Arrivée de Candide et de son valet au pays d’Eldorado, et ce qu’ils y
 virent.
-
 
 Quand ils furent aux frontières des Oreillons: Vous voyez, dit Cacambo
 à Candide, que cet hémisphère-ci ne vaut pas mieux que l’autre;
@@ -1740,7 +1635,6 @@ vitesse les plus beaux chevaux d’Andalousie, de Tétuan, et de Méquinez.
 [1] Tel est le texte de toutes les éditions données du vivant de
 l’auteur, et même des éditions de Kehl. Quelques éditeurs récents ont
 mis: _l’utile était_ joint à _l’agréable_. B.
-
 
 Voilà pourtant, dit Candide, un pays qui vaut mieux que la Vestphalie.
 Il mit pied à terre avec Cacambo auprès du premier village qu’il
@@ -1814,15 +1708,10 @@ tout va bien; car il faut absolument qu’il y en ait un de cette espèce.
 Et, quoi qu’en dît maître Pangloss, je me suis souvent aperçu que tout
 allait assez mal en Vestphalie.
 
-
-
-
 CHAPITRE XVIII
 Ce qu’ils virent dans le pays d’Eldorado[1].
 
-
 [1] Sur le pays d’Eldorado, voyez tome XVII, page 436. B.
-
 
 Cacambo témoigna à son hôte toute sa curiosité; l’hôte lui dit: Je suis
 fort ignorant, et je m’en trouve bien; mais nous avons ici un vieillard
@@ -1997,13 +1886,9 @@ le gouverneur de Buénos-Ayres, si mademoiselle Cunégonde peut être mise
 à prix. Marchons vers la Cayenne, embarquons-nous, et nous verrons
 ensuite quel royaume nous pourrons acheter.
 
-
-
-
 CHAPITRE XIX.
 Ce qui leur arriva à Surinam, et comment Candide fit connaissance avec
 Martin.
-
 
 La première journée de nos deux voyageurs fut assez agréable. Ils
 étaient encouragés par l’idée de se voir possesseurs de plus de trésors
@@ -2165,12 +2050,8 @@ espérait que le savant le désennuierait dans le voyage. Tous ses autres
 rivaux trouvèrent que Candide leur fesait une grande injustice; mais il
 les apaisa en leur donnant à chacun cent piastres.
 
-
-
-
 CHAPITRE XX.
 Ce qui arriva sur mer à Candide et à Martin.
-
 
 Le vieux savant, qui s’appelait Martin, s’embarqua donc pour Bordeaux
 avec Candide. L’un et l’autre avaient beaucoup vu et beaucoup souffert;
@@ -2215,10 +2096,8 @@ manichéen.
 [1] Les sociniens rejettent les mystères et n’admettent que l’évidence:
 voyez tome XXVIII, page 435. B.
 
-
 [2] Les manichéens admettent un bon et un mauvais principe: voyez tome
 XV, pages 27, 314-315. B.
-
 
 Il y a pourtant du bon, répliquait Candide. Cela peut être, disait
 Martin; mais je ne le connais pas.
@@ -2259,12 +2138,8 @@ avancés que le premier. Mais enfin ils parlaient, ils se communiquaient
 des idées, ils se consolaient. Candide caressait son mouton. Puisque je
 t’ai retrouvé, dit-il, je pourrai bien retrouver Cunégonde.
 
-
-
-
 CHAPITRE XXI.
 Candide et Martin approchent des côtes de France, et raisonnent.
-
 
 On aperçut enfin les côtes de France. Avez-vous jamais été en France,
 monsieur Martin? dit Candide. Oui, dit Martin, j’ai parcouru plusieurs
@@ -2318,7 +2193,6 @@ car le libre arbitre…. En raisonnant ainsi, ils arrivèrent à Bordeaux.
 erant super faciem abyssi, paroles que De Maillet donne comme
 présentant la même idée que ce vers d’Ovide (_Métam_., 1, 15):
 
-
 «Quaque erat et tellus, illic et pontus et aer.»
 
 Voyez la première journée de _Telliamed_, où il est dit que _la mer a
@@ -2328,16 +2202,11 @@ _Telliamed_. Voyez entre autres, dans les _Mélanges_, année 1768, le
 chapitre XVIII des _Singularités de la nature_; et année 1777, le
 onzième des _Dialogues d’Evhémère_. B.
 
-
-
-
 CHAPITRE XXII[1].
 Ce qui arriva en France à Candide et à Martin.
 
-
 [1] Ce chapitre XXII a été beaucoup augmenté en 1761; voyez ma note,
 plus en bas. B.
-
 
 Candide ne s’arrêta dans Bordeaux qu’autant de temps qu’il en fallait
 pour vendre quelques cailloux du Dorado, et pour s’accommoder d’une
@@ -2359,7 +2228,6 @@ savants du Nord conservaient encore à cette époque quelques restes de
 l’ancienne barbarie scolastique; et la philosophie hardie, mais
 hypothétique et absurde de Leibnitz, n’avait pas contribué à les en
 dépouiller. K.
-
 
 Cependant tous les voyageurs que Candide rencontra dans les cabarets de
 la route lui disaient: Nous allons à Paris. Cet empressement général
@@ -2416,7 +2284,6 @@ répliqua l’autre. C’est beaucoup, dit Martin.
 [3] La Grange Chancel adressa à Voltaire, en 1718, une _Épitre à M.
 Arouet de Voltaire_, dans laquelle on trouve ces vers:
 
-
 Que ton exactitude à dépeindre les moeurs
 S’étende jusqu’aux noms de tes moindres acteurs,
 Et qu’en les prononçant ils nous fassent connaître
@@ -2424,13 +2291,11 @@ Les pays et les temps où tu les fais renaître.
 Je vois avec dépit, pour ne produire rien,
 Chez le Thébain Oedipe, Hidaspe l’Indien.
 
-
 Voltaire profita de la critique, et mit _Araspe_ au lieu de _Hidaspe_.
 C’est peut-être à ces vers de La Grange Chancel que Voltaire fait ici
 allusion. B.
 
 [4] Dans l’édition de 1759, on lit:
-
 
 «… contre lui. Monsieur, lui dit l’abbé périgourdin, avez-vous remarqué
 cette jeune personne qui a un visage si piquant et une taille si fine?
@@ -2472,15 +2337,12 @@ détestables.
 [5] C’est probablement _le Comte d’Essex_, tragédie de Thomas
 Corneille. (Note de M. Decroix.)
 
-
 [6] Mademoiselle Lecouvreur.—Sur le refus de sépulture à mademoiselle
 Lecouvreur, en 1730, voyez, tome XII, la pièce intitulée: _La Mort de
 mademoiselle Lecouvreur_. B.
 
-
 [7] Feu Decroix proposait, au lieu de _même_, de mettre ici _comme_. Je
 n’ai trouvé cette version dans aucune édition. B.
-
 
 Quel est, dit Candide, ce gros cochon qui me disait tant de mal de la
 pièce où j’ai tant pleuré, et des acteurs qui m’ont fait tant de
@@ -2552,7 +2414,6 @@ problème de la précession des équinoxes. K.—C’est D’Alembert qui a
 résolu le problème de la précession des équinoxes: voyez, tome XXI, la
 note des éditeurs sur le chapitre XLIII du _Précis du Siècle de Louis
 XV_. B.
-
 
 Il y avait à table un homme savant et de goût qui appuya ce que disait
 la marquise. On parla ensuite de tragédies; la dame demanda pourquoi il
@@ -2718,14 +2579,11 @@ d’autres gueux qui avaient entendu dire des sottises.
 chapitre XXXVII du _Précis du Siècle de Louis XV_; et tome XXII, page
 339. B.
 
-
 [10] Le 14 mai 1610 est le jour de l’assassinat de Henri IV par
 Ravaillac: voyez tome XVIII, page 152. B.
 
-
 [11] Le 27 décembre 1594, Jean Châtel, élève des jésuites, donna un
 coup de couteau à Henri IV: voyez tome XVIII, page 147. B.
-
 
 L’exempt alors expliqua de quoi il s’agissait. Ah! les monstres!
 s’écria Candide; quoi! de telles horreurs chez un peuple qui danse et
@@ -2745,12 +2603,8 @@ la route de Venise à la première occasion.
 
 [12] Chef de sbires. B.
 
-
-
-
 CHAPITRE XXIII.
 Candide et Martin vont sur les côtes d’Angleterre; ce qu’ils y voient.
-
 
 Ah! Pangloss! Pangloss! Ah! Martin! Martin! Ah! ma chère Cunégonde!
 qu’est-ce que ce monde-ci? disait Candide sur le vaisseau hollandais.
@@ -2766,7 +2620,6 @@ allons voir sont fort atrabilaires.
 
 [1] Voyez, tome XXI, _Le précis du Siècle de Louis XV_, chapitre XXXV.
 B.
-
 
 En causant ainsi ils abordèrent à Portsmouth; une multitude de peuple
 couvrait le rivage, et regardait attentivement un assez gros homme qui
@@ -2791,7 +2644,6 @@ une victime que les ministres anglais sacrifiaient à l’ambition de
 garder leurs places. K.—L’amiral Byng fut exécuté le 14 mars 1757:
 voyez, tome XXI, le chapitre XXXI du _Précis du Siècle de Louis XV_. B.
 
-
 Candide fut si étourdi et si choqué de ce qu’il voyait et de ce qu’il
 entendait, qu’il ne voulut pas seulement mettre pied à terre, et qu’il
 fit son marché avec le patron hollandais (dût-il le voler comme celui
@@ -2804,12 +2656,8 @@ Candide, en embrassant Martin; c’est ici que je reverrai la belle
 Cunégonde. Je compte sur Cacambo comme sur moi-même. Tout est bien,
 tout va bien, tout va le mieux qu’il soit possible.
 
-
-
-
 CHAPITRE XXIV.
 De Paquette, et de frère Giroflée.
-
 
 Dès qu’il fut à Venise, il fit chercher Cacambo dans tous les cabarets,
 dans tous les cafés, chez toutes les filles de joie, et ne le trouva
@@ -2839,7 +2687,6 @@ bonheur sur la terre; excepté peut-être dans Eldorado[1], où personne
 ne pouvait aller.
 
 [1] Voyez chapitre XVIII. B.
-
 
 En disputant sur cette matière importante, et en attendant Cunégonde,
 Candide aperçut un jeune théatin dans la place Saint-Marc, qui tenait
@@ -2960,12 +2807,8 @@ prétend que c’est un homme qui n’a jamais eu de chagrin. Je voudrais
 voir une espèce si rare, dit Martin. Candide aussitôt fit demander au
 seigneur Pococurante la permission de venir le voir le lendemain.
 
-
-
-
 CHAPITRE XXV.
 Visite chez le seigneur Pococurante, noble vénitien.
-
 
 Candide et Martin allèrent en gondole sur la Brenta, et arrivèrent au
 palais du noble Pococurante. Les jardins étaient bien entendus, et
@@ -3059,14 +2902,11 @@ la façon de penser de Pococurante assez raisonnable.
 [1] Ce n’est pas Pupilus, mais Rupilius, que nomme Horace, livre Ier,
 satire VII, vers I:
 
-
 Rupili pus atque venenum. B.
 
 [2] _Italo perfusus aceto_, dit Horace, dans la même pièce, vers 32. B.
 
-
 [3] Horace, odes, I, I. B.
-
 
 Oh! voici un Cicéron, dit Candide: pour ce grand homme-là, je pense que
 vous ne vous lassez point de le lire. Je ne le lis jamais, répondit le
@@ -3129,7 +2969,6 @@ dents, quel grand génie que ce Pococurante! rien ne peut lui plaire.
 chapitre IX de l’_ Essai sur la poésie épique_, imprimé dans le tome X,
 à la suite de la _Henriade_. B.
 
-
 Après avoir fait ainsi la revue de tous les livres, ils descendirent
 dans le jardin. Candide en loua toutes les beautés. Je ne sais rien de
 si mauvais goût, dit le maître; nous n’avons ici que des colifichets:
@@ -3152,13 +2991,9 @@ point, et Candide était si abîmé dans sa douleur, qu’il ne fit pas même
 réflexion que Paquette et frère Giroflée n’étaient pas venus seulement
 le remercier.
 
-
-
-
 CHAPITRE XXVI.
 D’un souper que Candide et Martin firent avec six étrangers, et qui ils
 étaient.
-
 
 Un soir que Candide, suivi de Martin, allait se mettre à table avec les
 étrangers qui logeaient dans la même hôtellerie, un homme à visage
@@ -3218,7 +3053,6 @@ quelquefois pour ma santé; et je suis venu passer le carnaval à Venise.
 dans l’_Histoire de Russie sous Pierre-le-Grand_, avait été déposé en
 1730; il est mort en 1736. B.
 
-
 Un jeune homme qui était auprès d’Achmet parla après lui, et dit: Je
 m’appelle Ivan[2]; j’ai été empereur de toutes les Russies; j’ai été
 détrôné au berceau; mon père et ma mère ont été enfermés; on m’a élevé
@@ -3227,7 +3061,6 @@ ceux qui me gardent; et je suis venu passer le carnaval à Venise.
 
 [2] Ivan, né en 1730, détrôné la même année, emprisonné, et enfin
 poignardé en 1762. B,
-
 
 Le troisième dit: Je suis Charles-Édouard[3], roi d’Angleterre; mon
 père m’a cédé ses droits au royaume; j’ai combattu pour les soutenir;
@@ -3238,7 +3071,6 @@ suis venu passer le carnaval à Venise.
 
 [3] Sur Charles-Édouard, voyez, tome XXI, le chapitre XXXV du _Précis
 du Siècle de Louis XV_. B.
-
 
 Le quatrième prit alors la parole et dit: Je suis roi des Polaques; le
 sort de la guerre m’a privé de mes états héréditaires[4]; mon père a
@@ -3251,7 +3083,6 @@ héréditaires pendant la guerre de 1756, se réfugia en Pologne: voyez,
 tome XXI, le chapitre XXXII du _Précis du Siècle de Louis XV_; il est
 mort en 1763. B.
 
-
 Le cinquième dit; Je suis aussi roi des Polaques[5]; j’ai perdu mon
 royaume deux fois; mais la Providence m’a donné un autre état dans
 lequel j’ai fait plus de bien que tous les rois des Sarmates ensemble
@@ -3260,7 +3091,6 @@ aussi à la Providence; et je suis venu passer le carnaval à Venise.
 
 [5] Stanislas Leczinski, beau-père de Louis XV: voyez, tome XXI, le
 chapitre IV du _Précis du Siècle de Louis XV_; il est mort en 1763. B.
-
 
 Il restait au sixième monarque à parler. Messieurs, dit-il, je ne suis
 pas si grand seigneur que vous; mais enfin j’ai été roi tout comme un
@@ -3274,7 +3104,6 @@ majestés, passer le carnaval à Venise.
 
 [6] Sur le roi de Corse, Théodore, mort le 2 décembre 1756, voyez tome
 XXI, le chapitre XL du _Précis du Siècle de Louis XV_. B.
-
 
 Les cinq autres rois écoutèrent ce discours avec une noble compassion.
 Chacun d’eux donna vingt sequins au roi Théodore pour avoir des habits
@@ -3290,12 +3119,8 @@ carnaval à Venise; mais Candide ne prit pas seulement garde à ces
 nouveaux venus. Il n’était occupé que d’aller trouver sa chère
 Cunégonde à Constantinople.
 
-
-
-
 CHAPITRE XXVII.
 Voyage de Candide à Constantinople.
-
 
 Le fidèle Cacambo avait déjà obtenu du patron turc qui allait
 reconduire le sultan Achmet à Constantinople qu’il recevrait Candide et
@@ -3344,7 +3169,6 @@ devenue si laide.
 
 [1] Voltaire a parlé de Ragotski dans le chap. XXII du _Siècle de Louis
 XIV_; voyez tome XX. Ragotski est mort en 1785. B.
-
 
 Ensuite, se tournant vers Martin: Que pensez-vous, dit-il, qui soit le
 plus à plaindre, de l’empereur Achmet, de l’empereur Ivan, du roi
@@ -3417,12 +3241,8 @@ On fit aussitôt venir deux Juifs; Candide vendit encore des diamants;
 et ils repartirent tous dans une autre galère pour aller délivrer
 Cunégonde.
 
-
-
-
 CHAPITRE XXVIII.
 Ce qui arriva à Candide, à Cunégonde, à Pangloss, à Martin, etc.
-
 
 Pardon, encore une fois, dit Candide au baron; pardon, mon révérend
 père, de vous avoir donné un grand coup d’épée au travers du corps.
@@ -3503,12 +3323,8 @@ il ne me convient pas de me dédire, Leibnitz ne pouvant pas avoir tort,
 et l’harmonie préétablie étant d’ailleurs la plus belle chose du monde,
 aussi bien que le plein et la matière subtile.
 
-
-
-
 CHAPITRE XXIX.
 Comment Candide retrouva Cunégonde et la vieille.
-
 
 Pendant que Candide, le baron, Pangloss, Martin, et Cacambo, contaient
 leurs aventures, qu’ils raisonnaient sur les événements contingents ou
@@ -3544,12 +3360,8 @@ tu prétends encore t’y opposer! je te retuerais si j’en croyais ma
 colère. Tu peux me tuer encore, dit le baron, mais tu n’épouseras pas
 ma soeur de mon vivant.
 
-
-
-
 CHAPITRE XXX.
 Conclusion.
-
 
 Candide, dans le fond de son coeur, n’avait aucune envie d’épouser
 Cunégonde; mais l’impertinence extrême du baron le déterminait à
@@ -3702,15 +3514,7 @@ Journal encyclopédique_, datée du Ier avril. B.
 
  FIN DE CANDIDE.
 
-
-
-
-
-
 *** END OF THE PROJECT GUTENBERG EBOOK CANDIDE, OU L'OPTIMISME ***
-
-
-    
 
 Updated editions will replace the previous one—the old editions will
 be renamed.
@@ -3733,7 +3537,6 @@ Gutenberg eBooks may be modified and printed and given away—you may
 do practically ANYTHING in the United States with eBooks not protected
 by U.S. copyright law. Redistribution is subject to the trademark
 license, especially commercial redistribution.
-
 
 START: FULL LICENSE
 
@@ -3815,7 +3618,7 @@ performed, viewed, copied or distributed:
     at www.gutenberg.org. If you
     are not located in the United States, you will have to check the laws
     of the country where you are located before using this eBook.
-  
+
 1.E.2. If an individual Project Gutenberg™ electronic work is
 derived from texts not protected by U.S. copyright law (does not
 contain a notice indicating that it is posted with permission of the
@@ -3877,7 +3680,7 @@ provided that:
         Gutenberg Literary Archive Foundation at the address specified in
         Section 4, “Information about donations to the Project Gutenberg
         Literary Archive Foundation.”
-    
+
     • You provide a full refund of any money paid by a user who notifies
         you in writing (or by e-mail) within 30 days of receipt that s/he
         does not agree to the terms of the full Project Gutenberg™
@@ -3885,15 +3688,14 @@ provided that:
         copies of the works possessed in a physical medium and discontinue
         all use of and all access to other copies of Project Gutenberg™
         works.
-    
+
     • You provide, in accordance with paragraph 1.F.3, a full refund of
         any money paid for a work or a replacement copy, if a defect in the
         electronic work is discovered and reported to you within 90 days of
         receipt of the work.
-    
+
     • You comply with all other terms of this agreement for free
         distribution of Project Gutenberg™ works.
-    
 
 1.E.9. If you wish to charge a fee or distribute a Project
 Gutenberg™ electronic work or group of works on different terms than
@@ -4056,5 +3858,4 @@ This website includes information about Project Gutenberg™,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
 

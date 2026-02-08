@@ -1,5 +1,5 @@
 ﻿The Project Gutenberg eBook of Obras escogidas
-    
+
 This ebook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
 whatsoever. You may copy it, give it away or re-use it under the terms
@@ -22,7 +22,6 @@ Language: Spanish
 
 Credits: E-text prepared by Josep Cols Canals, Ramon Pajares Box, and the Online Distributed Proofreading Team (http://www.pgdp.net) from page images generously made available by Internet Archive (https://archive.org)
 
-
 *** START OF THE PROJECT GUTENBERG EBOOK OBRAS ESCOGIDAS ***
 
 Note: Project Gutenberg also has an HTML version of this file
@@ -32,23 +31,16 @@ Note: Project Gutenberg also has an HTML version of this file
       or
       (https://www.gutenberg.org/files/53552/53552-h.zip)
 
-
       Images of the original pages are available through
       Internet Archive. See
       https://archive.org/details/obrasescogidas00bcqu
-
 
 NOTA DE TRANSCRIPCIÓN
 
       En el texto las cursivas se muestran entre _subrayados_
       y las versalitas se han convertido a MAYÚSCULAS.
 
-
-
-
-
 OBRAS ESCOGIDAS DE GUSTAVO A. BÉCQUER
-
 
 [Ilustración:
 
@@ -59,7 +51,6 @@ inaugurado en Sevilla el 9 de Diciembre de 1911.
 (Al fondo se ve la figura del autor dándole los últimos toques á su
  obra.)]
 
-
 OBRAS ESCOGIDAS DE GUSTAVO A. BÉCQUER
 
 EDICIÓN DEL MONUMENTO
@@ -68,12 +59,6 @@ con un discurso preliminar de
 SERAFÍN y JOAQUÍN ÁLVAREZ QUINTERO
 
 2.000
-
-
-
-
-
-
 
 Madrid
 Librería de Fernando Fé
@@ -84,15 +69,9 @@ ES PROPIEDAD.--DERECHOS RESERVADOS
 
 Madrid: Imprenta Española, calle del Olivar, núm. 8
 
-
-
-
-
-
 [Ilustración]
 
 Á MANERA DE PRÓLOGO[*]
-
 
 Ciudad de Sevilla:
 
@@ -321,13 +300,9 @@ poeta.
 
 [Ilustración]
 
-
-
-
 [Ilustración]
 
 INTRODUCCIÓN
-
 
 Por los tenebrosos rincones de mi cerebro, acurrucados y desnudos,
 duermen los extravagantes hijos de mi fantasía, esperando en silencio
@@ -430,18 +405,11 @@ los desvanes del cerebro.
 
 [Ilustración]
 
-
-
-
 LEYENDAS
-
-
-
 
 [Ilustración]
 
 MAESE PÉREZ EL ORGANISTA
-
 
 En Sevilla, en el mismo atrio de Santa Inés, y mientras esperaba que
 comenzase la Misa del Gallo, oí esta tradición á una demandadera del
@@ -473,7 +441,6 @@ sustituye.
 Si á alguno de mis lectores se le ocurriese hacerme la misma
 pregunta, después de leer esta historia, ya sabe el por qué no se ha
 continuado el milagroso portento hasta nuestros días.
-
 
 I
 
@@ -611,7 +578,6 @@ Esto diciendo, la buena mujer que había servido de cicerone á su
 vecina, atravesó el atrio del convento de Santa Inés, y codazo en
 éste, empujón en aquél, se internó en el templo, perdiéndose entre la
 muchedumbre que se agolpaba en la puerta.
-
 
 II
 
@@ -772,7 +738,6 @@ la escalera, llegaron á la tribuna, vieron al pobre organista caído
 de boca sobre las teclas de su viejo instrumento, que aún vibraba
 sordamente, mientras su hija, arrodillada á sus pies, le llamaba en
 vano entre suspiros y sollozos.
-
 
 III
 
@@ -941,7 +906,6 @@ del callejón y desaparecían.
 
 Creemos inútil decir á nuestros lectores quién era una de ellas.
 
-
 IV
 
 Había transcurrido un año más. La abadesa del convento de Santa
@@ -1042,13 +1006,9 @@ maese Pérez.
 
 [Ilustración]
 
-
-
-
 [Ilustración]
 
 LOS OJOS VERDES
-
 
 Hace mucho tiempo que tenía ganas de escribir cualquier cosa con este
 título.
@@ -1064,7 +1024,6 @@ como las gotas de la lluvia que se resbalan sobre las hojas de los
 árboles después de una tempestad de verano. De todos modos, cuento
 con la imaginación de mis lectores para hacerme comprender en este
 que pudiéramos llamar boceto de un cuadro que pintaré algún día.
-
 
 I
 
@@ -1145,7 +1104,6 @@ los pies de su caballo por detenerle. Yo he cumplido con mi deber.
 Con el diablo no sirven valentías. Hasta aquí llega el montero con
 su ballesta; de aquí adelante, que pruebe á pasar el capellán con su
 hisopo.
-
 
 II
 
@@ -1278,7 +1236,6 @@ temblaba en los párpados de Iñigo se resbaló silenciosa por su
 mejilla, mientras exclamó con acento sombrío:--¡Cúmplase la voluntad
 del cielo!
 
-
 III
 
 --¿Quién eres tú? ¿Cuál es tu patria? ¿En dónde habitas? Yo vengo
@@ -1368,13 +1325,9 @@ expirar en las orillas.
 
 [Ilustración]
 
-
-
-
 [Ilustración]
 
 EL RAYO DE LUNA
-
 
 Yo no sé si esto es una historia que parece cuento, ó un cuento
 que parece historia; lo que puedo decir es que en su fondo hay una
@@ -1384,7 +1337,6 @@ verdad, una verdad muy triste, de la que acaso yo seré uno de los
 Otro con esta idea, tal vez hubiera hecho un tomo de filosofía
 lacrimosa; yo he escrito esta leyenda, que á los que nada vean en su
 fondo, al menos podrá entretenerles un rato.
-
 
 I
 
@@ -1460,7 +1412,6 @@ Manrique no estaba aún lo bastante loco para que le siguiesen los
 muchachos, pero sí lo suficiente para hablar y gesticular á solas,
 que es por donde se empieza.
 
-
 II
 
 Sobre el Duero, que pasaba lamiendo las carcomidas y oscuras piedras
@@ -1514,7 +1465,6 @@ soñador de quimeras ó imposibles penetraba en los jardines.
 --¡Una mujer desconocida!... ¡En este sitio!... ¡A estas horas! Esa,
 esa es la mujer que yo busco--exclamó Manrique; y se lanzó en su
 seguimiento, rápido como una saeta.
-
 
 III
 
@@ -1581,7 +1531,6 @@ de sudor á la entrada, ya los que habían atravesado el Duero por la
 parte de San Saturio, entraban en Soria por una de las puertas del
 muro, que en aquel tiempo llegaba hasta la margen del río, en cuyas
 aguas se retrataban sus pardas almenas.
-
 
 IV
 
@@ -1659,7 +1608,6 @@ mantiene encendida su lámpara hasta que amanece.
 Un rayo cayendo de improviso á sus pies, no le hubiera causado más
 asombro que el que le causaron estas palabras.
 
-
 V
 
 --Yo la he de encontrar, la he de encontrar; y si la encuentro,
@@ -1722,7 +1670,6 @@ creciendo en su alma, merced á sus aún más absurdas imaginaciones,
 cuando después de atravesar absorto en estas ideas el puente que
 conduce á los Templarios, el enamorado joven se perdió entre las
 intrincadas sendas de sus jardines.
-
 
 VI
 
@@ -1789,13 +1736,9 @@ el juicio.
 
 [Ilustración]
 
-
-
-
 [Ilustración]
 
 TRES FECHAS
-
 
 En una cartera de dibujo que conservo aún llena de ligeros apuntes,
 hechos durante algunas de mis excursiones semiartísticas á la ciudad
@@ -1825,7 +1768,6 @@ los tres puntos aislados que yo suelo reunir en mi mente por medio de
 una serie de ideas como un hilo de luz; los tres temas, en fin, sobre
 que yo hago mil y mil variaciones, las que pudiéramos llamar absurdas
 sinfonías de la imaginación.
-
 
 I
 
@@ -1976,7 +1918,6 @@ Tenía aún la cartera bajo el brazo, y al volverme á mi asiento,
 mientras doblábamos la colina que ocultó de repente la ciudad á mis
 ojos, saqué el lápiz y apunté una fecha. Es la primera de las tres, á
 la que yo llamo la fecha de la ventana.
-
 
 II
 
@@ -2206,7 +2147,6 @@ cartera con un suspiro; pero antes de guardarlos escribí otra fecha,
 la segunda, la que yo conozco por la fecha de la mano. Al escribirla,
 miré un momento la anterior, la de la ventana, y no pude menos de
 sonreirme de mi locura.
-
 
 III
 
@@ -2522,13 +2462,9 @@ imaginación la memoria de estas fechas?
 
 [Ilustración]
 
-
-
-
 [Ilustración]
 
 LA CORZA BLANCA
-
 
 I
 
@@ -2784,7 +2720,6 @@ sueltas por el inmediato soto; y cuando todo estuvo á punto, hizo
 seña á los unos para que soltasen las traíllas, y á los otros
 para que tocasen las trompas, y saliendo en tropel de la chopera,
 prosiguió adelante la interrumpida caza.
-
 
 II
 
@@ -3278,13 +3213,9 @@ en su propia sangre, entre las agudas zarzas del monte.
 
 [Ilustración]
 
-
-
-
 [Ilustración]
 
 LA ROSA DE PASIÓN
-
 
 Una tarde de verano, y en un jardín de Toledo, me refirió esta
 singular historia una muchacha muy buena y muy bonita.
@@ -3299,7 +3230,6 @@ de la infeliz Sara.
 
 Ya que esto no es posible, ahí va lo que de esa tradición se me
 acuerda en este instante.
-
 
 I
 
@@ -3449,7 +3379,6 @@ goznes, impidió al que se alejaba oir el rumor de las celosías del
 ajimez, que en aquel punto cayeron de golpe, como si la judía acabara
 de retirarse de su alféizar.
 
-
 II
 
 Era noche de Viernes Santo, y los habitantes de Toledo, después de
@@ -3525,7 +3454,6 @@ entre aquel oscuro laberinto de rocas oscuras y cortadas á pico;
 después, y cuando hubo llegado á la cima llamada la _Cabeza del
 Moro_, su negra silueta se dibujó un instante sobre el fondo azul del
 cielo, y por último desapareció entre las sombras de la noche.
-
 
 III
 
@@ -3615,7 +3543,6 @@ brazos para recibirla, exclamando al dirigirse á los que les rodeaban:
 --Ahí os la entrego; haced vosotros justicia de esa infame, que ha
 vendido su honra, su religión y á sus hermanos.
 
-
 IV
 
 Al día siguiente, cuando las campanas de la catedral atronaban
@@ -3648,13 +3575,9 @@ de Pasión_.
 
 [Ilustración]
 
-
-
-
 [Ilustración]
 
 LA PROMESA
-
 
 Margarita lloraba con el rostro oculto entre las manos; lloraba
 sin gemir, pero las lágrimas corrían silenciosas á lo largo de sus
@@ -3744,7 +3667,6 @@ han de volver--respondió Margarita con un suspiro.
 has de venir compuesta y alegre: así no dirán las gentes murmuradoras
 que tienes amores en el castillo y que tus amores se van á la guerra.
 
-
 II
 
 Apenas rayaba en el cielo la primera luz del alba, cuando empezó
@@ -3812,7 +3734,6 @@ algunas personas que acudieron á socorrerla. Era Margarita, Margarita
 que había conocido á su misterioso amante en el muy alto y muy temido
 señor conde de Gómara, uno de los más nobles y poderosos feudatarios
 de la corona de Castilla.
-
 
 III
 
@@ -3901,7 +3822,6 @@ ideas, y se limitó á decirle con voz profundamente conmovida:
 --Venid... salgamos un momento de la tienda; acaso la brisa de la
 tarde refrescará vuestras sienes, calmando ese incomprensible dolor,
 para el que yo no hallo palabras de consuelo.
-
 
 IV
 
@@ -3995,8 +3915,6 @@ Al oir el escudero tan extraño anuncio, pugnó por arrancar á su señor
 de aquel sitio; pero el conde, con los ojos fijos en el juglar,
 permaneció inmóvil, escuchando esta cantiga:
 
-
-
     I
 
       La niña tiene un amante
@@ -4009,7 +3927,6 @@ permaneció inmóvil, escuchando esta cantiga:
     diz que el viento repetía:
     _¡Mal haya quien en promesas_
           _de hombre fía!_
-
 
     II
 
@@ -4024,7 +3941,6 @@ permaneció inmóvil, escuchando esta cantiga:
     _¡Mal haya quien en promesas_
           _de hombre fía!_
 
-
     III
 
       Su hermano, que estaba allí,
@@ -4037,7 +3953,6 @@ permaneció inmóvil, escuchando esta cantiga:
     diz que el viento repetía:
     _¡Mal haya quien en promesas_
           _de hombre fía!_
-
 
     IV
 
@@ -4073,7 +3988,6 @@ permitido que al enterrarla quedase siempre fuera de la sepultura la
 mano en que su amante le puso un anillo al hacerle una promesa. Vos
 sabréis quizá á quién toca cumplirla.
 
-
 V
 
 En un lugarejo miserable y que se encuentra á un lado del camino
@@ -4092,13 +4006,9 @@ La gente del país dice que allí está enterrada Margarita.
 
 [Ilustración]
 
-
-
-
 [Ilustración]
 
 EL MONTE DE LAS ÁNIMAS
-
 
 La noche de difuntos me despertó á no sé qué hora el doble de las
 campanas; su tañido monótono y eterno me trajo á las mientes esta
@@ -4114,7 +4024,6 @@ algunas veces la cabeza con miedo cuando sentía crujir los cristales
 de mi balcón, estremecidos por el aire frío de la noche.
 
 Sea de ello lo que quiera, _ahí va_, como el caballo de copas.
-
 
 I
 
@@ -4188,7 +4097,6 @@ llegaban al extremo del puente que da paso á la ciudad por aquel
 lado. Allí esperaron al resto de la comitiva, la cual, después de
 incorporárseles los dos jinetes, se perdió por entre las estrechas y
 oscuras calles de Soria.
-
 
 II
 
@@ -4329,7 +4237,6 @@ Las viejas, en tanto, continuaban en sus cuentos de ánimas
 aparecidas; el aire zumbaba en los vidrios del balcón, y las campanas
 de la ciudad doblaban á lo lejos.
 
-
 III
 
 Había pasado una hora, dos, tres; la media noche estaba á punto
@@ -4415,7 +4322,6 @@ columnas de ébano del lecho, desencajados los ojos, entreabierta la
 boca, blancos los labios, rígidos los miembros, muerta; ¡muerta de
 horror!
 
-
 IV
 
 Dicen que después de acaecido este suceso, un cazador extraviado que
@@ -4431,13 +4337,9 @@ alrededor de la tumba de Alonso.
 
 [Ilustración]
 
-
-
-
 [Ilustración]
 
 EL GNOMO
-
 
 I
 
@@ -4688,7 +4590,6 @@ fuente?...--Yo--contestó Magdalena con sencillez,--yo creo en todo.
 ¿Dudas tú acaso?--¡Oh, no!--se apresuró á interrumpir Marta;--yo
 también creo en todo, en todo... lo que deseo creer.
 
-
 II
 
 Marta y Magdalena eran hermanas. Huérfanas desde los primeros años
@@ -4798,7 +4699,6 @@ al fin con un acento breve y áspero:--Yo no quiero ir hoy.--Ni yo
 tampoco--añadió Magdalena después de un instante de silencio, durante
 el cual mantuvo los ojos clavados en los de su hermana, como si
 quisiera adivinar en ellos la causa de su resolución.
-
 
 III
 
@@ -5008,7 +4908,6 @@ Después todo quedó otra vez en silencio en la oscura alameda, y el
 viento y el agua siguieron resonando con los murmullos y los rumores
 de siempre.
 
-
 IV
 
 Magdalena tornó al lugar pálida y llena de asombro. A Marta la
@@ -5026,13 +4925,9 @@ penetrar para oirlo en la alameda después del toque del Ave-María.
 
 [Ilustración]
 
-
-
-
 [Ilustración]
 
 EL MISERERE
-
 
 Hace algunos meses que visitando la célebre abadía de Fitero y
 ocupándome en revolver algunos volúmenes en su abandonada biblioteca,
@@ -5075,7 +4970,6 @@ al acabar de medio traducir estos renglones, que parecían frases
 escritas por un loco.
 
 El anciano me contó entonces la leyenda que voy á referiros.
-
 
 I
 
@@ -5222,7 +5116,6 @@ Pasado el primer momento de estupor, exclamó el lego:
 
 --¡Está loco!--repitieron los pastores; y atizaron de nuevo la
 lumbre, y se agruparon alrededor del hogar.
-
 
 II
 
@@ -5377,7 +5270,6 @@ En este punto la claridad deslumbradora cegó los ojos del romero,
 sus sienes latieron con violencia, zumbaron sus oídos, y cayó sin
 conocimiento por tierra, y nada más oyó.
 
-
 III
 
 Al día siguiente, los pacíficos monjes de la abadía de Fitero, á
@@ -5440,13 +5332,9 @@ Por haberlas podido leer hubiera dado un mundo.
 
 [Ilustración]
 
-
-
-
 [Ilustración]
 
 LAS HOJAS SECAS
-
 
 El sol se había puesto: las nubes, que cruzaban hechas girones sobre
 mi cabeza, iban á amontonarse unas sobre otras en el horizonte
@@ -5636,13 +5524,9 @@ recordase, no encontraría palabras para decirlo.
 
 [Ilustración]
 
-
-
-
 [Ilustración]
 
 LA VENTA DE LOS GATOS
-
 
 En Sevilla y en mitad del camino que se dirige al convento de
 San Jerónimo desde la puerta de la Macarena, hay, entre otros
@@ -5838,7 +5722,6 @@ Pocos días después abandoné á Sevilla, y pasaron muchos años sin que
 volviese á ella, y olvidé muchas cosas que allí me habían sucedido;
 pero el recuerdo de tanta y tan ignorada y tranquila felicidad, no se
 me borró nunca de la memoria.
-
 
 II
 
@@ -6075,22 +5958,15 @@ yo aprendí á descifrar entonces.
 
 [Ilustración]
 
-
-
-
 DESDE MI CELDA
 
 CARTAS LITERARIAS
-
-
-
 
 [Ilustración]
 
 CARTA PRIMERA
 
   Monasterio de Veruela, 1864.
-
 
 Queridos amigos: Heme aquí transportado de la noche á la mañana á
 mi escondido valle de Veruela; heme aquí instalado de nuevo en el
@@ -6605,13 +6481,9 @@ natural propensión á la vagancia se lo permitan.
 
 [Ilustración]
 
-
-
-
 [Ilustración]
 
 CARTA SEGUNDA
-
 
 Queridos amigos: Si me vieran ustedes en algunas ocasiones con la
 pluma en la mano y el papel delante, buscando un asunto cualquiera
@@ -6923,13 +6795,9 @@ nota desacorde la armonía de un periódico político.
 
 [Ilustración]
 
-
-
-
 [Ilustración]
 
 CARTA TERCERA
-
 
 Queridos amigos: Hace dos ó tres días, andando á la casualidad por
 entre estos montes, y habiéndome alejado más de lo que acostumbro
@@ -7302,13 +7170,9 @@ es algo, no ha de quedar ni un átomo aquí.
 
 [Ilustración]
 
-
-
-
 [Ilustración]
 
 CARTA CUARTA
-
 
 Queridos amigos: El tiempo, que hasta aquí se mantenía revuelto y
 mudable, ha sufrido últimamente una nueva é inesperada variación,
@@ -7604,13 +7468,9 @@ la predicación con el ejemplo.
 
 [Ilustración]
 
-
-
-
 [Ilustración]
 
 CARTA QUINTA
-
 
 Queridos amigos: Entre los muchos sitios pintorescos y llenos de
 carácter que se encuentran en la antigua ciudad de Tarazona, la plaza
@@ -7911,13 +7771,9 @@ por un extremo la carga que abruma al pobre. Si no, ¿quién subiría la
 
 [Ilustración]
 
-
-
-
 [Ilustración]
 
 CARTA SEXTA
-
 
 Queridos amigos: Hará cosa de dos ó tres años, tal vez leerían
 ustedes en los periódicos de Zaragoza la relación de un crimen que
@@ -8371,13 +8227,9 @@ formal que un alabardero en día de ceremonia.
 
 [Ilustración]
 
-
-
-
 [Ilustración]
 
 CARTA SÉPTIMA
-
 
 Queridos amigos: Prometí á ustedes en mi última carta referirles,
 tal como me la contaron, la maravillosa historia de las brujas de
@@ -8831,13 +8683,9 @@ ruinas de este castillo y se encuentran en él como en su casa.
 
 [Ilustración]
 
-
-
-
 [Ilustración]
 
 CARTA OCTAVA
-
 
 Queridos amigos: En una de mis cartas anteriores dije á ustedes en
 qué ocasión y por quién me fué referida la estupenda historia de
@@ -9258,15 +9106,11 @@ _cosa sin nombre_ de las brujas del _Macbeth_ de Shakespeare.
 
 [Ilustración]
 
-
-
-
 [Ilustración]
 
 CARTA NOVENA
 
   Á la señorita doña M. L. A.
-
 
 Apreciable amiga: Al enviarle una copia exacta, quizás la única
 que de ella se ha sacado hasta hoy, prometí á usted referirle la
@@ -9590,18 +9434,11 @@ Religión, creo que le sucedería lo mismo.
 
 [Ilustración]
 
-
-
-
 RIMAS
-
-
-
 
 [Ilustración]
 
 I
-
 
     Yo sé un himno gigante y extraño
     Que anuncia en la noche del alma una aurora,
@@ -9618,11 +9455,7 @@ I
     Si, teniendo en mis manos las tuyas,
     Pudiera, al oído, cantártelo á solas.
 
-
-
-
 II
-
 
       Saeta que voladora
     Cruza, arrojada al azar,
@@ -9649,11 +9482,7 @@ II
     De dónde vengo, ni adónde
     Mis pasos me llevarán.
 
-
-
-
 III
-
 
       Sacudimiento extraño
     Que agita las ideas,
@@ -9744,11 +9573,7 @@ III
     Tan sólo el genio puede
     A un yugo atar las dos.
 
-
-
-
 IV
-
 
       No digáis que agotado su tesoro
     De asuntos falta, enmudeció la lira:
@@ -9795,11 +9620,7 @@ IV
     Mientras exista una mujer hermosa,
           ¡Habrá poesía!
 
-
-
-
 V
-
 
       Espíritu sin nombre,
     Indefinible esencia,
@@ -9896,11 +9717,7 @@ V
     Perfume misterioso,
     De que es vaso el poeta.
 
-
-
-
 VI
-
 
       Como la brisa que la sangre orea
     Sobre el oscuro campo de batalla,
@@ -9912,11 +9729,7 @@ VI
     La dulce Ofelia, la razón perdida,
     Cogiendo flores y cantando pasa.
 
-
-
-
 VII
-
 
       Del salón en el ángulo oscuro,
     De su dueño tal vez olvidada,
@@ -9933,11 +9746,7 @@ VII
     Y una voz, como Lázaro, espera
     Que le diga: «Levántate y anda!»
 
-
-
-
 VIII
-
 
       Cuando miro el azul horizonte
           Perderse á lo lejos,
@@ -9965,11 +9774,7 @@ VIII
           Que yo llevo algo
           Divino aquí dentro!...
 
-
-
-
 IX
-
 
       Besa el aura que gime blandamente
     Las leves ondas que jugando riza;
@@ -9980,11 +9785,7 @@ IX
     Y hasta el sauce, inclinándose á su peso,
     Al río que le besa, vuelve un beso.
 
-
-
-
 X
-
 
       Los invisibles átomos del aire
     En derredor palpitan y se inflaman;
@@ -9995,11 +9796,7 @@ X
     Mis párpados se cierran... ¿Qué sucede?
     --¡Es el amor que pasa!
 
-
-
-
 XI
-
 
       --Yo soy ardiente, yo soy morena,
     Yo soy el símbolo de la pasión;
@@ -10016,11 +9813,7 @@ XI
     Soy incorpórea, soy intangible;
     No puedo amarte.--¡Oh, ven; ven tú!
 
-
-
-
 XII
-
 
       Porque son, niña, tus ojos
     Verdes como el mar, te quejas;
@@ -10080,11 +9873,7 @@ XII
     Broches de esmeralda y oro,
     Que un blanco armiño sujetan.
 
-
-
-
 XIII
-
 
       Tu pupila es azul, y cuando ríes,
     Su claridad suave me recuerda
@@ -10101,11 +9890,7 @@ XIII
     Me parece en el cielo de la tarde
         ¡Una perdida estrella!
 
-
-
-
 XIV
-
 
       Te vi un punto, y, flotando ante mis ojos,
     La imagen de tus ojos se quedó,
@@ -10127,11 +9912,7 @@ XIV
     Yo me siento arrastrado por tus ojos,
     Pero adónde me arrastran, no lo sé.
 
-
-
-
 XV
-
 
       Cendal flotante de leve bruma,
     Rizada cinta de blanca espuma,
@@ -10159,11 +9940,7 @@ XV
     Tras una sombra, tras la hija ardiente
             De una visión!
 
-
-
-
 XVI
-
 
       Si al mecer las azules campanillas
                 De tu balcón,
@@ -10186,22 +9963,14 @@ XVI
     Sabe que, aunque invisible, al lado tuyo
                 Respiro yo.
 
-
-
-
 XVII
-
 
       Hoy la tierra y los cielos me sonríen;
     Hoy llega al fondo de mi alma el sol;
     Hoy la he visto... la he visto y me ha mirado...
             ¡Hoy creo en Dios!
 
-
-
-
 XVIII
-
 
             Fatigada del baile,
     Encendido el color, breve el aliento,
@@ -10223,11 +9992,7 @@ XVIII
             ¡Oh, si las flores duermen,
             Qué dulcísimo sueño!
 
-
-
-
 XIX
-
 
       Cuando sobre el pecho inclinas
     La melancólica frente,
@@ -10239,55 +10004,35 @@ XIX
     Como á ella te hizo Dios
           De oro y nieve.
 
-
-
-
 XX
-
 
       Sabe, si alguna vez tus labios rojos
     Quema invisible atmósfera abrasada,
     Que el alma que hablar puede con los ojos,
     También puede besar con la mirada.
 
-
-
-
 XXI
-
 
       --¿Qué es poesía?--dices mientras clavas
           En mi pupila tu pupila azul;--
     ¿Qué es poesía? ¿Y tú me lo preguntas?
           Poesía... eres tú.
 
-
-
-
 XXII
-
 
       ¿Cómo vive esa rosa que has prendido
           Junto á tu corazón?
     Nunca hasta ahora contemplé en la tierra
           Sobre el volcán la flor.
 
-
-
-
 XXIII
-
 
       Por una mirada, un mundo;
     Por una sonrisa, un cielo;
     Por un beso... ¡yo no sé
     Qué te diera por un beso!
 
-
-
-
 XXIV
-
 
       Dos rojas lenguas de fuego
     Que á un mismo tronco enlazadas,
@@ -10314,11 +10059,7 @@ XXIV
     Dos ecos que se confunden...
     Eso son nuestras dos almas.
 
-
-
-
 XXV
-
 
       Cuando en la noche te envuelven
     Las alas de tul del sueño,
@@ -10359,11 +10100,7 @@ XXV
         ¡La fe, el espíritu,
         La tierra, el cielo!
 
-
-
-
 XXVI
-
 
       Voy contra mi interés al confesarlo;
           Pero yo, amada mía,
@@ -10380,11 +10117,7 @@ XXVI
     Con genio, es muy contado quien la _escribe_;
     Y con oro, cualquiera _hace_ poesía.
 
-
-
-
 XXVII
-
 
       Despierta, tiemblo al mirarte;
     Dormida, me atrevo á verte;
@@ -10435,11 +10168,7 @@ XXVII
     De la aurora, y te despierte...
       --¡Duerme!
 
-
-
-
 XXVIII
-
 
       Cuando entre la sombra oscura
     Perdida una voz murmura
@@ -10468,11 +10197,7 @@ XXVIII
     Soñando, ó que en un suspiro
     Me das tu aliento á beber?
 
-
-
-
 XXIX
-
 
       Sobre la falda tenía
         El libro abierto;
@@ -10504,11 +10229,7 @@ XXIX
     Y ella respondió encendida:
         --¡Ya lo comprendo!
 
-
-
-
 XXX
-
 
       Asomaba á sus ojos una lágrima
     Y á mi labio una frase de perdón;
@@ -10520,11 +10241,7 @@ XXX
     Yo digo aún: «¿Por qué callé aquel día?»
     Y ella dirá: «¿Por qué no lloré yo?»
 
-
-
-
 XXXI
-
 
       Nuestra pasión fué un trágico sainete,
           En cuya absurda fábula
@@ -10536,11 +10253,7 @@ XXXI
     A ella tocaron lágrimas y risas,
           ¡Y á mí sólo las lágrimas!
 
-
-
-
 XXXII
-
 
       Pasaba arrolladora en su hermosura,
           Y el paso le dejé;
@@ -10552,11 +10265,7 @@ XXXII
     Que en una breve noche de verano
     Se unieron los crepúsculos, y... «_fué_.»
 
-
-
-
 XXXIII
-
 
       Es cuestión de palabras, y no obstante,
           Ni tú ni yo jamás,
@@ -10568,11 +10277,7 @@ XXXIII
     Cuándo el orgullo es simplemente orgullo,
           Y cuándo es dignidad!
 
-
-
-
 XXXIV
-
 
       Cruza callada, y son sus movimientos
           Silenciosa armonía;
@@ -10599,22 +10304,14 @@ XXXIV
     Siempre valdrá, á mi ver, lo que ella calla
     Más que lo que cualquiera otra me diga.
 
-
-
-
 XXXV
-
 
       ¡No me admiró tu olvido! Aunque de un día
           Me admiró tu cariño mucho más;
     Porque lo que hay en mí que vale algo,
           Eso... ¡ni lo pudiste sospechar!
 
-
-
-
 XXXVI
-
 
       Si de nuestros agravios en un libro
           Se escribiese la historia,
@@ -10626,11 +10323,7 @@ XXXVI
     Que sólo con que tú borrases una,
           ¡Las borraba yo todas!
 
-
-
-
 XXXVII
-
 
       Antes que tú me moriré: escondido
           En las entrañas ya
@@ -10662,22 +10355,14 @@ XXXVII
     ¡Todo cuanto los dos hemos callado
           Lo tenemos que hablar!
 
-
-
-
 XXXVIII
-
 
       Los suspiros son aire, y van al aire.
     Las lágrimas son agua, y van al mar.
     Dime, mujer: cuando el amor se olvida,
           ¿Sabes tú adónde va?
 
-
-
-
 XXXIX
-
 
       ¿A qué me lo decís? Lo sé: es mudable,
     Es altanera y vana y caprichosa;
@@ -10689,11 +10374,7 @@ XXXIX
     Que es una estatua inanimada... pero...
           ¡Es tan hermosa!
 
-
-
-
 XL
-
 
       Su mano entre mis manos,
     Sus ojos en mis ojos,
@@ -10735,11 +10416,7 @@ XL
     Y ella... ella... ¡no hay máscara
     Semejante á su rostro!
 
-
-
-
 XLI
-
 
       Tú eras el huracán, y yo la alta
           Torre que desafía su poder:
@@ -10754,11 +10431,7 @@ XLI
     La senda estrecha, inevitable el choque...
           ¡No pudo ser!
 
-
-
-
 XLII
-
 
       Cuando me lo contaron sentí el frío
     De una hoja de acero en las entrañas;
@@ -10773,11 +10446,7 @@ XLII
     ¿Quién me dió la noticia?... Un fiel amigo...
     ¡Me hacía un gran favor!... Le di las gracias.
 
-
-
-
 XLIII
-
 
       Dejé la luz á un lado, y en el borde
     De la revuelta cama me senté,
@@ -10792,11 +10461,7 @@ XLIII
     Sólo recuerdo que lloré y maldije,
     Y que en aquella noche envejecí.
 
-
-
-
 XLIV
-
 
       Como en un libro abierto
     Leo de tus pupilas en el fondo;
@@ -10808,11 +10473,7 @@ XLIV
       ¡Llora! Nadie nos mira.
     Ya ves; yo soy un hombre... ¡y también lloro!
 
-
-
-
 XLV
-
 
       En la clave del arco mal seguro,
     Cuyas piedras el tiempo enrojeció,
@@ -10834,11 +10495,7 @@ XLV
     Lo llevará en la mano... en cualquier parte...
           Pero en el pecho, no.
 
-
-
-
 XLVI
-
 
       Me ha herido recatándose en las sombras,
     Sellando con un beso su traición.
@@ -10850,11 +10507,7 @@ XLVI
     Porque no brota sangre de la herida...
         ¡Porque el muerto está en pie!
 
-
-
-
 XLVII
-
 
       Yo me he asomado á las profundas simas
         De la tierra y del cielo,
@@ -10866,11 +10519,7 @@ XLVII
     Y mi alma y mis ojos se turbaron:
         ¡Tan hondo era y tan negro!
 
-
-
-
 XLVIII
-
 
       Como se arranca el hierro de una herida
     Su amor de las entrañas me arranqué,
@@ -10887,11 +10536,7 @@ XLVIII
     ¡Cuándo podré dormir con ese sueño
         En que acaba el soñar!
 
-
-
-
 XLIX
-
 
     Alguna vez la encuentro por el mundo
       Y pasa junto á mí;
@@ -10903,11 +10548,7 @@ XLIX
     Y entonces pienso:--¡Acaso ella se ríe
       Como me río yo!
 
-
-
-
 L
-
 
       Lo que el salvaje que con torpe mano
     Hace de un tronco á su capricho un dios,
@@ -10919,11 +10560,7 @@ L
     Y hecho el ídolo ya, sacrificamos
         En su altar nuestro amor.
 
-
-
-
 LI
-
 
       De lo poco de vida que me resta
     Diera con gusto los mejores años,
@@ -10935,11 +10572,7 @@ LI
         Por saber lo que á solas
         De mí has pensado.
 
-
-
-
 LII
-
 
       Olas gigantes, que os rompéis bramando
     En las playas desiertas y remotas,
@@ -10961,11 +10594,7 @@ LII
     ¡Por piedad!... ¡Tengo miedo de quedarme
         Con mi dolor á solas!
 
-
-
-
 LIII
-
 
       Volverán las oscuras golondrinas
     En tu balcón sus nidos á colgar,
@@ -10997,11 +10626,7 @@ LIII
     Como yo te he querido... desengáñate,
         ¡Así no te querrán!
 
-
-
-
 LIV
-
 
       Cuando volvemos las fugaces horas
         Del pasado á evocar,
@@ -11013,11 +10638,7 @@ LIV
     Que, cual hoy por ayer, por hoy mañana,
     Volveremos los dos á suspirar.
 
-
-
-
 LV
-
 
       Entre el discorde estruendo de la orgía
         Acarició mi oído,
@@ -11034,11 +10655,7 @@ LV
     --En nada...--¿En nada, y lloras?--Es que tengo
     Alegre la tristeza y triste el vino.
 
-
-
-
 LVI
-
 
     Hoy como ayer, mañana como hoy,
         ¡Y siempre igual!
@@ -11070,11 +10687,7 @@ LVI
     Amargo es el dolor; pero siquiera
         ¡Padecer es vivir!
 
-
-
-
 LVII
-
 
       Este armazón de huesos y pellejo,
     De pasear una cabeza loca
@@ -11095,11 +10708,7 @@ LVII
     Que hay dolor que al pasar, su horrible huella
     Graba en el corazón, si no en la frente.
 
-
-
-
 LVIII
-
 
       ¿Quieres que de ese néctar delicioso
           No te amargue la hez?
@@ -11111,11 +10720,7 @@ LVIII
     Pues amémonos hoy mucho, y mañana
           Digámonos _¡adiós!_
 
-
-
-
 LIX
-
 
       Yo sé cuál el objeto
     De tus suspiros es;
@@ -11144,11 +10749,7 @@ LIX
     Mientras tú sientes mucho y nada sabes,
     Yo, que no siento ya, todo lo sé.
 
-
-
-
 LX
-
 
       Mi vida es un erial:
     Flor que toco se deshoja;
@@ -11156,11 +10757,7 @@ LX
     Alguien va sembrando el mal
     Para que yo lo recoja.
 
-
-
-
 LXI
-
 
     Al ver mis horas de fiebre
     É insomnio lentas pasar,
@@ -11192,11 +10789,7 @@ LXI
     De que pasé por el mundo,
       Quién se acordará?
 
-
-
-
 LXII
-
 
       Primero es un albor trémulo y vago,
     Raya de inquieta luz que corta el mar;
@@ -11208,11 +10801,7 @@ LXII
     ¡Ay! en la oscura noche de mi alma,
             ¿Cuándo amanecerá?
 
-
-
-
 LXIII
-
 
       Como enjambre de abejas irritadas,
     De un oscuro rincón de la memoria
@@ -11224,11 +10813,7 @@ LXIII
     Y unos tras otros á clavarme vienen
     El agudo aguijón que el alma encona.
 
-
-
-
 LXIV
-
 
       Como guarda el avaro su tesoro,
         Guardaba mi dolor;
@@ -11240,11 +10825,7 @@ LXIV
     --¡Ah, barro miserable, eternamente
     No podrás ni aun sufrir!
 
-
-
-
 LXV
-
 
       Llegó la noche y no encontré un asilo;
         ¡Y tuve sed!... Mis lágrimas bebí;
@@ -11256,11 +10837,7 @@ LXV
     Yo era huérfano y pobre... ¡El mundo estaba
         Desierto... para mí!
 
-
-
-
 LXVI
-
 
       ¿De dónde vengo?... El más horrible y áspero
         De los senderos busca:
@@ -11280,11 +10857,7 @@ LXVI
         Donde habite el olvido,
         Allí estará mi tumba.
 
-
-
-
 LXVII
-
 
       ¡Qué hermoso es ver el día
     Coronado de fuego levantarse,
@@ -11306,11 +10879,7 @@ LXVII
     Y comer... y engordar!... ¡y qué desgracia
         Que esto sólo no baste!
 
-
-
-
 LXVIII
-
 
       No sé lo que he soñado
       En la noche pasada;
@@ -11327,11 +10896,7 @@ LXVIII
     Mas tengo en mi tristeza una alegría...
     ¡Sé que aún me quedan lágrimas!
 
-
-
-
 LXIX
-
 
       Al brillar un relámpago nacemos,
     Y aún dura su fulgor cuando morimos:
@@ -11341,11 +10906,7 @@ LXIX
     Sombras de un sueño son que perseguimos:
           ¡Despertar es morir!
 
-
-
-
 LXX
-
 
       ¡Cuántas veces al pie de las musgosas
             Paredes que la guardan,
@@ -11392,11 +10953,7 @@ LXX
     ¡Hasta los mudos santos de granito
             Vi que me saludaban!
 
-
-
-
 LXXI
-
 
       No dormía; vagaba en ese limbo
     En que cambian de forma los objetos,
@@ -11430,11 +10987,7 @@ LXXI
     Dormí, y al despertar exclamé: «¡Alguno
           Que yo quería ha muerto!»
 
-
-
-
 LXXII
-
 
 PRIMERA VOZ
 
@@ -11474,11 +11027,7 @@ TERCERA VOZ
     --Ha tiempo lo hice; por cierto que aún tengo
     La ropa en la playa tendida á secar.
 
-
-
-
 LXXIII
-
 
       Cerraron sus ojos
     Que aún tenía abiertos;
@@ -11597,11 +11146,7 @@ LXXIII
     Al dejar tan tristes,
     Tan solos los muertos!
 
-
-
-
 LXXIV
-
 
         Las ropas desceñidas,
         Desnudas las espadas,
@@ -11628,11 +11173,7 @@ LXXIV
     --¡El umbral de esta puerta
         Sólo Dios lo traspasa!
 
-
-
-
 LXXV
-
 
       ¿Será verdad que cuando toca el sueño
     Con sus dedos de rosa nuestros ojos,
@@ -11659,11 +11200,7 @@ LXXV
     Pero sé que conozco á muchas gentes
             A quienes no conozco!
 
-
-
-
 LXXVI
-
 
         En la imponente nave
         Del templo bizantino,
@@ -11722,20 +11259,14 @@ LXXVI
     ¡Oh, qué amor tan callado el de la muerte!
     ¡Qué sueño el del sepulcro tan tranquilo!
 
-
 FIN
 
-
-
-
 ÍNDICE
-
 
                                                       _Páginas_
 
   A MANERA DE PRÓLOGO.                                       v
   INTRODUCCIÓN.                                              1
-
 
   LEYENDAS
 
@@ -11752,7 +11283,6 @@ FIN
   Las Hojas Secas.                                         157
   La Venta de los Gatos.                                   163
 
-
   DESDE MI CELDA.--CARTAS LITERARIAS
 
   Primera.                                                 179
@@ -11764,7 +11294,6 @@ FIN
   Séptima.                                                 255
   Octava.                                                  269
   Novena.                                                  283
-
 
   RIMAS
 
@@ -11845,13 +11374,7 @@ FIN
   LXXV.    ¿Será verdad que cuando toca el sueño?          348
   LXXVI.   En la imponente nave.                           349
 
-
-
-
       *      *      *      *      *      *
-
-
-
 
 NOTA DE TRANSCRIPCIÓN
 
@@ -11864,12 +11387,7 @@ NOTA DE TRANSCRIPCIÓN
   * Se han añadido ilustraciones de adorno al final de los capítulos
     que, en el original impreso, carecen de ellas.
 
-
-
 *** END OF THE PROJECT GUTENBERG EBOOK OBRAS ESCOGIDAS ***
-
-
-    
 
 Updated editions will replace the previous one—the old editions will
 be renamed.
@@ -11892,7 +11410,6 @@ Gutenberg eBooks may be modified and printed and given away—you may
 do practically ANYTHING in the United States with eBooks not protected
 by U.S. copyright law. Redistribution is subject to the trademark
 license, especially commercial redistribution.
-
 
 START: FULL LICENSE
 
@@ -11974,7 +11491,7 @@ performed, viewed, copied or distributed:
     at www.gutenberg.org. If you
     are not located in the United States, you will have to check the laws
     of the country where you are located before using this eBook.
-  
+
 1.E.2. If an individual Project Gutenberg™ electronic work is
 derived from texts not protected by U.S. copyright law (does not
 contain a notice indicating that it is posted with permission of the
@@ -12036,7 +11553,7 @@ provided that:
         Gutenberg Literary Archive Foundation at the address specified in
         Section 4, “Information about donations to the Project Gutenberg
         Literary Archive Foundation.”
-    
+
     • You provide a full refund of any money paid by a user who notifies
         you in writing (or by e-mail) within 30 days of receipt that s/he
         does not agree to the terms of the full Project Gutenberg™
@@ -12044,15 +11561,14 @@ provided that:
         copies of the works possessed in a physical medium and discontinue
         all use of and all access to other copies of Project Gutenberg™
         works.
-    
+
     • You provide, in accordance with paragraph 1.F.3, a full refund of
         any money paid for a work or a replacement copy, if a defect in the
         electronic work is discovered and reported to you within 90 days of
         receipt of the work.
-    
+
     • You comply with all other terms of this agreement for free
         distribution of Project Gutenberg™ works.
-    
 
 1.E.9. If you wish to charge a fee or distribute a Project
 Gutenberg™ electronic work or group of works on different terms than
@@ -12215,5 +11731,4 @@ This website includes information about Project Gutenberg™,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
 

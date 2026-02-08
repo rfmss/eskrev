@@ -1,5 +1,5 @@
 ﻿The Project Gutenberg eBook of O Guarany: romance brazileiro, Vol. 1 (of 2)
-    
+
 This ebook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
 whatsoever. You may copy it, give it away or re-use it under the terms
@@ -21,22 +21,17 @@ Original publication: Brazil: B. L. Garnier, 1883
 
 Credits: Laura Natal Rodrigues and Kristen Carmean (Images generously made available by Hathi Trust Digital Library.)
 
-
 *** START OF THE PROJECT GUTENBERG EBOOK O GUARANY: ROMANCE BRAZILEIRO, VOL. 1 (OF 2) ***
 
 J. DE ALENCAR
-
 
 O GUARANY
 
 ROMANCE BRAZILEIRO
 
-
 QUINTA EDIÇÃO
 
-
 TOMO PRIMEIRO
-
 
 RIO DE JANEIRO
 
@@ -50,11 +45,7 @@ Ficão reservados os direitos de propriedade.
 
 1883
 
-
-
-
 AO LEITOR
-
 
 Publicando este livro em 1857, se disse ser aquella primeira edição
 uma prova typographica, que algum dia talvez o autor se dispuzesse a
@@ -71,9 +62,6 @@ sobra o tedio de um labor ingrato.
 
 Cingio-se pois ás pequenas emendas que toleravão o plano da obra e o
 desalinho de um estylo não castigado.
-
-
-
 
 INDICE
 PRIMEIRA PARTE
@@ -111,21 +99,13 @@ XIII.--Trama......................................... 329
 XIV.--A chacara...................................... 341
 Notas................................................ 353
 
-
-
-
 PRIMEIRA PARTE
 
-
 OS AVENTUREIROS
-
-
-
 
 I
 
 SCENARIO
-
 
 De um dos cabeços da _Serra dos Órgãos_ deslisa um fio d'agua que se
 dirige para norte, e engrossado com os mananciaes, que recebe no seu
@@ -288,13 +268,9 @@ Tudo isto respirava um suave aroma de beijoim, que se tinha impregnado
 nos objectos como o seu perfume natural, ou como a atmosphera do paraiso
 que uma fada habitava.
 
-
-
-
 II
 
 LEALDADE
-
 
 A habitação que descrevemos, pertencia a D. Antonio de Mariz, fidalgo
 portuguez cota d'armas e um dos fundadores da cidade do Rio de Janeiro.
@@ -476,13 +452,9 @@ comprehendão os acontecimentos que depois se passárão.
 
 Deixarei porém que os outros perfis se desenhem por si mesmos.
 
-
-
-
 III
 
 A BANDEIRA
-
 
 Era meio dia.
 
@@ -787,13 +759,9 @@ Os caminheiros empallidecêrão e olhárão um para o outro; os
 cavalleiros engatilhárão os arcabuzes e seguirão lentamente,
 lançando um olhar cauteloso pelos ramos das arvores.
 
-
-
-
 IV
 
 A LUTA
-
 
 Quando a cavalgata chegou á margem da clareira, ahi se passava uma
 scena curiosa.
@@ -1029,13 +997,9 @@ e assim ficou algum tempo.
 Depois se ergueu e entranhou de novo pela floresta, na mesma direcção
 que o outro tomára pouco tempo antes.
 
-
-
-
 V
 
 LOURA E MORENA
-
 
 Cahia a tarde.
 
@@ -1353,13 +1317,9 @@ tenho inveja do teu moreninho, prima?
 E as duas moças tomárão pelo interior da casa, dirigindo-se ao lado
 da entrada.
 
-
-
-
 VI
 
 A VOLTA
-
 
 Ao mesmo tempo que esta scena se passava no jardim, dous homens
 passeavão do outro lado da esplanada, na sombra que projectava o
@@ -1665,13 +1625,9 @@ Alvaro, e seus companheiros recem-chegados: o moço tinha ainda no rosto
 a expressão de tristeza que lhe havião deixado as palavras severas de
 seu pai.
 
-
-
-
 VII
 
 A PRECE
-
 
 A tarde ia morrendo.
 
@@ -1948,13 +1904,9 @@ Nisto gastou seguramente meia hora; depois deitou-se, e como já não
 tinha inquietação nem tristeza, adormeceu sorrindo á imagem de
 Alvaro, e pensando na magoa que lhe fizera, recusando o seu mimo.
 
-
-
-
 VIII
 
 TRES LINHAS
-
 
 Tudo estava em socego: apenas quando o vento escasseava, ouvia-se do
 lado do edificio habitado pelos aventureiros um rumor de vozes abafadas.
@@ -2181,13 +2133,9 @@ mercadejar por ella um prazer.
 É que as paixões no deserto, e sobretudo no seio desta natureza grande
 e magestosa, são verdadeiras epopéas do coração.
 
-
-
-
 IX
 
 AMOR
-
 
 As cortinas da janella cerrarão-se; Cecilia tinha-se deitado.
 
@@ -2397,13 +2345,9 @@ Isabel collou os labios no crystal com uma especie de delirio.
 
 Um soluço rompeu-lhe o seio.
 
-
-
-
 X
 
 AO ALVORECER
-
 
 No dia seguinte, ao raiar da manhã, Cecilia abrio a portinha do jardim
 e aproximou-se da cerca.
@@ -2660,13 +2604,9 @@ Pery levantou os hombros e mettendo as pistolas na cinta passou entre
 elles com a cabeça alta, o olhar sobrançeiro, e acompanhou sua
 senhora.
 
-
-
-
 XI
 
 NO BANHO
-
 
 Descendo a escada de pedra da esplanada Cecilia perguntava á sua prima:
 
@@ -2924,13 +2864,9 @@ Estendeu o oleo sobre a ferida, estancou o sangue e respirou.
 
 Estava salvo.
 
-
-
-
 XII
 
 A ONÇA
-
 
 Voltemos á casa.
 
@@ -3199,13 +3135,9 @@ conservava ainda a esperança de conseguir acalma-la e dissuadi-la.
 
 D. Lauriana espiava o effeito do seu ultimo ataque. Contava vencer.
 
-
-
-
 XIII
 
 REVELAÇÃO
-
 
 Isabel e Cecilia que voltavão do banho conversando, aproximárão-se da
 porta, não sem algum susto do animal; susto que se desfez com o sorriso
@@ -3538,13 +3470,9 @@ A moça cahio de joelhos aos pés de Cecilia.
 
 Tinha-se trahido.
 
-
-
-
 XIV
 
 A INDIA
-
 
 Pery apenas sentio voltarem-lhe as forças, continuou a sua marcha
 atravez da floresta.
@@ -3815,13 +3743,9 @@ trazia as palavras claras e distinctas.
 
 Sentou-se e ouvio.
 
-
-
-
 XV
 
 OS TRES
-
 
 Loredano que nessa mesma manhã sahira de casa tão cedo, apenas se
 entranhou na matta esperou.
@@ -4214,26 +4138,15 @@ sopro da brisa; nenhum insecto saltitava sobre a relva.
 
 O dia no seu esplendor dominava a natureza.
 
-
-
-
 FIM DA PRIMEIRA PARTE.
-
-
-
 
 SEGUNDA PARTE
 
-
 PERY
-
-
-
 
 I
 
 O CARMELITA
-
 
 Corria o mez de março de 1603.
 
@@ -4608,13 +4521,9 @@ Cinco mezes passados, o vigario da ordem participava ao geral em Roma
 que o irmão Fr. Angelo di Luca morrêra como santo e martyr no zelo de
 sua fé apostolica.
 
-
-
-
 II
 
 YARA!
-
 
 Dous dias depois da scena do pouso, por uma bella tarde de verão, a
 familia de D. Antonio de Mariz estava reunida na margem do _Paquequer_.
@@ -4744,7 +4653,6 @@ O indio começou, na sua linguagem tão rica e poetica, com a doce
 pronuncia que parecia ter aprendido das auras da sua terra ou das aves
 das florestas virgens, esta simples narração:
 
-
 «Era o tempo das arvores de ouro.
 
 «A terra cobrio o corpo de Ararê, e as suas armas; menos o seu arco de
@@ -4866,7 +4774,6 @@ ficasse triste, e voltasse ao céo.
 nação Goytacaz, forte na guerra, te offerece o seu arco; tu és
 amigo.»
 
-
 O indio terminou aqui a sua narração.
 
 Emquanto fallava, um assomo do orgulho selvagem da força e da coragem
@@ -4938,13 +4845,9 @@ A cada palavra o indio tocou a taça e bebeu um trago de vinho, sem
 fazer o menor gesto de desgosto; elle beberia veneno á saude do pai de
 Cecilia.
 
-
-
-
 III
 
 GENIO DO MAL
-
 
 Pery voltou por differentes vezes á casa de D. Antonio de Mariz.
 
@@ -5208,13 +5111,9 @@ Mas não anticipemos; por ora ainda estamos em 1603, um anno antes
 daquella scena, e ainda nos faltão contar certas circumstancias que
 servirão para o seguimento desta veridica historia.
 
-
-
-
 IV
 
 CECY
-
 
 Poucas horas depois que Loredano fôra admittido na casa de D. Antonio
 de Mariz, Cecilia, chegando á janella do seu quarto, viu do lado
@@ -5397,7 +5296,6 @@ Pery applicou o ouvido; descendo á esplanada correu na direcção donde
 partia a voz, que cantava com a cadencia triste e melancolica
 particular aos indios, a seguinte endeixa na lingua dos Guaranys:
 
-
 «A estrella brilhou; partimos com a tarde. A brisa soprou; nos leva nas
 azas.
 
@@ -5408,7 +5306,6 @@ trabalhão; ha vinho.
 
 «A estrella brilhou; é hora de partir. A brisa soprou; é tempo de
 andar.»
-
 
 A pessoa que modulava esta canção selvagem era uma india já idosa;
 encostada a uma arvore da floresta ella vira por entre a folhagem a
@@ -5584,13 +5481,9 @@ fiel e dedicado.
 --Chama-me _Cecy_, dizia ás vezes ao indio sorrindo-se; este doce nome
 me lembrará que fui má para ti; e me ensinará a ser boa.
 
-
-
-
 V
 
 VILANIA
-
 
 É tempo de continuar esta narração interrompida pela necessidade de
 contar alguns factos anteriores.
@@ -5842,13 +5735,9 @@ Mal sabia elle que nesse momento o fecho da clavina movido por um dedo
 seguro cahia, e que a bala ia partir guiada pelo olhar certeiro do
 italiano.
 
-
-
-
 VI
 
 NOBREZA
-
 
 Alvaro ouvio um sibillo agudo.
 
@@ -6182,13 +6071,9 @@ cá!
 
 Pery não se voltou.
 
-
-
-
 VII
 
 NO PRECIPICIO
-
 
 Pery tinha parado para ver Cecilia de longe.
 
@@ -6519,13 +6404,9 @@ E o indio desappareceu sob as trepadeiras que cobrião o precipicio.
 
 Cecilia soltou um grito, e debruçou-se no parapeito da janella.
 
-
-
-
 VIII
 
 O BRACELETE
-
 
 O que Cecilia viu debruçando-se á janella, gelou-a de espanto e
 horror.
@@ -6838,13 +6719,9 @@ E apinhando os dedos atirou um beijo á prima e sahio correndo.
 A travessura e jovialidade do seu genio já tinhão dissipado as
 impressões tristes da manhã.
 
-
-
-
 IX
 
 TESTAMENTO
-
 
 No momento em que Cecilia deixou Isabel, D. Antonio de Mariz subia a
 esplanada, preoccupado por algum objecto importante, que dava á sua
@@ -7142,13 +7019,9 @@ O que elle soffria é impossivel dizer; a palavra não sabe o segredo
 das tormentas profundas de uma alma forte e vigorosa, que pela primeira
 vez sente-se vencida pela dôr.
 
-
-
-
 X
 
 DESPEDIDA
-
 
 D. Antonio aproximou-se de Pery e apertou-lhe a mão:
 
@@ -7439,13 +7312,9 @@ mostrar o que és.
 
 Era hora do jantar: o toque soou.
 
-
-
-
 XI
 
 TRAVESSURA
-
 
 Na tarde desse mesmo domingo em que tantos acontecimentos se tinhão
 passado, Cecilia e Isabel sahião do jardim com o braço na cintura uma
@@ -7773,13 +7642,9 @@ desfallecida sobre a haste, murmurou:
 
 Porque... vos amo!
 
-
-
-
 XII
 
 AS MENSAGENS DE PERY
-
 
 Alvaro ergueu-se como se os labios da moça tivessem lançado nas suas
 veias uma gota do veneno subtil dos selvagens que matava com um atomo.
@@ -8058,13 +7923,9 @@ ouvido uma palavra.
 E o indio desappareceu de novo nas sombras da noite que avançava
 rapidamente.
 
-
-
-
 XIII
 
 TRAMA
-
 
 Tornemos ao lugar onde deixámos Loredano e seus dois companheiros.
 
@@ -8350,13 +8211,9 @@ assustar a menina, quanto mais offendê-la.
 
 Bento Simões passou incolume.
 
-
-
-
 XIV
 
 A CHACARA
-
 
 Pery viu passar pouco depois Loredano e Ruy Soeiro.
 
@@ -8636,7 +8493,6 @@ musica.
 
 A chacara dizia assim:
 
-
      Foi um dia.--Infanção mouro
             Deixou
      Alcaçar de prata e ouro.
@@ -8689,20 +8545,14 @@ A chacara dizia assim:
             Na cruz
      Um beijo tornou irmãs.
 
-
 A voz suave e meiga perdeu-se no silencio do ermo; o echo repetio um
 momento as suas doces modulações.
 
-
-
-
 FIM DA SEGUNDA PARTE.
-
 
 NOTAS
 
 DO TOMO PRIMEIRO.
-
 
 PAG. 3.--=Guarany=.
 
@@ -8715,7 +8565,6 @@ algumas nações. Entendemos que a melhor designação que se lhe podia
 dar era a da lingua geral que fallavão e naturalmente lembrava o nome
 primitivo da grande nação.
 
-
 PAG. 3.--=O Paquequer=.
 
 Para se conhecer a exactidão dessa descripção do rio Paquequer
@@ -8724,13 +8573,11 @@ Janeiro_, 1° tomo, pag. 162. Hoje as grandes plantações de café
 transformárão inteiramente aquelles lugares outr'ora virgens e
 desertos.
 
-
 PAG. 4.--=Brazão d'armas=.
 
 Este brazão da casa dos Marizes é historico; nos mesmos _Annaes do Rio
 de Janeiro_, tomo 1°, pag. 329, acha-se a sua descripção que copiei
 litteralmente.
-
 
 PAG. 11.--=D. Antonio de Mariz=.
 
@@ -8740,12 +8587,10 @@ passado, antes da epoca em que começa o romance.
 Nos _Annaes do Rio de Janeiro_, tomo 1°, pag. 328, lêa-se uma breve
 noticia sobre sua vida.
 
-
 PAG. 13.--=D. Pedro da Cunha=.
 
 Deste projecto de transportar ao Brazil a coroa portugueza, falla
 Warnhagen na sua historia do Brazil.
-
 
 PAG. 16.--=Aventureiros=.
 
@@ -8755,12 +8600,10 @@ Esse costume tinha o quer que seja dos usos da media idade, e a
 necessidade o fez reviver em nosso paiz onde faltavão tropas regulares
 para as conquistas e explorações.
 
-
 PAG. 14.--=D. Lauriana=.
 
 Segundo B. da S. Lisboa a mulher de D. Antonio de Mariz chamava-se
 Lauriana Simoa, e era natural de S. Paulo.
-
 
 PAG. 19.--=D. Diogo de Mariz=.
 
@@ -8768,12 +8611,10 @@ Este personagem tambem é historico. Em 1607 era provedor da alfandega
 do Rio de Janeiro, cargo que tinha servido seu pai alguns annos antes.
 S. Lisboa.--_Annaes_.
 
-
 PAG. 20.--=Pistoletes=.
 
 Ou arcabuzes pequenos. Pela ord. n° 5, tit. 80, s. 13ª, era defesa
 trazê-los armados ou tê-los em casa.
-
 
 PAG. 32.--=Um indio=.
 
@@ -8785,14 +8626,12 @@ Gabriel Soares que escreveu em 1580, e que nesse tempo devia conhecer a
 raça indigena em todo o seu vigor, e não degenerada como se tornou
 depois.
 
-
 PAG. 38.--=Forcado=.
 
 Esta maneira de caçar uma onça, que a muitos parecerá extraordinaria,
 é referida por Ayres do Casal. Ainda hoje no interior ha sertanejos que
 cação deste modo, e sem o menor risco ou difficuldade, tão habituados
 já estão.
-
 
 PAG. 40.--=Ticum=.
 
@@ -8801,13 +8640,11 @@ Europeus do linho. Della se servião para suas redes de pesca, para
 cordas de arco e outros misteres; o fio preparado por elles com a resina
 de almocega era fortissimo.
 
-
 PAG. 42.--=Biribá=.
 
 Era a arvore com que os indigenas tiravâo fogo por meio do attrito,
 roçando fortemente um fragmento de encontro ao outro. B. da S.
 Lisboa.--_Annaes_.
-
 
 PAG. 43.--=Gardenia=.
 
@@ -8815,22 +8652,18 @@ Nome scientifico que Fr. Velloso na sua Flora Fluminense dá á açucena
 silvestre; nos nossos campos encontra-se essa flôr da varias côres; a
 mais commum é a branca e escarlate.
 
-
 PAG. 73.--=Pery=.
 
 Palavra da lingua guarany que significa _junco silvestre_.
-
 
 PAG. 80.--=Oleo=.
 
 É uma das arvores mais elevadas de nossas florestas; cresce a mais de
 cem palmos, e o tronco chega a uma extraordinaria grossura.
 
-
 PAG. 94.--=Hirara=.
 
 Especie de gato selvagem, indigena do Brazil.
-
 
 PAG. 100.--=Soffrer=.
 
@@ -8838,23 +8671,19 @@ PAG. 100.--=Soffrer=.
 negro brilhante. O seu canto doce imita a palavra soffrer, razão por
 que os primeiros colonos lhe derão esse nome.
 
-
 PAG. 102.--=Cecy=.
 
 É um verbo da lingua guarany que significa _magoar_, _doer_.
-
 
 PAG. 106.--=Sapucaia=.
 
 Arvore de alta grandeza, que dá um fructo do tamanho e da confeição
 de um côco.
 
-
 PAG. 107.--=Pequiá=.
 
 Arvore de mais de cem palmos de altura, que tem uma pequena flôr de
 brilhante escarlate; floresce nos mezes de setembro e outubro.
-
 
 PAG. 111.--=O cactus=.
 
@@ -8862,42 +8691,35 @@ Temos differentes especies de cactus; os mais lindos são o branco, o
 rosa e o amarello, a que os indigenas chamavão _urumbeba_. Todos elles
 abrem á meia noite e fechão ao despontar do sol.
 
-
 PAG. 111.--=Graciola=.
 
 É o nome scientifico que Fr. Velloso na sua _Flora Fluminense_ dá á
 pequena flôr azul de um arbusto indigena.
-
 
 PAG. 111.--=Malvalisco=.
 
 Assim designa Saint-Hilaire uma especie de malva indigena brazileira,
 cuja flor é escarlate.
 
-
 PAG. 112.--=Viuvinha=.
 
 Pequeno passaro negro que canta ao amanhecer; dizem ser o primeiro
 que saúda o nascimento do dia.
-
 
 PAG. 113.--=Jasmineiro=.
 
 Ha uma especie de jasmineiro indigena do Brazil; assim o dizem os dous
 botanicos que citamos acima.
 
-
 PAG. 115.--=Colhereira=.
 
 É uma das aves aquaticas mais lindas do Brazil; suas pennas são de uma
 bella côr de rosa.
 
-
 PAG. 146.--=O cão=.
 
 Diz o Sr. Warnhagen na sua historia do Brazil que o cão era o
 companheiro constante do nosso indigena, ainda mais do que do Europeu.
-
 
 PAG. 149.--=Cabuiba=.
 
@@ -8909,19 +8731,16 @@ arvore do balsamo.
 Distilla um licor louro de um cheiro agradavel, que dizem milagroso para
 cura de feridas frescas. (Gabriel Soares; S. Lisboa e Ayres do Casal.)
 
-
 PAG. 154.--=Formigueiro=.
 
 No sertão encontrão-se frequentemente essas excavações subterraneas,
 feitas por uma formiga, a que os indios chamárão _taciahy_.
-
 
 PAG. 161.--=Garcia Ferreira=.
 
 Garcia Ferreira foi provido no officio de tabellião do Rio de Janeiro
 por Salvador Corrêa de Sá, em 15 de Fevereiro de 1588. (B. da Silva
 Lisboa.)
-
 
 PAG. 163.--=Roberio Dias=.
 
@@ -8933,7 +8752,6 @@ Essas minas, falsas ou verdadeiras, nunca se descobrirão.
 Roberio morreu pobre e desgraçado, recusando revelar o segredo das
 minas. (B. da S. Lisboa.)
 
-
 PAG. 177.--=Convento do Carmo=.
 
 «Logo que os carmelitas se estabelecerão em Santos pela doação de
@@ -8943,7 +8761,6 @@ anno da fundação é indisputavel todavia que fôra entre 1589 e 1590,
 pois que já estava aquelle feito em 1595. Corria por tradição
 geralmente ter sido o seu começo em 1590.» (B. da S. Lisboa, tom.
 VII°, cap. 2°, § 6.)
-
 
 PAG. 196.--=Arvores de ouro=.
 
@@ -8956,7 +8773,6 @@ Sendo epoca da florescencia dessas arvores em setembro, a phrase
 figurada do indio traduz-se da seguinte maneira: «Era o mez de
 setembro.»
 
-
 PAG. 196.--=O mais forte=.
 
 É sabido que entre as nossas tribus, o chefe era sempre aquelle que
@@ -8964,20 +8780,17 @@ tinha maior reputação de valor e fortaleza. O principio de
 hereditariedade, se algumas vezes regulava a successão do mando, era
 ephemero.
 
-
 PAG. 197.--=Taba dos brancos=.
 
 Allude-se á colonia da Victoria, hoje capital da provincia do Espirito
 Santo, que foi duas vezes arrasada pelos Goytacazes Tupininquins. É um
 desses combates que o indio conta de passagem.
 
-
 PAG. 198.--=Senhora dos brancos=.
 
 Pela descripção seguinte conhece-se que o selvagem viu na igreja, na
 occasião do incendio que devorou a villa da Victoria, uma imagem de
 Nossa Senhora, que o impressionou vivamente.
-
 
 PAG.--=A estrella grande=.
 
@@ -8993,7 +8806,6 @@ chuva, _ama'na-ara_; são as mesmas que hoje conhecemos, e as unicas que
 realmente existem no Brazil. Muitas outras observações podiamos fazer,
 que omittimos para evitar prolixidade.
 
-
 PAG. 199.--=Grande rio=.
 
 Esta palavra é relativa: todas as nações chamavão assim o maior rio
@@ -9001,13 +8813,11 @@ que havia no territorio que ellas conhecião, e é por isso que se
 encontrão tantos _rios grandes_ nos nomes dos rios do nosso paiz. Para
 os Goytacazes o Rio-Grande era o Parabyba.
 
-
 PAG. 218.--=A nação goytacaz=.
 
 Esses factos lêem-se em qualquer dos escriptores que se têm occupado
 dos primeiros tempos coloniaes do Brazil, e especialmente em G. Soares,
 que foi contemporâneo delles.
-
 
 PAG. 260--=Cipós=.
 
@@ -9021,7 +8831,6 @@ chamavão «timbós,» que são mais rijas que os cipós acima.»
 A quantidade infinita de cipós é uma das originalidades das florestas
 do Brazil, e admirou os naturalistas estrangeiros que o visitárão.
 
-
 PAG. 222.--=Candêa=.
 
 Diz o mesmo autor: «Ha uma arvore meã que se chama «ibiriba» a qual
@@ -9030,13 +8839,11 @@ andarem de noite; e ainda que seja verde, cortada daquella hora, pega o
 fogo nella como em alcatrão, e não apaga o vento os fachos della; e em
 casa servem-se os indios de achas dessa madeira, como de candêas.
 
-
 PAG. 269.--=Cauan=.
 
 É uma ave que devora as cobras, pelo que ellas fogem della, Os indios,
 segundo affirma Ayres do Casal, imitavão o seu canto, quando andavão
 á noite pelo matto, e assim preservavão-se de serem mordidos.
-
 
 PAG. 338.--=Setta por elevação=.
 
@@ -9051,17 +8858,9 @@ Matto-Grosso, foi assassinado pelos indios deste modo, cavalgando no
 meio de muitos cavalleiros. Nenhum foi ferido: e todas as settas
 abatêrão-se sobre o moço de quem os selvagens se querião vingar.
 
-
-
-
 FIM DAS NOTAS DO TOMO PRIMEIRO.
 
-
-
 *** END OF THE PROJECT GUTENBERG EBOOK O GUARANY: ROMANCE BRAZILEIRO, VOL. 1 (OF 2) ***
-
-
-    
 
 Updated editions will replace the previous one—the old editions will
 be renamed.
@@ -9084,7 +8883,6 @@ Gutenberg eBooks may be modified and printed and given away—you may
 do practically ANYTHING in the United States with eBooks not protected
 by U.S. copyright law. Redistribution is subject to the trademark
 license, especially commercial redistribution.
-
 
 START: FULL LICENSE
 
@@ -9166,7 +8964,7 @@ performed, viewed, copied or distributed:
     at www.gutenberg.org. If you
     are not located in the United States, you will have to check the laws
     of the country where you are located before using this eBook.
-  
+
 1.E.2. If an individual Project Gutenberg™ electronic work is
 derived from texts not protected by U.S. copyright law (does not
 contain a notice indicating that it is posted with permission of the
@@ -9228,7 +9026,7 @@ provided that:
         Gutenberg Literary Archive Foundation at the address specified in
         Section 4, “Information about donations to the Project Gutenberg
         Literary Archive Foundation.”
-    
+
     • You provide a full refund of any money paid by a user who notifies
         you in writing (or by e-mail) within 30 days of receipt that s/he
         does not agree to the terms of the full Project Gutenberg™
@@ -9236,15 +9034,14 @@ provided that:
         copies of the works possessed in a physical medium and discontinue
         all use of and all access to other copies of Project Gutenberg™
         works.
-    
+
     • You provide, in accordance with paragraph 1.F.3, a full refund of
         any money paid for a work or a replacement copy, if a defect in the
         electronic work is discovered and reported to you within 90 days of
         receipt of the work.
-    
+
     • You comply with all other terms of this agreement for free
         distribution of Project Gutenberg™ works.
-    
 
 1.E.9. If you wish to charge a fee or distribute a Project
 Gutenberg™ electronic work or group of works on different terms than
@@ -9407,5 +9204,4 @@ This website includes information about Project Gutenberg™,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
 

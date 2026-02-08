@@ -1,5 +1,5 @@
 ﻿The Project Gutenberg eBook of Germinal
-    
+
 This ebook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
 whatsoever. You may copy it, give it away or re-use it under the terms
@@ -19,15 +19,9 @@ Language: French
 
 Credits: This eBook was produced by Carlo Traverso
 
-
 *** START OF THE PROJECT GUTENBERG EBOOK GERMINAL ***
 
-
-
-
 This eBook was produced by Carlo Traverso.
-
-
 
 Author: Émile Zola
 
@@ -39,8 +33,6 @@ Language: French
 
 Encoding: ISO-8859-1
 
-
-
 We thank the Bibliotheque Nationale de France that has made available
 the image files at www://gallica.bnf.fr, authorizing the preparation
 of the etext through OCR.
@@ -49,21 +41,13 @@ Nous remercions la Bibliothèque Nationale de France qui a mis à
 disposition les images dans www://gallica.bnf.fr, et a donné
 l'autorisation de les utiliser pour préparer ce texte.
 
-
-
 Émile Zola
 
 Germinal
 
-
-
-
 Première Partie
 
-
-
 I
-
 
 Dans la plaine rase, sous la nuit sans étoiles, d'une obscurité et
 d'une épaisseur d'encre, un homme suivait seul la grande route de
@@ -476,10 +460,7 @@ trou, avec son tassement de bête méchante, s'écrasait davantage,
 respirait d'une haleine plus grosse et plus longue, l'air gêné par sa
 digestion pénible de chair humaine.
 
-
-
 II
-
 
 Au milieu des champs de blé et de betteraves, le coron des
 Deux-Cent-Quarante dormait sous la nuit noire.  On distinguait
@@ -862,10 +843,7 @@ Vêtus de toile mince, ils grelottaient de froid, sans se hâter
 davantage, débandés le long de la route, avec un piétinement de
 troupeau.
 
-
-
 III
-
 
 Étienne, descendu enfin du terri, venait d'entrer au Voreux; et les
 hommes auxquels il s'adressait, demandant s'il y avait du travail,
@@ -1411,10 +1389,7 @@ Elle répondit de son air gai, sans rougeur:
 
 --Mais oui...  Vrai! tu y as mis le temps!
 
-
-
 IV
-
 
 Les quatre haveurs venaient de s'allonger les uns au-dessus des
 autres, sur toute la montée du front de taille.  Séparés par les
@@ -1899,10 +1874,7 @@ toiles d'araignée, et que devait seul balayer l'aérage de la nuit.
 Eux, au fond de leur trou de taupe, sous le poids de la terre, n'ayant
 plus de souffle dans leurs poitrines embrasées, tapaient toujours.
 
-
-
 V
-
 
 Maheu, sans regarder à sa montre laissée dans sa veste, s'arrêta et
 dit:
@@ -2336,10 +2308,7 @@ une berline, le maître-porion dans une autre; on tira cinq fois le
 signal, sonnant à la grosse viande, comme on disait pour les chefs; et
 la cage fila en l'air, au milieu d'un silence morne.
 
-
-
 VI
-
 
 Dans la cage qui le remontait, tassé avec quatre autres, Étienne
 résolut de reprendre sa course affamée, le long des routes.  Autant
@@ -2735,15 +2704,9 @@ battre, il songeait violemment à ces gens dont parlait Bonnemort, à ce
 dieu repu et accroupi, auquel dix mille affamés donnaient leur chair,
 sans le connaître.
 
-
-
-
 Deuxième partie
 
-
-
 I
-
 
 La propriété des Grégoire, la Piolaine, se trouvait à deux kilomètres
 de Montsou, vers l'est, sur la route de Joiselle.  C'était une grande
@@ -3165,10 +3128,7 @@ Alors, la Maheude et ses petits entrèrent, glacés, affamés, saisis
 d'un effarement peureux, en se voyant dans cette salle où il faisait
 si chaud, et qui sentait si bon la brioche.
 
-
-
 II
-
 
 Dans la chambre, restée close, les persiennes avaient laissé glisser
 peu à peu des barres grises de jour, dont l'éventail se déployait au
@@ -3639,10 +3599,7 @@ c'était de Catherine: elle le comprit, quand il lui recommanda
 d'envoyer sa fille chercher les provisions.  On verrait ça.  Catherine
 le giflerait, s'il lui soufflait de trop près sous le nez.
 
-
-
 III
-
 
 Onze heures sonnaient à la petite église du coron des
 Deux-Cent-Quarante, une chapelle de briques, où l'abbé Joire venait
@@ -4178,10 +4135,7 @@ Et l'on n'entendait plus que ce cri inquiet, gros de querelles:
 
 --Ah! mon Dieu! et ma soupe! et ma soupe qui n'est pas prête!
 
-
-
 IV
-
 
 Lorsque Maheu rentra, après avoir laissé Étienne chez Rasseneur, il
 trouva Catherine, Zacharie et Jeanlin attablés, qui achevaient leur
@@ -4554,10 +4508,7 @@ Maheude réveilla Maheu.
 --Mangeons, tant pis!...  Ils sont assez grands pour retrouver la
 maison.  L'embêtant, c'est la salade!
 
-
-
 V
-
 
 Chez Rasseneur, après avoir mangé une soupe, Étienne, remonté dans
 l'étroite chambre qu'il allait occuper sous le toit, en face du
@@ -5070,15 +5021,9 @@ ruissellement monotone; tandis qu'une seule voix s'entendait encore,
 la respiration grosse et lente de la machine d'épuisement, qui jour et
 nuit soufflait.
 
-
-
-
 Troisième partie
 
-
-
 I
-
 
 Le lendemain, les jours suivants, Étienne reprit son travail à la
 fosse.  Il s'accoutumait, son existence se réglait sur cette besogne
@@ -5537,10 +5482,7 @@ Maheu, resté muet depuis les enchères, parut s'éveiller.  Il répéta:
 
 --Les maîtres...  Ah! foutu sort! ce ne serait pas trop tôt!
 
-
-
 II
-
 
 C'était le dernier dimanche de juillet, le jour de la ducasse de
 Montsou.  Dès le samedi soir, les bonnes ménagères du coron avaient
@@ -6078,10 +6020,7 @@ cria:
 tout, la boisson et les filles.  Il n'y a qu'une chose qui me chauffe
 le coeur, c'est l'idée que nous allons balayer les bourgeois.
 
-
-
 III
-
 
 Vers le milieu d'août, Étienne s'installa chez les Maheu, lorsque
 Zacharie marié put obtenir de la Compagnie, pour Philomène et ses deux
@@ -6474,10 +6413,7 @@ vivaient côte à côte, et plus une barrière s'élevait, des hontes, des
 répugnances, des délicatesses d'amitié, qu'ils n'auraient pu expliquer
 eux-mêmes.
 
-
-
 IV
-
 
 --Écoute, dit la Maheude à son homme, puisque tu vas à Montsou pour la
 paie, rapporte-moi donc une livre de café et un kilo de sucre.
@@ -6935,10 +6871,7 @@ combattait plus, et Souvarine l'acceptait comme un premier pas.  D'un
 mot, Étienne résuma la situation: si elle voulait décidément la grève,
 la Compagnie aurait la grève.
 
-
-
 V
-
 
 Une semaine se passa, le travail continuait, soupçonneux et morne,
 dans l'attente du conflit.
@@ -7379,15 +7312,9 @@ les yeux perdus dans une vision d'avenir:
 
 --Ah! il est temps, il est temps!
 
-
-
-
 Quatrième partie
 
-
-
 I
-
 
 Ce lundi-là, les Hennebeau avaient à déjeuner les Grégoire et leur
 fille Cécile.  C'était toute une partie projetée: en sortant de table,
@@ -7989,10 +7916,7 @@ rassis, et ils restèrent à table, muets, n'osant plus remuer, écoutant
 de loin, l'oreille tendue, dans le malaise de ces grosses voix
 d'homme.
 
-
-
 II
-
 
 Dès la veille, dans une réunion tenue chez Rasseneur, Étienne et
 quelques camarades avaient choisi les délégués qui devaient se rendre
@@ -8377,10 +8301,7 @@ Enfin, madame Hennebeau appela le domestique.
 --Hippolyte, avant que nous passions au salon, ouvrez les fenêtres et
 donnez de l'air.
 
-
-
 III
-
 
 Quinze jours s'étaient écoulés; et, le lundi de la troisième semaine,
 les feuilles de présence, envoyées à la Direction, indiquèrent une
@@ -8799,10 +8720,7 @@ résolution était prise, il voulait organiser une réunion privée, car
 la victoire lui semblait certaine, si les charbonniers de Montsou
 adhéraient en masse à l'Internationale.
 
-
-
 IV
-
 
 Ce fut au Bon-Joyeux, chez la veuve Désir, qu'on organisa la réunion
 privée, pour le jeudi, à deux heures.  La veuve, outrée des misères
@@ -9450,10 +9368,7 @@ routes, il y avait autre chose encore, quelque chose d'assombri et de
 farouche, une violence dont le vent allait enfiévrer les corons, aux
 quatre coins du pays.
 
-
-
 V
-
 
 Une autre quinzaine s'écoula.  On était aux premiers jours de janvier,
 par des brumes froides qui engourdissaient l'immense plaine.  Et la
@@ -9972,10 +9887,7 @@ la chandelle brusquement s'éteignit.  Il n'y avait plus de houille,
 plus de pétrole, il fallut se coucher à tâtons, dans le grand froid
 qui pinçait la peau.  Les petits pleuraient.
 
-
-
 VI
-
 
 Jeanlin, guéri, marchait à présent; mais ses jambes étaient si mal
 recollées, qu'il boitait de la droite et de la gauche; et il fallait
@@ -10520,10 +10432,7 @@ ces misérables.  La tête basse, il rentrait, au pas ralenti de son
 cheval, désespéré par ces longs bruits, perdus au fond de la campagne
 noire, et où il n'entendait que des baisers.
 
-
-
 VII
-
 
 C'était au Plan-des-Dames, dans cette vaste clairière qu'une coupe de
 bois venait d'ouvrir.  Elle s'allongeait en une pente douce, ceinte
@@ -10987,15 +10896,9 @@ Enfin, on l'écouta.
 L'ouragan de ces trois mille voix emplit le ciel et s'éteignit dans la
 clarté pure de la lune.
 
-
-
-
 Cinquième partie
 
-
-
 I
-
 
 A quatre heures, la lune s'était couchée, il faisait une nuit très
 noire.  Tout dormait encore chez les Deneulin, la vieille maison de
@@ -11392,10 +11295,7 @@ lorsqu'on arriva enfin à Marchiennes.  Sous le soleil qui semblait les
 fourneaux lâchaient des fumées, dont la suie éternelle pleuvait dans
 l'air.
 
-
-
 II
-
 
 A Jean-Bart, Catherine roulait depuis une heure déjà, poussant les
 berlines jusqu'au relais; et elle était trempée d'un tel flot de
@@ -11876,10 +11776,7 @@ Jamais elle ne sut comment elle était arrivée au jour, portée par des
 trouva dans un éblouissement de soleil, au milieu d'une foule hurlante
 qui la huait.
 
-
-
 III
-
 
 Dès le matin, avant le jour, un frémissement avait agité les corons,
 ce frémissement qui s'enflait à cette heure par les chemins, dans la
@@ -12264,10 +12161,7 @@ complicité de tous, une faute générale, séculaire.  Des brutes sans
 doute, mais des brutes qui ne savaient pas lire et qui crevaient de
 faim.
 
-
-
 IV
-
 
 Et la bande, par la plaine rase, toute blanche de gelée, sous le pâle
 soleil d'hiver, s'en allait, débordait de la route, au travers des
@@ -12744,10 +12638,7 @@ un ordre courut.
 
 --A Montsou! à la Direction!...  Du pain! du pain! du pain!
 
-
-
 V
-
 
 M. Hennebeau s'était mis devant la fenêtre de son cabinet, pour voir
 partir la calèche qui emmenait sa femme déjeuner à Marchiennes.  Il
@@ -13322,10 +13213,7 @@ balayant tout.
 
 --Du pain! du pain! du pain!
 
-
-
 VI
-
 
 Étienne, dégrisé par les gifles de Catherine, était resté à la tête
 des camarades.  Mais, pendant qu'il les jetait sur Montsou, d'une voix
@@ -13942,14 +13830,9 @@ du pâtissier de Marchiennes arrivait enfin, une carriole d'où sauta un
 marmiton, qui se mit d'un air tranquille à déballer les croûtes des
 vol-au-vent.
 
-
-
 Sixième partie
 
-
-
 I
-
 
 La première quinzaine de février s'écoula encore, un froid noir
 prolongeait le dur hiver, sans pitié des misérables.  De nouveau, les
@@ -14375,10 +14258,7 @@ conquis.  Malgré le jour grandissant, rien ne bougeait dans les
 corons, les charbonniers se taisaient et s'enrageaient, sous la botte
 militaire.
 
-
-
 II
-
 
 Depuis deux jours, la neige tombait; elle avait cessé le matin, une
 gelée intense glaçait l'immense nappe; et ce pays noir, aux routes
@@ -14880,10 +14760,7 @@ lamentation lugubre et sans fin:
 --Mon Dieu, c'est mon tour, prenez-moi!...  Mon Dieu, prenez mon
 homme, prenez les autres, par pitié, pour en finir!
 
-
-
 III
-
 
 Ce dimanche-là, dès huit heures, Souvarine resta seul dans la salle de
 l'Avantage, à sa place accoutumée, la tête contre le mur.  Plus un
@@ -15303,10 +15180,7 @@ salle tiède, où l'on entendit le petit ronflement de la houille.  Par
 terre, il ne restait que la chaise renversée et qu'une pluie de sang,
 dont le sable des dalles buvait les gouttes.
 
-
-
 IV
-
 
 Quand ils furent sortis de chez Rasseneur, Étienne et Catherine
 marchèrent en silence.  Le dégel commençait, un dégel froid et lent,
@@ -15762,9 +15636,7 @@ hors de leur cachette.  Et, là-bas, sous le jour grandissant, une
 bande d'hommes et de femmes descendaient du coron, avec de grands
 gestes de colère.
 
-
 V
-
 
 On venait de fermer toutes les ouvertures du Voreux; et les soixante
 soldats, l'arme au pied, barraient la seule porte restée libre, celle
@@ -16298,14 +16170,9 @@ la prochaine extermination de la bourgeoisie par le feu du ciel,
 puisqu'elle mettait le comble à ses crimes en faisant massacrer les
 travailleurs et les déshérités de ce monde.
 
-
-
 Septième partie
 
-
-
 I
-
 
 Les coups de feu de Montsou avaient retenti jusqu'à Paris, en un
 formidable écho.  Depuis quatre jours, tous les journaux de
@@ -16785,10 +16652,7 @@ fondu dans ce travail de chien, tandis que le mien, qui n'a pas bougé
 de mon tiroir, me nourrit encore sagement à ne rien faire, comme il
 nourrira les enfants de mes petits-enfants.
 
-
-
 II
-
 
 Le dimanche, Étienne s'échappa du coron, dès la nuit tombée.  Un ciel
 très pur, criblé d'étoiles, éclairait la terre d'une clarté bleue de
@@ -17258,10 +17122,7 @@ L'autre lui tendit une main glacée.  Ni ami, ni femme.
 Et Souvarine, immobile dans les ténèbres, suivit du regard Étienne et
 Catherine, qui entraient au Voreux.
 
-
-
 III
-
 
 A quatre heures, la descente commença.  Dansaert, installé en personne
 au bureau du marqueur, dans la lampisterie, inscrivait chaque ouvrier
@@ -17850,10 +17711,7 @@ aurait de la dynamite, pour faire sauter les villes et les hommes.  Ce
 sera lui, sans doute, quand la bourgeoisie agonisante entendra, sous
 elle, à chacun de ses pas, éclater le pavé des rues.
 
-
-
 IV
-
 
 Dans la nuit même qui avait suivi l'écroulement du Voreux,
 M. Hennebeau était parti pour Paris, voulant en personne renseigner
@@ -18431,10 +18289,7 @@ court au mariage, le mari les regarda se lamenter ensemble, délivré
 d'une inquiétude.  Ce malheur arrangeait tout, il préférait garder son
 neveu, dans la crainte de son cocher.
 
-
-
 V
-
 
 En bas du puits, les misérables abandonnés hurlaient de terreur.
 Maintenant, ils avaient de l'eau jusqu'au ventre.  Le bruit du torrent
@@ -19249,10 +19104,7 @@ apparut décharné, les cheveux tout blancs; et on s'écartait, on
 frémissait devant ce vieillard.  La Maheude s'arrêta de crier, pour le
 regarder stupidement, de ses grands yeux fixes.
 
-
-
 VI
-
 
 Il était quatre heures du matin.  La fraîche nuit d'avril
 s'attiédissait de l'approche du jour.  Dans le ciel limpide, les
@@ -19724,16 +19576,7 @@ vengeresse, qui germait lentement dans les sillons, grandissant pour
 les récoltes du siècle futur, et dont la germination allait faire
 bientôt éclater la terre.
 
-
-
-
-
-
-
 *** END OF THE PROJECT GUTENBERG EBOOK GERMINAL ***
-
-
-    
 
 Updated editions will replace the previous one—the old editions will
 be renamed.
@@ -19756,7 +19599,6 @@ Gutenberg eBooks may be modified and printed and given away—you may
 do practically ANYTHING in the United States with eBooks not protected
 by U.S. copyright law. Redistribution is subject to the trademark
 license, especially commercial redistribution.
-
 
 START: FULL LICENSE
 
@@ -19838,7 +19680,7 @@ performed, viewed, copied or distributed:
     at www.gutenberg.org. If you
     are not located in the United States, you will have to check the laws
     of the country where you are located before using this eBook.
-  
+
 1.E.2. If an individual Project Gutenberg™ electronic work is
 derived from texts not protected by U.S. copyright law (does not
 contain a notice indicating that it is posted with permission of the
@@ -19900,7 +19742,7 @@ provided that:
         Gutenberg Literary Archive Foundation at the address specified in
         Section 4, “Information about donations to the Project Gutenberg
         Literary Archive Foundation.”
-    
+
     • You provide a full refund of any money paid by a user who notifies
         you in writing (or by e-mail) within 30 days of receipt that s/he
         does not agree to the terms of the full Project Gutenberg™
@@ -19908,15 +19750,14 @@ provided that:
         copies of the works possessed in a physical medium and discontinue
         all use of and all access to other copies of Project Gutenberg™
         works.
-    
+
     • You provide, in accordance with paragraph 1.F.3, a full refund of
         any money paid for a work or a replacement copy, if a defect in the
         electronic work is discovered and reported to you within 90 days of
         receipt of the work.
-    
+
     • You comply with all other terms of this agreement for free
         distribution of Project Gutenberg™ works.
-    
 
 1.E.9. If you wish to charge a fee or distribute a Project
 Gutenberg™ electronic work or group of works on different terms than
@@ -20079,5 +19920,4 @@ This website includes information about Project Gutenberg™,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
 

@@ -1,5 +1,5 @@
 ﻿The Project Gutenberg eBook of La Celestina
-    
+
 This ebook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
 whatsoever. You may copy it, give it away or re-use it under the terms
@@ -11,7 +11,6 @@ before using this eBook.
 *** This is a COPYRIGHTED Project Gutenberg eBook. Details Below. ***
 ***     Please follow the copyright guidelines in this file.      ***
 
-
 Title: La Celestina
 
 Author: Fernando de Rojas
@@ -20,8 +19,6 @@ Release date: January 1, 1999 [eBook #1619]
                 Most recently updated: April 3, 2015
 
 Language: Spanish
-
-
 
 *** START OF THE PROJECT GUTENBERG EBOOK LA CELESTINA ***
 **This is a COPYRIGHTED Project Gutenberg Etext, Details Below**
@@ -33,7 +30,6 @@ Please take a look at the important information in this header.
 We encourage you to keep this file on your own disk, keeping an
 electronic path open for the next readers.  Do not remove this.
 
-
 **Welcome To The World of Free Plain Vanilla Electronic Texts**
 
 **Etexts Readable By Both Humans and By Computers, Since 1971**
@@ -42,7 +38,6 @@ electronic path open for the next readers.  Do not remove this.
 
 Information on contacting Project Gutenberg to get Etexts, and
 further information is included below.  We need your donations.
-
 
 LA CELESTINA [In Spanish]
 
@@ -53,7 +48,6 @@ by Fernando de Rojas
 Copyright 1998 R. S. Rudder
 
 January, 1999  [Etext #1619]
-
 
 The Project Gutenberg Etext of La Celestina, by Fernando de Rojas
 *******This file should be named 1619.txt or 1619.zip******
@@ -67,7 +61,6 @@ in the first week of the next month.  Since our ftp program has
 a bug in it that scrambles the date [tried to fix and failed] a
 look at the file size will have to do, but we will try to see a
 new copy has at least one byte more or less.
-
 
 Information about Project Gutenberg (one page)
 
@@ -248,18 +241,10 @@ and whatever else you can think of.  Money should be paid to
 
 *SMALL PRINT! Ver.04.29.93 FOR COPYRIGHT PROTECTED ETEXTS*END*
 
-
-
-
-
 **This is a COPYRIGHTED Project Gutenberg Etext, Details Below**
 The Project Gutenberg Etext of La Celestina by Fernando de Rojas
 
 Copyright 1998 R. S. Rudder
-
-
-
-
 
 LA CELESTINA
 
@@ -271,17 +256,11 @@ Fernando de Rojas
 
 Copyright 1998 R. S. Rudder
 
-
-
-
 I. Introduccion
 
 II. La Celestina
 
 III Glosario y Notas
-
-
-
 
 INTRODUCCION
 
@@ -355,10 +334,6 @@ Robert S. Rudder
 California State University, Los Angeles
 Junio, 1998
 
-
-
-
-
 [LA CELESTINA]
 
 "TRAGI" COMEDIA
@@ -373,12 +348,9 @@ e auisos muy necessarios para
 mancebos: mostrandoles los enganos que estan
 encerrados en siruientes e alcahuetas.
 
-
-
 "EL AUCTOR
 
 A VN SU AMIGO.
-
 
 Suelen los que de sus tierras absentes se hallan considerar: de
 que cosa aquel lugar donde parten mayor inopia, o falta padezca:
@@ -428,8 +400,6 @@ antiguo autor, en la margen hallareys una cruz; y es el fin de la
 primera cena.]  acorde que todo lo del antiguo autor: fuesse sin
 diuision en vn aucto: o cena incluso hasta el segundo auto donde
 dize. Hermanos mios &c. Uale."
-
-
 
 EL AUTOR
 
@@ -500,8 +470,6 @@ suplico pues suplan discretos mi falta,
 teman grosseros; y en obra tan alta,
 o vean y callen, o no den enojos.
 
-
-
 Prosigue dando razon
 porque se mouio a acabar esta obra.
 
@@ -522,7 +490,6 @@ no hizo Dedalo en su officio e saber
 alguna mas prima entretalladura,
 si fin diera en esta su propia escriptura
 corta: vn gran hombre y de mucho valer.
-
 
 Jamas yo no vi terenciana,
 despues que me acuerdo, ni nadie la vido,
@@ -556,11 +523,6 @@ vinagre con hiel fue su potacion;
 a cada costado consintio vn ladron;
 nos lleue le ruego con los quel creyeron. [Toledo 1500, Sevilla
 1501]
-
-
-
-
-
 
 "EL AUTOR ESCUSANDOSE DE SU YERRO EN ESTA
 OBRA QUE ESCRIUIO CONTRA Sl ARGUYE E COMPARA.
@@ -629,8 +591,6 @@ suplico pues suplan discretos mi falta
 teman grosseros y en obra tan alta
 o vean e callen: o no den enojos.
 
-
-
 Prosigue dando razones
 porque se mouio a acabar esta obra.
 
@@ -651,7 +611,6 @@ no hizo Dedalo cierto a mi ver
 alguna mas prima entretalladura
 si fin diera en esta su propia escriptura
 Cota o Mena con su gran saber.
-
 
 Jamas yo no vide en lengua romana
 despues que me acuerdo: ni nadie la vido
@@ -674,7 +633,6 @@ de muertos e biuos e propios culpados
 estando en el mundo yazeys sepultados
 muy gran dolor siento quando esto contemplo.
 
-
 Fin.
 
 O damas: matronas: mancebos: casados:
@@ -685,9 +643,6 @@ limpiad ya los ojos los ciegos errados
 virtudes sembrando con casto biuir
 a todo correr deueys de huyr
 no os lance Cupido sus tiros dorados.  [Valencia, 1514]
-
-
-
 
 Todas las cosas ser criadas a manera de contienda o batalla dize
 aquel gran sabio Eraclito en este modo. Omnia secundum litem
@@ -815,8 +770,6 @@ algunos ratos a mi principal estudio con otras horas destinadas
 para recreacion: puesto que no han de faltar nueuos detractores a
 la nueua adicion."
 
-
-
 SIGUESE LA COMEDIA "O TRAGICOMEDIA"
 DE CALISTO Y MELIBEA: COMPUESTA EN REPREHENSION DE LOS LOCOS
 ENAMORADOS QUE VENCIDOS EN SU DESORDENADO APETITO A SUS AMIGAS
@@ -839,7 +792,6 @@ e desastrado fin.  Para comienzo de lo qual dispuso el aduersa
 fortuna lugar oportuno donde a la presencia de Calisto se presento
 la deseada Melibea.
 
-
 ARGUMENTO
 DEL PRIMER AUTO DESTA COMEDIA.
 
@@ -860,7 +812,6 @@ e concordia de Sempronio.
 
 CALISTO.  MELIBEA.  SEMPRONIO.  CELESTINA. ELICIA.  CRITO.
 PARMENO.
-
 
 CALISTO.--En esto veo, Melibea, la grandeza de dios.
 MELIBEA.--en que, Calisto?
@@ -1794,8 +1745,6 @@ consuela la mia: e luego.
 CEL.--quede dios contigo.
 CAL.--y el te me guarde.
 
-
-
 ARGUMENTO
 DEL SEGUNDO AUTO.
 
@@ -1980,7 +1929,6 @@ Calisto con Melibea.  En fin sobreuiene Elicia.  Vase Celestina a
 casa de Pleberio.  queda Sempronio y Elicia en casa.
 
 SEMPRONIO.  CELESTINA.  ELICIA.
-
 
 SEMP.--Que espacio lleua la baruuda: menos sosiego trayan sus pies
 a la venida.  A dineros pagados, brazos e piernas quebrados.  ce,
@@ -2219,7 +2167,6 @@ Viene vn mensajero a llamar a Alisa. vase. queda Celestina en casa
 con Melibea: e le descubre la causa de su venida.
 
 CELESTINA.  LUCRECIA.  ALISA.  MELIBEA.
-
 
 CEL.--Agora que voy sola, quiero mirar bien lo que Sempronio ha
 temido deste mi camino: porque aquellas cosas que bien no son
@@ -2754,7 +2701,6 @@ abrir la puerta.
 
 CELESTINA.  SEMPRONIO.  PARMENO.  CALISTO.
 
-
 CEL.--O rigurosos trances! o cruda osadia! o gran sofrimiento: e
 que tan cercana estuue de la muerte, si mi mucha astucia no rigera
 con el tiempo: las velas de la peticion.  o amenazas de donzella
@@ -2881,12 +2827,6 @@ SEMP.--pues mira que entrando hagas que no ves a Calisto: e hables
 algo bueno.
 CEL.--calla, Sempronio, que avnque aya auenturado mi vida, mas
 merece Calisto: e su ruego e tuyo, e mas mercedes espero yo del.
-
-
-
-
-
-
 
 ARGUMENTO
 DEL SESTO AUTO.
@@ -3328,7 +3268,6 @@ llama a la puerta.  Elicia le viene abrir, increpandole su
 tardanza.
 
 CELESTINA.  PARMENO.  AREUSA.  ELICIA.
-
 
 CEL.--Parmeno, hijo, despues de las passadas razones: no he hauido
 oportuno tiempo para te dezir e mostrar el mucho amor que te
@@ -3827,7 +3766,6 @@ hallanle hablando consigo mismo.  leuantado, va a la yglesia.
 
 PARMENO.  AREUSA.  SEMPRONIO.  CALISTO
 
-
 PARM.--Amanesce / o que es esto que tanta claridad esta en esta
 camara?
 AREU.--que amanecer?  duerme, senor, que avn agora nos acostamos:
@@ -4086,10 +4024,6 @@ PARM.--alla yras con el diablo tu e malos anos.  e en tal hora
 comiesses el diacitron como Apuleyo el veneno que le conuertio en
 asno.
 
-
-
-
-
 ARGUMENTO
 DEL NOUENO AUTO.
 
@@ -4101,7 +4035,6 @@ criada de Melibea, llamar a Celestina, que vaya a estar con
 Melibea.
 
 SEMPRONIO.  PARMENO.  CELESTINA.  ELICIA.  AREUSA.  LUCRECIA.
-
 
 SEMP.--Baxa, Parmeno, nuestras capas e espadas: si te parece que
 es hora que vamos a comer.
@@ -4470,10 +4403,6 @@ CEL.--que dizes, hija?
 LUCR.--madre, que vamos presto, e me des el cordon.
 CEL.--vamos, que yo le lleuo.
 
-
-
-
-
 ARGUMENTO
 DEL DECIMO AUTO.
 
@@ -4486,7 +4415,6 @@ Melibea de los negocios de Celestina.  defendiole su mucha
 conuersacion.
 
 MELIBEA, LUCRECIA, CELESTINA, AREUSA
-
 
 MELIB.--O lastimada de mi.  o malproueyda donzella: e no me fuera
 mejor conceder su peticion e demanda ayer a Celestina: quando de
@@ -4798,7 +4726,6 @@ e vanse a dormir.
 
 CELESTINA. SEMPRONIO. CALISTO. PARMENO. ELICIA.
 
-
 CEL.--Ay dios, si llegasse a mi casa con mi mucha alegria
 acuestas.  A Parmeno e a Sempronio veo yr a la Magdalena: tras
 ellos me voy: e si ay no estouiere Calisto, passaremos a su casa a
@@ -4961,9 +4888,6 @@ desso.
 CEL.--quanto mas presto te dexaron: mas con razon lo sentiste.
 pero dexemos su yda e mi tardanza: entendamos en cenar e dormir.
 
-
-
-
 ARGUMENTO
 DEL DOZENO AUTO.
 
@@ -4985,7 +4909,6 @@ Da voces Elicia.  Viene la justicia e prendelos ambos.
 
 CALISTO. SEMPRONIO. PARMENO. LUCRECIA. MELIBEA. PLEBERIO. ALISA.
 CELESTINA. ELICIA.
-
 
 CAL.--Mozos, que hora da el relox?
 SEMP.--las diez.
@@ -5511,9 +5434,6 @@ tomada la puerta.
 SEMP.--saltemos destas ventanas: no muramos en poder de justicia.
 PARM.--salta, que tras ti voy.
 
-
-
-
 ARGUMENTO
 DEL XIIJ AUTO.
 
@@ -5525,7 +5445,6 @@ Sempronio e Parmeno.  van a dezir las nueuas a Calisto: el qual,
 sabiendo la verdad, faze grande lamentacion.
 
 CALISTO. TRISTAN. SOSIA.
-
 
 CAL.--O como he dormido tan a mi plazer: despues de aquel
 azucarado rato: despues de aquel angelico razonamiento.  Gran
@@ -5670,13 +5589,6 @@ sabroso deleyte de mis amores.  Como hizo aquel gran capitan
 Ulixes: por euitar la batalla troyana: e holgar con Penelope su
 muger".
 
-
-
-
-
-
-
-
 ARGUMENTO
 DEL QUATORZENO AUTO.
 
@@ -5689,7 +5601,6 @@ por auer estado tan poca quantidad de tiempo con Melibea.  E ruega
 a Febo que cierre sus rayos, para hauer de restuarar su desseo."
 
 LUCRECIA. MELIBEA. SOSIA. TRISTAN. CALISTO.
-
 
 MELIB.--Mucho se tarda aquel cauallero que esperamos: que crees tu
 o sospechas de su estada, Lucrecia?
@@ -5973,7 +5884,6 @@ casa.
 
 AREUSA.  CENTURIO.  ELICIA.
 
-
 ELIC.--Que bozear es este de mi prima?  Si ha sabido las tristes
 nueuas que yo le traygo: no aure yo las albricias de dolor que por
 tal mensaje se ganan / llore / llore / vierta lagrimas: pues no se
@@ -6163,10 +6073,6 @@ embalde / assi que avnque cada cosa no abastasse por si juntas
 aprouechan e ayudan.  ya me paresce que es hora de yrme: de lo
 dicho me lleuo el cargo: dios quede contigo que me voy.
 
-
-
-
-
 ARGUMENTO
 DEL DECIMOSESTO AUTO.
 
@@ -6178,7 +6084,6 @@ que embia a Lucrecia: para que sea causa de su silencio: en aquel
 proposito.
 
 PLEBERIO.  ALISA.  LUCRECIA.  MELIBEA.
-
 
 PLEB.--Alisa amiga: el tiempo segun me parece se nos va: como
 dizen entre las manos: corren los dias como agua de rio.  no hay
@@ -6295,9 +6200,6 @@ loca, segun estoy enojada del concepto enganoso que tienen de mi
 ignorancia.
 LUCR.--ya voy, senora.
 
-
-
-
 ARGUMENTO
 DEL DECIMOSEPTIMO AUTO.
 
@@ -6308,7 +6210,6 @@ casa de Areusa. Adonde viene Sosia: al qual Areusa con palabras
 fictas: saca todo el secreto: que esta entre Calisto e Melibea.
 
 ELICIA.  AREUSA.  SOSIA
-
 
 ELIC.--Mal me va con este luto / poco se visita mi casa / poco se
 passea mi calle / ya no veo las musicas de la aluorada / ya no las
@@ -6475,9 +6376,6 @@ deuemos yr a casa de aquellotro cara de ahorcado: que el jueues
 eche delante de ti baldonado de mi casa: e haz tu como que nos
 quieres fazer amigos: e que rogaste que fuesse a verlo.
 
-
-
-
 ARGUMENTO
 DEL DECIMOOCTAUO AUTO.
 
@@ -6488,7 +6386,6 @@ El qual lo prometio delante dellas.  E como sea natural a estos:
 no hazer lo que prometen. escusare como en el processo paresce.
 
 CENTURIO.  ELICIA.  AREUSA
-
 
 ELIC.--Quien esta en su casa?
 CENT.--mochacho corre: veras quien osa entrar sin llamar a la
@@ -6621,8 +6518,6 @@ garzones que me fue encomendado: que todo esto es passos seguros:
 e donde no consiguiran ningun dano mas de fazerlos huyr: e
 boluerse a dormir.
 
-
-
 ARGUMENTO
 DEL DECIMONONO AUTO.
 
@@ -6638,7 +6533,6 @@ don resciben por galardon.  E por esto han de saber desamar los
 amadores.
 
 SOSIA.  TRISTAN.  CALISTO.  MELIBEA.  LUCRECIA.
-
 
 SOS.--Muy quedo para que no seamos sentidos: desde aqui al huerto
 de Pleberio te contare hermano Tristan lo que con Areusa me ha
@@ -6741,7 +6635,6 @@ norte e luzero del dia:
 por que no le despertays:
 si duerme mi alegria.
 
-
 MELIB.--oyeme tu por mi vida: que yo quiero cantar sola.
 
 papagayos ruysenores:
@@ -6752,7 +6645,6 @@ la media noche es passada:
 e no viene
 sabedme si ay otra amada
 que lo detiene.
-
 
 CAL.--vencido me tiene el dulzor de tu suaue canto: no puedo mas
 suffrir tu penado esperar.  O mi senora e mi bien todo:  qual
@@ -6839,7 +6731,6 @@ caydo del escala e no habla ni se bulle.
 SOS.--senor senor / a essotra puerta tan muerto es como mi abuelo
 / o gran desuentura."
 
-
 LUCR.--escucha: escucha: gran mal es este.
 MELIB.--que es esto que oygo? amarga de mi.
 TRIST.--o mi senor e mi bien muerto.  o mi senor e nuestra honrra
@@ -6881,11 +6772,6 @@ huerto: que plazer sentiste con la venida: ni pena con ver que es
 muerto. Entremos en la camara, acostarte as: llamare a tu padre e
 fingiremos otro mal: pues este no es para poderse encobrir.
 
-
-
-
-
-
 ARGUMENTO
 DEL VEYNTENO AUTO.
 
@@ -6900,7 +6786,6 @@ la torre.  Descubrele Melibea todo el negocio que hauia passado.
 En fin dexase caer de la torre abaxo.
 
 PLEBERIO.  LUCRECIA.  MELIBEA.
-
 
 PLEB.--Que quieres, Lucrecia?  que quieres tan presurosa?  que
 pides con tanta inportunidad e poco sosiego?  que es lo que mi
@@ -7072,9 +6957,6 @@ tu amada hija. Gran dolor lleuo de mi: mayor de ti: muy mayor de
 mi vieja madre. Dios quede contigo e con ella: a el ofrezco mi
 alma: pon tu en cobro este cuerpo que alla baxa.
 
-
-
-
 ARGUMENTO
 DEL "VEYNTE E VN" E ULTIMO AUTO.
 
@@ -7084,7 +6966,6 @@ su hija Melibea: mostrandole el cuerpo della todo hecho pedazos: e
 haziendo su planto concluye.
 
 ALISA.  PLEBERIO.
-
 
 ALI.--Que es esto, senor Pleberio:  por que son tus fuertes
 alaridos? sin seso estaua adormida del pesar que oue quando oy
@@ -7257,8 +7138,6 @@ porque te mostraste tan cruel con tu viejo padre? porque me
 dexaste quando yo te hauia de dexar?  porque me dexaste penado?
 porque me dexaste triste e solo?  in hac lachrimarum valle.
 
-
-
 "Concluye el autor aplicando
 la obra al proposito porque la acabo.
 
@@ -7288,8 +7167,6 @@ por ende si vieres turuada mi mano
 turuias con claras mezclando razones
 dexa las burlas ques paja e granzones
 sacando muy limpio dentrellas el grano."
-
-
 
 Alonso de Proaza: corrector de la
 impression al lector.
@@ -7388,13 +7265,7 @@ ro de. M.
 y. d. y. xiiij
 anos."
 
-
-
-
-
-
 GLOSARIO Y NOTAS
-
 
 __a muertos e a ydos_ ****  "A muertos y a idos no hai
 amigos. Refr. que explica lo mucho que entibia el
@@ -14775,7 +14646,6 @@ cocido, es afrodisiaco (probado)", etc. (Utilidades
  "toma vnto de tasugo o de oso e de cavallo e de leon"
 (Suma de la flor de cirugia [s. XV]; DETEMA I, 235).
 
-
 _otri, otrie_ **** otra, otro
 
 _oue; ouo; ouieron_ **** hube, tuve; hubo, tuvo;
@@ -16939,7 +16809,6 @@ nomine appelantem . . . (De Rebus memorandis, IV. iii.
 30)  "Socrates, prisionero en la carcel, previo que iba
 a morir al tercer dia...  y llamando(lo) por nombre..."
 
-
 _Sodoma_ **** En la Biblia, un pueblo que Dios destruyo
 con fuego, junto con otro pueblo, Gomorra, por los
 pecados de su gente.  Entre sus pecados, los hombres
@@ -17147,7 +17016,6 @@ era preciado el brazo que derribaba alguna";
  "Espessos, como piedras a tablado" (Refran): "es aqui
 a proposito de los grandes aparatos, y de muchos dias,
 para un rato de fiesta" (Correas, 469).
-
 
 _tablas_ **** tabla: madera plana
 
@@ -18378,10 +18246,6 @@ _zurrio_ **** su rio? (Cejador II, 180); susurro? (R-P,
 
 _zurujano, zurujanos_ **** cirujano, cirujanos
 
-
-
-
-
 OBRAS CITADAS
 
 _Aribau_ **** D. Buenaventura Carlos Aribau.
@@ -18469,20 +18333,12 @@ animales, ed. Carmen Ruiz Bravo-Villasante (Madrid:
 Fundacion Universitaria Espanola, 1980).  (Traduccion
 del texto arabe.)
 
-
-
-
-
 End of this is COPYRIGHTED Project Gutenberg Etext, Details Below
 The Project Gutenberg Etext of La Celestina by Fernando de Rojas
 
 Copyright 1998 R. S. Rudder
 
-
 *** END OF THE PROJECT GUTENBERG EBOOK LA CELESTINA ***
-
-
-    
 
 Updated editions will replace the previous one—the old editions will
 be renamed.
@@ -18505,7 +18361,6 @@ Gutenberg eBooks may be modified and printed and given away—you may
 do practically ANYTHING in the United States with eBooks not protected
 by U.S. copyright law. Redistribution is subject to the trademark
 license, especially commercial redistribution.
-
 
 START: FULL LICENSE
 
@@ -18594,7 +18449,7 @@ performed, viewed, copied or distributed:
     at www.gutenberg.org. If you
     are not located in the United States, you will have to check the laws
     of the country where you are located before using this eBook.
-  
+
 1.E.2. If an individual Project Gutenberg™ electronic work is
 derived from texts not protected by U.S. copyright law (does not
 contain a notice indicating that it is posted with permission of the
@@ -18656,7 +18511,7 @@ provided that:
         Gutenberg Literary Archive Foundation at the address specified in
         Section 4, “Information about donations to the Project Gutenberg
         Literary Archive Foundation.”
-    
+
     • You provide a full refund of any money paid by a user who notifies
         you in writing (or by e-mail) within 30 days of receipt that s/he
         does not agree to the terms of the full Project Gutenberg™
@@ -18664,15 +18519,14 @@ provided that:
         copies of the works possessed in a physical medium and discontinue
         all use of and all access to other copies of Project Gutenberg™
         works.
-    
+
     • You provide, in accordance with paragraph 1.F.3, a full refund of
         any money paid for a work or a replacement copy, if a defect in the
         electronic work is discovered and reported to you within 90 days of
         receipt of the work.
-    
+
     • You comply with all other terms of this agreement for free
         distribution of Project Gutenberg™ works.
-    
 
 1.E.9. If you wish to charge a fee or distribute a Project
 Gutenberg™ electronic work or group of works on different terms than
@@ -18835,5 +18689,4 @@ This website includes information about Project Gutenberg™,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
 

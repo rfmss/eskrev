@@ -22,23 +22,11 @@ Character set encoding: ASCII
 
 *** START OF THIS PROJECT GUTENBERG EBOOK FRANKENSTEIN ***
 
-
-
-
 Produced by Mike Eschman
-
-
-
-
-
-
-
 
 Frankenstein
 
 by Mary Wollstonecraft Shelley
-
-
 
 Performance copyright (C) 2003 Mike Eschman based
 on the Project Gutenberg Public Domain edition of
@@ -46,7 +34,6 @@ Frankenstein, by Mary Wollstonecraft Shelley
 
 Frankenstein, by Mary Wollstonecraft Shelley in MP3 format
 is made up of 25 separate files:
-
 
   6542-00.mp3
   6542-01.mp3
@@ -70,14 +57,6 @@ is made up of 25 separate files:
   6542-22.mp3
   6542-23.mp3
   6542-24.mp3
-
-
-
-
-
-
-
-
 
 End of Project Gutenberg's Frankenstein, by Mary Wollstonecraft Shelley
 
@@ -108,8 +87,6 @@ printed and given away--you may do practically ANYTHING with public
 domain eBooks. Redistribution is subject to the trademark license,
 especially commercial redistribution.
 
-
-
 *** START: FULL LICENSE ***
 
 THE FULL PROJECT GUTENBERG LICENSE
@@ -121,7 +98,6 @@ distribution of electronic works, by using or distributing this work
 Gutenberg"), you agree to comply with all the terms of the Full Project
 Gutenberg-tm License (available with this file or online at
 http://www.gutenberg.org/license).
-
 
 Section 1.  General Terms of Use and Redistributing Project Gutenberg-tm
 electronic works
@@ -340,7 +316,6 @@ or cause to occur: (a) distribution of this or any Project Gutenberg-tm
 work, (b) alteration, modification, or additions or deletions to any
 Project Gutenberg-tm work, and (c) any Defect you cause.
 
-
 Section  2.  Information about the Mission of Project Gutenberg-tm
 
 Project Gutenberg-tm is synonymous with the free distribution of
@@ -358,7 +333,6 @@ and permanent future for Project Gutenberg-tm and future generations.
 To learn more about the Project Gutenberg Literary Archive Foundation
 and how your efforts and donations can help, see Sections 3 and 4
 and the Foundation web page at http://www.pglaf.org.
-
 
 Section 3.  Information about the Project Gutenberg Literary Archive
 Foundation
@@ -418,7 +392,6 @@ Please check the Project Gutenberg Web pages for current donation
 methods and addresses.  Donations are accepted in a number of other
 ways including checks, online payments and credit card donations.
 To donate, please visit: http://pglaf.org/donate
-
 
 Section 5.  General Information About Project Gutenberg-tm electronic
 works.

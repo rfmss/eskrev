@@ -1,5 +1,5 @@
 ﻿The Project Gutenberg eBook of Les Fleurs du Mal
-    
+
 This ebook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
 whatsoever. You may copy it, give it away or re-use it under the terms
@@ -20,25 +20,10 @@ Language: French
 Credits: Produced by Tonya Allen, Julie Barkley, Juliet Sutherland,
         Charles Franks and the Online Distributed Proofreading Team.
 
-
 *** START OF THE PROJECT GUTENBERG EBOOK LES FLEURS DU MAL ***
-
-
-
 
 Produced by Tonya Allen, Julie Barkley, Juliet Sutherland,
 Charles Franks and the Online Distributed Proofreading Team.
-
-
-
-
-
-
-
-
-
-
-
 
 LES FLEURS DU MAL
 
@@ -48,14 +33,9 @@ CHARLES BAUDELAIRE
 
 _Préface par Henry FRICHET_
 
-
-
-
-
 [Illustration]
 
 PRÉFACE
-
 
 Charles Baudelaire avait un ami, Auguste Poulet-Malassis, ancien élève
 de l'école des Chartes, qui s'était fait éditeur par goût pour les
@@ -234,14 +214,9 @@ Il commença, dit-on, par étonner les sots, mais il devait étonner bien
 davantage les gens d'esprit en laissant à la postérité ce livre
 immortel: _les Fleurs du Mal._
 
-
 Henry FRICHET.
 
-
-
-
 AU LECTEUR
-
 
   La sottise, l'erreur, le péché, la lésine,
   Occupent nos esprits et travaillent nos corps,
@@ -293,13 +268,9 @@ AU LECTEUR
   Tu le connais, lecteur, ce monstre délicat,
   --Hypocrite lecteur,--mon semblable,--mon frère!
 
-
-
-
   SPLEEN ET IDÉAL
 
   BENEDICTION
-
 
   Lorsque, par un décret des puissances suprêmes,
   Le Poète apparaît en ce monde ennuyé,
@@ -396,11 +367,7 @@ AU LECTEUR
   Et dont les yeux mortels, dans leur splendeur entière,
   Ne sont que des miroirs obscurcis et plaintifs! »
 
-
-
-
   L'ALBATROS
-
 
   Souvent, pour s'amuser, les hommes d'équipage
   Prennent des albatros, vastes oiseaux des mers,
@@ -422,11 +389,7 @@ AU LECTEUR
   Exilé sur le sol au milieu des huées,
   Ses ailes de géant l'empêchent de marcher.
 
-
-
-
   ELEVATION
-
 
   Au-dessus des étangs, au-dessus des vallées,
   Des montagnes, des bois, des nuages, des mers,
@@ -453,11 +416,7 @@ AU LECTEUR
   --Qui plane sur la vie et comprend sans effort
   Le langage des fleurs et des choses muettes!
 
-
-
-
   LES PHARES
-
 
   Rubens, fleuve d'oubli, jardin de la paresse,
   Oreiller de chair fraîche où l'on ne peut aimer,
@@ -514,11 +473,7 @@ AU LECTEUR
   Que cet ardent sanglot qui roule d'âge en âge
   Et vient mourir au bord de votre éternité!
 
-
-
-
   LA MUSE VENALE
-
 
   O Muse de mon coeur, amante des palais,
   Auras-tu, quand Janvier lâchera ses Borées,
@@ -538,11 +493,7 @@ AU LECTEUR
   Et ton rire trempé de pleurs qu'on ne voit pas,
   Pour faire épanouir la rate du vulgaire.
 
-
-
-
   L'ENNEMI
-
 
   Ma jeunesse ne fut qu'un ténébreux orage,
   Traversé ça et là par de brillants soleils;
@@ -562,11 +513,7 @@ AU LECTEUR
   Et l'obscur Ennemi qui nous ronge le coeur
   Du sang que nous perdons croît et se fortifie!
 
-
-
-
   LA VIE ANTERIEURE
-
 
   J'ai longtemps habité sous de vastes portiques
   Que les soleils marins teignaient de mille feux,
@@ -586,11 +533,7 @@ AU LECTEUR
   Et dont l'unique soin était d'approfondir
   Le secret douloureux qui me faisait languir.
 
-
-
-
   BOHEMIENS EN VOYAGE
-
 
   La tribu prophétique aux prunelles ardentes
   Hier s'est mise en route, emportant ses petits
@@ -610,11 +553,7 @@ AU LECTEUR
   Devant ces voyageurs, pour lesquels est ouvert
   L'empire familier des ténèbres futures.
 
-
-
-
   L'HOMME ET LA MER
-
 
   Homme libre, toujours tu chériras la mer!
   La mer est ton miroir; tu contemples ton âme
@@ -636,11 +575,7 @@ AU LECTEUR
   Tellement vous aimez le carnage et la mort,
   O lutteurs éternels, ô frères implacables!
 
-
-
-
   DON JUAN AUX ENFERS
-
 
   Quand don Juan descendit vers l'onde souterraine,
   Et lorsqu'il eut donné son obole à Charon,
@@ -667,11 +602,7 @@ AU LECTEUR
   Mais le calme héros, courbé sur sa rapière,
   Regardait le sillage et ne daignait rien voir.
 
-
-
-
   CHATIMENT DE L'ORGUEIL
-
 
   En ces temps merveilleux où la Théologie
   Fleurit avec le plus de sève et d'énergie,
@@ -701,11 +632,7 @@ AU LECTEUR
   Sale, inutile et laid comme une chose usée,
   Il faisait des enfants la joie et la risée.
 
-
-
-
   LA BEAUTE
-
 
   Je suis belle, ô mortels! comme un rêve de pierre,
   Et mon sein, où chacun s'est meurtri tour à tour,
@@ -725,11 +652,7 @@ AU LECTEUR
   De purs miroirs qui font toutes choses plus belles:
   Mes yeux, mes larges yeux aux clartés éternelles!
 
-
-
-
   L'IDEAL
-
 
   Ce ne seront jamais ces beautés de vignettes,
   Produits avariés, nés d'un siècle vaurien,
@@ -749,16 +672,12 @@ AU LECTEUR
   Qui tors paisiblement dans une pose étrange
   Tes appas façonnés aux bouches des Titans!
 
-
-
-
   LE MASQUE
 
   STATUE ALLÉGORIQUE DANS LE GOUT DE LA RENAISSANCE
 
   A ERNEST CHRISTOPHE
   STATUAIRE
-
 
   Contemplons ce trésor de grâces florentines;
   Dans l'ondulation de ce corps musculeux
@@ -802,11 +721,7 @@ AU LECTEUR
   C'est que demain, hélas! il faudra vivre encore!
   Demain, après-demain et toujours!--comme nous!
 
-
-
-
   HYMNE A LA BEAUTE
-
 
   Viens-tu du ciel profond ou sors-tu de l'abîme,
   O Beauté? Ton regard, infernal et divin,
@@ -843,11 +758,7 @@ AU LECTEUR
   Rythme, parfum, lueur, ô mon unique reine!--
   L'univers moins hideux et les instants moins lourds?
 
-
-
-
   LA CHEVELURE
-
 
   O toison, moutonnant jusque sur l'encolure!
   O boucles! O parfum chargé de nonchaloir!
@@ -924,11 +835,7 @@ AU LECTEUR
 
   O fangeuse grandeur, sublime ignominie!
 
-
-
-
   SED NON SATIATA
-
 
   Bizarre déité, brune comme les nuits,
   Au parfum mélangé de musc et de havane,
@@ -966,11 +873,7 @@ AU LECTEUR
   Resplendit à jamais, comme un astre inutile,
   La froide majesté de la femme stérile.
 
-
-
-
   LE SERPENT QUI DANSE
-
 
   Que j'aime voir, chère indolente,
       De ton corps si beau,
@@ -1017,11 +920,7 @@ AU LECTEUR
   Un ciel liquide qui parsème
       D'étoiles mon coeur!
 
-
-
-
   UNE CHAROGNE
-
 
   Rappelez-vous l'objet que nous vîmes, mon âme,
           Ce beau matin d'été si doux:
@@ -1083,11 +982,7 @@ AU LECTEUR
   Que j'ai gardé la forme et l'essence divine
       De mes amours décomposés!
 
-
-
-
   DE PROFUNDIS CLAMAVI
-
 
   J'implore ta pitié. Toi, l'unique que j'aime,
   Du fond du gouffre obscur où mon coeur est tombé.
@@ -1107,11 +1002,7 @@ AU LECTEUR
   Qui peuvent se plonger dans un sommeil stupide,
   Tant l'écheveau du temps lentement se dévide!
 
-
-
-
   LE VAMPIRE
-
 
   Toi qui, comme un coup de couteau.
   Dans mon coeur plaintif est entrée;
@@ -1161,11 +1052,7 @@ AU LECTEUR
   Tu pouvais seulement, ô reine des cruelles,
   Obscurcir la splendeur de tes froides prunelles.
 
-
-
-
   REMORDS POSTHUME
-
 
   Lorsque tu dormiras, ma belle ténébreuse,
   Au fond d'un monument construit en marbre noir,
@@ -1185,11 +1072,7 @@ AU LECTEUR
   De n'avoir pas connu ce que pleurent les morts? »
   --Et le ver rongera ta peau comme un remords.
 
-
-
-
   LE CHAT
-
 
   Viens, mon beau chat, sur mon coeur amoureux:
           Retiens les griffes de ta patte,
@@ -1209,11 +1092,7 @@ AU LECTEUR
   Un air subtil, un dangereux parfum
           Nagent autour de son corps brun.
 
-
-
-
   LE BALCON
-
 
   Mère des souvenirs, maîtresse des maîtresses,
   O toi, tous mes plaisirs, ô toi, tous mes devoirs!
@@ -1251,11 +1130,7 @@ AU LECTEUR
   Après s'être lacés au fond des mers profondes!
   --O serments! ô parfums! ô baisers infinis!
 
-
-
-
   LE POSSEDE
-
 
   Le soleil s'est couvert d'un crêpe. Comme lui,
   O Lune de ma vie! emmitoufle-toi d'ombre;
@@ -1275,15 +1150,11 @@ AU LECTEUR
   Il n'est pas une fibre en tout mon corps tremblant
   Qui ne crie: _O mon cher Belzébuth, je t'adore!_
 
-
-
-
   UN FANTOME
 
   I
 
   LES TÉNÈBRES
-
 
   Dans les caveaux d'insondable tristesse
   Où le Destin m'a déjà relégué;
@@ -1303,11 +1174,9 @@ AU LECTEUR
   Je reconnais ma belle visiteuse:
   C'est Elle! sombre et pourtant lumineuse.
 
-
   II
 
   LE PARFUM
-
 
   Lecteur, as-tu quelquefois respiré
   Avec ivresse et lente gourmandise
@@ -1327,11 +1196,9 @@ AU LECTEUR
   Tout imprégnés de sa jeunesse pure,
   Se dégageait un parfum de fourrure.
 
-
   III
 
   LE CADRE
-
 
   Comme un beau cadre ajoute à la peinture,
   Bien qu'elle soit d'un pinceau très vanté,
@@ -1351,11 +1218,9 @@ AU LECTEUR
   Et, lente ou brusque, en tous ses mouvements,
   Montrait la grâce enfantine du singe.
 
-
   IV
 
   LE PORTRAIT
-
 
   La Maladie et la Mort font des cendres
   De tout le feu qui pour nous flamboya.
@@ -1393,11 +1258,7 @@ AU LECTEUR
   Les stupides mortels qui t'ont jugée amère,
   Statue aux yeux de jais, grand ange au front d'airain!
 
-
-
-
   SEMPER EADEM
-
 
   « D'où vous vient, disiez-vous, cette tristesse étrange,
   Montant comme la mer sur le roc noir et nu? »
@@ -1417,11 +1278,7 @@ AU LECTEUR
   Plonger dans vos beaux yeux comme dans un beau songe,
   Et sommeiller longtemps à l'ombre de vos cils!
 
-
-
-
   TOUT ENTIERE
-
 
   Le Démon, dans ma chambre haute,
   Ce matin est venu me voir,
@@ -1471,11 +1328,7 @@ AU LECTEUR
   Que pour l'amour de moi vous n'aimiez que le Beau.
   Je suis l'Ange gardien, la Muse et la Madone. »
 
-
-
-
   CONFESSION
-
 
   Une fois, une seule, aimable et douce femme,
       A mon bras votre bras poli
@@ -1527,11 +1380,7 @@ AU LECTEUR
   Et cette confidence horrible chuchotée
       Au confessionnal du coeur.
 
-
-
-
   LE FLACON
-
 
   Il est de forts parfums pour qui toute matière
   Est poreuse. On dirait qu'ils pénètrent le verre.
@@ -1568,11 +1417,7 @@ AU LECTEUR
   Cher poison préparé par les anges! liqueur
   Qui me ronge, ô la vie et la mort de mon coeur!
 
-
-
-
   LE POISON
-
 
   Le vin sait revêtir le plus sordide bouge
       D'un luxe miraculeux,
@@ -1598,13 +1443,9 @@ AU LECTEUR
       Et, charriant le vertige,
   La roule défaillante aux rives de la mort!
 
-
-
-
   LE CHAT
 
   I
-
 
   Dans ma cervelle se promène
   Ainsi qu'en son appartement,
@@ -1636,9 +1477,7 @@ AU LECTEUR
   En qui tout est, comme un ange,
   Aussi subtil qu'harmonieux.
 
-
   II
-
 
   De sa fourrure blonde et brune
   Sort un parfum si doux, qu'un soir
@@ -1660,11 +1499,7 @@ AU LECTEUR
   Clairs fanaux, vivantes opales,
   Qui me contemplent fixement.
 
-
-
-
   LE BEAU NAVIRE
-
 
   Je veux te raconter, ô molle enchanteresse,
   Les diverses beautés qui parent ta jeunesse;
@@ -1716,13 +1551,9 @@ AU LECTEUR
       D'un air placide et triomphant
   Tu passes ton chemin, majestueuse enfant.
 
-
-
-
   L'IRREPARABLE
 
   I
-
 
   Pouvons-nous étouffer le vieux, le long Remords,
       Qui vit, s'agite et se tortille,
@@ -1772,9 +1603,7 @@ AU LECTEUR
       Par la base le bâtiment.
   L'irréparable ronge avec sa dent maudite!
 
-
   II
-
 
   J'ai vu parfois, au fond d'un théâtre banal
       Qu'enflammait l'orchestre sonore,
@@ -1788,11 +1617,7 @@ AU LECTEUR
       Est un théâtre où l'on attend
   Toujours, toujours en vain, l'Etre aux ailes de gaze!
 
-
-
-
   CAUSERIE
-
 
   Vous êtes un beau ciel d'automne, clair et rose!
   Mais la tristesse en moi monte comme la mer,
@@ -1812,13 +1637,9 @@ AU LECTEUR
   Avec tes yeux de feu, brillants comme des fêtes!
   Calcine ces lambeaux qu'ont épargnés les bêtes!
 
-
-
-
   CHANT D'AUTOMNE
 
   I
-
 
   Bientôt nous plongerons dans les froides ténèbres;
   Adieu, vive clarté de nos étés trop courts!
@@ -1840,9 +1661,7 @@ AU LECTEUR
   Pour qui?--C'était hier l'été; voici l'automne!
   Ce bruit mystérieux sonne comme un départ.
 
-
   II
-
 
   J'aime de vos longs yeux la lumière verdâtre,
   Douce beauté, mais tout aujourd'hui m'est amer,
@@ -1859,11 +1678,7 @@ AU LECTEUR
   Goûter, en regrettant l'été blanc et torride,
   De l'arrière-saison le rayon jaune et doux!
 
-
-
-
   CHANSON D'APRES-MIDI
-
 
   Quoique tes sourcils méchants
   Te donnent un air étrange
@@ -1915,11 +1730,7 @@ AU LECTEUR
   Explosion de chaleur
   Dans ma noire Sibérie!
 
-
-
-
   SISINA
-
 
   Imaginez Diane en galant équipage,
   Parcourant les forêts ou battant les halliers,
@@ -1939,11 +1750,7 @@ AU LECTEUR
   Et son coeur, ravagé par la flamme, a toujours,
   Pour qui s'en montre digne, un réservoir de larmes.
 
-
-
-
   A UNE DAME CREOLE
-
 
   Au pays parfumé que le soleil caresse,
   J'ai connu sous un dais d'arbres tout empourprés
@@ -1963,11 +1770,7 @@ AU LECTEUR
   Germer mille sonnets dans le coeur des poètes,
   Que vos grands yeux rendraient plus soumis que vos noirs.
 
-
-
-
   LE REVENANT
-
 
   Comme les anges à l'oeil fauve,
   Je reviendrai dans ton alcôve
@@ -1987,11 +1790,7 @@ AU LECTEUR
   Sur ta vie et sur ta jeunesse,
   Moi, je veux régner par l'effroi!
 
-
-
-
   SONNET D'AUTOMNE
-
 
   Ils me disent, tes yeux, clairs comme le cristal:
   « Pour toi, bizarre amant, quel est donc mon mérite? »
@@ -2011,11 +1810,7 @@ AU LECTEUR
   Comme moi n'es-tu pas un soleil automnal,
   O ma si blanche, ô ma si froide Marguerite?
 
-
-
-
   TRISTESSE DE LA LUNE
-
 
   Ce soir, la lune rêve avec plus de paresse;
   Ainsi qu'une beauté, sur de nombreux coussins,
@@ -2035,11 +1830,7 @@ AU LECTEUR
   Aux reflets irisés comme un fragment d'opale,
   Et la met dans son coeur loin des yeux du soleil.
 
-
-
-
   LES CHATS
-
 
   Les amoureux fervents et les savants austères
   Aiment également dans leur mûre saison,
@@ -2059,11 +1850,7 @@ AU LECTEUR
   Et des parcelles d'or, ainsi qu'un sable fin,
   Etoilent vaguement leurs prunelles mystiques.
 
-
-
-
   LA PIPE
-
 
   Je suis la pipe d'un auteur;
   On voit, à contempler ma mine
@@ -2083,11 +1870,7 @@ AU LECTEUR
   Qui charme son coeur et guérit
   De ses fatigues son esprit.
 
-
-
-
   LA MUSIQUE
-
 
   La musique souvent me prend comme une mer!
       Vers ma pâle étoile,
@@ -2107,11 +1890,7 @@ AU LECTEUR
   Me bercent.--D'autres fois, calme plat, grand mimoir
       De mon désespoir!
 
-
-
-
   SEPULTURE D'UN POETE MAUDIT
-
 
   Si par une nuit lourde et sombre
   Un bon chrétien, par charité,
@@ -2131,11 +1910,7 @@ AU LECTEUR
   Les ébats des vieillards lubriques
   Et les complots des noirs filous.
 
-
-
-
   LE MORT JOYEUX
-
 
   Dans une terre grasse et pleine d'escargots
   Je veux creuser moi-même une fosse profonde,
@@ -2155,11 +1930,7 @@ AU LECTEUR
   Et dites-moi s'il est encor quelque torture
   Pour ce vieux corps sans âme et mort parmi les morts?
 
-
-
-
   LA CLOCHE FELEE
-
 
   Il est amer et doux, pendant les nuits d'hiver,
   D'écouter près du feu qui palpite et qui fume
@@ -2179,11 +1950,7 @@ AU LECTEUR
   Au bord d'un lac de sang sous un grand tas de morts,
   Et qui meurt, sans bouger, dans d'immenses efforts.
 
-
-
-
   SPLEEN
-
 
   Pluviôse, irrité contre la vie entière,
   De son urne à grands flots vers un froid ténébreux
@@ -2273,11 +2040,7 @@ AU LECTEUR
   Vaincu, pleure, et l'Angoisse atroce, despotique,
   Sur mon crâne incliné plante son drapeau noir.
 
-
-
-
   LE GOUT DU NEANT
-
 
   Morne esprit, autrefois amoureux de la lutte,
   L'Espoir, dont l'éperon attisait ton ardeur,
@@ -2300,11 +2063,7 @@ AU LECTEUR
 
   Avalanche, veux-tu m'emporter dans ta chute?
 
-
-
-
   ALCHIMIE DE LA DOULEUR
-
 
   L'un t'éclaire avec son ardeur
   L'autre en toi met son deuil. Naturel
@@ -2324,11 +2083,7 @@ AU LECTEUR
   Et sur les célestes rivages
   Je bâtis de grands sarcophages.
 
-
-
-
   LA PRIERE D'UN PAÏEN
-
 
   Ah! ne ralentis pas tes flammes;
   Réchauffe mon coeur engourdi,
@@ -2348,11 +2103,7 @@ AU LECTEUR
   Dans le vin informe et mystique,
   Volupté, fantôme élastique!
 
-
-
-
   LE COUVERCLE
-
 
   En quelque lieu qu'il aille, ou sur mer ou sur terre,
   Sous un climat de flamme ou sous un soleil blanc,
@@ -2372,11 +2123,7 @@ AU LECTEUR
   Le Ciel! couvercle noir de la grande marmite
   Où bout l'imperceptible et vaste Humanité.
 
-
-
-
   L'IMPREVU
-
 
   Harpagon, qui veillait son père agonisant,
   Se dit, rêveur, devant ces lèvres déjà blanches;
@@ -2443,11 +2190,7 @@ AU LECTEUR
   Qu'il s'infiltre comme une extase dans tous ceux
       Dont elle chante les louanges.
 
-
-
-
   L'EXAMEN DE MINUIT
-
 
   La pendule, sonnant minuit,
   Ironiquement nous engage
@@ -2485,11 +2228,7 @@ AU LECTEUR
   --Vite soufflons la lampe, afin
   De nous cacher dans les ténèbres!
 
-
-
-
   MADRIGAL TRISTE
-
 
   Que m'importe que tu sois sage?
   Sois belle! et sois triste! Les pleurs
@@ -2539,11 +2278,7 @@ AU LECTEUR
   Me dire, l'âme de cris pleine:
   « Je suis ton égale, ô mon Roi! »
 
-
-
-
   L'AVERTISSEUR
-
 
   Tout homme digne de ce nom
   A dans le coeur un Serpent jaune,
@@ -2563,11 +2298,7 @@ AU LECTEUR
   Sans subir l'avertissement
   De l'insupportable Vipère.
 
-
-
-
   A UNE MALABARAISE
-
 
   Tes pieds sont aussi fins que tes mains, et ta hanche
   Est large à faire envie à la plus belle blanche;
@@ -2598,11 +2329,7 @@ AU LECTEUR
   L'oeil pensif, et suivant, dans nos sales brouillards,
   Des cocotiers absents les fantômes épars!
 
-
-
-
   LA VOIX
-
 
   Mon berceau s'adossait à la bibliothèque,
   Babel sombre, où roman, science, fabliau,
@@ -2633,11 +2360,7 @@ AU LECTEUR
   Mais la Voix me console et dit: « Garde des songes;
   Les sages n'en ont pas d'aussi beaux que les fous! ».
 
-
-
-
   HYMNE
-
 
   A la très chère, à la très belle
   Qui remplit mon coeur de clarté,
@@ -2664,11 +2387,7 @@ AU LECTEUR
   Qui fait ma joie et ma santé,
   Salut en immortalité!
 
-
-
-
   LE REBELLE
-
 
   Un Ange furieux fond du ciel comme un aigle,
   Du mécréant saisit à plein poing les cheveux,
@@ -2688,11 +2407,7 @@ AU LECTEUR
   De ses poings de géant torture l'anathème;
   Mais le damné répond toujours; « Je ne veux pas! »
 
-
-
-
   LE JET D'EAU
-
 
   Tes beaux yeux sont las, pauvre amante!
   Reste longtemps sans les rouvrir,
@@ -2742,11 +2457,7 @@ AU LECTEUR
       Tombe comme une pluie
         De larges pleurs.
 
-
-
-
   LE COUCHER DU SOLEIL ROMANTIQUE
-
 
   Que le Soleil est beau quand tout frais il se lève,
   Comme une explosion nous lançant son bonjour!
@@ -2766,11 +2477,7 @@ AU LECTEUR
   Et mon pied peureux froisse, au bord du marécage,
   Des crapauds imprévus et de froids limaçons.
 
-
-
-
   LE GOUFFRE
-
 
   Pascal avait son gouffre, avec lui se mouvant.
   --Hélas! tout est abîme,--action, désir, rêve,
@@ -2790,11 +2497,7 @@ AU LECTEUR
   Jalouse du néant l'insensibilité.
   --Ah! ne jamais sortir des Nombres et des Etres!
 
-
-
-
   LES PLAINTES D'UN ICARE
-
 
   Les amants des prostituées
   Sont heureux, dispos et repus;
@@ -2816,11 +2519,7 @@ AU LECTEUR
   De donner mon nom à l'abîme
   Qui me servira de tombeau.
 
-
-
-
   RECUEILLEMENT
-
 
   Sois sage, ô ma Douleur, et tiens-toi plus tranquille,
   Tu réclamais le Soir; il descend; le voici:
@@ -2840,13 +2539,9 @@ AU LECTEUR
   Et, comme un long linceul traînant à l'Orient,
   Entends, ma chère, entends la douce Nuit qui marche.
 
-
-
-
   L'HEAUTONTIMOROUMENOS
 
   A. J. G. F.
-
 
   Je te frapperai sans colère
   Et sans haine,--comme un boucher!
@@ -2883,13 +2578,9 @@ AU LECTEUR
   Au rire éternel condamnés,
   Et qui ne peuvent plus sourire!
 
-
-
-
   L'IRREMEDIABLE
 
   I
-
 
   Une Idée, une Forme, un Etre
   Parti de l'azur et tombé
@@ -2931,9 +2622,7 @@ AU LECTEUR
   Qui donne à penser que le Diable
   Fait toujours bien tout ce qu'il fait!
 
-
   II
-
 
   Tête-à-tête sombre et limpide
   Qu'un coeur devenu son miroir
@@ -2945,11 +2634,7 @@ AU LECTEUR
   Soulagement et gloire uniques,
   --La conscience dans le Mal!
 
-
-
-
   L'HORLOGE
-
 
   Horloge dieu sinistre, effrayant, impassible,
   Dont le doigt nous menace et nous dit: _Souviens-toi!_
@@ -2981,13 +2666,9 @@ AU LECTEUR
   Où le Repentir même (oh! la dernière auberge!),
   Où tout te dira: Meurs, vieux lâche! il est trop tard! »
 
-
-
-
   TABLEAUX PARISIENS
 
   LE SOLEIL
-
 
   Le long du vieux faubourg, où pendant aux masures
   Les persiennes, abri des secrètes luxures,
@@ -3011,11 +2692,7 @@ AU LECTEUR
   Et s'introduit en roi, sans bruit et sans valets,
   Dans tous les hôpitaux et dans tous les palais.
 
-
-
-
   LA LUNE OFFENSEE
-
 
   O Lune qu'adoraient discrètement nos pères,
   Du haut des pays bleus où, radieux sérail,
@@ -3035,11 +2712,7 @@ AU LECTEUR
   Qui vers son miroir penche un lourd amas d'années,
   Et plâtre artistement le sein qui t'a nourri! »
 
-
-
-
   A UNE MENDIANTE ROUSSE
-
 
   Blanche fille aux cheveux roux,
   Dont ta robe par ses trous
@@ -3111,15 +2784,11 @@ AU LECTEUR
   Que ta maigre nudité,
       O ma beauté!
 
-
-
-
   LE CYGNE
 
   A VICTOR HUGO
 
   I
-
 
   Andromaque, je pense à vous!--Ce petit fleuve,
   Pauvre et triste miroir où jadis resplendit
@@ -3156,9 +2825,7 @@ AU LECTEUR
   Sur son cou convulsif tendant sa tête avide,
   Comme s'il adressait des reproches à Dieu!
 
-
   II
-
 
   Paris change, mais rien dans ma mélancolie
   N'a bougé! palais neufs, échafaudages, blocs,
@@ -3190,13 +2857,9 @@ AU LECTEUR
   Je pense aux matelots oubliés dans une île,
   Aux captifs, aux vaincus!... à bien d'autres encor!
 
-
-
-
   LES SEPT VIEILLARDS
 
   A VICTOR HUGO
-
 
   Fourmillante cité, cité pleine de rêves,
   Où le spectre en plein jour raccroche le passant!
@@ -3263,15 +2926,11 @@ AU LECTEUR
   Et mon âme dansait, dansait, vieille gabarre
   Sans mâts, sur une mer monstrueuse et sans bords!
 
-
-
-
   LES PETITES VIEILLES
 
   A VICTOR HUGO
 
   I
-
 
   Dans les plis sinueux des vieilles capitales,
   Où tout, même l'horreur, tourne aux enchantements,
@@ -3318,9 +2977,7 @@ AU LECTEUR
   Ces yeux mystérieux ont d'invincibles charmes
   Pour celui que l'austère Infortune allaita!
 
-
   II
-
 
   De l'ancien Frascati Vestale énamourée;
   Prêtresse de Thalie, hélas! dont le souffleur
@@ -3337,9 +2994,7 @@ AU LECTEUR
   L'autre, par son enfant Madone transpercée,
   Toutes auraient pu faire un fleuve avec leurs pleurs!
 
-
   III
-
 
   Ah! que j'en ai suivi, de ces petites vieilles!
   Une, entre autres, à l'heure où le soleil tombant
@@ -3356,9 +3011,7 @@ AU LECTEUR
   Son oeil parfois s'ouvrait comme l'oeil d'un vieil aigle;
   Son front de marbre avait l'air fait pour le laurier!
 
-
   IV
-
 
   Telles vous cheminez, stoïques et sans plaintes,
   A travers le chaos des vivantes cités,
@@ -3390,11 +3043,7 @@ AU LECTEUR
   Où serez-vous demain, Eves octogénaires,
   Sur qui pèse la griffe effroyable de Dieu?
 
-
-
-
   A UNE PASSANTE
-
 
   La rue assourdissante autour de moi hurlait.
   Longue, mince, en grand deuil, douleur majestueuse,
@@ -3414,11 +3063,7 @@ AU LECTEUR
   Car j'ignore où tu fuis, tu ne sais où je vais,
   O toi que j'eusse aimée, ô toi qui le savais!
 
-
-
-
   LE CREPUSCULE DU SOIR
-
 
   Voici le soir charmant, ami du criminel;
   Il vient comme un complice, à pas de loup; le ciel
@@ -3464,11 +3109,7 @@ AU LECTEUR
   Encore la plupart n'ont-ils jamais connu
   La douceur du foyer et n'ont jamais vécu!
 
-
-
-
   LE JEU
-
 
   Dans des fauteuils fanés des courtisanes vieilles,
   Pâles, le sourcil peint, l'oeil câlin et fatal,
@@ -3500,13 +3141,9 @@ AU LECTEUR
   Et qui, soûl de son sang, préférerait en somme
   La douleur à la mort et l'enfer au néant!
 
-
-
-
   DANSE MACABRE
 
   A ERNEST CHRISTOPHE
-
 
   Fière, autant qu'un vivant, de sa noble stature,
   Avec son gros bouquet, son mouchoir et ses gants,
@@ -3583,11 +3220,7 @@ AU LECTEUR
   Et souvent, comme toi, se parfumant de myrrhe,
   Mêle son ironie à ton insanité! »
 
-
-
-
   L'AMOUR DU MENSONGE
-
 
   Quand je te vois passer, ô ma chère indolente,
   Au chant des instruments qui se brise au plafond,
@@ -3654,11 +3287,7 @@ AU LECTEUR
   Que pourrais-je répondre à cette âme pieuse
   Voyant tomber des pleurs de sa paupière creuse?
 
-
-
-
   BRUMES ET PLUIES
-
 
   O fins d'automne, hivers, printemps trempés de boue,
   Endormeuses saisons! je vous aime et vous loue
@@ -3678,13 +3307,9 @@ AU LECTEUR
   --Si ce n'est par un soir sans lune, deux à deux,
   D'endormir la douleur sur un lit hasardeux.
 
-
-
-
   LE VIN
 
   L'AME DU VIN
-
 
   Un soir, l'âme du vin chantait dans les bouteilles:
   « Homme, vers toi je pousse, ô cher déshérité,
@@ -3716,11 +3341,7 @@ AU LECTEUR
   Pour que de notre amour naisse la poésie
   Qui jaillira vers Dieu comme une rare fleur! »
 
-
-
-
   LE VIN DES CHIFFONNIERS
-
 
   Souvent, à la clarté rouge d'un réverbère
   Dont le vent bat la flamme et tourmente le verre.
@@ -3762,11 +3383,7 @@ AU LECTEUR
   Dieu, touché de remords, avait fait le sommeil;
   L'Homme ajouta le Vin, fils sacré du Soleil!
 
-
-
-
   LE VIN DE L'ASSASSIN
-
 
   Ma femme est morte, je suis libre!
   Je puis donc boire tout mon soûl.
@@ -3833,11 +3450,7 @@ AU LECTEUR
   Je m'en moque comme de Dieu,
   Du Diable ou de la Sainte Table!
 
-
-
-
   LE VIN DU SOLITAIRE
-
 
   Le regard singulier d'une femme galante
   Qui se glisse vers nous comme le rayon blanc
@@ -3857,11 +3470,7 @@ AU LECTEUR
   --Et l'orgueil, ce trésor de toute gueuserie,
   Qui nous rend triomphants et semblables aux Dieux.
 
-
-
-
   LE VIN DES AMANTS
-
 
   Aujourd'hui l'espace est splendide!
   Sans mors, sans éperons, sans bride,
@@ -3881,13 +3490,9 @@ AU LECTEUR
   Nous fuirons sans repos ni trêves
   Vers le paradis de mes rêves!
 
-
-
-
   UNE MARTYRE
 
   DESSIN D'UN MAITRE INCONNU
-
 
   Au milieu des flacons, des étoffes lamées
       Et des meubles voluptueux,
@@ -3959,17 +3564,12 @@ AU LECTEUR
   Dors en paix, dors en paix, étrange créature,
       Dans ton tombeau mystérieux;
 
-
   Ton époux court le monde, et ta forme immortelle
       Veille près de lui quand il dort;
   Autant que toi sans doute il te sera fidèle,
       Et constant jusques à la mort.
 
-
-
-
   FEMMES DAMNEES
-
 
   Comme un bétail pensif sur le sable couchées,
   Elles tournent leurs yeux vers l'horizon des mers,
@@ -4006,11 +3606,7 @@ AU LECTEUR
   Pour vos mornes douleurs, vos soifs inassouvies,
   Et les urnes d'amour dont vos grands coeurs sont pleins!
 
-
-
-
   LES DEUX BONNES SOEURS
-
 
   La Débauche et la Mort sont deux aimables filles,
   Prodigues de baisers et riches de santé,
@@ -4030,11 +3626,7 @@ AU LECTEUR
   O Mort, quand viendras-tu, sa rivale en attraits,
   Sur ses myrtes infects entre tes noirs cyprès?
 
-
-
-
   ALLEGORIE
-
 
   C'est une femme belle et de riche encolure,
   Qui laisse dans son vin traîner sa chevelure.
@@ -4057,11 +3649,7 @@ AU LECTEUR
   Elle regardera la face de la Mort,
   Ainsi qu'un nouveau-né,--sans haine et sans remord.
 
-
-
-
   UN VOYAGE A CYTHERE
-
 
   Mon coeur, comme un oiseau, voltigeait tout joyeux
   Et planait librement à l'entour des cordages;
@@ -4138,15 +3726,11 @@ AU LECTEUR
   --Ah! Seigneur! donnez-moi la force et le courage
   De contempler mon coeur et mon corps sans dégoût!
 
-
-
-
   RÉVOLTE
 
   ABEL ET CAÏN
 
   I
-
 
   Race d'Abel, dors, bois et mange:
   Dieu le sourit complaisamment,
@@ -4183,9 +3767,7 @@ AU LECTEUR
   Race de Caïn, sur les routes
   Traîne ta famille aux abois.
 
-
   II
-
 
   Ah! race d'Abel, ta charogne
   Engraissera le sol fumant!
@@ -4199,11 +3781,7 @@ AU LECTEUR
   Race de Caïn, au ciel monte
   Et sur la terre jette Dieu!
 
-
-
-
   LES LITANIES DE SATAN
-
 
   O toi, le plus savant et le plus beau des Anges,
   Dieu trahi par le sort et privé de louanges,
@@ -4279,11 +3857,7 @@ AU LECTEUR
   Du Paradis terrestre a chassés Dieu le Père,
   O Satan, prends pitié de ma longue misère!
 
-
-
-
   PRIÈRE
-
 
   Gloire et louange à toi, Satan, dans les hauteurs
   Du Ciel, où tu régnas, et dans les profondeurs
@@ -4292,13 +3866,9 @@ AU LECTEUR
   Près de toi se repose, à l'heure où sur ton front
   Comme un Temple nouveau ses rameaux s'épandront!
 
-
-
-
   LA MORT
 
   LA MORT DES AMANTS
-
 
   Nous aurons des lits pleins d'odeurs légères,
   Des divans profonds comme des tombeaux,
@@ -4318,11 +3888,7 @@ AU LECTEUR
   Viendra ranimer, fidèle et joyeux,
   Les miroirs ternis et les flammes mortes.
 
-
-
-
   LA MORT DES PAUVRES
-
 
   C'est la Mort qui console, hélas! et qui fait vivre;
   C'est le but de la vie, et c'est le seul espoir
@@ -4342,11 +3908,7 @@ AU LECTEUR
   C'est la bourse du pauvre et sa patrie antique,
   C'est le portique ouvert sur les Cieux inconnus!
 
-
-
-
   LE REVE D'UN CURIEUX
-
 
   Connais-tu, comme moi, la douleur savoureuse,
   Et de toi fais-tu dire: « Oh! l'homme singulier! »
@@ -4366,15 +3928,11 @@ AU LECTEUR
   M'enveloppait.--Eh quoi! n'est-ce donc que cela?
   La toile était levée et j'attendais encore.
 
-
-
-
   LE VOYAGE
 
   A MAXIME DU CAMP
 
   I
-
 
   Pour l'enfant, amoureux de cartes et d'estampes,
   L'univers est égal à son vaste appétit.
@@ -4406,9 +3964,7 @@ AU LECTEUR
   De vastes voluptés, changeantes, inconnues,
   Et dont l'esprit humain n'a jamais su le nom!
 
-
   II
-
 
   Nous imitons, horreur! la toupie et la boule
   Dans leur valse et leurs bonds; même dans nos sommeils
@@ -4440,9 +3996,7 @@ AU LECTEUR
   Son oeil ensorcelé découvre une Capoue
   Partout où la chandelle illumine un taudis.
 
-
   III
-
 
   Etonnants voyageurs! quelles nobles histoires
   Nous lisons dans vos yeux profonds comme les mers!
@@ -4456,9 +4010,7 @@ AU LECTEUR
 
   Dites, qu'avez-vous vu?
 
-
   IV
-
 
                            « Nous avons vu des astres
   Et des flots; nous avons vu des sables aussi;
@@ -4494,14 +4046,11 @@ AU LECTEUR
   Des femmes dont les dents et les ongles sont teints
   Et des jongleurs savants que le serpent caresse. »
 
-
   V
 
   Et puis, et puis encore?
 
-
   VI
-
 
                             « O cerveaux enfantins!
   Pour ne pas oublier la chose capitale,
@@ -4534,9 +4083,7 @@ AU LECTEUR
   Et se réfugiant dans l'opium immense!
   --Tel est du globe entier l'éternel bulletin. »
 
-
   VII
-
 
   Amer savoir, celui qu'on tire du voyage!
   Le monde, monotone et petit, aujourd'hui,
@@ -4573,9 +4120,7 @@ AU LECTEUR
   « Pour rafraîchir ton coeur nage vers ton Electre! »
   Dit celle dont jadis nous baisions les genoux.
 
-
   VIII
-
 
   O Mort, vieux capitaine, il est temps! levons l'ancre!
   Ce pays nous ennuie, ô Mort! Appareillons!
@@ -4587,13 +4132,9 @@ AU LECTEUR
   Plonger au fond du gouffre, Enfer ou Ciel, qu'importe?
   Au fond de l'Inconnu pour trouver du _nouveau!_
 
-
-
-
   PIÈCES CONDAMNÉES
 
   LES BIJOUX
-
 
   La très chère était nue, et, connaissant mon coeur,
   Elle n'avait gardé que ses bijoux sonores,
@@ -4635,11 +4176,7 @@ AU LECTEUR
   Chaque fois qu'il poussait un flamboyant soupir,
   Il inondait de sang cette peau couleur d'ambre!
 
-
-
-
   LE LETHE
-
 
   Viens sur mon coeur, âme cruelle et sourde,
   Tigre adoré, monstre aux airs indolents;
@@ -4671,11 +4208,7 @@ AU LECTEUR
   Aux bouts charmants de cette gorge aiguë
   Qui n'a jamais emprisonné de coeur.
 
-
-
-
   A CELLE QUI EST TROP GAIE
-
 
   Ta tête, ton geste, ton air
   Sont beaux comme un beau paysage;
@@ -4722,11 +4255,7 @@ AU LECTEUR
   Plus éclatantes et plus belles,
   T'infuser mon venin, ma soeur!
 
-
-
-
   LESBOS
-
 
   Mère des jeux latins et des voluptés grecques,
   Lesbos, où les baisers languissants ou joyeux,
@@ -4818,11 +4347,7 @@ AU LECTEUR
   Que poussent vers les deux ses rivages déserts.
   Et c'est depuis ce temps que Lesbos se lamente!
 
-
-
-
   FEMMES DAMNEES
-
 
   A la pâle clarté des lampes languissantes,
   Sur de profonds coussins tout imprégnés d'odeur,
@@ -4954,11 +4479,7 @@ AU LECTEUR
   Faites votre destin, âmes désordonnées,
   Et fuyez l'infini que vous portez en vous!
 
-
-
-
   LES METAMORPHOSES DU VAMPIRE
-
 
   La femme cependant de sa bouche de fraise,
   En se tordant ainsi qu'un serpent sur la braise,
@@ -4990,22 +4511,7 @@ AU LECTEUR
   Ou d'une enseigne, au bout d'une tringle de fer,
   Que balance le vent pendant les nuits d'hiver.
 
-
-
-
-
-
-
-
-
-
-
-
-
 *** END OF THE PROJECT GUTENBERG EBOOK LES FLEURS DU MAL ***
-
-
-    
 
 Updated editions will replace the previous one—the old editions will
 be renamed.
@@ -5028,7 +4534,6 @@ Gutenberg eBooks may be modified and printed and given away—you may
 do practically ANYTHING in the United States with eBooks not protected
 by U.S. copyright law. Redistribution is subject to the trademark
 license, especially commercial redistribution.
-
 
 START: FULL LICENSE
 
@@ -5110,7 +4615,7 @@ performed, viewed, copied or distributed:
     at www.gutenberg.org. If you
     are not located in the United States, you will have to check the laws
     of the country where you are located before using this eBook.
-  
+
 1.E.2. If an individual Project Gutenberg™ electronic work is
 derived from texts not protected by U.S. copyright law (does not
 contain a notice indicating that it is posted with permission of the
@@ -5172,7 +4677,7 @@ provided that:
         Gutenberg Literary Archive Foundation at the address specified in
         Section 4, “Information about donations to the Project Gutenberg
         Literary Archive Foundation.”
-    
+
     • You provide a full refund of any money paid by a user who notifies
         you in writing (or by e-mail) within 30 days of receipt that s/he
         does not agree to the terms of the full Project Gutenberg™
@@ -5180,15 +4685,14 @@ provided that:
         copies of the works possessed in a physical medium and discontinue
         all use of and all access to other copies of Project Gutenberg™
         works.
-    
+
     • You provide, in accordance with paragraph 1.F.3, a full refund of
         any money paid for a work or a replacement copy, if a defect in the
         electronic work is discovered and reported to you within 90 days of
         receipt of the work.
-    
+
     • You comply with all other terms of this agreement for free
         distribution of Project Gutenberg™ works.
-    
 
 1.E.9. If you wish to charge a fee or distribute a Project
 Gutenberg™ electronic work or group of works on different terms than
@@ -5351,5 +4855,4 @@ This website includes information about Project Gutenberg™,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
 

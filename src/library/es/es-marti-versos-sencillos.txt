@@ -1,5 +1,5 @@
 ﻿The Project Gutenberg eBook of Granos de oro: Pensamientos Seleccionados en las Obras de José Martí
-    
+
 This ebook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
 whatsoever. You may copy it, give it away or re-use it under the terms
@@ -24,11 +24,9 @@ Credits: Produced by Carlos Colon and the Online Distributed
         produced from images generously made available by The
         Internet Archive/American Libraries.)
 
-
 *** START OF THE PROJECT GUTENBERG EBOOK GRANOS DE ORO: PENSAMIENTOS SELECCIONADOS EN LAS OBRAS DE JOSÉ MARTÍ ***
 
   Nota del Transcriptor:
-
 
   Errores obvios de imprenta han sido corregidos.
 
@@ -39,13 +37,7 @@ Credits: Produced by Carlos Colon and the Online Distributed
   Las versalitas (letras mayúsculas de tamaño igual a las minúsculas)
   han sido sustituidas por letras mayúsculas de tamaño normal.
 
-
-
-
   GRANOS DE ORO
-
-
-
 
     De esta obra se han impreso
     cincuenta ejemplares en papel superior,
@@ -53,15 +45,11 @@ Credits: Produced by Carlos Colon and the Online Distributed
     El precio de cada uno es de
     dos pesos oro oficial.
 
-
-
-
   BIBLIOTECA
   LA CULTURA CUBANA
   DIRIGIDA POR CARLOS DE VELASCO
 
   VOL. I.
-
 
   GRANOS DE ORO
 
@@ -73,14 +61,10 @@ Credits: Produced by Carlos Colon and the Online Distributed
 
   RAFAEL G. ARGILAGOS
 
-
   _La Habana_
   _Sociedad Editorial Cuba Contemporánea_
   _O'Reilly, 11._
   _1918_
-
-
-
 
      Es propiedad.
 
@@ -89,9 +73,6 @@ Credits: Produced by Carlos Colon and the Online Distributed
 Imp. "El Siglo XX" (Tte. Rey, 27), de la Sociedad Editorial Cuba
 Contemporánea. La Habana.
 
-
-
-
      Yo quiero cuando me muera,
      sin patria, pero sin amo,
      tener en mi tumba un ramo
@@ -99,11 +80,7 @@ Contemporánea. La Habana.
 
                   _Martí._
 
-
-
-
 NOTA DE LOS EDITORES
-
 
 La SOCIEDAD EDITORIAL CUBA CONTEMPORÁNEA ha querido que el primer
 volumen de esta Biblioteca que ahora funda con el título de _La Cultura
@@ -172,11 +149,7 @@ versos.
 
      La Habana, 1918.
 
-
-
-
 PROEMIO
-
 
 _Martí ha sido, es y será, en la radiante constelación de excelsos
 varones que han dado gloria y fama a Cuba, el más alto prócer._
@@ -236,18 +209,11 @@ patrióticos._
 
      La Habana, mayo de 1918.
 
-
-
-
 I
 
 Del vol. "Cuba". (Primera Parte.)
 
-
-
-
 I
-
 
 En la cruz murió el hombre en un día; pero se ha de aprender a morir en
 la cruz todos los días.
@@ -482,18 +448,11 @@ adversarios constantes y veraces.
 Al hombre honrado no le asusta morir en la oscuridad en el servicio de
 la patria.
 
-
-
-
 II
 
 Del vol. "Cuba". (Segunda Parte.)
 
-
-
-
 II
-
 
 La gloria y el triunfo no son más que un estímulo al cumplimiento del
 deber.
@@ -1122,18 +1081,11 @@ contradice.
 ¡Levanten el ánimo los que lo tengan cobarde!: con treinta hombres se
 puede hacer un pueblo.
 
-
-
-
 III
 
 Del vol. "En los Estados Unidos". (Primera Parte.)
 
-
-
-
 III
-
 
 La justicia de una causa es deslucida muchas veces por la ignorancia y
 el exceso en la manera de pedirla.
@@ -1299,18 +1251,11 @@ Como la derrota consume, el éxito robustece.
 En la arquitectura, como en todas las artes, el modo más seguro de matar
 el efecto es rebuscarlo.
 
-
-
-
 IV
 
 Del vol. "En los Estados Unidos". (Segunda Parte.)
 
-
-
-
 IV
-
 
 No ha de temerse la sinceridad; sólo es tremendo lo oculto.
 
@@ -1430,7 +1375,6 @@ Siempre lo impuesto es vano y lo libre es vivífico.
 No es el hombre más que una de esas burbujas resplandecientes que danzan
 a tumbos ciegos en un rayo de sol.
 
-
   Tiene el negro una gran bondad nativa, que ni el martirio de la
 esclavitud pervierte, ni se oscurece con su varonil bravura.
 
@@ -1447,7 +1391,6 @@ los rayos del sol.
 
   Jesús es lo que más aman de todo lo que saben de la cristiandad estos
 desconsolados, porque lo ven fusteado y manso como se vieron ellos.
-
 
 La mente, puesta a obrar, no cesa; el dolor, puesto a bullir, estalla;
 la palabra, puesta a agitar, se desordena; la vanidad, puesta a lucir,
@@ -1571,18 +1514,11 @@ Todo es símbolo y síntesis, y hay que ir a buscar la raíz de todo.
 
 Morir, ¿no es volver a lo que se era en principio?
 
-
-
-
 V
 
 Del vol. "La Edad de Oro".
 
-
-
-
 V
-
 
 El niño ha de trabajar, de andar, de estudiar, de ser fuerte, de ser
 hermoso: el niño puede hacerse hermoso, aunque sea feo; un niño bueno,
@@ -1832,18 +1768,11 @@ que la electricidad, que mata en un rayo, alumbre en la luz.
 
 La vida de tocador no es de hombres.
 
-
-
-
 VI
 
 Del vol. "Hombres".
 
-
-
-
 VI
-
 
 ¿Qué es ver la luz y celebrarla de lejos, si se la huye de cerca?
 
@@ -2142,18 +2071,11 @@ el poder, es el pálido oficio de las almas inferiores.
 
 Ámese al hombre entusiasta y desinteresado.
 
-
-
-
 VII
 
 Del vol. "Nuestra América". (Primera Parte.)
 
-
-
-
 VII
-
 
 Un principio justo, desde el fondo de una cueva, puede más que un
 ejército.
@@ -2423,18 +2345,11 @@ Quien piensa en sí no ama a la patria; y está el mal de los pueblos, por
 más que a veces se lo disimulen sutilmente, en los estorbos o prisas que
 el interés de sus representantes pone al curso natural de los sucesos.
 
-
-
-
 VIII
 
 Del vol. "Nuestra América". (Segunda Parte.)
 
-
-
-
 VIII
-
 
 Trincheras de ideas valen más que trincheras de piedra.
 
@@ -2852,18 +2767,11 @@ dable, para ir reemplazando, con el sistema del acercamiento universal,
 por sobre la lengua de los istmos y la barrera de los mares, el sistema,
 muerto para siempre, de dinastías y de grupos.
 
-
-
-
 IX
 
 Del vol. "Norteamericanos".
 
-
-
-
 IX
-
 
 Se pelea mientras hay por qué, ya que puso la naturaleza la necesidad de
 justicia en unas almas, y en otras la de desconocerla y ofenderla.
@@ -3284,18 +3192,11 @@ como en un horno.
 Dese fuerzas a los hombres, en vez de quitarles con lamentos las pocas
 que el dolor les deja.
 
-
-
-
 X
 
 Del vol. "Amistad Funesta".
 
-
-
-
 X
-
 
 El alma humana tiene una gran necesidad de blancura. Desde que lo blanco
 se oscurece, la desdicha empieza.
@@ -3350,18 +3251,11 @@ los apóstoles.
 
 Una mujer sin ternura ¿qué es sino un vaso de carne, repleto de veneno?
 
-
-
-
 XI
 
 Del vol. "Ismaelillo".--"Versos Sencillos".--"Versos libres".
 
-
-
-
 XI
-
 
   El hijo de un pueblo esclavo
   vive por él, calla y muere.
@@ -3411,18 +3305,11 @@ XI
 
   Grato es morir; horrible vivir muerto.
 
-
-
-
 XII
 
 Del vol. "Versos".--"Abdala".--"Amor con amor se paga".
 
-
-
-
 XII
-
 
   Cuando el amor o el entusiasmo llora,
   se siente a Dios, y se idolatra y ora.
@@ -3485,18 +3372,11 @@ XII
   sin besos que lo calienten
   ni brazos que lo protejan.
 
-
-
-
 XIII
 
 Del vol. "Crítica y Libros".
 
-
-
-
 XIII
-
 
 Se hacen versos de la grandeza, pero sólo del sentimiento se hace
 poesía.
@@ -3688,16 +3568,9 @@ Un libro es estopa y espuma si no arranca naturalmente del carácter.
 
      FIN
 
-
-
-
 ÍNDICE
 
-
-
-
 ÍNDICE
-
 
   NOTA DE LOS EDITORES                                          7
 
@@ -3729,15 +3602,11 @@ Un libro es estopa y espuma si no arranca naturalmente del carácter.
 
   XIII  "   " CRÍTICA Y LIBROS                                139
 
-
-
-
   Sociedad Editorial Cuba Contemporánea
 
   PUBLICACIONES
 
   (Dirigidas por Carlos de Velasco.)
-
 
   I. Revista mensual _Cuba Contemporánea_.
 
@@ -3753,7 +3622,6 @@ Un libro es estopa y espuma si no arranca naturalmente del carácter.
      libros de José Antonio Saco, Rafael M. Merchán, Luz y
      Caballero, Enrique Piñeyro, el Padre Varela, etc., etc.)
 
-
   _PROXIMAMENTE_
 
      Libros de: Enrique José Varona, Manuel Sanguily,
@@ -3763,7 +3631,6 @@ Un libro es estopa y espuma si no arranca naturalmente del carácter.
      Ramos, Max Henríqnez Ureña, Emilio Bacardí,
      Mariano Aramburo, Mario Guiral Moreno, Raúl de
      Cárdenas, Julio Villoldo, etc., etc.
-
 
     OFICINAS:
   O'REILLY, 11
@@ -3775,16 +3642,7 @@ Un libro es estopa y espuma si no arranca naturalmente del carácter.
 
   LA HABANA, CUBA.
 
-
-
-
-
-
-
 *** END OF THE PROJECT GUTENBERG EBOOK GRANOS DE ORO: PENSAMIENTOS SELECCIONADOS EN LAS OBRAS DE JOSÉ MARTÍ ***
-
-
-    
 
 Updated editions will replace the previous one—the old editions will
 be renamed.
@@ -3807,7 +3665,6 @@ Gutenberg eBooks may be modified and printed and given away—you may
 do practically ANYTHING in the United States with eBooks not protected
 by U.S. copyright law. Redistribution is subject to the trademark
 license, especially commercial redistribution.
-
 
 START: FULL LICENSE
 
@@ -3889,7 +3746,7 @@ performed, viewed, copied or distributed:
     at www.gutenberg.org. If you
     are not located in the United States, you will have to check the laws
     of the country where you are located before using this eBook.
-  
+
 1.E.2. If an individual Project Gutenberg™ electronic work is
 derived from texts not protected by U.S. copyright law (does not
 contain a notice indicating that it is posted with permission of the
@@ -3951,7 +3808,7 @@ provided that:
         Gutenberg Literary Archive Foundation at the address specified in
         Section 4, “Information about donations to the Project Gutenberg
         Literary Archive Foundation.”
-    
+
     • You provide a full refund of any money paid by a user who notifies
         you in writing (or by e-mail) within 30 days of receipt that s/he
         does not agree to the terms of the full Project Gutenberg™
@@ -3959,15 +3816,14 @@ provided that:
         copies of the works possessed in a physical medium and discontinue
         all use of and all access to other copies of Project Gutenberg™
         works.
-    
+
     • You provide, in accordance with paragraph 1.F.3, a full refund of
         any money paid for a work or a replacement copy, if a defect in the
         electronic work is discovered and reported to you within 90 days of
         receipt of the work.
-    
+
     • You comply with all other terms of this agreement for free
         distribution of Project Gutenberg™ works.
-    
 
 1.E.9. If you wish to charge a fee or distribute a Project
 Gutenberg™ electronic work or group of works on different terms than
@@ -4130,5 +3986,4 @@ This website includes information about Project Gutenberg™,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
 

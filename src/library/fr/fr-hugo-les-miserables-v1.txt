@@ -1,5 +1,5 @@
 ﻿The Project Gutenberg eBook of Les misérables Tome I: Fantine
-    
+
 This ebook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
 whatsoever. You may copy it, give it away or re-use it under the terms
@@ -19,16 +19,9 @@ Language: French
 
 Credits: Produced by www.ebooksgratuits.com and Chuck Greif
 
-
 *** START OF THE PROJECT GUTENBERG EBOOK LES MISÉRABLES TOME I: FANTINE ***
 
-
-
-
 Produced by www.ebooksgratuits.com and Chuck Greif
-
-
-
 
 Victor Hugo
 
@@ -37,7 +30,6 @@ LES MISÉRABLES
 Tome I--FANTINE
 
 (1862)
-
 
 TABLE DES MATIÈRES
 
@@ -59,7 +51,6 @@ Chapitre XII Solitude de monseigneur Bienvenu
 Chapitre XIII Ce qu'il croyait
 Chapitre XIV Ce qu'il pensait
 
-
 Livre deuxième--La chute
 
 Chapitre I Le soir d'un jour de marche
@@ -75,7 +66,6 @@ Chapitre X L'homme réveillé
 Chapitre XI Ce qu'il fait
 Chapitre XII L'évêque travaille
 Chapitre XIII Petit-Gervais
-
 
 Livre troisième--En l'année 1817
 
@@ -93,7 +83,6 @@ Chapitre I Une mère qui en rencontre une autre
 Chapitre II Première esquisse de deux figures louches
 Chapitre III L'Alouette
 
-
 Livre cinquième--La descente
 
 Chapitre I Histoire d'un progrès dans les verroteries noires
@@ -110,12 +99,10 @@ Chapitre XI _Christus nos liberavit_
 Chapitre XII Le désoeuvrement de M. Bamatabois
 Chapitre XIII Solution de quelques questions de police municipale
 
-
 Livre sixième--Javert
 
 Chapitre I Commencement du repos
 Chapitre II Comment Jean peut devenir Champ
-
 
 Livre septième--L'affaire Champmathieu
 
@@ -131,7 +118,6 @@ Chapitre IX Un lieu où des convictions sont en train de se former
 Chapitre X Le système de dénégations
 Chapitre XI Champmathieu de plus en plus étonné
 
-
 Livre huitième--Contre-coup
 
 Chapitre I Dans quel miroir M. Madeleine regarde ses cheveux
@@ -140,18 +126,11 @@ Chapitre III Javert content
 Chapitre IV L'autorité reprend ses droits
 Chapitre V Tombeau convenable
 
-
-
-
 Livre premier--Un juste
-
-
-
 
 Chapitre I
 
 Monsieur Myriel
-
 
 En 1815, M. Charles-François-Bienvenu Myriel était évêque de Digne.
 C'était un vieillard d'environ soixante-quinze ans; il occupait le siège
@@ -262,13 +241,9 @@ général et au préfet.
 
 L'installation terminée, la ville attendit son évêque à l'oeuvre.
 
-
-
-
 Chapitre II
 
 Monsieur Myriel devient monseigneur Bienvenu
-
 
 Le palais épiscopal de Digne était attenant à l'hôpital.
 
@@ -494,13 +469,9 @@ plaisait.
 Nous ne prétendons pas que le portrait que nous faisons ici soit
 vraisemblable; nous nous bornons à dire qu'il est ressemblant.
 
-
-
-
 Chapitre III
 
 À bon évêque dur évêché
-
 
 M. l'évêque, pour avoir converti son carrosse en aumônes, n'en faisait
 pas moins ses tournées. C'est un diocèse fatigant que celui de Digne. Il
@@ -581,13 +552,9 @@ inventant des paraboles, allant droit au but, avec peu de phrases et
 beaucoup d'images, ce qui était l'éloquence même de Jésus-Christ,
 convaincu et persuadant.
 
-
-
-
 Chapitre IV
 
 Les oeuvres semblables aux paroles
-
 
 Sa conversation était affable et gaie. Il se mettait à la portée des
 deux vieilles femmes qui passaient leur vie près de lui; quand il riait,
@@ -882,13 +849,9 @@ calmer l'homme désespéré en lui indiquant du doigt l'homme résigné, et à
 transformer la douleur qui regarde une fosse en lui montrant la douleur
 qui regarde une étoile.
 
-
-
-
 Chapitre V
 
 Que monseigneur Bienvenu faisait durer trop longtemps ses soutanes
-
 
 La vie intérieure de M. Myriel était pleine des mêmes pensées que sa vie
 publique. Pour qui eût pu la voir de près, c'eût été un spectacle grave
@@ -1000,13 +963,9 @@ rez-de-chaussée.
 Ici il est nécessaire que nous donnions une idée exacte du logis de M.
 l'évêque de Digne.
 
-
-
-
 Chapitre VI
 
 Par qui il faisait garder sa maison
-
 
 La maison qu'il habitait se composait, nous l'avons dit, d'un
 rez-de-chaussée et d'un seul étage: trois pièces au rez-de-chaussée,
@@ -1235,13 +1194,9 @@ Il disait assez volontiers:
 --Il y a la bravoure du prêtre comme il y a la bravoure du colonel de
 dragons. Seulement, ajoutait-il, la nôtre doit être tranquille.
 
-
-
-
 Chapitre VII
 
 Cravatte
-
 
 Ici se place naturellement un fait que nous ne devons pas omettre, car
 il est de ceux qui font le mieux voir quel homme c'était que M. l'évêque
@@ -1403,13 +1358,9 @@ rapporte peut-être à cette affaire, et qui est ainsi conçue: _La
 question est de savoir si cela doit faire retour à la cathédrale ou à
 l'hôpital_.
 
-
-
-
 Chapitre VIII
 
 Philosophie après boire
-
 
 Le sénateur dont il a été parlé plus haut était un homme entendu qui
 avait fait son chemin avec une rectitude inattentive à toutes ces
@@ -1539,13 +1490,9 @@ bons princes, et vous ne trouvez pas mauvais que la croyance au bon Dieu
 soit la philosophie du peuple, à peu près comme l'oie aux marrons est la
 dinde aux truffes du pauvre.
 
-
-
-
 Chapitre IX
 
 Le frère raconté par la soeur
-
 
 Pour donner une idée du ménage intérieur de M. l'évêque de Digne et de
 la façon dont ces deux saintes filles subordonnaient leurs actions,
@@ -1686,13 +1633,9 @@ D'ailleurs Baptistine disait, comme on vient de le lire, que la fin de
 son frère serait la sienne. Madame Magloire ne le disait pas, mais elle
 le savait.
 
-
-
-
 Chapitre X
 
 L'évêque en présence d'une lumière inconnue
-
 
 À une époque un peu postérieure à la date de la lettre citée dans les
 pages précédentes, il fit une chose, à en croire toute la ville, plus
@@ -2217,13 +2160,9 @@ spirituelle, lui adressa cette saillie:
 --Oh! oh! voilà une grosse couleur, répondit l'évêque. Heureusement que
 ceux qui la méprisent dans un bonnet la vénèrent dans un chapeau.
 
-
-
-
 Chapitre XI
 
 Une restriction
-
 
 On risquerait fort de se tromper si l'on concluait de là que monseigneur
 Bienvenu fût «un évêque philosophe» ou «un curé patriote». Sa rencontre,
@@ -2377,13 +2316,9 @@ et filiale. Sa conduite même envers Napoléon avait été acceptée et comme
 tacitement pardonnée par le peuple, bon troupeau faible, qui adorait son
 empereur, mais qui aimait son évêque.
 
-
-
-
 Chapitre XII
 
 Solitude de monseigneur Bienvenu
-
 
 Il y a presque toujours autour d'un évêque une escouade de petits abbés
 comme autour d'un général une volée de jeunes officiers. C'est là ce que
@@ -2478,13 +2413,9 @@ Beauté la figure de Mousqueton et Majesté l'encolure de Claude. Ils
 confondent avec les constellations de l'abîme les étoiles que font dans
 la vase molle du bourbier les pattes des canards.
 
-
-
-
 Chapitre XIII
 
 Ce qu'il croyait
-
 
 Au point de vue de l'orthodoxie, nous n'avons point à sonder M. l'évêque
 de Digne. Devant une telle âme, nous ne nous sentons en humeur que de
@@ -2628,13 +2559,9 @@ pour se promener, et l'immensité pour rêver. À ses pieds ce qu'on peut
 cultiver et cueillir; sur sa tête ce qu'on peut étudier et méditer;
 quelques fleurs sur la terre et toutes les étoiles dans le ciel.
 
-
-
-
 Chapitre XIV
 
 Ce qu'il pensait
-
 
 Un dernier mot.
 
@@ -2731,18 +2658,11 @@ les questions mystérieuses sans les scruter, sans les agiter, et sans en
 troubler son propre esprit, et qui avait dans l'âme le grave respect de
 l'ombre.
 
-
-
-
 Livre deuxième--La chute
-
-
-
 
 Chapitre I
 
 Le soir d'un jour de marche
-
 
 Dans les premiers jours du mois d'octobre 1815, une heure environ avant
 le coucher du soleil, un homme qui voyageait à pied entrait dans la
@@ -3331,13 +3251,9 @@ de la place une petite maison basse à côté de l'évêché.
 
 --Frappez-y.
 
-
-
-
 Chapitre II
 
 La prudence conseillée à la sagesse
-
 
 Ce soir-là, M. l'évêque de Digne, après sa promenade en ville, était
 resté assez tard enfermé dans sa chambre. Il s'occupait d'un grand
@@ -3486,13 +3402,9 @@ En ce moment, on frappa à la porte un coup assez violent.
 
 --Entrez, dit l'évêque.
 
-
-
-
 Chapitre III
 
 Héroïsme de l'obéissance passive
-
 
 La porte s'ouvrit.
 
@@ -3737,13 +3649,9 @@ Madame Magloire comprit l'observation, sortit sans dire un mot, et un
 moment après les trois couverts réclamés par l'évêque brillaient sur la
 nappe, symétriquement arrangés devant chacun des trois convives.
 
-
-
-
 Chapitre IV
 
 Détails sur les fromageries de Pontarlier
-
 
 Maintenant, pour donner une idée de ce qui se passa à cette table, nous
 ne saurions mieux faire que de transcrire ici un passage d'une lettre de
@@ -3882,13 +3790,9 @@ manche d'ivoire dont je me sers à table.
 mises à prier Dieu dans le salon où l'on étend le linge, et puis nous
 sommes rentrées chacune dans notre chambre sans nous rien dire.»
 
-
-
-
 Chapitre V
 
 Tranquillité
-
 
 Après avoir donné le bonsoir à sa soeur, monseigneur Bienvenu prit sur
 la table un des deux flambeaux d'argent, remit l'autre à son hôte, et
@@ -3960,13 +3864,9 @@ appartement.
 
 Quelques minutes après, tout dormait dans la petite maison.
 
-
-
-
 Chapitre VI
 
 Jean Valjean
-
 
 Vers le milieu de la nuit, Jean Valjean se réveilla.
 
@@ -4149,13 +4049,9 @@ impassible. Il y était entré désespéré; il en sortit sombre.
 
 Que s'était-il passé dans cette âme?
 
-
-
-
 Chapitre VII
 
 Le dedans du désespoir
-
 
 Essayons de le dire.
 
@@ -4445,13 +4341,9 @@ D'année en année, cette âme s'était desséchée de plus en plus,
 lentement, mais fatalement. À coeur sec, oeil sec. À sa sortie du bagne,
 il y avait dix-neuf ans qu'il n'avait versé une larme.
 
-
-
-
 Chapitre VIII
 
 L'onde et l'ombre
-
 
 Un homme à la mer!
 
@@ -4537,13 +4429,9 @@ La mer, c'est l'immense misère.
 L'âme, à vau-l'eau dans ce gouffre, peut devenir un cadavre. Qui la
 ressuscitera?
 
-
-
-
 Chapitre IX
 
 Nouveaux griefs
-
 
 Quand vint l'heure de la sortie du bagne, quand Jean Valjean entendit à
 son oreille ce mot étrange: _tu es libre_! le moment fut invraisemblable
@@ -4588,13 +4476,9 @@ Libération n'est pas délivrance. On sort du bagne, mais non de la
 condamnation. Voilà ce qui lui était arrivé à Grasse. On a vu de quelle
 façon il avait été accueilli à Digne.
 
-
-
-
 Chapitre X
 
 L'homme réveillé
-
 
 Donc, comme deux heures du matin sonnaient à l'horloge de la cathédrale,
 Jean Valjean se réveilla.
@@ -4706,13 +4590,9 @@ assourdissant son pas, il se dirigea vers la porte de la chambre
 voisine, celle de l'évêque, comme on sait. Arrivé à cette porte, il la
 trouva entrebâillée. L'évêque ne l'avait point fermée.
 
-
-
-
 Chapitre XI
 
 Ce qu'il fait
-
 
 Jean Valjean écouta. Aucun bruit.
 
@@ -4858,13 +4738,9 @@ enjamba l'appui du rez-de-chaussée, mit l'argenterie dans son sac, jeta
 le panier, franchit le jardin, sauta par-dessus le mur comme un tigre,
 et s'enfuit.
 
-
-
-
 Chapitre XII
 
 L'évêque travaille
-
 
 Le lendemain, au soleil levant, monseigneur Bienvenu se promenait dans
 son jardin. Madame Magloire accourut vers lui toute bouleversée.
@@ -5037,13 +4913,9 @@ reprit avec une sorte de solennité:
 C'est votre âme que je vous achète; je la retire aux pensées noires et à
 l'esprit de perdition, et je la donne à Dieu.
 
-
-
-
 Chapitre XIII
 
 Petit-Gervais
-
 
 Jean Valjean sortit de la ville comme s'il s'échappait. Il se mit à
 marcher en toute hâte dans les champs, prenant les chemins et les
@@ -5407,18 +5279,11 @@ traversant la rue de l'évêché un homme dans l'attitude de la prière, à
 genoux sur le pavé, dans l'ombre, devant la porte de monseigneur
 Bienvenu.
 
-
-
-
 Livre troisième--En l'année 1817
-
-
-
 
 Chapitre I
 
 L'année 1817
-
 
 1817 est l'année que Louis XVIII, avec un certain aplomb royal qui ne
 manquait pas de fierté, qualifiait la vingt-deuxième de son règne. C'est
@@ -5612,13 +5477,9 @@ physionomie des années que se compose la figure des siècles.
 
 En cette année 1817, quatre jeunes Parisiens firent «une bonne farce».
 
-
-
-
 Chapitre II
 
 Double quatuor
-
 
 Ces Parisiens étaient l'un de Toulouse, l'autre de Limoges, le troisième
 de Cahors et le quatrième de Montauban; mais ils étaient étudiants, et
@@ -5783,13 +5644,9 @@ Le résultat de ces ténèbres fut une éblouissante partie de plaisir qui
 eut lieu le dimanche suivant, les quatre jeunes gens invitant les quatre
 jeunes filles.
 
-
-
-
 Chapitre III
 
 Quatre à quatre
-
 
 Ce qu'était une partie de campagne d'étudiants et de grisettes, il y a
 quarante-cinq ans, on se le représente malaisément aujourd'hui. Paris
@@ -5930,13 +5787,9 @@ d'Icône.
 L'amour est une faute; soit. Fantine était l'innocence surnageant sur la
 faute.
 
-
-
-
 Chapitre IV
 
 Tholomyès est si joyeux qu'il chante une chanson espagnole
-
 
 Cette journée-là était d'un bout à l'autre faite d'aurore. Toute la
 nature semblait avoir congé, et rire. Les parterres de Saint-Cloud
@@ -6033,13 +5886,9 @@ De temps en temps Favourite s'écriait:
 
 --Patience, répondait Tholomyès.
 
-
-
-
 Chapitre V
 
 Chez Bombarda
-
 
 Les montagnes russes épuisées, on avait songé au dîner; et le radieux
 huitain, enfin un peu las, s'était échoué au cabaret Bombarda,
@@ -6132,13 +5981,9 @@ délivrera le monde.
 Cette note écrite en marge du rapport Anglès, nous revenons à nos quatre
 couples. Le dîner, comme nous l'avons dit, s'achevait.
 
-
-
-
 Chapitre VI
 
 Chapitre où l'on s'adore
-
 
 Propos de table et propos d'amour; les uns sont aussi insaisissables que
 les autres; les propos d'amour sont des nuées, les propos de table sont
@@ -6196,13 +6041,9 @@ j'ai le spleen, comme disent les Anglais, le beurre est si cher! et
 puis, vois, c'est une horreur, nous dînons dans un endroit où il y a un
 lit, ça me dégoûte de la vie.
 
-
-
-
 Chapitre VII
 
 Sagesse de Tholomyès
-
 
 Cependant, tandis que quelques-uns chantaient, les autres causaient
 tumultueusement, et tous ensemble; ce n'était plus que du bruit.
@@ -6415,13 +6256,9 @@ Embrasse-moi, Fantine!
 
 Il se trompa, et embrassa Favourite.
 
-
-
-
 Chapitre VIII
 
 Mort d'un cheval
-
 
 --On dîne mieux chez Edon que chez Bombarda, s'écria Zéphine.
 
@@ -6544,13 +6381,9 @@ Favourite battit des mains à leur sortie.
 
 --Ne soyez pas trop longtemps, murmura Fantine. Nous vous attendons.
 
-
-
-
 Chapitre IX
 
 Fin joyeuse de la joie
-
 
 Les jeunes filles, restées seules, s'accoudèrent deux à deux sur l'appui
 des fenêtres, jasant, penchant leur tête et se parlant d'une croisée à
@@ -6687,18 +6520,11 @@ Une heure après, quand elle fut rentrée dans sa chambre, elle pleura.
 C'était, nous l'avons dit, son premier amour; elle s'était donnée à ce
 Tholomyès comme à un mari, et la pauvre fille avait un enfant.
 
-
-
-
 Livre quatrième--Confier, c'est quelquefois livrer
-
-
-
 
 Chapitre I
 
 Une mère qui en rencontre une autre
-
 
 Il y avait, dans le premier quart de ce siècle, à Montfermeil, près de
 Paris, une façon de gargote qui n'existe plus aujourd'hui. Cette gargote
@@ -7080,13 +6906,9 @@ protêt? Tu as fait là une bonne souricière avec tes petites.
 
 --Sans m'en douter, dit la femme.
 
-
-
-
 Chapitre II
 
 Première esquisse de deux figures louches
-
 
 La souris prise était bien chétive; mais le chat se réjouit même d'une
 souris maigre. Qu'était-ce que les Thénardier?
@@ -7160,13 +6982,9 @@ n'est autre chose qu'un remous d'égalité. L'irrésistible pénétration du
 souffle nouveau est là comme en tout. Sous cette discordance apparente,
 il y a une chose grande et profonde: la révolution française.
 
-
-
-
 Chapitre III
 
 L'Alouette
-
 
 Il ne suffit pas d'être méchant pour prospérer. La gargote allait mal.
 
@@ -7277,18 +7095,11 @@ tremblant, effarouché et frissonnant, éveillé le premier chaque matin
 dans la maison et dans le village, toujours dans la rue ou dans les
 champs avant l'aube. Seulement la pauvre Alouette ne chantait jamais.
 
-
-
-
 Livre cinquième--La descente
-
-
-
 
 Chapitre I
 
 Histoire d'un progrès dans les verroteries noires
-
 
 Cette mère cependant qui, au dire des gens de Montfermeil, semblait
 avoir abandonné son enfant, que devenait-elle? où était-elle? que
@@ -7354,13 +7165,9 @@ ceux du capitaine de gendarmerie; ce qui fait qu'on n'avait pas songé à
 lui demander son passeport. Depuis lors, on avait su son nom. Il
 s'appelait le _père Madeleine_.
 
-
-
-
 Chapitre II
 
 M. Madeleine
-
 
 C'était un homme d'environ cinquante ans, qui avait l'air préoccupé et
 qui était bon. Voilà tout ce qu'on en pouvait dire.
@@ -7490,13 +7297,9 @@ c'est utile. Est-ce qu'on recule devant du bien qu'on peut faire?_
 Ce fut là la troisième phase de son ascension. Le père Madeleine était
 devenu monsieur Madeleine, monsieur Madeleine devint monsieur le maire.
 
-
-
-
 Chapitre III
 
 Sommes déposées chez Laffitte
-
 
 Du reste, il était demeuré aussi simple que le premier jour. Il avait
 les cheveux gris, l'oeil sérieux, le teint hâlé d'un ouvrier, le visage
@@ -7614,13 +7417,9 @@ deux ou trois millions en dix minutes. Dans la réalité ces «deux ou
 trois millions» se réduisaient, nous l'avons dit, à six cent trente ou
 quarante mille francs.
 
-
-
-
 Chapitre IV
 
 M. Madeleine en deuil
-
 
 Au commencement de 1821, les journaux annoncèrent la mort de M. Myriel,
 évêque de Digne, «surnommé _monseigneur Bienvenu_», et trépassé en odeur
@@ -7706,13 +7505,9 @@ cheminées à ramoner, M. le maire le faisait appeler, lui demandait son
 nom, et lui donnait de l'argent. Les petits savoyards se le disaient, et
 il en passait beaucoup.
 
-
-
-
 Chapitre V
 
 Vagues éclairs à l'horizon
-
 
 Peu à peu, et avec le temps, toutes les oppositions étaient tombées. Il
 y avait eu d'abord contre M. Madeleine, sorte de loi que subissent
@@ -7925,13 +7720,9 @@ la tranquillité de M. Madeleine.
 Un jour pourtant son étrange manière d'être parut faire impression sur
 M. Madeleine. Voici à quelle occasion.
 
-
-
-
 Chapitre VI
 
 Le père Fauchelevent
-
 
 M. Madeleine passait un matin dans une ruelle non pavée de
 Montreuil-sur-mer. Il entendit du bruit et vit un groupe à quelque
@@ -8093,13 +7884,9 @@ avait sur le visage je ne sais quelle expression de souffrance heureuse
 et céleste, et il fixait son oeil tranquille sur Javert qui le regardait
 toujours.
 
-
-
-
 Chapitre VII
 
 Fauchelevent devient jardinier à Paris
-
 
 Fauchelevent s'était démis la rotule dans sa chute. Le père Madeleine le
 fit transporter dans une infirmerie qu'il avait établie pour ses
@@ -8146,13 +7933,9 @@ elle n'y pouvait être bien adroite, elle ne tirait donc de sa journée de
 travail que peu de chose, mais enfin cela suffisait, le problème était
 résolu, elle gagnait sa vie.
 
-
-
-
 Chapitre VIII
 
 Madame Victurnien dépense trente-cinq francs pour la morale
-
 
 Quand Fantine vit qu'elle vivait, elle eut un moment de joie. Vivre
 honnêtement de son travail, quelle grâce du ciel! Le goût du travail lui
@@ -8260,13 +8043,9 @@ M. le maire; elle n'osa pas. M. le maire lui donnait cinquante francs,
 parce qu'il était bon, et la chassait, parce qu'il était juste. Elle
 plia sous cet arrêt.
 
-
-
-
 Chapitre IX
 
 Succès de Madame Victurnien
-
 
 La veuve du moine fut donc bonne à quelque chose.
 
@@ -8372,13 +8151,9 @@ Cependant le matin, quand elle peignait avec un vieux peigne cassé ses
 beaux cheveux qui ruisselaient comme de la soie floche, elle avait une
 minute de coquetterie heureuse.
 
-
-
-
 Chapitre X
 
 Suite du succès
-
 
 Elle avait été congédiée vers la fin de l'hiver; l'été se passa, mais
 l'hiver revint. Jours courts, moins de travail. L'hiver, point de
@@ -8627,13 +8402,9 @@ sous par jour?»
 
 L'infortunée se fit fille publique.
 
-
-
-
 Chapitre XI
 
 _Christus nos liberavit_
-
 
 Qu'est-ce que c'est que cette histoire de Fantine? C'est la société
 achetant une esclave.
@@ -8675,13 +8446,9 @@ Celui qui sait cela voit toute l'ombre.
 
 Il est seul. Il s'appelle Dieu.
 
-
-
-
 Chapitre XII
 
 Le désoeuvrement de M. Bamatabois
-
 
 Il y a dans toutes les petites villes, et il y avait à Montreuil-sur-mer
 en particulier, une classe de jeunes gens qui grignotent quinze cents
@@ -8775,13 +8542,9 @@ d'un tremblement de terreur. Elle avait reconnu Javert.
 
 L'élégant avait profité de l'incident pour s'esquiver.
 
-
-
-
 Chapitre XIII
 
 Solution de quelques questions de police municipale
-
 
 Javert écarta les assistants, rompit le cercle et se mit à marcher à grands
 pas vers le bureau de police qui est à l'extrémité de la place, traînant
@@ -9193,18 +8956,11 @@ main et que ses lèvres s'y posaient.
 
 Puis elle s'évanouit.
 
-
-
-
 Livre sixième--Javert
-
-
-
 
 Chapitre I
 
 Commencement du repos
-
 
 M. Madeleine fit transporter la Fantine à cette infirmerie qu'il avait
 dans sa propre maison. Il la confia aux soeurs qui la mirent au lit. Une
@@ -9379,13 +9135,9 @@ Sur ces entrefaites, il survint un grave incident. Nous avons beau
 tailler de notre mieux le bloc mystérieux dont notre vie est faite, la
 veine noire de la destinée y reparaît toujours.
 
-
-
-
 Chapitre II
 
 Comment Jean peut devenir Champ
-
 
 Un matin, M. Madeleine était dans son cabinet, occupé à régler d'avance
 quelques affaires pressantes de la mairie pour le cas où il se
@@ -9782,18 +9534,11 @@ sois remplacé.
 Il sortit. M. Madeleine resta rêveur, écoutant ce pas ferme et assuré
 qui s'éloignait sur le pavé du corridor.
 
-
-
-
 Livre septième--L'affaire Champmathieu
-
-
-
 
 Chapitre I
 
 La soeur Simplice
-
 
 Les incidents qu'on va lire n'ont pas tous été connus à
 Montreuil-sur-mer, mais le peu qui en a percé a laissé dans cette ville
@@ -9911,13 +9656,9 @@ Puis il rentra à la mairie, et le garçon de bureau le vit examiner avec
 attention une carte routière de France qui était suspendue dans son
 cabinet. Il écrivit quelques chiffres au crayon sur un papier.
 
-
-
-
 Chapitre II
 
 Perspicacité de maître Scaufflaire
-
 
 De la mairie il se rendit au bout de la ville chez un Flamand, maître
 Scaufflaër, francisé Scaufflaire, qui louait des chevaux et des
@@ -10156,13 +9897,9 @@ maintenant pâle et paisible comme le reflet d'une lampe ou d'une bougie.
 La fenêtre était toujours ouverte. Voici ce qui se passait dans la
 chambre de M. Madeleine.
 
-
-
-
 Chapitre III
 
 Une tempête sous un crâne
-
 
 Le lecteur a sans doute deviné que M. Madeleine n'est autre que Jean
 Valjean.
@@ -10909,13 +10646,9 @@ l'infini, longtemps écarté de la main l'effrayant calice qui lui
 apparaissait ruisselant d'ombre et débordant de ténèbres dans des
 profondeurs pleines d'étoiles.
 
-
-
-
 Chapitre IV
 
 Formes que prend la souffrance pendant le sommeil
-
 
 Trois heures du matin venaient de sonner, et il y avait cinq heures
 qu'il marchait ainsi, presque sans interruption lorsqu'il se laissa
@@ -11087,13 +10820,9 @@ La vieille attendait. Elle se hasarda pourtant à élever encore la voix:
 
 --Dites que c'est bien, et que je descends.
 
-
-
-
 Chapitre V
 
 Bâtons dans les roues
-
 
 Le service des postes d'Arras à Montreuil-sur-mer se faisait encore à
 cette époque par de petites malles du temps de l'empire. Ces malles
@@ -11684,13 +11413,9 @@ laissé derrière eux Mont-Saint-Éloy.
 
 La nuit devenait de plus en plus profonde.
 
-
-
-
 Chapitre VI
 
 La soeur Simplice mise à l'épreuve
-
 
 Cependant, en ce moment-là même, Fantine était dans la joie.
 
@@ -12002,13 +11727,9 @@ on a vu de grandes joies arrêter court des maladies; je sais bien que
 celle-ci est une maladie organique, et bien avancée, mais c'est un tel
 mystère que tout cela! Nous la sauverions peut-être.
 
-
-
-
 Chapitre VII
 
 Le voyageur arrivé prend ses précautions pour repartir.
-
 
 Il était près de huit heures du soir quand la carriole que nous avons
 laissée en route entra sous la porte cochère de l'hôtel de la Poste
@@ -12237,13 +11958,9 @@ l'huissier, lui remit le papier, et lui dit avec autorité:
 
 L'huissier prit le papier, y jeta un coup d'oeil et obéit.
 
-
-
-
 Chapitre VIII
 
 Entrée de faveur
-
 
 Sans qu'il s'en doutât, le maire de Montreuil-sur-mer avait une sorte de
 célébrité. Depuis sept ans que sa réputation de vertu remplissait tout
@@ -12372,13 +12089,9 @@ porte. Il saisit convulsivement le bouton; la porte s'ouvrit.
 
 Il était dans la salle d'audience.
 
-
-
-
 Chapitre IX
 
 Un lieu où des convictions sont en train de se former
-
 
 Il fit un pas, referma machinalement la porte derrière lui, et resta
 debout, considérant ce qu'il voyait.
@@ -12631,13 +12344,9 @@ Le défenseur se leva, commença par complimenter «monsieur l'avocat
 général» sur son «admirable parole», puis répliqua comme il put, mais il
 faiblissait; le terrain évidemment se dérobait sous lui.
 
-
-
-
 Chapitre X
 
 Le système de dénégations
-
 
 L'instant de clore les débats était venu. Le président fit lever
 l'accusé et lui adressa la question d'usage:
@@ -12924,13 +12633,9 @@ Bamatabois, vingt personnes, le reconnurent, et s'écrièrent à la fois:
 
 --Monsieur Madeleine!
 
-
-
-
 Chapitre XI
 
 Champmathieu de plus en plus étonné
-
 
 C'était lui en effet. La lampe du greffier éclairait son visage. Il
 tenait son chapeau à la main, il n'y avait aucun désordre dans ses
@@ -13112,18 +12817,11 @@ accusation le nommé Champmathieu; et Champmathieu, mis en liberté
 immédiatement, s'en allait stupéfait, croyant tous les hommes fous et ne
 comprenant rien à cette vision.
 
-
-
-
 Livre huitième--Contre-coup
-
-
-
 
 Chapitre I
 
 Dans quel miroir M. Madeleine regarde ses cheveux
-
 
 Le jour commençait à poindre. Fantine avait eu une nuit de fièvre et
 d'insomnie, pleine d'ailleurs d'images heureuses; au matin, elle
@@ -13245,13 +12943,9 @@ Elle ouvrit les yeux, le vit, et dit paisiblement, avec un sourire:
 
 --Et Cosette?
 
-
-
-
 Chapitre II
 
 Fantine heureuse
-
 
 Elle n'eut pas un mouvement de surprise, ni un mouvement de joie; elle
 était la joie même. Cette simple question: «Et Cosette?» fut faite avec
@@ -13422,13 +13116,9 @@ lui fit signe de regarder derrière lui.
 
 Il se retourna, et vit Javert.
 
-
-
-
 Chapitre III
 
 Javert content
-
 
 Voici ce qui s'était passé.
 
@@ -13568,13 +13258,9 @@ tout ignorant qui triomphe. Rien n'était poignant et terrible comme
 cette figure où se montrait ce qu'on pourrait appeler tout le mauvais du
 bon.
 
-
-
-
 Chapitre IV
 
 L'autorité reprend ses droits
-
 
 La Fantine n'avait point vu Javert depuis le jour où M. le maire l'avait
 arrachée à cet homme. Son cerveau malade ne se rendit compte de rien,
@@ -13770,13 +13456,9 @@ Puis il se redressa, et, se tournant vers Javert:
 
 --Maintenant, dit-il, je suis à vous.
 
-
-
-
 Chapitre V
 
 Tombeau convenable
-
 
 Javert déposa Jean Valjean à la prison de la ville.
 
@@ -14036,16 +13718,7 @@ où retrouver l'âme. On coucha Fantine dans les ténèbres parmi les
 premiers os venus; elle subit la promiscuité des cendres. Elle fut jetée
 à la fosse publique. Sa tombe ressembla à son lit.
 
-
-
-
-
-
-
 *** END OF THE PROJECT GUTENBERG EBOOK LES MISÉRABLES TOME I: FANTINE ***
-
-
-    
 
 Updated editions will replace the previous one—the old editions will
 be renamed.
@@ -14068,7 +13741,6 @@ Gutenberg eBooks may be modified and printed and given away—you may
 do practically ANYTHING in the United States with eBooks not protected
 by U.S. copyright law. Redistribution is subject to the trademark
 license, especially commercial redistribution.
-
 
 START: FULL LICENSE
 
@@ -14150,7 +13822,7 @@ performed, viewed, copied or distributed:
     at www.gutenberg.org. If you
     are not located in the United States, you will have to check the laws
     of the country where you are located before using this eBook.
-  
+
 1.E.2. If an individual Project Gutenberg™ electronic work is
 derived from texts not protected by U.S. copyright law (does not
 contain a notice indicating that it is posted with permission of the
@@ -14212,7 +13884,7 @@ provided that:
         Gutenberg Literary Archive Foundation at the address specified in
         Section 4, “Information about donations to the Project Gutenberg
         Literary Archive Foundation.”
-    
+
     • You provide a full refund of any money paid by a user who notifies
         you in writing (or by e-mail) within 30 days of receipt that s/he
         does not agree to the terms of the full Project Gutenberg™
@@ -14220,15 +13892,14 @@ provided that:
         copies of the works possessed in a physical medium and discontinue
         all use of and all access to other copies of Project Gutenberg™
         works.
-    
+
     • You provide, in accordance with paragraph 1.F.3, a full refund of
         any money paid for a work or a replacement copy, if a defect in the
         electronic work is discovered and reported to you within 90 days of
         receipt of the work.
-    
+
     • You comply with all other terms of this agreement for free
         distribution of Project Gutenberg™ works.
-    
 
 1.E.9. If you wish to charge a fee or distribute a Project
 Gutenberg™ electronic work or group of works on different terms than
@@ -14391,5 +14062,4 @@ This website includes information about Project Gutenberg™,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
 

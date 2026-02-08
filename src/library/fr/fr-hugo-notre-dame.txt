@@ -1,5 +1,5 @@
 ﻿The Project Gutenberg eBook of Notre-Dame de Paris
-    
+
 This ebook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
 whatsoever. You may copy it, give it away or re-use it under the terms
@@ -18,29 +18,15 @@ Language: French
 
 Credits: Produced by Chuck Greif and ebooksgratuits.com
 
-
 *** START OF THE PROJECT GUTENBERG EBOOK NOTRE-DAME DE PARIS ***
 
-
-
-
 Produced by Chuck Greif and ebooksgratuits.com
-
-
-
-
-
-
-
 
 Victor Hugo
 
 NOTRE-DAME DE PARIS--1482
 
 (1831)
-
-
-
 
 Table des matières
 
@@ -141,9 +127,6 @@ IV    MARIAGE DE QUASIMODO.
 
 NOTES.
 
-
-
-
 PRÉFACE
 
 Il y a quelques années qu'en visitant, ou, pour mieux dire, en furetant
@@ -182,11 +165,7 @@ C'est sur ce mot qu'on a fait ce livre.
 
 Février 1831.
 
-
-
-
 NOTE AJOUTÉE À L'ÉDITION DÉFINITIVE (1832)
-
 
 C'est par erreur qu'on a annoncé cette édition comme devant être
 augmentée de plusieurs chapitres _nouveaux_. Il fallait dire _inédits_.
@@ -328,18 +307,11 @@ de la renaissance!
 
 Paris, 20 octobre 1832.
 
-
-
-
 LIVRE PREMIER
-
-
-
 
 I
 
 LA GRAND'SALLE
-
 
 Il y a aujourd'hui trois cent quarante-huit ans six mois et dix-neuf
 jours que les Parisiens s'éveillèrent au bruit de toutes les cloches
@@ -959,13 +931,9 @@ et enrubannés à la grecque, il eût pu supporter la comparaison, pour la
 sévérité de sa tenue, avec un archer breton du corps de monsieur de
 Berry.
 
-
-
-
 II
 
 PIERRE GRINGOIRE
-
 
 Cependant, tandis qu'il haranguait, la satisfaction, l'admiration
 unanimement excitées par son costume se dissipaient à ses paroles; et
@@ -1379,13 +1347,9 @@ propos fermée, s'ouvrit plus mal à propos encore; et la voix
 retentissante de l'huissier annonça brusquement: _Son Éminence
 monseigneur le cardinal de Bourbon_.
 
-
-
-
 III
 
 MONSIEUR LE CARDINAL
-
 
 Pauvre Gringoire! le fracas de tous les gros doubles pétards de la
 Saint-Jean, la décharge de vingt arquebuses à croc, la détonation de
@@ -1606,13 +1570,9 @@ la main aux secrètes besognes du roi. Toutes choses fort ignorées de
 cette foule qu'émerveillaient les politesses du cardinal à cette chétive
 figure de bailli flamand.
 
-
-
-
 IV
 
 MAÎTRE JACQUES COPPENOLE
-
 
 Pendant que le pensionnaire de Gand et l'éminence échangeaient une
 révérence fort basse et quelques paroles à voix plus basse encore, un
@@ -1967,13 +1927,9 @@ plus qu'à se laisser aller au torrent. Gringoire cacha son visage de ses
 deux mains, n'ayant pas le bonheur d'avoir un manteau pour se voiler la
 tête comme l'Agamemnon de Timanthe.
 
-
-
-
 V
 
 QUASIMODO
-
 
 En un clin d'oeil tout fut prêt pour exécuter l'idée de Coppenole.
 Bourgeois, écoliers et basochiens s'étaient mis à l'oeuvre. La petite
@@ -2277,13 +2233,9 @@ hurlante et déguenillée se mit en marche pour faire, selon l'usage, la
 tournée intérieure des galeries du Palais, avant la promenade des rues
 et des carrefours.
 
-
-
-
 VI
 
 LA ESMERALDA
-
 
 Nous sommes ravi d'avoir à apprendre à nos lecteurs que pendant toute
 cette scène Gringoire et sa pièce avaient tenu bon. Ses acteurs,
@@ -2379,18 +2331,11 @@ les Moscovites. Mais je veux que le diable m'écorche si je comprends ce
 qu'ils veulent dire avec leur Esmeralda! Qu'est-ce que c'est que ce
 mot-là d'abord? c'est de l'égyptiaque!»
 
-
-
-
 LIVRE DEUXIÈME
-
-
-
 
 I
 
 DE CHARYBDE EN SCYLLA
-
 
 La nuit arrive de bonne heure en janvier. Les rues étaient déjà sombres
 quand Gringoire sortit du Palais. Cette nuit tombée lui plut; il lui
@@ -2487,13 +2432,9 @@ me réchauffer, et j'y pourrai souper avec quelque miette des trois
 grandes armoiries de sucre royal qu'on a dû y dresser sur le buffet
 public de la ville.»
 
-
-
-
 II
 
 LA PLACE DE GRÈVE
-
 
 Il ne reste aujourd'hui qu'un bien imperceptible vestige de la place de
 Grève telle qu'elle existait alors. C'est la charmante tourelle qui
@@ -2571,13 +2512,9 @@ déshonoré de la Grève, qu'une misérable guillotine, furtive, inquiète,
 honteuse, qui semble toujours craindre d'être prise en flagrant délit,
 tant elle disparaît vite après avoir fait son coup!
 
-
-
-
 III
 
 «BESOS PARA GOLPES[18]»
-
 
 Lorsque Pierre Gringoire arriva sur la place de Grève, il était transi.
 Il avait pris par le Pont-aux-Meuniers pour éviter la cohue du
@@ -2977,13 +2914,9 @@ grinçant des dents en barrait bien l'entrée.
 «Voilà qui est merveilleux, dit Gringoire; mais où diable trouverai-je à
 souper?»
 
-
-
-
 IV
 
 LES INCONVÉNIENTS DE SUIVRE UNE JOLIE FEMME LE SOIR DANS LES RUES
-
 
 Gringoire, à tout hasard, s'était mis à suivre la bohémienne. Il lui
 avait vu prendre, avec sa chèvre, la rue de la Coutellerie; il avait
@@ -3177,13 +3110,9 @@ Quasimodo, j'eusse aimé mieux garder la ribaude.
 --Que voulez-vous, capitaine? dit un gendarme, la fauvette s'est
 envolée, la chauve-souris est restée.»
 
-
-
-
 V
 
 SUITE DES INCONVÉNIENTS
-
 
 Gringoire, tout étourdi de sa chute, était resté sur le pavé devant la
 bonne Vierge du coin de la rue. Peu à peu, il reprit ses sens; il fut
@@ -3268,13 +3197,9 @@ Mauconseil, qui avait, par sa seule présence, dans la mémorable nuit du
 niche au diable, avait, en mourant, malicieusement caché son âme dans sa
 paillasse.
 
-
-
-
 VI
 
 LA CRUCHE CASSÉE
-
 
 Après avoir couru à toutes jambes pendant quelque temps, sans savoir où,
 donnant de la tête à maint coin de rue, enjambant maint ruisseau,
@@ -4051,13 +3976,9 @@ La cruche se brisa en quatre morceaux.
 front, elle est ta femme; soeur, il est ton mari. Pour quatre ans.
 Allez.»
 
-
-
-
 VII
 
 UNE NUIT DE NOCES
-
 
 Au bout de quelques instants, notre poète se trouva dans une petite
 chambre voûtée en ogive, bien close, bien chaude, assis devant une table
@@ -4505,18 +4426,11 @@ Mais voilà une étrange nuit de noces. C'est dommage. Il y avait dans ce
 mariage à la cruche cassée quelque chose de naïf et d'antédiluvien qui
 me plaisait.»
 
-
-
-
 LIVRE TROISIÈME
-
-
-
 
 I
 
 NOTRE-DAME
-
 
 Sans doute, c'est encore aujourd'hui un majestueux et sublime édifice
 que l'église de Notre-Dame de Paris. Mais, si belle qu'elle se soit
@@ -4812,13 +4726,9 @@ logarithme qui lui convient. De là la prodigieuse variété extérieure de
 ces édifices au fond desquels réside tant d'ordre et d'unité. Le tronc
 de l'arbre est immuable, la végétation est capricieuse.
 
-
-
-
 II
 
 PARIS À VOL D'OISEAU
-
 
 Nous venons d'essayer de réparer pour le lecteur cette admirable église
 de Notre-Dame de Paris. Nous avons indiqué sommairement la plupart des
@@ -5658,17 +5568,11 @@ la fois dans des flûtes de pierre hautes de trois cents pieds; que cette
 cité qui n'est plus qu'un orchestre; que cette symphonie qui fait le
 bruit d'une tempête.
 
-
-
-
 LIVRE QUATRIÈME
-
-
 
 I
 
 LES BONNES ÂMES
-
 
 Il y avait seize ans à l'époque où se passe cette histoire que, par un
 beau matin de dimanche de la Quasimodo, une créature vivante avait été
@@ -5833,13 +5737,9 @@ l'oreille de la Gaultière:
 «Je vous avais bien dit, ma soeur, que ce jeune clerc monsieur Claude
 Frollo est un sorcier.»
 
-
-
-
 II
 
 CLAUDE FROLLO
-
 
 En effet, Claude Frollo n'était pas un personnage vulgaire.
 
@@ -6018,13 +5918,9 @@ caractériser par ce nom à quel point la pauvre petite créature était
 incomplète et à peine ébauchée. En effet, Quasimodo, borgne, bossu,
 cagneux, n'était guère qu'un _à peu près_.
 
-
-
-
 III
 
 «IMMANIS PECORIS CUSTOS IMMANIOR IPSE[44]»
-
 
 Or, en 1482, Quasimodo avait grandi. Il était devenu, depuis plusieurs
 années, sonneur de cloches de Notre-Dame, grâce à son père adoptif
@@ -6294,13 +6190,9 @@ chose de disparu. Ce corps immense est vide; c'est un squelette;
 l'esprit l'a quitté, on en voit la place, et voilà tout. C'est comme un
 crâne où il y a encore des trous pour les yeux, mais plus de regard.
 
-
-
-
 IV
 
 LE CHIEN ET SON MAÎTRE
-
 
 Il y avait pourtant une créature humaine que Quasimodo exceptait de sa
 malice et de sa haine pour les autres, et qu'il aimait autant, plus
@@ -6343,13 +6235,9 @@ de celles dont les plus beaux exemples sont parmi les hommes. Nous
 dirons donc que Quasimodo aimait l'archidiacre comme jamais chien,
 jamais cheval, jamais éléphant n'a aimé son maître.
 
-
-
-
 V
 
 SUITE DE CLAUDE FROLLO
-
 
 En 1482, Quasimodo avait environ vingt ans, Claude Frollo environ
 trente-six: l'un avait grandi, l'autre avait vieilli.
@@ -6574,13 +6462,9 @@ même temps les archives moisies de l'official, afin de réunir les cas de
 sorciers et de sorcières condamnés au feu ou à la corde pour complicité
 de maléfices avec des boucs, des truies ou des chèvres.
 
-
-
-
 VI
 
 IMPOPULARITÉ
-
 
 L'archidiacre et le sonneur, nous l'avons déjà dit, étaient médiocrement
 aimés du gros et menu peuple des environs de la cathédrale. Quand Claude
@@ -6616,18 +6500,11 @@ Mais le plus souvent, l'injure passait inaperçue du prêtre et du
 sonneur. Pour entendre toutes ces gracieuses choses, Quasimodo était
 trop sourd et Claude trop rêveur.
 
-
-
-
 LIVRE CINQUIÈME
-
-
-
 
 I
 
 «ABBAS BEATI MARTINI[54]»
-
 
 La renommée de dom Claude s'était étendue au loin. Elle lui valut, à peu
 près vers l'époque où il refusa de voir madame de Beaujeu, une visite
@@ -7059,13 +6936,9 @@ conférences avec Louis XI, quand Sa Majesté venait à Paris, et que le
 crédit de dom Claude faisait ombre à Olivier le Daim et à Jacques
 Coictier, lequel, selon sa manière, en rudoyait fort le roi.
 
-
-
-
 II
 
 CECI TUERA CELA
-
 
 Nos lectrices nous pardonneront de nous arrêter un moment pour chercher
 quelle pouvait être la pensée qui se dérobait sous ces paroles
@@ -7597,18 +7470,11 @@ concours acharné de l'humanité tout entière, refuge promis à
 l'intelligence contre un nouveau déluge, contre une submersion de
 barbares. C'est la seconde tour de Babel du genre humain.
 
-
-
-
 LIVRE SIXIÈME
-
-
-
 
 I
 
 COUP D'OEIL IMPARTIAL SUR L'ANCIENNE MAGISTRATURE
-
 
 C'était un fort heureux personnage, en l'an de grâce 1482, que noble
 homme Robert d'Estouteville, chevalier, sieur de Beyne, baron d'Yvri et
@@ -7998,13 +7864,9 @@ Et il signa la sentence ainsi modifiée.
 «C'est bien fait, dit Robin Poussepain qui gardait une dent à Quasimodo,
 cela lui apprendra à rudoyer les gens.»
 
-
-
-
 II
 
 LE TROU AUX RATS
-
 
 Que le lecteur nous permette de le ramener à la place de Grève, que nous
 avons quittée hier avec Gringoire pour suivre la Esmeralda.
@@ -8152,13 +8014,9 @@ Saint-Denis_, avait donné à cette cavité noire, sombre et humide, le nom
 de _Trou aux Rats_. Explication moins sublime peut-être que l'autre,
 mais en revanche plus pittoresque.
 
-
-
-
 III
 
 HISTOIRE D'UNE GALETTE AU LEVAIN DE MAÏS
-
 
 À l'époque où se passe cette histoire, la cellule de la Tour-Roland
 était occupée. Si le lecteur désire savoir par qui, il n'a qu'à écouter
@@ -9007,13 +8865,9 @@ bras de squelette, et s'écria avec une voix qui ressemblait à un râle:
 «C'est donc encore toi, fille d'Égypte! c'est toi qui m'appelles,
 voleuse d'enfants! Eh bien! maudite sois-tu! maudite! maudite! maudite!»
 
-
-
-
 IV
 
 UNE LARME POUR UNE GOUTTE D'EAU
-
 
 Ces paroles étaient, pour ainsi dire, le point de jonction de deux
 scènes qui s'étaient jusque-là développées parallèlement dans le même
@@ -9387,13 +9241,9 @@ C'est dans ce moment que la recluse aperçut, de la lucarne de son trou,
 l'égyptienne sur le pilori et lui jeta son imprécation sinistre:
 «Maudite sois-tu, fille d'Égypte! maudite! maudite!»
 
-
-
-
 V
 
 FIN DE L'HISTOIRE DE LA GALETTE
-
 
 La Esmeralda pâlit, et descendit du pilori en chancelant. La voix de la
 recluse la poursuivit encore: «Descends! descends! larronnesse d'Égypte,
@@ -9424,18 +9274,11 @@ Voyez-vous, Oudarde, il mange déjà à lui seul tout le cerisier de notre
 clos de Charlerange. Aussi son grand-père dit que ce sera un
 capitaine.--Que je vous y reprenne, monsieur Eustache.--Va, gros lion!»
 
-
-
-
 LIVRE SEPTIÈME
-
-
-
 
 I
 
 DU DANGER DE CONFIER SON SECRET À UNE CHÈVRE
-
 
 Plusieurs semaines s'étaient écoulées.
 
@@ -10079,13 +9922,9 @@ Fleur-de-Lys par l'autre.
 Le capitaine Phoebus, resté seul, hésita un moment entre les deux
 portes; puis il suivit la bohémienne.
 
-
-
-
 II
 
 QU'UN PRÊTRE ET UN PHILOSOPHE SONT DEUX
-
 
 Le prêtre que les jeunes filles avaient remarqué au haut de la tour
 septentrionale penché sur la place et si attentif à la danse de la
@@ -10451,13 +10290,9 @@ pied nu.
 poussant par les épaules Gringoire émerveillé, il s'enfonça à grands pas
 sous les plus sombres arcades de la cathédrale.
 
-
-
-
 III
 
 LES CLOCHES
-
 
 Depuis la matinée du pilori, les voisins de Notre-Dame avaient cru
 remarquer que l'ardeur carillonneuse de Quasimodo s'était fort
@@ -10541,13 +10376,9 @@ désappointement des amateurs de sonnerie, lesquels écoutaient de bonne
 foi le carillon de dessus le Pont-au-Change, et s'en allèrent stupéfaits
 comme un chien à qui l'on a montré un os et à qui l'on donne une pierre.
 
-
-
-
 IV
 
 _ANANKÊ_
-
 
 Il advint que par une belle matinée de ce même mois de mars, je crois
 que c'était le samedi 29, jour de saint Eustache, notre jeune ami
@@ -11140,13 +10971,9 @@ escarcelle.
 
 Jehan se renfonça sous le fourneau, et la porte s'ouvrit.
 
-
-
-
 V
 
 LES DEUX HOMMES VÊTUS DE NOIR
-
 
 Le personnage qui entra avait une robe noire et la mine sombre. Ce qui
 frappa au premier coup d'oeil notre ami Jehan (qui, comme on s'en doute
@@ -11374,13 +11201,9 @@ rappela à son digne disciple qu'ils avaient quelques figures du portail
 _ouf_! de l'écolier, qui commençait à craindre sérieusement que son
 genou ne prît l'empreinte de son menton.
 
-
-
-
 VI
 
 EFFET QUE PEUVENT PRODUIRE SEPT JURONS EN PLEIN AIR
-
 
 «_Te Deum laudamus_[100]! s'écria maître Jehan en sortant de son trou,
 voilà les deux chats-huants partis. Och! och! Hax! pax! max! les puces!
@@ -11579,13 +11402,9 @@ Les enfants des Petits-Carreaux
 
 Se font pendre comme des veaux.
 
-
-
-
 VII
 
 LE MOINE BOURRU
-
 
 L'illustre cabaret de _La Pomme d'Ève_ était situé dans l'Université, au
 coin de la rue de la Rondelle et de la rue du Bâtonnier. C'était une
@@ -11914,13 +11733,9 @@ parole. La porte retomba sur lui. Il entendit Phoebus la refermer au
 verrou, et un moment après redescendre l'escalier avec la vieille. La
 lumière avait disparu.
 
-
-
-
 VIII
 
 UTILITÉ DES FENÊTRES QUI DONNENT SUR LA RIVIÈRE
-
 
 Claude Frollo (car nous présumons que le lecteur, plus intelligent que
 Phoebus, n'a vu dans toute cette aventure d'autre moine bourru que
@@ -12269,18 +12084,11 @@ grande ouverte, on ramassait un manteau qu'on supposait appartenir à
 l'officier, et elle entendait dire autour d'elle: «C'est une sorcière
 qui a poignardé un capitaine.»
 
-
-
-
 LIVRE HUITIÈME
-
-
-
 
 I
 
 L'ÉCU CHANGÉ EN FEUILLE SÈCHE
-
 
 Gringoire et toute la Cour des Miracles étaient dans une mortelle
 inquiétude. On ne savait depuis un grand mois ce qu'était devenue la
@@ -12678,13 +12486,9 @@ se sacrifier à son devoir.
 «La fâcheuse et déplaisante drôlesse, dit un vieux juge, qui se fait
 donner la question quand on n'a pas soupé!»
 
-
-
-
 II
 
 SUITE DE L'ÉCU CHANGÉ EN FEUILLE SÈCHE
-
 
 Après quelques degrés montés et descendus dans des couloirs si sombres
 qu'on les éclairait de lampes en plein jour, la Esmeralda, toujours
@@ -12904,13 +12708,9 @@ Puis il se tourna vers ses acolytes de l'officialité. «Voilà enfin la
 justice éclairée! Cela soulage, messieurs! Mademoiselle nous rendra ce
 témoignage, que nous avons agi avec toute la douceur possible.»
 
-
-
-
 III
 
 FIN DE L'ÉCU CHANGÉ EN FEUILLE SÈCHE
-
 
 Quand elle rentra, pâle et boitant, dans la salle d'audience, un murmure
 général de plaisir l'accueillit. De la part de l'auditoire, c'était ce
@@ -13028,13 +12828,9 @@ sur la personne du sieur Phoebus de Châteaupers, Dieu ait votre âme!
 --Oh! c'est un rêve!» murmura-t-elle, et elle sentit de rudes mains qui
 l'emportaient.
 
-
-
-
 IV
 
 «LASCIATE OGNI SPERANZAI[108]»
-
 
 Au moyen âge, quand un édifice était complet, il y en avait presque
 autant dans la terre que dehors. À moins d'être bâtis sur pilotis, comme
@@ -13617,13 +13413,9 @@ Elle tomba la face contre terre; et l'on n'entendit plus dans le cachot
 d'autre bruit que le soupir de la goutte d'eau qui faisait palpiter la
 mare dans les ténèbres.
 
-
-
-
 V
 
 LA MÈRE
-
 
 Je ne crois pas qu'il y ait rien au monde de plus riant que les idées
 qui s'éveillent dans le coeur d'une mère à la vue du petit soulier de
@@ -13787,13 +13579,9 @@ lucarne, échevelée, l'oeil flamboyant, heurtant le mur de son épaule,
 avec l'air fauve d'une louve en cage qui a faim depuis longtemps et qui
 sent approcher l'heure du repas.
 
-
-
-
 VI
 
 TROIS COEURS D'HOMME FAITS DIFFÉREMMENT
-
 
 Phoebus, cependant, n'était pas mort. Les hommes de cette espèce ont la
 vie dure. Quand maître Philippe Lheulier, avocat extraordinaire du roi,
@@ -14483,18 +14271,11 @@ nuages: «Asile! asile! asile!
 acclamation allait étonner sur l'autre rive la foule de la Grève et la
 recluse qui attendait toujours, l'oeil fixé sur le gibet.
 
-
-
-
 LIVRE NEUVIÈME
-
-
-
 
 I
 
 FIÈVRE
-
 
 Claude Frollo n'était plus dans Notre-Dame pendant que son fils adoptif
 tranchait si brusquement le noeud fatal où le malheureux archidiacre
@@ -14919,13 +14700,9 @@ oreille une voix qui riait et qui répétait:
 «...Un esprit passa devant ma face, et j'entendis un petit souffle, et
 le poil de ma chair se hérissa.»
 
-
-
-
 II
 
 BOSSU, BORGNE, BOITEUX
-
 
 Toute ville au moyen âge, et, jusqu'à Louis XII, toute ville en France
 avait ses lieux d'asile. Ces lieux d'asile, au milieu du déluge de lois
@@ -15076,13 +14853,9 @@ fit le tour de la galerie élevée qui enveloppe l'église. Elle en éprouva
 quelque soulagement, tant la terre lui parut calme, vue de cette
 hauteur.
 
-
-
-
 III
 
 SOURD
-
 
 Le lendemain matin, elle s'aperçut en s'éveillant qu'elle avait dormi.
 Cette chose singulière l'étonna. Il y avait si longtemps qu'elle était
@@ -15197,13 +14970,9 @@ J'entends ce bruit-là.»
 
 Il déposa le sifflet à terre et s'enfuit.
 
-
-
-
 IV
 
 GRÈS ET CRISTAL
-
 
 Le calme revenait peu à peu dans l'âme de la Esmeralda. L'excès de la
 douleur, comme l'excès de la joie, est une chose violente qui dure peu.
@@ -15640,13 +15409,9 @@ leva, et vit à la lumière de la lune une masse informe couchée en
 travers devant sa porte. C'était Quasimodo qui dormait là sur une
 pierre.
 
-
-
-
 V
 
 LA CLEF DE LA PORTE-ROUGE
-
 
 Cependant la voix publique avait fait connaître à l'archidiacre de
 quelle manière miraculeuse l'égyptienne avait été sauvée. Quand il
@@ -15719,13 +15484,9 @@ Il savait où trouver la clef de la Porte-Rouge qui communiquait du
 cloître à l'église, et il avait toujours sur lui, comme on sait, une
 clef de l'escalier des tours.
 
-
-
-
 VI
 
 SUITE DE LA CLEF DE LA PORTE-ROUGE
-
 
 Cette nuit-là, la Esmeralda s'était endormie dans sa logette, pleine
 d'oubli, d'espérance et de douces pensées. Elle dormait depuis quelque
@@ -15868,18 +15629,11 @@ C'en était fait. Dom Claude était jaloux de Quasimodo!
 
 Il répéta d'un air pensif sa fatale parole: «Personne ne l'aura!»
 
-
-
-
 LIVRE DIXIÈME
-
-
-
 
 I
 
 GRINGOIRE A PLUSIEURS BONNES IDÉES DE SUITE RUE DES BERNARDINS
-
 
 Depuis que Pierre Gringoire avait vu comment toute cette affaire
 tournait, et que décidément il y aurait corde, pendaison et autres
@@ -16364,13 +16118,9 @@ parce qu'on est petit, qu'on s'effraiera d'une grande entreprise. Biton
 porta un grand taureau sur ses épaules; les hochequeues, les fauvettes
 et les traquets traversent l'océan.»
 
-
-
-
 II
 
 FAITES-VOUS TRUAND
-
 
 L'archidiacre, en rentrant au cloître, trouva à la porte de sa cellule
 son frère Jehan du Moulin qui l'attendait et qui avait charmé les ennuis
@@ -16461,13 +16211,9 @@ En même temps, le prêtre jeta à Jehan une bourse qui fit à l'écolier une
 grosse bosse au front, et dont Jehan s'en alla à la fois fâché et
 content, comme un chien qu'on lapiderait avec des os à moelle.
 
-
-
-
 III
 
 VIVE LA JOIE!
-
 
 Le lecteur n'a peut-être pas oublié qu'une partie de la Cour des
 Miracles était enclose par l'ancien mur d'enceinte de la ville, dont bon
@@ -16782,13 +16528,9 @@ une longue procession d'hommes noirs et silencieux qui descendait vers
 le Pont-au-Change, à travers les rues tortueuses qui percent en tous
 sens le massif quartier des Halles.
 
-
-
-
 IV
 
 UN MALADROIT AMI
-
 
 Cette même nuit, Quasimodo ne dormait pas. Il venait de faire sa
 dernière ronde dans l'église. Il n'avait pas remarqué, au moment où il
@@ -17565,13 +17307,9 @@ frissonnant pour l'égyptienne, voyant les faces furieuses se rapprocher
 de plus en plus de sa galerie, demandait un miracle au ciel, et se
 tordait les bras de désespoir.
 
-
-
-
 V
 
 LE RETRAIT OÙ DIT SES HEURES MONSIEUR LOUIS DE FRANCE
-
 
 Le lecteur n'a peut-être pas oublié qu'un moment avant d'apercevoir la
 bande nocturne des truands, Quasimodo, inspectant Paris du haut de son
@@ -18921,13 +18659,9 @@ ivre, il était moins méchant que Louis XI malade.
 --Maître Jacques, répondit Rym, c'est que les rois ont le vin moins
 cruel que la tisane.»
 
-
-
-
 VI
 
 PETITE FLAMBE EN BAGUENAUD
-
 
 En sortant de la Bastille, Gringoire descendit la rue Saint-Antoine de
 la vitesse d'un cheval échappé. Arrivé à la porte Baudoyer, il marcha
@@ -18976,13 +18710,9 @@ matin.
 
 Tous deux descendirent à grands pas vers la Cité.
 
-
-
-
 VII
 
 CHATEAUPERS À LA RESCOUSSE!
-
 
 Le lecteur se souvient peut-être de la situation critique où nous avons
 laissé Quasimodo. Le brave sourd, assailli de toutes parts, avait perdu,
@@ -19058,18 +18788,11 @@ venait de sauver une seconde fois.
 
 Lorsqu'il entra dans la cellule, il la trouva vide.
 
-
-
-
 LIVRE ONZIÈME
-
-
-
 
 I
 
 LE PETIT SOULIER
-
 
 Au moment où les truands avaient assailli l'église, la Esmeralda
 dormait.
@@ -20465,13 +20188,9 @@ releva. Elle se laissa de nouveau retomber. C'est qu'elle était morte.
 Le bourreau, qui n'avait pas lâché la jeune fille, se remit à monter
 l'échelle.
 
-
-
-
 II
 
 «LA CREATURA BELLA BIANCO VESTITA»[132] (DANTE)
-
 
 Quand Quasimodo vit que la cellule était vide, que l'égyptienne n'y
 était plus, que pendant qu'il la défendait on l'avait enlevée, il prit
@@ -20800,13 +20519,9 @@ l'archidiacre étendu au bas de la tour et n'ayant plus forme humaine, et
 il dit avec un sanglot qui souleva sa profonde poitrine: «Oh! tout ce
 que j'ai aimé!»
 
-
-
-
 III
 
 MARIAGE DE PHOEBUS
-
 
 Vers le soir de cette Journée, quand les officiers judiciaires de
 l'évêque vinrent relever sur le pavé du Parvis le cadavre disloqué de
@@ -20837,13 +20552,9 @@ et pour ce faire, cent livres.»
 
 Phoebus de Châteaupers aussi fit une fin tragique, il se maria.
 
-
-
-
 IV
 
 MARIAGE DE QUASIMODO
-
 
 Nous venons de dire que Quasimodo avait disparu de Notre-Dame le jour de
 la mort de l'égyptienne et de l'archidiacre. On ne le revit plus en
@@ -20917,11 +20628,7 @@ n'avait d'ailleurs aucune rupture de vertèbre à la nuque, et il était
 était donc venu là, et il y était mort. Quand on voulut le détacher du
 squelette qu'il embrassait, il tomba en poussière.
 
-
-
-
 NOTES
-
 
 NOTE I.
 
@@ -20947,7 +20654,6 @@ La date _1er septembre_, se trouve avant l'alinéa: «S'il pouvait nous
 Au bas de la dernière page, on lit: _15 janvier 1831, 6 heures 1/2 du
 soir_.
 
-
 NOTE II.
 
 Le manuscrit de _Notre-Dame de Paris_ n'a presque pas de ratures. Il n'y
@@ -20962,9 +20668,6 @@ marié.
 Le chapitre _Le petit soulier_, La chèvre est sauvée.
 
        *       *       *       *       *
-
-
-
 
 NOTES:
 
@@ -21313,17 +21016,7 @@ cantiques!»]
 
 [131: Contre l'avarice.]
 
-
-
-
-
-
-
-
 *** END OF THE PROJECT GUTENBERG EBOOK NOTRE-DAME DE PARIS ***
-
-
-    
 
 Updated editions will replace the previous one—the old editions will
 be renamed.
@@ -21346,7 +21039,6 @@ Gutenberg eBooks may be modified and printed and given away—you may
 do practically ANYTHING in the United States with eBooks not protected
 by U.S. copyright law. Redistribution is subject to the trademark
 license, especially commercial redistribution.
-
 
 START: FULL LICENSE
 
@@ -21428,7 +21120,7 @@ performed, viewed, copied or distributed:
     at www.gutenberg.org. If you
     are not located in the United States, you will have to check the laws
     of the country where you are located before using this eBook.
-  
+
 1.E.2. If an individual Project Gutenberg™ electronic work is
 derived from texts not protected by U.S. copyright law (does not
 contain a notice indicating that it is posted with permission of the
@@ -21490,7 +21182,7 @@ provided that:
         Gutenberg Literary Archive Foundation at the address specified in
         Section 4, “Information about donations to the Project Gutenberg
         Literary Archive Foundation.”
-    
+
     • You provide a full refund of any money paid by a user who notifies
         you in writing (or by e-mail) within 30 days of receipt that s/he
         does not agree to the terms of the full Project Gutenberg™
@@ -21498,15 +21190,14 @@ provided that:
         copies of the works possessed in a physical medium and discontinue
         all use of and all access to other copies of Project Gutenberg™
         works.
-    
+
     • You provide, in accordance with paragraph 1.F.3, a full refund of
         any money paid for a work or a replacement copy, if a defect in the
         electronic work is discovered and reported to you within 90 days of
         receipt of the work.
-    
+
     • You comply with all other terms of this agreement for free
         distribution of Project Gutenberg™ works.
-    
 
 1.E.9. If you wish to charge a fee or distribute a Project
 Gutenberg™ electronic work or group of works on different terms than
@@ -21669,5 +21360,4 @@ This website includes information about Project Gutenberg™,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
 

@@ -1,5 +1,5 @@
 ﻿The Project Gutenberg eBook of Ubirajara: Lenda Tupi
-    
+
 This ebook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
 whatsoever. You may copy it, give it away or re-use it under the terms
@@ -21,33 +21,17 @@ Credits: Produced by Júlio Reis, Fernanda Brojo, Manuela Alves,
         Rory OConor and the Online Distributed Proofreading Team
         at https://www.pgdp.net
 
-
 *** START OF THE PROJECT GUTENBERG EBOOK UBIRAJARA: LENDA TUPI ***
-
-
-
 
 Produced by Júlio Reis, Fernanda Brojo, Manuela Alves,
 Rory OConor and the Online Distributed Proofreading Team
 at https://www.pgdp.net
 
-
-
-
-
-
-
-
-
   JOSÉ DE ALENCAR
-
-
-
 
   UBIRAJARA
 
   [Illustration]
-
 
   FRANCISCO ALVES & C.a
 
@@ -59,7 +43,6 @@ at https://www.pgdp.net
 
   BELO HORIZONTE
   1055, Rua da Baía, 1055
-
 
   AILLAUD, ALVES & C.a
 
@@ -75,31 +58,19 @@ at https://www.pgdp.net
 
   1911
 
-
-
-
   UBIRAJARA
-
 
   Composto e impresso na Tipografia JOSÉ BASTOS Rua da Alegria,
   100--Lisboa
 
-
-
-
   J. DE ALENCAR
 
-
-
-
   UBIRAJARA
-
 
   LENDA TUPI
 
   [Illustration]
 
-
   FRANCISCO ALVES & C.a
 
   RIO DE JANEIRO
@@ -110,7 +81,6 @@ at https://www.pgdp.net
 
   BELO HORIZONTE
   1055, Rua da Baía, 1055
-
 
   AILLAUD, ALVES & C.a
 
@@ -126,21 +96,13 @@ at https://www.pgdp.net
 
   1911
 
-
 [Illustration]
 
-
-
-
 UBIRAJARA
-
-
-
 
 I
 
 O CAÇADOR
-
 
 Pela marjem do grande rio caminha Jaguarê, o joven caçador.
 
@@ -479,13 +441,9 @@ traiçoeira me feriu o peito, o suplicio não vencerá a constancia do
 varão tocantim que sabe afrontar as iras de Tupan e desprezar a vingança
 dos araguaias.
 
-
-
-
 II
 
 O GUERREIRO
-
 
 Retumba a festa na taba dos araguaias.
 
@@ -768,13 +726,9 @@ espumante, por ella fabricado, a taça de seu heróe e senhor.
 O guincho agoureiro da inhúma resoava na mata, quando começou a dansa
 guerreira que durou até perto da alvorada.
 
-
-
-
 III
 
 A NOIVA
-
 
 Ao raiar da luz no céu, Jandira abriu os lindos olhos negros.
 
@@ -1228,13 +1182,9 @@ observou Majé.
 Ubirajara saiu do carbeto; após elle os anciãos se retiraram
 lentamente.
 
-
-
-
 IV
 
 A HOSPITALIDADE
-
 
 Na entrada do vale ergue-se a grande taba dos tocantins.
 
@@ -1726,13 +1676,9 @@ rêde não lhe guardou o sono tranquilo do guerreiro. Elle ouviu tua voz
 que o chamava, virjem tocantim, e ergueu-se; tua luz o guiou, filha do
 sol, e o trouxe á tua prezença.
 
-
-
-
 V
 
 SERVO DO AMOR
-
 
 Jurandir, conduzido pela virjem, caminhou ao encontro de Itaquê e disse:
 
@@ -2067,13 +2013,9 @@ pulsos cruzados, como se ainda estivessem prezos:
 liberdade dada por ti. Arací póde ser preferida, porém não será mais
 generoza do que a filha de Majé.
 
-
-
-
 VI
 
 O COMBATE NUPCIAL
-
 
 Chegou o dia em que os noivos de Arací deviam disputar a posse da
 formoza virjem.
@@ -2522,13 +2464,9 @@ O carbeto dos anciãos tinha decidido que o vencedor antes de receber a
 espoza, devia declarar quem era; pois fôra recebido como estranjeiro, e
 ninguem na taba o conhecia.
 
-
-
-
 VII
 
 A GUERRA
-
 
 Itaquê esperava sentado na cabana, e cercado do carbeto dos anciãos.
 
@@ -2931,13 +2869,9 @@ buscar.
 «Conta-lhe tambem que o canitar que ella teceu, ainda não deixou a
 cabeça de seu guerreiro e ha de acompanhal-o sempre.»
 
-
-
-
 VIII
 
 A BATALHA
-
 
 A um lado da imensa campina move-se a multidão dos guerreiros tocantins,
 do outro lado a multidão dos guerreiros tapuias.
@@ -3190,13 +3124,9 @@ grande Tocantim que foi o pai da nação, vai sair de sua geração.
 Tocantim o transmitiu a seu filho Javarí, que me gerou; mas eu não sube
 gerar com seu sangue um guerreiro digno delles.
 
-
-
-
 IX
 
 UNIÃO DOS ARCOS
-
 
 Os tapuias voltaram; e com elles vinha Agniná á frente de sua nação,
 para vingar a morte de Canicran, seu irmão.
@@ -3484,18 +3414,11 @@ Foi esta poderoza nação que dominou o dezerto.
 Mais tarde, quando vieram os caramurús, guerreiros do mar, ella campeava
 ainda nas marjens do grande rio.
 
-
-
-
   FIM
-
-
-
 
 NOTAS
 
 ADVERTENCIA
-
 
 Este livro é irmão de Iracema.
 
@@ -3559,7 +3482,6 @@ costumes e indole dos selvajens.
 
        *       *       *       *       *
 
-
 Paj. 5
 
 _Grande rio_.--Os tupís chamavam assim ao maior rio que existia na
@@ -3569,14 +3491,12 @@ dezignação na lingua orijinal ou traduzida.
 O rio grande de que se trata nesta lenda é o Tocantins, em cujas marjens
 se passa a ação dramatica.
 
-
 Paj. 5
 
 _Jaguarê_.--Nome composto de _Jaguar_, a onça e o sufixo _ê_ que na
 lingua tupí reforça emfaticamente a palavra a que se liga. _Jaguarê_,
 significa, pois, a onça, verdadeiramente onça, digna do nome, por sua
 força, corajem e ferocidade.
-
 
 Paj. 5
 
@@ -3587,7 +3507,6 @@ _aba_--dezinencia exprimindo o logar, modo e instrumento; literalmente
 Os selvajens a faziam, ou do tubo de taquarussú, ou da casca de certas
 arvores, guarnecida de fios embebidos de rezina, o que as tornava muito
 rezistentes.
-
 
 Paj. 6
 
@@ -3634,13 +3553,11 @@ cazava tornava-se apiaba, o varão, ou como diz d'Evreux, _mendarama_, o
 cazado; 6o _tijubaê_, o ancião ou veterano, o homem de experiencia,
 guerreiro consumado.
 
-
 Paj. 6
 
 _Jandira_.--O nome é _jandaíra_, de uma abelha que fabrica excelente
 mel; Jandira é uma contração mais eufonica daquelle nome, que tambem por
 sua vez é contração de _Jemonhaíra_, que fabrica mel.
-
 
 Paj. 6
 
@@ -3648,7 +3565,6 @@ _Aratuba_.--Palavra que se compõe de _ara_--o sol e _tuba_--infinito do
 verbo _ajub_--estar deitado. Vem a ser a significação _leito do sol_,
 aplicada pelos indios á montanha do poente, onde o sol se esconde no seu
 ocazo.
-
 
 Paj. 6
 
@@ -3658,13 +3574,11 @@ que fazia as vezes de partazana. Outros escrevem _iverapema_; mas o nome
 é aquelle de _igara-pema_, espada da canôa; basta ver-lhe a fórma para
 compreender seu duplo destino.
 
-
 Paj. 6
 
 _Craúba_.-É a mesma _carabiuba_ dos indios, assim contraída pelo uzo dos
 nossos sertanejos. Madeira roxa, excessivamente rija, que não cede ao
 páu-ferro no pezo e na dureza.
-
 
 Paj. 7
 
@@ -3721,7 +3635,6 @@ refreie os instintos sensuais com a severidade uzada pelos tupís?
 Poderiamos fazer muitas outras observações que rezervamos para um estudo
 especial ácerca dos selvajens brazileiros.
 
-
 Paj. 7
 
 _Tocantim_.--Compõe-se de _tocano_ e _tim_; literalmente o nariz, o
@@ -3729,12 +3642,10 @@ rostro do tucano. Nome que tomou um guerreiro por trazer na cabeça o
 despojo de um tucano com o grande bico da ave; e que transmitido a uma
 nação selvajem, ficou dezignando o rio a cujas marjens vivia.
 
-
 Paj. 7
 
 _Taarí_.--Rio que despeja no Tocantins, pouco depois da confluencia do
 Araguaia. Indica o logar da cena.
-
 
 Paj. 7
 
@@ -3742,13 +3653,11 @@ _Araguaia_.--O nome é araguara, de _ara_ e _guara_, literalmente, os
 guerreiros das araras, porque uzavam nos seus ornatos das penas
 encarnadas daquellas aves. Conservei a versão que ficou no nome do rio.
 
-
 Paj. 8
 
 _Arací_.--Esta palavra tupí compõe-se de _ara_, dia, e _ceí_ ou _cejí_,
 grande estrela. Este ultimo nome davam os indijenas ás pleiades, que
 lhes serviam para contar os anos.
-
 
 Paj. 8
 
@@ -3757,13 +3666,11 @@ numerais cem ou mil não reprezentam algarismo exato, que não os tinham
 os tupís para exprimir numero tão elevado. Traduzem apenas esses termos
 a dezinencia _tiba_, com que os tupís dezignavam cópia e multidão.
 
-
 Paj. 9
 
 _Canitar_.--Enfeite de cabeça. Adotei esta dezignação empregada pelos
 autores sob a autoridade de Hans Stade por me parecer mais eufonica. A
 exata lição pede _acanga atara_.
-
 
 Paj. 9
 
@@ -3778,7 +3685,6 @@ guerreiro o dezafio.
 É uma prova do carater leal dos selvajens. Foi depois da colonização,
 que os portuguezes, assaltando-os como a feras, e caçando-os a dente de
 cão, ensinaram-lhes a traição que elles não conheciam.
-
 
 Paj. 10
 
@@ -3805,7 +3711,6 @@ indole da lingua, como se vê nas seguintes palavras--_A-por-u_--como
 gente--_A-poro-tim_--enterro gente--_A-po-çub_--vizito a gente. (Vide
 Figueira, _Gramatica da lingua do Brazil_, paj. 51.)
 
-
 Paj. 10
 
 _Tapuia_.--de _taba_ e _puir_, o que foje das tabas. Davam os indijenas
@@ -3814,7 +3719,6 @@ investigações etnolojicas, pertenciam esses povos a uma raça diversa da
 tupí, e muito aproximada, senão conjenere do tipo mongolico. Entretanto
 Orbigny, _L'Homme Américain_, sustenta a identidade das duas raças,
 tapuia e tupí.
-
 
 Paj. 10
 
@@ -3831,7 +3735,6 @@ madeira.
 Ácerca da força dessa arma e da destreza com que a manejavam, diz Lery
 que um tupinambá com ella armado daria que fazer a dois soldados de
 espada.
-
 
 Paj. 10
 
@@ -4007,7 +3910,6 @@ conjugal, ou o concubinato, era uma adultera, isto é, uma ladra e decia
 á ultima infamia. O marido tinha o direito de matal-a; o amante
 entregava-a ao desprezo da tribu.
 
-
 Paj. 10
 
 _Jaguarê agradece a Tupan_.--Não achando entre os aborijenes templos e
@@ -4131,7 +4033,6 @@ exajerar a ferocidade e ignorancia dos selvajens, no interesse de tornar
 indispensavel sua catequeze. Já imbuidos da intolerancia relijioza, a
 politica exajerava ainda mais sua suspeição.
 
-
 Paj. 11
 
 _Ubiratan_.--Páu-ferro; literalmente _ubira_--madeira, e _atan_--duro.
@@ -4140,7 +4041,6 @@ tupí servia para a formação dos adjetivos. _Itana_, o que tem a natureza
 de pedra. Assim, de pedra fizemos nós pedregozo. Rigorozamente
 _ubiratan_ é _páu-pedra_; pois que os indijenas não conheciam o ferro.
 Era dessa madeira que faziam os tacapes.
-
 
 Paj. 13
 
@@ -4154,7 +4054,6 @@ _tuxaba_, por _chefe_; e fui levado pela razão de ser, além de muito
 apropriado e vulgar, um termo nobre e sucetivel de entrar no estílo o
 mais elevado, sem laivos de afetação. Ao _morubixaba_ pela mesma razão
 chamei chefe dos chefes.
-
 
 Paj. 14
 
@@ -4176,7 +4075,6 @@ Depois o missionario lembra as palavras de Isaías cap. 9--_Factus est
 principatus super humerum ejus_--e cap. XXII--_Dabo clavem dominis David
 super humerum ejus_; e mostra a conformidade desse rito dos tupís com as
 tradições dos hebreus e outros povos primitivos.
-
 
 Paj. 15
 
@@ -4201,7 +4099,6 @@ _bilreiros_ que lhe deram os sertanistas, significando assim que tanjiam
 suas lanças com ajilidade e sutileza igual á da rendeira ao trocar os
 bilros.
 
-
 Paj. 15
 
 _Preciza de um prizioneiro_.--Era entre os selvajens maior honra
@@ -4209,12 +4106,10 @@ conduzir da guerra um prizioneiro, para ornar o seu triunfo e a festa de
 vitoria, do que matal-o em combate. Veja Gabriel Soares--cit. na nota
 4a.
 
-
 Paj. 15
 
 _Chamas de alegria_.--Metafora tupí. Chamavam a alegria e a festa
 _toríba_, literalmente, grande quantidade de fogueiras.
-
 
 Paj. 17
 
@@ -4237,7 +4132,6 @@ livro o espirito indijena. Do mesmo modo procedi ácerca de outros termos
 eufonicos tais como _tuxaba_, _moribixaba_, _moacara_, _nhengaçara_,
 _etc_.
 
-
 Paj. 21
 
 _Os cantores_.--Os tupís eram muito dados á muzica e á dansa.
@@ -4255,7 +4149,6 @@ tupinambás, concluindo com estas palavras:
 vão, são bem agazalhados e muitos atravessaram já o sertão por entre
 seus contrarios, sem lhes fazerem mal.»
 
-
 Paj. 24
 
 _Como chefe pertence-lhe a virjem_, etc, Barloeus--2.a edic. paj.
@@ -4269,7 +4162,6 @@ excelencia da virtude e fortaleza merecem possuir as mesmas virjens; por
 quanto pensam que os melhores nacem dos melhores; nem é vão nome a
 nobreza, pois se comunica pela transfuzão do sangue.
 
-
 Paj. 25
 
 _Purifica o corpo_.--Os selvajens distinguiam-se pelo apurado asseio.
@@ -4278,7 +4170,6 @@ corps net de toute ordure: ils se lavent fort souvent tout le corps et
 ne se passe jour qu'ils ne jettent sur eux force eau et se frottent avec
 les mains de tous côtés et en toutes les parts, pour oster la poudre et
 autres ordures. Les femmes ne manquent de se peigner souvent.»
-
 
 Pag. 25
 
@@ -4290,7 +4181,6 @@ _patuâ_, que era uma caixa de palha ou couro; e o _mocô_, pequeno surrão
 da pele felpuda do coelho. Todos estes nomes ainda são uzados no norte
 para dezignar os mesmos objetos, produtos da industria indijena,
 aproveitada pelos colonizadores.
-
 
 Paj. 26
 
@@ -4309,7 +4199,6 @@ quadraginta et interdum quinquaginta pedes alto.»
 1640 na cidade Mauricéa (Recife) transplantarem-se pés que tinham mais
 de 24 anos.
 
-
 Paj. 28
 
 _Cabelos_.--Pelos cabelos costumavam distinguirem-se as diversas nações
@@ -4323,13 +4212,11 @@ marido, a mulher trazia uma especie de luto, ou mostra de tristeza e
 saudade, que era simbolizada pelo sacrificio das longas tranças dos
 cabelos.
 
-
 Paj. 28
 
 _Braços que tu querias para tua cintura_.--Metafora da lingua tupí, que
 exprime o amor; _aguaçaba_, a amante, literalmente, o que se tem á
 cintura.
-
 
 Paj. 31
 
@@ -4374,7 +4261,6 @@ brazileiro, tão deprimido por cronistas e noveleiros, avidos de
 inventarem monstruozidades para impinjil-as ao leitor. Nem isso lhes
 custava; pois a raça invazora buscava justificar suas cruezas rebaixando
 os aborijenes á condição de féras, que era forçozo montear.
-
 
 Paj. 32
 
@@ -4555,7 +4441,6 @@ lonje de ser introduzido pela raça tupí, foi por ella recebido dos
 Aimorés e outros povos da mesma orijem, que ao tempo do descobrimento
 apareceram no Brazil.
 
-
 Paj. 32
 
 _Espoza do tumulo_.-Este rito selvajem é muito conhecido e dispensa-me
@@ -4612,7 +4497,6 @@ talvez acontecendo nacer morta a criança, se orijinasse a fabula do
 sacrificio que então se praticava entre algumas nações de ser a mãi
 obrigada a absorver em si esse fruto goro de sua fecundidade.
 
-
 Paj. 33
 
 _Guainumbí_.--«Persuadem-se os brazilienses haver uma ave, que chamam
@@ -4626,7 +4510,6 @@ brinco das flôres. Os selvajens tiraram naturalmente essa dezignação do
 modo por que o colibri tremula, como suspenso á flôr para chupar-lhe o
 mel, semelhante ao movimento das arrecadas suspensas ás orelhas, e que
 elles chamavam _nambípora_.
-
 
 Paj. 35
 
@@ -4645,13 +4528,11 @@ Rev. do Instituto, paj. 350.)
 O nome da palmeira é em tupí _jussara_, de _ju_--espinho e _ara_
 dezinencia.
 
-
 Paj. 36
 
 _Carbeto_.--Assim chamam Ives d'Evreux e Abbeville ao conselho dos
 velhos entre os selvajens. Este nome deriva-se naturalmente de
 _caraiba_, varão ilustre e _ipê_, logar onde.
-
 
 Paj. 37
 
@@ -4707,7 +4588,6 @@ imposé avec son consentement si c'est quelque homme d'honneur.»
 Ainda nessa circumstancia se revela a delicadeza da hospitalidade do
 selvajem.
 
-
 Paj. 38
 
 _Artes da paz_.--É ainda de Ives d'Evreux, cap. 18, esta curioza
@@ -4729,7 +4609,6 @@ aller au bois, la hache sur l'épaule et la serpe en main, ou qu'ils me
 voient travailler à faire des licts, ils sont honteux de rien faire,
 etc.»
 
-
 Paj. 38
 
 _Lançadeira_.--Os indijenas tinham um tear que é descrito por Lery, cap.
@@ -4737,12 +4616,10 @@ _Lançadeira_.--Os indijenas tinham um tear que é descrito por Lery, cap.
 girar entre os dedos, atirando ao ar, como ainda agora fazem as velhas
 fiandeiras do sertão.
 
-
 Paj. 43
 
 _Jurandir_.--Contração da fraze _Ajur-rendipira_--o que veiu trazido
 pela luz.
-
 
 Paj. 45
 
@@ -4752,12 +4629,10 @@ dar um apologo, em que elles celebram essas virtudes, contando a
 historia de um jabotí, que venceu na lijeireza ao veado, na força á onça
 e assim aos mais animais.
 
-
 Paj. 45
 
 _Tetivas_.--Os Tetivas habitam nos olhos das palmeiras e de outras
 arvores: põem-lhes terra e acendem fogo. Humboldt cit., paj. 283.
-
 
 Paj. 46
 
@@ -4771,7 +4646,6 @@ lenda que tenho esboçada ácerca do assunto. Nessa ocazião direi o que
 entendo ácerca da memoria do Dr. Gonçalves Dias, publicada na _Revista
 do Instituto_.
 
-
 Paj. 46
 
 _Senhoras de seu corpo_.--Metafora tupí. No varão a parte nobre era o
@@ -4784,7 +4658,6 @@ A mulher que dizia do filho _membira_--o gerado de meu ventre, devia
 pela mesma razão uzar de expressão analoga para exprimir sua liberdade,
 e dizer _membijara_--senhora de seu ventre, que eu por elegancia traduzo
 menos literalmente, _senhora de seu corpo_.
-
 
 Paj. 47
 
@@ -4804,7 +4677,6 @@ Foi a substituição do _p_ pela analoga _m_ que produziu o nome de
 _Maranhão_, ácerca de cuja etimolojia se inventaram tantas
 extravagancias.
 
-
 Paj. 48
 
 _Guerreiros do mar_.--Tradução da palavra tupí _caramurú_ com que os
@@ -4816,13 +4688,11 @@ daí naceu a lenda da mãi d'agua, que se transmitiu á raça invazora. Nada
 mais natural do que chamarem ao primeiro homem branco, que lhe apareceu
 surjindo do oceano, Caramurú--o guerreiro do mar.
 
-
 Paj. 48
 
 _Rezina cheiroza_.--É o ambar, que os tupís chamavam _Piraoçurepoti_, e
 de que ao tempo do descobrimento abundavam as ribeiras do mar, nas
 provincias do norte.
-
 
 Paj. 49
 
@@ -4832,7 +4702,6 @@ entre os selvajens.
 
 Do que tenho lido coliji as idéas, a que no texto se alude mui
 lijeiramente, e a que em outro logar démos maior dezenvolvimento.
-
 
 Paj. 51
 
@@ -4851,13 +4720,11 @@ do pai de Lia, para descartar-se de uma filha defeituoza; se tal
 acontecesse entre os tupís, de que ridiculas indignações não se
 encheriam os cronistas?
 
-
 Paj. 52
 
 _Manatí_.--È o peixe-boi, de cujo couro mais forte que o do touro os
 indios fazem escudos. Anunciam a chuva, saltando acima d'agua.
 Gumilha--Orenoco ilustrado, paj. 276.
-
 
 Paj. 52
 
@@ -4874,7 +4741,6 @@ ao fumeiro para conserval-a. Neste sentido é que Lery e Ives de Evreux
 empregam constantemente o termo francez _boucaner_, derivado da palavra
 tupí.
 
-
 Paj. 54
 
 _Pela mão da mulher_. Refere Gumilla, cap. 45, que estranhando aos
@@ -4882,12 +4748,10 @@ indios sobrecarregarem as mulheres com os trabalhos agricolas, elles
 retorquiram que as mulheres sabem dar fruto, o que não sabem os homens,
 e por isso na mão dellas as sementes naciam e se multiplicavam.
 
-
 Paj. 56
 
 _Pirijá_.--Uma especie de palmeira chamada palmeira real; é espinhoza e
 tem frutos semelhantes ao pecego. Humboldt cit., paj. 257 e 262.
-
 
 Paj. 58
 
@@ -4901,7 +4765,6 @@ Jandira reprezenta o excluzivismo do amor, que muitas vezes devia lutar
 com a lei tradicional; porque é um impulso da natureza, a qual não é
 dado ao homem aniquilar embora muitas vezes a sopite.
 
-
 Paj. 61
 
 _O combate nupcial_.--Este rito, de ser a virjem requestada o premio do
@@ -4911,7 +4774,6 @@ Barloeus, paj. 420:--«Lucta et hastarum concursu decertare gloriosum,
 finis spectanctium voluptas est, presertim amantium foemina de cujusque
 fortitudine et victoria pronuntiat, sic in proximo pignora, pugnandi
 irritamenta sunt fortitudinis præcones, ciborum administræ.»
-
 
 Paj. 65
 
@@ -4945,7 +4807,6 @@ outros, e que ainda conservam algumas tribus do Piauí, pela necessidade
 que tinha o guerreiro de defender a mulher, e para que em ocazião de
 perigo a podesse salvar fujindo.»
 
-
 Paj. 67
 
 _O camucim da constancia_.--Lê-se no _Tezouro do Amazonas_, cit. tom. 3
@@ -4974,7 +4835,6 @@ e arrebentar as lagrimas, tenha paciencia, que se quer, ha de aturar a
 bucha, emquanto os examinadores já bebendo-lhe á saude e já dando voltas
 em bailes se vão regalando á sua custa, etc.
 
-
 Paj. 73
 
 _Igapê_.--É o nenufar na lingua tupí, de _Ig_, _ipe_ e _potira_--flôr
@@ -4996,19 +4856,16 @@ dizer forno; nem forno indica a idéa que se pretende de pouzo ou ninho.
 _Uapê_ aí é o mesmo _igapê_ com a simples diferença de figurar-se a
 vogal indijena por _u_ em vez de _ig_ adotada pelo geral dos autores.
 
-
 Paj. 82
 
 _Murinhem_.--Palavra composta de _morib_ afavel e _nheng_
 falar.--Veja-se a respeito dos cantores, _nhengara_, o que se disse na
 nota a paj. 117.
 
-
 Paj. 86
 
 _Paan_.--Palavra da lingua Macaulí que significa seta--_Creban_
 significa homem alvo; e _Agniná_, monte.
-
 
 Paj. 97
 
@@ -5049,11 +4906,7 @@ artes.
 Á paj. 54 fala-se de _matumbos_. São as leivas que se fazem no norte
 para a plantação da mandioca.
 
-
-
-
 INDICE
-
 
       I--O caçador               5
 
@@ -5074,7 +4927,6 @@ INDICE
      IX--União dos arcos        92
 
          Notas                 101
-
 
 LIVRARIA ALVES
 
@@ -5118,16 +4970,7 @@ francez.
    12--=A ESCRAVA IZAURA=, por _Bernardo Guimarães_.
      1 vol. br.                                                 1$000
 
-
-
-
-
-
-
 *** END OF THE PROJECT GUTENBERG EBOOK UBIRAJARA: LENDA TUPI ***
-
-
-    
 
 Updated editions will replace the previous one—the old editions will
 be renamed.
@@ -5150,7 +4993,6 @@ Gutenberg eBooks may be modified and printed and given away—you may
 do practically ANYTHING in the United States with eBooks not protected
 by U.S. copyright law. Redistribution is subject to the trademark
 license, especially commercial redistribution.
-
 
 START: FULL LICENSE
 
@@ -5232,7 +5074,7 @@ performed, viewed, copied or distributed:
     at www.gutenberg.org. If you
     are not located in the United States, you will have to check the laws
     of the country where you are located before using this eBook.
-  
+
 1.E.2. If an individual Project Gutenberg™ electronic work is
 derived from texts not protected by U.S. copyright law (does not
 contain a notice indicating that it is posted with permission of the
@@ -5294,7 +5136,7 @@ provided that:
         Gutenberg Literary Archive Foundation at the address specified in
         Section 4, “Information about donations to the Project Gutenberg
         Literary Archive Foundation.”
-    
+
     • You provide a full refund of any money paid by a user who notifies
         you in writing (or by e-mail) within 30 days of receipt that s/he
         does not agree to the terms of the full Project Gutenberg™
@@ -5302,15 +5144,14 @@ provided that:
         copies of the works possessed in a physical medium and discontinue
         all use of and all access to other copies of Project Gutenberg™
         works.
-    
+
     • You provide, in accordance with paragraph 1.F.3, a full refund of
         any money paid for a work or a replacement copy, if a defect in the
         electronic work is discovered and reported to you within 90 days of
         receipt of the work.
-    
+
     • You comply with all other terms of this agreement for free
         distribution of Project Gutenberg™ works.
-    
 
 1.E.9. If you wish to charge a fee or distribute a Project
 Gutenberg™ electronic work or group of works on different terms than
@@ -5473,5 +5314,4 @@ This website includes information about Project Gutenberg™,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
 

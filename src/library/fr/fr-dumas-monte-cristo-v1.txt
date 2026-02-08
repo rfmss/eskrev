@@ -1,5 +1,5 @@
 ﻿The Project Gutenberg eBook of Le comte de Monte-Cristo, Tome I
-    
+
 This ebook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
 whatsoever. You may copy it, give it away or re-use it under the terms
@@ -20,11 +20,7 @@ Language: French
 
 Credits: Chuck Greif and www.ebooksgratuits.com
 
-
 *** START OF THE PROJECT GUTENBERG EBOOK LE COMTE DE MONTE-CRISTO, TOME I ***
-
-
-
 
 LE COMTE DE MONTE-CRISTO
 
@@ -32,11 +28,7 @@ Alexandre Dumas
 
 Tome I (1845-1846)
 
-
-
-
 Table des matières
-
 
 Alexandre Dumas
 I  Marseille.--L'arrivée.
@@ -71,13 +63,9 @@ XXIX  La maison Morrel.
 XXX  Le cinq septembre.
 XXXI  Italie.--Simbad le marin.
 
-
-
-
 I
 
 Marseille.--L'arrivée.
-
 
 Le 24 février 1815, la vigie de Notre-Dame de la Garde signala le
 trois-mâts le _Pharaon_, venant de Smyrne, Trieste et Naples.
@@ -559,13 +547,9 @@ comme lui le jeune marin du regard.
 Seulement, il y avait une grande différence dans l'expression de ce
 double regard qui suivait le même homme.
 
-
-
-
 II
 
 Le père et le fils.
-
 
 Laissons Danglars, aux prises avec le génie de la haine, essayer de
 souffler contre son camarade quelque maligne supposition à l'oreille de
@@ -954,13 +938,9 @@ naissant des platanes et des sycomores, dans les branches desquels une
 bande joyeuse d'oiseaux chantaient un des premiers beaux jours de
 printemps.
 
-
-
-
 III
 
 Les Catalans.
-
 
 À cent pas de l'endroit où les deux amis, les regards à l'horizon et
 l'oreille au guet, sablaient le vin pétillant de La Malgue, s'élevait,
@@ -1487,13 +1467,9 @@ mouvement d'un geste amical.
 Puis les deux amants continuèrent leur route, calmes et joyeux comme
 deux élus qui montent au ciel.
 
-
-
-
 IV
 
 Complot.
-
 
 Danglars suivit Edmond et Mercédès des yeux jusqu'à ce que les deux
 amants eussent disparu à l'un des angles du fort Saint-Nicolas; puis,
@@ -1834,13 +1810,9 @@ droite; décidément le vin est un traître.
 --Allons, allons, murmura Danglars, je crois que maintenant la chose est
 bien lancée, et qu'il n'y a plus qu'à la laisser marcher toute seule.»
 
-
-
-
 V
 
 Le repas des fiançailles.
-
 
 Le lendemain fut un beau jour. Le soleil se leva pur et brillant, et les
 premiers rayons d'un rouge pourpre diaprèrent de leurs rubis les pointes
@@ -2474,13 +2446,9 @@ Et sur ce, il sauta dans une barque en donnant l'ordre au batelier de
 le conduire à bord du _Pharaon_, où l'armateur, on se le rappelle, lui
 avait donné rendez-vous.
 
-
-
-
 VI
 
 Le substitut du procureur du roi.
-
 
 Rue du Grand-Cours, en face de la fontaine des Méduses, dans une de ces
 vieilles maisons à l'architecture aristocratique bâties par Puget, on
@@ -2946,13 +2914,9 @@ regard disait:
 Renée répondit à ce regard par son plus doux sourire, et Villefort
 sortit avec le paradis dans le coeur.
 
-
-
-
 VII
 
 L'interrogatoire.
-
 
 À peine de Villefort fut-il hors de la salle à manger qu'il quitta son
 masque joyeux pour prendre l'air grave d'un homme appelé à cette suprême
@@ -3525,13 +3489,9 @@ Et après s'être assuré que le prévenu n'était plus dans l'antichambre,
 le substitut du procureur du roi sortit à son tour, et s'achemina
 vivement vers la maison de sa fiancée.
 
-
-
-
 VIII
 
 Le château d'If.
-
 
 En traversant l'antichambre, le commissaire de police fit un signe à
 deux gendarmes, lesquels se placèrent, l'un à droite l'autre à gauche de
@@ -4090,13 +4050,9 @@ commençaient à distinguer les objets.
 Le geôlier avait raison, il s'en fallait de bien peu que Dantès ne fût
 fou.
 
-
-
-
 IX
 
 Le soir des fiançailles.
-
 
 Villefort, comme nous l'avons dit, avait repris le chemin de la place du
 Grand-Cours, et en rentrant dans la maison de Mme de Saint-Méran, il
@@ -4400,13 +4356,9 @@ Le père Dantès se mourait de douleur et d'inquiétude.
 
 Quant à Edmond, nous savons ce qu'il était devenu.
 
-
-
-
 X
 
 Le petit cabinet des Tuileries.
-
 
 Abandonnons Villefort sur la route de Paris, où, grâce aux triples
 guides qu'il paie, il brûle le chemin et pénétrons à travers les deux
@@ -4629,7 +4581,6 @@ déployées, tenant entre ses serres une proie qui essaie vainement de lui
 
 --Sire, j'écoute, dit M. de Blacas, se rongeant les poings d'impatience.
 
-
 --Je voudrais vous consulter sur ce passage: _Molli fugiens anhelitu_;
 vous savez, il s'agit du cerf qui fuit devant le loup. N'êtes-vous pas
 chasseur et grand louvetier? Comment trouvez-vous, à ce double titre, le
@@ -4825,13 +4776,9 @@ la Police, pâle, tremblant, et dont le regard vacillait, comme s'il eût
 Villefort fit un pas pour se retirer; mais un serrement de main de M. de
 Blacas le retint.
 
-
-
-
 XI
 
 L'Ogre de Corse.
-
 
 Louis XVIII, à l'aspect de ce visage bouleversé, repoussa violemment la
 table devant laquelle il se trouvait.
@@ -4839,7 +4786,6 @@ table devant laquelle il se trouvait.
 «Qu'avez-vous donc, monsieur le baron? s'écria-t-il, vous paraissez tout
 bouleversé: ce trouble, cette hésitation, ont-ils rapport à ce que
 disait M. de Blacas, et à ce que vient de me confirmer M. de Villefort?»
-
 
 De son côté, M. de Blacas s'approchait vivement du baron, mais la
 terreur du courtisan empêchait de triompher l'orgueil de l'homme d'État;
@@ -5254,13 +5200,9 @@ faire attendre ainsi.
 
 Le domestique sortit en donnant des marques visibles d'étonnement.
 
-
-
-
 XII
 
 Le père et le fils.
-
 
 M. Noirtier, car c'était en effet lui-même qui venait d'entrer, suivit
 des yeux le domestique jusqu'à ce qu'il eût refermé la porte; puis,
@@ -5606,13 +5548,9 @@ l'agitation qui régnait tout le long de la route, arriva à Marseille, en
 proie à toutes les transes qui entrent dans le coeur de l'homme avec
 l'ambition et les premiers honneurs.
 
-
-
-
 XIII
 
 Les Cent-Jours.
-
 
 M. Noirtier était un bon prophète, et les choses marchèrent vite, comme
 il l'avait dit. Chacun connaît ce retour de l'île d'Elbe, retour
@@ -6031,18 +5969,13 @@ soupir entre les bras de Mercédès.
 M. Morrel pourvut à tous les frais de son enterrement, et paya les
 pauvres petites dettes que le vieillard avait faites pendant sa maladie.
 
-
 Il y avait plus que de la bienfaisance à agir ainsi, il y avait du
 courage. Le Midi était en feu, et secourir même à son lit de mort, le
 père d'un bonapartiste aussi dangereux que Dantès était un crime.
 
-
-
-
 XIV
 
 Le prisonnier furieux et le prisonnier fou.
-
 
 Un an environ après le retour de Louis XVIII, il y eut visite de M.
 l'inspecteur général des prisons.
@@ -6281,7 +6214,6 @@ vous promettre d'examiner votre dossier.
 --Qui vous a fait arrêter? demanda l'inspecteur.
 
 --M. de Villefort, répondit Dantès. Voyez-le et entendez-vous avec lui.
-
 
 --M. de Villefort n'est plus à Marseille depuis un an, mais à Toulouse.
 
@@ -6617,13 +6549,9 @@ numéro de la chambre qu'ils occupaient, et le malheureux jeune homme
 cessa de s'appeler de son prénom d'Edmond ou de son nom de Dantès, il
 s'appela le nº 34.
 
-
-
-
 XV
 
 Le numéro 34 et le numéro 27.
-
 
 Dantès passa tous les degrés du malheur que subissent les prisonniers
 oubliés dans une prison.
@@ -7461,13 +7389,9 @@ et dont il ne pouvait mesurer la profondeur, il vit paraître une tête,
 des épaules et enfin un homme tout entier qui sortit avec assez
 d'agilité de l'excavation pratiquée.
 
-
-
-
 XVI
 
 Un savant italien.
-
 
 Dantès prit dans ses bras ce nouvel ami, si longtemps et si impatiemment
 attendu, et l'attira vers sa fenêtre, afin que le peu de jour qui
@@ -7798,7 +7722,6 @@ semblait que je servais Dieu, en délivrant une de ses créatures qui,
 --Eh bien, demanda Dantès, la chose n'en est-elle pas au même point, et
 vous êtes-vous reconnu coupable depuis que vous m'avez rencontré, dites?
 
-
 --Non, mais je ne veux pas le devenir. Jusqu'ici je croyais n'avoir
 affaire qu'aux choses, voilà que vous me proposez d'avoir affaire aux
 hommes. J'ai pu percer un mur et détruire un escalier, mais je ne
@@ -7948,13 +7871,9 @@ les yeux, je me pique les doigts et j'écris avec mon sang.
 Et il rentra dans le corridor souterrain où il disparut. Dantès le
 suivit.
 
-
-
-
 XVII
 
 La chambre de l'abbé.
-
 
 Après avoir passé en se courbant, mais cependant avec assez de facilité,
 par le passage souterrain, Dantès arriva à l'extrémité opposée du
@@ -8945,13 +8864,9 @@ chose d'important à vous dire.»
 Dantès prit la main de l'abbé, qui le rassura par un sourire, et sortit
 avec cette obéissance et ce respect qu'il avait voués à son vieil ami.
 
-
-
-
 XVIII
 
 Le trésor.
-
 
 Lorsque Dantès rentra le lendemain matin dans la chambre de son
 compagnon de captivité, il trouva Faria assis, le visage calme.
@@ -9507,13 +9422,9 @@ prisonnier qui ne pouvait être libre.»
 Et Faria tendit le bras qui lui restait au jeune homme qui se jeta à son
 cou en pleurant.
 
-
-
-
 XIX
 
 Le troisième accès.
-
 
 Maintenant que ce trésor, qui avait été si longtemps l'objet des
 méditations de l'abbé, pouvait assurer le bonheur à venir de celui que
@@ -10001,13 +9912,9 @@ Alors il souleva lentement la dalle avec sa tête, et jeta un regard
 investigateur dans la chambre. La chambre était vide: Dantès sortit de
 la galerie.
 
-
-
-
 XX
 
 Le cimetière du château d'If.
-
 
 Sur le lit, couché dans le sens de la longueur, et faiblement éclairé
 par un jour brumeux qui pénétrait à travers la fenêtre, on voyait un sac
@@ -10259,13 +10166,9 @@ boulet de trente-six attaché à ses pieds.
 
 La mer est le cimetière du château d'If.
 
-
-
-
 XXI
 
 L'île de Tiboulen.
-
 
 Dantès étourdi, presque suffoqué, eut cependant la présence d'esprit de
 retenir son haleine, et, comme sa main droite, ainsi que nous l'avons
@@ -10852,13 +10755,9 @@ Et ce serment n'était plus une vaine menace, car, à cette heure, le
 plus fin voilier de la Méditerranée n'eût certes pu rattraper la petite
 tartane qui cinglait à pleines voiles vers Livourne.
 
-
-
-
 XXII
 
 Les contrebandiers.
-
 
 Dantès n'avait point encore passé un jour à bord, qu'il avait déjà
 reconnu à qui il avait affaire. Sans avoir jamais été à l'école de
@@ -11211,13 +11110,9 @@ appareillerait le lendemain soir, et que l'on tâcherait, la mer étant
 belle et le vent favorable, de se trouver le surlendemain soir dans les
 eaux de l'île neutre.
 
-
-
-
 XXIII
 
 L'île de Monte-Cristo.
-
 
 Enfin Dantès, par un de ces bonheurs inespérés qui arrivent parfois à
 ceux sur lesquels la rigueur du sort s'est longtemps lassée, Dantès
@@ -11591,13 +11486,9 @@ remarquées sur les rochers.
 «Et maintenant, s'écria-t-il en se rappelant cette histoire du pêcheur
 arabe que lui avait racontée Faria, maintenant, Sésame, ouvre-toi!»
 
-
-
-
 XXIV
 
 Éblouissement.
-
 
 Le soleil était arrivé au tiers de sa course à peu près, et ses rayons
 de mai donnaient, chauds et vivants, sur ces rochers, qui eux-mêmes
@@ -12050,13 +11941,9 @@ Cette nuit fut à la fois une de ces nuits délicieuses et terribles,
 comme cet homme aux foudroyantes émotions en avait déjà passé deux ou
 trois dans la vie.
 
-
-
-
 XXV
 
 L'inconnu.
-
 
 Le jour vint. Dantès l'attendait depuis longtemps, les yeux ouverts. À
 ses premiers rayons, il se leva, monta, comme la veille, sur le rocher
@@ -12338,13 +12225,9 @@ Ces braves gens eussent bien voulu remercier le généreux questionneur;
 mais en les quittant on l'avait vu, après avoir donné quelques ordres à
 un marin, monter à cheval et sortir de Marseille par la porte d'Aix.
 
-
-
-
 XXVI
 
 L'auberge du pont du Gard.
-
 
 Ceux qui, comme moi, ont parcouru à pied le Midi de la France ont pu
 remarquer entre Bellegarde et Beaucaire, à moitié chemin à peu près du
@@ -12972,13 +12855,9 @@ tout sur moi.»
 
 Et il commença.
 
-
-
-
 XXVII
 
 Le récit.
-
 
 «Avant tout, dit Caderousse, je dois, monsieur, vous prier de me
 promettre une chose.
@@ -13663,13 +13542,9 @@ opposée à celle que venait de prendre l'inconnu.
 «Cinquante mille francs! murmura la Carconte, restée seule, c'est de
 l'argent... mais ce n'est pas une fortune.»
 
-
-
-
 XXVIII
 
 Les registres des prisons.
-
 
 Le lendemain du jour où s'était passée, sur la route de Bellegarde à
 Beaucaire, la scène que nous venons de raconter, un homme de trente à
@@ -14005,13 +13880,9 @@ Et il céda sa place au bureau à M. de Boville, qui s'y assit sans façon
 et s'empressa de faire le transport demandé, tandis que l'Anglais
 comptait les billets de banque sur le rebord du casier.
 
-
-
-
 XXIX
 
 La maison Morrel.
-
 
 Celui qui eût quitté Marseille quelques années auparavant, connaissant
 l'intérieur de la maison Morrel, et qui y fût entré à l'époque où nous
@@ -14691,13 +14562,9 @@ chaque main, et semblait ne pouvoir se décider à les emporter.
 
 «Venez, mon ami, lui dit-il, j'ai à vous parler.»
 
-
-
-
 XXX
 
 Le cinq septembre.
-
 
 Ce délai accordé par le mandataire de la maison Thomson et French, au
 moment où Morrel s'y attendait le moins, parut au pauvre armateur un de
@@ -15501,13 +15368,9 @@ bons... que le Dieu vengeur me cède sa place pour punir les méchants!»
 À ces mots, il fit un signal, et, comme s'il n'eût attendu que ce signal
 pour partir, le yacht prit aussitôt la mer.
 
-
-
-
 XXXI
 
 Italie.--Simbad le marin.
-
 
 Vers le commencement de l'année 1838, se trouvaient à Florence deux
 jeunes gens appartenant à la plus élégante société de Paris, l'un, le
@@ -16714,13 +16577,7 @@ inouï.
 
 FIN DU TOME PREMIER
 
-
-
-
 *** END OF THE PROJECT GUTENBERG EBOOK LE COMTE DE MONTE-CRISTO, TOME I ***
-
-
-    
 
 Updated editions will replace the previous one—the old editions will
 be renamed.
@@ -16743,7 +16600,6 @@ Gutenberg eBooks may be modified and printed and given away—you may
 do practically ANYTHING in the United States with eBooks not protected
 by U.S. copyright law. Redistribution is subject to the trademark
 license, especially commercial redistribution.
-
 
 START: FULL LICENSE
 
@@ -16825,7 +16681,7 @@ performed, viewed, copied or distributed:
     at www.gutenberg.org. If you
     are not located in the United States, you will have to check the laws
     of the country where you are located before using this eBook.
-  
+
 1.E.2. If an individual Project Gutenberg™ electronic work is
 derived from texts not protected by U.S. copyright law (does not
 contain a notice indicating that it is posted with permission of the
@@ -16887,7 +16743,7 @@ provided that:
         Gutenberg Literary Archive Foundation at the address specified in
         Section 4, “Information about donations to the Project Gutenberg
         Literary Archive Foundation.”
-    
+
     • You provide a full refund of any money paid by a user who notifies
         you in writing (or by e-mail) within 30 days of receipt that s/he
         does not agree to the terms of the full Project Gutenberg™
@@ -16895,15 +16751,14 @@ provided that:
         copies of the works possessed in a physical medium and discontinue
         all use of and all access to other copies of Project Gutenberg™
         works.
-    
+
     • You provide, in accordance with paragraph 1.F.3, a full refund of
         any money paid for a work or a replacement copy, if a defect in the
         electronic work is discovered and reported to you within 90 days of
         receipt of the work.
-    
+
     • You comply with all other terms of this agreement for free
         distribution of Project Gutenberg™ works.
-    
 
 1.E.9. If you wish to charge a fee or distribute a Project
 Gutenberg™ electronic work or group of works on different terms than
@@ -17066,5 +16921,4 @@ This website includes information about Project Gutenberg™,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
 

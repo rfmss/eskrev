@@ -1,5 +1,5 @@
 ﻿The Project Gutenberg eBook of Le Grand Meaulnes
-    
+
 This ebook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
 whatsoever. You may copy it, give it away or re-use it under the terms
@@ -21,12 +21,7 @@ Credits: Walter Debeuf, updated by Laurent Vogel (using images
         generously made available by the Bibliothèque nationale de
         France (BnF/Gallica) at http://gallica.bnf.fr)
 
-
 *** START OF THE PROJECT GUTENBERG EBOOK LE GRAND MEAULNES ***
-
-
-
-
 
   ALAIN-FOURNIER
 
@@ -40,41 +35,22 @@ Credits: Walter Debeuf, updated by Laurent Vogel (using images
 
   1913
 
-
-
-
 Tous droits de reproduction, de traduction et d'adaptations réservés
 pour tous pays
 
 _Copyright by Émile-Paul frères, 1913._
 
-
-
-
 Exemplaire tiré spécialement pour l'Auteur.
-
-
-
 
 _A ma soeur Isabelle_
 
-
-
-
 LE GRAND MEAULNES
 
-
-
-
 PREMIÈRE PARTIE
-
-
-
 
 CHAPITRE PREMIER
 
 LE PENSIONNAIRE
-
 
 Il arriva chez nous un dimanche de novembre 189...
 
@@ -312,13 +288,9 @@ Et le soir, au dîner, il y eut, à la table de famille, un compagnon
 silencieux, qui mangeait, la tête basse, sans se soucier de nos trois
 regards fixés sur lui.
 
-
-
-
 CHAPITRE II
 
 APRÈS QUATRE HEURES...
-
 
 Je n'avais guère été, jusqu'alors, courir dans les rues avec les gamins
 du bourg. Une coxalgie, dont j'ai souffert jusque vers cette année
@@ -411,13 +383,9 @@ leur voiture pour causer un instant, parfois un écolier comme nous,
 adossé à une porte, qui regardait sans rien dire. Et c'est là que tout
 commença, environ huit jours avant Noël.
 
-
-
-
 CHAPITRE III
 
 «JE FRÉQUENTAIS LA BOUTIQUE D'UN VANNIER»
-
 
 La pluie était tombée tout le jour, pour ne cesser qu'au soir. La
 journée avait été mortellement ennuyeuse. Aux récréations, personne ne
@@ -576,13 +544,9 @@ boutique d'un vannier»...
 
 Et j'y ai souvent repensé depuis.
 
-
-
-
 CHAPITRE IV
 
 L'ÉVASION
-
 
 A une heure de l'après-midi, le lendemain, la classe du Cours supérieur
 est claire, au milieu du paysage gelé, comme une barque sur l'Océan. On
@@ -719,13 +683,9 @@ Dans la rue du bourg, les gens commencent à s'attrouper. Le paysan est
 toujours là, immobile, entêté, son chapeau à la main, comme quelqu'un
 qui demande justice.
 
-
-
-
 CHAPITRE V
 
 LA VOITURE QUI REVIENT
-
 
 Lorsque j'eus ramené de La Gare les grands-parents, lorsqu'après le
 dîner, assis devant la haute cheminée, ils commencèrent à raconter par
@@ -853,13 +813,9 @@ jours. Je vois encore mon père rentrant de la ferme vers onze heures, sa
 moustache mouillée par la nuit, discutant avec Millie d'une voix très
 basse, angoissée et colère...
 
-
-
-
 CHAPITRE VI
 
 ON FRAPPE AU CARREAU
-
 
 Le quatrième jour fut un des plus froids de cet hiver-là. De grand
 matin, les premiers arrivés dans la cour se réchauffaient en glissant
@@ -1048,13 +1004,9 @@ silence déjà grand.
 Puis, haussant les épaules, la tête dans les mains, il se mit à
 apprendre ses leçons.
 
-
-
-
 CHAPITRE VII
 
 LE GILET DE SOIE
-
 
 Notre chambre était, comme je l'ai dit, une grande mansarde. A moitié
 mansarde, à moitié chambre. Il y avait des fenêtres aux autres logis
@@ -1253,13 +1205,9 @@ penchée, ses bras croisés et ses genoux. Puis il aspira l'air fortement,
 comme quelqu'un qui a eu gros coeur longtemps et qui va enfin confier
 son secret...
 
-
-
-
 CHAPITRE VIII
 
 L'AVENTURE
-
 
 Mon compagnon ne me conta pas cette nuit-là tout ce qui lui était arrivé
 sur la route. Et même lorsqu'il se fut décidé à me tout confier, durant
@@ -1365,13 +1313,9 @@ la salle à manger de Sainte-Agathe, où nous devions, à cette heure, être
 tous réunis. Puis la colère le prit; puis l'orgueil et la joie profonde
 de s'être ainsi évadé, sans avoir voulu...
 
-
-
-
 CHAPITRE IX
 
 UNE HALTE
-
 
 Soudain, la jument ralentit son allure, comme si son pied avait buté
 dans l'ombre; Meaulnes vit sa tête plonger et se relever par deux fois;
@@ -1509,13 +1453,9 @@ sur le point de demander au brave homme de l'accompagner. Il hésita une
 seconde sur le seuil et si grande était son indécision qu'il faillit
 chanceler. Puis il sortit dans la cour obscure.
 
-
-
-
 CHAPITRE X
 
 LA BERGERIE
-
 
 Pour s'y reconnaître, il grimpa sur le talus d'où il avait sauté.
 
@@ -1602,13 +1542,9 @@ force de se glisser hors de son lit pour marcher dans cette demeure
 enchantée. Il s'était rendormi... Mais la prochaine fois, il jurait bien
 de se lever. Demain matin, peut-être!...
 
-
-
-
 CHAPITRE XI
 
 LE DOMAINE MYSTÉRIEUX
-
 
 Dès le petit jour, il se reprit à marcher. Mais son genou enflé lui
 faisait mal; il lui fallait s'arrêter et s'asseoir à chaque moment tant
@@ -1761,13 +1697,9 @@ qui donnait sur le jardin, il l'écoutait jusqu'à la nuit...
 Mais laissant sa question sans réponse, harassé de fatigue, il ne tarda
 pas à s'endormir...
 
-
-
-
 CHAPITRE XII
 
 LA CHAMBRE DE WELLINGTON
-
 
 Il faisait nuit, lorsqu'il s'éveilla. Transi de froid, il se tourna et
 retourna sur sa couche, fripant et roulant sous lui sa blouse noire. Une
@@ -1862,13 +1794,9 @@ Il ajouta, sur le ton d'un boniment forain, avec une dernière révérence:
 --Notre camarade Maloyau, attaché aux cuisines, vous présentera le
 personnage d'Arlequin, et votre serviteur, celui du grand Pierrot.
 
-
-
-
 CHAPITRE XIII
 
 LA FÊTE ÉTRANGE
-
 
 Dès qu'ils eurent disparu l'écolier sortit de sa cachette. Il avait les
 pieds glacés, les articulations raides; mais il était reposé et son
@@ -1996,13 +1924,9 @@ planches, en guise de table, ont été posées sur des tréteaux; on a
 étendu des nappes blanches, et des gens de toutes sortes dînent avec
 cérémonie.
 
-
-
-
 CHAPITRE XIV
 
 LA FÊTE ÉTRANGE _(suite)_
-
 
 C'était, dans une grande salle au plafond bas, un repas comme ceux que
 l'on offre, la veille des noces de campagne, aux parents qui sont venus
@@ -2168,13 +2092,9 @@ comme son rêve de jadis. Il put imaginer longuement qu'il était dans sa
 propre maison, marié, un beau soir, et que cet être charmant et inconnu
 qui jouait du piano, près de lui, c'était sa femme...
 
-
-
-
 CHAPITRE XV
 
 LA RENCONTRE
-
 
 Le lendemain matin, Meaulnes fut prêt un des premiers. Comme on le lui
 avait conseillé, il revêtit un simple costume noir, de mode passée, une
@@ -2454,13 +2374,9 @@ de retour. On hésita un instant; on se concerta avec embarras. Enfin,
 par groupes, on regagna les appartements, pour attendre, dans
 l'inquiétude et le silence, le retour des fiancés.
 
-
-
-
 CHAPITRE XVI
 
 FRANTZ DE GALAIS
-
 
 La course avait fini trop tôt. Il était quatre heures et demie et il
 faisait jour encore, lorsque Meaulnes se retrouva dans sa chambre, la
@@ -2651,13 +2567,9 @@ palpitait, revivait... Et c'est ainsi qu'il quitta, refermant
 soigneusement la porte, ce mystérieux endroit qu'il ne devait sans doute
 jamais revoir.
 
-
-
-
 CHAPITRE XVII
 
 LA FÊTE ÉTRANGE _(fin)_
-
 
 Déjà, dans la nuit, une file de voitures roulait lentement vers la
 grille du bois. En tête, un homme revêtu d'une peau de chèvre, une
@@ -2793,18 +2705,11 @@ vieille berline quittait le gravier de la route et s'éloignait, cahotant
 en silence, sur l'herbe de la traverse. On ne voyait plus que le chapeau
 du conducteur, dansant au-dessus des clôtures...
 
-
-
-
 DEUXIÈME PARTIE
-
-
-
 
 CHAPITRE PREMIER
 
 LE GRAND JEU
-
 
 Le grand vent et le froid, la pluie ou la neige, l'impossibilité où nous
 étions de mener à bien de longues recherches nous empêchèrent, Meaulnes
@@ -2974,13 +2879,9 @@ déclara:
 --Allez-y si vous voulez. Mais fermez la porte et prenez la clef. Moi,
 je vais me coucher. Je laisserai la lampe allumée.
 
-
-
-
 CHAPITRE II
 
 NOUS TOMBONS DANS UNE EMBUSCADE
-
 
 Nous partîmes sur la neige, dans un silence absolu. Meaulnes marchait en
 avant, projetant la lueur en éventail de sa lanterne grillagée... A
@@ -3117,13 +3018,9 @@ nous avait laissée, nous restâmes longtemps à rafistoler nos blouses
 décousues, discutant à voix basse sur ce qui nous était arrivé, comme
 deux compagnons d'armes le soir d'une bataille perdue...
 
-
-
-
 CHAPITRE III
 
 LE BOHÉMIEN A L'ÉCOLE
-
 
 Le réveil du lendemain fut pénible. A huit heures et demie, à l'instant
 où M. Seurel allait donner le signal d'entrer, nous arrivâmes tout
@@ -3338,13 +3235,9 @@ Personne ne lui demanda qui était Ganache. Mais moi je pensai au grand
 diable qui, traîtreusement, la veille au soir, avait attaqué Meaulnes
 par derrière et l'avait renversé...
 
-
-
-
 CHAPITRE IV
 
 OÙ IL EST QUESTION DU DOMAINE MYSTÉRIEUX
-
 
 L'après-midi ramena les mêmes plaisirs et, tout le long du cours, le
 même désordre et la même fraude. Le bohémien avait apporté d'autres
@@ -3541,13 +3434,9 @@ répétâmes à mi-voix. Puis il courut, dans l'ombre, rejoindre son
 compagnon à la grille, nous laissant dans un état de trouble
 inexprimable.
 
-
-
-
 CHAPITRE V
 
 L'HOMME AUX ESPADRILLES
-
 
 Cette nuit-là, vers trois heures du matin, la veuve Delouche,
 l'aubergiste, qui habitait dans le milieu du bourg, se leva pour allumer
@@ -3671,13 +3560,9 @@ et de fièvre, nous restions là, sans oser approcher de l'humble bicoque,
 qui nous paraissait être le mystérieux passage et l'anti-chambre du Pays
 dont nous avions perdu le chemin.
 
-
-
-
 CHAPITRE VI
 
 UNE DISPUTE DANS LA COULISSE
-
 
 Tant d'anxiétés et de troubles divers, durant ces jours passés, nous
 avaient empêchés de prendre garde que mars était venu et que le vent
@@ -3801,13 +3686,9 @@ voix basse; et les gamins des hauts gradins commencèrent à crier:
 
 et à frapper du pied.
 
-
-
-
 CHAPITRE VII
 
 LE BOHÉMIEN ENLÈVE SON BANDEAU
-
 
 Enfin glissa lentement, entre les rideaux, la face--sillonnée de rides,
 tout écarquillée tantôt par la gaieté tantôt par la détresse, et semée
@@ -3893,13 +3774,9 @@ clos déjà. Déjà sans doute, dans la voiture à rideaux, comme dans celle
 du poney, de la chèvre et des oiseaux savants, tout le monde était
 rentré et commençait à dormir.
 
-
-
-
 CHAPITRE VIII
 
 LES GENDARMES!
-
 
 Il nous fallut rejoindre la troupe de messieurs et de dames qui
 revenaient vers le Cours Supérieur, par les rues obscures. Cette fois
@@ -3971,13 +3848,9 @@ fois dévaliser les basses-cours et quérir la bonne soeur pour la fièvre
 de son ami? Mais n'était-ce pas là toute l'histoire du pauvre diable?
 Voleur et chemineau d'un côté, bonne créature de l'autre...
 
-
-
-
 CHAPITRE IX
 
 A LA RECHERCHE DU SENTIER PERDU
-
 
 Comme nous rentrions, le soleil dissipait la légère brume du matin; les
 ménagères sur le seuil des maisons secouaient leurs tapis ou
@@ -4225,13 +4098,9 @@ après un long instant de réflexion, comme s'il venait de prendre une
 décision importante, il écrivit une lettre à sa mère. Et c'est tout ce
 que je me rappelle de cette morne fin d'un grand jour de défaite.
 
-
-
-
 CHAPITRE X
 
 LA LESSIVE
-
 
 Nous avions escompté trop tôt la venue du printemps.
 
@@ -4356,13 +4225,9 @@ je me trouvai, pour la première fois depuis de longs mois, seul en face
 d'une longue soirée de jeudi--avec l'impression que, dans cette vieille
 voiture, mon adolescence venait de s'en aller pour toujours.
 
-
-
-
 CHAPITRE XI
 
 JE TRAHIS...
-
 
 Que faire?
 
@@ -4510,13 +4375,9 @@ première fois, le craquement du lit voisin, où Meaulnes avait coutume de
 se retourner brusquement d'une seule pièce, et, l'autre fois, son pas
 léger de chasseur aux aguets, à travers les greniers du fond...
 
-
-
-
 CHAPITRE XII
 
 LES TROIS LETTRES DE MEAULNES
-
 
 De toute ma vie je n'ai reçu que trois lettres de Meaulnes. Elles ont
 encore chez moi dans un tiroir de commode. Je retrouve chaque fois que
@@ -4670,18 +4531,11 @@ d'aventures de l'an passé, brouillant toute piste, effaçant les
 dernières traces. Et je m'efforçai, comme Meaulnes me l'avait demandé
 dans sa lettre, de tout oublier.
 
-
-
-
 TROISIÈME PARTIE
-
-
-
 
 CHAPITRE PREMIER
 
 LA BAIGNADE
-
 
 Fumer la cigarette, se mettre de l'eau sucrée sur les cheveux pour
 qu'ils frisent, embrasser les filles du Cours Complémentaire dans les
@@ -4856,13 +4710,9 @@ que devant moi, loin de Meaulnes, loin de tout espoir, venait de
 s'ouvrir, net et facile comme une route familière, le chemin du Domaine
 sans nom.
 
-
-
-
 CHAPITRE II
 
 CHEZ FLORENTIN
-
 
 Autant j'avais été un enfant malheureux et rêveur et fermé, autant je
 devins résolu et, comme on dit chez nous, «décidé» lorsque je sentis que
@@ -5168,13 +5018,9 @@ déjeuner à Sainte-Agathe pour expliquer mon absence prolongée et,
 poursuivant ma course, je devais arriver avant le soir à la
 Ferté-d'Angillon, chez mon ami Augustin Meaulnes.
 
-
-
-
 CHAPITRE III
 
 UNE APPARITION
-
 
 Je n'avais jamais fait de longue course à bicyclette. Celle-ci était la
 première. Mais, depuis longtemps, malgré mon mauvais genou, en cachette,
@@ -5430,13 +5276,9 @@ t'intéresse guère. Je te parle là de gens que tu n'as pas connus...
 
 Et lâchement, cette fois, je ne répondis pas.
 
-
-
-
 CHAPITRE IV
 
 LA GRANDE NOUVELLE
-
 
 Il faisait, le lendemain matin, quand j'arrivai dans la grand'rue, un si
 beau temps de vacances, un si grand calme, et sur tout le bourg
@@ -5639,13 +5481,9 @@ voisine, où sa mère avait préparé ses bagages, je l'entendis qui lui
 disait, en baissant un peu la voix, de ne pas défaire sa malle,--car son
 voyage pouvait être seulement retardé...
 
-
-
-
 CHAPITRE V
 
 LA PARTIE DE PLAISIR
-
 
 J'eus peine à suivre Augustin sur la route du Vieux-Nançay. Il allait
 comme un coureur de bicyclette. Il ne descendait pas aux côtes. A son
@@ -5845,13 +5683,9 @@ avec une décision et une gravité surprenantes:
 
 Et elle lui tendit la main.
 
-
-
-
 CHAPITRE VI
 
 LA PARTIE DE PLAISIR _(fin)_
-
 
 De nouveaux venus s'approchèrent presque aussitôt pour saluer Yvonne de
 Galais, et les deux jeunes gens se trouvèrent séparés. Un malheureux
@@ -6112,13 +5946,9 @@ branches, la conversation mystérieuse des beaux enfants inconnus...
 Et c'est ce soir-là, avec des sanglots, qu'il demanda en mariage Mlle de
 Galais.
 
-
-
-
 CHAPITRE VII
 
 LE JOUR DES NOCES
-
 
 C'est un jeudi, au commencement de février, un beau jeudi soir glacé, où
 le grand vent souffle. Il est trois heures et demie, quatre heures...
@@ -6212,13 +6042,9 @@ comme par l'embrun de la mer, je sens qu'on me touche l'épaule:
 Je le regarde. Il me fait signe de ne pas bouger; et, lui-même, la tête
 inclinée, le sourcil froncé, il écoute...
 
-
-
-
 CHAPITRE VIII
 
 L'APPEL DE FRANTZ
-
 
 --Hou-ou!
 
@@ -6388,13 +6214,9 @@ J'appelai Jasmin et nous allâmes reprendre notre faction. Mais presque
 aussitôt, nous aperçûmes, là-bas, Augustin qui fermait les volets de la
 maison et nous fûmes frappés par l'étrangeté de son allure.
 
-
-
-
 CHAPITRE IX
 
 LES GENS HEUREUX
-
 
 Plus tard, j'ai su par le menu détail tout ce qui s'était passé
 là-bas...
@@ -6580,13 +6402,9 @@ soir d'hiver qui leur fouettait le visage,--lui, l'aidant de la main aux
 passages difficiles; elle, souriant et se hâtant,--vers leur demeure
 pour un instant abandonnée.
 
-
-
-
 CHAPITRE X
 
 LA «MAISON DE FRANTZ»
-
 
 Mal rassuré, en proie à une sourde inquiétude, que l'heureux dénouement
 du tumulte de la veille n'avait pas suffi à dissiper, il me fallut
@@ -6795,13 +6613,9 @@ campagnards d'alentour, dont les cris et les rires, dans le site
 solitaire, faisaient paraître plus déserte et plus vide encore la petite
 maison abandonnée.
 
-
-
-
 CHAPITRE XI
 
 CONVERSATION SOUS LA PLUIE
-
 
 Le mois d'août, époque des vacances, m'éloigna des Sablonnières et de la
 jeune femme. Je dus aller passer à Sainte-Agathe mes deux mois de congé.
@@ -6988,13 +6802,9 @@ la jeune femme; et moi, repris par mon vieil enthousiasme, je lui
 parlais sans me lasser, avec une amitié profonde, de celui qui nous
 avait abandonnés...
 
-
-
-
 CHAPITRE XII
 
 LE FARDEAU
-
 
 La classe devait commencer le lundi. Le samedi soir, vers cinq heures,
 une femme du Domaine entra dans la cour de l'école où j'étais occupé à
@@ -7230,13 +7040,9 @@ de mort, ce poids sur le coeur, c'est tout ce qui reste pour moi de la
 grande aventure, et de vous, Yvonne de Galais, jeune femme tant
 cherchée--tant aimée...
 
-
-
-
 CHAPITRE XIII
 
 LE CAHIER DE DEVOIRS MENSUELS
-
 
 Dans la maison pleine de tristes souvenirs, où des femmes, tout le jour,
 berçaient et consolaient un tout petit enfant malade, le vieux M. de
@@ -7314,13 +7120,9 @@ brusque jetait aux vitres une averse glacée. Et c'est devant cette
 fenêtre, auprès du feu, que je lus ces lignes qui m'expliquèrent tant de
 choses et dont voici la copie très exacte...
 
-
-
-
 CHAPITRE XIV
 
 LE SECRET
-
 
 Je suis passé une fois encore sous la fenêtre. La vitre est toujours
 poussiéreuse et blanchie par le double rideau qui est derrière. Yvonne
@@ -7555,13 +7357,9 @@ sur la trace de son amour perdu, il avait dû, sans doute, plusieurs fois
 disparaître; et, dans ces lettres, avec un embarras tragique, il
 cherchait à se justifier devant Valentine.
 
-
-
-
 CHAPITRE XV
 
 LE SECRET _(suite)_
-
 
 Puis le journal reprenait.
 
@@ -7792,13 +7590,9 @@ demander une réconciliation, devant celle qu'il avait chassée.
 Les quatre dernières pages, que j'ai pu reconstituer racontaient ce
 voyage et cette dernière faute...
 
-
-
-
 CHAPITRE XVI
 
 LE SECRET _(fin)_
-
 
 25 août.--De l'autre côté de Bourges, à l'extrémité des nouveaux
 faubourgs, il découvrit, après avoir longtemps cherché, la maison de
@@ -7943,11 +7737,7 @@ ami François Seurel».
 Il avait dû glisser le cahier en hâte sous les autres, refermer à clef
 son ancienne petite malle d'étudiant, et disparaître.
 
-
-
-
 ÉPILOGUE
-
 
 Le temps passa. Je perdais l'espoir de revoir jamais mon compagnon, et
 de mornes jours s'écoulaient dans l'école paysanne, de tristes jours
@@ -8077,14 +7867,9 @@ que m'eût laissée le grand Meaulnes, je sentais bien qu'il était revenu
 pour me la prendre. Et déjà je l'imaginais, la nuit, enveloppant sa
 fille dans un manteau, et partant avec elle pour de nouvelles aventures.
 
-
 FIN
 
-
-
-
 TABLE DES MATIÈRES
-
 
 PREMIÈRE PARTIE
 
@@ -8141,14 +7926,9 @@ TROISIÈME PARTIE
   XVI.--Le Secret (fin).                               351
   Épilogue.                                            358
 
-
 IMPRIMERIE CHAIX, RUE BERGÈRE, 20, PARIS.--15822-9-13.
 
-
-
-
 EN VENTE A LA MÊME LIBRAIRIE
-
 
   Maurice BARRÈS
   DE L'ACADÉMIE FRANÇAISE
@@ -8167,16 +7947,9 @@ EN VENTE A LA MÊME LIBRAIRIE
     L'ORDINATION
     Un volume in-18      Prix: 3 fr. 50 c.
 
-
 PARIS.--IMPRIMERIE CHAIX, RUE BERGÈRE.--15824-10-13.
 
-
-
-
 *** END OF THE PROJECT GUTENBERG EBOOK LE GRAND MEAULNES ***
-
-
-    
 
 Updated editions will replace the previous one—the old editions will
 be renamed.
@@ -8199,7 +7972,6 @@ Gutenberg eBooks may be modified and printed and given away—you may
 do practically ANYTHING in the United States with eBooks not protected
 by U.S. copyright law. Redistribution is subject to the trademark
 license, especially commercial redistribution.
-
 
 START: FULL LICENSE
 
@@ -8281,7 +8053,7 @@ performed, viewed, copied or distributed:
     at www.gutenberg.org. If you
     are not located in the United States, you will have to check the laws
     of the country where you are located before using this eBook.
-  
+
 1.E.2. If an individual Project Gutenberg™ electronic work is
 derived from texts not protected by U.S. copyright law (does not
 contain a notice indicating that it is posted with permission of the
@@ -8343,7 +8115,7 @@ provided that:
         Gutenberg Literary Archive Foundation at the address specified in
         Section 4, “Information about donations to the Project Gutenberg
         Literary Archive Foundation.”
-    
+
     • You provide a full refund of any money paid by a user who notifies
         you in writing (or by e-mail) within 30 days of receipt that s/he
         does not agree to the terms of the full Project Gutenberg™
@@ -8351,15 +8123,14 @@ provided that:
         copies of the works possessed in a physical medium and discontinue
         all use of and all access to other copies of Project Gutenberg™
         works.
-    
+
     • You provide, in accordance with paragraph 1.F.3, a full refund of
         any money paid for a work or a replacement copy, if a defect in the
         electronic work is discovered and reported to you within 90 days of
         receipt of the work.
-    
+
     • You comply with all other terms of this agreement for free
         distribution of Project Gutenberg™ works.
-    
 
 1.E.9. If you wish to charge a fee or distribute a Project
 Gutenberg™ electronic work or group of works on different terms than
@@ -8522,5 +8293,4 @@ This website includes information about Project Gutenberg™,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
 

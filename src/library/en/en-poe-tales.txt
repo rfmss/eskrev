@@ -1,5 +1,5 @@
 ﻿The Project Gutenberg eBook of The Works of Edgar Allan Poe — Volume 1
-    
+
 This ebook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
 whatsoever. You may copy it, give it away or re-use it under the terms
@@ -22,18 +22,13 @@ Language: English
 
 Credits: David Widger and Carlo Traverso
 
-
 *** START OF THE PROJECT GUTENBERG EBOOK THE WORKS OF EDGAR ALLAN POE — VOLUME 1 ***
-
-
-
 
 The Works of Edgar Allan Poe
 
 by Edgar Allan Poe
 
 The Raven Edition
-
 
 Contents
 
@@ -48,9 +43,6 @@ Contents
  THE BALLOON-HOAX
  MS. FOUND IN A BOTTLE
  THE OVAL PORTRAIT
-
-
-
 
 EDGAR ALLAN POE
 AN APPRECIATION
@@ -320,11 +312,7 @@ AN APPRECIATION
 
 W. H. R.
 
-
-
-
 EDGAR ALLAN POE
-
 
 By James Russell Lowell
 
@@ -658,11 +646,7 @@ On the harmony there?
       that which could only be done once with success or safety, and
       the imitation or repetition of which would produce weariness.
 
-
-
-
 DEATH OF EDGAR A. POE
-
 
 By N. P. Willis
 
@@ -996,11 +980,7 @@ Till the dirges of his Hope that melancholy burden bore
       the remainder of her life, we will joyfully place it in her
       hands.
 
-
-
-
 THE UNPARALLELED ADVENTURES OF ONE HANS PFAAL (*1)
-
 
       By late accounts from Rotterdam, that city seems to be in a high
       state of philosophical excitement. Indeed, phenomena have there
@@ -3111,11 +3091,7 @@ have since forgotten.”
       encompassing the moon wherein the rays of the stars are
       refracted.
 
-
-
-
 THE GOLD-BUG
-
 
 What ho! what ho! this fellow is dancing mad!
 He hath been bitten by the Tarantula.
@@ -4701,11 +4677,7 @@ _—All in the Wrong._
       sufficient, while his coadjutors were busy in the pit; perhaps it
       required a dozen—who shall tell?”
 
-
-
-
 FOUR BEASTS IN ONE—THE HOMO-CAMELEOPARD
-
 
 Chacun a ses vertus.
 
@@ -5040,11 +5012,7 @@ Footnotes—Four Beasts
       war, having slain, with his own hand, nine hundred and fifty of
       the enemy.
 
-
-
-
 THE MURDERS IN THE RUE MORGUE
-
 
   What song the Syrens sang, or what name Achilles assumed when he hid
   himself among women, although puzzling questions, are not beyond
@@ -6486,11 +6454,7 @@ THE MURDERS IN THE RUE MORGUE
 
       (*) Rousseau—Nouvelle Heloïse.
 
-
-
-
 THE MYSTERY OF MARIE ROGET.(*1)
-
 
       A SEQUEL TO “THE MURDERS IN THE RUE MORGUE.”
 
@@ -8507,11 +8471,7 @@ FOOTNOTES—Marie Rogêt
       (*23) Of the Magazine in which the article was originally
       published.
 
-
-
-
 THE BALLOON-HOAX
-
 
 [Astounding News by Express, _via_ Norfolk!—The Atlantic crossed in
 Three Days!  Signal Triumph of Mr. Monck Mason’s Flying
@@ -9032,11 +8992,7 @@ Seventy-five Hours from Land to Land!  Full Particulars of the Voyage!
       and hypothenuse disappears—when the earth’s real convexity must
       become apparent.
 
-
-
-
 MS. FOUND IN A BOTTLE
-
 
 Qui n’a plus qu’un moment a vivre
 N’a plus rien a dissimuler.
@@ -9275,7 +9231,6 @@ N’a plus rien a dissimuler.
       childhood, and the solemn dignity of a God. He at length went on
       deck, and I saw him no more.
 
-
       A feeling, for which I have no name, has taken possession of my
       soul —a sensation which will admit of no analysis, to which the
       lessons of bygone times are inadequate, and for which I fear
@@ -9285,7 +9240,6 @@ N’a plus rien a dissimuler.
       conceptions. Yet it is not wonderful that these conceptions are
       indefinite, since they have their origin in sources so utterly
       novel. A new sense—a new entity is added to my soul.
-
 
       It is long since I first trod the deck of this terrible ship, and
       the rays of my destiny are, I think, gathering to a focus.
@@ -9300,7 +9254,6 @@ N’a plus rien a dissimuler.
       world, but I will not fall to make the endeavour. At the last
       moment I will enclose the MS. in a bottle, and cast it within the
       sea.
-
 
       An incident has occurred which has given me new room for
       meditation. Are such things the operation of ungoverned chance? I
@@ -9324,7 +9277,6 @@ N’a plus rien a dissimuler.
       always mixed up with such indistinct shadows of recollection, an
       unaccountable memory of old foreign chronicles and ages long ago.
 
-
       I have been looking at the timbers of the ship. She is built of a
       material to which I am a stranger. There is a peculiar character
       about the wood which strikes me as rendering it unfit for the
@@ -9343,7 +9295,6 @@ N’a plus rien a dissimuler.
       ship itself will grow in bulk like the living body of the
       seaman.”
 
-
       About an hour ago, I made bold to thrust myself among a group of
       the crew. They paid me no manner of attention, and, although I
       stood in the very midst of them all, seemed utterly unconscious
@@ -9356,7 +9307,6 @@ N’a plus rien a dissimuler.
       in the tempest. Around them, on every part of the deck, lay
       scattered mathematical instruments of the most quaint and
       obsolete construction.
-
 
       I mentioned some time ago the bending of a studding-sail. From
       that period the ship, being thrown dead off the wind, has
@@ -9378,7 +9328,6 @@ N’a plus rien a dissimuler.
       natural cause which can account for such effect. I must suppose
       the ship to be within the influence of some strong current, or
       impetuous under-tow.
-
 
       I have seen the captain face to face, and in his own cabin—but,
       as I expected, he paid me no attention. Although in his
@@ -9405,7 +9354,6 @@ N’a plus rien a dissimuler.
       and although the speaker was close at my elbow, his voice seemed
       to reach my ears from the distance of a mile.
 
-
       The ship and all in it are imbued with the spirit of Eld. The
       crew glide to and fro like the ghosts of buried centuries; their
       eyes have an eager and uneasy meaning; and when their fingers
@@ -9414,7 +9362,6 @@ N’a plus rien a dissimuler.
       life a dealer in antiquities, and have imbibed the shadows of
       fallen columns at Balbec, and Tadmor, and Persepolis, until my
       very soul has become a ruin.
-
 
       When I look around me I feel ashamed of my former apprehensions.
       If I trembled at the blast which has hitherto attended us, shall
@@ -9426,12 +9373,10 @@ N’a plus rien a dissimuler.
       and at intervals, stupendous ramparts of ice, towering away into
       the desolate sky, and looking like the walls of the universe.
 
-
       As I imagined, the ship proves to be in a current—if that
       appellation can properly be given to a tide which, howling and
       shrieking by the white ice, thunders on to the southward with a
       velocity like the headlong dashing of a cataract.
-
 
       To conceive the horror of my sensations is, I presume, utterly
       impossible; yet a curiosity to penetrate the mysteries of these
@@ -9442,7 +9387,6 @@ N’a plus rien a dissimuler.
       Perhaps this current leads us to the southern pole itself. It
       must be confessed that a supposition apparently so wild has every
       probability in its favor.
-
 
       The crew pace the deck with unquiet and tremulous step; but there
       is upon their countenances an expression more of the eagerness of
@@ -9468,11 +9412,7 @@ N’a plus rien a dissimuler.
       itself being represented by a black rock, towering to a
       prodigious height.
 
-
-
-
 THE OVAL PORTRAIT
-
 
       The château into which my valet had ventured to make forcible
       entrance, rather than permit me, in my desperately wounded
@@ -9596,13 +9536,7 @@ THE OVAL PORTRAIT
       Life itself!’ turned suddenly to regard his beloved:—She was
       dead!”
 
-
-
-
 *** END OF THE PROJECT GUTENBERG EBOOK THE WORKS OF EDGAR ALLAN POE — VOLUME 1 ***
-
-
-    
 
 Updated editions will replace the previous one—the old editions will
 be renamed.
@@ -9625,7 +9559,6 @@ Gutenberg eBooks may be modified and printed and given away—you may
 do practically ANYTHING in the United States with eBooks not protected
 by U.S. copyright law. Redistribution is subject to the trademark
 license, especially commercial redistribution.
-
 
 START: FULL LICENSE
 
@@ -9707,7 +9640,7 @@ performed, viewed, copied or distributed:
     at www.gutenberg.org. If you
     are not located in the United States, you will have to check the laws
     of the country where you are located before using this eBook.
-  
+
 1.E.2. If an individual Project Gutenberg™ electronic work is
 derived from texts not protected by U.S. copyright law (does not
 contain a notice indicating that it is posted with permission of the
@@ -9769,7 +9702,7 @@ provided that:
         Gutenberg Literary Archive Foundation at the address specified in
         Section 4, “Information about donations to the Project Gutenberg
         Literary Archive Foundation.”
-    
+
     • You provide a full refund of any money paid by a user who notifies
         you in writing (or by e-mail) within 30 days of receipt that s/he
         does not agree to the terms of the full Project Gutenberg™
@@ -9777,15 +9710,14 @@ provided that:
         copies of the works possessed in a physical medium and discontinue
         all use of and all access to other copies of Project Gutenberg™
         works.
-    
+
     • You provide, in accordance with paragraph 1.F.3, a full refund of
         any money paid for a work or a replacement copy, if a defect in the
         electronic work is discovered and reported to you within 90 days of
         receipt of the work.
-    
+
     • You comply with all other terms of this agreement for free
         distribution of Project Gutenberg™ works.
-    
 
 1.E.9. If you wish to charge a fee or distribute a Project
 Gutenberg™ electronic work or group of works on different terms than
@@ -9948,5 +9880,4 @@ This website includes information about Project Gutenberg™,
 including how to make donations to the Project Gutenberg Literary
 Archive Foundation, how to help produce our new eBooks, and how to
 subscribe to our email newsletter to hear about new eBooks.
-
 
