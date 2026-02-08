@@ -137,6 +137,11 @@ export function buildSkrvPayload(store) {
           : 0
       }
     },
+    TRACE: {
+      note: "Registro tecnico do processo (nao visivel ao leitor).",
+      birth: birth ? { ...birth } : null,
+      process: process ? { ...process } : null
+    },
     content: {
       encoding: "utf-8",
       text: masterText

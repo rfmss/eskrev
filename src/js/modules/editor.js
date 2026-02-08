@@ -539,7 +539,7 @@ export const editorFeatures = {
         const shouldProtectChapterMarker = this.shouldProtectChapterMarker.bind(this);
         this.editor.addEventListener("keydown", (e) => {
             if (e.key === "Backspace") this.playSound('backspace');
-            if (e.key === "Backspace" && shouldProtectChapterMarker()) {
+            if (e.key === "Backspace" && this.shouldProtectChapterMarker()) {
                 e.preventDefault();
                 return;
             }
