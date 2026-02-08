@@ -4000,9 +4000,17 @@ kbd {
 .onboarding-step.animate .onboard-donate {
     animation: onboardDonateIntro 1.2s ease-out forwards;
 }
+@keyframes onboardLogoIntro {
+    0% { opacity: 0; transform: translateY(6px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
 @keyframes onboardDonateIntro {
     0% { opacity: 0; transform: translateY(6px); }
     100% { opacity: 1; transform: translateY(0); }
+}
+.onboard-logo {
+    opacity: 0;
+    transform: translateY(6px);
 }
 .onboard-logo-tagline {
     margin: 6px 0 0;
@@ -4049,7 +4057,7 @@ kbd {
     opacity: 1;
 }
 .onboarding-step.animate .onboarding-art .onboard-logo {
-    animation: none;
+    animation: onboardLogoIntro 1.2s ease-out forwards;
 }
 .onboarding-step.animate .onboarding-art .onboard-logo path {
     animation: none;
