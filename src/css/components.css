@@ -4318,6 +4318,26 @@ body.mobile-lite .mobile-quick-actions {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
+body.mobile-lite .mobile-donate {
+    display: block;
+}
+body.mobile-lite .mobile-donate .support-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--color-accent);
+    cursor: pointer;
+    text-transform: lowercase;
+}
+body.mobile-lite .mobile-donate .support-item:hover {
+    color: var(--color-text);
+}
+body.mobile-lite .mobile-donate {
+    margin: 6px 0 8px;
+    font-size: 11px;
+    color: var(--color-muted);
+    text-align: center;
+}
 body.mobile-lite .mobile-views,
 body.mobile-lite #mobileFilesSection,
 body.mobile-lite #mobileFoldersList,
