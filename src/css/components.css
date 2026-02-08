@@ -678,6 +678,9 @@ body.mobile-lite .guide-rail {
     text-transform: uppercase;
     opacity: 0.9;
 }
+.logo-area .logo-dot {
+    display: none;
+}
 .logo-area:hover .marquee-content { opacity: 1; animation: none; }
 @keyframes signalPulse { 0%, 70%, 100% { opacity: 0; } 75%, 85% { opacity: 0.6; } }
 
@@ -4184,6 +4187,13 @@ kbd {
     opacity: 0;
     transform: translateY(6px);
     transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.onboard-donate--mini {
+    margin: 0 0 12px;
+}
+.onboard-donate--mini .marquee-container {
+    max-width: 420px;
+    font-size: 10px;
 }
 .onboard-donate .marquee-container {
     max-width: 520px;
