@@ -35,6 +35,8 @@ export const editorFeatures = {
     ptLexiconChunks: [],
     ptLexiconChunksLoaded: 0,
     ptLexiconStatusEl: null,
+    ptPosLexiconReady: false,
+    ptPosLexiconLoading: false,
     xrayAuditToggle: null,
     xrayAuditActive: false,
     xrayAuditState: new Map(),
@@ -53,7 +55,11 @@ export const editorFeatures = {
     xraySummaryAdjs: null,
     xraySummaryAmb: null,
     xraySummaryTotal: null,
+    xrayStatWords: null,
+    xrayStatUnique: null,
+    xrayStatVariety: null,
     xrayActiveTab: "verbs",
+    xrayLockedIntl: false,
     xrayData: null,
     lastPasteNoticeAt: 0,
     readerModal: null,
@@ -1128,12 +1134,15 @@ export const editorFeatures = {
         this.xrayFilterMed = document.getElementById("xrayFilterMed");
         this.xrayFilterLow = document.getElementById("xrayFilterLow");
         this.xrayFilterAmb = document.getElementById("xrayFilterAmb");
-        this.xrayTabs = this.xrayPanel ? Array.from(this.xrayPanel.querySelectorAll(".xray-tab")) : [];
+        this.xrayTabs = this.xrayPanel ? Array.from(this.xrayPanel.querySelectorAll(".xray-class")) : [];
         this.xrayList = document.getElementById("xrayList");
-        this.xraySummaryVerbs = document.getElementById("xraySummaryVerbs");
-        this.xraySummaryAdjs = document.getElementById("xraySummaryAdjs");
-        this.xraySummaryAmb = document.getElementById("xraySummaryAmb");
-        this.xraySummaryTotal = document.getElementById("xraySummaryTotal");
+        this.xraySummaryVerbs = null;
+        this.xraySummaryAdjs = null;
+        this.xraySummaryAmb = null;
+        this.xraySummaryTotal = null;
+        this.xrayStatWords = document.getElementById("xrayStatWords");
+        this.xrayStatUnique = document.getElementById("xrayStatUnique");
+        this.xrayStatVariety = document.getElementById("xrayStatVariety");
         const btn = document.getElementById("btnXray");
         if (!btn || !this.xrayPanel) return;
         btn.onclick = () => this.setXrayActive(!this.xrayActive);
@@ -1205,13 +1214,9 @@ export const editorFeatures = {
 
     setXrayActive(active) {
         if (active && lang.current !== "pt") {
-            const msg = lang.t("xray_locked_intl") || lang.t("xray_locked_ptbr");
-            if (window.skrvModal && typeof window.skrvModal.alert === "function") {
-                window.skrvModal.alert(msg);
-            } else {
-                alert(msg);
-            }
-            return;
+            this.xrayLockedIntl = true;
+        } else if (active) {
+            this.xrayLockedIntl = false;
         }
         this.xrayActive = active;
         document.body.classList.toggle("xray-active", active);
@@ -1227,7 +1232,10 @@ export const editorFeatures = {
         if (active) {
             this.clearSelection();
             this.lastSelectionRange = null;
-            this.ensurePtLexicon();
+            if (lang.current === "pt") {
+                this.ensurePtLexicon();
+                this.ensurePtPosLexicon();
+            }
             this.scheduleXrayUpdate();
         } else if (this.xrayVerbsEl && this.xrayAdjsEl && this.xrayEmptyEl) {
             this.xrayVerbsEl.innerHTML = "";
@@ -1366,6 +1374,23 @@ export const editorFeatures = {
             });
     },
 
+    ensurePtPosLexicon() {
+        if (this.ptPosLexiconReady || this.ptPosLexiconLoading) return;
+        this.ptPosLexiconLoading = true;
+        ptPosLexicon.loadCore()
+            .then(() => Promise.all([
+                ptPosLexicon.loadChunkFor("a"),
+                ptPosLexicon.loadChunkFor("g"),
+                ptPosLexicon.loadChunkFor("p")
+            ]))
+            .catch(() => {})
+            .finally(() => {
+                this.ptPosLexiconReady = true;
+                this.ptPosLexiconLoading = false;
+                if (this.xrayActive) this.scheduleXrayUpdate();
+            });
+    },
+
     loadLexiconChunks() {
         if (!this.ptLexiconChunks || this.ptLexiconChunks.length <= 1) return;
         const rest = this.ptLexiconChunks.slice(1);
@@ -1408,6 +1433,11 @@ export const editorFeatures = {
         if (!this.xrayPanel || !this.xrayActive || !this.editor) return;
         if (!this.xrayList || !this.xrayEmptyEl) return;
         const text = this.editor.innerText || "";
+        if (this.xrayLockedIntl) {
+            this.xrayData = null;
+            this.renderXrayPanel();
+            return;
+        }
         this.xrayData = this.buildXrayGroups(text);
         this.renderXrayPanel();
     },
@@ -1444,9 +1474,40 @@ export const editorFeatures = {
     buildXrayGroups(text) {
         const tokens = this.getXrayTokenStream(text);
         const langCode = lang.current || "pt";
+        const unique = new Set();
         const occurrences = [];
+        const classCounts = {
+            verbs: 0,
+            nouns: 0,
+            adjs: 0,
+            advs: 0,
+            pronouns: 0,
+            preps: 0,
+            conjs: 0,
+            articles: 0,
+            numerals: 0,
+            interjections: 0,
+            review: 0
+        };
+
+        const mapTypeToBucket = {
+            verb: "verbs",
+            noun: "nouns",
+            adj: "adjs",
+            adv: "advs",
+            pronoun: "pronouns",
+            prep: "preps",
+            conj: "conjs",
+            article: "articles",
+            numeral: "numerals",
+            interjection: "interjections",
+            alert: "review"
+        };
+
         tokens.forEach((token, index) => {
-            if (!token || token.norm.length < 3) return;
+            if (!token || !token.norm) return;
+            unique.add(token.norm);
+
             const verb = this.analyzeVerb(token.norm, token.raw, langCode);
             const adj = this.analyzeAdjective(token.norm, token.raw, langCode);
             const isPartCandidate = this.isPtParticipleCandidate(token.norm, verb, adj);
@@ -1467,8 +1528,8 @@ export const editorFeatures = {
                             rationale: classified.rationale || null,
                             alternatives: classified.alternatives || null
                         });
+                        return;
                     }
-                    return;
                 }
             }
             if (verb) {
@@ -1482,6 +1543,7 @@ export const editorFeatures = {
                     source: verb.source || "heur",
                     lemmaCandidates: verb.lemmaCandidates || null
                 });
+                return;
             }
             if (adj) {
                 occurrences.push({
@@ -1494,9 +1556,42 @@ export const editorFeatures = {
                     source: adj.source || "heur",
                     lemmaCandidates: adj.lemmaCandidates || null
                 });
+                return;
             }
+
+            if (langCode === "pt") {
+                const posItem = this.classifyXrayPos(token.norm, token.raw);
+                if (posItem) {
+                    occurrences.push(posItem);
+                    return;
+                }
+            }
+
+            occurrences.push({
+                type: "noun",
+                form: token.raw,
+                lemma: token.norm,
+                tag: "",
+                conf: "low",
+                amb: false,
+                source: "heur",
+                lemmaCandidates: null
+            });
         });
-        const groups = { verbs: new Map(), adjs: new Map(), review: new Map() };
+
+        const groups = {
+            verbs: new Map(),
+            nouns: new Map(),
+            adjs: new Map(),
+            advs: new Map(),
+            pronouns: new Map(),
+            preps: new Map(),
+            conjs: new Map(),
+            articles: new Map(),
+            numerals: new Map(),
+            interjections: new Map(),
+            review: new Map()
+        };
         const addToGroup = (bucket, item) => {
             const lemmaInfo = this.resolveLemmaDisplay(item);
             const key = `${item.type}|${lemmaInfo.display}`;
@@ -1531,10 +1626,12 @@ export const editorFeatures = {
             g.forms.get(fKey).count += 1;
         };
         occurrences.forEach((item) => {
-            const bucket = item.type === "verb" ? "verbs" : "adjs";
+            const bucket = mapTypeToBucket[item.type] || "review";
             addToGroup(bucket, item);
+            classCounts[bucket] += 1;
             if (item.amb || item.conf === "low" || item.source === "heur") {
                 addToGroup("review", item);
+                classCounts.review += 1;
             }
         });
         const doubtAlerts = ptDictionary.findDoubtsSync(text).map((entry) => ({
@@ -1578,15 +1675,21 @@ export const editorFeatures = {
         });
         return {
             verbs: Array.from(groups.verbs.values()),
+            nouns: Array.from(groups.nouns.values()),
             adjs: Array.from(groups.adjs.values()),
+            advs: Array.from(groups.advs.values()),
+            pronouns: Array.from(groups.pronouns.values()),
+            preps: Array.from(groups.preps.values()),
+            conjs: Array.from(groups.conjs.values()),
+            articles: Array.from(groups.articles.values()),
+            numerals: Array.from(groups.numerals.values()),
+            interjections: Array.from(groups.interjections.values()),
             review: Array.from(groups.review.values()),
             totals: {
                 words: tokens.length,
-                verbs: occurrences.filter(o => o.type === "verb").length,
-                adjs: occurrences.filter(o => o.type === "adj").length,
-                amb: occurrences.filter(o => o.amb).length,
-                verbLemmas: groups.verbs.size,
-                adjLemmas: groups.adjs.size
+                unique: unique.size,
+                variety: tokens.length ? unique.size / tokens.length : 0,
+                classes: classCounts
             }
         };
     },
@@ -1670,24 +1773,34 @@ export const editorFeatures = {
     },
 
     renderXrayPanel() {
-        if (!this.xrayList || !this.xrayData) return;
+        if (!this.xrayList || !this.xrayEmptyEl) return;
+        if (this.xrayLockedIntl) {
+            this.xrayList.innerHTML = "";
+            this.xrayEmptyEl.style.display = "block";
+            this.xrayEmptyEl.textContent = lang.t("xray_locked_intl");
+            return;
+        }
+        if (!this.xrayData) return;
         const data = this.xrayData;
-        const verbLabel = lang.t("xray_label_verbs");
-        const adjLabel = lang.t("xray_label_adjs");
-        const occLabel = lang.t("xray_label_occurrences");
-        const lemmaLabel = lang.t("xray_label_lemmas");
-        const ambLabel = lang.t("xray_label_amb");
-        const wordsLabel = lang.t("xray_label_words");
-        if (this.xraySummaryTotal) {
-            this.xraySummaryTotal.textContent = `${wordsLabel}: ${data.totals.words}`;
+        const wordsLabel = lang.t("xray_stat_words");
+        const uniqueLabel = lang.t("xray_stat_unique");
+        const varietyLabel = lang.t("xray_stat_variety");
+        if (this.xrayStatWords) this.xrayStatWords.textContent = `${wordsLabel}: ${data.totals.words}`;
+        if (this.xrayStatUnique) this.xrayStatUnique.textContent = `${uniqueLabel}: ${data.totals.unique}`;
+        if (this.xrayStatVariety) this.xrayStatVariety.textContent = `${varietyLabel}: ${Math.round((data.totals.variety || 0) * 100)}%`;
+
+        if (this.xrayTabs && this.xrayTabs.length) {
+            const counts = data.totals.classes || {};
+            const max = Math.max(1, ...Object.values(counts));
+            this.xrayTabs.forEach((tab) => {
+                const key = tab.getAttribute("data-tab");
+                const count = counts[key] || 0;
+                const countEl = tab.querySelector(".xray-class-count");
+                const barEl = tab.querySelector(".xray-class-bar");
+                if (countEl) countEl.textContent = String(count);
+                if (barEl) barEl.style.width = `${Math.round((count / max) * 100)}%`;
+            });
         }
-        if (this.xraySummaryVerbs) {
-            this.xraySummaryVerbs.textContent = `${verbLabel}: ${data.totals.verbs} ${occLabel} · ${data.totals.verbLemmas} ${lemmaLabel}`;
-        }
-        if (this.xraySummaryAdjs) {
-            this.xraySummaryAdjs.textContent = `${adjLabel}: ${data.totals.adjs} ${occLabel} · ${data.totals.adjLemmas} ${lemmaLabel}`;
-        }
-        if (this.xraySummaryAmb) this.xraySummaryAmb.textContent = `${ambLabel}: ${data.totals.amb}`;
 
         const list = data[this.xrayActiveTab] || [];
         const query = (this.xraySearch?.value || "").trim().toLowerCase();
@@ -1734,13 +1847,17 @@ export const editorFeatures = {
             badges.className = "xray-badges";
             const typeBadge = document.createElement("span");
             typeBadge.className = "xray-badge";
-            if (group.type === "verb") {
-                typeBadge.textContent = lang.t("xray_badge_verb");
-            } else if (group.type === "adj") {
-                typeBadge.textContent = lang.t("xray_badge_adj");
-            } else {
-                typeBadge.textContent = lang.t("xray_badge_alert");
-            }
+            if (group.type === "verb") typeBadge.textContent = lang.t("xray_badge_verb");
+            else if (group.type === "adj") typeBadge.textContent = lang.t("xray_badge_adj");
+            else if (group.type === "noun") typeBadge.textContent = lang.t("xray_badge_noun");
+            else if (group.type === "adv") typeBadge.textContent = lang.t("xray_badge_adv");
+            else if (group.type === "pronoun") typeBadge.textContent = lang.t("xray_badge_pronoun");
+            else if (group.type === "prep") typeBadge.textContent = lang.t("xray_badge_prep");
+            else if (group.type === "conj") typeBadge.textContent = lang.t("xray_badge_conj");
+            else if (group.type === "article") typeBadge.textContent = lang.t("xray_badge_article");
+            else if (group.type === "numeral") typeBadge.textContent = lang.t("xray_badge_numeral");
+            else if (group.type === "interjection") typeBadge.textContent = lang.t("xray_badge_interjection");
+            else typeBadge.textContent = lang.t("xray_badge_alert");
             const count = document.createElement("span");
             count.className = "xray-count";
             count.textContent = `${group.count}`;
@@ -2278,6 +2395,57 @@ export const editorFeatures = {
         if (langCode === "en-uk") return english;
         if (langCode === "fr") return french;
         return romance;
+    },
+
+    getXrayPosPriority() {
+        return ["VERB", "ADJ", "ADV", "SUBST", "PRON", "PREP", "CONJ", "ART", "NUM", "INTJ"];
+    },
+
+    mapXrayPosToType(pos) {
+        const map = {
+            VERB: "verb",
+            ADJ: "adj",
+            ADV: "adv",
+            SUBST: "noun",
+            PRON: "pronoun",
+            PREP: "prep",
+            CONJ: "conj",
+            ART: "article",
+            NUM: "numeral",
+            INTJ: "interjection"
+        };
+        return map[pos] || null;
+    },
+
+    pickXrayPos(posList) {
+        if (!Array.isArray(posList) || !posList.length) return null;
+        const priority = this.getXrayPosPriority();
+        for (const pos of priority) {
+            if (posList.includes(pos)) return pos;
+        }
+        return posList[0] || null;
+    },
+
+    classifyXrayPos(normWord, rawWord) {
+        if (!normWord) return null;
+        const entry = ptPosLexicon.entries.get(normWord);
+        const guessed = entry ? null : ptPosLexicon.guess(normWord);
+        const posList = entry?.pos || guessed?.pos || [];
+        if (!posList.length) return null;
+        const pos = this.pickXrayPos(posList);
+        const type = this.mapXrayPosToType(pos);
+        if (!type) return null;
+        const conf = entry ? "high" : (guessed && guessed.probable ? "med" : "low");
+        return {
+            type,
+            form: rawWord,
+            lemma: normWord,
+            tag: "",
+            conf,
+            amb: posList.length > 1,
+            source: entry ? "lex" : "heur",
+            lemmaCandidates: null
+        };
     },
 
     sortXrayCounts(map) {

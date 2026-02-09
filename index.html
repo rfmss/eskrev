@@ -730,7 +730,7 @@
             <div id="xrayOverlay" aria-hidden="true"></div>
             <aside id="xrayPanel" class="xray-panel" aria-hidden="true">
                 <div class="xray-header">
-                    <div class="xray-header-title" data-i18n="xray_panel_title">RASTRO DO TEXTO</div>
+                    <div class="xray-header-title" data-i18n="xray_panel_title">VOCABULÁRIO</div>
                     <div class="xray-header-actions">
                         <button id="xrayDragBtn" class="btn-icon xray-drag-btn" data-i18n-title="xray_drag_title" data-i18n-tip="xray_drag_tip">
                             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -741,14 +741,13 @@
                         <button id="xrayCloseBtn" class="btn-icon" data-i18n-title="xray_close_title" data-i18n-tip="xray_close_tip">×</button>
                     </div>
                 </div>
+                <div class="xray-subtitle" data-i18n="xray_panel_subtitle">Padrões do seu texto. Sem correção. Sem julgamento.</div>
 
                 <div class="xray-summary" id="xraySummary">
-                    <div class="xray-summary-item" id="xraySummaryTotal"></div>
-                    <div class="xray-summary-item" id="xraySummaryVerbs"></div>
-                    <div class="xray-summary-item" id="xraySummaryAdjs"></div>
-                    <div class="xray-summary-item xray-summary-click" id="xraySummaryAmb" data-i18n-tip="xray_tip_amb"></div>
+                    <div class="xray-summary-item" id="xrayStatWords"></div>
+                    <div class="xray-summary-item" id="xrayStatUnique"></div>
+                    <div class="xray-summary-item" id="xrayStatVariety"></div>
                 </div>
-                <div class="xray-focus-note" data-i18n="xray_focus_note">Foco atual: verbos e adjetivos (por enquanto).</div>
 
                 <div class="xray-controls">
                     <input id="xraySearch" class="xray-search" data-i18n-ph="xray_search_ph" placeholder="Buscar lema ou forma..." />
@@ -766,10 +765,18 @@
                     <label class="xray-filter"><input type="checkbox" id="xrayFilterAmb"> <span data-i18n="xray_filter_amb_only">Só ambíguos</span></label>
                 </div>
 
-                <div class="xray-tabs">
-                    <button class="xray-tab active" data-tab="verbs" data-i18n="xray_tab_verbs">Verbos</button>
-                    <button class="xray-tab" data-tab="adjs" data-i18n="xray_tab_adjs">Adjetivos</button>
-                    <button class="xray-tab" data-tab="review" data-i18n="xray_tab_review">Revisar</button>
+                <div class="xray-classes" id="xrayClasses">
+                    <button class="xray-class active" data-tab="verbs"><span class="xray-class-label" data-i18n="xray_tab_verbs">Verbos</span><span class="xray-class-count" data-count-for="verbs"></span><span class="xray-class-bar"></span></button>
+                    <button class="xray-class" data-tab="nouns"><span class="xray-class-label" data-i18n="xray_tab_nouns">Substantivos</span><span class="xray-class-count" data-count-for="nouns"></span><span class="xray-class-bar"></span></button>
+                    <button class="xray-class" data-tab="adjs"><span class="xray-class-label" data-i18n="xray_tab_adjs">Adjetivos</span><span class="xray-class-count" data-count-for="adjs"></span><span class="xray-class-bar"></span></button>
+                    <button class="xray-class" data-tab="advs"><span class="xray-class-label" data-i18n="xray_tab_advs">Advérbios</span><span class="xray-class-count" data-count-for="advs"></span><span class="xray-class-bar"></span></button>
+                    <button class="xray-class" data-tab="pronouns"><span class="xray-class-label" data-i18n="xray_tab_pronouns">Pronomes</span><span class="xray-class-count" data-count-for="pronouns"></span><span class="xray-class-bar"></span></button>
+                    <button class="xray-class" data-tab="preps"><span class="xray-class-label" data-i18n="xray_tab_preps">Preposições</span><span class="xray-class-count" data-count-for="preps"></span><span class="xray-class-bar"></span></button>
+                    <button class="xray-class" data-tab="conjs"><span class="xray-class-label" data-i18n="xray_tab_conjs">Conjunções</span><span class="xray-class-count" data-count-for="conjs"></span><span class="xray-class-bar"></span></button>
+                    <button class="xray-class" data-tab="articles"><span class="xray-class-label" data-i18n="xray_tab_articles">Artigos</span><span class="xray-class-count" data-count-for="articles"></span><span class="xray-class-bar"></span></button>
+                    <button class="xray-class" data-tab="numerals"><span class="xray-class-label" data-i18n="xray_tab_numerals">Numerais</span><span class="xray-class-count" data-count-for="numerals"></span><span class="xray-class-bar"></span></button>
+                    <button class="xray-class" data-tab="interjections"><span class="xray-class-label" data-i18n="xray_tab_interjections">Interjeições</span><span class="xray-class-count" data-count-for="interjections"></span><span class="xray-class-bar"></span></button>
+                    <button class="xray-class" data-tab="review"><span class="xray-class-label" data-i18n="xray_tab_review">Observações</span><span class="xray-class-count" data-count-for="review"></span><span class="xray-class-bar"></span></button>
                 </div>
 
                 <div class="xray-list" id="xrayList"></div>

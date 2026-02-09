@@ -2668,6 +2668,12 @@ body.help-open .xray-panel {
     font-weight: 700;
     color: var(--color-text);
 }
+.xray-subtitle {
+    margin-top: 6px;
+    font-size: 11px;
+    color: var(--color-muted);
+    letter-spacing: 0.4px;
+}
 .xray-header-actions {
     display: inline-flex;
     flex-direction: row;
@@ -2693,17 +2699,20 @@ body.help-open .xray-panel {
 
 .xray-summary {
     display: grid;
-    gap: 4px;
-    font-size: 12px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    font-size: 11px;
     color: var(--color-muted);
     margin-bottom: 12px;
 }
-.xray-summary-click { cursor: pointer; color: var(--color-accent); }
-.xray-focus-note {
-    font-size: 12px;
-    color: var(--color-muted);
-    margin-bottom: 10px;
+.xray-summary-item {
+    padding: 6px 8px;
+    border: var(--xray-border);
+    border-radius: 10px;
+    background: var(--xray-surface);
+    text-align: center;
 }
+.xray-summary-click { cursor: pointer; color: var(--color-accent); }
 
 .xray-controls {
     display: grid;
@@ -2767,21 +2776,45 @@ input[type="checkbox"]:focus-visible {
     outline-offset: 2px;
 }
 
-.xray-tabs {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 8px;
+.xray-classes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    margin-bottom: 10px;
 }
-.xray-tab {
+.xray-class {
     border: var(--xray-border);
     border-radius: var(--radius);
-    padding: 6px 10px;
+    padding: 8px 10px;
     font-size: 11px;
-    letter-spacing: 1px;
+    letter-spacing: 0.4px;
     text-transform: uppercase;
     background: var(--xray-surface);
     color: var(--color-muted);
     cursor: pointer;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 6px;
+    position: relative;
+    overflow: hidden;
+}
+.xray-class-bar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0%;
+    background: var(--color-accent);
+    opacity: 0.6;
+}
+.xray-class-count {
+    font-size: 10px;
+    color: var(--color-text);
+    opacity: 0.7;
+}
+.xray-class.active {
+    color: var(--color-text);
+    border-color: var(--color-accent-dim);
 }
 .xray-panel [data-tip],
 .manifesto-box [data-tip],
