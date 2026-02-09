@@ -986,7 +986,7 @@ function setupEventListeners() {
             };
 
             addBlock("figures_label_recognize", item.recognize);
-            addBlock("figures_label_example_recognize", item.example_recognize, "figures-example");
+            addBlock("figures_label_example_recognize", item.example_recognize, "figures-example recognize");
             addBlock("figures_label_definition", item.definition, "figures-muted");
             addBlock("figures_label_example_use", item.example_use, "figures-example");
             addBlock("figures_label_example_interpret", item.example_interpret, "figures-example");
@@ -1008,10 +1008,11 @@ function setupEventListeners() {
         document.body.classList.remove("figures-open");
     }
 
-    async function openFiguresModal() {
+    async function openFiguresModal(personaId = null) {
         const modal = document.getElementById("figuresModal");
         const note = document.getElementById("figuresNote");
         if (!modal) return;
+        figuresState.persona = personaId;
         const registry = await loadFiguresRegistry();
         figuresState.data = registry || {};
         if (!figuresState.tab && registry?.tabs?.length) {
@@ -1034,8 +1035,24 @@ function setupEventListeners() {
             renderFiguresCards([]);
             return;
         }
-        renderFiguresTabs(tabs);
-        const active = tabs.find(t => t.id === figuresState.tab) || tabs[0];
+        const persona = figuresState.persona;
+        const filterItems = (items) => {
+            if (!persona) return items;
+            return items.filter(item => !item.personas || item.personas.includes(persona) || item.personas.includes("all"));
+        };
+        const filteredTabs = tabs
+            .map(tab => ({ ...tab, items: filterItems(Array.isArray(tab.items) ? tab.items : []) }))
+            .filter(tab => tab.items.length);
+        if (!filteredTabs.length) {
+            renderFiguresCards([]);
+            return;
+        }
+        if (!filteredTabs.find(t => t.id === figuresState.tab)) {
+            figuresState.tab = filteredTabs[0].id;
+            figuresState.openId = null;
+        }
+        renderFiguresTabs(filteredTabs);
+        const active = filteredTabs.find(t => t.id === figuresState.tab) || filteredTabs[0];
         const items = Array.isArray(active.items) ? active.items : [];
         renderFiguresCards(items);
     };
@@ -1217,7 +1234,7 @@ function setupEventListeners() {
         calloutBtn.className = "btn-half";
         calloutBtn.type = "button";
         calloutBtn.textContent = lang.t("figures_callout_btn");
-        calloutBtn.addEventListener("click", () => openFiguresModal());
+        calloutBtn.addEventListener("click", () => openFiguresModal(template.persona));
         callout.appendChild(calloutText);
         callout.appendChild(calloutBtn);
         contentEl.appendChild(callout);

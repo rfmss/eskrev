@@ -1864,7 +1864,7 @@ body.consult-open .selection-toolbar {
     width: 100%;
     border: none;
     background: transparent;
-    padding: 10px 12px;
+    padding: 12px 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1875,12 +1875,12 @@ body.consult-open .selection-toolbar {
 .figures-card-title {
     font-weight: 700;
     font-size: 14px;
-    letter-spacing: 0.4px;
+    letter-spacing: 0.6px;
 }
 .figures-card-body {
     display: none;
-    padding: 0 12px 12px;
-    gap: 8px;
+    padding: 0 14px 14px;
+    gap: 10px;
 }
 .figures-card.open .figures-card-body {
     display: grid;
@@ -1901,6 +1901,12 @@ body.consult-open .selection-toolbar {
     color: var(--color-text);
     border-left: 2px solid var(--color-accent-dim);
     padding-left: 10px;
+}
+.figures-example.recognize {
+    border-left-color: var(--color-accent);
+    background: var(--bg-controls);
+    padding: 8px 10px;
+    border-radius: 8px;
 }
 .figures-muted {
     font-size: 12px;
