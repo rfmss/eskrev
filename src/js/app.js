@@ -909,6 +909,66 @@ function setupEventListeners() {
         return templateRegistry;
     };
 
+    let figuresRegistry = null;
+    const loadFiguresRegistry = async () => {
+        if (figuresRegistry) return figuresRegistry;
+        const res = await fetch("src/assets/figures/figures_ptbr.json");
+        if (!res.ok) return { figures: [] };
+        figuresRegistry = await res.json();
+        return figuresRegistry;
+    };
+
+    const renderFiguresList = (items) => {
+        const list = document.getElementById("figuresList");
+        const empty = document.getElementById("figuresEmpty");
+        if (!list || !empty) return;
+        list.innerHTML = "";
+        if (!items || !items.length) {
+            empty.style.display = "block";
+            return;
+        }
+        empty.style.display = "none";
+        items.forEach((item) => {
+            const card = document.createElement("div");
+            card.className = "figures-item";
+            const title = document.createElement("div");
+            title.className = "figures-item-title";
+            title.textContent = item.title || "—";
+            const desc = document.createElement("div");
+            desc.className = "figures-item-desc";
+            desc.textContent = item.desc || "—";
+            const example = document.createElement("div");
+            example.className = "figures-item-example";
+            example.textContent = item.example ? `Ex.: ${item.example}` : "Ex.: —";
+            card.appendChild(title);
+            card.appendChild(desc);
+            card.appendChild(example);
+            list.appendChild(card);
+        });
+    };
+
+    function closeFiguresModal() {
+        const modal = document.getElementById("figuresModal");
+        if (!modal) return;
+        modal.classList.remove("active");
+        modal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("figures-open");
+    }
+
+    async function openFiguresModal() {
+        const modal = document.getElementById("figuresModal");
+        const note = document.getElementById("figuresNote");
+        if (!modal) return;
+        const registry = await loadFiguresRegistry();
+        const items = Array.isArray(registry.figures) ? registry.figures : [];
+        renderFiguresList(items);
+        if (note) note.style.display = lang.current === "pt" ? "none" : "block";
+        modal.classList.add("active");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("figures-open");
+    }
+    window.skrvOpenFiguresModal = openFiguresModal;
+
     const parseTemplate = (raw) => {
         const lines = String(raw || "").split(/\r?\n/);
         const blocks = [];
@@ -1076,6 +1136,20 @@ function setupEventListeners() {
         });
         appendParagraph(paragraph);
         contentEl.appendChild(container);
+
+        const callout = document.createElement("div");
+        callout.className = "guide-figures-callout";
+        const calloutText = document.createElement("div");
+        calloutText.className = "guide-figures-text";
+        calloutText.textContent = lang.t("figures_callout");
+        const calloutBtn = document.createElement("button");
+        calloutBtn.className = "btn-half";
+        calloutBtn.type = "button";
+        calloutBtn.textContent = lang.t("figures_callout_btn");
+        calloutBtn.addEventListener("click", () => openFiguresModal());
+        callout.appendChild(calloutText);
+        callout.appendChild(calloutBtn);
+        contentEl.appendChild(callout);
     };
     window.skrvRenderGuidePane = renderGuidePane;
 
@@ -1897,6 +1971,14 @@ function setupEventListeners() {
         templateState.minimized = false;
         applyTemplateLayout();
     };
+    const figuresClose = document.getElementById("figuresClose");
+    const figuresModal = document.getElementById("figuresModal");
+    if (figuresClose) figuresClose.onclick = () => closeFiguresModal();
+    if (figuresModal) {
+        figuresModal.addEventListener("click", (e) => {
+            if (e.target === figuresModal) closeFiguresModal();
+        });
+    }
     document.querySelectorAll(".guide-rail-item").forEach((btn) => {
         btn.addEventListener("click", () => {
             const id = btn.getAttribute("data-guide");

@@ -1,0 +1,76 @@
+{
+  "figures": [
+    {
+      "id": "metafora",
+      "title": "Metáfora",
+      "desc": "Substitui uma ideia por outra, aproximando sentidos sem usar comparação direta.",
+      "example": "O tempo é um rio que leva tudo."
+    },
+    {
+      "id": "metonimia",
+      "title": "Metonímia",
+      "desc": "Troca de termo por outro com relação de proximidade (autor pela obra, causa pelo efeito).",
+      "example": "Li Machado esta semana."
+    },
+    {
+      "id": "hiperbole",
+      "title": "Hipérbole",
+      "desc": "Exagero intencional para dar força ou ênfase.",
+      "example": "Esperei uma eternidade."
+    },
+    {
+      "id": "eufemismo",
+      "title": "Eufemismo",
+      "desc": "Suaviza uma ideia dura ou direta.",
+      "example": "Ele partiu cedo demais."
+    },
+    {
+      "id": "antitese",
+      "title": "Antítese",
+      "desc": "Aproxima ideias opostas para criar contraste.",
+      "example": "Era doce e cruel ao mesmo tempo."
+    },
+    {
+      "id": "paradoxo",
+      "title": "Paradoxo",
+      "desc": "Reúne ideias aparentemente contraditórias que se completam.",
+      "example": "É um silêncio que grita."
+    },
+    {
+      "id": "aliteracao",
+      "title": "Aliteração",
+      "desc": "Repetição de sons consonantais para ritmo ou efeito.",
+      "example": "O rato roeu a roupa do rei."
+    },
+    {
+      "id": "assonancia",
+      "title": "Assonância",
+      "desc": "Repetição de sons vocálicos para musicalidade.",
+      "example": "A lua pura e nua flutua."
+    },
+    {
+      "id": "personificacao",
+      "title": "Personificação",
+      "desc": "Atribui características humanas a seres ou objetos.",
+      "example": "A cidade acordou cansada."
+    },
+    {
+      "id": "ironia",
+      "title": "Ironia",
+      "desc": "Afirma algo para sugerir o contrário, criando tensão de sentido.",
+      "example": "Que pontualidade exemplar, chegou só uma hora atrasado."
+    },
+    {
+      "id": "anafora",
+      "title": "Anáfora",
+      "desc": "Repetição de uma palavra no início de frases ou versos.",
+      "example": "Eu queria ir, eu queria ficar, eu queria dormir."
+    },
+    {
+      "id": "sinecdoque",
+      "title": "Sinédoque",
+      "desc": "Parte pelo todo ou todo pela parte.",
+      "example": "Precisamos de mais mãos aqui."
+    }
+  ]
+}
