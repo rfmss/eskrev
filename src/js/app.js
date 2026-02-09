@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const tab = document.getElementById("templateTab");
             if (tab) tab.textContent = (lang.t(state.activeTemplate.label) || state.activeTemplate.label).toUpperCase();
         }
+        setupMarqueeCopy();
     });
     syncLangToFrames(lang.current);
     window.skrvModal = initSystemModal();
@@ -1355,9 +1356,9 @@ function setupEventListeners() {
         pinBtn.type = "button";
         pinBtn.className = "btn-icon notes-pin-btn" + (note.pinned ? " active" : "");
         if (note.pinned) {
-            pinBtn.innerHTML = `<img class="icon pin-icon" src="src/assets/icons/pin.svg" alt="" aria-hidden="true">`;
+            pinBtn.innerHTML = `<svg class="icon pin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/></svg>`;
         } else {
-            pinBtn.innerHTML = `<img class="icon pin-icon pin-icon-off" src="src/assets/icons/pin-off.svg" alt="" aria-hidden="true">`;
+            pinBtn.innerHTML = `<svg class="icon pin-icon pin-icon-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17v5"/><path d="M15 9.34V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H7.89"/><path d="m2 2 20 20"/><path d="M9 9v1.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h11"/></svg>`;
         }
         pinBtn.onclick = (event) => {
             event.stopPropagation();
@@ -1581,9 +1582,9 @@ function setupEventListeners() {
         if (pinToggle) {
             pinToggle.classList.toggle("active", !!note.pinned);
             if (note.pinned) {
-                pinToggle.innerHTML = `<img class="icon pin-icon" src="src/assets/icons/pin.svg" alt="" aria-hidden="true">`;
+                pinToggle.innerHTML = `<svg class="icon pin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/></svg>`;
             } else {
-                pinToggle.innerHTML = `<img class="icon pin-icon pin-icon-off" src="src/assets/icons/pin-off.svg" alt="" aria-hidden="true">`;
+                pinToggle.innerHTML = `<svg class="icon pin-icon pin-icon-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17v5"/><path d="M15 9.34V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H7.89"/><path d="m2 2 20 20"/><path d="M9 9v1.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h11"/></svg>`;
             }
         }
         setNotesStage("edit");

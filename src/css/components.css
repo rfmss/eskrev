@@ -1454,6 +1454,16 @@ body.pomo-active .goal-stars {
     width: 10px;
     height: 10px;
 }
+.notes-pin-btn .icon,
+.notes-print-btn .icon {
+    fill: none;
+    stroke: currentColor;
+}
+.notes-pin-btn .icon *,
+.notes-print-btn .icon * {
+    fill: none;
+    stroke: currentColor;
+}
 .notes-pin-btn .pin-icon {
     width: 10px;
     height: 10px;
@@ -3652,11 +3662,12 @@ input[type="checkbox"]:focus-visible {
 
 /* QR TRANSFER */
 .qr-modal { max-width: 760px; }
+.qr-modal .modal-body { max-height: 70vh; overflow-y: auto; }
 .qr-stream-layout,
-.qr-scan-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center; }
+.qr-scan-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: flex-start; }
 .qr-canvas {
     width: 100%;
-    max-width: 380px;
+    max-width: 340px;
     aspect-ratio: 1 / 1;
     margin: 0 auto;
     background: #F4F1EA;
