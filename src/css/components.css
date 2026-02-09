@@ -4512,16 +4512,17 @@ body.mobile-lite #mobileTagsList {
 }
 
 @keyframes pendulum-frames {
-    0% { background-image: url("../assets/icons/pendulo8.png"); }
-    10% { background-image: url("../assets/icons/pendulo10.png"); }
-    20% { background-image: url("../assets/icons/pendulo9.png"); }
-    30% { background-image: url("../assets/icons/pendulo7.png"); }
-    40% { background-image: url("../assets/icons/pendulo6.png"); }
-    50% { background-image: url("../assets/icons/pendulo5.png"); }
-    60% { background-image: url("../assets/icons/pendulo4.png"); }
-    70% { background-image: url("../assets/icons/pendulo3.png"); }
-    80% { background-image: url("../assets/icons/pendulo2.png"); }
-    90%, 100% { background-image: url("../assets/icons/pendulo1.png"); }
+    0% { background-image: url("../assets/icons/pendulo1.png"); }
+    10% { background-image: url("../assets/icons/pendulo2.png"); }
+    20% { background-image: url("../assets/icons/pendulo3.png"); }
+    30% { background-image: url("../assets/icons/pendulo4.png"); }
+    40% { background-image: url("../assets/icons/pendulo5.png"); }
+    50% { background-image: url("../assets/icons/pendulo6.png"); }
+    60% { background-image: url("../assets/icons/pendulo7.png"); }
+    70% { background-image: url("../assets/icons/pendulo8.png"); }
+    80% { background-image: url("../assets/icons/pendulo9.png"); }
+    90% { background-image: url("../assets/icons/pendulo10.png"); }
+    100% { background-image: url("../assets/icons/pendulo9.png"); }
 }
 
 .global-pending {
