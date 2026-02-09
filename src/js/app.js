@@ -2284,6 +2284,8 @@ function setupEventListeners() {
             }
             if (network === "x") {
                 targetUrl = `https://twitter.com/intent/tweet?text=${encoded}`;
+            } else if (network === "whatsapp") {
+                targetUrl = `https://wa.me/?text=${encoded}`;
             } else if (network === "mastodon") {
                 targetUrl = `https://mastodon.social/share?text=${encoded}`;
             } else if (network === "lemmy") {
