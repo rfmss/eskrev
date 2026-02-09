@@ -25,7 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     store.init();
     incrementAccessCount();
-    const isMobile = window.innerWidth <= 900;
+    const uaMobile = navigator.userAgentData && typeof navigator.userAgentData.mobile === "boolean"
+        ? navigator.userAgentData.mobile
+        : /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent || "");
+    const coarse = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+    const hoverNone = window.matchMedia && window.matchMedia("(hover: none)").matches;
+    const touchPoints = navigator.maxTouchPoints || 0;
+    const isMobile = uaMobile || (coarse && hoverNone && touchPoints > 0) || window.innerWidth <= 900;
     if (isMobile) {
         document.body.classList.add("mobile-lite");
     }
