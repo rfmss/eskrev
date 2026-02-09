@@ -49,10 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     document.addEventListener("lang:changed", (e) => {
         syncLangToFrames(e.detail?.code || lang.current);
-        if (templateState && templateState.activeTemplate && templateState.activeRaw) {
-            renderGuidePane(templateState.activeTemplate, templateState.activeRaw);
+        const state = window.templateState;
+        const render = window.skrvRenderGuidePane;
+        if (state && render && state.activeTemplate && state.activeRaw) {
+            render(state.activeTemplate, state.activeRaw);
             const tab = document.getElementById("templateTab");
-            if (tab) tab.textContent = (lang.t(templateState.activeTemplate.label) || templateState.activeTemplate.label).toUpperCase();
+            if (tab) tab.textContent = (lang.t(state.activeTemplate.label) || state.activeTemplate.label).toUpperCase();
         }
     });
     syncLangToFrames(lang.current);
@@ -888,6 +890,7 @@ function setupEventListeners() {
         activePersona: null,
         enemThemes: []
     };
+    window.templateState = templateState;
     let templateRegistry = null;
     let selectedTemplate = null;
     let selectedPersona = null;
@@ -1067,6 +1070,7 @@ function setupEventListeners() {
         appendParagraph(paragraph);
         contentEl.appendChild(container);
     };
+    window.skrvRenderGuidePane = renderGuidePane;
 
     const applyTemplateLayout = () => {
         const workspace = document.getElementById("workspace");
