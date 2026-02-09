@@ -1778,6 +1778,8 @@ export const editorFeatures = {
             this.xrayList.innerHTML = "";
             this.xrayEmptyEl.style.display = "block";
             this.xrayEmptyEl.textContent = lang.t("xray_locked_intl");
+            const figWrap = document.getElementById("xrayFigures");
+            if (figWrap) figWrap.style.display = "none";
             return;
         }
         if (!this.xrayData) return;
@@ -1788,6 +1790,7 @@ export const editorFeatures = {
         if (this.xrayStatWords) this.xrayStatWords.textContent = `${wordsLabel}: ${data.totals.words}`;
         if (this.xrayStatUnique) this.xrayStatUnique.textContent = `${uniqueLabel}: ${data.totals.unique}`;
         if (this.xrayStatVariety) this.xrayStatVariety.textContent = `${varietyLabel}: ${Math.round((data.totals.variety || 0) * 100)}%`;
+        this.renderXrayFigures();
 
         if (this.xrayTabs && this.xrayTabs.length) {
             const counts = data.totals.classes || {};
@@ -1950,6 +1953,85 @@ export const editorFeatures = {
             card.appendChild(forms);
             this.xrayList.appendChild(card);
         });
+    },
+
+    renderXrayFigures() {
+        const wrap = document.getElementById("xrayFigures");
+        const list = document.getElementById("xrayFiguresList");
+        const empty = document.getElementById("xrayFiguresEmpty");
+        if (!wrap || !list || !empty) return;
+        wrap.style.display = "grid";
+        list.innerHTML = "";
+        const hints = this.getFigureHints(this.editor?.innerText || "");
+        if (!hints.length) {
+            empty.style.display = "block";
+            return;
+        }
+        empty.style.display = "none";
+        hints.forEach((hint) => {
+            const item = document.createElement("div");
+            item.className = "xray-figures-item";
+            const name = document.createElement("div");
+            name.className = "xray-figures-name";
+            name.textContent = hint.name;
+            const snippet = document.createElement("div");
+            snippet.className = "xray-figures-snippet";
+            snippet.innerHTML = `${hint.snippet} <span>• ${hint.reason}</span>`;
+            item.appendChild(name);
+            item.appendChild(snippet);
+            list.appendChild(item);
+        });
+    },
+
+    getFigureHints(text) {
+        const raw = (text || "").trim();
+        if (!raw) return [];
+        const hints = [];
+        const add = (id, name, snippet, reason) => {
+            if (hints.find(h => h.id === id)) return;
+            hints.push({ id, name, snippet, reason });
+        };
+        const sentences = raw.split(/(?<=[.!?])\s+/).filter(Boolean);
+        const pickSnippet = (s) => {
+            const trimmed = s.trim();
+            return trimmed.length > 120 ? `${trimmed.slice(0, 117)}…` : trimmed;
+        };
+
+        const compRegex = /\b(como|tal qual|assim como|que nem)\b/i;
+        const compSentence = sentences.find(s => compRegex.test(s));
+        if (compSentence) add("comparacao", "Comparação", pickSnippet(compSentence), "presença de conectivo comparativo");
+
+        const hyperWords = ["mil", "milhões", "eternidade", "infinito", "infinitamente", "séculos", "um século", "um milhão"];
+        const hyperSentence = sentences.find(s => hyperWords.some(w => s.toLowerCase().includes(w)));
+        if (hyperSentence) add("hiperbole", "Hipérbole", pickSnippet(hyperSentence), "exagero explícito");
+
+        const eufemWords = ["se foi", "partiu", "nos deixou", "não vingou", "desalinhamento"];
+        const eufemSentence = sentences.find(s => eufemWords.some(w => s.toLowerCase().includes(w)));
+        if (eufemSentence) add("eufemismo", "Eufemismo", pickSnippet(eufemSentence), "suavização do sentido");
+
+        const antPairs = [
+            ["dia", "noite"],
+            ["claro", "escuro"],
+            ["vida", "morte"],
+            ["ruído", "silêncio"]
+        ];
+        const antiSentence = sentences.find(s => antPairs.some(([a, b]) => s.toLowerCase().includes(a) && s.toLowerCase().includes(b)));
+        if (antiSentence) add("antitese", "Antítese", pickSnippet(antiSentence), "oposição lado a lado");
+
+        for (let i = 0; i < sentences.length - 1; i += 1) {
+            const first = sentences[i].trim().split(/\s+/)[0]?.toLowerCase();
+            const next = sentences[i + 1].trim().split(/\s+/)[0]?.toLowerCase();
+            if (first && first === next) {
+                add("anafora", "Anáfora", pickSnippet(sentences[i]), "repetição no início");
+                break;
+            }
+        }
+
+        const onoWords = ["tic-tac", "plim", "tum", "vruum", "vrum", "trim"];
+        const onoSentence = sentences.find(s => onoWords.some(w => s.toLowerCase().includes(w)));
+        if (onoSentence) add("onomatopeia", "Onomatopeia", pickSnippet(onoSentence), "imitação sonora");
+
+        return hints.slice(0, 5);
     },
 
     normalizeXrayToken(word) {
