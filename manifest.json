@@ -17,6 +17,12 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
+    },
+    {
+      "src": "src/assets/icons/eskrev.png",
+      "sizes": "500x500",
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }

@@ -2670,7 +2670,11 @@ function setupEventListeners() {
     };
 
     const resetBtn = document.getElementById("btnHardReset");
-    if (resetBtn) resetBtn.onclick = () => openResetModal();
+    if (resetBtn) {
+        resetBtn.onclick = () => {
+            openResetModal();
+        };
+    }
     document.addEventListener("click", (e) => {
         const trigger = e.target.closest && e.target.closest("#btnHardReset, .danger-trigger");
         if (!trigger) return;
@@ -2678,7 +2682,10 @@ function setupEventListeners() {
         openResetModal();
     });
     
-    document.getElementById("closeModalReset").onclick = () => resetModal.classList.remove("active");
+    document.getElementById("closeModalReset").onclick = () => {
+        debugReset("close reset modal");
+        resetModal.classList.remove("active");
+    };
     
     if (btnProof) {
         btnProof.onclick = () => {
@@ -2843,6 +2850,7 @@ function incrementAccessCount() {
     const current = parseInt(localStorage.getItem(key) || localStorage.getItem(legacyKey), 10) || 0;
     localStorage.setItem(key, String(current + 1));
 }
+
 
 
 function applySkrvPayload(payload) {

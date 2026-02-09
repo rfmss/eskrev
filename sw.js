@@ -2,8 +2,10 @@ const CACHE_NAME = "skrv-cache-v14";
 const CACHE_ASSETS = [
   "./",
   "./index.html",
+  "./index.html?v=5",
   "./mobile.html",
   "./totbooks.html",
+  "./verify.html",
   "./manifest.json?v=5",
   "./src/css/main.css",
   "./src/css/mobile-only.css",
@@ -100,12 +102,13 @@ const CACHE_ASSETS = [
   "./src/assets/fonts/jetbrains-mono/JetBrainsMono-Italic.woff2",
   "./src/assets/fonts/jetbrains-mono/JetBrainsMono-Bold.woff2",
   "./src/assets/fonts/jetbrains-mono/JetBrainsMono-BoldItalic.woff2",
-  "./src/assets/fonts/JetBrainsMonoNLNerdFont-Regular.ttf",
   "./src/assets/icons/icon-192.svg?v=3",
   "./src/assets/icons/icon-512.svg?v=3",
   "./src/assets/icons/logoEskrev.svg",
   "./src/assets/icons/logoEskrev-favicon-dark.svg",
   "./src/assets/icons/logoEskrev-favicon-cream.svg",
+  "./src/assets/icons/eskrev.ico",
+  "./src/assets/icons/eskrev.png",
   "./src/assets/icons/carta_fluck.jpg",
   "./src/assets/icons/tatuagem.jpg",
   "./src/assets/icons/pendulo1.png",
@@ -133,6 +136,10 @@ const CACHE_ASSETS = [
   "./content/templates/universitario-artigo.md",
   "./content/templates/enem-redacao.md",
   "./content/enem/themes.json",
+  "./sobre/privacidade.html",
+  "./sobre/privacidade.en.html",
+  "./sobre/privacidade.es.html",
+  "./sobre/privacidade.fr.html",
   "./qr-bitcoin.png"
 ];
 
