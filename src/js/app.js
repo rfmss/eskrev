@@ -493,6 +493,7 @@ function initOnboarding() {
     const total = Math.max(steps.length - 1, 1);
     let current = 0;
     let langChosen = localStorage.getItem("skrv_onboard_lang_chosen") === "1";
+    let ignoreNextEnter = false;
 
     const animateOnce = (step) => {
         if (!step || step.dataset.animated === "true") return;
@@ -573,6 +574,10 @@ function initOnboarding() {
         modal.classList.add("active");
         document.body.classList.add("modal-active");
         update();
+        if (startStep === 0) {
+            ignoreNextEnter = true;
+            setTimeout(() => { ignoreNextEnter = false; }, 300);
+        }
     };
 
     const close = () => {
@@ -613,6 +618,10 @@ function initOnboarding() {
     const keyHandler = (e) => {
         if (!modal.classList.contains("active")) return;
         if (e.key === "Enter") {
+            if (ignoreNextEnter) {
+                e.preventDefault();
+                return;
+            }
             if ((current === 0 || current === 1) && !langChosen && lang.current !== "pt") {
                 e.preventDefault();
                 return;
