@@ -2836,11 +2836,27 @@ window.skvRenderProjectList = renderProjectList;
 function printRawText(text, title) {
     const w = window.open("", "_blank", "noopener,noreferrer");
     if (!w) {
+        const message = lang.t("print_popup_blocked_fallback") || lang.t("print_popup_blocked");
         if (window.skvModal && typeof window.skvModal.alert === "function") {
-            window.skvModal.alert(lang.t("print_popup_blocked"));
+            window.skvModal.alert(message);
         } else {
-            alert(lang.t("print_popup_blocked"));
+            alert(message);
         }
+        const safeName = String(title || "skrv_print")
+            .replace(/[^\w]+/g, "_")
+            .replace(/^_+|_+$/g, "")
+            .slice(0, 60) || "skrv_print";
+        const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${safeName}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+            URL.revokeObjectURL(url);
+            a.remove();
+        }, 0);
         return;
     }
     const doc = w.document;
