@@ -2891,12 +2891,16 @@ export const editorFeatures = {
         this.readerFioActiveId = entry.id;
         localStorage.setItem("skrv_reader_fio_active", entry.id);
         fetch(`src/assets/fiodoverso/${entry.file}`)
-            .then((res) => res.text())
+            .then((res) => {
+                if (!res.ok) throw new Error("fio_not_found");
+                return res.text();
+            })
             .then((text) => {
-                this.setReaderContentFromText(text, { preserveLineBreaks: true });
+                const cleaned = String(text || "").replace(/^---[\\s\\S]*?---\\s*/m, "");
+                this.setReaderContentFromText(cleaned, { preserveLineBreaks: true });
                 if (this.readerGlossary) {
                     this.readerGlossary.innerHTML = "";
-                    this.updateGlossary(text);
+                    this.updateGlossary(cleaned);
                 }
                 const saved = parseFloat(localStorage.getItem(`skrv_reader_fio_scroll_${entry.id}`) || "0");
                 this.readerContent.scrollTop = saved;

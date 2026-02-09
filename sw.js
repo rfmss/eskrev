@@ -221,13 +221,18 @@ self.addEventListener("message", (event) => {
       })
     );
     const fioFiles = await loadFiodoversoFiles();
+    let cachedFio = 0;
     await Promise.all(
       fioFiles.map(async (asset) => {
         const match = await cache.match(asset);
-        if (match) cached += 1;
+        if (match) cachedFio += 1;
       })
     );
-    const payload = { type: "cache-status", cached, total: CACHE_ASSETS.length + fioFiles.length };
+    const payload = {
+      type: "cache-status",
+      cached: cached + cachedFio,
+      total: CACHE_ASSETS.length + cachedFio,
+    };
     if (event.source && event.source.postMessage) {
       event.source.postMessage(payload);
       return;
