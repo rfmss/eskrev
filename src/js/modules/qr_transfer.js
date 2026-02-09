@@ -500,6 +500,11 @@ const qrTransfer = (() => {
         stopScan();
       };
     }
+    const updateRestoreState = () => {
+      if (!els.scanRestore || !els.scanPaste) return;
+      const raw = (els.scanPaste.value || '').trim();
+      els.scanRestore.disabled = !raw;
+    };
     if (els.scanImport && els.scanFile) {
       els.scanImport.onclick = () => els.scanFile.click();
       els.scanFile.onchange = (e) => {
@@ -507,7 +512,14 @@ const qrTransfer = (() => {
         if (!file) return;
         const reader = new FileReader();
         reader.onload = (evt) => {
-          const payload = decodeBackupBase64(evt.target.result || '');
+          const rawText = String(evt.target.result || '');
+          if (els.scanPaste) {
+            els.scanPaste.value = rawText.trim();
+            if (els.scanRestore) {
+              els.scanRestore.disabled = !els.scanPaste.value;
+            }
+          }
+          const payload = decodeBackupBase64(rawText);
           if (payload && onRestore) {
             updateScanStatus(lang.t('qr_restore_in_progress'));
             onRestore(payload);
@@ -520,6 +532,8 @@ const qrTransfer = (() => {
       };
     }
     if (els.scanRestore && els.scanPaste) {
+      updateRestoreState();
+      els.scanPaste.addEventListener('input', updateRestoreState);
       els.scanRestore.onclick = () => {
         const raw = (els.scanPaste.value || '').trim();
         if (!raw) return;
