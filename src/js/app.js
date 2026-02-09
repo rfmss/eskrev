@@ -2260,19 +2260,40 @@ function setupEventListeners() {
             if (modal) modal.classList.remove("active");
         };
     }
+    const openElementApp = () => {
+        const fallback = "https://element.io/download";
+        const start = Date.now();
+        window.location.href = "element://";
+        setTimeout(() => {
+            if (Date.now() - start < 1600) {
+                window.open(fallback, "_blank", "noopener");
+            }
+        }, 1200);
+    };
     document.querySelectorAll(".social-link").forEach((btn) => {
         btn.addEventListener("click", () => {
             const shareText = lang.t("share_message");
             const baseUrl = btn.dataset.url || "";
             const network = (btn.dataset.network || "").toLowerCase();
             const encoded = encodeURIComponent(shareText);
+            const siteUrl = encodeURIComponent(window.location.origin);
             let targetUrl = baseUrl;
-            if (network === "x" || network === "element" || network === "linkedin") {
+            if (network === "element") {
+                openElementApp();
+                return;
+            }
+            if (network === "x") {
                 targetUrl = `https://twitter.com/intent/tweet?text=${encoded}`;
-            } else if (network === "mastodon" || network === "lemmy" || network === "facebook") {
+            } else if (network === "mastodon") {
                 targetUrl = `https://mastodon.social/share?text=${encoded}`;
+            } else if (network === "lemmy") {
+                targetUrl = `https://lemmy.world/create_post?body=${encoded}`;
             } else if (network === "bluesky") {
                 targetUrl = `https://bsky.app/intent/compose?text=${encoded}`;
+            } else if (network === "facebook") {
+                targetUrl = `https://www.facebook.com/sharer/sharer.php?u=${siteUrl}&quote=${encoded}`;
+            } else if (network === "linkedin") {
+                targetUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${siteUrl}`;
             }
             if (targetUrl) window.open(targetUrl, "_blank", "noopener");
         });

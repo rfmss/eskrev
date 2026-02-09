@@ -2616,7 +2616,7 @@ body.consult-open .selection-toolbar {
 .export-support-body .support-item:hover {
     color: var(--color-text);
 }
-.export-support-body .support-bitcoin::after {
+.export-support-body .support-bitcoin::before {
     content: "";
     position: absolute;
     left: 50%;
@@ -2636,7 +2636,7 @@ body.consult-open .selection-toolbar {
     transition: opacity 0.15s ease;
     z-index: 4;
 }
-.export-support-body .support-bitcoin:hover::after {
+.export-support-body .support-bitcoin:hover::before {
     opacity: 1;
 }
 .export-support--qr {
