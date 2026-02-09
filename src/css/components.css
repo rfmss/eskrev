@@ -4277,6 +4277,23 @@ kbd {
     text-transform: uppercase;
     color: var(--color-muted);
 }
+.dedication-hint-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+}
+.dedication-continue {
+    width: 30px;
+    height: 22px;
+    border-radius: 999px;
+    border: var(--border-style);
+    color: var(--color-text);
+}
+.dedication-continue .icon {
+    width: 14px;
+    height: 14px;
+}
 .mobile-gate-modal {
     background: rgba(0,0,0,0.55);
     display: none;

@@ -73,7 +73,15 @@
                 </a>
             </div>
         </div>
-        <div class="dedication-hint" data-i18n="dedication_hint">Pressione ENTER para continuar</div>
+        <div class="dedication-hint-row">
+            <div class="dedication-hint" data-i18n="dedication_hint">Pressione ENTER para continuar</div>
+            <button id="dedicationContinue" class="btn-icon dedication-continue" aria-label="Continuar">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"></path>
+                    <path d="m13 6 6 6-6 6"></path>
+                </svg>
+            </button>
+        </div>
     </div>
 </div>
 
@@ -1194,7 +1202,6 @@
                             <button class="btn-half" id="qrStreamSave" data-i18n="qr_stream_save">SALVAR .B64</button>
                         </div>
                         <div class="help-text" data-i18n="qr_stream_hint">Feche para encerrar o envio.</div>
-                        </div>
                         <div id="qrStreamSupport" class="export-support export-support--qr" aria-hidden="true">
                             <div class="export-support-title" data-i18n="export_support_title">APOIO</div>
                             <div class="export-support-body" data-i18n-html="export_support_html">Apoie o projeto</div>

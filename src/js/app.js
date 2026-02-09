@@ -221,6 +221,7 @@ function initDedication() {
     const body = document.getElementById("dedicationBody");
     const langBtn = document.getElementById("dedicationLangToggle");
     const fioNote = document.getElementById("dedicationFioNote");
+    const continueBtn = document.getElementById("dedicationContinue");
     const done = localStorage.getItem("skrv_dedication_done") === "1";
     if (done) return;
 
@@ -264,9 +265,7 @@ function initDedication() {
         langBtn.addEventListener("click", () => lang.cycleLang());
     }
 
-    const handleEnter = (e) => {
-        if (e.key !== "Enter") return;
-        e.preventDefault();
+    const finish = () => {
         const visitsKey = "skrv_dedication_enter_count";
         const current = parseInt(localStorage.getItem(visitsKey) || "0", 10);
         const nextCount = Number.isFinite(current) ? current + 1 : 1;
@@ -282,9 +281,16 @@ function initDedication() {
         document.removeEventListener("keydown", handleEnter);
     };
 
+    const handleEnter = (e) => {
+        if (e.key !== "Enter") return;
+        e.preventDefault();
+        finish();
+    };
+
     modal.classList.add("active");
     document.body.classList.add("modal-active");
     document.addEventListener("keydown", handleEnter);
+    if (continueBtn) continueBtn.addEventListener("click", finish);
 }
 
 function initMobileGate() {
