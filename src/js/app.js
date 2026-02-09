@@ -364,6 +364,7 @@ function initMobileGate() {
     if (window.innerWidth > 900) return false;
     if (sessionStorage.getItem("skrv_mobile_gate_done") === "1") return false;
 
+    const langBtn = document.getElementById("mobileGateLangToggle");
     const btnScan = document.getElementById("mobileGateScan");
     const qrBtn = document.getElementById("btnScanQr");
     const closeGate = (showDedication = true) => {
@@ -372,6 +373,19 @@ function initMobileGate() {
         sessionStorage.setItem("skrv_mobile_gate_done", "1");
         if (showDedication) initDedication();
     };
+
+    const formatLangLabel = (label) => String(label || "").replace(/^[^\w]*\s*/u, "");
+    const updateLangButton = () => {
+        if (!langBtn) return;
+        const idx = lang.languages.findIndex((l) => l.code === lang.current);
+        const next = lang.languages[(idx + 1 + lang.languages.length) % lang.languages.length];
+        if (next) langBtn.textContent = formatLangLabel(next.label);
+    };
+    updateLangButton();
+    document.addEventListener("lang:changed", updateLangButton);
+    if (langBtn) {
+        langBtn.addEventListener("click", () => lang.cycleLang());
+    }
 
     if (btnScan) {
         btnScan.onclick = () => {
@@ -593,6 +607,7 @@ function initOnboarding() {
     };
     let keyboardTimer = null;
     const update = () => {
+        const isMobileOnboard = document.body.classList.contains("mobile-lite") || document.body.classList.contains("mobile-only-page");
         steps.forEach((step) => {
             const stepIndex = parseInt(step.getAttribute("data-step"), 10);
             step.classList.toggle("active", stepIndex === current);
@@ -617,7 +632,7 @@ function initOnboarding() {
             langHint.style.display = current === 0 ? "block" : "none";
         }
         if (nextBtn) {
-            const canAdvance = current < total && (current > 0 || langChosen || lang.current === "pt");
+            const canAdvance = current < total && (isMobileOnboard || current > 0 || langChosen || lang.current === "pt");
             nextBtn.style.display = canAdvance ? "inline-flex" : "none";
         }
         if (current === total) {
@@ -647,7 +662,9 @@ function initOnboarding() {
         modal.classList.toggle("onboard-step-zero", current === 0);
             if (current === 0) {
                 if (backBtn) backBtn.style.display = "none";
-                if (nextBtn) nextBtn.style.display = langChosen ? "inline-flex" : "none";
+                if (nextBtn) {
+                    nextBtn.style.display = (isMobileOnboard || langChosen || lang.current === "pt") ? "inline-flex" : "none";
+                }
                 if (stepLabel) stepLabel.style.display = "none";
             }
     };
@@ -701,12 +718,13 @@ function initOnboarding() {
     document.addEventListener("lang:changed", updateLangButton);
     const keyHandler = (e) => {
         if (!modal.classList.contains("active")) return;
+        const isMobileOnboard = document.body.classList.contains("mobile-lite") || document.body.classList.contains("mobile-only-page");
         if (e.key === "Enter") {
             if (ignoreNextEnter) {
                 e.preventDefault();
                 return;
             }
-            if ((current === 0 || current === 1) && !langChosen && lang.current !== "pt") {
+            if (!isMobileOnboard && (current === 0 || current === 1) && !langChosen && lang.current !== "pt") {
                 e.preventDefault();
                 return;
             }
