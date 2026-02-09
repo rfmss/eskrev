@@ -1,4 +1,4 @@
-const CACHE_NAME = "skrv-cache-v11";
+const CACHE_NAME = "skrv-cache-v12";
 const CACHE_ASSETS = [
   "./",
   "./index.html",
@@ -106,6 +106,16 @@ const CACHE_ASSETS = [
   "./src/assets/icons/logoEskrev-favicon-cream.svg",
   "./src/assets/icons/carta_fluck.jpg",
   "./src/assets/icons/tatuagem.jpg",
+  "./src/assets/icons/pendulo1.png",
+  "./src/assets/icons/pendulo2.png",
+  "./src/assets/icons/pendulo3.png",
+  "./src/assets/icons/pendulo4.png",
+  "./src/assets/icons/pendulo5.png",
+  "./src/assets/icons/pendulo6.png",
+  "./src/assets/icons/pendulo7.png",
+  "./src/assets/icons/pendulo8.png",
+  "./src/assets/icons/pendulo9.png",
+  "./src/assets/icons/pendulo10.png",
   "./src/assets/fiodoverso/index.json",
   "./config/persona-templates.json",
   "./content/templates/conto-curto.md",

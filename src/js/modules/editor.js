@@ -2731,13 +2731,16 @@ export const editorFeatures = {
     async loadReaderLibraryBooks() {
         if (this.readerLibraryBooks) return this.readerLibraryBooks;
         try {
+            window.skrvLoading?.start("reader_library_loading");
             const res = await fetch("src/library/books.json");
             const data = await res.json();
             this.readerLibraryBooks = Array.isArray(data?.books) ? data.books : [];
             this.readerLibraryError = false;
+            window.skrvLoading?.stop();
         } catch (_) {
             this.readerLibraryBooks = [];
             this.readerLibraryError = true;
+            window.skrvLoading?.stop();
         }
         return this.readerLibraryBooks;
     },
@@ -2756,8 +2759,8 @@ export const editorFeatures = {
             return;
         }
         const loading = document.createElement("div");
-        loading.className = "reader-library-empty";
-        loading.textContent = lang.t("reader_library_loading");
+        loading.className = "reader-library-empty loading-inline";
+        loading.innerHTML = `<div class="pendulum-loader" aria-hidden="true"></div><div>${this.escapeHtml(lang.t("reader_library_loading"))}</div>`;
         this.readerLibraryList.appendChild(loading);
         const books = await this.loadReaderLibraryBooks();
         this.readerLibraryList.innerHTML = "";
@@ -2808,10 +2811,13 @@ export const editorFeatures = {
     async loadFiodoversoIndex() {
         if (this.readerFioIndex) return this.readerFioIndex;
         try {
+            window.skrvLoading?.start("reader_library_loading");
             const res = await fetch("src/assets/fiodoverso/index.json");
             this.readerFioIndex = await res.json();
+            window.skrvLoading?.stop();
         } catch (_) {
             this.readerFioIndex = null;
+            window.skrvLoading?.stop();
         }
         return this.readerFioIndex;
     },
@@ -2821,8 +2827,8 @@ export const editorFeatures = {
         this.readerFioTabs.innerHTML = "";
         this.readerFioList.innerHTML = "";
         const loading = document.createElement("div");
-        loading.className = "reader-library-empty";
-        loading.textContent = lang.t("reader_library_loading");
+        loading.className = "reader-library-empty loading-inline";
+        loading.innerHTML = `<div class="pendulum-loader" aria-hidden="true"></div><div>${this.escapeHtml(lang.t("reader_library_loading"))}</div>`;
         this.readerFioList.appendChild(loading);
         const index = await this.loadFiodoversoIndex();
         this.readerFioList.innerHTML = "";

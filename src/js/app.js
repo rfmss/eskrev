@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ui.init();
     
     lang.init();
+    window.skrvLoading = initGlobalPending();
     const mobileGateActive = isMobile ? initMobileGate() : false;
     const introDone = localStorage.getItem("skrv_intro_done") === "1";
     if (!mobileGateActive && !introDone) initDedication();
@@ -418,6 +419,40 @@ function setupMarqueeCopy() {
             });
         });
     });
+}
+
+function initGlobalPending() {
+    const box = document.getElementById("globalPending");
+    if (!box) return null;
+    const label = box.querySelector(".global-pending-label");
+    let counter = 0;
+    let timer = null;
+    const show = (textKey) => {
+        if (label) label.textContent = lang.t(textKey || "loading_label");
+        box.classList.add("show");
+        box.setAttribute("aria-hidden", "false");
+    };
+    const hide = () => {
+        box.classList.remove("show");
+        box.setAttribute("aria-hidden", "true");
+    };
+    const start = (textKey) => {
+        counter += 1;
+        if (timer) return;
+        timer = setTimeout(() => {
+            show(textKey);
+        }, 4000);
+    };
+    const stop = () => {
+        counter = Math.max(0, counter - 1);
+        if (counter > 0) return;
+        if (timer) {
+            clearTimeout(timer);
+            timer = null;
+        }
+        hide();
+    };
+    return { start, stop };
 }
 
 function setupSupportLinks() {

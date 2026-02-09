@@ -102,6 +102,11 @@
     </div>
 </div>
 
+<div id="globalPending" class="global-pending" aria-hidden="true">
+    <div class="pendulum-loader" aria-hidden="true"></div>
+    <div class="global-pending-label" data-i18n="loading_label">Carregando...</div>
+</div>
+
 <div id="onboardingModal" class="modal-overlay onboarding-modal" style="z-index: 9998;">
     <div class="onboarding-box">
         <div class="onboarding-steps">
@@ -122,6 +127,7 @@
                 </div>
                 <div class="onboard-offline" aria-live="polite">
                     <div class="offline-track"><span class="offline-bar" style="width:0%"></span></div>
+                    <div class="offline-pendulum" aria-hidden="true"></div>
                     <div class="offline-label" data-i18n="onboard_offline_loading">Preparando modo offline...</div>
                 </div>
             </section>

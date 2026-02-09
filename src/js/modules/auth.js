@@ -450,7 +450,8 @@ export const auth = {
         const langCode = lang.current || "pt";
         if (this.privacyLoaded && this.privacyLoadedLang === langCode) return;
         try {
-            this.privacyBody.innerHTML = `<div class="privacy-loading" data-i18n="privacy_loading">${lang.t("privacy_loading")}</div>`;
+            this.privacyBody.innerHTML = `<div class="privacy-loading loading-inline" data-i18n="privacy_loading"><div class="pendulum-loader" aria-hidden="true"></div><div>${lang.t("privacy_loading")}</div></div>`;
+            window.skrvLoading?.start("privacy_loading");
             const map = {
                 "pt": "sobre/privacidade.html",
                 "en-uk": "sobre/privacidade.en.html",
@@ -487,8 +488,10 @@ export const auth = {
             }
             this.privacyLoaded = true;
             this.privacyLoadedLang = langCode;
+            window.skrvLoading?.stop();
         } catch (e) {
-            this.privacyBody.innerHTML = `<div class="privacy-loading" data-i18n="privacy_error">${lang.t("privacy_error")}</div>`;
+            this.privacyBody.innerHTML = `<div class="privacy-loading loading-inline" data-i18n="privacy_error"><div class="pendulum-loader" aria-hidden="true"></div><div>${lang.t("privacy_error")}</div></div>`;
+            window.skrvLoading?.stop();
         }
     },
 
