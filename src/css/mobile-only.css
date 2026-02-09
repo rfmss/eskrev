@@ -58,3 +58,17 @@ body.mobile-only-page .mobile-memo-header {
     z-index: 2;
     padding-top: 8px;
 }
+
+body.mobile-only-page .qr-modal {
+    width: min(94vw, 760px);
+}
+body.mobile-only-page .qr-modal .modal-body {
+    max-height: 82vh;
+}
+body.mobile-only-page .qr-scan-layout,
+body.mobile-only-page .qr-stream-layout {
+    grid-template-columns: 1fr;
+}
+body.mobile-only-page .qr-video {
+    max-height: 38vh;
+}
