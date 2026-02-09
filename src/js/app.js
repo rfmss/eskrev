@@ -378,6 +378,11 @@ function setupOfflineProgress() {
         }
         poll();
     }, 1200);
+
+    document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") poll();
+    });
+    window.addEventListener("focus", poll);
 }
 
 function setupMarqueeCopy() {
