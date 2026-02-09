@@ -5075,6 +5075,9 @@ body.mobile-lite #mobileTagsList {
 .onboard-next-mobile {
     display: none;
 }
+.onboard-next-desktop {
+    display: inline-block;
+}
 body.mobile-lite .onboard-next-desktop {
     display: none;
 }

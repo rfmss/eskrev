@@ -133,6 +133,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (qrTransfer.startScan) qrTransfer.startScan();
         });
     }
+    document.addEventListener("click", (e) => {
+        const scanTrigger = e.target.closest && e.target.closest("#btnScanQr");
+        if (!scanTrigger) return;
+        const modal = document.getElementById("qrScanModal");
+        if (modal) modal.classList.add("active");
+        if (qrTransfer.startScan) qrTransfer.startScan();
+    });
     
     const editorEl = document.getElementById("editor");
     editorFeatures.init(editorEl);
@@ -2605,7 +2612,7 @@ function setupEventListeners() {
         return words[Math.floor(Math.random() * words.length)];
     };
 
-    document.getElementById("btnHardReset").onclick = () => {
+    const openResetModal = () => {
         resetModal.classList.add("active");
         if (step2) step2.style.display = "none";
         if (btnStep1) btnStep1.style.display = "none";
@@ -2618,6 +2625,15 @@ function setupEventListeners() {
         if (proofWordEl) proofWordEl.innerText = currentProofWord ? `"${currentProofWord}"` : "[SEM CONTEÚDO]";
         setTimeout(() => { if (proofInput) proofInput.focus(); }, 50);
     };
+
+    const resetBtn = document.getElementById("btnHardReset");
+    if (resetBtn) resetBtn.onclick = () => openResetModal();
+    document.addEventListener("click", (e) => {
+        const trigger = e.target.closest && e.target.closest("#btnHardReset, .danger-trigger");
+        if (!trigger) return;
+        e.preventDefault();
+        openResetModal();
+    });
     
     document.getElementById("closeModalReset").onclick = () => resetModal.classList.remove("active");
     
