@@ -963,6 +963,8 @@ function setupEventListeners() {
         const items = Array.isArray(registry.figures) ? registry.figures : [];
         renderFiguresList(items);
         if (note) note.style.display = lang.current === "pt" ? "none" : "block";
+        const support = document.getElementById("figuresSupport");
+        if (support) support.style.display = lang.current === "pt" ? "none" : "grid";
         modal.classList.add("active");
         modal.setAttribute("aria-hidden", "false");
         document.body.classList.add("figures-open");

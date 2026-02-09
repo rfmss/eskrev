@@ -1811,6 +1811,21 @@ body.consult-open .selection-toolbar {
     border-top: var(--border-style);
     padding-top: 8px;
 }
+.figures-support {
+    display: grid;
+    gap: 8px;
+    padding-top: 8px;
+}
+.figures-support-btn {
+    width: fit-content;
+}
+.figures-support-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--color-text);
+}
 .figures-list {
     display: grid;
     gap: 10px;
