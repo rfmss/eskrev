@@ -1,7 +1,7 @@
 {
   "name": "eskrev - editor de textos",
   "short_name": "eskrev",
-  "start_url": "./index.html",
+  "start_url": "./index.html?v=5",
   "display": "standalone",
   "background_color": "#f5f2ea",
   "theme_color": "#f5f2ea",
