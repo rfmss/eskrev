@@ -446,6 +446,7 @@ const qrTransfer = (() => {
     const btnStream = document.getElementById('actionQrStream');
     const btnBase64 = document.getElementById('actionQrString');
     const btnScan = document.getElementById('btnScanQr');
+    const streamSupportBitcoin = els.streamModal ? els.streamModal.querySelector('.support-bitcoin') : null;
 
     if (btnStream) {
       btnStream.onclick = () => {
@@ -472,6 +473,17 @@ const qrTransfer = (() => {
         if (els.scanModal) els.scanModal.classList.add('active');
         startScan();
       };
+      btnScan.dataset.bound = '1';
+    }
+
+    if (streamSupportBitcoin && els.streamModal) {
+      const toggle = (on) => {
+        els.streamModal.classList.toggle('qr-bitcoin-hover', !!on);
+      };
+      streamSupportBitcoin.addEventListener('mouseenter', () => toggle(true));
+      streamSupportBitcoin.addEventListener('mouseleave', () => toggle(false));
+      streamSupportBitcoin.addEventListener('focus', () => toggle(true));
+      streamSupportBitcoin.addEventListener('blur', () => toggle(false));
     }
 
     const closeStream = document.getElementById('closeModalQrStream');
@@ -593,6 +605,7 @@ const qrTransfer = (() => {
   return {
     init,
     startStream: initStream,
+    startScan,
     startCustomStream,
     decodeBackupBase64,
     downloadBase64Backup

@@ -124,6 +124,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    const qrBtnFallback = document.getElementById("btnScanQr");
+    if (qrBtnFallback && !qrBtnFallback.dataset.bound) {
+        qrBtnFallback.addEventListener("click", () => {
+            const modal = document.getElementById("qrScanModal");
+            if (modal) modal.classList.add("active");
+            if (qrTransfer.startScan) qrTransfer.startScan();
+        });
+    }
     
     const editorEl = document.getElementById("editor");
     editorFeatures.init(editorEl);

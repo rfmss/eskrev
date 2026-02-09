@@ -2639,6 +2639,13 @@ body.consult-open .selection-toolbar {
 .export-support-body .support-bitcoin:hover::before {
     opacity: 1;
 }
+.qr-modal.qr-bitcoin-hover #qrStreamCode {
+    opacity: 0.18;
+    filter: grayscale(1) brightness(0.65);
+}
+.qr-modal.qr-bitcoin-hover #qrStreamCode canvas {
+    opacity: 0.18;
+}
 .export-support--qr {
     margin-top: 12px;
     padding-top: 8px;
