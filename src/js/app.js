@@ -33,7 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     lang.init();
     const mobileGateActive = isMobile ? initMobileGate() : false;
-    if (!mobileGateActive) initDedication();
+    const introDone = localStorage.getItem("skrv_intro_done") === "1";
+    if (!mobileGateActive && !introDone) initDedication();
     const syncLangToFrames = (code) => {
         const frames = [
             document.getElementById("booksFrame"),
@@ -269,6 +270,7 @@ function initDedication() {
         modal.classList.remove("active");
         document.body.classList.remove("modal-active");
         localStorage.setItem("skrv_dedication_done", "1");
+        localStorage.setItem("skrv_intro_done", "1");
         const onboardDone = localStorage.getItem("skrv_onboard_done") === "true";
         if (!onboardDone && window.skrvOnboarding && typeof window.skrvOnboarding.open === "function") {
             window.skrvOnboarding.open(0);

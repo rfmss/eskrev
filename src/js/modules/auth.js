@@ -151,8 +151,17 @@ export const auth = {
     setupEvents() {
         // Seleção de Idioma (toggle)
         const setupLangToggle = document.getElementById("setupLangToggle");
+        const updateSetupLangToggle = () => {
+            if (!setupLangToggle) return;
+            const idx = lang.languages.findIndex((l) => l.code === lang.current);
+            const next = lang.languages[(idx + 1 + lang.languages.length) % lang.languages.length];
+            const label = String(next?.label || "").replace(/^[^\w]*\s*/u, "");
+            setupLangToggle.textContent = label || lang.t("lang_label");
+        };
         if (setupLangToggle) {
             setupLangToggle.onclick = () => lang.cycleLang();
+            updateSetupLangToggle();
+            document.addEventListener("lang:changed", updateSetupLangToggle);
         }
 
         const showSetupError = (message) => {
@@ -584,9 +593,20 @@ export const auth = {
         if (projectInput) projectInput.value = "";
         const msg = document.getElementById("setupMsg");
         if (msg) msg.textContent = "";
-        if (window.skrvOnboarding && typeof window.skrvOnboarding.open === "function") {
+        const dedication = document.getElementById("dedicationModal");
+        const introDone = localStorage.getItem("skrv_intro_done") === "1";
+        if (dedication && dedication.classList.contains("active")) {
+            return;
+        }
+        if (!introDone && window.skrvOnboarding && typeof window.skrvOnboarding.open === "function") {
             window.skrvOnboarding.open(0);
         } else {
+            if (gate) {
+                gate.classList.add("active");
+                gate.style.display = "flex";
+                const viewSetup = document.getElementById("viewSetup");
+                if (viewSetup) viewSetup.style.display = "flex";
+            }
             setTimeout(() => {
                 const input = document.getElementById('setupProjectName');
                 if (input) input.focus();
