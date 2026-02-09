@@ -5065,6 +5065,15 @@ body.mobile-lite #mobileTagsList {
     align-items: center;
     gap: 4px;
 }
+.onboard-next-mobile {
+    display: none;
+}
+body.mobile-lite .onboard-next-desktop {
+    display: none;
+}
+body.mobile-lite .onboard-next-mobile {
+    display: inline-block;
+}
 .onboarding-modal.onboard-step-zero .onboarding-next {
     order: 3;
     width: 100%;
