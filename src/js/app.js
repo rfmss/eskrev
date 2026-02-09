@@ -343,9 +343,11 @@ function setupOfflineProgress() {
     if (!bar || !label || !("serviceWorker" in navigator)) return;
 
     let finished = false;
+    let lastPct = null;
     const setProgress = (cached, total) => {
         if (!Number.isFinite(total) || total <= 0) return;
         const pct = Math.max(0, Math.min(100, Math.round((cached / total) * 100)));
+        lastPct = pct;
         bar.style.width = `${pct}%`;
         if (pct >= 100) {
             label.textContent = lang.t("onboard_offline_ready");
@@ -393,6 +395,14 @@ function setupOfflineProgress() {
         if (document.visibilityState === "visible") poll();
     });
     window.addEventListener("focus", poll);
+    document.addEventListener("lang:changed", () => {
+        if (lastPct === null) return;
+        if (finished || lastPct >= 100) {
+            label.textContent = lang.t("onboard_offline_ready");
+        } else {
+            label.textContent = lang.t("onboard_offline_loading").replace("{pct}", lastPct);
+        }
+    });
 }
 
 function setupMarqueeCopy() {
