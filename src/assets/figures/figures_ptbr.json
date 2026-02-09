@@ -1,76 +1,182 @@
 {
-  "figures": [
+  "tabs": [
     {
-      "id": "metafora",
-      "title": "Metáfora",
-      "desc": "Substitui uma ideia por outra, aproximando sentidos sem usar comparação direta.",
-      "example": "O tempo é um rio que leva tudo."
+      "id": "words",
+      "label": "figures_tab_words",
+      "items": [
+        {
+          "id": "metafora",
+          "title": "Metáfora",
+          "recognize": "Uma coisa é dita como se fosse outra, sem usar “como”.",
+          "example_recognize": "Ele é uma rocha.",
+          "definition": "Comparação implícita entre dois elementos.",
+          "example_use": "A cidade acordou com olhos de neon.",
+          "example_interpret": "A memória é um porão que a luz visita por engano.",
+          "not_confuse": "Comparação (que usa “como”, “tal qual”)."
+        },
+        {
+          "id": "comparacao",
+          "title": "Comparação (símile)",
+          "recognize": "Há um conectivo comparativo explícito.",
+          "example_recognize": "Rápido como um raio.",
+          "definition": "Aproxima dois elementos por semelhança explícita.",
+          "example_use": "Ela falava como quem pede licença ao silêncio.",
+          "example_interpret": "A esperança insistia tal qual erva nas frestas do concreto."
+        },
+        {
+          "id": "metonimia",
+          "title": "Metonímia",
+          "recognize": "Um termo é trocado por outro próximo no sentido cultural.",
+          "example_recognize": "Li Machado de Assis.",
+          "definition": "Substituição por relação de proximidade (autor/obra, lugar/pessoas).",
+          "example_use": "A plateia vaiou o palco.",
+          "example_interpret": "O Planalto respondeu em nota."
+        },
+        {
+          "id": "sinecdoque",
+          "title": "Sinédoque",
+          "recognize": "Uma parte representa o todo (ou o todo, a parte).",
+          "example_recognize": "Preciso de um teto.",
+          "definition": "Tipo de metonímia baseada em parte–todo.",
+          "example_use": "Há muitas bocas para alimentar.",
+          "example_interpret": "O Brasil assistiu em silêncio."
+        },
+        {
+          "id": "catacrese",
+          "title": "Catacrese",
+          "recognize": "A “metáfora” já virou nome comum.",
+          "example_recognize": "Pé da mesa.",
+          "definition": "Uso figurado cristalizado pelo costume.",
+          "example_use": "Braço do sofá.",
+          "example_interpret": "Cabeça do prego."
+        },
+        {
+          "id": "antonomasia",
+          "title": "Antonomásia",
+          "recognize": "Um nome famoso substitui o nome real.",
+          "example_recognize": "O Rei do Futebol.",
+          "definition": "Uso de epíteto no lugar do nome próprio.",
+          "example_use": "O Bruxo encantou o estádio.",
+          "example_interpret": "O Poeta dos Escravos ecoa até hoje."
+        }
+      ]
     },
     {
-      "id": "metonimia",
-      "title": "Metonímia",
-      "desc": "Troca de termo por outro com relação de proximidade (autor pela obra, causa pelo efeito).",
-      "example": "Li Machado esta semana."
+      "id": "thought",
+      "label": "figures_tab_thought",
+      "items": [
+        {
+          "id": "hiperbole",
+          "title": "Hipérbole",
+          "recognize": "O exagero é evidente e intencional.",
+          "example_recognize": "Morri de rir.",
+          "definition": "Exagero expressivo de uma ideia.",
+          "example_use": "Esperei um século.",
+          "example_interpret": "O prédio carregava mil histórias em cada janela."
+        },
+        {
+          "id": "eufemismo",
+          "title": "Eufemismo",
+          "recognize": "Algo duro é dito de forma suavizada.",
+          "example_recognize": "Ele se foi.",
+          "definition": "Atenuação de uma ideia desagradável.",
+          "example_use": "O projeto não vingou.",
+          "example_interpret": "Houve um desalinhamento de expectativas."
+        },
+        {
+          "id": "ironia",
+          "title": "Ironia",
+          "recognize": "O contexto contradiz o que foi dito.",
+          "example_recognize": "Que pontualidade exemplar.",
+          "definition": "Expressão cujo sentido real é oposto ao literal.",
+          "example_use": "Claro que eu adoro filas.",
+          "example_interpret": "A transparência aqui é tão grande que ninguém vê nada."
+        },
+        {
+          "id": "antitese",
+          "title": "Antítese",
+          "recognize": "Ideias opostas aparecem lado a lado.",
+          "example_recognize": "Dia e noite.",
+          "definition": "Contraste direto entre ideias.",
+          "example_use": "Ria por fora, doía por dentro.",
+          "example_interpret": "Entre o ruído e o silêncio, restou o vazio."
+        },
+        {
+          "id": "paradoxo",
+          "title": "Paradoxo",
+          "recognize": "A contradição parece absurda, mas faz sentido.",
+          "example_recognize": "Menos é mais.",
+          "definition": "União de ideias contraditórias com sentido profundo.",
+          "example_use": "Quanto mais sei, mais duvido.",
+          "example_interpret": "A pressa prometia tempo e entregava atraso."
+        }
+      ]
     },
     {
-      "id": "hiperbole",
-      "title": "Hipérbole",
-      "desc": "Exagero intencional para dar força ou ênfase.",
-      "example": "Esperei uma eternidade."
+      "id": "syntax",
+      "label": "figures_tab_syntax",
+      "items": [
+        {
+          "id": "elipse",
+          "title": "Elipse",
+          "recognize": "Algo foi omitido, mas o sentido permanece claro.",
+          "example_recognize": "Na sala, silêncio.",
+          "definition": "Omissão de termo recuperável pelo contexto.",
+          "example_use": "Se pudesse, ia.",
+          "example_interpret": "Uns com pressa; outros, com medo."
+        },
+        {
+          "id": "zeugma",
+          "title": "Zeugma",
+          "recognize": "Um termo já dito não se repete.",
+          "example_recognize": "Eu gosto de café; ela, de chá.",
+          "definition": "Elipse de termo anteriormente expresso.",
+          "example_use": "Ele levou o casaco; eu, a culpa.",
+          "example_interpret": "Uns queriam paz; outros, poder."
+        },
+        {
+          "id": "anafora",
+          "title": "Anáfora",
+          "recognize": "O início se repete para criar ritmo.",
+          "example_recognize": "Eu quero tempo. Eu quero calma.",
+          "definition": "Repetição no início de frases ou versos.",
+          "example_use": "Aqui se aprende. Aqui se erra.",
+          "example_interpret": "Quando faltou o chão, quando faltou o ar…"
+        }
+      ]
     },
     {
-      "id": "eufemismo",
-      "title": "Eufemismo",
-      "desc": "Suaviza uma ideia dura ou direta.",
-      "example": "Ele partiu cedo demais."
-    },
-    {
-      "id": "antitese",
-      "title": "Antítese",
-      "desc": "Aproxima ideias opostas para criar contraste.",
-      "example": "Era doce e cruel ao mesmo tempo."
-    },
-    {
-      "id": "paradoxo",
-      "title": "Paradoxo",
-      "desc": "Reúne ideias aparentemente contraditórias que se completam.",
-      "example": "É um silêncio que grita."
-    },
-    {
-      "id": "aliteracao",
-      "title": "Aliteração",
-      "desc": "Repetição de sons consonantais para ritmo ou efeito.",
-      "example": "O rato roeu a roupa do rei."
-    },
-    {
-      "id": "assonancia",
-      "title": "Assonância",
-      "desc": "Repetição de sons vocálicos para musicalidade.",
-      "example": "A lua pura e nua flutua."
-    },
-    {
-      "id": "personificacao",
-      "title": "Personificação",
-      "desc": "Atribui características humanas a seres ou objetos.",
-      "example": "A cidade acordou cansada."
-    },
-    {
-      "id": "ironia",
-      "title": "Ironia",
-      "desc": "Afirma algo para sugerir o contrário, criando tensão de sentido.",
-      "example": "Que pontualidade exemplar, chegou só uma hora atrasado."
-    },
-    {
-      "id": "anafora",
-      "title": "Anáfora",
-      "desc": "Repetição de uma palavra no início de frases ou versos.",
-      "example": "Eu queria ir, eu queria ficar, eu queria dormir."
-    },
-    {
-      "id": "sinecdoque",
-      "title": "Sinédoque",
-      "desc": "Parte pelo todo ou todo pela parte.",
-      "example": "Precisamos de mais mãos aqui."
+      "id": "sound",
+      "label": "figures_tab_sound",
+      "items": [
+        {
+          "id": "aliteracao",
+          "title": "Aliteração",
+          "recognize": "Consoantes se repetem com destaque sonoro.",
+          "example_recognize": "Vento varre a varanda.",
+          "definition": "Repetição intencional de consoantes.",
+          "example_use": "Noite negra no navio.",
+          "example_interpret": "No nervo da noite, a cidade range."
+        },
+        {
+          "id": "assonancia",
+          "title": "Assonância",
+          "recognize": "Vogais dominam o som do trecho.",
+          "example_recognize": "A tarde passa clara.",
+          "definition": "Repetição de sons vocálicos.",
+          "example_use": "A vida é ida e vinda.",
+          "example_interpret": "No oco do corpo, o som demora."
+        },
+        {
+          "id": "onomatopeia",
+          "title": "Onomatopeia",
+          "recognize": "A palavra imita um som real.",
+          "example_recognize": "Tic-tac.",
+          "definition": "Representação sonora por palavras.",
+          "example_use": "Vruuum.",
+          "example_interpret": "Trim, plim, tum."
+        }
+      ]
     }
   ]
 }

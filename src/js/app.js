@@ -910,6 +910,7 @@ function setupEventListeners() {
     };
 
     let figuresRegistry = null;
+    const figuresState = { tab: null, openId: null, data: null };
     const loadFiguresRegistry = async () => {
         if (figuresRegistry) return figuresRegistry;
         const res = await fetch("src/assets/figures/figures_ptbr.json");
@@ -918,8 +919,27 @@ function setupEventListeners() {
         return figuresRegistry;
     };
 
-    const renderFiguresList = (items) => {
-        const list = document.getElementById("figuresList");
+    const renderFiguresTabs = (tabs) => {
+        const tabsEl = document.getElementById("figuresTabs");
+        if (!tabsEl) return;
+        tabsEl.innerHTML = "";
+        tabs.forEach((tab) => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "figures-tab";
+            if (figuresState.tab === tab.id) btn.classList.add("active");
+            btn.textContent = lang.t(tab.label) || tab.label;
+            btn.addEventListener("click", () => {
+                figuresState.tab = tab.id;
+                figuresState.openId = null;
+                renderFiguresModal();
+            });
+            tabsEl.appendChild(btn);
+        });
+    };
+
+    const renderFiguresCards = (items) => {
+        const list = document.getElementById("figuresCards");
         const empty = document.getElementById("figuresEmpty");
         if (!list || !empty) return;
         list.innerHTML = "";
@@ -930,19 +950,52 @@ function setupEventListeners() {
         empty.style.display = "none";
         items.forEach((item) => {
             const card = document.createElement("div");
-            card.className = "figures-item";
-            const title = document.createElement("div");
-            title.className = "figures-item-title";
+            card.className = "figures-card";
+            if (!figuresState.openId) figuresState.openId = item.id;
+            if (figuresState.openId === item.id) card.classList.add("open");
+
+            const head = document.createElement("button");
+            head.type = "button";
+            head.className = "figures-card-head";
+            const title = document.createElement("span");
+            title.className = "figures-card-title";
             title.textContent = item.title || "—";
-            const desc = document.createElement("div");
-            desc.className = "figures-item-desc";
-            desc.textContent = item.desc || "—";
-            const example = document.createElement("div");
-            example.className = "figures-item-example";
-            example.textContent = item.example ? `Ex.: ${item.example}` : "Ex.: —";
-            card.appendChild(title);
-            card.appendChild(desc);
-            card.appendChild(example);
+            const chevron = document.createElement("span");
+            chevron.className = "figures-muted";
+            chevron.textContent = figuresState.openId === item.id ? "–" : "+";
+            head.appendChild(title);
+            head.appendChild(chevron);
+            head.addEventListener("click", () => {
+                figuresState.openId = figuresState.openId === item.id ? null : item.id;
+                renderFiguresModal();
+            });
+
+            const body = document.createElement("div");
+            body.className = "figures-card-body";
+
+            const addBlock = (labelKey, text, cls = "figures-text") => {
+                if (!text) return;
+                const label = document.createElement("div");
+                label.className = "figures-label";
+                label.textContent = lang.t(labelKey);
+                const content = document.createElement("div");
+                content.className = cls;
+                content.textContent = text;
+                body.appendChild(label);
+                body.appendChild(content);
+            };
+
+            addBlock("figures_label_recognize", item.recognize);
+            addBlock("figures_label_example_recognize", item.example_recognize, "figures-example");
+            addBlock("figures_label_definition", item.definition, "figures-muted");
+            addBlock("figures_label_example_use", item.example_use, "figures-example");
+            addBlock("figures_label_example_interpret", item.example_interpret, "figures-example");
+            if (item.not_confuse) {
+                addBlock("figures_label_not_confuse", item.not_confuse, "figures-muted");
+            }
+
+            card.appendChild(head);
+            card.appendChild(body);
             list.appendChild(card);
         });
     };
@@ -960,8 +1013,11 @@ function setupEventListeners() {
         const note = document.getElementById("figuresNote");
         if (!modal) return;
         const registry = await loadFiguresRegistry();
-        const items = Array.isArray(registry.figures) ? registry.figures : [];
-        renderFiguresList(items);
+        figuresState.data = registry || {};
+        if (!figuresState.tab && registry?.tabs?.length) {
+            figuresState.tab = registry.tabs[0].id;
+        }
+        renderFiguresModal();
         if (note) note.style.display = lang.current === "pt" ? "none" : "block";
         const support = document.getElementById("figuresSupport");
         if (support) support.style.display = lang.current === "pt" ? "none" : "grid";
@@ -970,6 +1026,19 @@ function setupEventListeners() {
         document.body.classList.add("figures-open");
     }
     window.skrvOpenFiguresModal = openFiguresModal;
+
+    const renderFiguresModal = () => {
+        const data = figuresState.data || {};
+        const tabs = Array.isArray(data.tabs) ? data.tabs : [];
+        if (!tabs.length) {
+            renderFiguresCards([]);
+            return;
+        }
+        renderFiguresTabs(tabs);
+        const active = tabs.find(t => t.id === figuresState.tab) || tabs[0];
+        const items = Array.isArray(active.items) ? active.items : [];
+        renderFiguresCards(items);
+    };
 
     const parseTemplate = (raw) => {
         const lines = String(raw || "").split(/\r?\n/);
