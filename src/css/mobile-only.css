@@ -72,3 +72,25 @@ body.mobile-only-page .qr-stream-layout {
 body.mobile-only-page .qr-video {
     max-height: 38vh;
 }
+
+body.mobile-only-page .mobile-cache-clear {
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+    z-index: 10001;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px dashed rgba(120, 120, 120, 0.35);
+    background: rgba(0, 0, 0, 0.12);
+    color: var(--color-text);
+    font-size: 10px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+body.mobile-only-page .mobile-cache-clear.show {
+    opacity: 0.9;
+    pointer-events: auto;
+}

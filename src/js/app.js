@@ -46,6 +46,43 @@ document.addEventListener('DOMContentLoaded', () => {
     lang.init();
     window.skrvLoading = initGlobalPending();
     const mobileGateActive = isMobile ? initMobileGate() : false;
+    const cacheHook = document.getElementById("mobileGateCacheHook");
+    const cacheBtn = document.getElementById("mobileClearCache");
+    if (cacheHook && cacheBtn) {
+        let pressTimer = null;
+        const showBtn = () => {
+            cacheBtn.classList.add("show");
+            cacheBtn.setAttribute("aria-hidden", "false");
+        };
+        const hideBtn = () => {
+            cacheBtn.classList.remove("show");
+            cacheBtn.setAttribute("aria-hidden", "true");
+        };
+        cacheHook.addEventListener("touchstart", () => {
+            pressTimer = setTimeout(showBtn, 900);
+        }, { passive: true });
+        cacheHook.addEventListener("touchend", () => {
+            if (pressTimer) clearTimeout(pressTimer);
+        }, { passive: true });
+        cacheHook.addEventListener("click", () => {
+            if (cacheBtn.classList.contains("show")) {
+                hideBtn();
+            }
+        });
+        cacheBtn.addEventListener("click", async () => {
+            try {
+                if ("caches" in window) {
+                    const keys = await caches.keys();
+                    await Promise.all(keys.map((k) => caches.delete(k)));
+                }
+                if (navigator.serviceWorker?.getRegistrations) {
+                    const regs = await navigator.serviceWorker.getRegistrations();
+                    await Promise.all(regs.map((r) => r.unregister()));
+                }
+            } catch (_) {}
+            location.reload(true);
+        });
+    }
     const introDone = localStorage.getItem("skrv_intro_done") === "1";
     if (!mobileGateActive && !introDone) initDedication();
     const syncLangToFrames = (code) => {

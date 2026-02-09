@@ -109,12 +109,14 @@
                 <path d="M12 21v-1"></path>
             </svg>
         </div>
-        <div class="mobile-gate-title" data-i18n="mobile_gate_title">Quer ler um projeto por QR?</div>
+        <div class="mobile-gate-title" id="mobileGateCacheHook" data-i18n="mobile_gate_title">Quer ler um projeto por QR?</div>
         <div class="mobile-gate-body" data-i18n="mobile_gate_body">Abra o leitor de QR para importar um .skv.</div>
         <button id="mobileGateScan" class="btn-full" data-i18n="mobile_gate_scan">LER PROJETO (QR)</button>
         <div class="mobile-gate-hint" data-i18n="mobile_gate_hint">Arraste para cima para continuar</div>
     </div>
 </div>
+
+<button id="mobileClearCache" class="mobile-cache-clear" data-i18n="mobile_clear_cache" aria-hidden="true">Atualizar offline</button>
 
 <div id="globalPending" class="global-pending" aria-hidden="true">
     <div class="pendulum-loader" aria-hidden="true"></div>
