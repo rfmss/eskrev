@@ -25,13 +25,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     store.init();
     incrementAccessCount();
+    const forcedMobile = window.__SKRV_FORCE_MOBILE === true;
     const uaMobile = navigator.userAgentData && typeof navigator.userAgentData.mobile === "boolean"
         ? navigator.userAgentData.mobile
         : /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent || "");
     const coarse = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
     const hoverNone = window.matchMedia && window.matchMedia("(hover: none)").matches;
     const touchPoints = navigator.maxTouchPoints || 0;
-    const isMobile = uaMobile || (coarse && hoverNone && touchPoints > 0) || window.innerWidth <= 900;
+    const isMobile = forcedMobile || uaMobile || (coarse && hoverNone && touchPoints > 0) || window.innerWidth <= 900;
+    const onMobilePage = /mobile\\.html$/.test(location.pathname);
+    if (!forcedMobile && isMobile && !onMobilePage && !location.search.includes("fallback=1")) {
+        location.replace("mobile.html");
+        return;
+    }
     if (isMobile) {
         document.body.classList.add("mobile-lite");
     }

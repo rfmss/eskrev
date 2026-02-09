@@ -2,9 +2,11 @@ const CACHE_NAME = "skrv-cache-v14";
 const CACHE_ASSETS = [
   "./",
   "./index.html",
+  "./mobile.html",
   "./totbooks.html",
-  "./manifest.json?v=3",
+  "./manifest.json?v=5",
   "./src/css/main.css",
+  "./src/css/mobile-only.css",
   "./src/css/fonts.css",
   "./src/css/base.css",
   "./src/css/layout.css",
