@@ -3,7 +3,7 @@
         pt: {
             lang_label: "PT",
             mobile_gate_title: "Importar projeto",
-            mobile_gate_body: "Abra o scanner e traga sua cápsula .skv",
+            mobile_gate_body: "Abra o scanner e traga seu projeto de um notebook (exportar > stream QR), tablet ou outra carteira eskrev em outro celular.",
             mobile_gate_scan: "LER QR CODE",
             mobile_empty_title: "Importe um projeto",
             mobile_empty_body: "O celular guarda o livro inteiro e espera um desktop para despejar.",
@@ -21,6 +21,7 @@
             mobile_limit: "Limite máximo de projetos salvos.",
             mobile_delete_label: "Deletar",
             mobile_delete_confirm: "Deletar projeto?",
+            mobile_cancel_label: "Cancelar",
             cancel_label: "Cancelar",
             delete_label: "Deletar",
             mobile_trash: "Apagar",
@@ -52,7 +53,7 @@
         en: {
             lang_label: "EN",
             mobile_gate_title: "Import project",
-            mobile_gate_body: "Open the scanner and bring your .skv capsule",
+            mobile_gate_body: "Open the scanner and bring your project from a notebook (export > stream QR), tablet, or another eskrev wallet on a different phone.",
             mobile_gate_scan: "READ QR CODE",
             mobile_empty_title: "Import a project",
             mobile_empty_body: "Your phone keeps the whole book and waits for a desktop to pour it out.",
@@ -70,6 +71,7 @@
             mobile_limit: "Maximum projects saved.",
             mobile_delete_label: "Delete",
             mobile_delete_confirm: "Delete project?",
+            mobile_cancel_label: "Cancel",
             cancel_label: "Cancel",
             delete_label: "Delete",
             mobile_trash: "Delete",
@@ -101,7 +103,7 @@
         es: {
             lang_label: "ES",
             mobile_gate_title: "Importar proyecto",
-            mobile_gate_body: "Abra el escáner y traiga su cápsula .skv",
+            mobile_gate_body: "Abre el escáner y trae tu proyecto desde un notebook (exportar > stream QR), tablet u otra billetera eskrev en otro celular.",
             mobile_gate_scan: "LEER QR",
             mobile_empty_title: "Importa un proyecto",
             mobile_empty_body: "El celular guarda todo el libro y espera un escritorio para vaciarlo.",
@@ -119,6 +121,7 @@
             mobile_limit: "Límite máximo de proyectos guardados.",
             mobile_delete_label: "Borrar",
             mobile_delete_confirm: "¿Borrar proyecto?",
+            mobile_cancel_label: "Cancelar",
             cancel_label: "Cancelar",
             delete_label: "Borrar",
             mobile_trash: "Borrar",
@@ -150,7 +153,7 @@
         fr: {
             lang_label: "FR",
             mobile_gate_title: "Importer un projet",
-            mobile_gate_body: "Ouvrez le scanner et importez votre capsule .skv",
+            mobile_gate_body: "Ouvrez le scanner et importez votre projet depuis un notebook (exporter > stream QR), une tablette ou un autre portefeuille eskrev sur un autre téléphone.",
             mobile_gate_scan: "LIRE QR",
             mobile_empty_title: "Importer un projet",
             mobile_empty_body: "Le téléphone garde tout le livre et attend un desktop pour le verser.",
@@ -168,6 +171,7 @@
             mobile_limit: "Limite maximum de projets enregistrés.",
             mobile_delete_label: "Supprimer",
             mobile_delete_confirm: "Supprimer le projet ?",
+            mobile_cancel_label: "Annuler",
             cancel_label: "Annuler",
             delete_label: "Supprimer",
             mobile_trash: "Supprimer",
@@ -713,6 +717,7 @@
 
     const initElements = () => {
         els.langToggle = document.getElementById("mobileLangToggle");
+        els.gateLangToggle = document.getElementById("mobileGateLangToggle");
         els.library = document.getElementById("library");
         els.gate = document.getElementById("mobileGate");
         els.gateScan = document.getElementById("mobileGateScan");
@@ -746,6 +751,7 @@
 
     const bindEvents = () => {
         if (els.langToggle) els.langToggle.addEventListener("click", cycleLang);
+        if (els.gateLangToggle) els.gateLangToggle.addEventListener("click", cycleLang);
         if (els.gateScan) els.gateScan.addEventListener("click", () => {
             closeGate();
             openScanModal();

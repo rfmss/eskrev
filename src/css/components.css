@@ -4776,6 +4776,13 @@ body.mobile-lite #mobileTagsList {
     color: var(--color-muted);
     text-align: center;
 }
+.onboard-offline .offline-hint {
+    font-size: 10px;
+    letter-spacing: 0.3px;
+    color: var(--color-text);
+    opacity: 0.6;
+    text-align: center;
+}
 .onboard-offline .offline-pendulum {
     width: 34px;
     height: 34px;

@@ -481,10 +481,10 @@ function setupOfflineProgress() {
         lastPct = pct;
         bar.style.width = `${pct}%`;
         if (pct >= 100) {
-            label.textContent = lang.t("onboard_offline_ready");
+            label.textContent = "100%";
             finished = true;
         } else {
-            label.textContent = lang.t("onboard_offline_loading").replace("{pct}", pct);
+            label.textContent = `${pct}%`;
         }
     };
 
@@ -529,9 +529,9 @@ function setupOfflineProgress() {
     document.addEventListener("lang:changed", () => {
         if (lastPct === null) return;
         if (finished || lastPct >= 100) {
-            label.textContent = lang.t("onboard_offline_ready");
+            label.textContent = "100%";
         } else {
-            label.textContent = lang.t("onboard_offline_loading").replace("{pct}", lastPct);
+            label.textContent = `${lastPct}%`;
         }
     });
 }
