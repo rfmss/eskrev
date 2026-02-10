@@ -90,6 +90,19 @@ body {
     z-index: 40;
 }
 
+@media (max-width: 420px) {
+    .modal {
+        padding: 16px;
+        gap: 10px;
+    }
+    .modal.qr-modal .panel {
+        gap: 8px;
+    }
+    .note-input {
+        min-height: 80px;
+    }
+}
+
 .mobile-footer-note {
     font-size: 11px;
     letter-spacing: 0.6px;
@@ -572,6 +585,7 @@ body {
 .modal.qr-modal .panel {
     display: grid;
     gap: 10px;
+    padding-bottom: 6px;
 }
 
 .modal .btn-full {
@@ -640,6 +654,10 @@ body {
 
 .overlay.active { display: flex; }
 
+#qrScanModal .modal.qr-modal {
+    padding-bottom: 28px;
+}
+
 #mobileGate.overlay {
     background: var(--m-bg);
     padding: 18px;
@@ -656,6 +674,8 @@ body {
     gap: 14px;
     text-align: center;
     box-shadow: var(--m-shadow-soft);
+    max-height: 82vh;
+    overflow: auto;
 }
 
 .modal-title {
