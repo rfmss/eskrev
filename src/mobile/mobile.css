@@ -4,8 +4,8 @@
     --m-radius: 16px;
     --m-radius-sm: 12px;
     --m-gap: 14px;
-    --m-shadow: 0 26px 70px rgba(15, 16, 18, 0.28);
-    --m-shadow-soft: 0 12px 30px rgba(15, 16, 18, 0.12);
+    --m-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    --m-shadow-soft: 0 4px 10px rgba(0, 0, 0, 0.08);
     --m-shadow-line: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
     --m-text: var(--color-text);
     --m-muted: var(--color-muted);
@@ -60,9 +60,7 @@ html, body {
 
 body {
     font-family: var(--font-body);
-    background: radial-gradient(1200px 1200px at 10% -20%, rgba(255,255,255,0.35) 0%, transparent 40%),
-        radial-gradient(900px 900px at 100% 0%, rgba(255,255,255,0.15) 0%, transparent 50%),
-        var(--m-bg);
+    background: var(--m-bg);
     color: var(--m-text);
     overflow: auto;
 }
@@ -144,6 +142,11 @@ body {
     gap: 18px;
 }
 
+.mobile-book {
+    --m-accent: #1f4fff;
+    --m-accent-soft: rgba(31, 79, 255, 0.18);
+}
+
 .mobile-book.hidden { display: none; }
 
 .book-cover {
@@ -187,9 +190,14 @@ body {
 }
 
 .btn-full.primary {
+    background: #1e1d1a;
+    color: #f1efe9;
+    border: none;
+}
+
+.mobile-book .btn-full.primary {
     background: var(--m-accent);
     color: var(--m-bg);
-    border: none;
 }
 
 .btn-icon {
@@ -213,7 +221,7 @@ body {
 .overlay {
     position: fixed;
     inset: 0;
-    background: rgba(14, 12, 10, 0.6);
+    background: rgba(16, 14, 12, 0.45);
     display: none;
     align-items: center;
     justify-content: center;
@@ -224,9 +232,7 @@ body {
 .overlay.active { display: flex; }
 
 #mobileGate.overlay {
-    background: radial-gradient(1200px 1200px at 20% -10%, rgba(255,255,255,0.55) 0%, transparent 45%),
-        radial-gradient(900px 900px at 80% 0%, rgba(255,255,255,0.25) 0%, transparent 55%),
-        var(--m-bg);
+    background: var(--m-bg);
     padding: 18px;
     align-items: stretch;
 }
@@ -240,7 +246,7 @@ body {
     display: grid;
     gap: 14px;
     text-align: center;
-    box-shadow: var(--m-shadow);
+    box-shadow: var(--m-shadow-soft);
 }
 
 .modal-title {
@@ -316,12 +322,11 @@ body {
     margin: auto;
     display: grid;
     gap: 16px;
-    background: rgba(255,255,255,0.12);
+    background: var(--m-card);
     border-radius: 30px;
     padding: 22px 18px;
-    border: 1px solid rgba(255,255,255,0.15);
-    box-shadow: var(--m-shadow);
-    backdrop-filter: blur(10px);
+    border: 1px solid var(--m-line);
+    box-shadow: var(--m-shadow-soft);
 }
 
 .gate-header {
@@ -360,8 +365,8 @@ body {
 }
 
 .gate-primary {
-    background: var(--m-accent);
-    color: var(--m-bg);
+    background: #1e1d1a;
+    color: #f1efe9;
     border: none;
 }
 
