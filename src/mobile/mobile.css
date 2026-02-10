@@ -73,6 +73,26 @@ body {
     gap: 18px;
 }
 
+.mobile-footer {
+    display: flex;
+    justify-content: center;
+    padding: 10px 18px 24px;
+}
+
+.support-link {
+    border: none;
+    background: none;
+    color: #1e1d1a;
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    opacity: 0.55;
+}
+
+.support-link.is-copied {
+    opacity: 0.85;
+}
+
 .mobile-top {
     display: flex;
     align-items: center;

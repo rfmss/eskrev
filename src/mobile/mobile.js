@@ -16,6 +16,8 @@
             mobile_export_save: "SALVAR .SKV",
             mobile_export_b64: "SALVAR .B64",
             mobile_export_copy: "COPIAR B64",
+            mobile_support: "Apoie o projeto",
+            mobile_support_copied: "Copiado",
             close_label: "OK",
             qr_scan_title: "SCAN QR",
             qr_scan_wait: "AGUARDANDO QR...",
@@ -57,6 +59,8 @@
             mobile_export_save: "SAVE .SKV",
             mobile_export_b64: "SAVE .B64",
             mobile_export_copy: "COPY B64",
+            mobile_support: "Support the project",
+            mobile_support_copied: "Copied",
             close_label: "OK",
             qr_scan_title: "SCAN QR",
             qr_scan_wait: "WAITING FOR QR...",
@@ -98,6 +102,8 @@
             mobile_export_save: "GUARDAR .SKV",
             mobile_export_b64: "GUARDAR .B64",
             mobile_export_copy: "COPIAR B64",
+            mobile_support: "Apoya el proyecto",
+            mobile_support_copied: "Copiado",
             close_label: "OK",
             qr_scan_title: "SCAN QR",
             qr_scan_wait: "ESPERANDO QR...",
@@ -139,6 +145,8 @@
             mobile_export_save: "ENREGISTRER .SKV",
             mobile_export_b64: "ENREGISTRER .B64",
             mobile_export_copy: "COPIER B64",
+            mobile_support: "Soutenir le projet",
+            mobile_support_copied: "Copié",
             close_label: "OK",
             qr_scan_title: "SCAN QR",
             qr_scan_wait: "EN ATTENTE...",
@@ -607,6 +615,7 @@
         els.exportFile = document.getElementById("btnExportFile");
         els.exportB64 = document.getElementById("btnExportB64");
         els.exportCopy = document.getElementById("btnCopyB64");
+        els.support = document.getElementById("mobileSupport");
         els.scanModal = document.getElementById("qrScanModal");
         els.scanVideo = document.getElementById("qrScanVideo");
         els.scanStatus = document.getElementById("qrScanStatus");
@@ -749,6 +758,19 @@
                 if (!payload) return;
                 const base64 = buildBase64(payload);
                 navigator.clipboard?.writeText(base64).catch(() => {});
+            });
+        }
+        if (els.support) {
+            els.support.addEventListener("click", () => {
+                const value = els.support.getAttribute("data-copy") || "";
+                navigator.clipboard?.writeText(value).catch(() => {});
+                els.support.classList.add("is-copied");
+                const prev = els.support.textContent;
+                els.support.textContent = t("mobile_support_copied");
+                setTimeout(() => {
+                    els.support.textContent = t("mobile_support");
+                    els.support.classList.remove("is-copied");
+                }, 1200);
             });
         }
 
