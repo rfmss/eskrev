@@ -230,11 +230,13 @@
         if (!els.book || !els.empty) return;
         if (!payload) {
             els.book.classList.add("hidden");
+            els.book.classList.remove("open");
             els.empty.style.display = "grid";
             return;
         }
         els.empty.style.display = "none";
         els.book.classList.remove("hidden");
+        els.book.classList.remove("open");
         if (els.bookDate) els.bookDate.textContent = payloadDate(payload);
     };
 
@@ -245,14 +247,6 @@
     const closeGate = () => {
         if (els.gate) els.gate.classList.remove("active");
         sessionStorage.setItem("skrv_mobile_gate_done", "1");
-    };
-
-    const openExport = () => {
-        if (els.exportModal) els.exportModal.classList.add("active");
-    };
-
-    const closeExport = () => {
-        if (els.exportModal) els.exportModal.classList.remove("active");
     };
 
     const buildPayload = () => loadPayload();
@@ -567,18 +561,14 @@
         els.langToggle = document.getElementById("mobileLangToggle");
         els.gate = document.getElementById("mobileGate");
         els.gateScan = document.getElementById("mobileGateScan");
-        els.book = document.getElementById("mobileBook");
-        els.bookDate = document.getElementById("bookDate");
+        els.book = document.getElementById("mobileTotbook");
+        els.bookDate = document.getElementById("bookCoverDate");
         els.empty = document.getElementById("mobileEmpty");
         els.scanPrimary = document.getElementById("mobileScanPrimary");
-        els.bookExtract = document.getElementById("bookExtract");
-        els.bookExtractQr = document.getElementById("bookExtractQr");
-        els.exportModal = document.getElementById("exportModal");
         els.exportQr = document.getElementById("btnExportQr");
         els.exportFile = document.getElementById("btnExportFile");
         els.exportB64 = document.getElementById("btnExportB64");
         els.exportCopy = document.getElementById("btnCopyB64");
-        els.exportClose = document.getElementById("btnExportClose");
         els.scanModal = document.getElementById("qrScanModal");
         els.scanVideo = document.getElementById("qrScanVideo");
         els.scanStatus = document.getElementById("qrScanStatus");
@@ -606,13 +596,20 @@
             openScanModal();
         });
         if (els.scanPrimary) els.scanPrimary.addEventListener("click", openScanModal);
-        if (els.bookExtract) els.bookExtract.addEventListener("click", openExport);
-        if (els.bookExtractQr) els.bookExtractQr.addEventListener("click", openStreamModal);
-        if (els.exportClose) els.exportClose.addEventListener("click", closeExport);
+        if (els.book) {
+            els.book.addEventListener("click", (e) => {
+                if (!els.book.classList.contains("open")) {
+                    els.book.classList.add("open");
+                    return;
+                }
+                if (e.target.closest(".drag-handle")) {
+                    els.book.classList.remove("open");
+                }
+            });
+        }
 
         if (els.exportQr) {
             els.exportQr.addEventListener("click", () => {
-                closeExport();
                 openStreamModal();
             });
         }

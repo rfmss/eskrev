@@ -25,21 +25,39 @@
             </div>
         </header>
 
-        <section id="mobileBookWrap" class="mobile-book-wrap" aria-live="polite">
-            <div id="mobileBook" class="mobile-book hidden">
-                <div class="book-cover">
-                    <div class="book-date" id="bookDate">10 Fev 2026</div>
-                    <div class="book-title" data-i18n="mobile_book_title">Caderninho</div>
-                </div>
-                <div class="book-actions">
-                    <button id="bookExtract" class="btn-full primary" data-i18n="mobile_extract">EXTRAIR</button>
-                    <button id="bookExtractQr" class="btn-icon" data-i18n-title="mobile_extract_qr" aria-label="QR">
-                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                            <use href="src/assets/icons/phosphor-sprite.svg#icon-qr-code"></use>
-                        </svg>
-                    </button>
+        <section class="mobile-stage">
+            <div class="library" id="library">
+                <div id="mobileTotbook" class="totbook hidden" aria-hidden="true">
+                    <div class="cover">
+                        <div class="sheen"></div>
+                        <div class="strap"><span id="bookCoverDate">10 Fev 2026</span></div>
+                    </div>
+                    <div class="elastic"></div>
+                    <div class="drag-handle"><div class="dots"></div></div>
+                    <div class="pages">
+                        <div class="page-viewport">
+                            <div class="sheet">
+                                <div class="book-inner">
+                                    <div class="book-inner-title" data-i18n="mobile_extract">Extrair</div>
+                                    <div class="book-inner-body" data-i18n="mobile_extract_body">Retire o projeto do celular em qualquer formato.</div>
+                                    <div class="book-inner-actions">
+                                        <button id="btnExportQr" class="btn-full primary" data-i18n="mobile_export_qr">ENVIAR POR QR</button>
+                                        <button id="btnExportFile" class="btn-full" data-i18n="mobile_export_save">SALVAR .SKV</button>
+                                        <button id="btnExportB64" class="btn-full" data-i18n="mobile_export_b64">SALVAR .B64</button>
+                                        <button id="btnCopyB64" class="btn-full" data-i18n="mobile_export_copy">COPIAR B64</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pagination">
+                            <button class="prev" disabled aria-hidden="true">‹</button>
+                            <span class="page-count">1/1</span>
+                            <button class="next" disabled aria-hidden="true">›</button>
+                        </div>
+                    </div>
                 </div>
             </div>
+
             <div id="mobileEmpty" class="mobile-empty">
                 <div class="empty-title" data-i18n="mobile_empty_title">Importe um projeto</div>
                 <div class="empty-body" data-i18n="mobile_empty_body">O celular guarda o livro inteiro e espera um desktop para despejar.</div>
@@ -61,20 +79,6 @@
             <div class="gate-actions">
                 <button id="mobileGateScan" class="btn-full gate-primary" data-i18n="mobile_gate_scan">LER QR CODE</button>
             </div>
-        </div>
-    </div>
-
-    <div id="exportModal" class="overlay">
-        <div class="modal">
-            <div class="modal-title" data-i18n="mobile_extract">Extrair</div>
-            <div class="modal-body" data-i18n="mobile_extract_body">Retire o projeto do celular em qualquer formato.</div>
-            <div class="btn-row">
-                <button id="btnExportQr" class="btn-full primary" data-i18n="mobile_export_qr">ENVIAR POR QR</button>
-                <button id="btnExportFile" class="btn-full" data-i18n="mobile_export_save">SALVAR .SKV</button>
-            </div>
-            <button id="btnExportB64" class="btn-full" data-i18n="mobile_export_b64">SALVAR .B64</button>
-            <button id="btnCopyB64" class="btn-full" data-i18n="mobile_export_copy">COPIAR B64</button>
-            <button id="btnExportClose" class="btn-full" data-i18n="close_label">OK</button>
         </div>
     </div>
 
