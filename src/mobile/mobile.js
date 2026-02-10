@@ -17,6 +17,7 @@
             mobile_export_b64: "SALVAR .B64",
             mobile_export_copy: "COPIAR B64",
             marquee_ready: "apoie: <span class=\"marquee-copy\" data-copy=\"BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP\">BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP</span> | <span class=\"marquee-copy\" data-copy=\"eskrev@disroot.org\">eskrev@disroot.org</span> pix/paypal",
+            mobile_limit: "Limite máximo de projetos salvos.",
             mobile_trash: "Apagar",
             close_label: "OK",
             qr_scan_title: "SCAN QR",
@@ -60,6 +61,7 @@
             mobile_export_b64: "SAVE .B64",
             mobile_export_copy: "COPY B64",
             marquee_ready: "support: <span class=\"marquee-copy\" data-copy=\"BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP\">BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP</span> | <span class=\"marquee-copy\" data-copy=\"eskrev@disroot.org\">eskrev@disroot.org</span> pix/paypal",
+            mobile_limit: "Maximum projects saved.",
             mobile_trash: "Delete",
             close_label: "OK",
             qr_scan_title: "SCAN QR",
@@ -103,6 +105,7 @@
             mobile_export_b64: "GUARDAR .B64",
             mobile_export_copy: "COPIAR B64",
             marquee_ready: "apoya: <span class=\"marquee-copy\" data-copy=\"BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP\">BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP</span> | <span class=\"marquee-copy\" data-copy=\"eskrev@disroot.org\">eskrev@disroot.org</span> pix/paypal",
+            mobile_limit: "Límite máximo de proyectos guardados.",
             mobile_trash: "Borrar",
             close_label: "OK",
             qr_scan_title: "SCAN QR",
@@ -146,6 +149,7 @@
             mobile_export_b64: "ENREGISTRER .B64",
             mobile_export_copy: "COPIER B64",
             marquee_ready: "soutenez : <span class=\"marquee-copy\" data-copy=\"BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP\">BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP</span> | <span class=\"marquee-copy\" data-copy=\"eskrev@disroot.org\">eskrev@disroot.org</span> pix/paypal",
+            mobile_limit: "Limite maximum de projets enregistrés.",
             mobile_trash: "Supprimer",
             close_label: "OK",
             qr_scan_title: "SCAN QR",
@@ -174,12 +178,16 @@
         }
     };
 
-    const STORAGE_KEY = "skrv_mobile_payload";
+    const STORAGE_KEY = "skrv_mobile_payloads";
+    const MAX_BOOKS = 15;
+    const GRID_COLS = 5;
+    const GRID_ROWS = 3;
     const state = {
         lang: (localStorage.getItem("lit_lang") || "pt").toLowerCase().includes("en") ? "en"
             : (localStorage.getItem("lit_lang") || "pt").toLowerCase().includes("es") ? "es"
             : (localStorage.getItem("lit_lang") || "pt").toLowerCase().includes("fr") ? "fr"
-            : "pt"
+            : "pt",
+        activeId: null
     };
 
     const els = {};
@@ -215,18 +223,21 @@
         state.lang = order[(idx + 1) % order.length];
         localStorage.setItem("lit_lang", state.lang);
         applyI18n();
+        renderBooks();
     };
 
-    const savePayload = (payload) => {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+    const savePayloads = (items) => {
+        const list = Array.isArray(items) ? items : [];
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
     };
 
-    const loadPayload = () => {
+    const loadPayloads = () => {
         try {
             const raw = localStorage.getItem(STORAGE_KEY);
-            return raw ? JSON.parse(raw) : null;
+            const parsed = raw ? JSON.parse(raw) : [];
+            return Array.isArray(parsed) ? parsed : [];
         } catch (_) {
-            return null;
+            return [];
         }
     };
 
@@ -249,45 +260,85 @@
         "#8b5cf6", "#b45309", "#374151", "#16a34a", "#dc2626"
     ];
 
-    const applyStrapColor = () => {
-        if (!els.book) return;
-        const strap = els.book.querySelector(".strap");
-        if (!strap) return;
-        const idx = Math.floor(Math.random() * STRAP_COLORS.length);
-        strap.style.background = STRAP_COLORS[idx];
-    };
+    const pickStrapColor = () => STRAP_COLORS[Math.floor(Math.random() * STRAP_COLORS.length)];
 
-    const cycleStrapColor = () => {
-        if (!els.book) return;
-        const strap = els.book.querySelector(".strap");
-        if (!strap) return;
-        const current = strap.style.background || "";
-        const currentIdx = STRAP_COLORS.findIndex(c => c.toLowerCase() === current.toLowerCase());
-        const nextIdx = currentIdx >= 0 ? (currentIdx + 1) % STRAP_COLORS.length : 0;
-        strap.style.background = STRAP_COLORS[nextIdx];
-    };
+    const renderBooks = () => {
+        const items = loadPayloads();
+        if (!els.grid || !els.empty || !els.library) return;
+        els.grid.innerHTML = "";
+        if (!items.length) {
+            els.empty.classList.remove("is-hidden");
+        } else {
+            els.empty.classList.add("is-hidden");
+        }
 
-    const renderBook = () => {
-        const payload = loadPayload();
-        if (!els.book || !els.empty) return;
-        if (!payload) {
-            els.book.classList.add("hidden");
-            els.book.classList.remove("open");
-            els.empty.style.display = "grid";
-            return;
+        const libRect = els.library.getBoundingClientRect();
+        const slotW = libRect.width / GRID_COLS;
+        const slotH = libRect.height / GRID_ROWS;
+        const bookW = Math.min(120, slotW * 0.9);
+        const bookH = Math.min(170, slotH * 0.9);
+
+        items.slice(0, MAX_BOOKS).forEach((item, idx) => {
+            const col = idx % GRID_COLS;
+            const row = Math.floor(idx / GRID_COLS);
+            const left = col * slotW + (slotW - bookW) / 2;
+            const top = row * slotH + (slotH - bookH) / 2;
+            const book = document.createElement("div");
+            book.className = "totbook";
+            book.dataset.id = item.id;
+            book.dataset.slotLeft = String(left);
+            book.dataset.slotTop = String(top);
+            book.style.left = `${left}px`;
+            book.style.top = `${top}px`;
+            book.style.width = `${bookW}px`;
+            book.style.height = `${bookH}px`;
+            const strapColor = item.strapColor || pickStrapColor();
+            item.strapColor = strapColor;
+
+            book.innerHTML = `
+                <div class="cover">
+                    <div class="sheen"></div>
+                    <div class="cover-date">${payloadDate(item.payload)}</div>
+                    <div class="strap" style="background:${strapColor};"><span>${payloadProjectName(item.payload) || "Projeto"}</span></div>
+                </div>
+                <div class="elastic"></div>
+                <div class="drag-handle"><div class="dots"></div></div>
+                <div class="pages">
+                    <div class="page-viewport">
+                        <div class="sheet">
+                            <div class="book-inner">
+                                <div class="book-inner-title">${t("mobile_extract")}</div>
+                                <div class="book-inner-body">${t("mobile_extract_body")}</div>
+                                <div class="book-inner-actions">
+                                    <button class="btn-full primary" data-action="export-qr">${t("mobile_export_qr")}</button>
+                                    <button class="btn-full" data-action="export-skv">${t("mobile_export_save")}</button>
+                                    <button class="btn-full" data-action="export-b64">${t("mobile_export_b64")}</button>
+                                    <button class="btn-full" data-action="copy-b64">${t("mobile_export_copy")}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pagination">
+                        <button class="prev" disabled aria-hidden="true">‹</button>
+                        <span class="page-count">1/1</span>
+                        <button class="next" disabled aria-hidden="true">›</button>
+                    </div>
+                </div>
+            `;
+            els.grid.appendChild(book);
+        });
+
+        savePayloads(items.slice(0, MAX_BOOKS));
+
+        if (els.scanPrimary && els.limit) {
+            if (items.length >= MAX_BOOKS) {
+                els.scanPrimary.style.display = "none";
+                els.limit.classList.add("active");
+            } else {
+                els.scanPrimary.style.display = "inline-flex";
+                els.limit.classList.remove("active");
+            }
         }
-        els.empty.style.display = "none";
-        els.book.classList.remove("hidden");
-        els.book.classList.remove("open");
-        if (!els.book.classList.contains("manual-pos")) {
-            els.book.style.left = "50%";
-            els.book.style.top = "50%";
-        }
-        if (els.bookDate) els.bookDate.textContent = payloadDate(payload);
-        const name = payloadProjectName(payload);
-        const titleEl = document.getElementById("bookCoverTitle");
-        if (titleEl) titleEl.textContent = name || "Projeto";
-        applyStrapColor();
     };
 
 
@@ -300,7 +351,17 @@
         sessionStorage.setItem("skrv_mobile_gate_done", "1");
     };
 
-    const buildPayload = () => loadPayload();
+    const getPayloadById = (id) => {
+        const items = loadPayloads();
+        const item = items.find(i => i.id === id);
+        return item ? item.payload : null;
+    };
+
+    const buildPayload = () => {
+        if (state.activeId) return getPayloadById(state.activeId);
+        const items = loadPayloads();
+        return items[0] ? items[0].payload : null;
+    };
 
     const buildBase64 = (payload) => {
         if (!payload || !window.LZString) return "";
@@ -326,12 +387,27 @@
         return parsePayloadFromJson(json);
     };
 
-    const importPayload = (payload) => {
+    const addPayload = (payload) => {
         if (!payload || !payload.ARCHIVE_STATE) return false;
-        savePayload(payload);
-        renderBook();
-        closeGate();
+        const items = loadPayloads();
+        if (items.length >= MAX_BOOKS) return false;
+        const id = `mb_${Date.now()}_${Math.random().toString(16).slice(2, 8)}`;
+        items.push({
+            id,
+            payload,
+            strapColor: pickStrapColor(),
+            addedAt: new Date().toISOString()
+        });
+        savePayloads(items);
+        state.activeId = id;
         return true;
+    };
+
+    const importPayload = (payload) => {
+        const ok = addPayload(payload);
+        renderBooks();
+        if (ok) closeGate();
+        return ok;
     };
 
     const openScanModal = () => {
@@ -613,14 +689,10 @@
         els.library = document.getElementById("library");
         els.gate = document.getElementById("mobileGate");
         els.gateScan = document.getElementById("mobileGateScan");
-        els.book = document.getElementById("mobileTotbook");
-        els.bookDate = document.getElementById("bookCoverDate");
+        els.grid = document.getElementById("booksGrid");
         els.empty = document.getElementById("mobileEmpty");
         els.scanPrimary = document.getElementById("mobileScanPrimary");
-        els.exportQr = document.getElementById("btnExportQr");
-        els.exportFile = document.getElementById("btnExportFile");
-        els.exportB64 = document.getElementById("btnExportB64");
-        els.exportCopy = document.getElementById("btnCopyB64");
+        els.limit = document.getElementById("mobileLimit");
         els.support = document.querySelector(".mobile-support");
         els.trash = document.getElementById("trashZone");
         els.scanModal = document.getElementById("qrScanModal");
@@ -650,24 +722,46 @@
             openScanModal();
         });
         if (els.scanPrimary) els.scanPrimary.addEventListener("click", openScanModal);
+        let dragBook = null;
         let dragStart = null;
-        let dragOffset = null;
         let dragMoved = false;
-        const setManualPos = (x, y) => {
-            if (!els.book || !els.library) return;
-            const rect = els.book.getBoundingClientRect();
+        const getSlot = (book) => ({
+            left: parseFloat(book.dataset.slotLeft || "0"),
+            top: parseFloat(book.dataset.slotTop || "0")
+        });
+        const setBookTop = (book, top) => {
+            if (!els.library) return;
             const libRect = els.library.getBoundingClientRect();
-            const maxX = Math.max(0, libRect.width - rect.width);
-            const maxY = Math.max(0, libRect.height - rect.height);
-            const nx = Math.max(0, Math.min(maxX, x));
-            const ny = Math.max(0, Math.min(maxY, y));
-            els.book.style.left = `${nx}px`;
-            els.book.style.top = `${ny}px`;
-            els.book.classList.add("manual-pos");
+            const maxY = Math.max(0, libRect.height - book.offsetHeight);
+            const ny = Math.max(0, Math.min(maxY, top));
+            book.style.top = `${ny}px`;
         };
-        const checkTrashHit = () => {
-            if (!els.book || !els.trash) return false;
-            const bookRect = els.book.getBoundingClientRect();
+        const closeAllBooks = () => {
+            if (!els.grid) return;
+            els.grid.querySelectorAll(".totbook.open").forEach((book) => {
+                book.classList.remove("open");
+                const slot = getSlot(book);
+                book.style.left = `${slot.left}px`;
+                book.style.top = `${slot.top}px`;
+            });
+            state.activeId = null;
+        };
+        const openBook = (book) => {
+            if (!els.library) return;
+            closeAllBooks();
+            book.classList.add("open");
+            state.activeId = book.dataset.id || null;
+            requestAnimationFrame(() => {
+                const libRect = els.library.getBoundingClientRect();
+                const left = Math.max(0, (libRect.width - book.offsetWidth) / 2);
+                const top = Math.max(0, (libRect.height - book.offsetHeight) / 2);
+                book.style.left = `${left}px`;
+                book.style.top = `${top}px`;
+            });
+        };
+        const checkTrashHit = (book) => {
+            if (!els.trash || !book) return false;
+            const bookRect = book.getBoundingClientRect();
             const trashRect = els.trash.getBoundingClientRect();
             const hit = !(
                 bookRect.right < trashRect.left ||
@@ -678,107 +772,111 @@
             els.trash.classList.toggle("danger", hit);
             return hit;
         };
-        if (els.book) {
-            els.book.addEventListener("pointerdown", (e) => {
-                const isOpen = els.book.classList.contains("open");
-                if (isOpen && !e.target.closest(".drag-handle")) return;
+        if (els.grid) {
+            els.grid.addEventListener("pointerdown", (e) => {
+                const book = e.target.closest(".totbook");
+                if (!book || book.classList.contains("open")) return;
+                dragBook = book;
                 dragStart = { x: e.clientX, y: e.clientY };
-                const rect = els.book.getBoundingClientRect();
-                const libRect = els.library ? els.library.getBoundingClientRect() : { left: 0, top: 0 };
-                dragOffset = { x: e.clientX - rect.left, y: e.clientY - rect.top };
                 dragMoved = false;
                 document.body.classList.add("is-dragging");
                 if (els.trash) els.trash.classList.remove("danger");
-                els.book.setPointerCapture(e.pointerId);
+                book.setPointerCapture(e.pointerId);
             });
-            els.book.addEventListener("pointermove", (e) => {
-                if (!dragStart || !dragOffset) return;
-                const dx = Math.abs(e.clientX - dragStart.x);
-                const dy = Math.abs(e.clientY - dragStart.y);
-                if (dx > 6 || dy > 6) {
+            els.grid.addEventListener("pointermove", (e) => {
+                if (!dragBook || !dragStart) return;
+                const dy = e.clientY - dragStart.y;
+                if (dy > 6) {
                     dragMoved = true;
-                    const libRect = els.library ? els.library.getBoundingClientRect() : { left: 0, top: 0 };
-                    const x = e.clientX - libRect.left - dragOffset.x;
-                    const y = e.clientY - libRect.top - dragOffset.y;
-                    setManualPos(x, y);
-                    checkTrashHit();
+                    const slot = getSlot(dragBook);
+                    setBookTop(dragBook, slot.top + dy);
+                    checkTrashHit(dragBook);
                 }
             });
-            els.book.addEventListener("pointerup", (e) => {
-                if (!dragStart) return;
-                els.book.releasePointerCapture(e.pointerId);
+            els.grid.addEventListener("pointerup", (e) => {
+                if (!dragBook) return;
+                dragBook.releasePointerCapture(e.pointerId);
                 document.body.classList.remove("is-dragging");
-                const hit = checkTrashHit();
+                const hit = checkTrashHit(dragBook);
                 if (els.trash) els.trash.classList.remove("danger");
                 if (hit) {
-                    localStorage.removeItem(STORAGE_KEY);
-                    renderBook();
+                    const items = loadPayloads().filter(item => item.id !== dragBook.dataset.id);
+                    savePayloads(items);
+                    dragBook = null;
                     dragStart = null;
-                    dragOffset = null;
                     dragMoved = false;
+                    renderBooks();
                     return;
                 }
                 if (!dragMoved) {
-                    els.book.classList.add("open");
+                    openBook(dragBook);
+                } else {
+                    const slot = getSlot(dragBook);
+                    dragBook.style.left = `${slot.left}px`;
+                    dragBook.style.top = `${slot.top}px`;
                 }
+                dragBook = null;
                 dragStart = null;
-                dragOffset = null;
                 dragMoved = false;
             });
-            els.book.addEventListener("pointercancel", (e) => {
-                if (dragStart) els.book.releasePointerCapture(e.pointerId);
+            els.grid.addEventListener("pointercancel", (e) => {
+                if (!dragBook) return;
+                dragBook.releasePointerCapture(e.pointerId);
                 document.body.classList.remove("is-dragging");
                 if (els.trash) els.trash.classList.remove("danger");
+                const slot = getSlot(dragBook);
+                dragBook.style.left = `${slot.left}px`;
+                dragBook.style.top = `${slot.top}px`;
+                dragBook = null;
                 dragStart = null;
-                dragOffset = null;
                 dragMoved = false;
             });
         }
         document.addEventListener("click", (e) => {
-            if (!els.book || !els.book.classList.contains("open")) return;
-            if (e.target.closest("#mobileTotbook")) return;
-            els.book.classList.remove("open");
+            if (!els.grid) return;
+            if (e.target.closest(".totbook")) return;
+            closeAllBooks();
         });
 
-        if (els.exportQr) {
-            els.exportQr.addEventListener("click", () => {
-                openStreamModal();
-            });
-        }
-        if (els.exportFile) {
-            els.exportFile.addEventListener("click", () => {
+        if (els.grid) {
+            els.grid.addEventListener("click", (e) => {
+                const actionEl = e.target.closest("[data-action]");
+                if (!actionEl) return;
+                const action = actionEl.getAttribute("data-action") || "";
+                const book = e.target.closest(".totbook");
+                if (book) state.activeId = book.dataset.id || null;
                 const payload = buildPayload();
                 if (!payload) return;
-                const json = JSON.stringify(payload, null, 2);
-                const blob = new Blob([json], { type: "application/json;charset=utf-8" });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = `SKRV_${Date.now()}.skv`;
-                a.click();
-                URL.revokeObjectURL(url);
-            });
-        }
-        if (els.exportB64) {
-            els.exportB64.addEventListener("click", () => {
-                const payload = buildPayload();
-                if (!payload) return;
-                const base64 = buildBase64(payload);
-                const blob = new Blob([base64], { type: "text/plain;charset=utf-8" });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = `SKRV_QR_${Date.now()}.b64`;
-                a.click();
-                URL.revokeObjectURL(url);
-            });
-        }
-        if (els.exportCopy) {
-            els.exportCopy.addEventListener("click", () => {
-                const payload = buildPayload();
-                if (!payload) return;
-                const base64 = buildBase64(payload);
-                navigator.clipboard?.writeText(base64).catch(() => {});
+                if (action === "export-qr") {
+                    openStreamModal();
+                    return;
+                }
+                if (action === "export-skv") {
+                    const json = JSON.stringify(payload, null, 2);
+                    const blob = new Blob([json], { type: "application/json;charset=utf-8" });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.download = `SKRV_${Date.now()}.skv`;
+                    a.click();
+                    URL.revokeObjectURL(url);
+                    return;
+                }
+                if (action === "export-b64") {
+                    const base64 = buildBase64(payload);
+                    const blob = new Blob([base64], { type: "text/plain;charset=utf-8" });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.download = `SKRV_QR_${Date.now()}.b64`;
+                    a.click();
+                    URL.revokeObjectURL(url);
+                    return;
+                }
+                if (action === "copy-b64") {
+                    const base64 = buildBase64(payload);
+                    navigator.clipboard?.writeText(base64).catch(() => {});
+                }
             });
         }
         if (els.support) {
@@ -860,7 +958,7 @@
         initElements();
         applyI18n();
         bindEvents();
-        renderBook();
+        renderBooks();
 
         const gateDone = sessionStorage.getItem("skrv_mobile_gate_done") === "1";
         if (gateDone) {

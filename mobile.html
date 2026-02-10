@@ -27,36 +27,7 @@
 
         <section class="mobile-stage">
             <div class="library" id="library">
-                <div id="mobileTotbook" class="totbook hidden" aria-hidden="true">
-                    <div class="cover">
-                        <div class="sheen"></div>
-                        <div class="cover-date" id="bookCoverDate">10 Fev 2026</div>
-                        <div class="strap"><span id="bookCoverTitle">Projeto</span></div>
-                    </div>
-                    <div class="elastic"></div>
-                    <div class="drag-handle"><div class="dots"></div></div>
-                    <div class="pages">
-                        <div class="page-viewport">
-                            <div class="sheet">
-                                <div class="book-inner">
-                                    <div class="book-inner-title" data-i18n="mobile_extract">Extrair</div>
-                                    <div class="book-inner-body" data-i18n="mobile_extract_body">Retire o projeto do celular em qualquer formato.</div>
-                                    <div class="book-inner-actions">
-                                        <button id="btnExportQr" class="btn-full primary" data-i18n="mobile_export_qr">ENVIAR POR QR</button>
-                                        <button id="btnExportFile" class="btn-full" data-i18n="mobile_export_save">SALVAR .SKV</button>
-                                        <button id="btnExportB64" class="btn-full" data-i18n="mobile_export_b64">SALVAR .B64</button>
-                                        <button id="btnCopyB64" class="btn-full" data-i18n="mobile_export_copy">COPIAR B64</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pagination">
-                            <button class="prev" disabled aria-hidden="true">‹</button>
-                            <span class="page-count">1/1</span>
-                            <button class="next" disabled aria-hidden="true">›</button>
-                        </div>
-                    </div>
-                </div>
+                <div id="booksGrid" class="books-grid"></div>
                 <div id="trashZone" class="trash-zone" aria-hidden="true">
                     <span data-i18n="mobile_trash">Apagar</span>
                 </div>
@@ -65,7 +36,11 @@
             <div id="mobileEmpty" class="mobile-empty">
                 <div class="empty-title" data-i18n="mobile_empty_title">Importe um projeto</div>
                 <div class="empty-body" data-i18n="mobile_empty_body">O celular guarda o livro inteiro e espera um desktop para despejar.</div>
+            </div>
+
+            <div class="mobile-scan-bar">
                 <button id="mobileScanPrimary" class="btn-full primary" data-i18n="mobile_scan">LER QR CODE</button>
+                <div id="mobileLimit" class="mobile-limit" data-i18n="mobile_limit">Limite máximo de projetos salvos.</div>
             </div>
         </section>
     </main>
