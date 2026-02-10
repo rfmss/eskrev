@@ -1495,6 +1495,38 @@
         </div>
     </div>
 
+    <div id="pasteChoiceModal" class="modal-overlay paste-choice-modal" aria-hidden="true">
+        <div class="modal-box">
+            <div class="modal-header">
+                <span data-i18n="paste_choice_title">COLAGEM EXTERNA</span>
+                <button id="pasteChoiceClose" class="btn-icon" data-i18n-title="close_label">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="system-modal-message" data-i18n="paste_choice_body">Você está tentando colar conteúdo de fora do eskrev.</div>
+                <div class="paste-choice-actions">
+                    <button id="pasteChoiceBlue" class="btn-full pill-blue" data-i18n="paste_choice_blue">
+                        <span class="pill-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+                                <path d="m8.5 8.5 7 7"/>
+                            </svg>
+                        </span>
+                        <span data-i18n="paste_choice_blue">PÍLULA AZUL — CANCELAR</span>
+                    </button>
+                    <button id="pasteChoiceRed" class="btn-full pill-red" data-i18n="paste_choice_red">
+                        <span class="pill-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+                                <path d="m8.5 8.5 7 7"/>
+                            </svg>
+                        </span>
+                        <span data-i18n="paste_choice_red">PÍLULA VERMELHA — COLAR E ASSUMIR</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <div id="selectionToolbar" class="selection-toolbar" aria-hidden="true">

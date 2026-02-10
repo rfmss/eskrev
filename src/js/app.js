@@ -13,6 +13,206 @@ import { processTracker } from './modules/process_tracker.js';
 import { qrTransfer } from './modules/qr_transfer.js';
 
 
+const BOOK_TEMPLATE = [
+    {
+        key: "capa",
+        title: "Capa",
+        body: "A capa apresenta o livro ao leitor.\n\nAqui entram o título, o subtítulo (se houver)\ne o nome do autor.\n\nA capa não explica o conteúdo.\nEla anuncia que o livro existe."
+    },
+    {
+        key: "folha-rosto",
+        title: "Folha de rosto",
+        body: "A folha de rosto identifica formalmente a obra.\n\nCostuma repetir o título e o nome do autor\ne pode incluir editora, local e ano.\n\nÉ a primeira página oficial do livro."
+    },
+    {
+        key: "ficha-catalografica",
+        title: "Ficha catalográfica",
+        body: "A ficha catalográfica organiza os dados técnicos do livro.\n\nEla é usada por bibliotecas, editoras e universidades.\n\nNormalmente é preparada depois do texto pronto."
+    },
+    {
+        key: "dedicatoria",
+        title: "Dedicatória",
+        body: "A dedicatória é um espaço pessoal.\n\nPode ser breve, direta ou simbólica.\n\nNão precisa explicar nada além do gesto."
+    },
+    {
+        key: "epigrafe",
+        title: "Epígrafe",
+        body: "A epígrafe é uma citação que dialoga com o livro.\n\nEla não resume nem antecipa.\n\nFunciona como um tom inicial."
+    },
+    {
+        key: "sumario",
+        title: "Sumário",
+        body: "O sumário organiza a leitura.\n\nEle mostra a estrutura do livro\ne a ordem dos capítulos.\n\nGeralmente é ajustado após o texto final."
+    },
+    {
+        key: "introducao",
+        title: "Introdução",
+        body: "A introdução prepara o leitor.\n\nAqui você apresenta o tema, o recorte\ne o caminho que o livro percorre.\n\nNão é o desenvolvimento do argumento.\nÉ a entrada."
+    },
+    {
+        key: "capitulo-1",
+        title: "Capítulo 1 (modelo)",
+        body: "Um capítulo desenvolve uma ideia completa,\numa etapa do argumento ou uma parte da narrativa.\n\nEle se sustenta sozinho,\nmas faz sentido dentro do conjunto.\n\n(Capítulos seguintes reutilizam este texto)"
+    },
+    {
+        key: "conclusao",
+        title: "Conclusão",
+        body: "A conclusão retoma o percurso do livro.\n\nAqui você pode fechar argumentos,\napontar consequências\nou abrir novas questões.\n\nConcluir não é repetir.\nÉ dar forma ao que ficou."
+    },
+    {
+        key: "agradecimentos",
+        title: "Agradecimentos",
+        body: "Espaço para reconhecer pessoas e apoios\nque participaram do processo do livro.\n\nCostuma ser breve e direto."
+    },
+    {
+        key: "notas",
+        title: "Notas",
+        body: "As notas complementam o texto principal.\n\nServem para esclarecimentos,\nreferências pontuais\nou comentários laterais."
+    },
+    {
+        key: "referencias",
+        title: "Referências",
+        body: "Lista das obras citadas ou consultadas.\n\nPode seguir normas acadêmicas,\ndependendo do tipo de livro."
+    },
+    {
+        key: "quarta-capa",
+        title: "Quarta capa",
+        body: "A quarta capa conversa com o leitor antes da leitura.\n\nPode conter um texto curto sobre o livro,\num trecho destacado\nou informações sobre o autor.\n\nÉ o último contato antes da abertura."
+    }
+];
+
+const BOOK_TEMPLATE_FICTION = [
+    {
+        key: "capa",
+        title: "Capa",
+        body: "A capa é o primeiro contato com a história.\n\nEla não conta o enredo.\nSugere um mundo, um clima, uma promessa.\n\nÀs vezes, basta um título que não explica tudo."
+    },
+    {
+        key: "folha-rosto",
+        title: "Folha de rosto",
+        body: "Aqui a história se apresenta formalmente.\n\nTítulo, autor, e o livro assume sua forma.\n\nÉ o ponto em que a ficção vira objeto."
+    },
+    {
+        key: "dedicatoria",
+        title: "Dedicatória (opcional)",
+        body: "A dedicatória é um gesto silencioso.\n\nPode ser íntima, simbólica ou enigmática.\n\nNão precisa ser entendida por todos."
+    },
+    {
+        key: "epigrafe",
+        title: "Epígrafe (opcional)",
+        body: "Uma frase antes da história começar.\n\nNão resume.\nNão antecipa.\n\nApenas inclina o leitor na direção certa."
+    },
+    {
+        key: "sumario",
+        title: "Sumário",
+        body: "O sumário mostra o ritmo do livro.\n\nCapítulos curtos, longos,\ntítulos nomeados ou numerados.\n\nEle já conta algo sobre a narrativa."
+    },
+    {
+        key: "prologo",
+        title: "Prólogo (opcional)",
+        body: "O prólogo acontece antes da história,\nmas não necessariamente antes do tempo.\n\nPode apresentar um evento,\num tom ou uma pergunta.\n\nNem todo livro precisa de um."
+    },
+    {
+        key: "capitulo-1",
+        title: "Capítulo 1 (modelo)",
+        body: "Um capítulo é uma unidade de movimento.\n\nPode conter uma cena,\num conflito,\numa mudança.\n\nAlgo precisa sair diferente do que entrou.\n\n(Capítulos seguintes reutilizam este placeholder)"
+    },
+    {
+        key: "interludio",
+        title: "Interlúdio (opcional)",
+        body: "Um interlúdio interrompe o fluxo.\n\nPode mudar de voz,\nde tempo,\nou de perspectiva.\n\nServe para respirar — ou tensionar."
+    },
+    {
+        key: "climax",
+        title: "Clímax",
+        body: "Aqui a história atinge seu ponto máximo.\n\nO conflito central se resolve,\nou se transforma definitivamente.\n\nNão é o fim.\nÉ o ponto sem retorno."
+    },
+    {
+        key: "desfecho",
+        title: "Desfecho",
+        body: "O desfecho mostra o que ficou depois.\n\nNão precisa explicar tudo.\n\nÀs vezes, basta deixar o leitor\nsozinho com as consequências."
+    },
+    {
+        key: "agradecimentos",
+        title: "Agradecimentos (opcional)",
+        body: "Espaço para reconhecer quem acompanhou\no processo de escrita.\n\nLeitores, escutas, apoios invisíveis."
+    },
+    {
+        key: "nota-autor",
+        title: "Nota do autor (opcional)",
+        body: "Aqui o autor pode falar diretamente.\n\nSobre o processo,\no contexto,\nou o que ficou fora da história.\n\nNão é parte da ficção — é conversa."
+    },
+    {
+        key: "quarta-capa",
+        title: "Quarta capa",
+        body: "A quarta capa fala com quem ainda não leu.\n\nPode sugerir o conflito,\napresentar o universo\nou destacar um trecho.\n\nEla não revela.\nEla chama."
+    }
+];
+
+const BOOK_TEMPLATE_POETRY = [
+    {
+        key: "capa",
+        title: "Capa",
+        body: "Um título já é um poema.\n\nÀs vezes, o livro começa aqui."
+    },
+    {
+        key: "folha-rosto",
+        title: "Folha de rosto",
+        body: "O livro assume seu nome.\n\nAutor, título.\n\nNada mais precisa acontecer ainda."
+    },
+    {
+        key: "dedicatoria",
+        title: "Dedicatória (opcional)",
+        body: "Um gesto breve.\n\nPode ser uma linha.\nPode ser um nome.\nPode ficar em branco."
+    },
+    {
+        key: "epigrafe",
+        title: "Epígrafe (opcional)",
+        body: "Uma frase que inclina o livro.\n\nNão explica.\n\nApenas toca o tom."
+    },
+    {
+        key: "nota-inicial",
+        title: "Nota inicial (opcional)",
+        body: "Algumas palavras antes dos poemas.\n\nNão para explicar.\n\nPara abrir o espaço."
+    },
+    {
+        key: "poemas",
+        title: "Poemas",
+        body: "Cada poema é um corpo independente.\n\nA ordem cria um ritmo.\n\nO conjunto cria outra coisa."
+    },
+    {
+        key: "secao",
+        title: "Seção (opcional)",
+        body: "Às vezes, os poemas pedem agrupamento.\n\nPor tema.\nPor tempo.\nPor respiração.\n\nUma seção é uma pausa longa."
+    },
+    {
+        key: "interludio",
+        title: "Interlúdio (opcional)",
+        body: "Um texto que não é poema.\n\nOu um poema que não se comporta.\n\nServe para quebrar o fluxo."
+    },
+    {
+        key: "ultimo-poema",
+        title: "Último poema",
+        body: "Nem sempre é o melhor.\n\nÉ o que fica por último.\n\nO livro se despede aqui."
+    },
+    {
+        key: "nota-autor",
+        title: "Nota do autor (opcional)",
+        body: "Se quiser falar depois.\n\nSobre o processo,\no tempo,\nou o que ficou de fora.\n\nSem obrigação."
+    },
+    {
+        key: "quarta-capa",
+        title: "Quarta capa",
+        body: "Poucas linhas.\n\nUm trecho.\nUm gesto.\nUm silêncio.\n\nO suficiente para chamar alguém."
+    }
+];
+
+const BOOK_FOLDERS = [
+    { id: "nonfiction", title: "Livro", template: BOOK_TEMPLATE, openDefault: true },
+    { id: "fiction", title: "Livro (ficção)", template: BOOK_TEMPLATE_FICTION, openDefault: false },
+    { id: "poetry", title: "Livro (poesia)", template: BOOK_TEMPLATE_POETRY, openDefault: false }
+];
+
 document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add("booting");
     setTimeout(() => document.body.classList.remove("booting"), 2000);
@@ -24,6 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     store.init();
+    ensureBookTemplateProjects();
     incrementAccessCount();
     const forcedMobile = window.__SKRV_FORCE_MOBILE === true;
     const uaMobile = navigator.userAgentData && typeof navigator.userAgentData.mobile === "boolean"
@@ -3128,6 +3329,7 @@ function applySkrvPayload(payload) {
     Object.entries(workbench.titles || {}).forEach(([k, v]) => localStorage.setItem(k, v));
     Object.entries(workbench.colors || {}).forEach(([k, v]) => localStorage.setItem(k, v));
 
+    ensureBookTemplateProjects();
     return true;
 }
 
@@ -3168,6 +3370,22 @@ function htmlToText(html) {
     const div = document.createElement("div");
     div.innerHTML = html || "";
     return div.innerText || "";
+}
+
+function escapeHtml(text) {
+    return String(text || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+}
+
+function textToParagraphs(text) {
+    const clean = String(text || "").replace(/\r\n/g, "\n").trim();
+    if (!clean) return "<p></p>";
+    return clean
+        .split(/\n\s*\n/)
+        .map(block => `<p>${escapeHtml(block).replace(/\n/g, "<br>")}</p>`)
+        .join("");
 }
 
 function htmlToMarkdown(html) {
@@ -3351,6 +3569,109 @@ function buildProjectReportText(project) {
     return out;
 }
 
+function ensureBookTemplateProjects() {
+    if (!store || !store.data) return;
+    if (!Array.isArray(store.data.projects)) store.data.projects = [];
+    const existing = new Map();
+    store.data.projects.forEach((proj) => {
+        if (proj && proj.bookPartKey && proj.bookPartGroup) {
+            existing.set(`${proj.bookPartGroup}:${proj.bookPartKey}`, proj);
+        }
+    });
+    let changed = false;
+    BOOK_FOLDERS.forEach((folder) => {
+        folder.template.forEach((part, idx) => {
+            const mapKey = `${folder.id}:${part.key}`;
+            const found = existing.get(mapKey);
+            if (!found) {
+                store.data.projects.unshift({
+                    id: `bookpart_${folder.id}_${part.key}`,
+                    name: part.title,
+                    content: textToParagraphs(part.body),
+                    date: new Date().toLocaleString(),
+                    cursorPos: 0,
+                    bookPart: true,
+                    bookPartKey: part.key,
+                    bookPartGroup: folder.id,
+                    bookOrder: idx
+                });
+                changed = true;
+                return;
+            }
+            if (!found.bookPart) {
+                found.bookPart = true;
+                changed = true;
+            }
+            if (found.bookPartGroup !== folder.id) {
+                found.bookPartGroup = folder.id;
+                changed = true;
+            }
+            if (found.bookOrder !== idx) {
+                found.bookOrder = idx;
+                changed = true;
+            }
+        });
+    });
+    if (changed) store.persist(true);
+}
+
+function getBookParts(groupId) {
+    return (store.data.projects || [])
+        .filter(p => p && p.bookPart && p.bookPartGroup === groupId)
+        .sort((a, b) => (a.bookOrder || 0) - (b.bookOrder || 0));
+}
+
+function buildBookPdfHtml(title, parts) {
+    const safeTitle = escapeHtml(title || "Livro");
+    let body = `<section class="title-page"><h1>${safeTitle}</h1></section>`;
+    parts.forEach((part) => {
+        const text = htmlToText(part.content || "");
+        body += `<section class="book-section"><h2>${escapeHtml(part.name || "")}</h2>${textToParagraphs(text)}</section>`;
+    });
+    return `<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>${safeTitle}</title>
+<style>
+@page { size: A4; margin: 2.5cm; }
+body { font-family: "Times New Roman", Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; }
+h1 { text-align: center; margin: 200px 0 0; font-size: 26pt; letter-spacing: 0.5pt; }
+h2 { font-size: 14pt; margin: 0 0 12px; text-transform: uppercase; letter-spacing: 0.8pt; }
+p { margin: 0 0 12px; text-align: left; }
+.title-page { page-break-after: always; }
+.book-section { page-break-before: always; }
+</style>
+</head>
+<body>
+${body}
+</body>
+</html>`;
+}
+
+function exportBookPdf(groupId) {
+    const parts = getBookParts(groupId);
+    const title = store.data && store.data.skvTitle ? store.data.skvTitle : "Livro";
+    const html = buildBookPdfHtml(title, parts);
+    const w = window.open("", "_blank", "noopener,noreferrer");
+    if (!w) {
+        const message = lang.t("print_popup_blocked_fallback") || lang.t("print_popup_blocked");
+        if (window.skvModal && typeof window.skvModal.alert === "function") {
+            window.skvModal.alert(message);
+        } else {
+            alert(message);
+        }
+        return;
+    }
+    w.document.open();
+    w.document.write(html);
+    w.document.close();
+    w.focus();
+    w.onload = () => {
+        try { w.print(); } catch (_) {}
+    };
+}
+
 // Exposição mínima para módulo mobile (carregamento condicional)
 window.skvLoadActiveDocument = loadActiveDocument;
 window.skvRenderProjectList = renderProjectList;
@@ -3474,9 +3795,14 @@ function setupCopyGuard(editorEl) {
 function renderProjectList() {
     const list = document.getElementById("projectList");
     list.innerHTML = "";
-    store.data.projects.forEach(proj => {
+    ensureBookTemplateProjects();
+    const projects = Array.isArray(store.data.projects) ? store.data.projects : [];
+    const otherProjects = projects.filter(p => !p || !p.bookPart);
+
+    const createProjectItem = (proj, { isBookPart = false } = {}) => {
         const div = document.createElement("div");
         div.className = `list-item ${proj.id === store.data.activeId ? 'active' : ''}`;
+        if (isBookPart) div.classList.add("book-part-item");
         div.style.display = "flex"; div.style.alignItems = "center"; div.style.justifyContent = "space-between"; div.style.gap = "10px";
 
         const infoDiv = document.createElement("div");
@@ -3511,9 +3837,12 @@ function renderProjectList() {
         const actionsDiv = document.createElement("div");
         actionsDiv.className = "file-actions-inline"; actionsDiv.style.display = "flex"; actionsDiv.style.gap = "5px";
 
-        const btnEdit = document.createElement("button");
-        btnEdit.className = "btn-icon-small"; btnEdit.innerHTML = "<svg class='icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M13 21h8'/><path d='M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z'/></svg>";
-        btnEdit.onclick = (e) => { e.stopPropagation(); enableInlineRename(infoDiv, proj.id, proj.name); };
+        if (!isBookPart) {
+            const btnEdit = document.createElement("button");
+            btnEdit.className = "btn-icon-small"; btnEdit.innerHTML = "<svg class='icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M13 21h8'/><path d='M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z'/></svg>";
+            btnEdit.onclick = (e) => { e.stopPropagation(); enableInlineRename(infoDiv, proj.id, proj.name); };
+            actionsDiv.appendChild(btnEdit);
+        }
 
         const btnPrint = document.createElement("button");
         btnPrint.className = "btn-icon-small"; btnPrint.innerHTML = "<svg class='icon' viewBox='0 0 24 24' aria-hidden='true' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2'/><path d='M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6'/><rect x='6' y='14' width='12' height='8' rx='1'/></svg>";
@@ -3522,23 +3851,85 @@ function renderProjectList() {
             const text = buildProjectReportText(proj);
             printRawText(text, `.skv Writer - ${proj.name || "Documento"}`);
         };
+        actionsDiv.appendChild(btnPrint);
 
-        const btnDel = document.createElement("button");
-        btnDel.className = "btn-icon-small danger"; btnDel.innerHTML = "<svg class='icon' viewBox='0 0 24 24' aria-hidden='true'><use href='src/assets/icons/phosphor-sprite.svg#icon-trash'></use></svg>";
-        btnDel.onclick = async (e) => {
+        if (!isBookPart) {
+            const btnDel = document.createElement("button");
+            btnDel.className = "btn-icon-small danger"; btnDel.innerHTML = "<svg class='icon' viewBox='0 0 24 24' aria-hidden='true'><use href='src/assets/icons/phosphor-sprite.svg#icon-trash'></use></svg>";
+            btnDel.onclick = async (e) => {
+                e.stopPropagation();
+                if (!window.skvModal) return;
+                const ok = await window.skvModal.confirm(`${lang.t("project_delete_confirm")} "${proj.name}"?`);
+                if (ok) {
+                    store.deleteProject(proj.id);
+                    renderProjectList();
+                    if (store.data.projects.length > 0) loadActiveDocument();
+                }
+            };
+            actionsDiv.appendChild(btnDel);
+        }
+
+        div.appendChild(infoDiv); div.appendChild(actionsDiv);
+        return div;
+    };
+
+    BOOK_FOLDERS.forEach((folderConfig) => {
+        const parts = getBookParts(folderConfig.id);
+        if (!parts.length) return;
+        const folder = document.createElement("div");
+        folder.className = "list-folder";
+
+        const header = document.createElement("div");
+        header.className = "list-folder-header";
+        const caret = document.createElement("span");
+        caret.className = "folder-caret";
+        const title = store.data && store.data.skvTitle ? store.data.skvTitle : "Livro";
+        const label = document.createElement("div");
+        label.className = "folder-title";
+        label.innerHTML = `<strong>${folderConfig.title}</strong><span class="folder-title-meta">${title}</span>`;
+        const actions = document.createElement("div");
+        actions.className = "folder-actions";
+        const btnPdf = document.createElement("button");
+        btnPdf.className = "btn-icon-small";
+        btnPdf.title = "Exportar PDF";
+        btnPdf.innerHTML = "<svg class='icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z'/><path d='M14 2v6h6'/><path d='M8 13h8'/><path d='M8 17h6'/></svg>";
+        btnPdf.onclick = (e) => {
             e.stopPropagation();
-            if (!window.skvModal) return;
-            const ok = await window.skvModal.confirm(`${lang.t("project_delete_confirm")} "${proj.name}"?`);
-            if (ok) {
-                store.deleteProject(proj.id);
-                renderProjectList();
-                if (store.data.projects.length > 0) loadActiveDocument();
-            }
+            exportBookPdf(folderConfig.id);
+        };
+        actions.appendChild(btnPdf);
+
+        header.appendChild(caret);
+        header.appendChild(label);
+        header.appendChild(actions);
+
+        const items = document.createElement("div");
+        items.className = "list-folder-items";
+        const storageKey = `skrv_book_folder_open_${folderConfig.id}`;
+        const stored = localStorage.getItem(storageKey);
+        const open = stored === null ? Boolean(folderConfig.openDefault) : stored !== "0";
+        if (!open) items.classList.add("is-collapsed");
+        caret.textContent = open ? "▾" : "▸";
+
+        header.onclick = () => {
+            const isOpen = !items.classList.contains("is-collapsed");
+            items.classList.toggle("is-collapsed", isOpen);
+            caret.textContent = isOpen ? "▸" : "▾";
+            localStorage.setItem(storageKey, isOpen ? "0" : "1");
         };
 
-        actionsDiv.appendChild(btnEdit); actionsDiv.appendChild(btnPrint); actionsDiv.appendChild(btnDel);
-        div.appendChild(infoDiv); div.appendChild(actionsDiv);
-        list.appendChild(div);
+        parts.forEach((proj) => {
+            items.appendChild(createProjectItem(proj, { isBookPart: true }));
+        });
+
+        folder.appendChild(header);
+        folder.appendChild(items);
+        list.appendChild(folder);
+    });
+
+    otherProjects.forEach((proj) => {
+        if (!proj) return;
+        list.appendChild(createProjectItem(proj));
     });
     if (document.getElementById("mobileProjectList") && window.skvMobileRenderProjects) {
         window.skvMobileRenderProjects();

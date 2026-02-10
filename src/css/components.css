@@ -28,6 +28,71 @@
 .list-item.active { border: 1px solid var(--color-accent-dim); font-weight: 600; background: var(--color-accent-dim); }
 .list-item-meta { font-size: 10px; opacity: 0.75; }
 
+.list-folder {
+    margin-bottom: 10px;
+    border: 1px solid var(--color-accent-dim);
+    border-radius: var(--radius);
+    background: transparent;
+}
+
+.list-folder + .list-folder {
+    margin-top: 6px;
+}
+
+.list-folder-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.list-folder-header:hover {
+    background: var(--color-accent-dim);
+}
+
+.folder-caret {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.folder-title {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.folder-title-meta {
+    font-size: 10px;
+    letter-spacing: 0.2px;
+    opacity: 0.7;
+    text-transform: none;
+}
+
+.folder-actions {
+    display: inline-flex;
+    gap: 6px;
+}
+
+.list-folder-items {
+    padding: 4px 6px 8px;
+}
+
+.list-folder-items.is-collapsed {
+    display: none;
+}
+
+.book-part-item {
+    margin-left: 6px;
+    border-left: 3px solid var(--color-accent-dim);
+    padding-left: 10px;
+}
+
 /* Ações Inline (Lápis/Lixo) */
 .btn-icon-small {
     background: transparent; border: none; color: var(--color-muted);
@@ -51,6 +116,51 @@
     color: var(--color-text); font-family: var(--font-ui); font-size: 14px;
     width: 100%; outline: none; padding: 0; margin: 0;
 }
+
+.paste-choice-modal .modal-box {
+    max-width: 460px;
+}
+
+.paste-choice-actions {
+    display: grid;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.paste-choice-actions .btn-full {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.paste-choice-actions .pill-icon {
+    width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.paste-choice-actions .pill-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.pill-blue {
+    background: linear-gradient(180deg, #2563eb 0%, #0f172a 100%);
+    color: #fff;
+    border: none;
+}
+
+.pill-red {
+    background: linear-gradient(180deg, #0f172a 0%, #dc2626 100%);
+    color: #fff;
+    border: none;
+}
+
+.pill-blue:hover { filter: brightness(1.05); }
+.pill-red:hover { filter: brightness(1.05); }
 
 /* BOTÕES DA BARRA DE CONTROLE */
 .btn, .btn-icon { 

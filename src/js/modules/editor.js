@@ -382,6 +382,34 @@ export const editorFeatures = {
                 alert(msg);
             }
         };
+        const showPasteChoice = (text) => {
+            const modal = document.getElementById("pasteChoiceModal");
+            if (!modal) {
+                notifyPasteBlocked();
+                return;
+            }
+            const closeBtn = document.getElementById("pasteChoiceClose");
+            const blueBtn = document.getElementById("pasteChoiceBlue");
+            const redBtn = document.getElementById("pasteChoiceRed");
+            const close = () => {
+                modal.classList.remove("active");
+                document.body.classList.remove("modal-active");
+            };
+            const allow = () => {
+                close();
+                const clean = this.sanitizePlainText(text);
+                if (window.skrvBirthDisable) window.skrvBirthDisable();
+                document.execCommand("insertText", false, clean);
+            };
+            const cancel = () => {
+                close();
+            };
+            if (closeBtn) closeBtn.onclick = cancel;
+            if (blueBtn) blueBtn.onclick = cancel;
+            if (redBtn) redBtn.onclick = allow;
+            modal.classList.add("active");
+            document.body.classList.add("modal-active");
+        };
         const isNativeClipboard = (clip) => {
             if (!clip) return false;
             return clip.getData("text/x-skv") === "native";
@@ -417,20 +445,23 @@ export const editorFeatures = {
                 const clip = e.clipboardData || window.clipboardData;
                 if (!isNativeClipboard(clip) && !matchesInternalClipboard(clip)) {
                     e.preventDefault();
-                    notifyPasteBlocked();
+                    e.skrvPasteSource = "blocked";
+                    showPasteChoice(clip ? clip.getData("text/plain") : "");
                 }
             }
         });
         this.editor.addEventListener("paste", (e) => {
             const clip = e.clipboardData || window.clipboardData;
             if (isNativeClipboard(clip) || matchesInternalClipboard(clip)) {
+                e.skrvPasteSource = "internal";
                 e.preventDefault();
                 const text = clip ? clip.getData("text/plain") : "";
                 const clean = this.sanitizePlainText(text);
                 document.execCommand("insertText", false, clean);
             } else {
+                e.skrvPasteSource = "blocked";
                 e.preventDefault();
-                notifyPasteBlocked();
+                showPasteChoice(clip ? clip.getData("text/plain") : "");
             }
         });
         this.editor.addEventListener("drop", (e) => {

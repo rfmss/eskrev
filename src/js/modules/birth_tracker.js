@@ -53,7 +53,9 @@ export const birthTracker = {
             }
         });
 
-        editorEl.addEventListener("paste", () => {
+        editorEl.addEventListener("paste", (e) => {
+            const source = e && e.skrvPasteSource ? e.skrvPasteSource : "";
+            if (source === "internal" || source === "blocked") return;
             this.disableCert();
         });
 
@@ -62,3 +64,7 @@ export const birthTracker = {
         });
     }
 };
+
+if (typeof window !== "undefined") {
+    window.skrvBirthDisable = () => birthTracker.disableCert();
+}

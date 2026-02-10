@@ -279,8 +279,9 @@
     };
 
     const STRAP_COLORS = [
-        "#f2a900", "#d97706", "#3a6ea5", "#6b8e23",
-        "#8b5cf6", "#b45309", "#374151", "#16a34a", "#dc2626"
+        "#f9d976", "#ffd6a5", "#fbcfe8", "#c7d2fe",
+        "#bae6fd", "#a7f3d0", "#bbf7d0", "#fde68a",
+        "#fecaca", "#e9d5ff", "#fce7f3", "#d1fae5"
     ];
 
     const pickStrapColor = () => STRAP_COLORS[Math.floor(Math.random() * STRAP_COLORS.length)];
@@ -782,12 +783,14 @@
                 book.style.top = `${slot.top}px`;
             });
             state.activeId = null;
+            document.body.classList.remove("has-open-book");
         };
         const openBook = (book) => {
             if (!els.library) return;
             closeAllBooks();
             book.classList.add("open");
             state.activeId = book.dataset.id || null;
+            document.body.classList.add("has-open-book");
             requestAnimationFrame(() => {
                 const libRect = els.library.getBoundingClientRect();
                 const left = Math.max(0, (libRect.width - book.offsetWidth) / 2);
