@@ -76,9 +76,18 @@ body {
 }
 
 .mobile-footer {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    gap: 6px;
+    justify-items: center;
     padding: 4px 18px 18px;
+}
+
+.mobile-footer-note {
+    font-size: 11px;
+    letter-spacing: 0.6px;
+    color: #3a3935;
+    opacity: 0.7;
+    text-align: center;
 }
 
 .mobile-support {
