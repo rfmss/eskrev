@@ -858,8 +858,7 @@
                 const bottomLocal = bottomY - libRect.top;
                 const availableH = Math.max(180, bottomLocal - topLocal - 8);
                 const openW = Math.min(libRect.width * 0.92, 520);
-                const sheet = book.querySelector(".sheet");
-                const desiredOpenH = 360;
+                const desiredOpenH = 380;
                 const openH = Math.min(desiredOpenH, availableH);
                 book.style.width = `${openW}px`;
                 book.style.maxWidth = `${openW}px`;
@@ -867,7 +866,7 @@
                 book.style.maxHeight = `${openH}px`;
                 book.style.setProperty("--open-max-h", `${openH}px`);
                 const left = Math.max(0, (libRect.width - openW) / 2);
-                const top = Math.max(topLocal + 4, topLocal + (availableH - openH) / 2);
+                const top = Math.max(topLocal + 4, Math.min(topLocal + 8, bottomLocal - openH - 8));
                 book.style.left = `${left}px`;
                 book.style.top = `${top}px`;
             });

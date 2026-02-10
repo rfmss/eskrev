@@ -344,7 +344,7 @@ body.has-open-book {
         width: 90vw;
     }
     .totbook.open .page-viewport {
-        max-height: calc(var(--open-max-h, 90vh) - 200px);
+        max-height: calc(var(--open-max-h, 90vh) - 140px);
     }
 }
 
@@ -484,7 +484,7 @@ body.has-open-book {
 }
 
 .totbook.open .page-viewport {
-    max-height: calc(var(--open-max-h, 90vh) - 220px);
+    max-height: calc(var(--open-max-h, 90vh) - 140px);
     overflow: hidden;
     overscroll-behavior: contain;
     padding-right: 6px;
