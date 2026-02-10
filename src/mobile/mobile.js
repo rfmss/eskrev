@@ -859,7 +859,7 @@
                 const availableH = Math.max(180, bottomLocal - topLocal - 8);
                 const openW = Math.min(libRect.width * 0.92, 520);
                 const sheet = book.querySelector(".sheet");
-                const extra = Math.min(80, Math.floor(availableH * 0.12));
+                const extra = Math.min(36, Math.floor(availableH * 0.06));
                 const contentH = sheet ? (sheet.scrollHeight + extra) : 220;
                 const openH = Math.min(contentH, availableH);
                 book.style.width = `${openW}px`;
