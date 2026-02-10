@@ -249,6 +249,14 @@ body {
 
 .overlay.active { display: flex; }
 
+#mobileGate.overlay {
+    background: radial-gradient(1200px 1200px at 20% -10%, rgba(255,255,255,0.45) 0%, transparent 45%),
+        radial-gradient(800px 800px at 80% 0%, rgba(255,255,255,0.2) 0%, transparent 55%),
+        var(--bg-core);
+    padding: 20px;
+    align-items: stretch;
+}
+
 .modal {
     width: min(92vw, 420px);
     background: var(--bg-core);
@@ -317,6 +325,81 @@ body {
     letter-spacing: 1px;
     text-transform: uppercase;
     color: var(--color-muted);
+}
+
+.gate-hero {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    display: grid;
+    gap: 16px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 28px;
+    padding: 22px 18px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    backdrop-filter: blur(8px);
+}
+.gate-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+.gate-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-main);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+.gate-brand img { width: 22px; height: 22px; }
+.gate-themes { display: inline-flex; gap: 8px; }
+.gate-theme-btn {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.2);
+    background: #d7d6d1;
+    padding: 0;
+}
+.gate-theme-btn[data-theme="chumbo"] { background: #2f3133; }
+.gate-theme-btn[data-theme="study"] { background: #2b1c12; }
+.gate-title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.gate-subtitle {
+    font-size: 13px;
+    color: var(--color-muted);
+}
+.gate-qr {
+    display: grid;
+    place-items: center;
+    gap: 10px;
+    padding: 10px 0 6px;
+}
+.gate-actions {
+    display: grid;
+    gap: 10px;
+}
+.gate-primary {
+    background: var(--color-accent);
+    color: var(--bg-core);
+    font-weight: 700;
+}
+.gate-secondary {
+    background: rgba(255,255,255,0.16);
+}
+.gate-hint {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    text-align: center;
+    cursor: pointer;
 }
 
 .qr-layout {

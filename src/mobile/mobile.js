@@ -1347,6 +1347,7 @@
         els.gateScan = document.getElementById("mobileGateScan");
         els.gateCreate = document.getElementById("mobileGateCreate");
         els.gateHint = document.getElementById("mobileGateHint");
+        els.gateThemeButtons = document.querySelectorAll(".gate-theme-btn");
         els.shareQr = document.getElementById("shareQrCode");
         els.setup = document.getElementById("mobileSetup");
         els.setupName = document.getElementById("setupProjectName");
@@ -1392,6 +1393,14 @@
             els.gateScan.addEventListener("click", () => {
                 closeGate();
                 openScanModal();
+            });
+        }
+        if (els.gateThemeButtons && els.gateThemeButtons.length) {
+            els.gateThemeButtons.forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    const theme = btn.getAttribute("data-theme");
+                    if (theme) applyTheme(theme);
+                });
             });
         }
         if (els.gateCreate) {

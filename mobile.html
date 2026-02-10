@@ -104,17 +104,30 @@
     </div>
 
     <div id="mobileGate" class="overlay active">
-        <div class="modal">
-            <div class="qr-share">
+        <div class="gate-hero">
+            <header class="gate-header">
+                <div class="gate-brand">
+                    <img src="src/assets/icons/logoEskrev.svg" alt="" aria-hidden="true" />
+                    <span>eskrev</span>
+                </div>
+                <div class="gate-themes" aria-hidden="true">
+                    <button class="gate-theme-btn" data-theme="paper" title="Paper"></button>
+                    <button class="gate-theme-btn" data-theme="chumbo" title="Chumbo"></button>
+                    <button class="gate-theme-btn" data-theme="study" title="Study"></button>
+                </div>
+            </header>
+            <div class="gate-title" data-i18n="mobile_gate_title">Importar projeto</div>
+            <div class="gate-subtitle" data-i18n="mobile_gate_body"></div>
+            <div class="gate-qr">
                 <div class="qr-code" id="shareQrCode"></div>
                 <img class="qr-logo" src="src/assets/icons/logoEskrev.svg" alt="" aria-hidden="true" />
                 <div class="qr-share-label" data-i18n="mobile_gate_share">Compartilhe o eskrev</div>
             </div>
-            <div class="modal-title" data-i18n="mobile_gate_title">Importar projeto</div>
-            <div class="modal-body" data-i18n="mobile_gate_body"></div>
-            <button id="mobileGateScan" class="btn-full" data-i18n="mobile_gate_scan">LER QR CODE</button>
-            <button id="mobileGateCreate" class="btn-full" data-i18n="mobile_gate_create">CRIAR NOVO</button>
-            <div id="mobileGateHint" class="modal-hint" data-i18n="mobile_gate_hint">Ou ↑ para criar novo</div>
+            <div class="gate-actions">
+                <button id="mobileGateScan" class="btn-full gate-primary" data-i18n="mobile_gate_scan">LER QR CODE</button>
+                <button id="mobileGateCreate" class="btn-full gate-secondary" data-i18n="mobile_gate_create">CRIAR NOVO</button>
+            </div>
+            <div id="mobileGateHint" class="gate-hint" data-i18n="mobile_gate_hint">Ou ↑ para criar novo</div>
         </div>
     </div>
 
