@@ -16,8 +16,7 @@
             mobile_export_save: "SALVAR .SKV",
             mobile_export_b64: "SALVAR .B64",
             mobile_export_copy: "COPIAR B64",
-            mobile_support: "Apoie o projeto",
-            mobile_support_copied: "Copiado",
+            marquee_ready: "apoie: <span class=\"marquee-copy\" data-copy=\"BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP\">BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP</span> | <span class=\"marquee-copy\" data-copy=\"eskrev@disroot.org\">eskrev@disroot.org</span> pix/paypal",
             close_label: "OK",
             qr_scan_title: "SCAN QR",
             qr_scan_wait: "AGUARDANDO QR...",
@@ -59,8 +58,7 @@
             mobile_export_save: "SAVE .SKV",
             mobile_export_b64: "SAVE .B64",
             mobile_export_copy: "COPY B64",
-            mobile_support: "Support the project",
-            mobile_support_copied: "Copied",
+            marquee_ready: "support: <span class=\"marquee-copy\" data-copy=\"BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP\">BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP</span> | <span class=\"marquee-copy\" data-copy=\"eskrev@disroot.org\">eskrev@disroot.org</span> pix/paypal",
             close_label: "OK",
             qr_scan_title: "SCAN QR",
             qr_scan_wait: "WAITING FOR QR...",
@@ -102,8 +100,7 @@
             mobile_export_save: "GUARDAR .SKV",
             mobile_export_b64: "GUARDAR .B64",
             mobile_export_copy: "COPIAR B64",
-            mobile_support: "Apoya el proyecto",
-            mobile_support_copied: "Copiado",
+            marquee_ready: "apoya: <span class=\"marquee-copy\" data-copy=\"BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP\">BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP</span> | <span class=\"marquee-copy\" data-copy=\"eskrev@disroot.org\">eskrev@disroot.org</span> pix/paypal",
             close_label: "OK",
             qr_scan_title: "SCAN QR",
             qr_scan_wait: "ESPERANDO QR...",
@@ -145,8 +142,7 @@
             mobile_export_save: "ENREGISTRER .SKV",
             mobile_export_b64: "ENREGISTRER .B64",
             mobile_export_copy: "COPIER B64",
-            mobile_support: "Soutenir le projet",
-            mobile_support_copied: "Copié",
+            marquee_ready: "soutenez : <span class=\"marquee-copy\" data-copy=\"BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP\">BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP</span> | <span class=\"marquee-copy\" data-copy=\"eskrev@disroot.org\">eskrev@disroot.org</span> pix/paypal",
             close_label: "OK",
             qr_scan_title: "SCAN QR",
             qr_scan_wait: "EN ATTENTE...",
@@ -193,6 +189,10 @@
         document.querySelectorAll("[data-i18n]").forEach((el) => {
             const key = el.getAttribute("data-i18n");
             if (key) el.textContent = t(key);
+        });
+        document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+            const key = el.getAttribute("data-i18n-html");
+            if (key) el.innerHTML = t(key);
         });
         document.querySelectorAll("[data-i18n-ph]").forEach((el) => {
             const key = el.getAttribute("data-i18n-ph");
@@ -615,7 +615,7 @@
         els.exportFile = document.getElementById("btnExportFile");
         els.exportB64 = document.getElementById("btnExportB64");
         els.exportCopy = document.getElementById("btnCopyB64");
-        els.support = document.getElementById("mobileSupport");
+        els.support = document.querySelector(".mobile-support");
         els.scanModal = document.getElementById("qrScanModal");
         els.scanVideo = document.getElementById("qrScanVideo");
         els.scanStatus = document.getElementById("qrScanStatus");
@@ -761,16 +761,16 @@
             });
         }
         if (els.support) {
-            els.support.addEventListener("click", () => {
-                const value = els.support.getAttribute("data-copy") || "";
+            els.support.addEventListener("click", (e) => {
+                const target = e.target.closest(".marquee-copy");
+                if (!target) return;
+                const value = target.getAttribute("data-copy");
+                if (!value) return;
                 navigator.clipboard?.writeText(value).catch(() => {});
-                els.support.classList.add("is-copied");
-                const prev = els.support.textContent;
-                els.support.textContent = t("mobile_support_copied");
+                target.classList.add("is-copied");
                 setTimeout(() => {
-                    els.support.textContent = t("mobile_support");
-                    els.support.classList.remove("is-copied");
-                }, 1200);
+                    target.classList.remove("is-copied");
+                }, 900);
             });
         }
 
