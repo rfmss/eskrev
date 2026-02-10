@@ -221,6 +221,11 @@ export const auth = {
                 window.skrvOnboarding.complete();
             }
             this.unlock();
+            if (document.body.classList.contains("mobile-only-page") || document.body.classList.contains("mobile-lite")) {
+                if (typeof window.skrvOpenMobileNotes === "function") {
+                    window.skrvOpenMobileNotes();
+                }
+            }
         };
         const setupPomoButtons = document.querySelectorAll("#viewSetup [data-duration]");
         setupPomoButtons.forEach((btn) => {

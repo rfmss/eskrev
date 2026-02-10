@@ -4185,6 +4185,14 @@ kbd {
     flex-wrap: wrap;
     gap: 6px;
 }
+.mobile-export-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+.mobile-export-actions .btn-half {
+    width: 100%;
+}
 .mobile-memo-tags-fixed {
     display: flex;
     align-items: center;

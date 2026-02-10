@@ -368,10 +368,20 @@ function initMobileGate() {
     const qrWrap = document.getElementById("mobileGateQrCode");
     const btnScan = document.getElementById("mobileGateScan");
     const qrBtn = document.getElementById("btnScanQr");
-    const closeGate = (showDedication = true) => {
+    const isMobileOnly = document.body.classList.contains("mobile-only-page");
+    const openMobileSetup = () => {
+        if (window.skrvOnboarding && typeof window.skrvOnboarding.open === "function") {
+            window.skrvOnboarding.open(6);
+        }
+    };
+    const closeGate = (showDedication = true, startSetup = false) => {
         modal.classList.remove("active");
         document.body.classList.remove("modal-active");
         sessionStorage.setItem("skrv_mobile_gate_done", "1");
+        if (isMobileOnly) {
+            if (startSetup) openMobileSetup();
+            return;
+        }
         if (showDedication) initDedication();
     };
 
@@ -408,7 +418,7 @@ function initMobileGate() {
         const delta = startY - touch.clientY;
         startY = null;
         if (delta > 60) {
-            closeGate(true);
+            closeGate(true, true);
         }
     });
 
@@ -836,6 +846,16 @@ function setupMobileFallbackTriggers() {
     document.addEventListener("touchstart", trigger, { capture: true, passive: true });
     document.addEventListener("focusin", trigger, { capture: true });
 }
+
+function openMobileNotesView() {
+    if (!isMobileContext()) return;
+    ensureMobileModule()
+        .then(() => {
+            ui.openDrawer("notes", {});
+        })
+        .catch(() => {});
+}
+window.skrvOpenMobileNotes = openMobileNotesView;
 
 function initSystemModal() {
     const overlay = document.getElementById("systemModal");
@@ -3002,6 +3022,7 @@ function initImportSessionModal() {
         sessionStorage.removeItem("skrv_mobile_import_name");
         modal.classList.remove("active");
         document.body.classList.remove("modal-active");
+        openMobileNotesView();
     };
     if (btn) btn.onclick = confirm;
     [pass1, pass2].forEach((input) => {

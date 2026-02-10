@@ -537,6 +537,18 @@ const initMobileMemos = () => {
             if (typeof window.skvOpenExport === "function") window.skvOpenExport();
         };
     }
+    const btnMobileExportProject = document.getElementById("btnMobileExportProject");
+    if (btnMobileExportProject) {
+        btnMobileExportProject.onclick = () => {
+            if (typeof window.skvOpenExport === "function") window.skvOpenExport();
+        };
+    }
+    const btnMobileSaveProject = document.getElementById("btnMobileSaveProject");
+    if (btnMobileSaveProject) {
+        btnMobileSaveProject.onclick = () => {
+            qrTransfer.downloadBase64Backup();
+        };
+    }
     const btnMobileReset = document.getElementById("btnMobileReset");
     if (btnMobileReset) {
         btnMobileReset.onclick = () => {

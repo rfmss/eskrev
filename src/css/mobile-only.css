@@ -18,7 +18,10 @@ body.mobile-only-page #termsModal,
 body.mobile-only-page #privacyModal,
 body.mobile-only-page #onboardingModal,
 body.mobile-only-page #dedicationModal {
-    display: none !important;
+    display: none;
+}
+body.mobile-only-page #onboardingModal.active {
+    display: flex;
 }
 body.mobile-only-page .drawer {
     position: relative;
