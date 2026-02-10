@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const coarse = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
     const hoverNone = window.matchMedia && window.matchMedia("(hover: none)").matches;
     const touchPoints = navigator.maxTouchPoints || 0;
-    const isMobile = forcedMobile || uaMobile || (coarse && hoverNone && touchPoints > 0) || window.innerWidth <= 900;
+    const isMobile = forcedMobile || uaMobile || (coarse && hoverNone && touchPoints > 0);
     const onMobilePage = /mobile\\.html$/.test(location.pathname);
     if (!forcedMobile && isMobile && !onMobilePage && !location.search.includes("fallback=1")) {
         location.replace("mobile.html");
@@ -40,6 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (isMobile) {
         document.body.classList.add("mobile-lite");
+    }
+    const fallbackLink = document.getElementById("mobileFallbackLink");
+    if (fallbackLink) {
+        fallbackLink.style.display = isMobile ? "none" : "inline-flex";
     }
     ui.init();
     
