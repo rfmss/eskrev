@@ -2,210 +2,323 @@
     const LANGS = {
         pt: {
             lang_label: "PT",
-            gate_title: "Importar projeto",
-            gate_body: "",
-            gate_scan: "LER QR CODE",
-            gate_hint: "Ou ↑ para criar novo",
-            gate_share: "Compartilhe o eskrev",
+            mobile_theme: "Tema",
+            mobile_gate_title: "Importar projeto",
+            mobile_gate_body: "",
+            mobile_gate_scan: "LER QR CODE",
+            mobile_gate_hint: "Ou ↑ para criar novo",
+            mobile_gate_share: "Compartilhe o eskrev",
             setup_title: "Criar sessão",
-            setup_project_label: "Nome do projeto",
             setup_project_ph: "Nome do projeto",
-            setup_pass_label: "Senha provisória",
             setup_pass_ph: "Senha provisória",
             setup_pass_confirm_ph: "Confirmar senha",
             setup_error_name: "Digite o nome do projeto.",
             setup_error_pass: "Digite a senha provisória.",
             setup_error_match: "As senhas não coincidem.",
-            setup_25: "25 MIN",
-            setup_50: "50 MIN",
-            import_title: "Projeto importado",
-            import_success: "Projeto {project} importado com sucesso.",
-            import_confirm: "CONFIRMAR",
-            notes_title: "Notas de {project}",
-            notes_placeholder: "Nota rápida...",
-            notes_tags_ph: "Tags (opcional)",
+            pomo_25: "25 MIN",
+            pomo_55: "50 MIN",
+            mobile_import_title: "Projeto importado",
+            mobile_import_success: "Projeto {project} importado com sucesso.",
+            mobile_import_pass_ph: "Senha provisória",
+            mobile_import_pass_confirm_ph: "Confirmar senha",
+            mobile_import_confirm: "CONFIRMAR",
+            mobile_import_pass_error: "Digite a senha provisória.",
+            mobile_import_pass_mismatch: "As senhas não coincidem.",
+            notes_title: "Notas",
+            notes_search_ph: "Buscar... (#tag /pasta)",
+            notes_new: "NOVA NOTA",
+            notes_empty_title: "Sem notas ainda.",
+            notes_empty_body: "Crie sua primeira nota para começar.",
+            notes_empty_cta: "CRIAR PRIMEIRA NOTA",
+            notes_back: "VOLTAR",
+            notes_delete: "APAGAR",
+            notes_folders_title: "PASTAS",
+            notes_folders_all: "Todas",
+            notes_tags_title: "TAGS",
+            notes_tags_all: "Todas",
+            notes_pin: "FIXAR",
+            notes_title_ph: "Título",
+            notes_body_ph: "Texto...",
+            notes_tags_ph: "Tags (#tag, #outra)",
             notes_folder_ph: "Pasta (opcional)",
-            notes_save: "SALVAR NOTA",
-            export_title: "Exportar",
-            export_qr: "ENVIAR POR QR",
-            export_file: "SALVAR .SKV",
-            export_b64: "SALVAR .B64",
-            export_hint: "Exporte para levar ao desktop.",
-            scan_title: "Scan QR",
-            scan_wait: "Aguardando QR...",
-            scan_stop: "PARAR SCAN",
-            scan_import: "IMPORTAR ARQUIVO",
-            scan_restore: "RESTAURAR",
-            scan_paste: "Cole a string base64",
-            scan_fallback: "Sem câmera? Importe o arquivo .b64/.skv ou cole a string.",
-            stream_title: "Enviar por QR",
-            stream_pause: "PAUSAR",
-            stream_resume: "CONTINUAR",
-            stream_copy: "COPIAR BASE64",
-            stream_save: "SALVAR .B64",
-            stream_hint: "Feche para encerrar o envio.",
-            donate: "O eskrev é feito para escrever sem alimentar plataformas. Se fizer sentido, apoie o projeto.",
-            delete_all: "APAGAR TUDO",
-            delete_confirm: "Apagar tudo deste dispositivo?",
-            empty_notes: "Sem notas ainda."
+            notes_updated: "Atualizado",
+            notes_untitled: "Nota sem título",
+            notes_delete_confirm: "Apagar nota?",
+            mobile_limit_notes: "Limite de notas atingido (200).",
+            mobile_limit_pins: "Limite de notas fixadas atingido (5).",
+            mobile_limit_folders: "Limite de pastas atingido (30).",
+            mobile_export_title: "EXPORTAR",
+            mobile_export_qr: "ENVIAR POR QR",
+            mobile_export_save: "SALVAR ARQUIVO",
+            mobile_quick_reset: "APAGAR",
+            mobile_donate_html: "O eskrev é feito para escrever sem alimentar plataformas. Se fizer sentido, apoie o projeto.",
+            qr_scan_title: "SCAN QR",
+            qr_scan_wait: "AGUARDANDO QR...",
+            qr_scan_stop: "PARAR SCAN",
+            qr_fallback_hint: "Sem câmera? Importe o arquivo .b64/.skv ou cole a string.",
+            qr_fallback_import: "IMPORTAR ARQUIVO",
+            qr_fallback_paste: "Cole a string base64",
+            qr_fallback_restore: "RESTAURAR",
+            qr_stream_title: "STREAM QR",
+            qr_stream_active: "STREAM ATIVO",
+            qr_stream_pause: "PAUSAR",
+            qr_stream_resume: "CONTINUAR",
+            qr_stream_copy: "COPIAR BASE64",
+            qr_stream_save: "SALVAR .B64",
+            qr_stream_hint: "Feche para encerrar o envio.",
+            qr_stream_empty: "Nada para enviar.",
+            qr_frame: "FRAME",
+            qr_restore_in_progress: "RESTAURANDO...",
+            qr_decode_fail: "Falha ao restaurar.",
+            qr_camera_blocked: "Câmera bloqueada.",
+            qr_camera_missing: "Câmera indisponível.",
+            qr_no_detector: "Detector não disponível.",
+            qr_using_fallback: "Usando fallback.",
+            qr_libs_missing: "Bibliotecas ausentes."
         },
         en: {
             lang_label: "EN",
-            gate_title: "Import project",
-            gate_body: "",
-            gate_scan: "READ QR CODE",
-            gate_hint: "Or ↑ to create new",
-            gate_share: "Share eskrev",
+            mobile_theme: "Theme",
+            mobile_gate_title: "Import project",
+            mobile_gate_body: "",
+            mobile_gate_scan: "READ QR CODE",
+            mobile_gate_hint: "Or ↑ to create new",
+            mobile_gate_share: "Share eskrev",
             setup_title: "Create session",
-            setup_project_label: "Project name",
             setup_project_ph: "Project name",
-            setup_pass_label: "Provisional password",
             setup_pass_ph: "Provisional password",
             setup_pass_confirm_ph: "Confirm password",
             setup_error_name: "Enter the project name.",
             setup_error_pass: "Enter the provisional password.",
             setup_error_match: "Passwords do not match.",
-            setup_25: "25 MIN",
-            setup_50: "50 MIN",
-            import_title: "Project imported",
-            import_success: "Project {project} imported successfully.",
-            import_confirm: "CONFIRM",
-            notes_title: "Notes of {project}",
-            notes_placeholder: "Quick note...",
-            notes_tags_ph: "Tags (optional)",
+            pomo_25: "25 MIN",
+            pomo_55: "50 MIN",
+            mobile_import_title: "Project imported",
+            mobile_import_success: "Project {project} imported successfully.",
+            mobile_import_pass_ph: "Provisional password",
+            mobile_import_pass_confirm_ph: "Confirm password",
+            mobile_import_confirm: "CONFIRM",
+            mobile_import_pass_error: "Enter the provisional password.",
+            mobile_import_pass_mismatch: "Passwords do not match.",
+            notes_title: "Notes",
+            notes_search_ph: "Search... (#tag /folder)",
+            notes_new: "NEW NOTE",
+            notes_empty_title: "No notes yet.",
+            notes_empty_body: "Create your first note to begin.",
+            notes_empty_cta: "CREATE FIRST NOTE",
+            notes_back: "BACK",
+            notes_delete: "DELETE",
+            notes_folders_title: "FOLDERS",
+            notes_folders_all: "All",
+            notes_tags_title: "TAGS",
+            notes_tags_all: "All",
+            notes_pin: "PIN",
+            notes_title_ph: "Title",
+            notes_body_ph: "Text...",
+            notes_tags_ph: "Tags (#tag, #other)",
             notes_folder_ph: "Folder (optional)",
-            notes_save: "SAVE NOTE",
-            export_title: "Export",
-            export_qr: "SEND BY QR",
-            export_file: "SAVE .SKV",
-            export_b64: "SAVE .B64",
-            export_hint: "Export to move to desktop.",
-            scan_title: "Scan QR",
-            scan_wait: "Waiting for QR...",
-            scan_stop: "STOP SCAN",
-            scan_import: "IMPORT FILE",
-            scan_restore: "RESTORE",
-            scan_paste: "Paste base64 string",
-            scan_fallback: "No camera? Import .b64/.skv or paste the string.",
-            stream_title: "Send by QR",
-            stream_pause: "PAUSE",
-            stream_resume: "RESUME",
-            stream_copy: "COPY BASE64",
-            stream_save: "SAVE .B64",
-            stream_hint: "Close to stop sending.",
-            donate: "eskrev is made for writing without feeding platforms. If it makes sense, support the project.",
-            delete_all: "DELETE ALL",
-            delete_confirm: "Delete everything on this device?",
-            empty_notes: "No notes yet."
+            notes_updated: "Updated",
+            notes_untitled: "Untitled note",
+            notes_delete_confirm: "Delete note?",
+            mobile_limit_notes: "Notes limit reached (200).",
+            mobile_limit_pins: "Pinned notes limit reached (5).",
+            mobile_limit_folders: "Folders limit reached (30).",
+            mobile_export_title: "EXPORT",
+            mobile_export_qr: "SEND BY QR",
+            mobile_export_save: "SAVE FILE",
+            mobile_quick_reset: "DELETE",
+            mobile_donate_html: "eskrev is made for writing without feeding platforms. If it makes sense, support the project.",
+            qr_scan_title: "SCAN QR",
+            qr_scan_wait: "WAITING FOR QR...",
+            qr_scan_stop: "STOP SCAN",
+            qr_fallback_hint: "No camera? Import .b64/.skv or paste the string.",
+            qr_fallback_import: "IMPORT FILE",
+            qr_fallback_paste: "Paste base64 string",
+            qr_fallback_restore: "RESTORE",
+            qr_stream_title: "QR STREAM",
+            qr_stream_active: "STREAM ACTIVE",
+            qr_stream_pause: "PAUSE",
+            qr_stream_resume: "RESUME",
+            qr_stream_copy: "COPY BASE64",
+            qr_stream_save: "SAVE .B64",
+            qr_stream_hint: "Close to stop sending.",
+            qr_stream_empty: "Nothing to send.",
+            qr_frame: "FRAME",
+            qr_restore_in_progress: "RESTORING...",
+            qr_decode_fail: "Failed to restore.",
+            qr_camera_blocked: "Camera blocked.",
+            qr_camera_missing: "Camera unavailable.",
+            qr_no_detector: "Detector not available.",
+            qr_using_fallback: "Using fallback.",
+            qr_libs_missing: "Libraries missing."
         },
         es: {
             lang_label: "ES",
-            gate_title: "Importar proyecto",
-            gate_body: "",
-            gate_scan: "LEER QR",
-            gate_hint: "O ↑ para crear nuevo",
-            gate_share: "Comparte eskrev",
+            mobile_theme: "Tema",
+            mobile_gate_title: "Importar proyecto",
+            mobile_gate_body: "",
+            mobile_gate_scan: "LEER QR",
+            mobile_gate_hint: "O ↑ para crear nuevo",
+            mobile_gate_share: "Comparte eskrev",
             setup_title: "Crear sesión",
-            setup_project_label: "Nombre del proyecto",
             setup_project_ph: "Nombre del proyecto",
-            setup_pass_label: "Contraseña provisional",
             setup_pass_ph: "Contraseña provisional",
             setup_pass_confirm_ph: "Confirmar contraseña",
             setup_error_name: "Ingrese el nombre del proyecto.",
             setup_error_pass: "Ingrese la contraseña provisional.",
             setup_error_match: "Las contraseñas no coinciden.",
-            setup_25: "25 MIN",
-            setup_50: "50 MIN",
-            import_title: "Proyecto importado",
-            import_success: "Proyecto {project} importado con éxito.",
-            import_confirm: "CONFIRMAR",
-            notes_title: "Notas de {project}",
-            notes_placeholder: "Nota rápida...",
-            notes_tags_ph: "Tags (opcional)",
+            pomo_25: "25 MIN",
+            pomo_55: "50 MIN",
+            mobile_import_title: "Proyecto importado",
+            mobile_import_success: "Proyecto {project} importado con éxito.",
+            mobile_import_pass_ph: "Contraseña provisional",
+            mobile_import_pass_confirm_ph: "Confirmar contraseña",
+            mobile_import_confirm: "CONFIRMAR",
+            mobile_import_pass_error: "Ingrese la contraseña provisional.",
+            mobile_import_pass_mismatch: "Las contraseñas no coinciden.",
+            notes_title: "Notas",
+            notes_search_ph: "Buscar... (#tag /carpeta)",
+            notes_new: "NUEVA NOTA",
+            notes_empty_title: "Sin notas todavía.",
+            notes_empty_body: "Crea tu primera nota para comenzar.",
+            notes_empty_cta: "CREAR PRIMERA NOTA",
+            notes_back: "VOLVER",
+            notes_delete: "BORRAR",
+            notes_folders_title: "CARPETAS",
+            notes_folders_all: "Todas",
+            notes_tags_title: "TAGS",
+            notes_tags_all: "Todas",
+            notes_pin: "FIJAR",
+            notes_title_ph: "Título",
+            notes_body_ph: "Texto...",
+            notes_tags_ph: "Tags (#tag, #otra)",
             notes_folder_ph: "Carpeta (opcional)",
-            notes_save: "GUARDAR NOTA",
-            export_title: "Exportar",
-            export_qr: "ENVIAR POR QR",
-            export_file: "GUARDAR .SKV",
-            export_b64: "GUARDAR .B64",
-            export_hint: "Exporta para llevar al desktop.",
-            scan_title: "Scan QR",
-            scan_wait: "Esperando QR...",
-            scan_stop: "DETENER",
-            scan_import: "IMPORTAR ARCHIVO",
-            scan_restore: "RESTAURAR",
-            scan_paste: "Pega la cadena base64",
-            scan_fallback: "Sin cámara? Importa .b64/.skv o pega la cadena.",
-            stream_title: "Enviar por QR",
-            stream_pause: "PAUSAR",
-            stream_resume: "CONTINUAR",
-            stream_copy: "COPIAR BASE64",
-            stream_save: "GUARDAR .B64",
-            stream_hint: "Cierra para detener.",
-            donate: "eskrev está hecho para escribir sin alimentar plataformas. Si tiene sentido, apoya el proyecto.",
-            delete_all: "BORRAR TODO",
-            delete_confirm: "¿Borrar todo en este dispositivo?",
-            empty_notes: "Sin notas todavía."
+            notes_updated: "Actualizado",
+            notes_untitled: "Nota sin título",
+            notes_delete_confirm: "¿Borrar nota?",
+            mobile_limit_notes: "Límite de notas alcanzado (200).",
+            mobile_limit_pins: "Límite de notas fijadas alcanzado (5).",
+            mobile_limit_folders: "Límite de carpetas alcanzado (30).",
+            mobile_export_title: "EXPORTAR",
+            mobile_export_qr: "ENVIAR POR QR",
+            mobile_export_save: "GUARDAR ARCHIVO",
+            mobile_quick_reset: "BORRAR",
+            mobile_donate_html: "eskrev está hecho para escribir sin alimentar plataformas. Si tiene sentido, apoya el proyecto.",
+            qr_scan_title: "SCAN QR",
+            qr_scan_wait: "ESPERANDO QR...",
+            qr_scan_stop: "DETENER",
+            qr_fallback_hint: "Sin cámara? Importa .b64/.skv o pega la cadena.",
+            qr_fallback_import: "IMPORTAR ARCHIVO",
+            qr_fallback_paste: "Pega la cadena base64",
+            qr_fallback_restore: "RESTAURAR",
+            qr_stream_title: "STREAM QR",
+            qr_stream_active: "STREAM ACTIVO",
+            qr_stream_pause: "PAUSAR",
+            qr_stream_resume: "CONTINUAR",
+            qr_stream_copy: "COPIAR BASE64",
+            qr_stream_save: "GUARDAR .B64",
+            qr_stream_hint: "Cierra para detener.",
+            qr_stream_empty: "Nada para enviar.",
+            qr_frame: "FRAME",
+            qr_restore_in_progress: "RESTAURANDO...",
+            qr_decode_fail: "Fallo al restaurar.",
+            qr_camera_blocked: "Cámara bloqueada.",
+            qr_camera_missing: "Cámara no disponible.",
+            qr_no_detector: "Detector no disponible.",
+            qr_using_fallback: "Usando fallback.",
+            qr_libs_missing: "Bibliotecas ausentes."
         },
         fr: {
             lang_label: "FR",
-            gate_title: "Importer un projet",
-            gate_body: "",
-            gate_scan: "LIRE QR CODE",
-            gate_hint: "Ou ↑ pour créer",
-            gate_share: "Partager eskrev",
+            mobile_theme: "Thème",
+            mobile_gate_title: "Importer un projet",
+            mobile_gate_body: "",
+            mobile_gate_scan: "LIRE QR CODE",
+            mobile_gate_hint: "Ou ↑ pour créer",
+            mobile_gate_share: "Partager eskrev",
             setup_title: "Créer une session",
-            setup_project_label: "Nom du projet",
             setup_project_ph: "Nom du projet",
-            setup_pass_label: "Mot de passe provisoire",
             setup_pass_ph: "Mot de passe provisoire",
             setup_pass_confirm_ph: "Confirmer le mot de passe",
             setup_error_name: "Entrez le nom du projet.",
             setup_error_pass: "Entrez le mot de passe provisoire.",
             setup_error_match: "Les mots de passe ne correspondent pas.",
-            setup_25: "25 MIN",
-            setup_50: "50 MIN",
-            import_title: "Projet importé",
-            import_success: "Projet {project} importé avec succès.",
-            import_confirm: "CONFIRMER",
-            notes_title: "Notes de {project}",
-            notes_placeholder: "Note rapide...",
-            notes_tags_ph: "Tags (optionnel)",
+            pomo_25: "25 MIN",
+            pomo_55: "50 MIN",
+            mobile_import_title: "Projet importé",
+            mobile_import_success: "Projet {project} importé avec succès.",
+            mobile_import_pass_ph: "Mot de passe provisoire",
+            mobile_import_pass_confirm_ph: "Confirmer le mot de passe",
+            mobile_import_confirm: "CONFIRMER",
+            mobile_import_pass_error: "Entrez le mot de passe provisoire.",
+            mobile_import_pass_mismatch: "Les mots de passe ne correspondent pas.",
+            notes_title: "Notes",
+            notes_search_ph: "Rechercher... (#tag /dossier)",
+            notes_new: "NOUVELLE NOTE",
+            notes_empty_title: "Aucune note.",
+            notes_empty_body: "Créez votre première note.",
+            notes_empty_cta: "CREER PREMIERE NOTE",
+            notes_back: "RETOUR",
+            notes_delete: "SUPPRIMER",
+            notes_folders_title: "DOSSIERS",
+            notes_folders_all: "Tous",
+            notes_tags_title: "TAGS",
+            notes_tags_all: "Tous",
+            notes_pin: "EPINGLER",
+            notes_title_ph: "Titre",
+            notes_body_ph: "Texte...",
+            notes_tags_ph: "Tags (#tag, #autre)",
             notes_folder_ph: "Dossier (optionnel)",
-            notes_save: "ENREGISTRER",
-            export_title: "Exporter",
-            export_qr: "ENVOYER PAR QR",
-            export_file: "ENREGISTRER .SKV",
-            export_b64: "ENREGISTRER .B64",
-            export_hint: "Exportez vers le desktop.",
-            scan_title: "Scan QR",
-            scan_wait: "En attente du QR...",
-            scan_stop: "ARRETER",
-            scan_import: "IMPORTER FICHIER",
-            scan_restore: "RESTAURER",
-            scan_paste: "Collez la chaîne base64",
-            scan_fallback: "Pas de caméra? Importez .b64/.skv ou collez la chaîne.",
-            stream_title: "Envoyer par QR",
-            stream_pause: "PAUSE",
-            stream_resume: "REPRENDRE",
-            stream_copy: "COPIER BASE64",
-            stream_save: "ENREGISTRER .B64",
-            stream_hint: "Fermez pour arrêter.",
-            donate: "eskrev est fait pour écrire sans nourrir les plateformes. Si cela a du sens, soutenez le projet.",
-            delete_all: "TOUT SUPPRIMER",
-            delete_confirm: "Supprimer tout sur cet appareil ?",
-            empty_notes: "Aucune note pour l'instant."
+            notes_updated: "Mis à jour",
+            notes_untitled: "Note sans titre",
+            notes_delete_confirm: "Supprimer la note ?",
+            mobile_limit_notes: "Limite de notes atteinte (200).",
+            mobile_limit_pins: "Limite d'épingles atteinte (5).",
+            mobile_limit_folders: "Limite de dossiers atteinte (30).",
+            mobile_export_title: "EXPORTER",
+            mobile_export_qr: "ENVOYER PAR QR",
+            mobile_export_save: "ENREGISTRER",
+            mobile_quick_reset: "SUPPRIMER",
+            mobile_donate_html: "eskrev est fait pour écrire sans nourrir les plateformes. Si cela a du sens, soutenez le projet.",
+            qr_scan_title: "SCAN QR",
+            qr_scan_wait: "EN ATTENTE DU QR...",
+            qr_scan_stop: "ARRETER",
+            qr_fallback_hint: "Pas de caméra? Importez .b64/.skv ou collez la chaîne.",
+            qr_fallback_import: "IMPORTER FICHIER",
+            qr_fallback_paste: "Collez la chaîne base64",
+            qr_fallback_restore: "RESTAURER",
+            qr_stream_title: "STREAM QR",
+            qr_stream_active: "STREAM ACTIF",
+            qr_stream_pause: "PAUSE",
+            qr_stream_resume: "REPRENDRE",
+            qr_stream_copy: "COPIER BASE64",
+            qr_stream_save: "ENREGISTRER .B64",
+            qr_stream_hint: "Fermez pour arrêter.",
+            qr_stream_empty: "Rien à envoyer.",
+            qr_frame: "FRAME",
+            qr_restore_in_progress: "RESTAURATION...",
+            qr_decode_fail: "Echec de restauration.",
+            qr_camera_blocked: "Caméra bloquée.",
+            qr_camera_missing: "Caméra indisponible.",
+            qr_no_detector: "Détecteur indisponible.",
+            qr_using_fallback: "Fallback en cours.",
+            qr_libs_missing: "Bibliothèques manquantes."
         }
     };
 
     const NOTES_KEY = "skrv_mobile_notes_v1";
+    const NOTES_KEY_LEGACY = "tot_mobile_notes_v1";
     const PROJECT_NAME_KEY = "skrv_mobile_project_name";
     const PROJECT_TAG_KEY = "skrv_mobile_project_tag";
     const ARCHIVE_KEY = "skrv_mobile_base_archive";
+    const NOTES_LIMIT = 200;
+    const FOLDERS_LIMIT = 30;
+    const PINNED_LIMIT = 5;
+    const THEMES = ["paper", "chumbo", "study"];
 
     const state = {
         lang: localStorage.getItem("skrv_mobile_lang") || "pt",
-        notes: []
+        theme: localStorage.getItem("lit_theme_pref") || "paper"
     };
 
     const els = {};
@@ -215,24 +328,46 @@
         return dict[key] || LANGS.pt[key] || "";
     };
 
+    const applyTheme = (theme) => {
+        const next = THEMES.includes(theme) ? theme : THEMES[0];
+        state.theme = next;
+        document.body.setAttribute("data-theme", next);
+        localStorage.setItem("lit_theme_pref", next);
+        if (els.themeToggle) {
+            els.themeToggle.textContent = next.toUpperCase();
+        }
+    };
+
+    const cycleTheme = () => {
+        const idx = THEMES.indexOf(state.theme);
+        const next = THEMES[(idx + 1) % THEMES.length];
+        applyTheme(next);
+    };
+
     const formatLangLabel = (code) => {
         const dict = LANGS[code] || LANGS.pt;
         return dict.lang_label || code.toUpperCase();
     };
 
     const applyI18n = () => {
-        document.querySelectorAll('[data-i18n]').forEach((el) => {
-            const key = el.getAttribute('data-i18n');
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+            const key = el.getAttribute("data-i18n");
+            if (!key) return;
             el.textContent = t(key);
         });
-        document.querySelectorAll('[data-i18n-ph]').forEach((el) => {
-            const key = el.getAttribute('data-i18n-ph');
-            el.setAttribute('placeholder', t(key));
+        document.querySelectorAll("[data-i18n-ph]").forEach((el) => {
+            const key = el.getAttribute("data-i18n-ph");
+            if (!key) return;
+            el.setAttribute("placeholder", t(key));
+        });
+        document.querySelectorAll("[data-i18n-title]").forEach((el) => {
+            const key = el.getAttribute("data-i18n-title");
+            if (!key) return;
+            el.setAttribute("title", t(key));
         });
         if (els.langToggle) {
             els.langToggle.textContent = formatLangLabel(state.lang);
         }
-        renderNotesTitle();
     };
 
     const cycleLang = () => {
@@ -241,6 +376,7 @@
         state.lang = order[(idx + 1) % order.length];
         localStorage.setItem("skrv_mobile_lang", state.lang);
         applyI18n();
+        renderNotesList();
     };
 
     const slugify = (name) => String(name || "")
@@ -262,19 +398,479 @@
 
     const getProjectTag = () => localStorage.getItem(PROJECT_TAG_KEY) || "proj:mobile";
 
-    const loadNotes = () => {
+    const notesCache = () => {
         try {
-            const raw = localStorage.getItem(NOTES_KEY);
-            const data = raw ? JSON.parse(raw) : [];
-            return Array.isArray(data) ? data : [];
+            const raw = localStorage.getItem(NOTES_KEY) || localStorage.getItem(NOTES_KEY_LEGACY);
+            const parsed = raw ? JSON.parse(raw) : [];
+            return Array.isArray(parsed) ? parsed : [];
         } catch (_) {
             return [];
         }
     };
 
     const saveNotes = (notes) => {
-        state.notes = Array.isArray(notes) ? notes : [];
-        localStorage.setItem(NOTES_KEY, JSON.stringify(state.notes));
+        const list = Array.isArray(notes) ? notes : [];
+        localStorage.setItem(NOTES_KEY, JSON.stringify(list));
+    };
+
+    const fixedMobileTags = () => {
+        const tags = ["mobile"];
+        const proj = getProjectTag();
+        if (proj) tags.push(proj);
+        return tags;
+    };
+
+    const normalizeTag = (tag) => String(tag || "").trim().replace(/^#/, "").toLowerCase();
+    const normalizeFolder = (folder) => String(folder || "").trim();
+
+    const ensureFixedTags = (tags) => {
+        const set = new Set((tags || []).map(normalizeTag));
+        fixedMobileTags().forEach((tag) => set.add(normalizeTag(tag)));
+        return Array.from(set);
+    };
+
+    const formatDate = (iso) => {
+        if (!iso) return "";
+        const d = new Date(iso);
+        if (Number.isNaN(d.getTime())) return "";
+        return d.toLocaleDateString();
+    };
+
+    const noteTitle = (note) => {
+        if (note.title && note.title.trim()) return note.title.trim();
+        const first = String(note.text || "").split("\n").find(Boolean);
+        return first ? first.trim().slice(0, 48) : t("notes_untitled");
+    };
+
+    const parseQuery = (raw) => {
+        const query = String(raw || "").trim();
+        const parts = query.split(/\s+/).filter(Boolean);
+        const tags = [];
+        let folder = "";
+        const text = [];
+        parts.forEach(part => {
+            if (part.startsWith("#") && part.length > 1) {
+                tags.push(normalizeTag(part.slice(1)));
+                return;
+            }
+            if (part.startsWith("/") && part.length > 1) {
+                folder = normalizeFolder(part.slice(1));
+                return;
+            }
+            text.push(part);
+        });
+        return { text: text.join(" ").toLowerCase(), tags, folder };
+    };
+
+    const matchesSearch = (note, query) => {
+        if (!query.text && !query.tags.length && !query.folder) return true;
+        const body = `${note.title || ""} ${note.text || ""}`.toLowerCase();
+        if (query.text && !body.includes(query.text)) return false;
+        if (query.folder && normalizeFolder(note.folder) !== query.folder) return false;
+        if (query.tags.length) {
+            const noteTags = (note.tags || []).map(normalizeTag);
+            const hasAll = query.tags.every(tag => noteTags.includes(tag));
+            if (!hasAll) return false;
+        }
+        return true;
+    };
+
+    const escapeHtml = (text) => String(text || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+    const printRawText = (text, title) => {
+        const win = window.open("", "_blank");
+        if (!win) return;
+        win.document.write(`<pre>${escapeHtml(text)}</pre>`);
+        win.document.title = title || "eskrev";
+        win.document.close();
+        win.focus();
+        win.print();
+    };
+
+    const notesState = {
+        activeId: null,
+        stage: "list",
+        search: "",
+        folder: "",
+        tag: "",
+        overlayType: "",
+        overlayValue: "",
+        draftId: null
+    };
+
+    const buildNoteCard = (note) => {
+        const card = document.createElement("div");
+        card.className = "notes-card";
+        if (note.pinned) card.classList.add("is-pinned");
+        const header = document.createElement("div");
+        header.className = "notes-card-header";
+        const title = document.createElement("div");
+        title.className = "notes-card-title";
+        title.textContent = noteTitle(note);
+        const pinBtn = document.createElement("button");
+        pinBtn.type = "button";
+        pinBtn.className = "btn-icon notes-pin-btn" + (note.pinned ? " active" : "");
+        pinBtn.innerHTML = note.pinned
+            ? `<svg class="icon pin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/></svg>`
+            : `<svg class="icon pin-icon pin-icon-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17v5"/><path d="M15 9.34V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H7.89"/><path d="m2 2 20 20"/><path d="M9 9v1.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h11"/></svg>`;
+        pinBtn.onclick = (event) => {
+            event.stopPropagation();
+            toggleNotePin(note.id);
+        };
+        const printBtn = document.createElement("button");
+        printBtn.type = "button";
+        printBtn.className = "btn-icon notes-print-btn";
+        printBtn.innerHTML = "<svg class='icon' viewBox='0 0 24 24' aria-hidden='true' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2'/><path d='M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6'/><rect x='6' y='14' width='12' height='8' rx='1'/></svg>";
+        printBtn.onclick = (event) => {
+            event.stopPropagation();
+            const titleText = noteTitle(note);
+            const bodyText = String(note.text || "").trim();
+            const text = `=== ${titleText} ===\n\n${bodyText}`;
+            printRawText(text, `eskrev - ${titleText || "Nota"}`);
+        };
+        const meta = document.createElement("div");
+        meta.className = "notes-card-meta";
+        meta.textContent = note.folder ? `${note.folder} · ${formatDate(note.updatedAt || note.createdAt)}` : formatDate(note.updatedAt || note.createdAt);
+        const excerpt = document.createElement("div");
+        excerpt.className = "notes-card-meta";
+        excerpt.textContent = String(note.text || "").replace(/\s+/g, " ").trim().slice(0, 64);
+        const tags = document.createElement("div");
+        tags.className = "notes-tags";
+        (note.tags || []).slice(0, 6).forEach(tag => {
+            const span = document.createElement("span");
+            span.className = "notes-tag";
+            span.textContent = `#${normalizeTag(tag)}`;
+            tags.appendChild(span);
+        });
+        header.appendChild(title);
+        header.appendChild(pinBtn);
+        header.appendChild(printBtn);
+        card.appendChild(header);
+        card.appendChild(meta);
+        if (excerpt.textContent) card.appendChild(excerpt);
+        if (tags.childElementCount) card.appendChild(tags);
+        card.onclick = () => openNoteEdit(note.id);
+        return card;
+    };
+
+    const renderNotesList = () => {
+        const list = document.getElementById("notesList");
+        const empty = document.getElementById("notesEmpty");
+        const notesAll = notesCache();
+        const parsed = parseQuery(notesState.search);
+        const notes = notesAll.filter(n => matchesSearch(n, parsed))
+            .filter(n => notesState.folder ? normalizeFolder(n.folder) === notesState.folder : true)
+            .filter(n => notesState.tag ? (n.tags || []).map(normalizeTag).includes(notesState.tag) : true);
+        if (!list || !empty) return;
+        list.innerHTML = "";
+        const foldersWrap = document.getElementById("notesFoldersWrap");
+        const foldersEl = document.getElementById("notesFolders");
+        if (foldersWrap && foldersEl) {
+            const folderMeta = new Map();
+            notesAll.forEach(n => {
+                const folder = normalizeFolder(n.folder);
+                if (!folder) return;
+                const stamp = new Date(n.updatedAt || n.createdAt || 0).getTime();
+                const prev = folderMeta.get(folder) || 0;
+                if (stamp > prev) folderMeta.set(folder, stamp);
+            });
+            const folders = Array.from(folderMeta.entries())
+                .sort((a, b) => b[1] - a[1])
+                .map(([folder]) => folder);
+            const folderList = document.getElementById("notesFolderList");
+            if (folderList) {
+                folderList.innerHTML = "";
+                folders.forEach(folder => {
+                    const option = document.createElement("option");
+                    option.value = folder;
+                    folderList.appendChild(option);
+                });
+            }
+            if (folders.length) {
+                foldersWrap.style.display = "grid";
+                foldersEl.innerHTML = "";
+                const allBtn = document.createElement("button");
+                allBtn.className = "notes-filter-btn" + (!notesState.folder ? " active" : "");
+                allBtn.type = "button";
+                allBtn.textContent = t("notes_folders_all");
+                allBtn.onclick = () => {
+                    notesState.folder = "";
+                    renderNotesList();
+                };
+                foldersEl.appendChild(allBtn);
+                folders.forEach(folder => {
+                    const btn = document.createElement("button");
+                    btn.className = "notes-filter-btn" + (notesState.folder === folder ? " active" : "");
+                    btn.type = "button";
+                    btn.textContent = folder;
+                    btn.onclick = () => {
+                        openNotesOverlay("folder", folder);
+                    };
+                    foldersEl.appendChild(btn);
+                });
+            } else {
+                foldersWrap.style.display = "none";
+                foldersEl.innerHTML = "";
+            }
+        }
+        const tagsWrap = document.getElementById("notesTagsWrap");
+        const tagsEl = document.getElementById("notesTagsList");
+        if (tagsWrap && tagsEl) {
+            const tagMeta = new Map();
+            notesAll.forEach(n => {
+                const stamp = new Date(n.updatedAt || n.createdAt || 0).getTime();
+                (n.tags || []).forEach(tag => {
+                    const key = normalizeTag(tag);
+                    if (!key) return;
+                    const prev = tagMeta.get(key) || 0;
+                    if (stamp > prev) tagMeta.set(key, stamp);
+                });
+            });
+            const tags = Array.from(tagMeta.entries())
+                .sort((a, b) => b[1] - a[1])
+                .map(([tag]) => tag);
+            const tagsList = document.getElementById("notesTagsDatalist");
+            if (tagsList) {
+                tagsList.innerHTML = "";
+                tags.forEach(tag => {
+                    const option = document.createElement("option");
+                    option.value = `#${tag}`;
+                    tagsList.appendChild(option);
+                });
+            }
+            if (tags.length) {
+                tagsWrap.style.display = "grid";
+                tagsEl.innerHTML = "";
+                const allBtn = document.createElement("button");
+                allBtn.className = "notes-filter-btn" + (!notesState.tag ? " active" : "");
+                allBtn.type = "button";
+                allBtn.textContent = t("notes_tags_all");
+                allBtn.onclick = () => {
+                    notesState.tag = "";
+                    renderNotesList();
+                };
+                tagsEl.appendChild(allBtn);
+                tags.forEach(tag => {
+                    const btn = document.createElement("button");
+                    btn.className = "notes-filter-btn" + (notesState.tag === tag ? " active" : "");
+                    btn.type = "button";
+                    btn.textContent = `#${tag}`;
+                    btn.onclick = () => {
+                        openNotesOverlay("tag", tag);
+                    };
+                    tagsEl.appendChild(btn);
+                });
+            } else {
+                tagsWrap.style.display = "none";
+                tagsEl.innerHTML = "";
+            }
+        }
+        if (!notes.length) {
+            empty.style.display = "flex";
+            return;
+        }
+        empty.style.display = "none";
+        const ordered = [
+            ...notes.filter(n => n.pinned),
+            ...notes.filter(n => !n.pinned)
+        ];
+        ordered.forEach(note => {
+            list.appendChild(buildNoteCard(note));
+        });
+    };
+
+    const openNotesOverlay = (type, value) => {
+        const overlay = document.getElementById("notesOverlay");
+        const titleEl = document.getElementById("notesOverlayTitle");
+        const listEl = document.getElementById("notesOverlayList");
+        if (!overlay || !titleEl || !listEl) return;
+        const notesAll = notesCache();
+        const filtered = type === "folder"
+            ? notesAll.filter(n => normalizeFolder(n.folder) === value)
+            : notesAll.filter(n => (n.tags || []).map(normalizeTag).includes(value));
+        titleEl.textContent = type === "folder" ? value : `#${value}`;
+        listEl.innerHTML = "";
+        filtered.forEach(note => listEl.appendChild(buildNoteCard(note)));
+        notesState.overlayType = type;
+        notesState.overlayValue = value;
+        overlay.classList.add("active");
+        overlay.setAttribute("aria-hidden", "false");
+    };
+
+    const closeNotesOverlay = () => {
+        const overlay = document.getElementById("notesOverlay");
+        if (!overlay) return;
+        overlay.classList.remove("active");
+        overlay.setAttribute("aria-hidden", "true");
+        notesState.overlayType = "";
+        notesState.overlayValue = "";
+    };
+
+    const setNotesStage = (stage) => {
+        notesState.stage = stage;
+        document.querySelectorAll(".notes-stage").forEach(el => el.classList.remove("is-active"));
+        const target = document.querySelector(`.notes-stage-${stage}`);
+        if (target) target.classList.add("is-active");
+        renderNotesList();
+    };
+
+    const openNoteEdit = (id) => {
+        const note = notesCache().find(n => n.id === id);
+        if (!note) return;
+        notesState.activeId = id;
+        notesState.draftId = null;
+        closeNotesOverlay();
+        const titleEl = document.getElementById("notesTitle");
+        const bodyEl = document.getElementById("notesBody");
+        const tagsEl = document.getElementById("notesTags");
+        const folderEl = document.getElementById("notesFolder");
+        const metaEl = document.getElementById("notesMeta");
+        const pinToggle = document.getElementById("notesPinToggle");
+        if (titleEl) titleEl.value = note.title || "";
+        if (bodyEl) bodyEl.value = note.text || "";
+        if (tagsEl) {
+            const merged = ensureFixedTags(note.tags || []);
+            tagsEl.value = merged.map(t => `#${normalizeTag(t)}`).join(", ");
+        }
+        if (folderEl) folderEl.value = note.folder || "";
+        if (metaEl) metaEl.textContent = `${t("notes_updated")}: ${formatDate(note.updatedAt || note.createdAt)}`;
+        if (pinToggle) pinToggle.classList.toggle("active", !!note.pinned);
+        setNotesStage("edit");
+    };
+
+    const readNoteInputs = () => {
+        const titleEl = document.getElementById("notesTitle");
+        const bodyEl = document.getElementById("notesBody");
+        const tagsEl = document.getElementById("notesTags");
+        const folderEl = document.getElementById("notesFolder");
+        const title = titleEl ? titleEl.value.trim() : "";
+        const text = bodyEl ? bodyEl.value : "";
+        let tags = tagsEl ? tagsEl.value.split(",").map(normalizeTag).filter(Boolean) : [];
+        tags = ensureFixedTags(tags);
+        const folder = folderEl ? normalizeFolder(folderEl.value) : "";
+        return { title, text, tags, folder };
+    };
+
+    const hasNoteContent = ({ title, text, tags, folder }) => {
+        return Boolean(`${title}${text}${folder}${(tags || []).join("")}`.trim());
+    };
+
+    const finalizeDraftIfNeeded = () => {
+        if (!notesState.draftId) return;
+        const data = readNoteInputs();
+        if (!hasNoteContent(data)) {
+            notesState.draftId = null;
+            return;
+        }
+        const notes = notesCache();
+        if (notes.length >= NOTES_LIMIT) {
+            alert(t("mobile_limit_notes"));
+            return;
+        }
+        const note = {
+            id: notesState.draftId,
+            title: data.title,
+            text: data.text,
+            tags: ensureFixedTags(data.tags),
+            folder: data.folder,
+            pinned: false,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+        };
+        notes.unshift(note);
+        saveNotes(notes);
+        notesState.activeId = note.id;
+        notesState.draftId = null;
+    };
+
+    const createNewNote = (preset = {}) => {
+        const notes = notesCache();
+        if (notes.length >= NOTES_LIMIT) {
+            alert(t("mobile_limit_notes"));
+            return;
+        }
+        const presetFolder = normalizeFolder(preset.folder);
+        if (presetFolder) {
+            const folders = Array.from(new Set(notes.map(n => normalizeFolder(n.folder)).filter(Boolean)));
+            if (!folders.includes(presetFolder) && folders.length >= FOLDERS_LIMIT) {
+                alert(t("mobile_limit_folders"));
+                return;
+            }
+        }
+        const presetTags = Array.isArray(preset.tags) ? preset.tags.map(normalizeTag).filter(Boolean) : [];
+        notesState.activeId = null;
+        notesState.draftId = `note_${Date.now()}`;
+        closeNotesOverlay();
+        const titleEl = document.getElementById("notesTitle");
+        const bodyEl = document.getElementById("notesBody");
+        const tagsEl = document.getElementById("notesTags");
+        const folderEl = document.getElementById("notesFolder");
+        const metaEl = document.getElementById("notesMeta");
+        if (titleEl) titleEl.value = "";
+        if (bodyEl) bodyEl.value = "";
+        if (tagsEl) {
+            const merged = ensureFixedTags(presetTags);
+            tagsEl.value = merged.map(t => `#${normalizeTag(t)}`).join(", ");
+        }
+        if (folderEl) folderEl.value = presetFolder || "";
+        if (metaEl) metaEl.textContent = "";
+        setNotesStage("edit");
+    };
+
+    const toggleNotePin = (id) => {
+        const notes = notesCache();
+        const note = notes.find(n => n.id === id);
+        if (!note) return;
+        const pinnedCount = notes.filter(n => n.pinned).length;
+        if (!note.pinned && pinnedCount >= PINNED_LIMIT) {
+            alert(t("mobile_limit_pins"));
+            return;
+        }
+        note.pinned = !note.pinned;
+        note.updatedAt = new Date().toISOString();
+        saveNotes(notes);
+        renderNotesList();
+    };
+
+    const updateActiveNote = () => {
+        if (notesState.draftId) {
+            const data = readNoteInputs();
+            if (!hasNoteContent(data)) return;
+            finalizeDraftIfNeeded();
+        }
+        const notes = notesCache();
+        const note = notes.find(n => n.id === notesState.activeId);
+        if (!note) return;
+        const { title, text, tags, folder } = readNoteInputs();
+        if (folder) {
+            const folders = Array.from(new Set(notes.map(n => normalizeFolder(n.folder)).filter(Boolean)));
+            if (!folders.includes(folder) && folders.length >= FOLDERS_LIMIT) {
+                alert(t("mobile_limit_folders"));
+                return;
+            }
+        }
+        note.title = title;
+        note.text = text;
+        note.tags = ensureFixedTags(tags);
+        note.folder = folder;
+        note.updatedAt = new Date().toISOString();
+        saveNotes(notes);
+        const metaEl = document.getElementById("notesMeta");
+        if (metaEl) metaEl.textContent = `${t("notes_updated")}: ${formatDate(note.updatedAt)}`;
+        renderNotesList();
+    };
+
+    let updateTimer = null;
+    const scheduleUpdate = () => {
+        if (updateTimer) clearTimeout(updateTimer);
+        updateTimer = setTimeout(updateActiveNote, 250);
+    };
+
+    const buildBaseArchive = () => {
+        return { projects: [], activeId: null, memo: "", mobileNotes: [] };
     };
 
     const loadBaseArchive = () => {
@@ -289,13 +885,6 @@
     const saveBaseArchive = (archive) => {
         localStorage.setItem(ARCHIVE_KEY, JSON.stringify(archive));
     };
-
-    const escapeHtml = (text) => String(text || "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/\"/g, "&quot;")
-        .replace(/'/g, "&#39;");
 
     const notesToHtml = (notes) => {
         if (!notes.length) return "";
@@ -318,8 +907,8 @@
     };
 
     const buildArchiveForExport = () => {
-        const notes = loadNotes();
-        const baseArchive = loadBaseArchive() || { projects: [], activeId: null, memo: "", mobileNotes: [] };
+        const notes = notesCache();
+        const baseArchive = loadBaseArchive() || buildBaseArchive();
         const archive = { ...baseArchive };
         archive.projects = Array.isArray(baseArchive.projects) ? baseArchive.projects.map(p => ({ ...p })) : [];
         if (!archive.projects.length) {
@@ -378,347 +967,9 @@
         setProjectName(projectName);
         const notes = Array.isArray(archive.mobileNotes) ? archive.mobileNotes : [];
         saveNotes(notes);
-        renderNotes();
+        renderNotesList();
         openImportPassword(projectName);
         return true;
-    };
-
-    const initElements = () => {
-        els.langToggle = document.getElementById("mobileLangToggle");
-        els.gate = document.getElementById("mobileGate");
-        els.gateScan = document.getElementById("mobileGateScan");
-        els.gateHint = document.getElementById("mobileGateHint");
-        els.shareQr = document.getElementById("shareQrCode");
-
-        els.setup = document.getElementById("mobileSetup");
-        els.setupName = document.getElementById("setupProjectName");
-        els.setupPass1 = document.getElementById("setupPass1");
-        els.setupPass2 = document.getElementById("setupPass2");
-        els.setupMsg = document.getElementById("setupMsg");
-        els.setup25 = document.getElementById("setupPomo25");
-        els.setup50 = document.getElementById("setupPomo50");
-
-        els.importModal = document.getElementById("importSessionModal");
-        els.importSuccess = document.getElementById("importSessionSuccess");
-        els.importPass1 = document.getElementById("importSessionPass1");
-        els.importPass2 = document.getElementById("importSessionPass2");
-        els.importMsg = document.getElementById("importSessionMsg");
-        els.importConfirm = document.getElementById("importSessionConfirm");
-
-        els.notesView = document.getElementById("notesView");
-        els.notesTitle = document.getElementById("notesTitle");
-        els.noteInput = document.getElementById("mobileMemoInput");
-        els.noteTags = document.getElementById("mobileMemoTags");
-        els.noteFolder = document.getElementById("mobileMemoFolder");
-        els.noteSave = document.getElementById("btnAddMobileMemo");
-        els.notesList = document.getElementById("mobileMemoList");
-        els.fixedTags = document.getElementById("fixedTags");
-
-        els.exportQr = document.getElementById("btnExportQr");
-        els.exportFile = document.getElementById("btnExportFile");
-        els.exportB64 = document.getElementById("btnExportB64");
-        els.deleteAll = document.getElementById("btnDeleteAll");
-
-        els.scanModal = document.getElementById("qrScanModal");
-        els.scanVideo = document.getElementById("qrScanVideo");
-        els.scanStatus = document.getElementById("qrScanStatus");
-        els.scanProgress = document.getElementById("qrScanProgress");
-        els.scanGrid = document.getElementById("qrScanGrid");
-        els.scanStop = document.getElementById("qrScanStop");
-        els.scanImport = document.getElementById("qrScanImport");
-        els.scanFile = document.getElementById("qrScanFile");
-        els.scanPaste = document.getElementById("qrScanPaste");
-        els.scanRestore = document.getElementById("qrScanRestore");
-
-        els.streamModal = document.getElementById("qrStreamModal");
-        els.streamCode = document.getElementById("qrStreamCode");
-        els.streamStatus = document.getElementById("qrStreamStatus");
-        els.streamMeta = document.getElementById("qrStreamMeta");
-        els.streamPause = document.getElementById("qrStreamPause");
-        els.streamCopy = document.getElementById("qrStreamCopy");
-        els.streamSave = document.getElementById("qrStreamSave");
-        els.streamClose = document.getElementById("qrStreamClose");
-    };
-
-    const renderNotesTitle = () => {
-        if (!els.notesTitle) return;
-        const name = getProjectName() || "Projeto";
-        els.notesTitle.textContent = t("notes_title").replace("{project}", name);
-        renderFixedTags();
-    };
-
-    const renderFixedTags = () => {
-        if (!els.fixedTags) return;
-        const projTag = getProjectTag();
-        els.fixedTags.innerHTML = "";
-        const tags = ["#mobile", `#${projTag}`];
-        tags.forEach((tag) => {
-            const span = document.createElement("span");
-            span.className = "tag locked";
-            span.textContent = tag;
-            els.fixedTags.appendChild(span);
-        });
-    };
-
-    const renderNotes = () => {
-        const notes = loadNotes();
-        if (!els.notesList) return;
-        if (!notes.length) {
-            els.notesList.innerHTML = `<div class="help">${t("empty_notes")}</div>`;
-            return;
-        }
-        els.notesList.innerHTML = "";
-        notes.forEach((note) => {
-            const card = document.createElement("div");
-            card.className = "note-card";
-            const meta = document.createElement("div");
-            meta.className = "note-meta";
-            const date = new Date(note.createdAt || Date.now()).toLocaleString();
-            meta.textContent = date;
-            const body = document.createElement("div");
-            body.className = "note-body";
-            body.textContent = note.text || "";
-            const tags = document.createElement("div");
-            tags.className = "fixed-tags";
-            (note.tags || []).forEach((tag) => {
-                const span = document.createElement("span");
-                span.className = "tag";
-                span.textContent = `#${tag}`;
-                tags.appendChild(span);
-            });
-            const actions = document.createElement("div");
-            actions.className = "note-actions";
-            const del = document.createElement("button");
-            del.className = "danger";
-            del.textContent = "X";
-            del.onclick = () => {
-                const updated = loadNotes().filter(n => n.id !== note.id);
-                saveNotes(updated);
-                renderNotes();
-            };
-            actions.appendChild(del);
-            card.appendChild(meta);
-            card.appendChild(body);
-            if (note.tags && note.tags.length) card.appendChild(tags);
-            card.appendChild(actions);
-            els.notesList.appendChild(card);
-        });
-    };
-
-    const parseTags = (raw) => {
-        const extra = String(raw || "")
-            .split(/,|\s+/)
-            .map(t => t.trim())
-            .filter(Boolean)
-            .map(t => t.replace(/^#/, "").toLowerCase());
-        const fixed = ["mobile", getProjectTag().toLowerCase()];
-        const merged = [...new Set([...fixed, ...extra])];
-        return merged;
-    };
-
-    const openGate = () => {
-        if (!els.gate) return;
-        els.gate.classList.add("active");
-    };
-
-    const closeGate = () => {
-        if (!els.gate) return;
-        els.gate.classList.remove("active");
-        sessionStorage.setItem("skrv_mobile_gate_done", "1");
-    };
-
-    const openSetup = () => {
-        if (!els.setup) return;
-        els.setup.classList.add("active");
-        if (els.setupName) els.setupName.focus();
-    };
-
-    const closeSetup = () => {
-        if (!els.setup) return;
-        els.setup.classList.remove("active");
-    };
-
-    const openNotes = () => {
-        if (els.notesView) els.notesView.classList.remove("hidden");
-    };
-
-    const closeNotes = () => {
-        if (els.notesView) els.notesView.classList.add("hidden");
-    };
-
-    const openImportPassword = (projectName) => {
-        if (!els.importModal) return;
-        els.importModal.classList.add("active");
-        if (els.importSuccess) {
-            els.importSuccess.textContent = t("import_success").replace("{project}", projectName || "Projeto");
-        }
-        if (els.importPass1) els.importPass1.value = "";
-        if (els.importPass2) els.importPass2.value = "";
-        if (els.importMsg) els.importMsg.textContent = "";
-    };
-
-    const closeImportPassword = () => {
-        if (els.importModal) els.importModal.classList.remove("active");
-    };
-
-    const setupProject = (duration) => {
-        const name = (els.setupName ? els.setupName.value : "").trim();
-        const p1 = (els.setupPass1 ? els.setupPass1.value : "").trim();
-        const p2 = (els.setupPass2 ? els.setupPass2.value : "").trim();
-        if (!name) {
-            if (els.setupMsg) els.setupMsg.textContent = t("setup_error_name");
-            return;
-        }
-        if (!p1) {
-            if (els.setupMsg) els.setupMsg.textContent = t("setup_error_pass");
-            return;
-        }
-        if (p1 !== p2) {
-            if (els.setupMsg) els.setupMsg.textContent = t("setup_error_match");
-            return;
-        }
-        localStorage.setItem("lit_auth_key", p1);
-        setProjectName(name);
-        if (!loadBaseArchive()) {
-            const id = `proj_${Date.now()}`;
-            saveBaseArchive({
-                projects: [{ id, name, content: "", date: new Date().toLocaleString(), cursorPos: 0 }],
-                activeId: id,
-                memo: "",
-                mobileNotes: []
-            });
-        }
-        closeSetup();
-        closeGate();
-        openNotes();
-        renderNotesTitle();
-        renderNotes();
-        if (duration) {
-            localStorage.setItem("skrv_mobile_pomo", String(duration));
-        }
-    };
-
-    const bindGate = () => {
-        if (els.langToggle) els.langToggle.addEventListener("click", cycleLang);
-        if (els.gateScan) {
-            els.gateScan.addEventListener("click", () => {
-                closeGate();
-                openScanModal();
-            });
-        }
-        let startY = null;
-        if (els.gate) {
-            els.gate.addEventListener("touchstart", (e) => {
-                const touch = e.touches && e.touches[0];
-                if (!touch) return;
-                startY = touch.clientY;
-            }, { passive: true });
-            els.gate.addEventListener("touchend", (e) => {
-                if (startY === null) return;
-                const touch = e.changedTouches && e.changedTouches[0];
-                if (!touch) return;
-                const delta = startY - touch.clientY;
-                startY = null;
-                if (delta > 60) {
-                    closeGate();
-                    openSetup();
-                }
-            });
-        }
-    };
-
-    const bindSetup = () => {
-        if (els.setup25) els.setup25.addEventListener("click", () => setupProject(25));
-        if (els.setup50) els.setup50.addEventListener("click", () => setupProject(50));
-    };
-
-    const bindNotes = () => {
-        if (els.noteSave) {
-            els.noteSave.addEventListener("click", () => {
-                const text = (els.noteInput ? els.noteInput.value : "").trim();
-                if (!text) return;
-                const tags = parseTags(els.noteTags ? els.noteTags.value : "");
-                const folder = (els.noteFolder ? els.noteFolder.value : "").trim();
-                const now = new Date().toISOString();
-                const notes = loadNotes();
-                notes.unshift({
-                    id: `note_${Date.now()}`,
-                    text,
-                    tags,
-                    folder,
-                    createdAt: now,
-                    updatedAt: now
-                });
-                saveNotes(notes);
-                if (els.noteInput) els.noteInput.value = "";
-                if (els.noteTags) els.noteTags.value = "";
-                if (els.noteFolder) els.noteFolder.value = "";
-                renderNotes();
-            });
-        }
-        if (els.exportQr) {
-            els.exportQr.addEventListener("click", () => {
-                openStreamModal();
-                startStream(buildPayload());
-            });
-        }
-        if (els.exportFile) {
-            els.exportFile.addEventListener("click", () => {
-                const payload = buildPayload();
-                const json = JSON.stringify(payload, null, 2);
-                downloadText(json, `SKRV_${Date.now()}.skv`);
-            });
-        }
-        if (els.exportB64) {
-            els.exportB64.addEventListener("click", () => {
-                const base64 = buildBase64(buildPayload());
-                downloadText(base64, `SKRV_QR_${Date.now()}.b64`);
-            });
-        }
-        if (els.deleteAll) {
-            els.deleteAll.addEventListener("click", () => {
-                if (!confirm(t("delete_confirm"))) return;
-                localStorage.removeItem(NOTES_KEY);
-                localStorage.removeItem(PROJECT_NAME_KEY);
-                localStorage.removeItem(PROJECT_TAG_KEY);
-                localStorage.removeItem(ARCHIVE_KEY);
-                saveNotes([]);
-                renderNotes();
-                openGate();
-                closeNotes();
-            });
-        }
-    };
-
-    const bindImportPassword = () => {
-        if (!els.importConfirm) return;
-        els.importConfirm.addEventListener("click", () => {
-            const p1 = (els.importPass1 ? els.importPass1.value : "").trim();
-            const p2 = (els.importPass2 ? els.importPass2.value : "").trim();
-            if (!p1) {
-                if (els.importMsg) els.importMsg.textContent = t("setup_error_pass");
-                return;
-            }
-            if (p1 !== p2) {
-                if (els.importMsg) els.importMsg.textContent = t("setup_error_match");
-                return;
-            }
-            localStorage.setItem("lit_auth_key", p1);
-            closeImportPassword();
-            closeGate();
-            openNotes();
-            renderNotesTitle();
-        });
-    };
-
-    const downloadText = (text, filename) => {
-        const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = filename;
-        a.click();
-        URL.revokeObjectURL(url);
     };
 
     const buildBase64 = (payload) => {
@@ -794,19 +1045,22 @@
                 correctLevel: QRCode.CorrectLevel.Q
             });
         }
-        if (!streamChunks.length) return;
+        if (!streamChunks.length) {
+            if (els.streamStatus) els.streamStatus.textContent = t("qr_stream_empty");
+            return;
+        }
         updateStreamFrame();
         if (streamTimer) clearInterval(streamTimer);
         streamTimer = setInterval(updateStreamFrame, FRAME_INTERVAL_MS);
-        updateStreamStatus(false);
+        setStreamStatus(false);
     };
 
-    const updateStreamStatus = (paused) => {
+    const setStreamStatus = (paused) => {
         if (!els.streamStatus) return;
-        const status = paused ? t("stream_resume") : t("stream_pause");
+        const status = paused ? t("qr_stream_resume") : t("qr_stream_active");
         els.streamStatus.textContent = `${status} | ID ${streamBackupId}`;
         if (els.streamMeta) {
-            els.streamMeta.textContent = `QR ${String(streamIndex + 1).padStart(3, "0")} / ${String(streamTotal).padStart(3, "0")}`;
+            els.streamMeta.textContent = `${t("qr_frame")} ${String(streamIndex + 1).padStart(3, "0")} / ${String(streamTotal).padStart(3, "0")}`;
         }
     };
 
@@ -818,7 +1072,7 @@
         qrInstance.clear();
         qrInstance.makeCode(frame);
         streamIndex = (streamIndex + 1) % streamTotal;
-        updateStreamStatus(false);
+        setStreamStatus(false);
     };
 
     const stopStream = () => {
@@ -831,11 +1085,11 @@
     const toggleStreamPause = () => {
         if (streamTimer) {
             stopStream();
-            if (els.streamPause) els.streamPause.textContent = t("stream_resume");
-            updateStreamStatus(true);
+            if (els.streamPause) els.streamPause.textContent = t("qr_stream_resume");
+            setStreamStatus(true);
         } else {
             streamTimer = setInterval(updateStreamFrame, FRAME_INTERVAL_MS);
-            if (els.streamPause) els.streamPause.textContent = t("stream_pause");
+            if (els.streamPause) els.streamPause.textContent = t("qr_stream_pause");
         }
     };
 
@@ -914,7 +1168,7 @@
         scanSession.received.set(frame.index, frame.data);
         markCell(frame.index);
         const receivedCount = scanSession.received.size;
-        updateScanStatus(`${t("scan_wait")} ${receivedCount}/${scanSession.total}`);
+        updateScanStatus(`${t("qr_scan_wait")} ${receivedCount}/${scanSession.total}`);
         if (els.scanProgress) {
             const pct = Math.max(0, Math.min(100, (receivedCount / scanSession.total) * 100));
             els.scanProgress.style.width = `${pct}%`;
@@ -928,6 +1182,8 @@
             const payload = decodeBase64(base64);
             if (payload) {
                 importPayload(payload);
+            } else {
+                updateScanStatus(t("qr_decode_fail"));
             }
             stopScan();
             closeScanModal();
@@ -963,7 +1219,10 @@
     };
 
     const startScan = async () => {
-        if (!els.scanVideo || !navigator.mediaDevices) return;
+        if (!els.scanVideo || !navigator.mediaDevices) {
+            updateScanStatus(t("qr_camera_missing"));
+            return;
+        }
         try {
             scanStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false });
             els.scanVideo.srcObject = scanStream;
@@ -973,12 +1232,15 @@
             } else if (window.jsQR) {
                 scanCanvas = document.createElement("canvas");
                 scanCtx = scanCanvas.getContext("2d", { willReadFrequently: true });
+            } else {
+                updateScanStatus(t("qr_no_detector"));
+                return;
             }
             scanActive = true;
-            updateScanStatus(t("scan_wait"));
+            updateScanStatus(t("qr_scan_wait"));
             scanLoop();
         } catch (_) {
-            updateScanStatus("Camera bloqueada");
+            updateScanStatus(t("qr_camera_blocked"));
         }
     };
 
@@ -1006,7 +1268,266 @@
         stopScan();
     };
 
-    const bindScan = () => {
+    const openGate = () => {
+        if (els.gate) els.gate.classList.add("active");
+    };
+
+    const closeGate = () => {
+        if (els.gate) els.gate.classList.remove("active");
+        sessionStorage.setItem("skrv_mobile_gate_done", "1");
+    };
+
+    const openSetup = () => {
+        if (els.setup) els.setup.classList.add("active");
+        if (els.setupName) els.setupName.focus();
+    };
+
+    const closeSetup = () => {
+        if (els.setup) els.setup.classList.remove("active");
+    };
+
+    const openImportPassword = (projectName) => {
+        if (!els.importModal) return;
+        els.importModal.classList.add("active");
+        if (els.importSuccess) {
+            els.importSuccess.textContent = t("mobile_import_success").replace("{project}", projectName || "Projeto");
+        }
+        if (els.importPass1) els.importPass1.value = "";
+        if (els.importPass2) els.importPass2.value = "";
+        if (els.importMsg) els.importMsg.textContent = "";
+    };
+
+    const closeImportPassword = () => {
+        if (els.importModal) els.importModal.classList.remove("active");
+    };
+
+    const setupProject = (duration) => {
+        const name = (els.setupName ? els.setupName.value : "").trim();
+        const p1 = (els.setupPass1 ? els.setupPass1.value : "").trim();
+        const p2 = (els.setupPass2 ? els.setupPass2.value : "").trim();
+        if (!name) {
+            if (els.setupMsg) els.setupMsg.textContent = t("setup_error_name");
+            return;
+        }
+        if (!p1) {
+            if (els.setupMsg) els.setupMsg.textContent = t("setup_error_pass");
+            return;
+        }
+        if (p1 !== p2) {
+            if (els.setupMsg) els.setupMsg.textContent = t("setup_error_match");
+            return;
+        }
+        localStorage.setItem("lit_auth_key", p1);
+        setProjectName(name);
+        if (!loadBaseArchive()) {
+            const id = `proj_${Date.now()}`;
+            saveBaseArchive({
+                projects: [{ id, name, content: "", date: new Date().toLocaleString(), cursorPos: 0 }],
+                activeId: id,
+                memo: "",
+                mobileNotes: []
+            });
+        }
+        closeSetup();
+        closeGate();
+        renderNotesList();
+        if (duration) {
+            localStorage.setItem("skrv_mobile_pomo", String(duration));
+        }
+    };
+
+    const initElements = () => {
+        els.langToggle = document.getElementById("mobileLangToggle");
+        els.themeToggle = document.getElementById("mobileThemeToggle");
+        els.gate = document.getElementById("mobileGate");
+        els.gateScan = document.getElementById("mobileGateScan");
+        els.shareQr = document.getElementById("shareQrCode");
+        els.setup = document.getElementById("mobileSetup");
+        els.setupName = document.getElementById("setupProjectName");
+        els.setupPass1 = document.getElementById("setupPass1");
+        els.setupPass2 = document.getElementById("setupPass2");
+        els.setupMsg = document.getElementById("setupMsg");
+        els.setup25 = document.getElementById("setupPomo25");
+        els.setup50 = document.getElementById("setupPomo50");
+        els.importModal = document.getElementById("importSessionModal");
+        els.importSuccess = document.getElementById("importSessionSuccess");
+        els.importPass1 = document.getElementById("importSessionPass1");
+        els.importPass2 = document.getElementById("importSessionPass2");
+        els.importMsg = document.getElementById("importSessionMsg");
+        els.importConfirm = document.getElementById("importSessionConfirm");
+        els.exportQr = document.getElementById("btnExportQr");
+        els.exportFile = document.getElementById("btnExportFile");
+        els.exportB64 = document.getElementById("btnExportB64");
+        els.deleteAll = document.getElementById("btnDeleteAll");
+        els.scanModal = document.getElementById("qrScanModal");
+        els.scanVideo = document.getElementById("qrScanVideo");
+        els.scanStatus = document.getElementById("qrScanStatus");
+        els.scanProgress = document.getElementById("qrScanProgress");
+        els.scanGrid = document.getElementById("qrScanGrid");
+        els.scanStop = document.getElementById("qrScanStop");
+        els.scanImport = document.getElementById("qrScanImport");
+        els.scanFile = document.getElementById("qrScanFile");
+        els.scanPaste = document.getElementById("qrScanPaste");
+        els.scanRestore = document.getElementById("qrScanRestore");
+        els.streamModal = document.getElementById("qrStreamModal");
+        els.streamCode = document.getElementById("qrStreamCode");
+        els.streamStatus = document.getElementById("qrStreamStatus");
+        els.streamMeta = document.getElementById("qrStreamMeta");
+        els.streamPause = document.getElementById("qrStreamPause");
+        els.streamCopy = document.getElementById("qrStreamCopy");
+        els.streamSave = document.getElementById("qrStreamSave");
+        els.streamClose = document.getElementById("qrStreamClose");
+    };
+
+    const bindEvents = () => {
+        if (els.langToggle) els.langToggle.addEventListener("click", cycleLang);
+        if (els.themeToggle) els.themeToggle.addEventListener("click", cycleTheme);
+        if (els.gateScan) {
+            els.gateScan.addEventListener("click", () => {
+                closeGate();
+                openScanModal();
+            });
+        }
+        let startY = null;
+        if (els.gate) {
+            els.gate.addEventListener("touchstart", (e) => {
+                const touch = e.touches && e.touches[0];
+                if (!touch) return;
+                startY = touch.clientY;
+            }, { passive: true });
+            els.gate.addEventListener("touchend", (e) => {
+                if (startY === null) return;
+                const touch = e.changedTouches && e.changedTouches[0];
+                if (!touch) return;
+                const delta = startY - touch.clientY;
+                startY = null;
+                if (delta > 60) {
+                    closeGate();
+                    openSetup();
+                }
+            });
+        }
+        if (els.setup25) els.setup25.addEventListener("click", () => setupProject(25));
+        if (els.setup50) els.setup50.addEventListener("click", () => setupProject(50));
+        if (els.importConfirm) {
+            els.importConfirm.addEventListener("click", () => {
+                const p1 = (els.importPass1 ? els.importPass1.value : "").trim();
+                const p2 = (els.importPass2 ? els.importPass2.value : "").trim();
+                if (!p1) {
+                    if (els.importMsg) els.importMsg.textContent = t("mobile_import_pass_error");
+                    return;
+                }
+                if (p1 !== p2) {
+                    if (els.importMsg) els.importMsg.textContent = t("mobile_import_pass_mismatch");
+                    return;
+                }
+                localStorage.setItem("lit_auth_key", p1);
+                closeImportPassword();
+                closeGate();
+            });
+        }
+        const notesSearch = document.getElementById("notesSearch");
+        const notesNew = document.getElementById("notesNew");
+        const notesEmptyCreate = document.getElementById("notesEmptyCreate");
+        const notesOverlayClose = document.getElementById("notesOverlayClose");
+        const notesOverlayNew = document.getElementById("notesOverlayNew");
+        const notesBackToPreview = document.getElementById("notesBackToPreview");
+        const notesDelete = document.getElementById("notesDelete");
+        const notesPinToggle = document.getElementById("notesPinToggle");
+        const notesTitle = document.getElementById("notesTitle");
+        const notesBody = document.getElementById("notesBody");
+        const notesTags = document.getElementById("notesTags");
+        const notesFolder = document.getElementById("notesFolder");
+        if (notesSearch) {
+            notesSearch.addEventListener("input", (e) => {
+                notesState.search = e.target.value;
+                renderNotesList();
+            });
+        }
+        if (notesNew) notesNew.onclick = () => createNewNote();
+        if (notesEmptyCreate) notesEmptyCreate.onclick = () => createNewNote();
+        if (notesBackToPreview) notesBackToPreview.onclick = () => setNotesStage("list");
+        if (notesDelete) {
+            notesDelete.onclick = () => {
+                const notes = notesCache();
+                const note = notes.find(n => n.id === notesState.activeId);
+                if (!note) return;
+                const ok = confirm(t("notes_delete_confirm"));
+                if (!ok) return;
+                const next = notes.filter(n => n.id !== notesState.activeId);
+                saveNotes(next);
+                notesState.activeId = null;
+                renderNotesList();
+                setNotesStage("list");
+            };
+        }
+        if (notesPinToggle) {
+            notesPinToggle.onclick = () => {
+                if (notesState.activeId) toggleNotePin(notesState.activeId);
+            };
+        }
+        if (notesOverlayClose) notesOverlayClose.onclick = () => closeNotesOverlay();
+        if (notesOverlayNew) {
+            notesOverlayNew.onclick = () => {
+                if (notesState.overlayType === "tag") {
+                    createNewNote({ tags: [notesState.overlayValue] });
+                } else if (notesState.overlayType === "folder") {
+                    createNewNote({ folder: notesState.overlayValue });
+                } else {
+                    createNewNote();
+                }
+            };
+        }
+        [notesTitle, notesBody, notesTags, notesFolder].forEach(el => {
+            if (!el) return;
+            el.addEventListener("input", scheduleUpdate);
+        });
+
+        if (els.exportQr) {
+            els.exportQr.addEventListener("click", () => {
+                openStreamModal();
+                startStream(buildPayload());
+            });
+        }
+        if (els.exportFile) {
+            els.exportFile.addEventListener("click", () => {
+                const payload = buildPayload();
+                const json = JSON.stringify(payload, null, 2);
+                const blob = new Blob([json], { type: "application/json;charset=utf-8" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = `SKRV_${Date.now()}.skv`;
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+        }
+        if (els.exportB64) {
+            els.exportB64.addEventListener("click", () => {
+                const base64 = buildBase64(buildPayload());
+                const blob = new Blob([base64], { type: "text/plain;charset=utf-8" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = `SKRV_QR_${Date.now()}.b64`;
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+        }
+        if (els.deleteAll) {
+            els.deleteAll.addEventListener("click", () => {
+                const ok = confirm(t("notes_delete_confirm"));
+                if (!ok) return;
+                localStorage.removeItem(NOTES_KEY);
+                localStorage.removeItem(PROJECT_NAME_KEY);
+                localStorage.removeItem(PROJECT_TAG_KEY);
+                localStorage.removeItem(ARCHIVE_KEY);
+                saveNotes([]);
+                renderNotesList();
+                openGate();
+            });
+        }
+
         if (els.scanStop) els.scanStop.addEventListener("click", closeScanModal);
         if (els.scanImport && els.scanFile) {
             els.scanImport.addEventListener("click", () => els.scanFile.click());
@@ -1041,9 +1562,7 @@
             });
             update();
         }
-    };
 
-    const bindStream = () => {
         if (els.streamPause) els.streamPause.addEventListener("click", toggleStreamPause);
         if (els.streamCopy) {
             els.streamCopy.addEventListener("click", () => {
@@ -1055,7 +1574,13 @@
         if (els.streamSave) {
             els.streamSave.addEventListener("click", () => {
                 const base64 = buildBase64(buildPayload());
-                downloadText(base64, `SKRV_QR_${Date.now()}.b64`);
+                const blob = new Blob([base64], { type: "text/plain;charset=utf-8" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = `SKRV_QR_${Date.now()}.b64`;
+                a.click();
+                URL.revokeObjectURL(url);
             });
         }
         if (els.streamClose) {
@@ -1065,26 +1590,20 @@
 
     const init = () => {
         initElements();
+        if (!THEMES.includes(state.theme)) state.theme = THEMES[0];
+        applyTheme(state.theme);
         applyI18n();
         renderShareQr();
-        bindGate();
-        bindSetup();
-        bindNotes();
-        bindImportPassword();
-        bindScan();
-        bindStream();
+        bindEvents();
+        renderNotesList();
 
         const existing = getProjectName();
         const gateDone = sessionStorage.getItem("skrv_mobile_gate_done") === "1";
         if (existing && gateDone) {
             closeGate();
-            openNotes();
         } else {
             openGate();
-            closeNotes();
         }
-        renderNotesTitle();
-        renderNotes();
     };
 
     window.addEventListener("DOMContentLoaded", init);
