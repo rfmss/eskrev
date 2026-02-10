@@ -245,6 +245,16 @@
         strap.style.background = STRAP_COLORS[idx];
     };
 
+    const cycleStrapColor = () => {
+        if (!els.book) return;
+        const strap = els.book.querySelector(".strap");
+        if (!strap) return;
+        const current = strap.style.background || "";
+        const currentIdx = STRAP_COLORS.findIndex(c => c.toLowerCase() === current.toLowerCase());
+        const nextIdx = currentIdx >= 0 ? (currentIdx + 1) % STRAP_COLORS.length : 0;
+        strap.style.background = STRAP_COLORS[nextIdx];
+    };
+
     const renderBook = () => {
         const payload = loadPayload();
         if (!els.book || !els.empty) return;
@@ -257,6 +267,10 @@
         els.empty.style.display = "none";
         els.book.classList.remove("hidden");
         els.book.classList.remove("open");
+        if (!els.book.classList.contains("manual-pos")) {
+            els.book.style.left = "50%";
+            els.book.style.top = "50%";
+        }
         if (els.bookDate) els.bookDate.textContent = payloadDate(payload);
         const name = payloadProjectName(payload);
         const titleEl = document.getElementById("bookCoverTitle");
@@ -620,15 +634,74 @@
             openScanModal();
         });
         if (els.scanPrimary) els.scanPrimary.addEventListener("click", openScanModal);
+        let dragStart = null;
+        let dragOffset = null;
+        let dragMoved = false;
+        let longPressTimer = null;
+        let colorLoopTimer = null;
+        const clearLongPress = () => {
+            if (longPressTimer) clearTimeout(longPressTimer);
+            longPressTimer = null;
+            if (colorLoopTimer) clearInterval(colorLoopTimer);
+            colorLoopTimer = null;
+        };
+        const startLongPress = () => {
+            clearLongPress();
+            longPressTimer = setTimeout(() => {
+                cycleStrapColor();
+                colorLoopTimer = setInterval(cycleStrapColor, 220);
+            }, 480);
+        };
+        const setManualPos = (x, y) => {
+            if (!els.book) return;
+            const rect = els.book.getBoundingClientRect();
+            const maxX = Math.max(0, window.innerWidth - rect.width);
+            const maxY = Math.max(0, window.innerHeight - rect.height);
+            const nx = Math.max(0, Math.min(maxX, x));
+            const ny = Math.max(0, Math.min(maxY, y));
+            els.book.style.left = `${nx}px`;
+            els.book.style.top = `${ny}px`;
+            els.book.classList.add("manual-pos");
+        };
         if (els.book) {
-            els.book.addEventListener("click", (e) => {
-                if (!els.book.classList.contains("open")) {
+            els.book.addEventListener("pointerdown", (e) => {
+                if (els.book.classList.contains("open")) return;
+                dragStart = { x: e.clientX, y: e.clientY };
+                const rect = els.book.getBoundingClientRect();
+                dragOffset = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+                dragMoved = false;
+                startLongPress();
+                els.book.setPointerCapture(e.pointerId);
+            });
+            els.book.addEventListener("pointermove", (e) => {
+                if (!dragStart || !dragOffset) return;
+                const dx = Math.abs(e.clientX - dragStart.x);
+                const dy = Math.abs(e.clientY - dragStart.y);
+                if (dx > 6 || dy > 6) {
+                    dragMoved = true;
+                    clearLongPress();
+                    const x = e.clientX - dragOffset.x;
+                    const y = e.clientY - dragOffset.y;
+                    setManualPos(x, y);
+                }
+            });
+            els.book.addEventListener("pointerup", (e) => {
+                if (!dragStart) return;
+                clearLongPress();
+                els.book.releasePointerCapture(e.pointerId);
+                if (!dragMoved) {
                     els.book.classList.add("open");
-                    return;
                 }
-                if (e.target.closest(".drag-handle")) {
-                    els.book.classList.remove("open");
-                }
+                dragStart = null;
+                dragOffset = null;
+                dragMoved = false;
+            });
+            els.book.addEventListener("pointercancel", (e) => {
+                clearLongPress();
+                if (dragStart) els.book.releasePointerCapture(e.pointerId);
+                dragStart = null;
+                dragOffset = null;
+                dragMoved = false;
             });
         }
         document.addEventListener("click", (e) => {
