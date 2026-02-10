@@ -211,6 +211,9 @@ export const auth = {
             } else {
                 store.createProject(projectName);
             }
+            if (window.skrvSetMobileProjectMeta && (document.body.classList.contains("mobile-only-page") || document.body.classList.contains("mobile-lite"))) {
+                window.skrvSetMobileProjectMeta(projectName);
+            }
             if (Number.isFinite(duration) && duration > 0) {
                 ui.startWork(duration);
             }

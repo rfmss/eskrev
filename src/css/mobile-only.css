@@ -73,6 +73,43 @@ body.mobile-only-page .qr-video {
     max-height: 38vh;
 }
 
+body.mobile-only-page .mobile-gate-qr {
+    position: relative;
+    display: grid;
+    place-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+body.mobile-only-page .mobile-gate-qr-code {
+    width: 170px;
+    height: 170px;
+    padding: 12px;
+    background: #f1efe7;
+    border-radius: 18px;
+    border: 1px solid rgba(60, 60, 60, 0.15);
+}
+body.mobile-only-page .mobile-gate-qr-code canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+body.mobile-only-page .mobile-gate-qr-logo {
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    padding: 6px;
+    border-radius: 10px;
+    background: #f1efe7;
+    border: 1px solid rgba(60, 60, 60, 0.2);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    pointer-events: none;
+}
+body.mobile-only-page .mobile-gate-qr-share {
+    font-size: 11px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--color-muted);
+}
+
 body.mobile-only-page .mobile-cache-clear {
     position: fixed;
     right: 12px;

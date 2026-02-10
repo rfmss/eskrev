@@ -111,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.skrvModal = initSystemModal();
     window.skrvOnboarding = initOnboarding();
     auth.init();
+    initImportSessionModal();
 
     document.querySelectorAll('[data-manifesto-open]').forEach((el) => {
         el.addEventListener('click', (e) => {
@@ -160,8 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     qrTransfer.init({
         onRestore: (payload) => {
             if (payload && applySkrvPayload(payload)) {
-                if (window.skvModal) window.skvModal.alert(lang.t("alert_backup_restored"));
-                location.reload();
+                handleImportSuccess("alert_backup_restored");
             } else {
                 if (window.skvModal) window.skvModal.alert(lang.t("alert_backup_invalid"));
             }
@@ -365,6 +365,7 @@ function initMobileGate() {
     if (sessionStorage.getItem("skrv_mobile_gate_done") === "1") return false;
 
     const langBtn = document.getElementById("mobileGateLangToggle");
+    const qrWrap = document.getElementById("mobileGateQrCode");
     const btnScan = document.getElementById("mobileGateScan");
     const qrBtn = document.getElementById("btnScanQr");
     const closeGate = (showDedication = true) => {
@@ -413,7 +414,42 @@ function initMobileGate() {
 
     modal.classList.add("active");
     document.body.classList.add("modal-active");
+    initMobileGateQr(qrWrap);
     return true;
+}
+
+function initMobileGateQr(target) {
+    if (!target) return;
+    const url = "https://eskrev.rafa.pro.br/";
+    const render = () => {
+        try {
+            target.innerHTML = "";
+            // eslint-disable-next-line no-undef
+            new QRCode(target, {
+                text: url,
+                width: 160,
+                height: 160,
+                colorDark: "#3f3b33",
+                colorLight: "#f1efe7",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        } catch (_) {}
+    };
+    if (window.QRCode && window.QRCode.CorrectLevel) {
+        render();
+        return;
+    }
+    const existing = document.querySelector('script[data-qr-lib="QRCode"]');
+    if (existing) {
+        existing.addEventListener("load", render, { once: true });
+        return;
+    }
+    const script = document.createElement("script");
+    script.src = "src/assets/js/qrcode.min.js";
+    script.async = true;
+    script.dataset.qrLib = "QRCode";
+    script.onload = render;
+    document.head.appendChild(script);
 }
 
 function setupOfflineProgress() {
@@ -1562,6 +1598,18 @@ function setupEventListeners() {
     };
     const normalizeTag = (tag) => String(tag || "").trim().replace(/^#/, "").toLowerCase();
     const normalizeFolder = (folder) => String(folder || "").trim();
+    const fixedMobileTags = () => {
+        if (!isMobileContext()) return [];
+        const tags = ["mobile"];
+        const proj = getMobileProjectTag();
+        if (proj) tags.push(proj);
+        return tags;
+    };
+    const ensureFixedTags = (tags) => {
+        const set = new Set((tags || []).map(normalizeTag));
+        fixedMobileTags().forEach((tag) => set.add(normalizeTag(tag)));
+        return Array.from(set);
+    };
     const formatDate = (iso) => {
         if (!iso) return "";
         const d = new Date(iso);
@@ -1837,7 +1885,10 @@ function setupEventListeners() {
         const pinToggle = document.getElementById("notesPinToggle");
         if (titleEl) titleEl.value = note.title || "";
         if (bodyEl) bodyEl.value = note.text || "";
-        if (tagsEl) tagsEl.value = (note.tags || []).map(t => `#${normalizeTag(t)}`).join(", ");
+        if (tagsEl) {
+            const merged = ensureFixedTags(note.tags || []);
+            tagsEl.value = merged.map(t => `#${normalizeTag(t)}`).join(", ");
+        }
         if (folderEl) folderEl.value = note.folder || "";
         if (metaEl) metaEl.textContent = `${lang.t("notes_updated")}: ${formatDate(note.updatedAt || note.createdAt)}`;
         if (pinToggle) {
@@ -1857,7 +1908,8 @@ function setupEventListeners() {
         const folderEl = document.getElementById("notesFolder");
         const title = titleEl ? titleEl.value.trim() : "";
         const text = bodyEl ? bodyEl.value : "";
-        const tags = tagsEl ? tagsEl.value.split(",").map(normalizeTag).filter(Boolean) : [];
+        let tags = tagsEl ? tagsEl.value.split(",").map(normalizeTag).filter(Boolean) : [];
+        tags = ensureFixedTags(tags);
         const folder = folderEl ? normalizeFolder(folderEl.value) : "";
         return { title, text, tags, folder };
     };
@@ -1881,7 +1933,7 @@ function setupEventListeners() {
             id: notesState.draftId,
             title: data.title,
             text: data.text,
-            tags: data.tags,
+            tags: ensureFixedTags(data.tags),
             folder: data.folder,
             pinned: false,
             createdAt: new Date().toISOString(),
@@ -1920,7 +1972,10 @@ function setupEventListeners() {
         const pinToggle = document.getElementById("notesPinToggle");
         if (titleEl) titleEl.value = "";
         if (bodyEl) bodyEl.value = "";
-        if (tagsEl) tagsEl.value = presetTags.map(t => `#${t}`).join(", ");
+        if (tagsEl) {
+            const merged = ensureFixedTags(presetTags);
+            tagsEl.value = merged.map(t => `#${normalizeTag(t)}`).join(", ");
+        }
         if (folderEl) folderEl.value = presetFolder || "";
         if (metaEl) metaEl.textContent = "";
         if (pinToggle) pinToggle.classList.remove("active");
@@ -1972,7 +2027,7 @@ function setupEventListeners() {
         }
         note.title = title;
         note.text = text;
-        note.tags = tags;
+        note.tags = ensureFixedTags(tags);
         note.folder = folder;
         note.updatedAt = new Date().toISOString();
         saveNotes(notes);
@@ -2294,23 +2349,20 @@ function setupEventListeners() {
             if (file.name.endsWith('.skv')) {
                 const payload = importSkrv(evt.target.result);
                 if (payload && applySkrvPayload(payload)) {
-                    if (window.skvModal) window.skvModal.alert(lang.t("alert_capsule_restored"));
-                    location.reload();
+                    handleImportSuccess("alert_capsule_restored");
                 } else {
                     if (window.skvModal) window.skvModal.alert(lang.t("alert_capsule_invalid"));
                 }
             } else if (file.name.endsWith('.b64') || file.name.endsWith('.qr')) {
                 const payload = qrTransfer.decodeBackupBase64(evt.target.result);
                 if (payload && applySkrvPayload(payload)) {
-                    if (window.skvModal) window.skvModal.alert(lang.t("alert_backup_restored"));
-                    location.reload();
+                    handleImportSuccess("alert_backup_restored");
                 } else {
                     if (window.skvModal) window.skvModal.alert(lang.t("alert_backup_invalid"));
                 }
             } else if (file.name.endsWith('.json')) {
                 if (store.importData(evt.target.result)) { 
-                    if (window.skvModal) window.skvModal.alert(lang.t("alert_backup_restored")); 
-                    location.reload(); 
+                    handleImportSuccess("alert_backup_restored");
                 }
             } else {
                 store.createProject(file.name, evt.target.result); 
@@ -2562,7 +2614,7 @@ function setupEventListeners() {
             if (document.activeElement === searchInput) { document.getElementById("btnClear").click(); searchInput.blur(); }
             let closed = false;
             document.querySelectorAll(".modal-overlay.active").forEach(m => { 
-                if (m.id !== "gatekeeper" && m.id !== "pomodoroModal" && m.id !== "termsModal") {
+                if (m.id !== "gatekeeper" && m.id !== "pomodoroModal" && m.id !== "termsModal" && m.id !== "importSessionModal") {
                     m.classList.remove("active"); 
                     if (m.id === "helpModal") {
                         document.body.classList.remove("help-open");
@@ -2622,7 +2674,7 @@ function setupEventListeners() {
 
     document.querySelectorAll(".modal-overlay").forEach(overlay => {
         overlay.addEventListener("click", (e) => {
-            if (overlay.id === "gatekeeper" || overlay.id === "pomodoroModal" || overlay.id === "termsModal" || overlay.id === "manifestoModal" || overlay.id === "onboardingModal" || overlay.id === "dedicationModal") return;
+            if (overlay.id === "gatekeeper" || overlay.id === "pomodoroModal" || overlay.id === "termsModal" || overlay.id === "manifestoModal" || overlay.id === "onboardingModal" || overlay.id === "dedicationModal" || overlay.id === "importSessionModal") return;
             if (overlay.id === "systemModal") {
                 if (e.target === overlay && window.skvModal?.cancel) window.skvModal.cancel();
                 return;
@@ -2869,6 +2921,106 @@ function incrementAccessCount() {
     localStorage.setItem(key, String(current + 1));
 }
 
+function isMobileContext() {
+    return document.body.classList.contains("mobile-only-page") || document.body.classList.contains("mobile-lite");
+}
+
+function slugifyProjectName(name) {
+    const base = String(name || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
+    return base
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")
+        .slice(0, 48);
+}
+
+function setMobileProjectMeta(name) {
+    const cleanName = String(name || "").trim();
+    if (cleanName) {
+        localStorage.setItem("skrv_mobile_project_name", cleanName);
+    }
+    const slug = slugifyProjectName(cleanName);
+    if (slug) {
+        localStorage.setItem("skrv_mobile_project_tag", `proj:${slug}`);
+    }
+}
+
+function getMobileProjectTag() {
+    const stored = localStorage.getItem("skrv_mobile_project_tag");
+    if (stored) return stored;
+    const fallback = localStorage.getItem("skrv_mobile_project_name") || store.getActive()?.name || "";
+    setMobileProjectMeta(fallback);
+    return localStorage.getItem("skrv_mobile_project_tag") || "";
+}
+
+window.skrvSetMobileProjectMeta = setMobileProjectMeta;
+
+function initImportSessionModal() {
+    if (!isMobileContext()) return;
+    const modal = document.getElementById("importSessionModal");
+    if (!modal) return;
+    if (sessionStorage.getItem("skrv_mobile_import_pending") !== "1") return;
+    const projectName = sessionStorage.getItem("skrv_mobile_import_name") || (store.getActive()?.name || "");
+    const successEl = document.getElementById("importSessionSuccess");
+    const pass1 = document.getElementById("importSessionPass1");
+    const pass2 = document.getElementById("importSessionPass2");
+    const msg = document.getElementById("importSessionMsg");
+    const btn = document.getElementById("importSessionConfirm");
+    if (successEl) {
+        const text = lang.t("mobile_import_success") || "Projeto {project} importado com sucesso.";
+        successEl.textContent = text.replace("{project}", projectName);
+    }
+    const showError = (text) => {
+        if (msg) {
+            msg.textContent = text || "";
+            msg.style.color = "#ff4444";
+        }
+    };
+    const clearError = () => showError("");
+    const updateBtn = () => {
+        if (!btn) return;
+        const v1 = pass1 ? pass1.value.trim() : "";
+        const v2 = pass2 ? pass2.value.trim() : "";
+        btn.disabled = !(v1 && v2 && v1 === v2);
+    };
+    const confirm = () => {
+        const v1 = pass1 ? pass1.value.trim() : "";
+        const v2 = pass2 ? pass2.value.trim() : "";
+        if (!v1) {
+            showError(lang.t("mobile_import_pass_error"));
+            return;
+        }
+        if (v1 !== v2) {
+            showError(lang.t("mobile_import_pass_mismatch"));
+            return;
+        }
+        clearError();
+        localStorage.setItem("lit_auth_key", v1);
+        sessionStorage.removeItem("skrv_mobile_import_pending");
+        sessionStorage.removeItem("skrv_mobile_import_name");
+        modal.classList.remove("active");
+        document.body.classList.remove("modal-active");
+    };
+    if (btn) btn.onclick = confirm;
+    [pass1, pass2].forEach((input) => {
+        if (!input) return;
+        input.addEventListener("input", () => {
+            clearError();
+            updateBtn();
+        });
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                confirm();
+            }
+        });
+    });
+    updateBtn();
+    modal.classList.add("active");
+    document.body.classList.add("modal-active");
+}
 
 
 function applySkrvPayload(payload) {
@@ -2933,6 +3085,21 @@ function applySkrvPayload(payload) {
     Object.entries(workbench.colors || {}).forEach(([k, v]) => localStorage.setItem(k, v));
 
     return true;
+}
+
+function handleImportSuccess(messageKey) {
+    if (isMobileContext()) {
+        const active = store.getActive();
+        const projectName = active && active.name ? active.name : (lang.t("default_project") || "Projeto");
+        setMobileProjectMeta(projectName);
+        localStorage.removeItem("lit_auth_key");
+        sessionStorage.setItem("skrv_mobile_import_pending", "1");
+        sessionStorage.setItem("skrv_mobile_import_name", projectName);
+        location.reload();
+        return;
+    }
+    if (messageKey && window.skvModal) window.skvModal.alert(lang.t(messageKey));
+    location.reload();
 }
 
 function restoreCursorPos(pos) {

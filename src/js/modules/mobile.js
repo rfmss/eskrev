@@ -23,6 +23,44 @@ const downloadText = (text, filename, mime) => {
 
 const normalizeTag = (tag) => String(tag || "").trim().replace(/^#/, "").toLowerCase();
 const normalizeFolder = (folder) => String(folder || "").trim();
+const slugifyProjectName = (name) => {
+    const base = String(name || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
+    return base
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")
+        .slice(0, 48);
+};
+const setMobileProjectMeta = (name) => {
+    const cleanName = String(name || "").trim();
+    if (cleanName) {
+        localStorage.setItem("skrv_mobile_project_name", cleanName);
+    }
+    const slug = slugifyProjectName(cleanName);
+    if (slug) {
+        localStorage.setItem("skrv_mobile_project_tag", `proj:${slug}`);
+    }
+};
+const getMobileProjectTag = () => {
+    const stored = localStorage.getItem("skrv_mobile_project_tag");
+    if (stored) return stored;
+    const fallback = localStorage.getItem("skrv_mobile_project_name") || getActiveProject()?.name || "";
+    setMobileProjectMeta(fallback);
+    return localStorage.getItem("skrv_mobile_project_tag") || "";
+};
+const fixedMobileTags = () => {
+    const tags = ["mobile"];
+    const proj = getMobileProjectTag();
+    if (proj) tags.push(proj);
+    return tags;
+};
+const ensureFixedTags = (tags) => {
+    const set = new Set((tags || []).map(normalizeTag));
+    fixedMobileTags().forEach((tag) => set.add(normalizeTag(tag)));
+    return Array.from(set);
+};
 const getActiveProject = () => (store.getActive && store.getActive());
 const updateMobileNotesTitle = () => {
     const titleEl = document.getElementById("mobileNotesSection");
@@ -168,6 +206,7 @@ const createMobileProject = (name) => {
         buildChapterBlock(chapter2, true)
     ].join("");
     store.createProject(name, content);
+    setMobileProjectMeta(name);
     const active = store.getActive();
     if (active) {
         active.mobileNote = "";
@@ -271,8 +310,8 @@ const renderMobileNotes = () => {
             const folderInput = document.getElementById("mobileMemoFolder");
             if (input) input.value = note.text || "";
             if (tags) {
-                const base = (note.tags || []).filter(tag => normalizeTag(tag) !== "mobile");
-                tags.value = base.length ? `${base.join(", ")}, #mobile` : "#mobile";
+                const merged = ensureFixedTags(note.tags || []);
+                tags.value = merged.length ? merged.map(t => `#${t}`).join(", ") : "#mobile";
             }
             if (folderInput) folderInput.value = note.folder || "";
             mobileEditingId = note.id;
@@ -310,8 +349,12 @@ const renderMobileNotes = () => {
 };
 
 const addOrUpdateMobileNote = (text, tagsRaw, folderRaw) => {
-    const baseTags = tagsRaw.split(",").map(normalizeTag).filter(Boolean).filter(tag => tag !== "mobile");
-    const tags = Array.from(new Set([...baseTags, "mobile"]));
+    const baseTags = tagsRaw
+        .split(",")
+        .map(normalizeTag)
+        .filter(Boolean)
+        .filter(tag => tag !== "mobile" && !tag.startsWith("proj:"));
+    const tags = ensureFixedTags(baseTags);
     const folder = normalizeFolder(folderRaw);
     const now = new Date().toISOString();
     if (mobileEditingId) {
@@ -391,9 +434,9 @@ const initMobileMemos = () => {
             .split(",")
             .map(normalizeTag)
             .filter(Boolean)
-            .filter(tag => tag !== "mobile");
-        const next = tags.length ? `${tags.join(", ")}, #mobile` : "#mobile";
-        memoTags.value = next;
+            .filter(tag => tag !== "mobile" && !tag.startsWith("proj:"));
+        const merged = ensureFixedTags(tags);
+        memoTags.value = merged.length ? merged.map(t => `#${t}`).join(", ") : "#mobile";
     };
     memoInput.addEventListener("paste", (e) => {
         e.preventDefault();
@@ -418,7 +461,14 @@ const initMobileMemos = () => {
     }
 
 
-    mobileNotesCache = loadMobileNotes();
+    mobileNotesCache = loadMobileNotes().map((note) => {
+        const next = ensureFixedTags(note.tags || []);
+        if (JSON.stringify(next) !== JSON.stringify(note.tags || [])) {
+            return { ...note, tags: next };
+        }
+        return note;
+    });
+    saveMobileNotes(mobileNotesCache);
     renderMobileNotes();
     renderMobileFolders();
     renderMobileTags();

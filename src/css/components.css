@@ -4543,20 +4543,42 @@ kbd {
     color: var(--color-text);
 }
 .mobile-gate-qr {
-    width: 160px;
-    height: 160px;
-    border-radius: 18px;
-    border: var(--border-style);
+    position: relative;
     margin: 0 auto;
     display: grid;
     place-items: center;
-    background: rgba(244,241,234,0.04);
+    gap: 10px;
 }
-.mobile-gate-qr .icon {
-    width: 96px;
-    height: 96px;
-    stroke: var(--color-accent);
-    opacity: 0.85;
+.mobile-gate-qr-code {
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+    border-radius: 18px;
+    border: var(--border-style);
+    background: rgba(244,241,234,0.04);
+    display: grid;
+    place-items: center;
+}
+.mobile-gate-qr-code canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+.mobile-gate-qr-logo {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    padding: 6px;
+    border-radius: 10px;
+    background: var(--bg-core);
+    border: var(--border-style);
+    box-shadow: var(--shadow-float);
+    pointer-events: none;
+}
+.mobile-gate-qr-share {
+    font-size: 11px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--color-muted);
 }
 .mobile-gate-title {
     font-size: 14px;

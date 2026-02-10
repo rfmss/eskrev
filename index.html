@@ -91,26 +91,15 @@
         <div class="mobile-gate-lang">
             <button id="mobileGateLangToggle" class="flag-btn">EN</button>
         </div>
-        <div class="mobile-gate-qr" aria-hidden="true">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect width="5" height="5" x="3" y="3" rx="1"></rect>
-                <rect width="5" height="5" x="16" y="3" rx="1"></rect>
-                <rect width="5" height="5" x="3" y="16" rx="1"></rect>
-                <path d="M21 16h-3a2 2 0 0 0-2 2v3"></path>
-                <path d="M21 21v.01"></path>
-                <path d="M12 7v3a2 2 0 0 1-2 2H7"></path>
-                <path d="M3 12h.01"></path>
-                <path d="M12 3h.01"></path>
-                <path d="M12 16v.01"></path>
-                <path d="M16 12h1"></path>
-                <path d="M21 12v.01"></path>
-                <path d="M12 21v-1"></path>
-            </svg>
+        <div class="mobile-gate-qr">
+            <div id="mobileGateQrCode" class="mobile-gate-qr-code" aria-hidden="true"></div>
+            <img class="mobile-gate-qr-logo" src="src/assets/icons/logoEskrev.svg" alt="" aria-hidden="true">
+            <div class="mobile-gate-qr-share" data-i18n="mobile_gate_share">Compartilhe o eskrev</div>
         </div>
-        <div class="mobile-gate-title" data-i18n="mobile_gate_title">Quer ler um projeto por QR?</div>
-        <div class="mobile-gate-body" data-i18n="mobile_gate_body">Abra o leitor de QR para importar um .skv.</div>
-        <button id="mobileGateScan" class="btn-full" data-i18n="mobile_gate_scan">LER PROJETO (QR)</button>
-        <div class="mobile-gate-hint" data-i18n="mobile_gate_hint">Arraste para cima para continuar</div>
+        <div class="mobile-gate-title" id="mobileGateCacheHook" data-i18n="mobile_gate_title">Importar projeto</div>
+        <div class="mobile-gate-body" data-i18n="mobile_gate_body"></div>
+        <button id="mobileGateScan" class="btn-full" data-i18n="mobile_gate_scan">LER QR CODE</button>
+        <div class="mobile-gate-hint" data-i18n="mobile_gate_hint">Ou ↑ para criar novo</div>
     </div>
 </div>
 
@@ -1337,6 +1326,36 @@
                     
                     <span id="resetMsg" style="display:block; margin-top:10px; font-size:11px; color:#ff4444; height:15px;"></span>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="importSessionModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <span data-i18n="mobile_import_title">PROJETO IMPORTADO</span>
+            </div>
+            <div class="modal-body">
+                <p id="importSessionSuccess" class="help-text"></p>
+                <p class="help-text" data-i18n="mobile_import_pass_label">Crie a senha provisória da sessão.</p>
+                <div class="setup-field">
+                    <input type="password" id="importSessionPass1" class="search-input" data-i18n-ph="mobile_import_pass_ph" placeholder="Senha provisória" data-eye-input="true">
+                    <button type="button" class="password-toggle" data-target="importSessionPass1" data-i18n-title="toggle_password_show" tabindex="-1">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <use href="src/assets/icons/phosphor-sprite.svg#icon-eye"></use>
+                        </svg>
+                    </button>
+                </div>
+                <div class="setup-field">
+                    <input type="password" id="importSessionPass2" class="search-input" data-i18n-ph="mobile_import_pass_confirm_ph" placeholder="Confirmar" data-eye-input="true">
+                    <button type="button" class="password-toggle" data-target="importSessionPass2" data-i18n-title="toggle_password_show" tabindex="-1">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <use href="src/assets/icons/phosphor-sprite.svg#icon-eye"></use>
+                        </svg>
+                    </button>
+                </div>
+                <div id="importSessionMsg" class="help-text" aria-live="polite"></div>
+                <button id="importSessionConfirm" class="btn-full" data-i18n="mobile_import_confirm">CONFIRMAR</button>
             </div>
         </div>
     </div>
