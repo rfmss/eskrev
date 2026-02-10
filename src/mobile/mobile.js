@@ -14,6 +14,9 @@
             mobile_extract: "Extrair",
             mobile_extract_qr: "Extrair por QR",
             mobile_extract_body: "Retire o projeto do celular em qualquer formato.",
+            mobile_demo_book: "Caderninho demo",
+            mobile_demo_title: "Como usar",
+            mobile_demo_body: "Toque para abrir.\nArraste para baixo e solte para apagar.\nUse TRAZER PROJETO para importar um .skv.",
             mobile_export_qr: "ENVIAR POR QR",
             mobile_export_save: "SALVAR .SKV",
             mobile_export_b64: "SALVAR .B64",
@@ -66,6 +69,9 @@
             mobile_extract: "Extract",
             mobile_extract_qr: "Extract by QR",
             mobile_extract_body: "Retrieve the project from your phone in any format.",
+            mobile_demo_book: "Demo notebook",
+            mobile_demo_title: "How it works",
+            mobile_demo_body: "Tap to open.\nDrag down and release to delete.\nUse BRING PROJECT to import a .skv.",
             mobile_export_qr: "SEND BY QR",
             mobile_export_save: "SAVE .SKV",
             mobile_export_b64: "SAVE .B64",
@@ -118,6 +124,9 @@
             mobile_extract: "Extraer",
             mobile_extract_qr: "Extraer por QR",
             mobile_extract_body: "Retira el proyecto del teléfono en cualquier formato.",
+            mobile_demo_book: "Cuaderno demo",
+            mobile_demo_title: "Cómo usar",
+            mobile_demo_body: "Toca para abrir.\nArrastra hacia abajo y suelta para borrar.\nUsa TRAER PROYECTO para importar un .skv.",
             mobile_export_qr: "ENVIAR POR QR",
             mobile_export_save: "GUARDAR .SKV",
             mobile_export_b64: "GUARDAR .B64",
@@ -170,6 +179,9 @@
             mobile_extract: "Extraire",
             mobile_extract_qr: "Extraire par QR",
             mobile_extract_body: "Retirez le projet du téléphone dans n'importe quel format.",
+            mobile_demo_book: "Carnet démo",
+            mobile_demo_title: "Comment utiliser",
+            mobile_demo_body: "Touchez pour ouvrir.\nFaites glisser vers le bas et relâchez pour supprimer.\nUtilisez APPORTER PROJET pour importer un .skv.",
             mobile_export_qr: "ENVOYER PAR QR",
             mobile_export_save: "ENREGISTRER .SKV",
             mobile_export_b64: "ENREGISTRER .B64",
@@ -211,6 +223,7 @@
     };
 
     const STORAGE_KEY = "skrv_mobile_payloads";
+    const DEMO_DISMISSED_KEY = "skrv_mobile_demo_dismissed";
     const MAX_BOOKS = 6;
     const state = {
         lang: (localStorage.getItem("lit_lang") || "pt").toLowerCase().includes("en") ? "en"
@@ -256,6 +269,22 @@
         renderBooks();
     };
 
+    const buildDemoPayload = () => ({
+        HEADER: { CREATED: new Date().toISOString() },
+        ARCHIVE_STATE: {
+            skvTitle: t("mobile_demo_book"),
+            projects: [{
+                id: "demo",
+                name: t("mobile_demo_book"),
+                content: "",
+                date: new Date().toLocaleString(),
+                cursorPos: 0
+            }],
+            activeId: "demo",
+            memo: ""
+        }
+    });
+
     const savePayloads = (items) => {
         const list = Array.isArray(items) ? items : [];
         localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
@@ -265,7 +294,11 @@
         try {
             const raw = localStorage.getItem(STORAGE_KEY);
             const parsed = raw ? JSON.parse(raw) : [];
-            return Array.isArray(parsed) ? parsed : [];
+            const list = Array.isArray(parsed) ? parsed : [];
+            if (!list.length && localStorage.getItem(DEMO_DISMISSED_KEY) !== "1") {
+                return [{ id: "demo", payload: buildDemoPayload(), demo: true }];
+            }
+            return list;
         } catch (_) {
             return [];
         }
@@ -324,16 +357,20 @@
             const left = col * slotW + (slotW - bookW) / 2;
             const top = row * slotH + (slotH - bookH) / 2;
             const book = document.createElement("div");
-            book.className = "totbook";
+            book.className = `totbook${item.demo ? " demo" : ""}`;
             book.dataset.id = item.id;
             book.dataset.slotLeft = String(left);
             book.dataset.slotTop = String(top);
+            if (item.demo) book.dataset.demo = "1";
             book.style.left = `${left}px`;
             book.style.top = `${top}px`;
             book.style.width = `${bookW}px`;
             book.style.height = `${bookH}px`;
             const strapColor = item.strapColor || pickStrapColor();
             item.strapColor = strapColor;
+            const bookTitle = item.demo ? t("mobile_demo_title") : t("mobile_extract");
+            const bookBodyRaw = item.demo ? t("mobile_demo_body") : t("mobile_extract_body");
+            const bookBody = bookBodyRaw.replace(/\n/g, "<br>");
 
             book.innerHTML = `
                 <div class="cover">
@@ -348,8 +385,8 @@
                     <div class="page-viewport">
                         <div class="sheet">
                             <div class="book-inner">
-                                <div class="book-inner-title">${t("mobile_extract")}</div>
-                                <div class="book-inner-body">${t("mobile_extract_body")}</div>
+                                <div class="book-inner-title">${bookTitle}</div>
+                                <div class="book-inner-body">${bookBody}</div>
                                 <div class="book-inner-actions">
                                     <button class="btn-full primary" data-action="export-qr">${t("mobile_export_qr")}</button>
                                     <button class="btn-full" data-action="export-skv">${t("mobile_export_save")}</button>
@@ -369,7 +406,8 @@
             els.grid.appendChild(book);
         });
 
-        savePayloads(items.slice(0, MAX_BOOKS));
+        const realItems = items.filter(item => !item.demo).slice(0, MAX_BOOKS);
+        savePayloads(realItems);
 
         if (els.scanPrimary && els.limit) {
             if (items.length >= MAX_BOOKS) {
@@ -770,6 +808,8 @@
         let dragBook = null;
         let dragStart = null;
         let dragMoved = false;
+        let moveRaf = null;
+        let lastDy = 0;
         let pendingDeleteId = null;
         const getSlot = (book) => ({
             left: parseFloat(book.dataset.slotLeft || "0"),
@@ -811,7 +851,7 @@
             if (!book) return;
             const clamped = Math.max(0, Math.min(1, pct));
             book.style.setProperty("--delete-progress", clamped.toString());
-            book.classList.toggle("is-deleting", clamped > 0.25);
+            book.classList.toggle("is-deleting", clamped > 0.05);
         };
         const showDeleteConfirm = (id) => {
             pendingDeleteId = id;
@@ -836,13 +876,26 @@
                 const dy = e.clientY - dragStart.y;
                 if (dy > 6) {
                     dragMoved = true;
-                    const slot = getSlot(dragBook);
-                    setBookTop(dragBook, slot.top + dy);
-                    setDeleteProgress(dragBook, dy / 140);
+                    lastDy = dy;
+                    if (moveRaf) return;
+                    moveRaf = requestAnimationFrame(() => {
+                        if (!dragBook || !dragStart) {
+                            moveRaf = null;
+                            return;
+                        }
+                        const slot = getSlot(dragBook);
+                        setBookTop(dragBook, slot.top + lastDy);
+                        setDeleteProgress(dragBook, lastDy / 140);
+                        moveRaf = null;
+                    });
                 }
             });
             els.grid.addEventListener("pointerup", (e) => {
                 if (!dragBook) return;
+                if (moveRaf) {
+                    cancelAnimationFrame(moveRaf);
+                    moveRaf = null;
+                }
                 dragBook.releasePointerCapture(e.pointerId);
                 document.body.classList.remove("is-dragging");
                 const dy = dragStart ? (e.clientY - dragStart.y) : 0;
@@ -864,6 +917,10 @@
             });
             els.grid.addEventListener("pointercancel", (e) => {
                 if (!dragBook) return;
+                if (moveRaf) {
+                    cancelAnimationFrame(moveRaf);
+                    moveRaf = null;
+                }
                 dragBook.releasePointerCapture(e.pointerId);
                 document.body.classList.remove("is-dragging");
                 setDeleteProgress(dragBook, 0);
@@ -891,6 +948,9 @@
             els.deleteOk.addEventListener("click", (e) => {
                 e.preventDefault();
                 if (!pendingDeleteId) return;
+                if (pendingDeleteId === "demo") {
+                    localStorage.setItem(DEMO_DISMISSED_KEY, "1");
+                }
                 const items = loadPayloads().filter(item => item.id !== pendingDeleteId);
                 savePayloads(items);
                 hideDeleteConfirm();

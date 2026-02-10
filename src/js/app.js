@@ -439,7 +439,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
-            navigator.serviceWorker.register("./sw.js").catch(() => {});
+            navigator.serviceWorker.register("./sw.js").then(() => {
+                navigator.serviceWorker.ready.then((reg) => {
+                    const target = reg && reg.active ? reg.active : navigator.serviceWorker.controller;
+                    if (target && target.postMessage) {
+                        target.postMessage({ type: "cache-extras" });
+                    }
+                }).catch(() => {});
+            }).catch(() => {});
         });
     }
 
@@ -1122,6 +1129,12 @@ function openMobileNotesView() {
         .catch(() => {});
 }
 window.skrvOpenMobileNotes = openMobileNotesView;
+window.skrvHardReset = (full = false) => {
+    if (full) {
+        try { sessionStorage.setItem("skrv_force_full_reset", "1"); } catch (_) {}
+    }
+    store.hardReset();
+};
 
 function initSystemModal() {
     const overlay = document.getElementById("systemModal");

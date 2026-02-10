@@ -85,6 +85,14 @@ body {
     letter-spacing: 0.4px;
 }
 
+.mobile-top-stack {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--m-bg);
+    padding-bottom: 8px;
+}
+
 .mobile-intro {
     font-size: 12px;
     color: var(--m-muted);
@@ -229,6 +237,7 @@ body.has-open-book .library {
 .books-grid {
     position: absolute;
     inset: 0;
+    touch-action: none;
 }
 
 
@@ -251,6 +260,7 @@ body.has-open-book .library {
     user-select: none;
     z-index: 1;
     cursor: pointer;
+    touch-action: none;
 }
 
 @media (orientation: landscape) {
@@ -461,6 +471,7 @@ body.has-open-book .library {
     overflow-y: auto;
     overscroll-behavior: contain;
     padding-right: 6px;
+    touch-action: pan-y;
 }
 
 .sheet {

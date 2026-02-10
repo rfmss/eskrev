@@ -1,5 +1,44 @@
-const CACHE_NAME = "skrv-cache-v87";
-const CACHE_ASSETS = [
+const CACHE_NAME = "skrv-cache-v88";
+const CORE_ASSETS = [
+  "./",
+  "./index.html",
+  "./index.html?v=5",
+  "./mobile.html",
+  "./src/mobile/mobile.css",
+  "./src/mobile/mobile.js",
+  "./totbooks.html",
+  "./verify.html",
+  "./manifest.json?v=5",
+  "./src/css/main.css",
+  "./src/css/mobile-only.css",
+  "./src/css/fonts.css",
+  "./src/css/base.css",
+  "./src/css/layout.css",
+  "./src/css/components.css",
+  "./src/js/app.js",
+  "./src/js/modules/auth.js",
+  "./src/js/modules/birth_tracker.js",
+  "./src/js/modules/editor.js",
+  "./src/js/modules/export_skrv.js",
+  "./src/js/modules/lang.js",
+  "./src/js/modules/process_tracker.js",
+  "./src/js/modules/store.js",
+  "./src/js/modules/ui.js",
+  "./src/js/modules/qr_transfer.js",
+  "./src/js/modules/mobile.js",
+  "./src/assets/js/qrcode.min.js",
+  "./src/assets/js/lz-string.min.js",
+  "./src/assets/js/phosphor.js",
+  "./src/assets/icons/icon-192.svg?v=3",
+  "./src/assets/icons/icon-512.svg?v=3",
+  "./src/assets/icons/logoEskrev.svg",
+  "./src/assets/icons/logoEskrev-favicon-dark.svg",
+  "./src/assets/icons/logoEskrev-favicon-cream.svg",
+  "./src/assets/icons/eskrev.ico?v=6",
+  "./src/assets/icons/eskrev.png?v=6",
+  "./qr-bitcoin.png"
+];
+const CACHE_ASSETS_ALL = [
   "./",
   "./index.html",
   "./index.html?v=5",
@@ -109,8 +148,8 @@ const CACHE_ASSETS = [
   "./src/assets/icons/logoEskrev.svg",
   "./src/assets/icons/logoEskrev-favicon-dark.svg",
   "./src/assets/icons/logoEskrev-favicon-cream.svg",
-  "./src/assets/icons/eskrev.ico",
-  "./src/assets/icons/eskrev.png",
+  "./src/assets/icons/eskrev.ico?v=6",
+  "./src/assets/icons/eskrev.png?v=6",
   "./src/assets/icons/carta_fluck.jpg",
   "./src/assets/icons/tatuagem.jpg",
   "./src/assets/icons/pendulo1.png",
@@ -144,6 +183,7 @@ const CACHE_ASSETS = [
   "./sobre/privacidade.fr.html",
   "./qr-bitcoin.png"
 ];
+const EXTRA_ASSETS = CACHE_ASSETS_ALL.filter((asset) => !CORE_ASSETS.includes(asset));
 
 let FIODOVERSO_FILES = null;
 
@@ -183,7 +223,7 @@ self.addEventListener("install", (event) => {
           console.warn("[sw] cache failed:", asset, err);
         }
       };
-      await Promise.all(CACHE_ASSETS.map((asset) => cacheAsset(asset)));
+      await Promise.all(CORE_ASSETS.map((asset) => cacheAsset(asset)));
       const fioFiles = await loadFiodoversoFiles();
       await Promise.all(fioFiles.map((asset) => cacheAsset(asset)));
     })
@@ -246,12 +286,29 @@ self.addEventListener("fetch", (event) => {
 
 self.addEventListener("message", (event) => {
   const data = event.data || {};
+  if (data.type === "cache-extras") {
+    event.waitUntil((async () => {
+      const cache = await caches.open(CACHE_NAME);
+      const cacheAsset = async (asset) => {
+        try {
+          const res = await fetch(asset, { cache: "reload" });
+          if (res && res.status === 200) {
+            await cache.put(asset, res.clone());
+          }
+        } catch (_) {}
+      };
+      await Promise.all(EXTRA_ASSETS.map((asset) => cacheAsset(asset)));
+      const fioFiles = await loadFiodoversoFiles();
+      await Promise.all(fioFiles.map((asset) => cacheAsset(asset)));
+    })());
+    return;
+  }
   if (data.type !== "cache-status") return;
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE_NAME);
     let cached = 0;
     await Promise.all(
-      CACHE_ASSETS.map(async (asset) => {
+      CACHE_ASSETS_ALL.map(async (asset) => {
         const match = await cache.match(asset);
         if (match) cached += 1;
       })
@@ -267,7 +324,7 @@ self.addEventListener("message", (event) => {
     const payload = {
       type: "cache-status",
       cached: cached + cachedFio,
-      total: CACHE_ASSETS.length + cachedFio,
+      total: CACHE_ASSETS_ALL.length + cachedFio,
     };
     if (event.source && event.source.postMessage) {
       event.source.postMessage(payload);

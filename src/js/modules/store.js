@@ -153,16 +153,20 @@ export const store = {
 
         // Limpa todo o estado local para evitar restauração fantasma.
         try {
-            localStorage.removeItem("skrv_data");
-            localStorage.removeItem("tot_data");
-            localStorage.removeItem("zel_data");
-            localStorage.removeItem("lit_auth_key");
-            localStorage.removeItem("lit_theme_pref");
-            localStorage.removeItem("lit_pref_font");
-            localStorage.removeItem("lit_pref_font_size");
-            localStorage.removeItem("lit_search_value");
-            localStorage.removeItem("lit_search_active");
-            localStorage.clear();
+            const forceFull = sessionStorage.getItem("skrv_force_full_reset") === "1";
+            const keepKeys = forceFull ? [] : ["skrv_dedication_done"];
+            const keysToRemove = [];
+            for (let i = 0; i < localStorage.length; i += 1) {
+                const key = localStorage.key(i);
+                if (!key) continue;
+                if (keepKeys.includes(key)) continue;
+                keysToRemove.push(key);
+            }
+            keysToRemove.forEach((k) => localStorage.removeItem(k));
+            if (forceFull) {
+                localStorage.removeItem("skrv_dedication_done");
+                sessionStorage.removeItem("skrv_force_full_reset");
+            }
         } catch (_) {}
         try {
             sessionStorage.clear();

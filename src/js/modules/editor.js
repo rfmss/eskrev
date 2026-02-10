@@ -262,6 +262,12 @@ export const editorFeatures = {
                     }
                 }
                 return this.flashInlineData();
+            case '--reset':
+                if (typeof window.skrvHardReset === "function") {
+                    window.skrvHardReset(true);
+                    return true;
+                }
+                return false;
             case '--roll':
             case '--dice':
             case '--dado':

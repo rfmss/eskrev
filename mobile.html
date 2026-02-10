@@ -10,9 +10,9 @@
     <meta name="twitter:image" content="https://eskrev.rafa.pro.br/qr-bitcoin.png" />
     <meta name="theme-color" content="#d7d6d1" />
     <link rel="manifest" href="manifest.json?v=5" />
-    <link rel="icon" id="appFavicon" href="src/assets/icons/eskrev.ico" />
-    <link rel="icon" type="image/png" sizes="500x500" href="src/assets/icons/eskrev.png" />
-    <link rel="apple-touch-icon" href="src/assets/icons/eskrev.png" />
+    <link rel="icon" id="appFavicon" href="src/assets/icons/eskrev.ico?v=6" />
+    <link rel="icon" type="image/png" sizes="500x500" href="src/assets/icons/eskrev.png?v=6" />
+    <link rel="apple-touch-icon" href="src/assets/icons/eskrev.png?v=6" />
     <link rel="stylesheet" href="src/css/base.css" />
     <link rel="stylesheet" href="src/css/components.css" />
     <link rel="stylesheet" href="src/mobile/mobile.css" />
@@ -28,10 +28,12 @@
                 <button id="mobileLangToggle" class="btn-icon" data-i18n-title="lang_label">PT</button>
             </div>
         </header>
-        <div class="mobile-top-note" data-i18n="mobile_top_note">Nada é enviado. Nada é rastreado. Tudo fica local.</div>
 
         <section class="mobile-stage">
-            <div class="mobile-intro" data-i18n="mobile_intro">Aqui é sua carteira de projetos. No desktop: Mesa &gt; puxar do celular ou abrir .skv. (faça backups)</div>
+            <div class="mobile-top-stack">
+                <div class="mobile-top-note" data-i18n="mobile_top_note">Nada é enviado. Nada é rastreado. Tudo fica local.</div>
+                <div class="mobile-intro" data-i18n="mobile_intro">Aqui é sua carteira de projetos. No desktop: Mesa &gt; puxar do celular ou abrir .skv. (faça backups)</div>
+            </div>
             <div class="library" id="library">
                 <div id="booksGrid" class="books-grid"></div>
                 <div id="deleteConfirm" class="delete-confirm" aria-hidden="true">
