@@ -1,7 +1,7 @@
 (() => {
     const LANGS = {
         pt: {
-            lang_label: "PT",
+            lang_label: "PTBR",
             mobile_gate_title: "Importar projeto",
             mobile_gate_body: "Abra o scanner e traga seu projeto de um notebook (exportar > stream QR), tablet ou outra carteira eskrev em outro celular.",
             mobile_gate_scan: "LER QR CODE",
