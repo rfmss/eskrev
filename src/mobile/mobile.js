@@ -858,7 +858,7 @@
                 const bottomLocal = bottomY - libRect.top;
                 const availableH = Math.max(180, bottomLocal - topLocal - 8);
                 const openW = Math.min(libRect.width * 0.92, 520);
-                const desiredOpenH = 380;
+                const desiredOpenH = 420;
                 const openH = Math.min(desiredOpenH, availableH);
                 book.style.width = `${openW}px`;
                 book.style.maxWidth = `${openW}px`;
