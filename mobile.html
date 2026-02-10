@@ -14,94 +14,39 @@
     <link rel="stylesheet" href="src/mobile/mobile.css" />
 </head>
 <body data-theme="paper">
-    <div id="notesModal" class="notes-modal notes-lite active" aria-hidden="false">
-        <div class="notes-panel notes-panel-lite" role="main">
-            <div class="notes-header">
-                <h2 data-i18n="notes_title">NOTAS</h2>
-                <div class="notes-header-actions">
-                    <button id="mobileThemeToggle" class="btn-icon" data-i18n-title="mobile_theme">Tema</button>
-                    <button id="mobileLangToggle" class="btn-icon" data-i18n-title="lang_label">PT</button>
-                    <button id="notesClose" class="notes-close" type="button" data-i18n-title="close_label">×</button>
+    <main class="mobile-shell">
+        <header class="mobile-top">
+            <div class="mobile-brand">
+                <img src="src/assets/icons/logoEskrev.svg" alt="" aria-hidden="true" />
+                <span>eskrev</span>
+            </div>
+            <div class="mobile-actions">
+                <button id="mobileLangToggle" class="btn-icon" data-i18n-title="lang_label">PT</button>
+            </div>
+        </header>
+
+        <section id="mobileBookWrap" class="mobile-book-wrap" aria-live="polite">
+            <div id="mobileBook" class="mobile-book hidden">
+                <div class="book-cover">
+                    <div class="book-date" id="bookDate">10 Fev 2026</div>
+                    <div class="book-title" data-i18n="mobile_book_title">Caderninho</div>
+                </div>
+                <div class="book-actions">
+                    <button id="bookExtract" class="btn-full primary" data-i18n="mobile_extract">EXTRAIR</button>
+                    <button id="bookExtractQr" class="btn-icon" data-i18n-title="mobile_extract_qr" aria-label="QR">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <use href="src/assets/icons/phosphor-sprite.svg#icon-qr-code"></use>
+                        </svg>
+                    </button>
                 </div>
             </div>
-            <div class="notes-body">
-                <div class="notes-stage notes-stage-list is-active" data-stage="list">
-                    <div class="notes-search">
-                        <div class="notes-search-row">
-                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-magnifying-glass"></use></svg>
-                            <input id="notesSearch" class="notes-search-input" data-i18n-ph="notes_search_ph" placeholder="Buscar..." />
-                        </div>
-                        <button id="notesNew" class="btn-full" data-i18n="notes_new">NOVA NOTA</button>
-                    </div>
-                    <div id="notesFoldersWrap" class="notes-filters" style="display:none;">
-                        <div class="notes-filter-title" data-i18n="notes_folders_title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-folder-open"></use></svg> PASTAS</div>
-                        <div id="notesFolders" class="notes-filter-list"></div>
-                    </div>
-                    <div id="notesTagsWrap" class="notes-filters" style="display:none;">
-                        <div class="notes-filter-title" data-i18n="notes_tags_title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-list-bullets"></use></svg> TAGS</div>
-                        <div id="notesTagsList" class="notes-filter-list"></div>
-                    </div>
-                    <div id="notesEmpty" class="notes-empty">
-                        <div class="notes-empty-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3"></path>
-                                <path d="M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4"></path>
-                                <path d="M5 21h14"></path>
-                            </svg>
-                        </div>
-                        <div class="notes-empty-title" data-i18n="notes_empty_title">Sem notas ainda.</div>
-                        <div class="notes-empty-body" data-i18n="notes_empty_body">Crie sua primeira nota para começar.</div>
-                        <button id="notesEmptyCreate" class="btn-full" data-i18n="notes_empty_cta">CRIAR PRIMEIRA NOTA</button>
-                    </div>
-                    <div id="notesList" class="notes-list"></div>
-                    <button id="notesFab" class="notes-fab" type="button" data-i18n-title="notes_new"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-plus"></use></svg></button>
-                    <div class="mobile-notes-footer">
-                        <div class="mobile-export">
-                            <div class="mobile-export-title" data-i18n="mobile_export_title">EXPORTAR</div>
-                            <div class="mobile-export-actions">
-                                <button id="btnExportQr" class="btn-full" data-i18n="mobile_export_qr">ENVIAR POR QR</button>
-                                <button id="btnExportFile" class="btn-full" data-i18n="mobile_export_save">SALVAR ARQUIVO</button>
-                                <button id="btnExportB64" class="btn-full">SALVAR .B64</button>
-                            </div>
-                        </div>
-                        <div class="mobile-donate" data-i18n="mobile_donate_html"></div>
-                        <button id="btnDeleteAll" class="btn-full danger" data-i18n="mobile_quick_reset">APAGAR</button>
-                    </div>
-                </div>
-                <div class="notes-stage notes-stage-edit" data-stage="edit">
-                    <div class="notes-stage-header">
-                        <button id="notesBackToPreview" class="btn-icon" data-i18n-title="notes_back"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-caret-left"></use></svg></button>
-                        <button id="notesPinToggle" class="btn-icon notes-pin-toggle" data-i18n-title="notes_pin">
-                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z"/>
-                                <circle cx="12" cy="12" r="10"/>
-                            </svg>
-                        </button>
-                        <button id="notesDelete" class="btn-icon danger" data-i18n-title="notes_delete"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-trash"></use></svg></button>
-                    </div>
-                    <div class="notes-edit">
-                        <input id="notesTitle" class="notes-input" data-i18n-ph="notes_title_ph" placeholder="Titulo" />
-                        <input id="notesTags" class="notes-input" list="notesTagsDatalist" data-i18n-ph="notes_tags_ph" placeholder="Tags (#tag, #outra)" />
-                        <datalist id="notesTagsDatalist"></datalist>
-                        <input id="notesFolder" class="notes-input" list="notesFolderList" data-i18n-ph="notes_folder_ph" placeholder="Pasta (opcional)" />
-                        <datalist id="notesFolderList"></datalist>
-                        <textarea id="notesBody" class="notes-textarea" data-i18n-ph="notes_body_ph" placeholder="Texto..."></textarea>
-                        <div class="notes-meta" id="notesMeta"></div>
-                    </div>
-                </div>
-                <div id="notesOverlay" class="notes-overlay" aria-hidden="true">
-                    <div class="notes-overlay-header">
-                        <span id="notesOverlayTitle"></span>
-                        <div class="notes-overlay-actions">
-                            <button id="notesOverlayNew" class="btn-icon" data-i18n-title="notes_new"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-plus"></use></svg></button>
-                            <button id="notesOverlayClose" class="btn-icon" data-i18n-title="notes_back"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="src/assets/icons/phosphor-sprite.svg#icon-caret-left"></use></svg></button>
-                        </div>
-                    </div>
-                    <div id="notesOverlayList" class="notes-list"></div>
-                </div>
+            <div id="mobileEmpty" class="mobile-empty">
+                <div class="empty-title" data-i18n="mobile_empty_title">Importe um projeto</div>
+                <div class="empty-body" data-i18n="mobile_empty_body">O celular guarda o livro inteiro e espera um desktop para despejar.</div>
+                <button id="mobileScanPrimary" class="btn-full primary" data-i18n="mobile_scan">LER QR CODE</button>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 
     <div id="mobileGate" class="overlay active">
         <div class="gate-hero">
@@ -110,55 +55,32 @@
                     <img src="src/assets/icons/logoEskrev.svg" alt="" aria-hidden="true" />
                     <span>eskrev</span>
                 </div>
-                <div class="gate-themes" aria-hidden="true">
-                    <button class="gate-theme-btn" data-theme="paper" title="Paper"></button>
-                    <button class="gate-theme-btn" data-theme="chumbo" title="Chumbo"></button>
-                    <button class="gate-theme-btn" data-theme="study" title="Study"></button>
-                </div>
             </header>
             <div class="gate-title" data-i18n="mobile_gate_title">Importar projeto</div>
-            <div class="gate-subtitle" data-i18n="mobile_gate_body"></div>
-            <div class="gate-qr">
-                <div class="qr-code" id="shareQrCode"></div>
-                <img class="qr-logo" src="src/assets/icons/logoEskrev.svg" alt="" aria-hidden="true" />
-                <div class="qr-share-label" data-i18n="mobile_gate_share">Compartilhe o eskrev</div>
-            </div>
+            <div class="gate-subtitle" data-i18n="mobile_gate_body">Abra o scanner e traga sua cápsula .skv</div>
             <div class="gate-actions">
                 <button id="mobileGateScan" class="btn-full gate-primary" data-i18n="mobile_gate_scan">LER QR CODE</button>
-                <button id="mobileGateCreate" class="btn-full gate-secondary" data-i18n="mobile_gate_create">CRIAR NOVO</button>
             </div>
-            <div id="mobileGateHint" class="gate-hint" data-i18n="mobile_gate_hint">Ou ↑ para criar novo</div>
         </div>
     </div>
 
-    <div id="mobileSetup" class="overlay">
+    <div id="exportModal" class="overlay">
         <div class="modal">
-            <div class="modal-title" data-i18n="setup_title">Criar sessão</div>
-            <input id="setupProjectName" class="input" data-i18n-ph="setup_project_ph" placeholder="Nome do projeto" />
-            <input id="setupPass1" class="input" type="password" data-i18n-ph="setup_pass_ph" placeholder="Senha provisória" />
-            <input id="setupPass2" class="input" type="password" data-i18n-ph="setup_pass_confirm_ph" placeholder="Confirmar senha" />
-            <div id="setupMsg" class="help"></div>
+            <div class="modal-title" data-i18n="mobile_extract">Extrair</div>
+            <div class="modal-body" data-i18n="mobile_extract_body">Retire o projeto do celular em qualquer formato.</div>
             <div class="btn-row">
-                <button id="setupPomo25" class="btn btn-ghost" data-i18n="pomo_25">25 MIN</button>
-                <button id="setupPomo50" class="btn btn-ghost" data-i18n="pomo_55">50 MIN</button>
+                <button id="btnExportQr" class="btn-full primary" data-i18n="mobile_export_qr">ENVIAR POR QR</button>
+                <button id="btnExportFile" class="btn-full" data-i18n="mobile_export_save">SALVAR .SKV</button>
             </div>
-        </div>
-    </div>
-
-    <div id="importSessionModal" class="overlay">
-        <div class="modal">
-            <div class="modal-title" data-i18n="mobile_import_title">Projeto importado</div>
-            <div id="importSessionSuccess" class="modal-body"></div>
-            <input id="importSessionPass1" class="input" type="password" data-i18n-ph="mobile_import_pass_ph" placeholder="Senha provisória" />
-            <input id="importSessionPass2" class="input" type="password" data-i18n-ph="mobile_import_pass_confirm_ph" placeholder="Confirmar senha" />
-            <div id="importSessionMsg" class="help"></div>
-            <button id="importSessionConfirm" class="btn-full" data-i18n="mobile_import_confirm">CONFIRMAR</button>
+            <button id="btnExportB64" class="btn-full" data-i18n="mobile_export_b64">SALVAR .B64</button>
+            <button id="btnCopyB64" class="btn-full" data-i18n="mobile_export_copy">COPIAR B64</button>
+            <button id="btnExportClose" class="btn-full" data-i18n="close_label">OK</button>
         </div>
     </div>
 
     <div id="qrScanModal" class="overlay">
         <div class="modal qr-modal">
-            <div class="modal-title" data-i18n="qr_scan_title">Scan QR</div>
+            <div class="modal-title" data-i18n="qr_scan_title">SCAN QR</div>
             <div class="qr-layout">
                 <video id="qrScanVideo" class="qr-video" autoplay playsinline muted></video>
                 <div class="panel">
@@ -178,7 +100,7 @@
 
     <div id="qrStreamModal" class="overlay">
         <div class="modal qr-modal">
-            <div class="modal-title" data-i18n="qr_stream_title">Enviar por QR</div>
+            <div class="modal-title" data-i18n="qr_stream_title">STREAM QR</div>
             <div id="qrStreamCode" class="qr-code" style="margin:0 auto;"></div>
             <div id="qrStreamStatus" class="help"></div>
             <div id="qrStreamMeta" class="help"></div>
