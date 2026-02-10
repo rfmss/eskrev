@@ -856,23 +856,17 @@
                 const bottomY = scanRect ? scanRect.top : (footerRect ? footerRect.top : libRect.bottom);
                 const availableH = Math.max(180, bottomY - topY - 8);
                 const openW = Math.min(libRect.width * 0.92, 520);
-                const openMaxH = Math.floor(availableH);
-                book.style.width = `${openW}px`;
-                book.style.maxWidth = `${openW}px`;
-                book.style.height = "auto";
-                book.style.maxHeight = `${openMaxH}px`;
-                book.style.setProperty("--open-max-h", `${openMaxH}px`);
                 const sheet = book.querySelector(".sheet");
                 const extra = 140;
-                if (sheet) {
-                    const desiredH = Math.min(openMaxH, sheet.scrollHeight + extra);
-                    book.style.height = `${desiredH}px`;
-                    book.style.maxHeight = `${desiredH}px`;
-                    book.style.setProperty("--open-max-h", `${desiredH}px`);
-                }
+                const contentH = sheet ? (sheet.scrollHeight + extra) : 220;
+                const openH = Math.min(contentH, availableH);
+                book.style.width = `${openW}px`;
+                book.style.maxWidth = `${openW}px`;
+                book.style.height = `${openH}px`;
+                book.style.maxHeight = `${openH}px`;
+                book.style.setProperty("--open-max-h", `${openH}px`);
                 const left = Math.max(0, (libRect.width - openW) / 2);
-                const maxTop = Math.max(0, bottomY - book.offsetHeight - 4);
-                const top = Math.min(Math.max(topY + 4, topY + (availableH - book.offsetHeight) / 2), maxTop);
+                const top = Math.max(topY + 4, topY + (availableH - openH) / 2);
                 book.style.left = `${left}px`;
                 book.style.top = `${top}px`;
             });
