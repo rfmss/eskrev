@@ -234,6 +234,10 @@ body.has-open-book .library {
     overflow: visible;
 }
 
+body.has-open-book .library {
+    min-height: calc(90vh - 120px);
+}
+
 .books-grid {
     position: absolute;
     inset: 0;
@@ -329,6 +333,15 @@ body.has-open-book .library {
     transform: rotateY(0) rotateX(0);
     box-shadow: var(--m-shadow);
     z-index: 20;
+}
+
+@media (max-width: 600px) {
+    .totbook.open {
+        width: 90vw;
+    }
+    .totbook.open .page-viewport {
+        max-height: calc(90vh - 200px);
+    }
 }
 
 
