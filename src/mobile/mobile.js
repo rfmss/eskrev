@@ -847,15 +847,21 @@
             document.body.classList.add("has-open-book");
             requestAnimationFrame(() => {
                 const libRect = els.library.getBoundingClientRect();
+                const topStack = document.querySelector(".mobile-top-stack");
+                const footer = document.querySelector(".mobile-footer");
+                const topY = topStack ? topStack.getBoundingClientRect().bottom : libRect.top;
+                const footerRect = footer ? footer.getBoundingClientRect() : null;
+                const bottomY = footerRect ? footerRect.top : libRect.bottom;
+                const availableH = Math.max(200, bottomY - topY - 10);
                 const openW = Math.min(libRect.width * 0.92, 520);
-                const openMaxH = Math.floor(libRect.height * 0.9);
+                const openMaxH = Math.floor(availableH);
                 book.style.width = `${openW}px`;
                 book.style.maxWidth = `${openW}px`;
                 book.style.height = "auto";
                 book.style.maxHeight = `${openMaxH}px`;
                 book.style.setProperty("--open-max-h", `${openMaxH}px`);
                 const sheet = book.querySelector(".sheet");
-                const extra = 180;
+                const extra = 150;
                 if (sheet) {
                     const desiredH = Math.min(openMaxH, sheet.scrollHeight + extra);
                     book.style.height = `${desiredH}px`;
@@ -863,8 +869,8 @@
                     book.style.setProperty("--open-max-h", `${desiredH}px`);
                 }
                 const left = Math.max(0, (libRect.width - openW) / 2);
-                const maxTop = Math.max(0, libRect.height - book.offsetHeight);
-                const top = Math.min(Math.max(0, (libRect.height - book.offsetHeight) / 2), maxTop);
+                const maxTop = Math.max(0, bottomY - book.offsetHeight - 5);
+                const top = Math.min(Math.max(topY + 6, topY + (availableH - book.offsetHeight) / 2), maxTop);
                 book.style.left = `${left}px`;
                 book.style.top = `${top}px`;
             });
