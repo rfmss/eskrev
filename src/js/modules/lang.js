@@ -589,7 +589,6 @@ export const lang = {
             mobile_quick_export: "EXPORTAR",
             mobile_quick_reset: "APAGAR",
             mobile_donate_html: "Apoie: <span class=\"support-item marquee-copy\" data-copy=\"BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP\">bitcoin</span> | <span class=\"support-item marquee-copy\" data-copy=\"eskrev@disroot.org\">pix/paypal</span>",
-            mobile_fallback_link: "Abrir versão mobile",
             offline_download: "BAIXAR APP OFFLINE (SEM CONTEÚDO)",
             project_github: "GITHUB DO PROJETO",
             qr_stream_title: "STREAM QR",
