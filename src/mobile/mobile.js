@@ -859,9 +859,8 @@
                 const availableH = Math.max(180, bottomLocal - topLocal - 8);
                 const openW = Math.min(libRect.width * 0.92, 520);
                 const sheet = book.querySelector(".sheet");
-                const extra = Math.min(18, Math.floor(availableH * 0.03));
-                const contentH = sheet ? (sheet.scrollHeight + extra) : 220;
-                const openH = Math.min(contentH, availableH);
+                const desiredOpenH = 360;
+                const openH = Math.min(desiredOpenH, availableH);
                 book.style.width = `${openW}px`;
                 book.style.maxWidth = `${openW}px`;
                 book.style.height = `${openH}px`;
