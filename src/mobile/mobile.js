@@ -854,7 +854,9 @@
                 const scanRect = scanBar ? scanBar.getBoundingClientRect() : null;
                 const footerRect = footer ? footer.getBoundingClientRect() : null;
                 const bottomY = scanRect ? scanRect.top : (footerRect ? footerRect.top : libRect.bottom);
-                const availableH = Math.max(180, bottomY - topY - 8);
+                const topLocal = topY - libRect.top;
+                const bottomLocal = bottomY - libRect.top;
+                const availableH = Math.max(180, bottomLocal - topLocal - 8);
                 const openW = Math.min(libRect.width * 0.92, 520);
                 const sheet = book.querySelector(".sheet");
                 const extra = 140;
@@ -866,7 +868,7 @@
                 book.style.maxHeight = `${openH}px`;
                 book.style.setProperty("--open-max-h", `${openH}px`);
                 const left = Math.max(0, (libRect.width - openW) / 2);
-                const top = Math.max(topY + 4, topY + (availableH - openH) / 2);
+                const top = Math.max(topLocal + 4, topLocal + (availableH - openH) / 2);
                 book.style.left = `${left}px`;
                 book.style.top = `${top}px`;
             });
