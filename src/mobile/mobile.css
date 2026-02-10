@@ -77,6 +77,16 @@ body {
     width: 100%;
 }
 
+.mobile-intro {
+    font-size: 12px;
+    color: var(--m-muted);
+    line-height: 1.5;
+    text-align: center;
+    letter-spacing: 0.2px;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
 .mobile-footer {
     position: fixed;
     left: 0;
