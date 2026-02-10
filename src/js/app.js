@@ -1213,6 +1213,10 @@ function loadActiveDocument() {
     if (activeDoc) {
         // Carrega o conteúdo salvo
         editorEl.innerHTML = activeDoc.content || ""; 
+        const placeholder = activeDoc.placeholder || lang.t("editor_placeholder");
+        if (placeholder) {
+            editorEl.setAttribute("data-placeholder", placeholder);
+        }
         
         document.getElementById("currentDocLabel").innerText = activeDoc.name;
         
@@ -3610,6 +3614,12 @@ function ensureBookTemplateProjects() {
             existing.set(`${proj.bookPartGroup}:${proj.bookPartKey}`, proj);
         }
     });
+    const templateMap = new Map();
+    BOOK_FOLDERS.forEach((folder) => {
+        folder.template.forEach((part) => {
+            templateMap.set(`${folder.id}:${part.key}`, part);
+        });
+    });
     let changed = false;
     BOOK_FOLDERS.forEach((folder) => {
         folder.template.forEach((part, idx) => {
@@ -3619,7 +3629,8 @@ function ensureBookTemplateProjects() {
                 store.data.projects.unshift({
                     id: `bookpart_${folder.id}_${part.key}`,
                     name: part.title,
-                    content: textToParagraphs(part.body),
+                    content: "",
+                    placeholder: part.body,
                     date: new Date().toLocaleString(),
                     cursorPos: 0,
                     bookPart: true,
@@ -3641,6 +3652,18 @@ function ensureBookTemplateProjects() {
             if (found.bookOrder !== idx) {
                 found.bookOrder = idx;
                 changed = true;
+            }
+            const template = templateMap.get(mapKey);
+            if (template) {
+                if (!found.placeholder) {
+                    found.placeholder = template.body;
+                    changed = true;
+                }
+                const currentText = htmlToText(found.content || "").trim();
+                if (currentText && template.body && currentText === template.body.trim()) {
+                    found.content = "";
+                    changed = true;
+                }
             }
         });
     });
@@ -3702,6 +3725,27 @@ function exportBookPdf(groupId) {
     w.onload = () => {
         try { w.print(); } catch (_) {}
     };
+}
+
+function buildBookPrintText(groupId) {
+    const title = store.data && store.data.skvTitle ? store.data.skvTitle : "Livro";
+    const folder = BOOK_FOLDERS.find((f) => f.id === groupId);
+    const header = folder ? folder.title : "Livro";
+    const blocks = [`=== ${header} ===`, title];
+    const parts = getBookParts(groupId);
+    parts.forEach((part) => {
+        const text = htmlToText(part.content || "");
+        blocks.push(`\n--- ${part.name || ""} ---\n${text}`);
+    });
+    return blocks.join("\n\n");
+}
+
+function printBookAll(groupId) {
+    const title = store.data && store.data.skvTitle ? store.data.skvTitle : "Livro";
+    const folder = BOOK_FOLDERS.find((f) => f.id === groupId);
+    const header = folder ? folder.title : "Livro";
+    const text = buildBookPrintText(groupId);
+    printRawText(text, `.skv Writer - ${header} - ${title}`);
 }
 
 // Exposição mínima para módulo mobile (carregamento condicional)
@@ -3930,6 +3974,15 @@ function renderProjectList() {
             exportBookPdf(folderConfig.id);
         };
         actions.appendChild(btnPdf);
+        const btnPrintAll = document.createElement("button");
+        btnPrintAll.className = "btn-icon-small";
+        btnPrintAll.title = "Imprimir livro";
+        btnPrintAll.innerHTML = "<svg class='icon' viewBox='0 0 24 24' aria-hidden='true' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2'/><path d='M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6'/><rect x='6' y='14' width='12' height='8' rx='1'/></svg>";
+        btnPrintAll.onclick = (e) => {
+            e.stopPropagation();
+            printBookAll(folderConfig.id);
+        };
+        actions.appendChild(btnPrintAll);
 
         header.appendChild(caret);
         header.appendChild(label);
