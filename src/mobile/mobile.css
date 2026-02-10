@@ -76,10 +76,18 @@ body {
 }
 
 .mobile-footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: grid;
     gap: 6px;
     justify-items: center;
-    padding: 4px 18px 18px;
+    padding: 8px 18px 14px;
+    background: rgba(241, 239, 233, 0.96);
+    border-top: 1px solid rgba(30, 29, 26, 0.12);
+    backdrop-filter: blur(6px);
+    z-index: 40;
 }
 
 .mobile-footer-note {
@@ -147,6 +155,7 @@ body {
     min-height: 60vh;
     width: 100%;
     gap: 16px;
+    padding-bottom: 72px;
 }
 
 .mobile-empty {
