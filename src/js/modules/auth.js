@@ -223,7 +223,7 @@ export const auth = {
             this.unlock();
             if (document.body.classList.contains("mobile-only-page") || document.body.classList.contains("mobile-lite")) {
                 if (typeof window.skrvOpenMobileNotes === "function") {
-                    window.skrvOpenMobileNotes();
+                    setTimeout(() => window.skrvOpenMobileNotes(), 80);
                 }
             }
         };

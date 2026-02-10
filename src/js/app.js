@@ -400,8 +400,10 @@ function initMobileGate() {
 
     if (btnScan) {
         btnScan.onclick = () => {
-            if (qrBtn) qrBtn.click();
             closeGate(false);
+            if (qrBtn) {
+                setTimeout(() => qrBtn.click(), 50);
+            }
         };
     }
 
@@ -851,6 +853,10 @@ function openMobileNotesView() {
     if (!isMobileContext()) return;
     ensureMobileModule()
         .then(() => {
+            const drawer = document.querySelector(".drawer");
+            const notesPanel = document.getElementById("panelNotes");
+            const isOpen = drawer && drawer.classList.contains("open") && notesPanel && notesPanel.style.display === "block";
+            if (isOpen) return;
             ui.openDrawer("notes", {});
         })
         .catch(() => {});
@@ -3022,7 +3028,7 @@ function initImportSessionModal() {
         sessionStorage.removeItem("skrv_mobile_import_name");
         modal.classList.remove("active");
         document.body.classList.remove("modal-active");
-        openMobileNotesView();
+        setTimeout(() => openMobileNotesView(), 80);
     };
     if (btn) btn.onclick = confirm;
     [pass1, pass2].forEach((input) => {
