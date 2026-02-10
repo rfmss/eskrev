@@ -856,7 +856,7 @@
                 const bottomY = scanRect ? scanRect.top : (footerRect ? footerRect.top : libRect.bottom);
                 const availableH = Math.max(180, bottomY - topY - 8);
                 const openW = Math.min(libRect.width * 0.92, 520);
-                const openMaxH = Math.floor(availableH * 0.5);
+                const openMaxH = Math.floor(availableH);
                 book.style.width = `${openW}px`;
                 book.style.maxWidth = `${openW}px`;
                 book.style.height = "auto";
