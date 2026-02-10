@@ -15,6 +15,26 @@
             document.head.appendChild(s);
         }
     </script>
+    <script>
+        (function () {
+            try {
+                if (/mobile\.html$/.test(location.pathname)) return;
+                if (location.search.includes("fallback=1")) return;
+                var forcedMobile = window.__SKRV_FORCE_MOBILE === true;
+                var uaMobile = navigator.userAgentData && typeof navigator.userAgentData.mobile === "boolean"
+                    ? navigator.userAgentData.mobile
+                    : /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent || "");
+                var coarse = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+                var hoverNone = window.matchMedia && window.matchMedia("(hover: none)").matches;
+                var touchPoints = navigator.maxTouchPoints || 0;
+                var isMobile = forcedMobile || uaMobile || (coarse && hoverNone && touchPoints > 0);
+                if (!forcedMobile && isMobile) {
+                    document.documentElement.style.visibility = "hidden";
+                    location.replace("mobile.html");
+                }
+            } catch (e) {}
+        })();
+    </script>
     <link rel="manifest" href="manifest.json?v=5" />
     <link rel="icon" id="appFavicon" href="src/assets/icons/eskrev.ico" />
     <link rel="icon" type="image/png" sizes="500x500" href="src/assets/icons/eskrev.png" />
