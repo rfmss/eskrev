@@ -78,7 +78,7 @@ body {
 .mobile-footer {
     display: flex;
     justify-content: center;
-    padding: 10px 18px 24px;
+    padding: 4px 18px 18px;
 }
 
 .mobile-support {
@@ -163,7 +163,7 @@ body {
 .library {
     position: relative;
     width: min(92vw, 520px);
-    height: min(78vh, 520px);
+    height: min(86vh, 560px);
     overflow: hidden;
 }
 

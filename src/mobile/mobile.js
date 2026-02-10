@@ -290,18 +290,6 @@
         applyStrapColor();
     };
 
-    let peekTimer = null;
-    const startPeekLoop = () => {
-        if (!els.book) return;
-        if (peekTimer) clearInterval(peekTimer);
-        peekTimer = setInterval(() => {
-            if (!els.book || els.book.classList.contains("open")) return;
-            els.book.classList.add("peek");
-            setTimeout(() => {
-                if (els.book) els.book.classList.remove("peek");
-            }, 900);
-        }, 30000);
-    };
 
     const openGate = () => {
         if (els.gate) els.gate.classList.add("active");
@@ -873,7 +861,6 @@
         applyI18n();
         bindEvents();
         renderBook();
-        startPeekLoop();
 
         const gateDone = sessionStorage.getItem("skrv_mobile_gate_done") === "1";
         if (gateDone) {
