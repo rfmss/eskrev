@@ -77,6 +77,10 @@ export function buildSkrvPayload(store) {
   delete archive.memo;
   const projects = Array.isArray(data.projects) ? data.projects : [];
   const active = projects.find(p => p.id === data.activeId) || projects[0] || null;
+  if (!archive.skvTitle) {
+    const fallbackTitle = (data.skvTitle || (active && active.name) || (projects[0] && projects[0].name) || "Projeto");
+    archive.skvTitle = fallbackTitle;
+  }
   const activeHtml = active ? active.content : "";
   const masterText = normalizeText(htmlToText(activeHtml));
 

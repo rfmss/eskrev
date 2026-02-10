@@ -272,6 +272,7 @@
 
     const payloadProjectName = (payload) => {
         const archive = payload && payload.ARCHIVE_STATE ? payload.ARCHIVE_STATE : null;
+        if (archive && archive.skvTitle) return String(archive.skvTitle);
         if (!archive || !Array.isArray(archive.projects) || !archive.projects.length) return "";
         const active = archive.projects.find(p => p.id === archive.activeId) || archive.projects[0];
         return active && active.name ? String(active.name) : "";

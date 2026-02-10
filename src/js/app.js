@@ -3089,6 +3089,10 @@ function applySkrvPayload(payload) {
             archive.activeId = archive.projects[0].id;
         }
     }
+    if (!archive.skvTitle) {
+        const active = archive.projects.find(p => p.id === archive.activeId) || archive.projects[0];
+        archive.skvTitle = (active && active.name) ? active.name : (lang.t("default_project") || "Projeto");
+    }
 
     const previousMemo = store.data && typeof store.data.memo === "string" ? store.data.memo : "";
     store.data = archive;
@@ -3130,7 +3134,9 @@ function applySkrvPayload(payload) {
 function handleImportSuccess(messageKey) {
     if (isMobileContext()) {
         const active = store.getActive();
-        const projectName = active && active.name ? active.name : (lang.t("default_project") || "Projeto");
+        const projectName = store.data && store.data.skvTitle
+            ? store.data.skvTitle
+            : (active && active.name ? active.name : (lang.t("default_project") || "Projeto"));
         setMobileProjectMeta(projectName);
         localStorage.removeItem("lit_auth_key");
         sessionStorage.setItem("skrv_mobile_import_pending", "1");

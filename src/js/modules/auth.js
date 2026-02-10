@@ -211,6 +211,8 @@ export const auth = {
             } else {
                 store.createProject(projectName);
             }
+            store.data.skvTitle = projectName;
+            store.persist(true);
             if (window.skrvSetMobileProjectMeta && (document.body.classList.contains("mobile-only-page") || document.body.classList.contains("mobile-lite"))) {
                 window.skrvSetMobileProjectMeta(projectName);
             }
