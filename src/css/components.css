@@ -2819,6 +2819,25 @@ body.consult-open .selection-toolbar {
     font-size: 72px;
     line-height: 0.95;
 }
+.desktop-footer-note {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 6px;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 0.6px;
+    color: var(--color-muted);
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 2;
+}
+
+@media (max-width: 900px) {
+    .desktop-footer-note {
+        display: none;
+    }
+}
 @keyframes pageOverlayFloat {
     0% { opacity: 0; transform: translateY(18px); }
     50% { opacity: 0.9; transform: translateY(0); }

@@ -1,4 +1,4 @@
-const CACHE_NAME = "skrv-cache-v85";
+const CACHE_NAME = "skrv-cache-v86";
 const CACHE_ASSETS = [
   "./",
   "./index.html",
