@@ -329,7 +329,7 @@ body.has-open-book .library {
 .totbook.open {
     width: min(90vw, 680px);
     height: auto;
-    max-height: 90vh;
+    max-height: var(--open-max-h, 90vh);
     transform: rotateY(0) rotateX(0);
     box-shadow: var(--m-shadow);
     z-index: 20;
@@ -340,7 +340,7 @@ body.has-open-book .library {
         width: 90vw;
     }
     .totbook.open .page-viewport {
-        max-height: calc(90vh - 200px);
+        max-height: calc(var(--open-max-h, 90vh) - 200px);
     }
 }
 
@@ -480,7 +480,7 @@ body.has-open-book .library {
 }
 
 .totbook.open .page-viewport {
-    max-height: calc(90vh - 220px);
+    max-height: calc(var(--open-max-h, 90vh) - 220px);
     overflow-y: auto;
     overscroll-behavior: contain;
     padding-right: 6px;

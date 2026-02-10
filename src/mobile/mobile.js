@@ -845,13 +845,16 @@
             book.classList.add("open");
             state.activeId = book.dataset.id || null;
             document.body.classList.add("has-open-book");
-            book.style.width = "90vw";
-            book.style.maxWidth = "680px";
-            book.style.height = "auto";
-            book.style.maxHeight = "90vh";
             requestAnimationFrame(() => {
                 const libRect = els.library.getBoundingClientRect();
-                const left = Math.max(0, (libRect.width - book.offsetWidth) / 2);
+                const openW = Math.min(libRect.width * 0.92, 520);
+                const openMaxH = Math.floor(libRect.height * 0.9);
+                book.style.width = `${openW}px`;
+                book.style.maxWidth = `${openW}px`;
+                book.style.height = "auto";
+                book.style.maxHeight = `${openMaxH}px`;
+                book.style.setProperty("--open-max-h", `${openMaxH}px`);
+                const left = Math.max(0, (libRect.width - openW) / 2);
                 const maxTop = Math.max(0, libRect.height - book.offsetHeight);
                 const top = Math.min(Math.max(0, (libRect.height - book.offsetHeight) / 2), maxTop);
                 book.style.left = `${left}px`;
