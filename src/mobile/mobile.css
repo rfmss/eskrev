@@ -166,7 +166,7 @@ body {
 .library {
     position: relative;
     width: min(92vw, 520px);
-    height: min(86vh, 560px);
+    height: min(72vh, 460px);
     overflow: hidden;
 }
 
@@ -175,44 +175,14 @@ body {
     inset: 0;
 }
 
-.trash-zone {
-    position: absolute;
-    left: 50%;
-    bottom: 10px;
-    transform: translate(-50%, 20px);
-    opacity: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 6px 14px;
-    border-radius: 999px;
-    border: 1px solid rgba(30, 29, 26, 0.2);
-    background: rgba(246, 241, 231, 0.9);
-    color: #3a3935;
-    font-size: 10px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: all 0.25s ease;
-    pointer-events: none;
-}
-
-.trash-zone.danger {
-    border-color: rgba(239, 68, 68, 0.7);
-    color: #ef4444;
-}
-
-body.is-dragging .trash-zone {
-    opacity: 1;
-    transform: translate(-50%, 0);
-}
 
 .totbook {
     position: absolute;
     left: 0;
     top: 0;
     transform: rotateY(-12deg) rotateX(4deg);
-    width: 120px;
-    height: 170px;
+    width: 105px;
+    height: 150px;
     background: #fbf5df;
     border-radius: 6px;
     box-shadow: var(--m-shadow);
@@ -254,7 +224,7 @@ body.is-dragging .trash-zone {
 }
 
 .totbook.open {
-    width: min(90vw, 640px);
+    width: min(90vw, 560px);
     height: auto;
     max-height: 90%;
     transform: rotateY(0) rotateX(0);
@@ -440,20 +410,95 @@ body.is-dragging .trash-zone {
 }
 
 .book-inner-title {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
 
 .book-inner-body {
-    font-size: 12px;
+    font-size: 11px;
     color: #44423d;
 }
 
 .book-inner-actions {
     display: grid;
     gap: 8px;
+}
+
+.delete-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(239, 68, 68, 0.9), rgba(239, 68, 68, 0));
+    transform-origin: bottom;
+    transform: scaleY(var(--delete-progress, 0));
+    opacity: calc(var(--delete-progress, 0) * 0.9);
+    transition: opacity 0.1s ease;
+    z-index: 8;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 12px;
+    pointer-events: none;
+}
+
+.delete-overlay span {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.totbook.is-deleting .delete-overlay span {
+    opacity: 1;
+}
+
+.delete-confirm {
+    position: absolute;
+    left: 50%;
+    bottom: 12px;
+    transform: translate(-50%, 10px);
+    background: rgba(246, 241, 231, 0.98);
+    border: 1px solid rgba(30, 29, 26, 0.2);
+    border-radius: 14px;
+    padding: 10px 14px;
+    display: none;
+    gap: 10px;
+    text-align: center;
+    z-index: 30;
+}
+
+.delete-confirm.active {
+    display: grid;
+    transform: translate(-50%, 0);
+}
+
+.delete-confirm-text {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #3a3935;
+}
+
+.delete-confirm-actions {
+    display: grid;
+    gap: 8px;
+}
+
+.mobile-scan-bar .btn-full {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.mobile-scan-bar .btn-full .icon {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
 }
 
 .mobile-scan-bar {
@@ -481,11 +526,11 @@ body.is-dragging .trash-zone {
     border: 1px solid rgba(0,0,0,0.12);
     background: rgba(0,0,0,0.02);
     color: #1e1d1a;
-    padding: 12px 14px;
+    padding: 10px 12px;
     font-weight: 600;
     letter-spacing: 0.6px;
     text-transform: uppercase;
-    font-size: 11px;
+    font-size: 10px;
 }
 
 .book-inner .btn-full.primary {

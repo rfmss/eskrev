@@ -7,7 +7,7 @@
             mobile_gate_scan: "LER QR CODE",
             mobile_empty_title: "Importe um projeto",
             mobile_empty_body: "O celular guarda o livro inteiro e espera um desktop para despejar.",
-            mobile_scan: "LER QR CODE",
+            mobile_scan: "TRAZER PROJETO",
             mobile_book_title: "Caderninho",
             mobile_extract: "Extrair",
             mobile_extract_qr: "Extrair por QR",
@@ -18,6 +18,8 @@
             mobile_export_copy: "COPIAR B64",
             marquee_ready: "apoie: <span class=\"marquee-copy\" data-copy=\"BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP\">BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP</span> | <span class=\"marquee-copy\" data-copy=\"eskrev@disroot.org\">eskrev@disroot.org</span> pix/paypal",
             mobile_limit: "Limite máximo de projetos salvos.",
+            mobile_delete_label: "Deletar",
+            mobile_delete_confirm: "Deletar projeto?",
             mobile_trash: "Apagar",
             close_label: "OK",
             qr_scan_title: "SCAN QR",
@@ -51,7 +53,7 @@
             mobile_gate_scan: "READ QR CODE",
             mobile_empty_title: "Import a project",
             mobile_empty_body: "Your phone keeps the whole book and waits for a desktop to pour it out.",
-            mobile_scan: "READ QR CODE",
+            mobile_scan: "BRING PROJECT",
             mobile_book_title: "Notebook",
             mobile_extract: "Extract",
             mobile_extract_qr: "Extract by QR",
@@ -62,6 +64,8 @@
             mobile_export_copy: "COPY B64",
             marquee_ready: "support: <span class=\"marquee-copy\" data-copy=\"BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP\">BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP</span> | <span class=\"marquee-copy\" data-copy=\"eskrev@disroot.org\">eskrev@disroot.org</span> pix/paypal",
             mobile_limit: "Maximum projects saved.",
+            mobile_delete_label: "Delete",
+            mobile_delete_confirm: "Delete project?",
             mobile_trash: "Delete",
             close_label: "OK",
             qr_scan_title: "SCAN QR",
@@ -95,7 +99,7 @@
             mobile_gate_scan: "LEER QR",
             mobile_empty_title: "Importa un proyecto",
             mobile_empty_body: "El celular guarda todo el libro y espera un escritorio para vaciarlo.",
-            mobile_scan: "LEER QR",
+            mobile_scan: "TRAER PROYECTO",
             mobile_book_title: "Cuaderno",
             mobile_extract: "Extraer",
             mobile_extract_qr: "Extraer por QR",
@@ -106,6 +110,8 @@
             mobile_export_copy: "COPIAR B64",
             marquee_ready: "apoya: <span class=\"marquee-copy\" data-copy=\"BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP\">BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP</span> | <span class=\"marquee-copy\" data-copy=\"eskrev@disroot.org\">eskrev@disroot.org</span> pix/paypal",
             mobile_limit: "Límite máximo de proyectos guardados.",
+            mobile_delete_label: "Borrar",
+            mobile_delete_confirm: "¿Borrar proyecto?",
             mobile_trash: "Borrar",
             close_label: "OK",
             qr_scan_title: "SCAN QR",
@@ -139,7 +145,7 @@
             mobile_gate_scan: "LIRE QR",
             mobile_empty_title: "Importer un projet",
             mobile_empty_body: "Le téléphone garde tout le livre et attend un desktop pour le verser.",
-            mobile_scan: "LIRE QR",
+            mobile_scan: "APPORTER PROJET",
             mobile_book_title: "Carnet",
             mobile_extract: "Extraire",
             mobile_extract_qr: "Extraire par QR",
@@ -150,6 +156,8 @@
             mobile_export_copy: "COPIER B64",
             marquee_ready: "soutenez : <span class=\"marquee-copy\" data-copy=\"BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP\">BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP</span> | <span class=\"marquee-copy\" data-copy=\"eskrev@disroot.org\">eskrev@disroot.org</span> pix/paypal",
             mobile_limit: "Limite maximum de projets enregistrés.",
+            mobile_delete_label: "Supprimer",
+            mobile_delete_confirm: "Supprimer le projet ?",
             mobile_trash: "Supprimer",
             close_label: "OK",
             qr_scan_title: "SCAN QR",
@@ -179,9 +187,9 @@
     };
 
     const STORAGE_KEY = "skrv_mobile_payloads";
-    const MAX_BOOKS = 15;
-    const GRID_COLS = 5;
-    const GRID_ROWS = 3;
+    const MAX_BOOKS = 6;
+    const GRID_COLS = 3;
+    const GRID_ROWS = 2;
     const state = {
         lang: (localStorage.getItem("lit_lang") || "pt").toLowerCase().includes("en") ? "en"
             : (localStorage.getItem("lit_lang") || "pt").toLowerCase().includes("es") ? "es"
@@ -301,6 +309,7 @@
                     <div class="cover-date">${payloadDate(item.payload)}</div>
                     <div class="strap" style="background:${strapColor};"><span>${payloadProjectName(item.payload) || "Projeto"}</span></div>
                 </div>
+                <div class="delete-overlay"><span>${t("mobile_delete_label")}</span></div>
                 <div class="elastic"></div>
                 <div class="drag-handle"><div class="dots"></div></div>
                 <div class="pages">
@@ -694,7 +703,9 @@
         els.scanPrimary = document.getElementById("mobileScanPrimary");
         els.limit = document.getElementById("mobileLimit");
         els.support = document.querySelector(".mobile-support");
-        els.trash = document.getElementById("trashZone");
+        els.confirm = document.getElementById("deleteConfirm");
+        els.deleteOk = document.getElementById("deleteOk");
+        els.deleteCancel = document.getElementById("deleteCancel");
         els.scanModal = document.getElementById("qrScanModal");
         els.scanVideo = document.getElementById("qrScanVideo");
         els.scanStatus = document.getElementById("qrScanStatus");
@@ -725,6 +736,7 @@
         let dragBook = null;
         let dragStart = null;
         let dragMoved = false;
+        let pendingDeleteId = null;
         const getSlot = (book) => ({
             left: parseFloat(book.dataset.slotLeft || "0"),
             top: parseFloat(book.dataset.slotTop || "0")
@@ -759,18 +771,19 @@
                 book.style.top = `${top}px`;
             });
         };
-        const checkTrashHit = (book) => {
-            if (!els.trash || !book) return false;
-            const bookRect = book.getBoundingClientRect();
-            const trashRect = els.trash.getBoundingClientRect();
-            const hit = !(
-                bookRect.right < trashRect.left ||
-                bookRect.left > trashRect.right ||
-                bookRect.bottom < trashRect.top ||
-                bookRect.top > trashRect.bottom
-            );
-            els.trash.classList.toggle("danger", hit);
-            return hit;
+        const setDeleteProgress = (book, pct) => {
+            if (!book) return;
+            const clamped = Math.max(0, Math.min(1, pct));
+            book.style.setProperty("--delete-progress", clamped.toString());
+            book.classList.toggle("is-deleting", clamped > 0.25);
+        };
+        const showDeleteConfirm = (id) => {
+            pendingDeleteId = id;
+            if (els.confirm) els.confirm.classList.add("active");
+        };
+        const hideDeleteConfirm = () => {
+            pendingDeleteId = null;
+            if (els.confirm) els.confirm.classList.remove("active");
         };
         if (els.grid) {
             els.grid.addEventListener("pointerdown", (e) => {
@@ -780,7 +793,6 @@
                 dragStart = { x: e.clientX, y: e.clientY };
                 dragMoved = false;
                 document.body.classList.add("is-dragging");
-                if (els.trash) els.trash.classList.remove("danger");
                 book.setPointerCapture(e.pointerId);
             });
             els.grid.addEventListener("pointermove", (e) => {
@@ -790,23 +802,17 @@
                     dragMoved = true;
                     const slot = getSlot(dragBook);
                     setBookTop(dragBook, slot.top + dy);
-                    checkTrashHit(dragBook);
+                    setDeleteProgress(dragBook, dy / 140);
                 }
             });
             els.grid.addEventListener("pointerup", (e) => {
                 if (!dragBook) return;
                 dragBook.releasePointerCapture(e.pointerId);
                 document.body.classList.remove("is-dragging");
-                const hit = checkTrashHit(dragBook);
-                if (els.trash) els.trash.classList.remove("danger");
-                if (hit) {
-                    const items = loadPayloads().filter(item => item.id !== dragBook.dataset.id);
-                    savePayloads(items);
-                    dragBook = null;
-                    dragStart = null;
-                    dragMoved = false;
-                    renderBooks();
-                    return;
+                const dy = dragStart ? (e.clientY - dragStart.y) : 0;
+                const over = dy > 100;
+                if (over) {
+                    showDeleteConfirm(dragBook.dataset.id || null);
                 }
                 if (!dragMoved) {
                     openBook(dragBook);
@@ -815,6 +821,7 @@
                     dragBook.style.left = `${slot.left}px`;
                     dragBook.style.top = `${slot.top}px`;
                 }
+                setDeleteProgress(dragBook, 0);
                 dragBook = null;
                 dragStart = null;
                 dragMoved = false;
@@ -823,7 +830,7 @@
                 if (!dragBook) return;
                 dragBook.releasePointerCapture(e.pointerId);
                 document.body.classList.remove("is-dragging");
-                if (els.trash) els.trash.classList.remove("danger");
+                setDeleteProgress(dragBook, 0);
                 const slot = getSlot(dragBook);
                 dragBook.style.left = `${slot.left}px`;
                 dragBook.style.top = `${slot.top}px`;
@@ -837,6 +844,23 @@
             if (e.target.closest(".totbook")) return;
             closeAllBooks();
         });
+
+        if (els.deleteCancel) {
+            els.deleteCancel.addEventListener("click", (e) => {
+                e.preventDefault();
+                hideDeleteConfirm();
+            });
+        }
+        if (els.deleteOk) {
+            els.deleteOk.addEventListener("click", (e) => {
+                e.preventDefault();
+                if (!pendingDeleteId) return;
+                const items = loadPayloads().filter(item => item.id !== pendingDeleteId);
+                savePayloads(items);
+                hideDeleteConfirm();
+                renderBooks();
+            });
+        }
 
         if (els.grid) {
             els.grid.addEventListener("click", (e) => {
