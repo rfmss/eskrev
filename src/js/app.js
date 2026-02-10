@@ -674,6 +674,9 @@ function setupOfflineProgress() {
     const label = document.querySelector(".offline-label");
     const hint = document.getElementById("offlineHint");
     if (!bar || !label || !("serviceWorker" in navigator)) return;
+    if (typeof window !== "undefined") {
+        window.skrvOfflineReady = false;
+    }
 
     let finished = false;
     let lastPct = null;
@@ -686,6 +689,10 @@ function setupOfflineProgress() {
             label.textContent = lang.t("onboard_offline_ready");
             if (hint) hint.style.display = "none";
             finished = true;
+            if (typeof window !== "undefined") {
+                window.skrvOfflineReady = true;
+                window.dispatchEvent(new Event("skrv:offline-ready"));
+            }
         } else {
             label.textContent = `${pct}%`;
             if (hint) hint.style.display = "";
@@ -735,6 +742,10 @@ function setupOfflineProgress() {
         if (finished || lastPct >= 100) {
             label.textContent = lang.t("onboard_offline_ready");
             if (hint) hint.style.display = "none";
+            if (typeof window !== "undefined") {
+                window.skrvOfflineReady = true;
+                window.dispatchEvent(new Event("skrv:offline-ready"));
+            }
         } else {
             label.textContent = `${lastPct}%`;
             if (hint) hint.style.display = "";
@@ -866,6 +877,7 @@ function initOnboarding() {
     let keyboardTimer = null;
     const update = () => {
         const isMobileOnboard = document.body.classList.contains("mobile-lite") || document.body.classList.contains("mobile-only-page");
+        const offlineReady = window.skrvOfflineReady !== false;
         steps.forEach((step) => {
             const stepIndex = parseInt(step.getAttribute("data-step"), 10);
             step.classList.toggle("active", stepIndex === current);
@@ -891,7 +903,8 @@ function initOnboarding() {
         }
         if (nextBtn) {
             const canAdvance = current < total && (isMobileOnboard || current > 0 || langChosen || lang.current === "pt");
-            nextBtn.style.display = canAdvance ? "inline-flex" : "none";
+            nextBtn.style.display = (canAdvance && (current !== 0 || offlineReady)) ? "inline-flex" : "none";
+            nextBtn.disabled = !offlineReady && current === 0;
         }
         if (current === total) {
             setTimeout(() => {
@@ -921,7 +934,8 @@ function initOnboarding() {
             if (current === 0) {
                 if (backBtn) backBtn.style.display = "none";
                 if (nextBtn) {
-                    nextBtn.style.display = (isMobileOnboard || langChosen || lang.current === "pt") ? "inline-flex" : "none";
+                    nextBtn.style.display = ((isMobileOnboard || langChosen || lang.current === "pt") && offlineReady) ? "inline-flex" : "none";
+                    nextBtn.disabled = !offlineReady;
                 }
                 if (stepLabel) stepLabel.style.display = "none";
             }
@@ -977,8 +991,13 @@ function initOnboarding() {
     const keyHandler = (e) => {
         if (!modal.classList.contains("active")) return;
         const isMobileOnboard = document.body.classList.contains("mobile-lite") || document.body.classList.contains("mobile-only-page");
+        const offlineReady = window.skrvOfflineReady !== false;
         if (e.key === "Enter") {
             if (ignoreNextEnter) {
+                e.preventDefault();
+                return;
+            }
+            if (current === 0 && !offlineReady) {
                 e.preventDefault();
                 return;
             }
@@ -993,6 +1012,10 @@ function initOnboarding() {
             }
         }
         if (e.key === "ArrowRight") {
+            if (current === 0 && !offlineReady) {
+                e.preventDefault();
+                return;
+            }
             if (current < total) {
                 current += 1;
                 update();
@@ -1008,6 +1031,10 @@ function initOnboarding() {
         }
     };
     document.addEventListener("keydown", keyHandler);
+
+    window.addEventListener("skrv:offline-ready", () => {
+        if (modal.classList.contains("active")) update();
+    });
 
     modal.addEventListener("click", (e) => {
         if (e.target === modal) {
