@@ -1433,6 +1433,7 @@
         const notesOverlayNew = document.getElementById("notesOverlayNew");
         const notesBackToPreview = document.getElementById("notesBackToPreview");
         const notesDelete = document.getElementById("notesDelete");
+        const notesFab = document.getElementById("notesFab");
         const notesPinToggle = document.getElementById("notesPinToggle");
         const notesTitle = document.getElementById("notesTitle");
         const notesBody = document.getElementById("notesBody");
@@ -1446,6 +1447,7 @@
         }
         if (notesNew) notesNew.onclick = () => createNewNote();
         if (notesEmptyCreate) notesEmptyCreate.onclick = () => createNewNote();
+        if (notesFab) notesFab.onclick = () => createNewNote();
         if (notesBackToPreview) notesBackToPreview.onclick = () => setNotesStage("list");
         if (notesDelete) {
             notesDelete.onclick = () => {

@@ -38,21 +38,35 @@ body {
     background: var(--bg-core);
     padding: 16px 16px 10px;
     border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
 }
 
 .notes-header h2 {
     letter-spacing: 1.4px;
+    font-size: 16px;
 }
 
 .notes-header-actions {
     display: inline-flex;
-    gap: 8px;
+    gap: 6px;
+}
+
+.notes-header-actions .btn-icon {
+    border: none;
+    background: var(--bg-drawer);
+    color: var(--color-text);
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
 }
 
 .notes-close { display: none; }
 
 .notes-body {
-    padding: 0 16px 24px;
+    padding: 0 16px 80px;
     display: grid;
     gap: 20px;
 }
@@ -66,18 +80,26 @@ body {
     padding-top: 4px;
 }
 
+.notes-search {
+    display: grid;
+    gap: 10px;
+}
+
 .notes-search-row,
 .notes-input,
 .notes-textarea,
 .notes-search-input {
     border: none;
-    background: var(--xray-surface);
-    border-radius: 0;
+    background: var(--bg-drawer);
+    border-radius: 12px;
     box-shadow: none;
 }
 
 .notes-search-row {
     padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .notes-search-input {
@@ -86,14 +108,22 @@ body {
 
 .notes-card {
     border: none;
-    border-radius: 0;
-    background: var(--xray-surface);
+    border-radius: 14px;
+    background: var(--bg-drawer);
     box-shadow: none;
-    padding: 12px 10px;
+    padding: 12px 12px;
 }
 
 .notes-card:last-child {
     border-bottom: none;
+}
+
+.notes-card-header {
+    gap: 6px;
+}
+
+.notes-card-title {
+    font-weight: 600;
 }
 
 .notes-edit {
@@ -102,11 +132,11 @@ body {
 
 .notes-input,
 .notes-textarea {
-    padding: 10px 10px;
+    padding: 12px;
 }
 
 .notes-textarea {
-    min-height: 160px;
+    min-height: 180px;
 }
 
 .notes-stage-header {
@@ -114,16 +144,56 @@ body {
     padding: 0;
 }
 
-#notesBackToPreview {
-    display: none;
-}
-
 .notes-meta {
     color: var(--color-muted);
 }
 
-.notes-fab {
+#notesBackToPreview {
     display: none;
+}
+
+.notes-fab {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: none;
+    background: var(--color-accent);
+    color: var(--bg-core);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+}
+
+.notes-fab .icon {
+    width: 22px;
+    height: 22px;
+}
+
+.notes-filters {
+    border: none;
+    background: transparent;
+    padding: 0;
+}
+
+.notes-filter-list {
+    gap: 6px;
+}
+
+.notes-filter-btn {
+    border: none;
+    background: var(--bg-drawer);
+    border-radius: 999px;
+    padding: 6px 10px;
+    font-size: 11px;
+}
+
+.notes-filter-btn.active {
+    background: var(--color-accent-dim);
+    color: var(--color-text);
 }
 
 .notes-overlay {
@@ -152,7 +222,7 @@ body {
 .btn-full {
     border-radius: 999px;
     border: none;
-    background: var(--xray-surface);
+    background: var(--bg-drawer);
     color: var(--color-text);
 }
 
@@ -178,7 +248,7 @@ body {
 .modal {
     width: min(92vw, 420px);
     background: var(--bg-core);
-    border: 1px solid var(--color-accent-dim);
+    border: none;
     border-radius: 18px;
     padding: 18px;
     display: grid;
@@ -253,7 +323,7 @@ body {
     width: 100%;
     aspect-ratio: 1 / 1;
     border-radius: 12px;
-    border: 1px solid var(--color-accent-dim);
+    border: none;
     background: #000;
 }
 
