@@ -286,6 +286,19 @@
         applyStrapColor();
     };
 
+    let peekTimer = null;
+    const startPeekLoop = () => {
+        if (!els.book) return;
+        if (peekTimer) clearInterval(peekTimer);
+        peekTimer = setInterval(() => {
+            if (!els.book || els.book.classList.contains("open")) return;
+            els.book.classList.add("peek");
+            setTimeout(() => {
+                if (els.book) els.book.classList.remove("peek");
+            }, 900);
+        }, 30000);
+    };
+
     const openGate = () => {
         if (els.gate) els.gate.classList.add("active");
     };
@@ -646,21 +659,6 @@
         let dragStart = null;
         let dragOffset = null;
         let dragMoved = false;
-        let longPressTimer = null;
-        let colorLoopTimer = null;
-        const clearLongPress = () => {
-            if (longPressTimer) clearTimeout(longPressTimer);
-            longPressTimer = null;
-            if (colorLoopTimer) clearInterval(colorLoopTimer);
-            colorLoopTimer = null;
-        };
-        const startLongPress = () => {
-            clearLongPress();
-            longPressTimer = setTimeout(() => {
-                cycleStrapColor();
-                colorLoopTimer = setInterval(cycleStrapColor, 220);
-            }, 480);
-        };
         const setManualPos = (x, y) => {
             if (!els.book) return;
             const rect = els.book.getBoundingClientRect();
@@ -674,12 +672,12 @@
         };
         if (els.book) {
             els.book.addEventListener("pointerdown", (e) => {
-                if (els.book.classList.contains("open")) return;
+                const isOpen = els.book.classList.contains("open");
+                if (isOpen && !e.target.closest(".drag-handle")) return;
                 dragStart = { x: e.clientX, y: e.clientY };
                 const rect = els.book.getBoundingClientRect();
                 dragOffset = { x: e.clientX - rect.left, y: e.clientY - rect.top };
                 dragMoved = false;
-                startLongPress();
                 els.book.setPointerCapture(e.pointerId);
             });
             els.book.addEventListener("pointermove", (e) => {
@@ -688,7 +686,6 @@
                 const dy = Math.abs(e.clientY - dragStart.y);
                 if (dx > 6 || dy > 6) {
                     dragMoved = true;
-                    clearLongPress();
                     const x = e.clientX - dragOffset.x;
                     const y = e.clientY - dragOffset.y;
                     setManualPos(x, y);
@@ -696,7 +693,6 @@
             });
             els.book.addEventListener("pointerup", (e) => {
                 if (!dragStart) return;
-                clearLongPress();
                 els.book.releasePointerCapture(e.pointerId);
                 if (!dragMoved) {
                     els.book.classList.add("open");
@@ -706,7 +702,6 @@
                 dragMoved = false;
             });
             els.book.addEventListener("pointercancel", (e) => {
-                clearLongPress();
                 if (dragStart) els.book.releasePointerCapture(e.pointerId);
                 dragStart = null;
                 dragOffset = null;
@@ -840,6 +835,7 @@
         applyI18n();
         bindEvents();
         renderBook();
+        startPeekLoop();
 
         const gateDone = sessionStorage.getItem("skrv_mobile_gate_done") === "1";
         if (gateDone) {
