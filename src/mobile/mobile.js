@@ -16,7 +16,7 @@
             mobile_extract_body: "Retire o projeto do celular em qualquer formato.",
             mobile_demo_book: "Caderninho demo",
             mobile_demo_title: "Como usar",
-            mobile_demo_body: "Toque para abrir.\nArraste para baixo e solte para apagar.\nUse TRAZER PROJETO para importar um .skv.",
+            mobile_demo_body: "Toque para abrir.\nArraste para baixo e solte para apagar.\nMáximo: 6 projetos (use outro navegador para mais).\nUse TRAZER PROJETO para importar um .skv.",
             mobile_export_qr: "ENVIAR POR QR",
             mobile_export_save: "SALVAR .SKV",
             mobile_export_b64: "SALVAR .B64",
@@ -71,7 +71,7 @@
             mobile_extract_body: "Retrieve the project from your phone in any format.",
             mobile_demo_book: "Demo notebook",
             mobile_demo_title: "How it works",
-            mobile_demo_body: "Tap to open.\nDrag down and release to delete.\nUse BRING PROJECT to import a .skv.",
+            mobile_demo_body: "Tap to open.\nDrag down and release to delete.\nMax: 6 projects (use another browser for more).\nUse BRING PROJECT to import a .skv.",
             mobile_export_qr: "SEND BY QR",
             mobile_export_save: "SAVE .SKV",
             mobile_export_b64: "SAVE .B64",
@@ -126,7 +126,7 @@
             mobile_extract_body: "Retira el proyecto del teléfono en cualquier formato.",
             mobile_demo_book: "Cuaderno demo",
             mobile_demo_title: "Cómo usar",
-            mobile_demo_body: "Toca para abrir.\nArrastra hacia abajo y suelta para borrar.\nUsa TRAER PROYECTO para importar un .skv.",
+            mobile_demo_body: "Toca para abrir.\nArrastra hacia abajo y suelta para borrar.\nMáximo: 6 proyectos (usa otro navegador para más).\nUsa TRAER PROYECTO para importar un .skv.",
             mobile_export_qr: "ENVIAR POR QR",
             mobile_export_save: "GUARDAR .SKV",
             mobile_export_b64: "GUARDAR .B64",
@@ -181,7 +181,7 @@
             mobile_extract_body: "Retirez le projet du téléphone dans n'importe quel format.",
             mobile_demo_book: "Carnet démo",
             mobile_demo_title: "Comment utiliser",
-            mobile_demo_body: "Touchez pour ouvrir.\nFaites glisser vers le bas et relâchez pour supprimer.\nUtilisez APPORTER PROJET pour importer un .skv.",
+            mobile_demo_body: "Touchez pour ouvrir.\nFaites glisser vers le bas et relâchez pour supprimer.\nMax: 6 projets (utilisez un autre navigateur pour plus).\nUtilisez APPORTER PROJET pour importer un .skv.",
             mobile_export_qr: "ENVOYER PAR QR",
             mobile_export_save: "ENREGISTRER .SKV",
             mobile_export_b64: "ENREGISTRER .B64",
@@ -1096,13 +1096,7 @@
         window.addEventListener("resize", () => {
             renderBooks();
         });
-
-        const gateDone = sessionStorage.getItem("skrv_mobile_gate_done") === "1";
-        if (gateDone) {
-            closeGate();
-        } else {
-            openGate();
-        }
+        closeGate();
     };
 
     window.addEventListener("DOMContentLoaded", init);

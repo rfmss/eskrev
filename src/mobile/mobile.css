@@ -323,9 +323,9 @@ body.has-open-book .library {
 }
 
 .totbook.open {
-    width: min(92vw, 620px);
+    width: min(90vw, 680px);
     height: auto;
-    max-height: calc(100vh - 180px);
+    max-height: 90vh;
     transform: rotateY(0) rotateX(0);
     box-shadow: var(--m-shadow);
     z-index: 20;
@@ -467,7 +467,7 @@ body.has-open-book .library {
 }
 
 .totbook.open .page-viewport {
-    max-height: calc(100vh - 260px);
+    max-height: calc(90vh - 220px);
     overflow-y: auto;
     overscroll-behavior: contain;
     padding-right: 6px;
