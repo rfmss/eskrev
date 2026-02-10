@@ -3054,7 +3054,22 @@ function setupEventListeners() {
     });
     
     const closeResetBtn = document.getElementById("closeModalReset");
-    if (closeResetBtn) closeResetBtn.onclick = closeResetModal;
+    if (closeResetBtn) {
+        closeResetBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closeResetModal();
+        });
+    }
+    if (resetModal) {
+        resetModal.addEventListener("click", (e) => {
+            const target = e.target.closest && e.target.closest("#closeModalReset");
+            if (!target) return;
+            e.preventDefault();
+            e.stopPropagation();
+            closeResetModal();
+        });
+    }
     
     if (btnProof) {
         btnProof.onclick = () => {
