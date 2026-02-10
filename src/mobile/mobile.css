@@ -235,7 +235,7 @@ body.has-open-book .library {
 }
 
 body.has-open-book .library {
-    min-height: calc(90vh - 120px);
+    min-height: calc(90vh - 140px);
 }
 
 .books-grid {

@@ -361,6 +361,8 @@
             book.dataset.id = item.id;
             book.dataset.slotLeft = String(left);
             book.dataset.slotTop = String(top);
+            book.dataset.slotWidth = String(bookW);
+            book.dataset.slotHeight = String(bookH);
             if (item.demo) book.dataset.demo = "1";
             book.style.left = `${left}px`;
             book.style.top = `${top}px`;
@@ -829,6 +831,10 @@
                 const slot = getSlot(book);
                 book.style.left = `${slot.left}px`;
                 book.style.top = `${slot.top}px`;
+                const slotW = book.dataset.slotWidth;
+                const slotH = book.dataset.slotHeight;
+                if (slotW) book.style.width = `${slotW}px`;
+                if (slotH) book.style.height = `${slotH}px`;
             });
             state.activeId = null;
             document.body.classList.remove("has-open-book");
@@ -839,6 +845,10 @@
             book.classList.add("open");
             state.activeId = book.dataset.id || null;
             document.body.classList.add("has-open-book");
+            book.style.width = "90vw";
+            book.style.maxWidth = "680px";
+            book.style.height = "auto";
+            book.style.maxHeight = "90vh";
             requestAnimationFrame(() => {
                 const libRect = els.library.getBoundingClientRect();
                 const left = Math.max(0, (libRect.width - book.offsetWidth) / 2);
