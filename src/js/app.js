@@ -743,7 +743,7 @@ function setupOfflineProgress() {
     poll();
     const fallbackTimer = setTimeout(() => {
         if (!finished) showFallback();
-    }, 8000);
+    }, 14000);
     const timer = setInterval(() => {
         if (finished) {
             clearInterval(timer);
