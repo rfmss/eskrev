@@ -299,57 +299,154 @@
         stopScan();
     };
 
+    let scanActive = false;
+    let scanBusy = false;
+    let scanStream = null;
+    let scanDetector = null;
+    let scanSession = null;
     let scanCanvas = null;
     let scanCtx = null;
-    let scanSession = null;
 
-    const stopScan = () => {
-        if (scanSession && scanSession.stream) {
-            scanSession.stream.getTracks().forEach((track) => track.stop());
+    const parseFrame = (raw) => {
+        const parts = raw.split("|");
+        if (parts.length < 6) return null;
+        const [version, id, idxRaw, totalRaw, checksum, data] = parts;
+        if (version !== QR_VERSION) return null;
+        const index = parseInt(idxRaw, 10);
+        const total = parseInt(totalRaw, 10);
+        if (!Number.isFinite(index) || !Number.isFinite(total)) return null;
+        if (!id || !data) return null;
+        if (crc32(data) !== checksum) return null;
+        return { id, index, total, data };
+    };
+
+    const updateScanStatus = (text) => {
+        if (els.scanStatus) els.scanStatus.textContent = text;
+    };
+
+    const initScanGrid = (total) => {
+        if (!els.scanGrid) return;
+        const columns = Math.ceil(Math.sqrt(total));
+        els.scanGrid.innerHTML = "";
+        els.scanGrid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+        for (let i = 0; i < total; i += 1) {
+            const cell = document.createElement("div");
+            cell.style.background = "rgba(243,239,230,0.08)";
+            cell.style.borderRadius = "3px";
+            cell.style.paddingBottom = "100%";
+            els.scanGrid.appendChild(cell);
         }
-        scanSession = null;
-        scanCanvas = null;
-        scanCtx = null;
+    };
+
+    const markCell = (index) => {
+        if (!els.scanGrid) return;
+        const cell = els.scanGrid.children[index - 1];
+        if (cell) cell.style.background = "rgba(31,79,255,0.6)";
+    };
+
+    const handleFrame = (frame) => {
+        if (!frame) return;
+        if (!scanSession || scanSession.id !== frame.id) {
+            scanSession = {
+                id: frame.id,
+                total: frame.total,
+                received: new Map()
+            };
+            initScanGrid(frame.total);
+        }
+        if (scanSession.total !== frame.total) return;
+        if (scanSession.received.has(frame.index)) return;
+        scanSession.received.set(frame.index, frame.data);
+        markCell(frame.index);
+        const receivedCount = scanSession.received.size;
+        updateScanStatus(`${t("qr_scan_wait")} ${receivedCount}/${scanSession.total}`);
+        if (els.scanProgress) {
+            const pct = Math.max(0, Math.min(100, (receivedCount / scanSession.total) * 100));
+            els.scanProgress.style.width = `${pct}%`;
+        }
+        if (receivedCount === scanSession.total) {
+            const ordered = [];
+            for (let i = 1; i <= scanSession.total; i += 1) {
+                ordered.push(scanSession.received.get(i) || "");
+            }
+            const base64 = ordered.join("");
+            const payload = decodeBase64(base64);
+            if (payload) {
+                importPayload(payload);
+            } else {
+                updateScanStatus(t("qr_decode_fail"));
+            }
+            stopScan();
+            closeScanModal();
+        }
+    };
+
+    const scanLoop = async () => {
+        if (!scanActive || scanBusy) return;
+        if (!els.scanVideo || els.scanVideo.readyState < 2) {
+            requestAnimationFrame(scanLoop);
+            return;
+        }
+        scanBusy = true;
+        try {
+            if (scanDetector) {
+                const codes = await scanDetector.detect(els.scanVideo);
+                if (codes && codes.length) handleFrame(parseFrame(codes[0].rawValue || ""));
+            } else if (scanCtx && scanCanvas && window.jsQR) {
+                const width = els.scanVideo.videoWidth || 640;
+                const height = els.scanVideo.videoHeight || 480;
+                scanCanvas.width = width;
+                scanCanvas.height = height;
+                scanCtx.drawImage(els.scanVideo, 0, 0, width, height);
+                const imageData = scanCtx.getImageData(0, 0, width, height);
+                const code = window.jsQR(imageData.data, imageData.width, imageData.height, { inversionAttempts: "dontInvert" });
+                if (code && code.data) handleFrame(parseFrame(code.data));
+            }
+        } catch (_) {
+            // ignore
+        }
+        scanBusy = false;
+        requestAnimationFrame(scanLoop);
     };
 
     const startScan = async () => {
-        if (!els.scanVideo || !window.jsQR) {
-            if (els.scanStatus) els.scanStatus.textContent = t("qr_libs_missing");
+        if (!els.scanVideo || !navigator.mediaDevices) {
+            updateScanStatus(t("qr_camera_missing"));
             return;
         }
         try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false });
-            els.scanVideo.srcObject = stream;
-            scanSession = { stream };
-            scanCanvas = document.createElement("canvas");
-            scanCtx = scanCanvas.getContext("2d");
-            requestAnimationFrame(scanLoop);
+            scanStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false });
+            els.scanVideo.srcObject = scanStream;
+            await els.scanVideo.play();
+            if ("BarcodeDetector" in window) {
+                scanDetector = new BarcodeDetector({ formats: ["qr_code"] });
+            } else if (window.jsQR) {
+                scanCanvas = document.createElement("canvas");
+                scanCtx = scanCanvas.getContext("2d", { willReadFrequently: true });
+            } else {
+                updateScanStatus(t("qr_no_detector"));
+                return;
+            }
+            scanActive = true;
+            updateScanStatus(t("qr_scan_wait"));
+            scanLoop();
         } catch (_) {
-            if (els.scanStatus) els.scanStatus.textContent = t("qr_camera_blocked");
+            updateScanStatus(t("qr_camera_blocked"));
         }
     };
 
-    const scanLoop = () => {
-        if (!scanSession || !els.scanVideo || !scanCtx) return;
-        const video = els.scanVideo;
-        if (video.readyState !== 4) {
-            requestAnimationFrame(scanLoop);
-            return;
+    const stopScan = () => {
+        scanActive = false;
+        scanBusy = false;
+        if (scanStream) {
+            scanStream.getTracks().forEach(track => track.stop());
+            scanStream = null;
         }
-        scanCanvas.width = video.videoWidth;
-        scanCanvas.height = video.videoHeight;
-        scanCtx.drawImage(video, 0, 0, scanCanvas.width, scanCanvas.height);
-        const imageData = scanCtx.getImageData(0, 0, scanCanvas.width, scanCanvas.height);
-        const code = window.jsQR(imageData.data, imageData.width, imageData.height);
-        if (code && code.data) {
-            const payload = decodeBase64(code.data) || parsePayloadFromJson(code.data);
-            if (payload) {
-                importPayload(payload);
-                closeScanModal();
-                return;
-            }
-        }
-        requestAnimationFrame(scanLoop);
+        if (els.scanVideo) els.scanVideo.srcObject = null;
+        scanDetector = null;
+        scanCanvas = null;
+        scanCtx = null;
+        scanSession = null;
     };
 
     const QR_VERSION = "v1";
