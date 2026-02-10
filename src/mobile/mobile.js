@@ -17,6 +17,7 @@
             mobile_export_b64: "SALVAR .B64",
             mobile_export_copy: "COPIAR B64",
             marquee_ready: "apoie: <span class=\"marquee-copy\" data-copy=\"BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP\">BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP</span> | <span class=\"marquee-copy\" data-copy=\"eskrev@disroot.org\">eskrev@disroot.org</span> pix/paypal",
+            mobile_trash: "Apagar",
             close_label: "OK",
             qr_scan_title: "SCAN QR",
             qr_scan_wait: "AGUARDANDO QR...",
@@ -59,6 +60,7 @@
             mobile_export_b64: "SAVE .B64",
             mobile_export_copy: "COPY B64",
             marquee_ready: "support: <span class=\"marquee-copy\" data-copy=\"BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP\">BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP</span> | <span class=\"marquee-copy\" data-copy=\"eskrev@disroot.org\">eskrev@disroot.org</span> pix/paypal",
+            mobile_trash: "Delete",
             close_label: "OK",
             qr_scan_title: "SCAN QR",
             qr_scan_wait: "WAITING FOR QR...",
@@ -101,6 +103,7 @@
             mobile_export_b64: "GUARDAR .B64",
             mobile_export_copy: "COPIAR B64",
             marquee_ready: "apoya: <span class=\"marquee-copy\" data-copy=\"BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP\">BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP</span> | <span class=\"marquee-copy\" data-copy=\"eskrev@disroot.org\">eskrev@disroot.org</span> pix/paypal",
+            mobile_trash: "Borrar",
             close_label: "OK",
             qr_scan_title: "SCAN QR",
             qr_scan_wait: "ESPERANDO QR...",
@@ -143,6 +146,7 @@
             mobile_export_b64: "ENREGISTRER .B64",
             mobile_export_copy: "COPIER B64",
             marquee_ready: "soutenez : <span class=\"marquee-copy\" data-copy=\"BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP\">BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP</span> | <span class=\"marquee-copy\" data-copy=\"eskrev@disroot.org\">eskrev@disroot.org</span> pix/paypal",
+            mobile_trash: "Supprimer",
             close_label: "OK",
             qr_scan_title: "SCAN QR",
             qr_scan_wait: "EN ATTENTE...",
@@ -618,6 +622,7 @@
 
     const initElements = () => {
         els.langToggle = document.getElementById("mobileLangToggle");
+        els.library = document.getElementById("library");
         els.gate = document.getElementById("mobileGate");
         els.gateScan = document.getElementById("mobileGateScan");
         els.book = document.getElementById("mobileTotbook");
@@ -629,6 +634,7 @@
         els.exportB64 = document.getElementById("btnExportB64");
         els.exportCopy = document.getElementById("btnCopyB64");
         els.support = document.querySelector(".mobile-support");
+        els.trash = document.getElementById("trashZone");
         els.scanModal = document.getElementById("qrScanModal");
         els.scanVideo = document.getElementById("qrScanVideo");
         els.scanStatus = document.getElementById("qrScanStatus");
@@ -660,15 +666,29 @@
         let dragOffset = null;
         let dragMoved = false;
         const setManualPos = (x, y) => {
-            if (!els.book) return;
+            if (!els.book || !els.library) return;
             const rect = els.book.getBoundingClientRect();
-            const maxX = Math.max(0, window.innerWidth - rect.width);
-            const maxY = Math.max(0, window.innerHeight - rect.height);
+            const libRect = els.library.getBoundingClientRect();
+            const maxX = Math.max(0, libRect.width - rect.width);
+            const maxY = Math.max(0, libRect.height - rect.height);
             const nx = Math.max(0, Math.min(maxX, x));
             const ny = Math.max(0, Math.min(maxY, y));
             els.book.style.left = `${nx}px`;
             els.book.style.top = `${ny}px`;
             els.book.classList.add("manual-pos");
+        };
+        const checkTrashHit = () => {
+            if (!els.book || !els.trash) return false;
+            const bookRect = els.book.getBoundingClientRect();
+            const trashRect = els.trash.getBoundingClientRect();
+            const hit = !(
+                bookRect.right < trashRect.left ||
+                bookRect.left > trashRect.right ||
+                bookRect.bottom < trashRect.top ||
+                bookRect.top > trashRect.bottom
+            );
+            els.trash.classList.toggle("danger", hit);
+            return hit;
         };
         if (els.book) {
             els.book.addEventListener("pointerdown", (e) => {
@@ -676,8 +696,11 @@
                 if (isOpen && !e.target.closest(".drag-handle")) return;
                 dragStart = { x: e.clientX, y: e.clientY };
                 const rect = els.book.getBoundingClientRect();
+                const libRect = els.library ? els.library.getBoundingClientRect() : { left: 0, top: 0 };
                 dragOffset = { x: e.clientX - rect.left, y: e.clientY - rect.top };
                 dragMoved = false;
+                document.body.classList.add("is-dragging");
+                if (els.trash) els.trash.classList.remove("danger");
                 els.book.setPointerCapture(e.pointerId);
             });
             els.book.addEventListener("pointermove", (e) => {
@@ -686,14 +709,27 @@
                 const dy = Math.abs(e.clientY - dragStart.y);
                 if (dx > 6 || dy > 6) {
                     dragMoved = true;
-                    const x = e.clientX - dragOffset.x;
-                    const y = e.clientY - dragOffset.y;
+                    const libRect = els.library ? els.library.getBoundingClientRect() : { left: 0, top: 0 };
+                    const x = e.clientX - libRect.left - dragOffset.x;
+                    const y = e.clientY - libRect.top - dragOffset.y;
                     setManualPos(x, y);
+                    checkTrashHit();
                 }
             });
             els.book.addEventListener("pointerup", (e) => {
                 if (!dragStart) return;
                 els.book.releasePointerCapture(e.pointerId);
+                document.body.classList.remove("is-dragging");
+                const hit = checkTrashHit();
+                if (els.trash) els.trash.classList.remove("danger");
+                if (hit) {
+                    localStorage.removeItem(STORAGE_KEY);
+                    renderBook();
+                    dragStart = null;
+                    dragOffset = null;
+                    dragMoved = false;
+                    return;
+                }
                 if (!dragMoved) {
                     els.book.classList.add("open");
                 }
@@ -703,6 +739,8 @@
             });
             els.book.addEventListener("pointercancel", (e) => {
                 if (dragStart) els.book.releasePointerCapture(e.pointerId);
+                document.body.classList.remove("is-dragging");
+                if (els.trash) els.trash.classList.remove("danger");
                 dragStart = null;
                 dragOffset = null;
                 dragMoved = false;
