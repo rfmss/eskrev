@@ -1,4 +1,4 @@
-const CACHE_NAME = "skrv-cache-v86";
+const CACHE_NAME = "skrv-cache-v87";
 const CACHE_ASSETS = [
   "./",
   "./index.html",
@@ -207,20 +207,31 @@ self.addEventListener("fetch", (event) => {
   const isNav = event.request.mode === "navigate" || event.request.destination === "document";
   const url = new URL(event.request.url);
   const wantsMobile = url.pathname.endsWith("/mobile.html") || url.pathname.endsWith("mobile.html");
-  event.respondWith(
-    caches.match(event.request).then((cached) => {
-      if (cached) return cached;
-      const fallback = async () => {
-        if (isNav) {
+  if (isNav) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          if (response && response.status === 200) {
+            const copy = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+          }
+          return response;
+        })
+        .catch(async () => {
           if (wantsMobile) {
             const mobileCached = await caches.match("./mobile.html");
             if (mobileCached) return mobileCached;
           }
           const indexCached = await caches.match("./index.html");
           if (indexCached) return indexCached;
-        }
-        return cached || new Response("", { status: 504, statusText: "offline" });
-      };
+          return new Response("", { status: 504, statusText: "offline" });
+        })
+    );
+    return;
+  }
+  event.respondWith(
+    caches.match(event.request).then((cached) => {
+      if (cached) return cached;
       return fetch(event.request)
         .then((response) => {
           if (!response || response.status !== 200) return response;
@@ -228,7 +239,7 @@ self.addEventListener("fetch", (event) => {
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
           return response;
         })
-        .catch(() => fallback());
+        .catch(() => cached || new Response("", { status: 504, statusText: "offline" }));
     })
   );
 });
