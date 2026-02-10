@@ -679,9 +679,28 @@ function setupOfflineProgress() {
     }
 
     let finished = false;
+    let fallbackUnlocked = false;
     let lastPct = null;
+    let statusReceived = false;
+    const unlock = () => {
+        if (typeof window !== "undefined") {
+            window.skrvOfflineReady = true;
+            window.dispatchEvent(new Event("skrv:offline-ready"));
+        }
+    };
+    const showFallback = () => {
+        if (finished || fallbackUnlocked) return;
+        fallbackUnlocked = true;
+        if (label) label.textContent = lang.t("onboard_offline_fallback");
+        if (hint) {
+            hint.textContent = lang.t("onboard_offline_fallback_hint");
+            hint.style.display = "";
+        }
+        unlock();
+    };
     const setProgress = (cached, total) => {
         if (!Number.isFinite(total) || total <= 0) return;
+        statusReceived = true;
         const pct = Math.max(0, Math.min(100, Math.round((cached / total) * 100)));
         lastPct = pct;
         bar.style.width = `${pct}%`;
@@ -689,10 +708,7 @@ function setupOfflineProgress() {
             label.textContent = lang.t("onboard_offline_ready");
             if (hint) hint.style.display = "none";
             finished = true;
-            if (typeof window !== "undefined") {
-                window.skrvOfflineReady = true;
-                window.dispatchEvent(new Event("skrv:offline-ready"));
-            }
+            unlock();
         } else {
             label.textContent = `${pct}%`;
             if (hint) hint.style.display = "";
@@ -725,9 +741,13 @@ function setupOfflineProgress() {
     };
 
     poll();
+    const fallbackTimer = setTimeout(() => {
+        if (!finished) showFallback();
+    }, 14000);
     const timer = setInterval(() => {
         if (finished) {
             clearInterval(timer);
+            clearTimeout(fallbackTimer);
             return;
         }
         poll();
@@ -738,13 +758,16 @@ function setupOfflineProgress() {
     });
     window.addEventListener("focus", poll);
     document.addEventListener("lang:changed", () => {
-        if (lastPct === null) return;
+        if (lastPct === null && !fallbackUnlocked) return;
         if (finished || lastPct >= 100) {
             label.textContent = lang.t("onboard_offline_ready");
             if (hint) hint.style.display = "none";
-            if (typeof window !== "undefined") {
-                window.skrvOfflineReady = true;
-                window.dispatchEvent(new Event("skrv:offline-ready"));
+            unlock();
+        } else if (fallbackUnlocked && !statusReceived) {
+            label.textContent = lang.t("onboard_offline_fallback");
+            if (hint) {
+                hint.textContent = lang.t("onboard_offline_fallback_hint");
+                hint.style.display = "";
             }
         } else {
             label.textContent = `${lastPct}%`;
