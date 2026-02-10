@@ -854,6 +854,14 @@
                 book.style.height = "auto";
                 book.style.maxHeight = `${openMaxH}px`;
                 book.style.setProperty("--open-max-h", `${openMaxH}px`);
+                const sheet = book.querySelector(".sheet");
+                const extra = 180;
+                if (sheet) {
+                    const desiredH = Math.min(openMaxH, sheet.scrollHeight + extra);
+                    book.style.height = `${desiredH}px`;
+                    book.style.maxHeight = `${desiredH}px`;
+                    book.style.setProperty("--open-max-h", `${desiredH}px`);
+                }
                 const left = Math.max(0, (libRect.width - openW) / 2);
                 const maxTop = Math.max(0, libRect.height - book.offsetHeight);
                 const top = Math.min(Math.max(0, (libRect.height - book.offsetHeight) / 2), maxTop);

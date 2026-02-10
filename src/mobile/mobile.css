@@ -238,6 +238,10 @@ body.has-open-book .library {
     min-height: calc(90vh - 140px);
 }
 
+body.has-open-book {
+    overflow: hidden;
+}
+
 .books-grid {
     position: absolute;
     inset: 0;
@@ -481,7 +485,7 @@ body.has-open-book .library {
 
 .totbook.open .page-viewport {
     max-height: calc(var(--open-max-h, 90vh) - 220px);
-    overflow-y: auto;
+    overflow: hidden;
     overscroll-behavior: contain;
     padding-right: 6px;
     touch-action: pan-y;
