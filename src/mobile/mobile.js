@@ -848,11 +848,13 @@
             requestAnimationFrame(() => {
                 const libRect = els.library.getBoundingClientRect();
                 const topStack = document.querySelector(".mobile-top-stack");
+                const scanBar = document.querySelector(".mobile-scan-bar");
                 const footer = document.querySelector(".mobile-footer");
                 const topY = topStack ? topStack.getBoundingClientRect().bottom : libRect.top;
+                const scanRect = scanBar ? scanBar.getBoundingClientRect() : null;
                 const footerRect = footer ? footer.getBoundingClientRect() : null;
-                const bottomY = footerRect ? footerRect.top : libRect.bottom;
-                const availableH = Math.max(200, bottomY - topY - 10);
+                const bottomY = scanRect ? scanRect.top : (footerRect ? footerRect.top : libRect.bottom);
+                const availableH = Math.max(180, bottomY - topY - 8);
                 const openW = Math.min(libRect.width * 0.92, 520);
                 const openMaxH = Math.floor(availableH);
                 book.style.width = `${openW}px`;
@@ -861,7 +863,7 @@
                 book.style.maxHeight = `${openMaxH}px`;
                 book.style.setProperty("--open-max-h", `${openMaxH}px`);
                 const sheet = book.querySelector(".sheet");
-                const extra = 150;
+                const extra = 140;
                 if (sheet) {
                     const desiredH = Math.min(openMaxH, sheet.scrollHeight + extra);
                     book.style.height = `${desiredH}px`;
@@ -869,8 +871,8 @@
                     book.style.setProperty("--open-max-h", `${desiredH}px`);
                 }
                 const left = Math.max(0, (libRect.width - openW) / 2);
-                const maxTop = Math.max(0, bottomY - book.offsetHeight - 5);
-                const top = Math.min(Math.max(topY + 6, topY + (availableH - book.offsetHeight) / 2), maxTop);
+                const maxTop = Math.max(0, bottomY - book.offsetHeight - 4);
+                const top = Math.min(Math.max(topY + 4, topY + (availableH - book.offsetHeight) / 2), maxTop);
                 book.style.left = `${left}px`;
                 book.style.top = `${top}px`;
             });
