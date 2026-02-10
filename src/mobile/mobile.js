@@ -200,8 +200,6 @@
 
     const STORAGE_KEY = "skrv_mobile_payloads";
     const MAX_BOOKS = 6;
-    const GRID_COLS = 3;
-    const GRID_ROWS = 2;
     const state = {
         lang: (localStorage.getItem("lit_lang") || "pt").toLowerCase().includes("en") ? "en"
             : (localStorage.getItem("lit_lang") || "pt").toLowerCase().includes("es") ? "es"
@@ -282,6 +280,13 @@
 
     const pickStrapColor = () => STRAP_COLORS[Math.floor(Math.random() * STRAP_COLORS.length)];
 
+    const getGridConfig = () => {
+        const isLandscape = window.matchMedia && window.matchMedia("(orientation: landscape)").matches;
+        return isLandscape
+            ? { cols: 6, rows: 1 }
+            : { cols: 3, rows: 2 };
+    };
+
     const renderBooks = () => {
         const items = loadPayloads();
         if (!els.grid || !els.empty || !els.library) return;
@@ -292,15 +297,16 @@
             els.empty.classList.add("is-hidden");
         }
 
+        const { cols, rows } = getGridConfig();
         const libRect = els.library.getBoundingClientRect();
-        const slotW = libRect.width / GRID_COLS;
-        const slotH = libRect.height / GRID_ROWS;
+        const slotW = libRect.width / cols;
+        const slotH = libRect.height / rows;
         const bookW = Math.min(120, slotW * 0.9);
         const bookH = Math.min(170, slotH * 0.9);
 
         items.slice(0, MAX_BOOKS).forEach((item, idx) => {
-            const col = idx % GRID_COLS;
-            const row = Math.floor(idx / GRID_COLS);
+            const col = idx % cols;
+            const row = Math.floor(idx / cols);
             const left = col * slotW + (slotW - bookW) / 2;
             const top = row * slotH + (slotH - bookH) / 2;
             const book = document.createElement("div");
@@ -995,6 +1001,9 @@
         applyI18n();
         bindEvents();
         renderBooks();
+        window.addEventListener("resize", () => {
+            renderBooks();
+        });
 
         const gateDone = sessionStorage.getItem("skrv_mobile_gate_done") === "1";
         if (gateDone) {

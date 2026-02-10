@@ -215,6 +215,17 @@ body {
     cursor: pointer;
 }
 
+@media (orientation: landscape) {
+    .library {
+        width: min(96vw, 900px);
+        height: min(56vh, 360px);
+    }
+    .totbook {
+        width: 86px;
+        height: 122px;
+    }
+}
+
 .totbook.hidden { display: none; }
 
 .totbook::before {
