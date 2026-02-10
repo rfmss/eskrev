@@ -203,6 +203,17 @@ body {
     z-index: 3;
 }
 
+.cover-date {
+    position: absolute;
+    top: 18px;
+    left: 16px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(244, 241, 234, 0.75);
+    z-index: 5;
+}
+
 .cover .sheen {
     position: absolute;
     inset: -40px -80px;
@@ -342,26 +353,44 @@ body {
     width: 100%;
     height: 100%;
     display: grid;
-    gap: 16px;
+    gap: 14px;
     align-content: start;
     color: #212121;
 }
 
 .book-inner-title {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
 
 .book-inner-body {
-    font-size: 13px;
-    color: #3a3935;
+    font-size: 12px;
+    color: #44423d;
 }
 
 .book-inner-actions {
     display: grid;
-    gap: 10px;
+    gap: 8px;
+}
+
+.book-inner .btn-full {
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.12);
+    background: rgba(0,0,0,0.02);
+    color: #1e1d1a;
+    padding: 12px 14px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    font-size: 11px;
+}
+
+.book-inner .btn-full.primary {
+    background: #1e1d1a;
+    color: #f6f1e7;
+    border-color: #1e1d1a;
 }
 
 .btn-full {

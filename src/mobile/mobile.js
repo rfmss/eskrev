@@ -225,6 +225,26 @@
         return d.toLocaleDateString();
     };
 
+    const payloadProjectName = (payload) => {
+        const archive = payload && payload.ARCHIVE_STATE ? payload.ARCHIVE_STATE : null;
+        if (!archive || !Array.isArray(archive.projects) || !archive.projects.length) return "";
+        const active = archive.projects.find(p => p.id === archive.activeId) || archive.projects[0];
+        return active && active.name ? String(active.name) : "";
+    };
+
+    const STRAP_COLORS = [
+        "#f2a900", "#d97706", "#3a6ea5", "#6b8e23",
+        "#8b5cf6", "#b45309", "#374151", "#16a34a", "#dc2626"
+    ];
+
+    const applyStrapColor = () => {
+        if (!els.book) return;
+        const strap = els.book.querySelector(".strap");
+        if (!strap) return;
+        const idx = Math.floor(Math.random() * STRAP_COLORS.length);
+        strap.style.background = STRAP_COLORS[idx];
+    };
+
     const renderBook = () => {
         const payload = loadPayload();
         if (!els.book || !els.empty) return;
@@ -238,6 +258,10 @@
         els.book.classList.remove("hidden");
         els.book.classList.remove("open");
         if (els.bookDate) els.bookDate.textContent = payloadDate(payload);
+        const name = payloadProjectName(payload);
+        const titleEl = document.getElementById("bookCoverTitle");
+        if (titleEl) titleEl.textContent = name || "Projeto";
+        applyStrapColor();
     };
 
     const openGate = () => {
@@ -607,6 +631,11 @@
                 }
             });
         }
+        document.addEventListener("click", (e) => {
+            if (!els.book || !els.book.classList.contains("open")) return;
+            if (e.target.closest("#mobileTotbook")) return;
+            els.book.classList.remove("open");
+        });
 
         if (els.exportQr) {
             els.exportQr.addEventListener("click", () => {
