@@ -2745,6 +2745,17 @@ function setupEventListeners() {
     const proofMsg = document.getElementById("resetProofMsg");
     const btnProof = document.getElementById("btnConfirmReset0");
     const btnStep1 = document.getElementById("btnConfirmReset1");
+    const closeResetModal = () => {
+        debugReset("close reset modal");
+        resetModal.classList.remove("active");
+        if (step2) step2.style.display = "none";
+        if (btnStep1) btnStep1.style.display = "none";
+        if (step0) step0.style.display = "block";
+        if (passInput) passInput.value = "";
+        if (msg) msg.innerText = "";
+        if (proofInput) proofInput.value = "";
+        if (proofMsg) proofMsg.innerText = "";
+    };
 
     let currentProofWord = "";
 
@@ -2782,10 +2793,8 @@ function setupEventListeners() {
         openResetModal();
     });
     
-    document.getElementById("closeModalReset").onclick = () => {
-        debugReset("close reset modal");
-        resetModal.classList.remove("active");
-    };
+    const closeResetBtn = document.getElementById("closeModalReset");
+    if (closeResetBtn) closeResetBtn.onclick = closeResetModal;
     
     if (btnProof) {
         btnProof.onclick = () => {
