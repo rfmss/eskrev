@@ -6,6 +6,7 @@
             mobile_gate_title: "Importar projeto",
             mobile_gate_body: "",
             mobile_gate_scan: "LER QR CODE",
+            mobile_gate_create: "CRIAR NOVO",
             mobile_gate_hint: "Ou ↑ para criar novo",
             mobile_gate_share: "Compartilhe o eskrev",
             setup_title: "Criar sessão",
@@ -82,6 +83,7 @@
             mobile_gate_title: "Import project",
             mobile_gate_body: "",
             mobile_gate_scan: "READ QR CODE",
+            mobile_gate_create: "CREATE NEW",
             mobile_gate_hint: "Or ↑ to create new",
             mobile_gate_share: "Share eskrev",
             setup_title: "Create session",
@@ -158,6 +160,7 @@
             mobile_gate_title: "Importar proyecto",
             mobile_gate_body: "",
             mobile_gate_scan: "LEER QR",
+            mobile_gate_create: "CREAR NUEVO",
             mobile_gate_hint: "O ↑ para crear nuevo",
             mobile_gate_share: "Comparte eskrev",
             setup_title: "Crear sesión",
@@ -234,6 +237,7 @@
             mobile_gate_title: "Importer un projet",
             mobile_gate_body: "",
             mobile_gate_scan: "LIRE QR CODE",
+            mobile_gate_create: "CREER NOUVEAU",
             mobile_gate_hint: "Ou ↑ pour créer",
             mobile_gate_share: "Partager eskrev",
             setup_title: "Créer une session",
@@ -1341,6 +1345,8 @@
         els.themeToggle = document.getElementById("mobileThemeToggle");
         els.gate = document.getElementById("mobileGate");
         els.gateScan = document.getElementById("mobileGateScan");
+        els.gateCreate = document.getElementById("mobileGateCreate");
+        els.gateHint = document.getElementById("mobileGateHint");
         els.shareQr = document.getElementById("shareQrCode");
         els.setup = document.getElementById("mobileSetup");
         els.setupName = document.getElementById("setupProjectName");
@@ -1386,6 +1392,18 @@
             els.gateScan.addEventListener("click", () => {
                 closeGate();
                 openScanModal();
+            });
+        }
+        if (els.gateCreate) {
+            els.gateCreate.addEventListener("click", () => {
+                closeGate();
+                openSetup();
+            });
+        }
+        if (els.gateHint) {
+            els.gateHint.addEventListener("click", () => {
+                closeGate();
+                openSetup();
             });
         }
         let startY = null;
