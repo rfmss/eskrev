@@ -15,6 +15,14 @@ function downloadTextAsFile(text, filename) {
 
 export function exportSkrv(store) {
   buildSkrvPayloadWithChain(store).then((payload) => {
+    const archive = payload && payload.ARCHIVE_STATE ? payload.ARCHIVE_STATE : null;
+    const title = archive && archive.skvTitle ? String(archive.skvTitle) : "skv";
+    const safeName = title
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-zA-Z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .toLowerCase();
+    const slug = safeName || "skv";
     const now = new Date();
     const stamp = [
       now.getFullYear(),
@@ -24,7 +32,7 @@ export function exportSkrv(store) {
       String(now.getHours()).padStart(2, "0"),
       String(now.getMinutes()).padStart(2, "0")
     ].join("");
-    const filename = `SKRV_${stamp}.skv`;
+    const filename = `${slug}_${stamp}.skv`;
     downloadTextAsFile(JSON.stringify(payload, null, 2), filename);
   });
 }

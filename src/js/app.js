@@ -2763,7 +2763,9 @@ function setupEventListeners() {
                 document.getElementById("memoArea").value
             );
             const active = store.getActive && store.getActive();
-            const baseName = active && active.name ? active.name : ".skv";
+            const baseName = (store.data && store.data.skvTitle)
+                ? store.data.skvTitle
+                : (active && active.name ? active.name : ".skv");
             const safeName = baseName
                 .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
                 .replace(/[^a-zA-Z0-9]+/g, "-")

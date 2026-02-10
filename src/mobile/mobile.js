@@ -908,23 +908,37 @@
                     return;
                 }
                 if (action === "export-skv") {
+                    const title = payloadProjectName(payload) || "skv";
+                    const safeName = title
+                        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                        .replace(/[^a-zA-Z0-9]+/g, "-")
+                        .replace(/^-+|-+$/g, "")
+                        .toLowerCase();
+                    const slug = safeName || "skv";
                     const json = JSON.stringify(payload, null, 2);
                     const blob = new Blob([json], { type: "application/json;charset=utf-8" });
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement("a");
                     a.href = url;
-                    a.download = `SKRV_${Date.now()}.skv`;
+                    a.download = `${slug}_${Date.now()}.skv`;
                     a.click();
                     URL.revokeObjectURL(url);
                     return;
                 }
                 if (action === "export-b64") {
+                    const title = payloadProjectName(payload) || "skv";
+                    const safeName = title
+                        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                        .replace(/[^a-zA-Z0-9]+/g, "-")
+                        .replace(/^-+|-+$/g, "")
+                        .toLowerCase();
+                    const slug = safeName || "skv";
                     const base64 = buildBase64(payload);
                     const blob = new Blob([base64], { type: "text/plain;charset=utf-8" });
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement("a");
                     a.href = url;
-                    a.download = `SKRV_QR_${Date.now()}.b64`;
+                    a.download = `${slug}_${Date.now()}.b64`;
                     a.click();
                     URL.revokeObjectURL(url);
                     return;
