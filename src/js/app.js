@@ -3020,6 +3020,9 @@ function setupEventListeners() {
     const proofMsg = document.getElementById("resetProofMsg");
     const btnProof = document.getElementById("btnConfirmReset0");
     const btnStep1 = document.getElementById("btnConfirmReset1");
+    const debugReset = (typeof window !== "undefined" && typeof window.debugReset === "function")
+        ? window.debugReset
+        : () => {};
     const closeResetModal = () => {
         debugReset("close reset modal");
         resetModal.classList.remove("active");
