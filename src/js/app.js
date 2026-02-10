@@ -672,6 +672,7 @@ function initMobileGateQr(target) {
 function setupOfflineProgress() {
     const bar = document.querySelector(".offline-bar");
     const label = document.querySelector(".offline-label");
+    const hint = document.getElementById("offlineHint");
     if (!bar || !label || !("serviceWorker" in navigator)) return;
 
     let finished = false;
@@ -682,10 +683,12 @@ function setupOfflineProgress() {
         lastPct = pct;
         bar.style.width = `${pct}%`;
         if (pct >= 100) {
-            label.textContent = "100%";
+            label.textContent = lang.t("onboard_offline_ready");
+            if (hint) hint.style.display = "none";
             finished = true;
         } else {
             label.textContent = `${pct}%`;
+            if (hint) hint.style.display = "";
         }
     };
 
@@ -730,9 +733,11 @@ function setupOfflineProgress() {
     document.addEventListener("lang:changed", () => {
         if (lastPct === null) return;
         if (finished || lastPct >= 100) {
-            label.textContent = "100%";
+            label.textContent = lang.t("onboard_offline_ready");
+            if (hint) hint.style.display = "none";
         } else {
             label.textContent = `${lastPct}%`;
+            if (hint) hint.style.display = "";
         }
     });
 }
