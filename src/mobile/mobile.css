@@ -484,18 +484,18 @@ body.has-open-book {
 }
 
 .totbook.open .page-viewport {
-    max-height: calc(var(--open-max-h, 90vh) - 140px);
-    overflow: hidden;
-    overscroll-behavior: contain;
-    padding-right: 6px;
-    touch-action: pan-y;
+    max-height: none;
+    overflow: visible;
+    overscroll-behavior: auto;
+    padding-right: 0;
+    touch-action: auto;
 }
 
 .sheet {
     position: relative;
     inset: auto;
-    padding-right: 6px;
-    overflow: hidden;
+    padding-right: 0;
+    overflow: visible;
 }
 
 .pagination {
@@ -511,6 +511,24 @@ body.has-open-book {
     font-size: 12px;
     color: #666;
     background: linear-gradient(to top, rgba(246, 241, 231,1), rgba(246, 241, 231,.92), rgba(246, 241, 231,0));
+}
+
+@media (max-width: 600px) {
+    .totbook.open .page-viewport {
+        max-height: none;
+    }
+    .totbook.open .pages {
+        overflow: visible;
+    }
+    .totbook.open .sheet {
+        overflow: visible;
+    }
+    .totbook.open .pagination {
+        display: none;
+    }
+    .totbook.open .book-inner {
+        height: auto;
+    }
 }
 
 .pagination button {
