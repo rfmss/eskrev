@@ -315,8 +315,25 @@ document.addEventListener('DOMContentLoaded', () => {
     syncLangToFrames(lang.current);
     window.skrvModal = initSystemModal();
     window.skrvOnboarding = initOnboarding();
+    // Safety: if dedication already done but onboarding didn't open, force it.
+    if (!mobileGateActive && introDone) {
+        const onboardDone = localStorage.getItem("skrv_onboard_done") === "true";
+        const dedicationActive = document.getElementById("dedicationModal")?.classList.contains("active");
+        const onboardingActive = document.getElementById("onboardingModal")?.classList.contains("active");
+        if (!onboardDone && !dedicationActive && !onboardingActive && window.skrvOnboarding) {
+            window.skrvOnboarding.open(0);
+        }
+    }
     auth.init();
     initImportSessionModal();
+
+    // Safety: avoid stuck white overlay if modal-active remains without active modal.
+    setTimeout(() => {
+        const activeModal = document.querySelector(".modal-overlay.active");
+        if (!activeModal && document.body.classList.contains("modal-active")) {
+            document.body.classList.remove("modal-active");
+        }
+    }, 200);
 
     document.querySelectorAll('[data-manifesto-open]').forEach((el) => {
         el.addEventListener('click', (e) => {
