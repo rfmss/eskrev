@@ -468,11 +468,28 @@
         `;
     };
 
-    const openBookModal = () => {
+    const openBookModal = (sourceRect) => {
         if (!els.bookModal) return;
         renderBookModal();
         els.bookModal.classList.add("active");
         document.body.classList.add("has-open-book");
+        if (sourceRect && els.bookModalHeader) {
+            requestAnimationFrame(() => {
+                const panel = els.bookModal.querySelector(".book-modal-panel");
+                if (!panel) return;
+                const panelRect = panel.getBoundingClientRect();
+                const fromScale = sourceRect.width / Math.max(panelRect.width, 1);
+                const fromX = (sourceRect.left + sourceRect.width / 2) - (panelRect.left + panelRect.width / 2);
+                const fromY = (sourceRect.top + sourceRect.height / 2) - (panelRect.top + panelRect.height / 2);
+                panel.style.setProperty("--book-from-x", `${fromX}px`);
+                panel.style.setProperty("--book-from-y", `${fromY}px`);
+                panel.style.setProperty("--book-from-scale", `${fromScale}`);
+                els.bookModal.classList.add("from-book");
+                requestAnimationFrame(() => {
+                    els.bookModal.classList.remove("from-book");
+                });
+            });
+        }
     };
 
     const closeBookModal = () => {
@@ -873,7 +890,8 @@
         const openBook = (book) => {
             if (!book) return;
             state.activeId = book.dataset.id || null;
-            openBookModal();
+            const rect = book.getBoundingClientRect();
+            openBookModal(rect);
         };
         const setDeleteProgress = (book, pct) => {
             if (!book) return;
@@ -994,6 +1012,7 @@
             const payload = buildPayload();
             if (!payload) return;
             if (action === "export-qr") {
+                closeBookModal();
                 openStreamModal();
                 return;
             }

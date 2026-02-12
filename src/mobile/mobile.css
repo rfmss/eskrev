@@ -756,6 +756,15 @@ body.has-open-book {
 
 .overlay.active { display: flex; }
 
+.book-modal {
+    z-index: 55;
+}
+
+#qrScanModal.overlay,
+#qrStreamModal.overlay {
+    z-index: 60;
+}
+
 #qrScanModal .modal.qr-modal {
     padding-bottom: 28px;
 }
@@ -790,12 +799,17 @@ body.has-open-book {
     gap: 14px;
     transform: translateY(8px) scale(0.98);
     opacity: 0;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    transition: transform 0.22s ease, opacity 0.22s ease;
 }
 
 .book-modal.active .book-modal-panel {
     transform: translateY(0) scale(1);
     opacity: 1;
+}
+
+.book-modal.from-book .book-modal-panel {
+    transform: translate(var(--book-from-x, 0px), var(--book-from-y, 0px)) scale(var(--book-from-scale, 0.5));
+    opacity: 0.35;
 }
 
 .book-modal-header {
