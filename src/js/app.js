@@ -335,6 +335,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 200);
 
+    // Safety: if UI gets stuck without visible content, force editor view.
+    setTimeout(() => {
+        const activeModal = document.querySelector(".modal-overlay.active");
+        if (activeModal) return;
+        const editorView = document.getElementById("editorView");
+        const booksView = document.getElementById("booksView");
+        const verifyView = document.getElementById("verifyView");
+        const panel = document.querySelector(".panel");
+        if (!editorView) return;
+        const editorVisible = editorView.style.display !== "none";
+        if (editorVisible) return;
+        if (booksView) booksView.style.display = "none";
+        if (verifyView) verifyView.style.display = "none";
+        editorView.style.display = "";
+        if (panel) panel.classList.remove("books-active");
+        document.body.classList.remove("modal-active");
+    }, 1800);
+
     document.querySelectorAll('[data-manifesto-open]').forEach((el) => {
         el.addEventListener('click', (e) => {
             e.preventDefault();
