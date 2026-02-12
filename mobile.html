@@ -116,7 +116,10 @@
 
     <div id="qrStreamModal" class="overlay">
         <div class="modal qr-modal">
-            <div class="modal-title" data-i18n="qr_stream_title">STREAM QR</div>
+            <div class="modal-header">
+                <div class="modal-title" data-i18n="qr_stream_title">STREAM QR</div>
+                <button id="qrStreamCloseX" class="btn-icon" aria-label="Fechar">×</button>
+            </div>
             <div id="qrStreamCode" class="qr-code" style="margin:0 auto;"></div>
             <div id="qrStreamStatus" class="help"></div>
             <div id="qrStreamMeta" class="help"></div>

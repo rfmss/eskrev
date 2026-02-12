@@ -485,9 +485,9 @@
                 panel.style.setProperty("--book-from-y", `${fromY}px`);
                 panel.style.setProperty("--book-from-scale", `${fromScale}`);
                 els.bookModal.classList.add("from-book");
-                requestAnimationFrame(() => {
+                setTimeout(() => {
                     els.bookModal.classList.remove("from-book");
-                });
+                }, 140);
             });
         }
     };
@@ -814,10 +814,10 @@
         startStream(buildPayload());
     };
 
-        const closeStreamModal = () => {
-            if (els.streamModal) els.streamModal.classList.remove("active");
-            stopStream();
-        };
+    const closeStreamModal = () => {
+        if (els.streamModal) els.streamModal.classList.remove("active");
+        stopStream();
+    };
 
 
     const initElements = () => {
@@ -852,6 +852,7 @@
         els.streamCopy = document.getElementById("qrStreamCopy");
         els.streamSave = document.getElementById("qrStreamSave");
         els.streamClose = document.getElementById("qrStreamClose");
+        els.streamCloseX = document.getElementById("qrStreamCloseX");
         els.bookModal = document.getElementById("bookModal");
         els.bookModalHeader = document.getElementById("bookModalHeader");
         els.bookModalBody = document.getElementById("bookModalBody");
@@ -866,6 +867,8 @@
             openScanModal();
         });
         if (els.scanPrimary) els.scanPrimary.addEventListener("click", openScanModal);
+        if (els.streamClose) els.streamClose.addEventListener("click", closeStreamModal);
+        if (els.streamCloseX) els.streamCloseX.addEventListener("click", closeStreamModal);
         let dragBook = null;
         let dragStart = null;
         let dragMoved = false;
@@ -979,6 +982,10 @@
             });
         }
         document.addEventListener("click", (e) => {
+            if (els.streamModal && els.streamModal.classList.contains("active")) {
+                if (e.target === els.streamModal) closeStreamModal();
+                return;
+            }
             if (els.bookModal && els.bookModal.classList.contains("active")) {
                 if (e.target === els.bookModal) closeAllBooks();
                 return;
