@@ -267,6 +267,9 @@
         localStorage.setItem("lit_lang", state.lang);
         applyI18n();
         renderBooks();
+        if (els.bookModal && els.bookModal.classList.contains("active")) {
+            renderBookModal();
+        }
     };
 
     const buildDemoPayload = () => ({
@@ -442,6 +445,40 @@
         if (state.activeId) return getPayloadById(state.activeId);
         const items = loadPayloads();
         return items[0] ? items[0].payload : null;
+    };
+
+    const renderBookModal = () => {
+        if (!els.bookModalHeader || !els.bookModalBody || !els.bookModalActions) return;
+        const payload = buildPayload();
+        const isDemo = state.activeId === "demo";
+        const projectName = payloadProjectName(payload) || t("mobile_book_title");
+        const title = isDemo ? t("mobile_demo_title") : t("mobile_extract");
+        const bodyRaw = isDemo ? t("mobile_demo_body") : t("mobile_extract_body");
+        const body = bodyRaw.replace(/\n/g, "<br>");
+        els.bookModalHeader.innerHTML = `
+            <div class="book-modal-kicker">${projectName}</div>
+            <div class="book-modal-title">${title}</div>
+        `;
+        els.bookModalBody.innerHTML = body;
+        els.bookModalActions.innerHTML = `
+            <button class="btn-full primary" data-action="export-qr">${t("mobile_export_qr")}</button>
+            <button class="btn-full" data-action="export-skv">${t("mobile_export_save")}</button>
+            <button class="btn-full" data-action="export-b64">${t("mobile_export_b64")}</button>
+            <button class="btn-full" data-action="copy-b64">${t("mobile_export_copy")}</button>
+        `;
+    };
+
+    const openBookModal = () => {
+        if (!els.bookModal) return;
+        renderBookModal();
+        els.bookModal.classList.add("active");
+        document.body.classList.add("has-open-book");
+    };
+
+    const closeBookModal = () => {
+        if (!els.bookModal) return;
+        els.bookModal.classList.remove("active");
+        document.body.classList.remove("has-open-book");
     };
 
     const buildBase64 = (payload) => {
@@ -760,10 +797,11 @@
         startStream(buildPayload());
     };
 
-    const closeStreamModal = () => {
-        if (els.streamModal) els.streamModal.classList.remove("active");
-        stopStream();
-    };
+        const closeStreamModal = () => {
+            if (els.streamModal) els.streamModal.classList.remove("active");
+            stopStream();
+        };
+
 
     const initElements = () => {
         els.langToggle = document.getElementById("mobileLangToggle");
@@ -797,6 +835,10 @@
         els.streamCopy = document.getElementById("qrStreamCopy");
         els.streamSave = document.getElementById("qrStreamSave");
         els.streamClose = document.getElementById("qrStreamClose");
+        els.bookModal = document.getElementById("bookModal");
+        els.bookModalHeader = document.getElementById("bookModalHeader");
+        els.bookModalBody = document.getElementById("bookModalBody");
+        els.bookModalActions = document.getElementById("bookModalActions");
     };
 
     const bindEvents = () => {
@@ -825,51 +867,13 @@
             book.style.top = `${ny}px`;
         };
         const closeAllBooks = () => {
-            if (!els.grid) return;
-            els.grid.querySelectorAll(".totbook.open").forEach((book) => {
-                book.classList.remove("open");
-                const slot = getSlot(book);
-                book.style.left = `${slot.left}px`;
-                book.style.top = `${slot.top}px`;
-                const slotW = book.dataset.slotWidth;
-                const slotH = book.dataset.slotHeight;
-                if (slotW) book.style.width = `${slotW}px`;
-                if (slotH) book.style.height = `${slotH}px`;
-            });
             state.activeId = null;
-            document.body.classList.remove("has-open-book");
+            closeBookModal();
         };
         const openBook = (book) => {
-            if (!els.library) return;
-            closeAllBooks();
-            book.classList.add("open");
+            if (!book) return;
             state.activeId = book.dataset.id || null;
-            document.body.classList.add("has-open-book");
-            requestAnimationFrame(() => {
-                const libRect = els.library.getBoundingClientRect();
-                const topStack = document.querySelector(".mobile-top-stack");
-                const scanBar = document.querySelector(".mobile-scan-bar");
-                const footer = document.querySelector(".mobile-footer");
-                const topY = topStack ? topStack.getBoundingClientRect().bottom : libRect.top;
-                const scanRect = scanBar ? scanBar.getBoundingClientRect() : null;
-                const footerRect = footer ? footer.getBoundingClientRect() : null;
-                const bottomY = scanRect ? scanRect.top : (footerRect ? footerRect.top : libRect.bottom);
-                const topLocal = topY - libRect.top;
-                const bottomLocal = bottomY - libRect.top;
-                const availableH = Math.max(180, bottomLocal - topLocal - 8);
-                const openW = Math.min(libRect.width * 0.92, 520) * 0.8;
-                const desiredOpenH = 336;
-                const openH = Math.min(desiredOpenH, availableH);
-                book.style.width = `${openW}px`;
-                book.style.maxWidth = `${openW}px`;
-                book.style.height = `${openH}px`;
-                book.style.maxHeight = `${openH}px`;
-                book.style.setProperty("--open-max-h", `${openH}px`);
-                const left = Math.max(0, (libRect.width - openW) / 2);
-                const top = Math.max(topLocal + 8, Math.min(topLocal + 8, bottomLocal - openH - 8));
-                book.style.left = `${left}px`;
-                book.style.top = `${top}px`;
-            });
+            openBookModal();
         };
         const setDeleteProgress = (book, pct) => {
             if (!book) return;
@@ -957,6 +961,10 @@
             });
         }
         document.addEventListener("click", (e) => {
+            if (els.bookModal && els.bookModal.classList.contains("active")) {
+                if (e.target === els.bookModal) closeAllBooks();
+                return;
+            }
             if (!els.grid) return;
             if (e.target.closest(".totbook")) return;
             closeAllBooks();
@@ -982,59 +990,73 @@
             });
         }
 
+        const handleBookAction = (action) => {
+            const payload = buildPayload();
+            if (!payload) return;
+            if (action === "export-qr") {
+                openStreamModal();
+                return;
+            }
+            if (action === "export-skv") {
+                const title = payloadProjectName(payload) || "skv";
+                const safeName = title
+                    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                    .replace(/[^a-zA-Z0-9]+/g, "-")
+                    .replace(/^-+|-+$/g, "")
+                    .toLowerCase();
+                const slug = safeName || "skv";
+                const json = JSON.stringify(payload, null, 2);
+                const blob = new Blob([json], { type: "application/json;charset=utf-8" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = `${slug}_${Date.now()}.skv`;
+                a.click();
+                URL.revokeObjectURL(url);
+                return;
+            }
+            if (action === "export-b64") {
+                const title = payloadProjectName(payload) || "skv";
+                const safeName = title
+                    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                    .replace(/[^a-zA-Z0-9]+/g, "-")
+                    .replace(/^-+|-+$/g, "")
+                    .toLowerCase();
+                const slug = safeName || "skv";
+                const base64 = buildBase64(payload);
+                const blob = new Blob([base64], { type: "text/plain;charset=utf-8" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = `${slug}_${Date.now()}.b64`;
+                a.click();
+                URL.revokeObjectURL(url);
+                return;
+            }
+            if (action === "copy-b64") {
+                const base64 = buildBase64(payload);
+                navigator.clipboard?.writeText(base64).catch(() => {});
+            }
+        };
+
         if (els.grid) {
             els.grid.addEventListener("click", (e) => {
                 const actionEl = e.target.closest("[data-action]");
+                if (actionEl) {
+                    const action = actionEl.getAttribute("data-action") || "";
+                    const book = e.target.closest(".totbook");
+                    if (book) state.activeId = book.dataset.id || null;
+                    handleBookAction(action);
+                    return;
+                }
+            });
+        }
+        if (els.bookModalActions) {
+            els.bookModalActions.addEventListener("click", (e) => {
+                const actionEl = e.target.closest("[data-action]");
                 if (!actionEl) return;
                 const action = actionEl.getAttribute("data-action") || "";
-                const book = e.target.closest(".totbook");
-                if (book) state.activeId = book.dataset.id || null;
-                const payload = buildPayload();
-                if (!payload) return;
-                if (action === "export-qr") {
-                    openStreamModal();
-                    return;
-                }
-                if (action === "export-skv") {
-                    const title = payloadProjectName(payload) || "skv";
-                    const safeName = title
-                        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-                        .replace(/[^a-zA-Z0-9]+/g, "-")
-                        .replace(/^-+|-+$/g, "")
-                        .toLowerCase();
-                    const slug = safeName || "skv";
-                    const json = JSON.stringify(payload, null, 2);
-                    const blob = new Blob([json], { type: "application/json;charset=utf-8" });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement("a");
-                    a.href = url;
-                    a.download = `${slug}_${Date.now()}.skv`;
-                    a.click();
-                    URL.revokeObjectURL(url);
-                    return;
-                }
-                if (action === "export-b64") {
-                    const title = payloadProjectName(payload) || "skv";
-                    const safeName = title
-                        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-                        .replace(/[^a-zA-Z0-9]+/g, "-")
-                        .replace(/^-+|-+$/g, "")
-                        .toLowerCase();
-                    const slug = safeName || "skv";
-                    const base64 = buildBase64(payload);
-                    const blob = new Blob([base64], { type: "text/plain;charset=utf-8" });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement("a");
-                    a.href = url;
-                    a.download = `${slug}_${Date.now()}.b64`;
-                    a.click();
-                    URL.revokeObjectURL(url);
-                    return;
-                }
-                if (action === "copy-b64") {
-                    const base64 = buildBase64(payload);
-                    navigator.clipboard?.writeText(base64).catch(() => {});
-                }
+                handleBookAction(action);
             });
         }
         if (els.support) {
