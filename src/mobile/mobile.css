@@ -204,11 +204,12 @@ body {
     display: grid;
     gap: 12px;
     text-align: center;
-    background: var(--m-card);
-    border-radius: var(--m-radius-xl);
-    padding: 24px;
-    border: 1px solid var(--m-line);
-    box-shadow: var(--m-shadow-soft);
+    background: transparent;
+    border-radius: 0;
+    padding: 8px 6px;
+    border: none;
+    box-shadow: none;
+    width: min(86vw, 360px);
 }
 
 .mobile-empty.is-hidden { display: none; }
@@ -674,6 +675,10 @@ body.has-open-book {
     text-transform: uppercase;
     font-size: 10px;
     min-height: 36px;
+}
+
+.mobile-empty .btn-full {
+    margin-top: 6px;
 }
 
 .book-inner .btn-full.primary {

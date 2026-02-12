@@ -343,8 +343,20 @@
         els.grid.innerHTML = "";
         if (!items.length) {
             els.empty.classList.remove("is-hidden");
+            document.body.classList.add("empty-only");
+            if (els.scanBar) els.scanBar.style.display = "none";
+            if (els.scanPrimary) {
+                els.scanPrimary.classList.add("in-empty");
+                els.empty.appendChild(els.scanPrimary);
+            }
         } else {
             els.empty.classList.add("is-hidden");
+            document.body.classList.remove("empty-only");
+            if (els.scanBar) els.scanBar.style.display = "";
+            if (els.scanPrimary && els.scanBar && !els.scanBar.contains(els.scanPrimary)) {
+                els.scanPrimary.classList.remove("in-empty");
+                els.scanBar.insertBefore(els.scanPrimary, els.scanBar.firstChild);
+            }
         }
 
         const { cols, rows } = getGridConfig();
@@ -829,6 +841,7 @@
         els.grid = document.getElementById("booksGrid");
         els.empty = document.getElementById("mobileEmpty");
         els.scanPrimary = document.getElementById("mobileScanPrimary");
+        els.scanBar = document.querySelector(".mobile-scan-bar");
         els.limit = document.getElementById("mobileLimit");
         els.support = document.querySelector(".mobile-support");
         els.confirm = document.getElementById("deleteConfirm");
