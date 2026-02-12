@@ -766,7 +766,11 @@ body.has-open-book {
 }
 
 #qrScanModal .modal.qr-modal {
-    padding-bottom: 28px;
+    padding-bottom: 22px;
+}
+
+#qrStreamModal .modal.qr-modal {
+    padding-bottom: 22px;
 }
 
 #mobileGate.overlay {
@@ -786,7 +790,7 @@ body.has-open-book {
     text-align: center;
     box-shadow: var(--m-shadow-soft);
     max-height: 80vh;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .book-modal {
@@ -864,13 +868,15 @@ body.has-open-book {
 
 .btn-row {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+    grid-template-columns: 1fr;
+    gap: 8px;
 }
 
 .qr-code {
     width: 190px;
     height: 190px;
+    min-width: 190px;
+    min-height: 190px;
     padding: 10px;
     background: #f3f1ea;
     border-radius: 22px;
@@ -882,6 +888,41 @@ body.has-open-book {
 .qr-code canvas {
     width: 100% !important;
     height: 100% !important;
+}
+
+.modal.qr-modal {
+    width: min(92vw, 420px);
+    gap: 12px;
+}
+
+.modal.qr-modal .help {
+    font-size: 11px;
+}
+
+#qrStreamModal .modal.qr-modal .btn,
+#qrStreamModal .modal.qr-modal .btn-ghost,
+#qrScanModal .modal.qr-modal .btn-full {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: rgba(0, 0, 0, 0.02);
+    color: #1e1d1a;
+    padding: 10px 12px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    font-size: 11px;
+    min-height: 38px;
+}
+
+#qrStreamModal .modal.qr-modal .btn-ghost {
+    background: #1e1d1a;
+    color: #f6f1e7;
+    border-color: #1e1d1a;
+}
+
+#qrStreamModal .modal.qr-modal .btn-row {
+    margin-top: 4px;
 }
 
 .qr-layout {
