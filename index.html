@@ -23,6 +23,7 @@
         (function () {
             try {
                 if (/mobile\.html$/.test(location.pathname)) return;
+                if (/(?:^|[?&])mobile=notes(?:&|$)/.test(location.search)) return;
                 if (location.search.includes("fallback=1")) return;
                 var forcedMobile = window.__SKRV_FORCE_MOBILE === true;
                 var uaMobile = navigator.userAgentData && typeof navigator.userAgentData.mobile === "boolean"

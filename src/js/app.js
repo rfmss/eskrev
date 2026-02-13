@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const touchPoints = navigator.maxTouchPoints || 0;
     const isMobile = forcedMobile || uaMobile || (coarse && hoverNone && touchPoints > 0);
     const forceMobileNotes = /(?:^|[?&])mobile=notes(?:&|$)/.test(location.search);
-    const onMobilePage = /mobile\\.html$/.test(location.pathname);
+    const onMobilePage = /mobile\.html$/.test(location.pathname);
     if (!forcedMobile && isMobile && !onMobilePage && !location.search.includes("fallback=1") && !forceMobileNotes) {
         location.replace("mobile.html");
         return;
