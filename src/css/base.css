@@ -608,16 +608,7 @@ h1, h2, h3, h4, .section-title, .drawer-section-title, .modal-header span {
 svg.icon,
 .hud .icon,
 .controls .icon {
-  filter: url(#xiloInkFilter);
-}
-
-[data-theme="xilo"] .icon,
-[data-theme="xilo"] svg.icon,
-[data-theme="xilo-invert"] .icon,
-[data-theme="xilo-invert"] svg.icon {
-  stroke-dasharray: 0.8 0.55;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  filter: none;
 }
 
 .btn-full,
