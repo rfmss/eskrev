@@ -26,6 +26,27 @@
     vertical-align: -0.125em;
 }
 
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 10px;
+    z-index: 10001;
+    padding: 8px 12px;
+    border: var(--border-style);
+    border-radius: var(--radius);
+    background: var(--bg-core);
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.2px;
+}
+
+.skip-link:focus {
+    top: 10px;
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
 /* --- MAPEAMENTO VISUAL (PENTE FINO) --- */
 
 /* 1. Solzinho (Temas/Contraste) */
@@ -84,10 +105,10 @@
   --text-lg: 20px;
   --text-md: 14px;
   --text-sm: 12px;
-  --font-display: "Inter", "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
-  --font-quote: "Inter", "Helvetica Neue", Arial, sans-serif;
-  --font-ui: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Source Serif 4", "Georgia", "Times New Roman", serif;
+  --font-body: "IBM Plex Sans", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-quote: "Source Serif 4", "Georgia", "Times New Roman", serif;
+  --font-ui: "IBM Plex Sans", "Inter", "Helvetica Neue", Arial, sans-serif;
 }
 
 /* 1. TEMA PAPEL EDITORIAL (default) */
@@ -324,6 +345,143 @@
   --selection-text: #1a1a1a;
 }
 
+/* 9. XILO (DNA PRINCIPAL) */
+:root,
+[data-theme="xilo"] {
+  --bg-core: #dfe1e7;
+  --bg-panel: transparent;
+  --bg-drawer: rgba(223, 225, 231, 0.94);
+  --bg-drawer-solid: #dfe1e7;
+  --bg-xray: #dfe1e7;
+  --bg-controls: rgba(223, 225, 231, 0.9);
+  --xray-surface: rgba(24, 20, 17, 0.04);
+  --xray-border: 1px solid rgba(24, 20, 17, 0.18);
+  --color-text: #1f1b18;
+  --color-accent: #26211d;
+  --color-accent-dim: rgba(31, 27, 24, 0.16);
+  --color-muted: rgba(31, 27, 24, 0.64);
+  --border-style: 1px solid rgba(24, 20, 17, 0.2);
+  --grid-opacity: 0.04;
+  --radius: 8px;
+  --selection-bg: rgba(34, 32, 28, 0.74);
+  --selection-text: #f3efe3;
+  --search-bg: #22201c;
+  --search-text: #f3efe3;
+  --paper-fiber-opacity: 0.3;
+  --paper-ink-opacity: 0.11;
+  --paper-warm: #e8ebf1;
+  --paper-cool: #d4d7df;
+  --xilo-highlight: #d7cc54;
+  --ink-transition-color: #151311;
+  --reader-dark-bg: #141210;
+  --reader-dark-fg: #ede7d8;
+  --reader-dark-border: rgba(237, 231, 216, 0.26);
+  --reader-dark-surface: rgba(22, 20, 18, 0.95);
+  --reader-light-bg: #dfe1e7;
+  --reader-light-fg: #1f1b18;
+  --reader-light-border: rgba(31, 27, 24, 0.14);
+  --reader-light-surface: rgba(223, 225, 231, 0.94);
+  --font-ui: "IBM Plex Sans", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-main: "Source Serif 4", "Georgia", "Times New Roman", serif;
+  --font-body: "Source Serif 4", "Georgia", "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* 10. XILO INVERT */
+[data-theme="xilo-invert"] {
+  --bg-core: #dfe1e7;
+  --bg-panel: transparent;
+  --bg-drawer: rgba(223, 225, 231, 0.94);
+  --bg-drawer-solid: #dfe1e7;
+  --bg-xray: #dfe1e7;
+  --bg-controls: rgba(223, 225, 231, 0.9);
+  --xray-surface: rgba(239, 232, 217, 0.06);
+  --xray-border: 1px solid rgba(239, 232, 217, 0.16);
+  --color-text: #1f1b18;
+  --color-accent: #26211d;
+  --color-accent-dim: rgba(31, 27, 24, 0.16);
+  --color-muted: rgba(31, 27, 24, 0.64);
+  --border-style: 1px solid rgba(24, 20, 17, 0.2);
+  --grid-opacity: 0.07;
+  --radius: 8px;
+  --selection-bg: rgba(34, 32, 28, 0.74);
+  --selection-text: #f3efe3;
+  --search-bg: #22201c;
+  --search-text: #f3efe3;
+  --paper-fiber-opacity: 0.22;
+  --paper-ink-opacity: 0.1;
+  --paper-warm: #e8ebf1;
+  --paper-cool: #d4d7df;
+  --xilo-highlight: #c9be4b;
+  --ink-transition-color: #0e0c0b;
+  --reader-dark-bg: #141210;
+  --reader-dark-fg: #ede7d8;
+  --reader-dark-border: rgba(237, 231, 216, 0.26);
+  --reader-dark-surface: rgba(22, 20, 18, 0.95);
+  --reader-light-bg: #dfe1e7;
+  --reader-light-fg: #1f1b18;
+  --reader-light-border: rgba(31, 27, 24, 0.14);
+  --reader-light-surface: rgba(223, 225, 231, 0.94);
+  --font-ui: "IBM Plex Sans", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-main: "Source Serif 4", "Georgia", "Times New Roman", serif;
+  --font-body: "Source Serif 4", "Georgia", "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* 11. XILO AMBAR */
+[data-theme="xilo-amber"] {
+  --bg-core: #dfe1e7;
+  --bg-panel: transparent;
+  --bg-drawer: rgba(223, 225, 231, 0.94);
+  --bg-drawer-solid: #dfe1e7;
+  --bg-xray: #dfe1e7;
+  --bg-controls: rgba(223, 225, 231, 0.9);
+  --xray-surface: rgba(25, 18, 12, 0.05);
+  --xray-border: 1px solid rgba(25, 18, 12, 0.2);
+  --color-text: #1f1b18;
+  --color-accent: #26211d;
+  --color-accent-dim: rgba(31, 27, 24, 0.16);
+  --color-muted: rgba(31, 27, 24, 0.64);
+  --border-style: 1px solid rgba(24, 20, 17, 0.2);
+  --grid-opacity: 0.05;
+  --radius: 8px;
+  --selection-bg: rgba(34, 32, 28, 0.74);
+  --selection-text: #f3efe3;
+  --search-bg: #22201c;
+  --search-text: #f3efe3;
+  --paper-fiber-opacity: 0.24;
+  --paper-ink-opacity: 0.1;
+  --paper-warm: #e8ebf1;
+  --paper-cool: #d4d7df;
+  --xilo-highlight: #f0de4f;
+  --ink-transition-color: #100b08;
+  --reader-dark-bg: #141210;
+  --reader-dark-fg: #ede7d8;
+  --reader-dark-border: rgba(237, 231, 216, 0.26);
+  --reader-dark-surface: rgba(22, 20, 18, 0.95);
+  --reader-light-bg: #dfe1e7;
+  --reader-light-fg: #1f1b18;
+  --reader-light-border: rgba(31, 27, 24, 0.14);
+  --reader-light-surface: rgba(223, 225, 231, 0.94);
+  --font-ui: "IBM Plex Sans", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-main: "Source Serif 4", "Georgia", "Times New Roman", serif;
+  --font-body: "Source Serif 4", "Georgia", "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", "JetBrains Mono Nerd", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* BARRA INFERIOR: seguir a linguagem da barra lateral esquerda */
+[data-theme="xilo"] .controls-inner,
+[data-theme="xilo-invert"] .controls-inner,
+[data-theme="xilo-amber"] .controls-inner {
+  background: transparent;
+  background-image: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  padding: 0 8px;
+}
+
 /* --- COMPORTAMENTO --- */
 * { box-sizing: border-box; outline: none !important; scrollbar-width: none; }
 
@@ -335,18 +493,58 @@
   height: 0;
 }
 
+.svg-defs-hidden {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
 html, body {
   height: 100%; width: 100%; margin: 0; overflow: hidden;
-  font-family: var(--font-body); color: var(--color-text); background: var(--bg-core);
+  font-family: var(--font-body); color: var(--color-text); background-color: var(--bg-core);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='2' seed='11' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='0.34'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='340' viewBox='0 0 340 340'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.34' numOctaves='2' seed='23' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='340' height='340' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.014) 0px,
+      rgba(0, 0, 0, 0.014) 1px,
+      rgba(255, 255, 255, 0.01) 1px,
+      rgba(255, 255, 255, 0.01) 6px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.014) 0px,
+      rgba(0, 0, 0, 0.014) 1px,
+      rgba(255, 255, 255, 0.01) 1px,
+      rgba(255, 255, 255, 0.01) 6px
+    );
+  background-size: 150px 150px, 240px 240px, 100% 100%, 100% 100%;
+  background-position: center, center, center, center;
+  background-blend-mode: multiply, multiply, soft-light, soft-light;
   transition: background var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1), 
               color var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body::before {
   content: ""; position: fixed; inset: 0; z-index: -5;
-  background-image: none;
-  opacity: var(--grid-opacity); pointer-events: none;
-  filter: grayscale(10%); 
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280' viewBox='0 0 280 280'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.58' numOctaves='2' seed='17' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='280' height='280' filter='url(%23f)' opacity='0.24'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+  opacity: var(--paper-fiber-opacity, 0.17);
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -4;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.12' numOctaves='2' seed='7' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.2'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
+  opacity: var(--paper-ink-opacity, 0.08);
+  mix-blend-mode: multiply;
 }
 body.booting::after {
   content: "";
@@ -381,6 +579,185 @@ mark.search-active { box-shadow: 0 0 0 2px var(--color-accent-dim); }
     -webkit-hyphens: auto; -moz-hyphens: auto; -ms-hyphens: auto; hyphens: auto;
     text-align: left;
     font-family: var(--font-main);
+}
+
+h1, h2, h3, h4, .section-title, .drawer-section-title, .modal-header span {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+}
+
+.icon,
+svg.icon,
+.hud .icon,
+.controls .icon {
+  filter: url(#xiloInkFilter);
+}
+
+[data-theme="xilo"] .icon,
+[data-theme="xilo"] svg.icon,
+[data-theme="xilo-invert"] .icon,
+[data-theme="xilo-invert"] svg.icon {
+  stroke-dasharray: 0.8 0.55;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.btn-full,
+.btn-half,
+.modal-box,
+.mobile-memo-card,
+.list-item,
+.drawer-content {
+  background-image: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(0, 0, 0, 0.025) 100%
+  );
+}
+
+[data-theme="xilo"] .modal-box,
+[data-theme="xilo-invert"] .modal-box,
+[data-theme="xilo-amber"] .modal-box {
+  background-color: var(--bg-drawer-solid);
+  background-image:
+    radial-gradient(120% 100% at 8% 4%, rgba(255, 255, 255, 0.08), transparent 52%),
+    radial-gradient(140% 120% at 92% 96%, rgba(0, 0, 0, 0.08), transparent 62%),
+    repeating-linear-gradient(
+      12deg,
+      rgba(0, 0, 0, 0.024) 0px,
+      rgba(0, 0, 0, 0.024) 1px,
+      rgba(255, 255, 255, 0.02) 1px,
+      rgba(255, 255, 255, 0.02) 4px
+    );
+}
+
+mark,
+.xilo-highlight {
+  background-color: var(--xilo-highlight);
+  color: #161411;
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+.ink-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 10002;
+  pointer-events: none;
+  display: none;
+  overflow: hidden;
+}
+.ink-transition.active {
+  display: block;
+}
+.ink-transition-splash {
+  position: absolute;
+  width: 200vmax;
+  height: 200vmax;
+  left: 50%;
+  top: -12vmax;
+  background: var(--ink-transition-color);
+  border-radius: 56% 44% 62% 38% / 50% 30% 70% 50%;
+  transform-origin: 50% 0%;
+  transform: translate(-50%, -95%) scale(0.02) rotate(-4deg);
+  opacity: 0;
+}
+.ink-transition.active .ink-transition-splash {
+  animation: inkDropSpread 980ms cubic-bezier(0.2, 0.78, 0.16, 1) forwards;
+}
+.ink-transition.reveal .ink-transition-splash {
+  animation: inkRetreat 760ms cubic-bezier(0.42, 0, 0.2, 1) forwards;
+}
+@keyframes inkDropSpread {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -95%) scale(0.02) rotate(-4deg);
+    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+  }
+  18% {
+    opacity: 1;
+    transform: translate(-50%, -28%) scale(0.12) rotate(-3deg);
+    border-radius: 42% 58% 46% 54% / 66% 38% 62% 34%;
+  }
+  55% {
+    opacity: 1;
+    transform: translate(-50%, -8%) scale(0.78) rotate(-1deg);
+    border-radius: 56% 44% 62% 38% / 50% 30% 70% 50%;
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0%) scale(1.1) rotate(0deg);
+    border-radius: 46% 54% 52% 48% / 40% 30% 70% 60%;
+  }
+}
+@keyframes inkRetreat {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0%) scale(1.1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 88%) scale(0.04) rotate(5deg);
+  }
+}
+
+#xiloMorphBar {
+  position: fixed;
+  top: 52px;
+  left: 50%;
+  z-index: 70;
+  width: 96px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--ink-transition-color);
+  opacity: 0;
+  transform: translateX(-50%) scale(0.7);
+  pointer-events: none;
+}
+#xiloMorphBar::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 2px;
+  width: 52px;
+  height: 5px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  opacity: 0.8;
+}
+body.bar-morphing #xiloMorphBar {
+  animation: xiloBarMorph 780ms cubic-bezier(0.22, 0.7, 0.22, 1) forwards;
+}
+@keyframes xiloBarMorph {
+  0% {
+    opacity: 0;
+    width: 96px;
+    height: 12px;
+    transform: translateX(-50%) scale(0.7);
+    border-radius: 999px;
+  }
+  25% {
+    opacity: 1;
+    width: 180px;
+    height: 26px;
+    transform: translateX(-50%) scale(1);
+    border-radius: 0 0 30px 30px;
+  }
+  60% {
+    opacity: 1;
+    width: 150px;
+    height: 20px;
+    transform: translateX(-50%) scale(0.96);
+    border-radius: 0 0 24px 24px;
+  }
+  100% {
+    opacity: 0;
+    width: 104px;
+    height: 10px;
+    transform: translateX(-50%) scale(0.72);
+    border-radius: 999px;
+  }
 }
 #editor ::selection {
     background: var(--selection-bg);

@@ -271,9 +271,19 @@ body.mobile-typing .mobile-trigger {
 .controls-inner {
   display: flex; align-items: center; gap: 10px; padding: 0 16px;
   background: var(--bg-drawer-solid, var(--bg-drawer));
-  border: var(--border-style); /* Borda Glass */
+  background-image:
+    radial-gradient(120% 110% at 12% 8%, rgba(255, 255, 255, 0.08), transparent 58%),
+    radial-gradient(130% 120% at 88% 90%, rgba(0, 0, 0, 0.08), transparent 64%),
+    repeating-linear-gradient(
+      10deg,
+      rgba(0, 0, 0, 0.022) 0px,
+      rgba(0, 0, 0, 0.022) 1px,
+      rgba(255, 255, 255, 0.018) 1px,
+      rgba(255, 255, 255, 0.018) 4px
+    );
+  border: none;
   box-shadow: none;
-  border-radius: var(--radius);
+  border-radius: 999px;
   position: relative;
   
   pointer-events: auto;
@@ -305,11 +315,11 @@ body.mobile-typing .mobile-trigger {
 
 /* MOBILE */
 @media (max-width: 900px) {
-    .hud { transform: translateX(-100%); background: var(--bg-drawer); border-right: var(--border-style); height: 100%; top: 0; bottom: 0; left: 0; width: 56px; }
+    .hud { transform: translateX(calc(-100% - 14px)); background: var(--bg-drawer); border-right: var(--border-style); height: 100%; top: 0; bottom: 0; left: 0; width: 56px; }
     .mobile-trigger { display: flex; opacity: 0.6; pointer-events: auto; }
     .hud.mobile-open { transform: translateX(0); box-shadow: 5px 0 50px rgba(0,0,0,0.5); }
     .drawer { left: 0; width: 0; top: 0; bottom: 0; border-radius: 0; }
-    .drawer.open { width: 100vw; }
+    .drawer.open { width: calc(100vw - 24px); }
     #editorWrap { width: 92vw; margin-top: 8px; }
     #booksView { left: 0; }
     .logo-area { display: none; }
@@ -344,7 +354,7 @@ body.mobile-typing .mobile-trigger {
     body.mobile-controls-open .controls-inner .btn { padding: 8px 10px; min-width: 44px; font-size: 11px; }
     body.mobile-controls-open .controls-inner .btn-icon { width: 34px; height: 34px; }
     body.mobile-controls-open .controls-inner .search-input { font-size: 13px; }
-    .drawer.mobile-all { width: 100vw; top: 0; bottom: 0; border-radius: 0; }
+    .drawer.mobile-all { width: calc(100vw - 24px); top: 0; bottom: 0; border-radius: 0; }
     .drawer.mobile-all .drawer-tabs-mobile { display: none; }
     .drawer.mobile-all .drawer-content { display: block !important; opacity: 1; }
     .drawer.mobile-all .drawer-content + .drawer-content { border-top: var(--border-style); }

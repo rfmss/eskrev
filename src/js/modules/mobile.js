@@ -2,23 +2,142 @@ import { store } from './store.js';
 import { ui } from './ui.js';
 import { lang } from './lang.js';
 import { qrTransfer } from './qr_transfer.js';
+import { setModalActive } from './modal_state.js';
 
 const MOBILE_NOTES_KEY = "skrv_mobile_notes_v1";
 const MOBILE_NOTES_KEY_LEGACY = "tot_mobile_notes_v1";
+const MOBILE_FUNNEL_KEY = "skrv_mobile_funnel_v1";
 const MOBILE_NOTES_LIMIT = 200;
 const MOBILE_FOLDERS_LIMIT = 30;
 let mobileNotesCache = [];
 let mobileNotesFilter = { search: "", folder: "" };
 let mobileEditingId = null;
+let mobileDebugEnabled = false;
 
-const downloadText = (text, filename, mime) => {
-    const blob = new Blob([text], { type: `${mime};charset=utf-8` });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    a.click();
-    URL.revokeObjectURL(url);
+const resolveMobileDebugMode = () => {
+    try {
+        const params = new URLSearchParams(window.location.search || "");
+        const param = params.get("debug");
+        if (param === "1") localStorage.setItem("skrv_debug_mobile", "1");
+        if (param === "0") localStorage.removeItem("skrv_debug_mobile");
+        mobileDebugEnabled = localStorage.getItem("skrv_debug_mobile") === "1";
+        document.body.classList.toggle("mobile-debug-on", mobileDebugEnabled);
+    } catch (_) {
+        mobileDebugEnabled = false;
+    }
+    return mobileDebugEnabled;
+};
+
+const readMobileFunnel = () => {
+    try {
+        const raw = localStorage.getItem(MOBILE_FUNNEL_KEY);
+        const parsed = raw ? JSON.parse(raw) : {};
+        return typeof parsed === "object" && parsed ? parsed : {};
+    } catch (_) {
+        return {};
+    }
+};
+const writeMobileFunnel = (state) => {
+    try {
+        localStorage.setItem(MOBILE_FUNNEL_KEY, JSON.stringify(state || {}));
+    } catch (_) {}
+};
+const trackMobileFunnel = (eventName, meta = {}) => {
+    if (!eventName) return;
+    const now = Date.now();
+    const state = readMobileFunnel();
+    state.version = 1;
+    state.updatedAt = now;
+    state.counters = state.counters || {};
+    state.events = Array.isArray(state.events) ? state.events : [];
+    state.counters[eventName] = (state.counters[eventName] || 0) + 1;
+    if (eventName === "mobile_open" && !state.firstOpenAt) state.firstOpenAt = now;
+    if (eventName === "note_created" && !state.firstNoteAt) state.firstNoteAt = now;
+    if (eventName === "import_success" && !state.firstImportSuccessAt) state.firstImportSuccessAt = now;
+    state.events.push({ event: eventName, ts: now, meta });
+    if (state.events.length > 80) state.events = state.events.slice(-80);
+    writeMobileFunnel(state);
+    if (typeof window.skrvRenderMobileFunnelDebug === "function") {
+        window.skrvRenderMobileFunnelDebug();
+    }
+};
+const trackMobileFirstAction = (meta = {}) => {
+    if (sessionStorage.getItem("skrv_mobile_funnel_first_action_logged") === "1") return;
+    trackMobileFunnel("first_action", meta);
+    sessionStorage.setItem("skrv_mobile_funnel_first_action_logged", "1");
+};
+const fmtPct = (num) => `${Math.max(0, Math.min(100, Math.round(num || 0)))}%`;
+const renderMobileFunnelKpi = (state) => {
+    const el = document.getElementById("mobileFunnelKpi");
+    if (!el) return;
+    const counters = (state && state.counters) || {};
+    const opens = counters.mobile_open || 0;
+    const firstActions = counters.first_action || 0;
+    const attempts = (counters.import_attempt_qr || 0) + (counters.import_attempt_file || 0);
+    const importSuccess = counters.import_success || 0;
+    const importRate = attempts > 0 ? (importSuccess / attempts) * 100 : 0;
+    const noteCount = counters.note_created || 0;
+    const noteToImportRate = noteCount > 0 ? (importSuccess / noteCount) * 100 : 0;
+    const abandonRate = opens > 0 ? ((opens - Math.min(firstActions, opens)) / opens) * 100 : 0;
+    const firstOpenAt = Number(state && state.firstOpenAt) || 0;
+    const firstNoteAt = Number(state && state.firstNoteAt) || 0;
+    const firstImportSuccessAt = Number(state && state.firstImportSuccessAt) || 0;
+    const ttvSec = (firstOpenAt > 0 && firstNoteAt > firstOpenAt)
+        ? Math.round((firstNoteAt - firstOpenAt) / 1000)
+        : null;
+    const firstImportSec = (firstOpenAt > 0 && firstImportSuccessAt > firstOpenAt)
+        ? Math.round((firstImportSuccessAt - firstOpenAt) / 1000)
+        : null;
+    const ttvLabel = lang.t("mobile_funnel_kpi_ttv") || "TTV";
+    const importLabel = lang.t("mobile_funnel_kpi_import_rate") || "Sucesso import";
+    const abandonLabel = lang.t("mobile_funnel_kpi_abandon_rate") || "Abandono inicial";
+    const firstImportLabel = lang.t("mobile_funnel_kpi_first_import") || "Tempo ate 1o import";
+    const noteToImportLabel = lang.t("mobile_funnel_kpi_note_to_import") || "Conversao nota->import";
+    const noData = lang.t("mobile_funnel_kpi_no_data") || "sem dados";
+    el.textContent = [
+        `${ttvLabel}: ${ttvSec === null ? noData : `${ttvSec}s`}`,
+        `${firstImportLabel}: ${firstImportSec === null ? noData : `${firstImportSec}s`}`,
+        `${importLabel}: ${fmtPct(importRate)} (${importSuccess}/${attempts})`,
+        `${noteToImportLabel}: ${fmtPct(noteToImportRate)} (${importSuccess}/${noteCount})`,
+        `${abandonLabel}: ${fmtPct(abandonRate)} (${opens - Math.min(firstActions, opens)}/${opens})`
+    ].join("\n");
+};
+const renderMobileFunnelDebug = () => {
+    const out = document.getElementById("mobileFunnelDebugOut");
+    if (!out) return;
+    const state = readMobileFunnel();
+    renderMobileFunnelKpi(state);
+    const hasData = state && state.counters && Object.keys(state.counters).length > 0;
+    if (!hasData) {
+        out.textContent = lang.t("mobile_funnel_debug_empty") || "Sem dados ainda.";
+        return;
+    }
+    out.textContent = JSON.stringify(state, null, 2);
+};
+const initMobileFunnelDebugPanel = () => {
+    const panel = document.getElementById("mobileFunnelDebug");
+    if (!panel) return;
+    if (!mobileDebugEnabled) {
+        panel.open = false;
+        return;
+    }
+    const btnRefresh = document.getElementById("btnMobileFunnelRefresh");
+    const btnReset = document.getElementById("btnMobileFunnelReset");
+    window.skrvRenderMobileFunnelDebug = renderMobileFunnelDebug;
+    if (btnRefresh) {
+        btnRefresh.onclick = () => renderMobileFunnelDebug();
+    }
+    if (btnReset) {
+        btnReset.onclick = () => {
+            try { localStorage.removeItem(MOBILE_FUNNEL_KEY); } catch (_) {}
+            try { sessionStorage.removeItem("skrv_mobile_funnel_first_action_logged"); } catch (_) {}
+            renderMobileFunnelDebug();
+        };
+    }
+    panel.addEventListener("toggle", () => {
+        if (panel.open) renderMobileFunnelDebug();
+    });
+    renderMobileFunnelDebug();
 };
 
 const normalizeTag = (tag) => String(tag || "").trim().replace(/^#/, "").toLowerCase();
@@ -76,6 +195,76 @@ const updateMobileNotesTitle = () => {
         if (badge) badge.style.display = "none";
     }
 };
+const getUniqueProjectName = (baseName) => {
+    const base = String(baseName || "").trim() || (lang.t("default_project") || "Projeto");
+    const used = new Set((store.data.projects || []).map((p) => String((p && p.name) || "").trim().toLowerCase()));
+    if (!used.has(base.toLowerCase())) return base;
+    let n = 2;
+    while (used.has(`${base} ${n}`.toLowerCase())) n += 1;
+    return `${base} ${n}`;
+};
+const createMobileImportProject = () => {
+    const baseName = lang.t("mobile_import_new_project_name") || "Projeto importado";
+    const name = getUniqueProjectName(baseName);
+    store.createProject(name, "");
+    setMobileProjectMeta(name);
+    updateMobileNotesTitle();
+    return name;
+};
+    const pickMobileImportTarget = () => {
+    const modal = document.getElementById("mobileImportTargetModal");
+    const btnActive = document.getElementById("mobileImportDestActive");
+    const btnNew = document.getElementById("mobileImportDestNew");
+    const btnCancel = document.getElementById("mobileImportDestCancel");
+    const activeHint = document.getElementById("mobileImportActiveHint");
+    if (!modal || !btnActive || !btnNew || !btnCancel) return Promise.resolve("active");
+    const active = getActiveProject();
+    const activeName = (active && active.name) || (lang.t("mobile_project_note_empty") || "Sem projeto");
+    const hintLabel = lang.t("mobile_import_dest_active_hint") || "Projeto ativo";
+    if (activeHint) activeHint.textContent = `${hintLabel}: ${activeName}`;
+    return new Promise((resolve) => {
+        let settled = false;
+        const finish = (target) => {
+            if (settled) return;
+            settled = true;
+            cleanup();
+            setModalActive(modal, false);
+            trackMobileFunnel("import_target_selected", { target: target || "cancel" });
+            if (target === "active" || target === "new") {
+                try { sessionStorage.setItem("skrv_mobile_import_target", target); } catch (_) {}
+            } else {
+                try { sessionStorage.removeItem("skrv_mobile_import_target"); } catch (_) {}
+            }
+            resolve(target);
+        };
+        const onActive = () => finish("active");
+        const onNew = () => finish("new");
+        const onCancel = () => finish(null);
+        const onBackdrop = (e) => {
+            if (e.target === modal) finish(null);
+        };
+        const onKeydown = (e) => {
+            if (e.key === "Escape") {
+                e.preventDefault();
+                finish(null);
+            }
+        };
+        const cleanup = () => {
+            btnActive.removeEventListener("click", onActive);
+            btnNew.removeEventListener("click", onNew);
+            btnCancel.removeEventListener("click", onCancel);
+            modal.removeEventListener("click", onBackdrop);
+            document.removeEventListener("keydown", onKeydown);
+        };
+        btnActive.addEventListener("click", onActive);
+        btnNew.addEventListener("click", onNew);
+        btnCancel.addEventListener("click", onCancel);
+        modal.addEventListener("click", onBackdrop);
+        document.addEventListener("keydown", onKeydown);
+        setModalActive(modal, true);
+        setTimeout(() => btnActive.focus(), 10);
+    });
+};
 
 const buildNoteExcerpt = (text) => {
     const clean = String(text || "").replace(/\s+/g, " ").trim();
@@ -104,7 +293,6 @@ const updateMobileViewCounts = () => {
     const notesCount = document.getElementById("mobileNotesCount");
     const filesCount = document.getElementById("mobileFilesCount");
     const favCount = document.getElementById("mobileFavCount");
-    const projCount = document.getElementById("mobileProjectsCount");
     const tagsCount = document.getElementById("mobileTagsCount");
     if (notesCount) notesCount.textContent = mobileNotesCache.length;
     const folders = Array.from(new Set(mobileNotesCache.map(n => normalizeFolder(n.folder)).filter(Boolean)));
@@ -114,7 +302,6 @@ const updateMobileViewCounts = () => {
     if (tagsCount) tagsCount.textContent = tags.size;
     const favs = mobileNotesCache.filter(note => (note.tags || []).map(normalizeTag).includes("fav") || (note.tags || []).map(normalizeTag).includes("favorito"));
     if (favCount) favCount.textContent = favs.length;
-    if (projCount) projCount.textContent = (store.data.projects || []).length;
 };
 
 const renderMobileFolders = () => {
@@ -174,87 +361,6 @@ const renderMobileTags = () => {
         };
         list.appendChild(btn);
     });
-    updateMobileViewCounts();
-};
-
-const buildChapterBlock = (title, withDivider) => {
-    const divider = withDivider
-        ? `<div style="border-bottom:1px dashed var(--color-accent); opacity:0.5; margin:30px 0;"></div>`
-        : "";
-    return `${divider}<h2 class="chapter-mark" style="color:var(--color-accent); margin-top:0;">${title}</h2><p></p>`;
-};
-
-const openMobileProjectNote = (proj) => {
-    const titleEl = document.getElementById("mobileProjectNoteTitle");
-    const inputEl = document.getElementById("mobileProjectNoteInput");
-    if (!titleEl || !inputEl) return;
-    titleEl.textContent = proj ? proj.name : lang.t("mobile_project_note_empty");
-    inputEl.value = proj && proj.mobileNote ? proj.mobileNote : "";
-    inputEl.oninput = (e) => {
-        const active = getActiveProject();
-        if (!active) return;
-        active.mobileNote = e.target.value;
-        store.persist(true);
-    };
-};
-
-const createMobileProject = (name) => {
-    const chapter1 = lang.t("mobile_chapter_1");
-    const chapter2 = lang.t("mobile_chapter_2");
-    const content = [
-        buildChapterBlock(chapter1, false),
-        buildChapterBlock(chapter2, true)
-    ].join("");
-    store.createProject(name, content);
-    setMobileProjectMeta(name);
-    const active = store.getActive();
-    if (active) {
-        active.mobileNote = "";
-        store.persist(true);
-        openMobileProjectNote(active);
-    }
-    if (document.getElementById("mobileProjectList")) {
-        renderMobileProjects();
-    }
-};
-
-const renderMobileProjects = () => {
-    const list = document.getElementById("mobileProjectList");
-    if (!list) return;
-    list.innerHTML = "";
-    const projects = Array.isArray(store.data.projects) ? store.data.projects : [];
-    const projectQr = document.getElementById("btnMobileProjectQr");
-    const projectJson = document.getElementById("btnMobileProjectJson");
-    projects.forEach((proj) => {
-        const card = document.createElement("div");
-        card.className = "mobile-memo-card";
-        const title = document.createElement("div");
-        title.textContent = proj.name || ".skv";
-        title.className = "mobile-memo-meta";
-        card.appendChild(title);
-        const excerpt = document.createElement("div");
-        excerpt.textContent = buildNoteExcerpt(proj.mobileNote || "");
-        card.appendChild(excerpt);
-        card.onclick = () => {
-            store.setActive(proj.id);
-            if (typeof window.skvLoadActiveDocument === "function") {
-                window.skvLoadActiveDocument();
-            }
-            openMobileProjectNote(store.getActive());
-            if (sessionStorage.getItem("mobile_project_hint") !== "1") {
-                if (window.skvModal) window.skvModal.alert(lang.t("mobile_project_hint"));
-                sessionStorage.setItem("mobile_project_hint", "1");
-            }
-        };
-        list.appendChild(card);
-    });
-    const active = getActiveProject();
-    if (projectQr) projectQr.disabled = !active;
-    if (projectJson) projectJson.disabled = !active;
-    if (!active && projects.length) {
-        store.setActive(projects[0].id);
-    }
-    updateMobileNotesTitle();
     updateMobileViewCounts();
 };
 
@@ -322,12 +428,11 @@ const renderMobileNotes = () => {
         copyBtn.textContent = lang.t("mobile_memo_to_project") || "NO PROJETO";
         copyBtn.onclick = (e) => {
             e.stopPropagation();
-            const active = getActiveProject();
-            if (!active) return;
-            const next = (active.mobileNote || "").trim();
-            active.mobileNote = next ? `${next}\n\n${note.text}` : note.text;
-            openMobileProjectNote(active);
-            store.save(undefined, undefined);
+            const input = document.getElementById("mobileMemoInput");
+            if (!input) return;
+            const next = (input.value || "").trim();
+            input.value = next ? `${next}\n\n${note.text}` : note.text;
+            input.dispatchEvent(new Event("input"));
         };
         actions.appendChild(copyBtn);
         const delBtn = document.createElement("button");
@@ -472,7 +577,6 @@ const initMobileMemos = () => {
     renderMobileNotes();
     renderMobileFolders();
     renderMobileTags();
-    renderMobileProjects();
 
     if (memoSearch) {
         memoSearch.addEventListener("input", (e) => {
@@ -505,7 +609,13 @@ const initMobileMemos = () => {
         addBtn.onclick = () => {
             const text = memoInput.value.trim();
             if (!text) return;
+            const beforeCount = mobileNotesCache.length;
             addOrUpdateMobileNote(text, memoTags ? memoTags.value : "", memoFolder ? memoFolder.value : "");
+            const afterCount = mobileNotesCache.length;
+            if (afterCount > beforeCount) {
+                trackMobileFirstAction({ source: "note_created" });
+                trackMobileFunnel("note_created", { totalNotes: afterCount });
+            }
             memoInput.value = "";
             if (memoTags) {
                 memoTags.value = "";
@@ -518,13 +628,6 @@ const initMobileMemos = () => {
         };
     }
 
-    const btnMobileScan = document.getElementById("btnMobileScan");
-    if (btnMobileScan) {
-        btnMobileScan.onclick = () => {
-            const scanBtn = document.getElementById("btnScanQr");
-            if (scanBtn) scanBtn.click();
-        };
-    }
     const btnMobileReader = document.getElementById("btnMobileReader");
     if (btnMobileReader) {
         btnMobileReader.onclick = () => {
@@ -549,42 +652,75 @@ const initMobileMemos = () => {
             qrTransfer.downloadBase64Backup();
         };
     }
+    const btnMobileScanQr = document.getElementById("btnMobileScanQr");
+    if (btnMobileScanQr) {
+        btnMobileScanQr.onclick = async () => {
+            trackMobileFirstAction({ source: "import_qr" });
+            trackMobileFunnel("import_attempt_qr");
+            const target = await pickMobileImportTarget();
+            if (!target) return;
+            if (target === "new") createMobileImportProject();
+            const scanBtn = document.getElementById("btnScanQr");
+            if (scanBtn) {
+                scanBtn.dataset.importMode = "append_active";
+                scanBtn.click();
+            }
+        };
+    }
+    const btnMobileImportFile = document.getElementById("btnMobileImportFile");
+    if (btnMobileImportFile) {
+        btnMobileImportFile.onclick = async () => {
+            trackMobileFirstAction({ source: "import_file" });
+            trackMobileFunnel("import_attempt_file");
+            const target = await pickMobileImportTarget();
+            if (!target) return;
+            if (target === "new") createMobileImportProject();
+            if (typeof window.skrvSetImportMode === "function") {
+                window.skrvSetImportMode("append_active");
+            }
+            const fileInput = document.getElementById("fileInput");
+            if (fileInput) fileInput.dataset.importMode = "append_active";
+            const importBtn = document.getElementById("btnImport");
+            if (importBtn) importBtn.click();
+        };
+    }
     const btnMobileReset = document.getElementById("btnMobileReset");
     if (btnMobileReset) {
         btnMobileReset.onclick = () => {
             if (typeof window.skvOpenReset === "function") window.skvOpenReset();
         };
     }
+    const btnMobileCtaNewNote = document.getElementById("btnMobileCtaNewNote");
+    if (btnMobileCtaNewNote) {
+        btnMobileCtaNewNote.onclick = () => {
+            trackMobileFirstAction({ source: "cta_new_note" });
+            trackMobileFunnel("cta_new_note");
+            const section = document.getElementById("mobileNotesSection");
+            if (section && section.scrollIntoView) {
+                section.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+            setTimeout(() => memoInput.focus(), 120);
+        };
+    }
+    const btnMobileCtaScanQr = document.getElementById("btnMobileCtaScanQr");
+    if (btnMobileCtaScanQr) {
+        btnMobileCtaScanQr.onclick = () => {
+            trackMobileFirstAction({ source: "cta_import_qr" });
+            trackMobileFunnel("cta_import_qr");
+            const source = document.getElementById("btnMobileScanQr");
+            if (source) source.click();
+        };
+    }
+    const btnMobileCtaImportFile = document.getElementById("btnMobileCtaImportFile");
+    if (btnMobileCtaImportFile) {
+        btnMobileCtaImportFile.onclick = () => {
+            trackMobileFirstAction({ source: "cta_import_file" });
+            trackMobileFunnel("cta_import_file");
+            const source = document.getElementById("btnMobileImportFile");
+            if (source) source.click();
+        };
+    }
 
-    const projectQr = document.getElementById("btnMobileProjectQr");
-    const projectJson = document.getElementById("btnMobileProjectJson");
-    if (projectQr) {
-        projectQr.onclick = () => {
-            const active = getActiveProject();
-            if (!active) return;
-            const payload = {
-                protocol: ".skv Mobile Project",
-                version: "1.0",
-                created_at: new Date().toISOString(),
-                project: active
-            };
-            qrTransfer.startCustomStream(payload, active.name || ".skv");
-        };
-    }
-    if (projectJson) {
-        projectJson.onclick = () => {
-            const active = getActiveProject();
-            if (!active) return;
-            const payload = {
-                protocol: ".skv Mobile Project",
-                version: "1.0",
-                created_at: new Date().toISOString(),
-                project: active
-            };
-            const safe = (active.name || "tft").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9]+/g, "-").replace(/^-+|-+$/g, "").toLowerCase();
-            downloadText(JSON.stringify(payload, null, 2), `${safe || "tft"}-mobile-project.json`, "application/json");
-        };
-    }
 };
 
 const initMobileIntro = () => {
@@ -595,64 +731,15 @@ const initMobileIntro = () => {
     const ok = document.getElementById("mobileIntroOk");
     const seen = localStorage.getItem("lit_mobile_intro") === "true";
     if (!intro || seen) return;
-    intro.classList.add("active");
+    setModalActive(intro, true);
     const dismiss = () => {
-        intro.classList.remove("active");
+        setModalActive(intro, false);
         localStorage.setItem("lit_mobile_intro", "true");
     };
     if (close) close.onclick = dismiss;
     if (ok) ok.onclick = dismiss;
     const btnScan = document.getElementById("btnScanQr");
     if (btnScan) btnScan.click();
-};
-
-const initMobileFullToggle = () => {
-    if (window.innerWidth > 900) return;
-    return;
-    const btn = document.getElementById("btnMobileFullToggle");
-    if (!btn) return;
-    const updateLabel = () => {
-        const isLite = document.body.classList.contains("mobile-lite");
-        btn.textContent = isLite ? lang.t("mobile_full_enable") : lang.t("mobile_full_disable");
-    };
-    const setFullMode = (enabled) => {
-        if (enabled) {
-            document.body.classList.remove("mobile-lite");
-            localStorage.setItem("lit_mobile_full", "true");
-        } else {
-            document.body.classList.add("mobile-lite");
-            localStorage.setItem("lit_mobile_full", "false");
-        }
-        enforceMobileLitePanels();
-        updateLabel();
-    };
-    updateLabel();
-    btn.onclick = () => {
-        const isLite = document.body.classList.contains("mobile-lite");
-        setFullMode(isLite);
-    };
-    document.addEventListener("lang:changed", updateLabel);
-    window.setMobileFullMode = setFullMode;
-};
-
-const initMobileTapToEdit = () => {
-    if (window.innerWidth > 900) return;
-    return;
-    const panel = document.querySelector(".panel");
-    const editorEl = document.getElementById("editor");
-    if (!panel) return;
-    panel.addEventListener("click", () => {
-        if (!document.body.classList.contains("mobile-lite")) return;
-        if (typeof window.setMobileFullMode === "function") {
-            window.setMobileFullMode(true);
-        } else {
-            document.body.classList.remove("mobile-lite");
-            localStorage.setItem("lit_mobile_full", "true");
-            const btn = document.getElementById("btnMobileFullToggle");
-            if (btn) btn.textContent = lang.t("mobile_full_disable");
-        }
-        if (editorEl) editorEl.focus();
-    });
 };
 
 const initMobileEdgeHandle = () => {
@@ -690,14 +777,15 @@ const enforceMobileLitePanels = () => {
 
 export const initMobileFeatures = () => {
     if (window.innerWidth > 900) return;
+    resolveMobileDebugMode();
+    initMobileFunnelDebugPanel();
+    if (sessionStorage.getItem("skrv_mobile_funnel_open_logged") !== "1") {
+        trackMobileFunnel("mobile_open", { path: window.location.pathname });
+        sessionStorage.setItem("skrv_mobile_funnel_open_logged", "1");
+    }
+    window.skrvMobileFunnelTrack = trackMobileFunnel;
     initMobileMemos();
     initMobileIntro();
-    initMobileFullToggle();
     enforceMobileLitePanels();
-    initMobileTapToEdit();
     initMobileEdgeHandle();
-
-    window.skvMobileRenderProjects = renderMobileProjects;
-    window.skvMobileCreateProject = createMobileProject;
-    window.skvMobileOpenProjectNote = openMobileProjectNote;
 };

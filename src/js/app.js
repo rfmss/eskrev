@@ -11,6 +11,13 @@ import { exportSkrv, importSkrv, buildSkrvPayloadWithChain } from './modules/exp
 import { birthTracker } from './modules/birth_tracker.js';
 import { processTracker } from './modules/process_tracker.js';
 import { qrTransfer } from './modules/qr_transfer.js';
+import { createCtrlGuardHandler, createAltShortcutHandler, createTypingRedirectHandler, createEscapeHandler } from './modules/keyboard.js';
+import { setupModalFocusTrap, createBootModalBlocker, createOverlayBackdropHandler } from './modules/modal_accessibility.js';
+import { setupResetFlow } from './modules/reset_flow.js';
+import { setupPersistenceBindings } from './modules/persistence_bindings.js';
+import { copyToClipboard, bindCopyTargets } from './modules/clipboard.js';
+import { setNextLangButtonLabel } from './modules/lang_ui.js';
+import { setModalActive } from './modules/modal_state.js';
 
 
 const BOOK_TEMPLATE = [
@@ -213,10 +220,44 @@ const BOOK_FOLDERS = [
     { id: "poetry", title: "Livro (poesia)", template: BOOK_TEMPLATE_POETRY, openDefault: false }
 ];
 
+let skrvImportMode = "replace";
+function setImportMode(mode) {
+    skrvImportMode = mode === "append_active" ? "append_active" : "replace";
+}
+function consumeImportMode() {
+    const mode = skrvImportMode;
+    skrvImportMode = "replace";
+    return mode;
+}
+
+function initInkTransition() {
+    const overlay = document.getElementById("inkTransition");
+    if (!overlay) return;
+    let running = false;
+    window.skrvInkTransition = (callback) => {
+        if (running) {
+            if (typeof callback === "function") callback();
+            return;
+        }
+        running = true;
+        document.body.classList.add("bar-morphing");
+        overlay.classList.remove("reveal");
+        overlay.classList.add("active");
+        setTimeout(() => {
+            if (typeof callback === "function") callback();
+            overlay.classList.add("reveal");
+        }, 520);
+        setTimeout(() => {
+            overlay.classList.remove("active", "reveal");
+            document.body.classList.remove("bar-morphing");
+            running = false;
+        }, 1500);
+    };
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add("booting");
     setTimeout(() => document.body.classList.remove("booting"), 2000);
-    // console.log("🚀 .skv SYSTEM BOOTING v5.5...");
 
     if (sessionStorage.getItem("skrv_force_clean") === "1") {
         try { localStorage.clear(); } catch (_) {}
@@ -234,68 +275,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const hoverNone = window.matchMedia && window.matchMedia("(hover: none)").matches;
     const touchPoints = navigator.maxTouchPoints || 0;
     const isMobile = forcedMobile || uaMobile || (coarse && hoverNone && touchPoints > 0);
+    const forceMobileNotes = /(?:^|[?&])mobile=notes(?:&|$)/.test(location.search);
     const onMobilePage = /mobile\\.html$/.test(location.pathname);
-    if (!forcedMobile && isMobile && !onMobilePage && !location.search.includes("fallback=1")) {
+    if (!forcedMobile && isMobile && !onMobilePage && !location.search.includes("fallback=1") && !forceMobileNotes) {
         location.replace("mobile.html");
         return;
     }
     if (isMobile) {
         document.body.classList.add("mobile-lite");
     }
-    const fallbackLink = document.getElementById("mobileFallbackLink");
-    if (fallbackLink) {
-        fallbackLink.style.display = isMobile ? "none" : "inline-flex";
-    }
     ui.init();
+    initInkTransition();
     
     lang.init();
     window.skrvLoading = initGlobalPending();
-    const mobileGateActive = isMobile ? initMobileGate() : false;
-    const cacheHook = document.getElementById("mobileGateCacheHook");
-    const cacheBtn = document.getElementById("mobileClearCache");
-    if (cacheHook && cacheBtn) {
-        let pressTimer = null;
-        const showBtn = () => {
-            cacheBtn.classList.add("show");
-            cacheBtn.setAttribute("aria-hidden", "false");
-        };
-        const hideBtn = () => {
-            cacheBtn.classList.remove("show");
-            cacheBtn.setAttribute("aria-hidden", "true");
-        };
-        cacheHook.addEventListener("touchstart", () => {
-            pressTimer = setTimeout(showBtn, 900);
-        }, { passive: true });
-        cacheHook.addEventListener("touchend", () => {
-            if (pressTimer) clearTimeout(pressTimer);
-        }, { passive: true });
-        cacheHook.addEventListener("click", () => {
-            if (cacheBtn.classList.contains("show")) {
-                hideBtn();
-            }
-        });
-        cacheBtn.addEventListener("click", async () => {
-            try {
-                if ("caches" in window) {
-                    const keys = await caches.keys();
-                    await Promise.all(keys.map((k) => caches.delete(k)));
-                }
-                if (navigator.serviceWorker?.getRegistrations) {
-                    const regs = await navigator.serviceWorker.getRegistrations();
-                    await Promise.all(regs.map((r) => r.unregister()));
-                }
-            } catch (_) {}
-            location.reload(true);
-        });
-    }
+    const mobileGateActive = (isMobile && !forceMobileNotes) ? initMobileGate() : false;
     const introDone = localStorage.getItem("skrv_intro_done") === "1";
-    if (!mobileGateActive && !introDone) initDedication();
+    if (!mobileGateActive && !introDone && !forceMobileNotes) initDedication();
     const syncLangToFrames = (code) => {
         const frames = [
             document.getElementById("booksFrame"),
             document.getElementById("verifyFrame")
         ].filter(Boolean);
         frames.forEach((frame) => {
+            if (!frame.getAttribute("src")) return;
             try {
                 frame.contentWindow?.postMessage({ type: "lang", value: code }, window.location.origin);
             } catch (_) {}
@@ -326,6 +329,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     auth.init();
     initImportSessionModal();
+
+    if (isMobile && forceMobileNotes) {
+        ui.openDrawer("notes", {});
+        localStorage.setItem("lit_ui_drawer_open", "true");
+        localStorage.setItem("lit_ui_drawer_panel", "notes");
+    }
 
     // Safety: avoid stuck white overlay if modal-active remains without active modal.
     setTimeout(() => {
@@ -400,10 +409,14 @@ document.addEventListener('DOMContentLoaded', () => {
     ui.initPomodoro();
     qrTransfer.init({
         onRestore: (payload) => {
-            if (payload && applySkrvPayload(payload)) {
-                handleImportSuccess("alert_backup_restored");
+            const mode = consumeImportMode();
+            const ok = mode === "append_active"
+                ? appendPayloadToActiveProject(payload)
+                : applySkrvPayload(payload);
+            if (payload && ok) {
+                handleImportSuccess("alert_backup_restored", buildImportMergeSummary(payload, mode), { source: "qr" });
             } else {
-                if (window.skvModal) window.skvModal.alert(lang.t("alert_backup_invalid"));
+                showImportInvalidError("qr");
             }
         }
     });
@@ -411,16 +424,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const qrBtnFallback = document.getElementById("btnScanQr");
     if (qrBtnFallback && !qrBtnFallback.dataset.bound) {
         qrBtnFallback.addEventListener("click", () => {
+            const requestedMode = qrBtnFallback.dataset.importMode === "append_active" ? "append_active" : "replace";
+            setImportMode(requestedMode);
+            delete qrBtnFallback.dataset.importMode;
             const modal = document.getElementById("qrScanModal");
-            if (modal) modal.classList.add("active");
+            if (modal) setModalActive(modal, true);
             if (qrTransfer.startScan) qrTransfer.startScan();
         });
+        qrBtnFallback.dataset.bound = "1";
     }
     document.addEventListener("click", (e) => {
         const scanTrigger = e.target.closest && e.target.closest("#btnScanQr");
         if (!scanTrigger) return;
         const modal = document.getElementById("qrScanModal");
-        if (modal) modal.classList.add("active");
+        if (modal) setModalActive(modal, true);
         if (qrTransfer.startScan) qrTransfer.startScan();
     });
     
@@ -442,7 +459,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.skvOpenReader = () => editorFeatures.openReaderMode();
     window.skvOpenExport = () => {
         const modal = document.getElementById("exportModal");
-        if (modal) modal.classList.add("active");
+        if (modal) setModalActive(modal, true);
     };
     window.skvOpenReset = () => {
         const btn = document.getElementById("btnHardReset");
@@ -489,40 +506,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function setupSupportCopy() {
-    const items = document.querySelectorAll(".manifesto-support-value[data-copy]");
-    if (!items.length) return;
-    const copyText = (text) => {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-            return navigator.clipboard.writeText(text);
-        }
-        return new Promise((resolve) => {
-            const area = document.createElement("textarea");
-            area.value = text;
-            area.setAttribute("readonly", "true");
-            area.style.position = "fixed";
-            area.style.opacity = "0";
-            document.body.appendChild(area);
-            area.select();
-            document.execCommand("copy");
-            document.body.removeChild(area);
-            resolve();
-        });
-    };
-    items.forEach((item) => {
-        item.addEventListener("click", () => {
-            const id = item.getAttribute("data-copy");
-            const target = id ? document.getElementById(id) : null;
-            if (!target) return;
-            const text = (target.textContent || "").trim();
-            if (!text) return;
-            const original = lang.t("support_copy");
-            const done = lang.t("support_copy_done");
-            copyText(text).then(() => {
-                item.setAttribute("data-tip", done);
-                setTimeout(() => {
-                    item.setAttribute("data-tip", original);
-                }, 900);
-            });
+    bindCopyTargets(".manifesto-support-value[data-copy]", (item) => {
+        const id = item.getAttribute("data-copy");
+        const target = id ? document.getElementById(id) : null;
+        if (!target) return;
+        const text = (target.textContent || "").trim();
+        if (!text) return;
+        const original = lang.t("support_copy");
+        const done = lang.t("support_copy_done");
+        copyToClipboard(text).then(() => {
+            item.setAttribute("data-tip", done);
+            setTimeout(() => {
+                item.setAttribute("data-tip", original);
+            }, 900);
         });
     });
 }
@@ -537,12 +533,8 @@ function initDedication() {
     const done = localStorage.getItem("skrv_dedication_done") === "1";
     if (done) return;
 
-    const formatLangLabel = (label) => String(label || "").replace(/^[^\w]*\s*/u, "");
     const updateLangButton = () => {
-        if (!langBtn) return;
-        const idx = lang.languages.findIndex((l) => l.code === lang.current);
-        const next = lang.languages[(idx + 1 + lang.languages.length) % lang.languages.length];
-        if (next) langBtn.textContent = formatLangLabel(next.label);
+        setNextLangButtonLabel(lang, langBtn);
     };
     const renderMarkdown = (md) => {
         const escape = (text) => String(text || "")
@@ -582,7 +574,7 @@ function initDedication() {
         const current = parseInt(localStorage.getItem(visitsKey) || "0", 10);
         const nextCount = Number.isFinite(current) ? current + 1 : 1;
         localStorage.setItem(visitsKey, String(nextCount));
-        modal.classList.remove("active");
+        setModalActive(modal, false);
         document.body.classList.remove("modal-active");
         localStorage.setItem("skrv_dedication_done", "1");
         localStorage.setItem("skrv_intro_done", "1");
@@ -599,7 +591,7 @@ function initDedication() {
         finish();
     };
 
-    modal.classList.add("active");
+    setModalActive(modal, true);
     document.body.classList.add("modal-active");
     document.addEventListener("keydown", handleEnter);
     if (continueBtn) continueBtn.addEventListener("click", finish);
@@ -622,7 +614,7 @@ function initMobileGate() {
         }
     };
     const closeGate = (showDedication = true, startSetup = false) => {
-        modal.classList.remove("active");
+        setModalActive(modal, false);
         document.body.classList.remove("modal-active");
         sessionStorage.setItem("skrv_mobile_gate_done", "1");
         if (isMobileOnly) {
@@ -632,12 +624,8 @@ function initMobileGate() {
         if (showDedication) initDedication();
     };
 
-    const formatLangLabel = (label) => String(label || "").replace(/^[^\w]*\s*/u, "");
     const updateLangButton = () => {
-        if (!langBtn) return;
-        const idx = lang.languages.findIndex((l) => l.code === lang.current);
-        const next = lang.languages[(idx + 1 + lang.languages.length) % lang.languages.length];
-        if (next) langBtn.textContent = formatLangLabel(next.label);
+        setNextLangButtonLabel(lang, langBtn);
     };
     updateLangButton();
     document.addEventListener("lang:changed", updateLangButton);
@@ -671,7 +659,7 @@ function initMobileGate() {
         }
     });
 
-    modal.classList.add("active");
+    setModalActive(modal, true);
     document.body.classList.add("modal-active");
     initMobileGateQr(qrWrap);
     return true;
@@ -819,36 +807,15 @@ function setupOfflineProgress() {
 }
 
 function setupMarqueeCopy() {
-    const items = document.querySelectorAll(".marquee-copy[data-copy]");
-    if (!items.length) return;
-    const copyText = (text) => {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-            return navigator.clipboard.writeText(text);
-        }
-        return new Promise((resolve) => {
-            const area = document.createElement("textarea");
-            area.value = text;
-            area.setAttribute("readonly", "true");
-            area.style.position = "fixed";
-            area.style.opacity = "0";
-            document.body.appendChild(area);
-            area.select();
-            document.execCommand("copy");
-            document.body.removeChild(area);
-            resolve();
-        });
-    };
-    items.forEach((item) => {
-        item.addEventListener("click", () => {
-            const value = item.getAttribute("data-copy");
-            if (!value) return;
-            copyText(value).then(() => {
-                item.setAttribute("data-copied-label", lang.t("support_copy_done"));
-                item.classList.add("is-copied");
-                setTimeout(() => {
-                    item.classList.remove("is-copied");
-                }, 900);
-            });
+    bindCopyTargets(".marquee-copy[data-copy]", (item) => {
+        const value = item.getAttribute("data-copy");
+        if (!value) return;
+        copyToClipboard(value).then(() => {
+            item.setAttribute("data-copied-label", lang.t("support_copy_done"));
+            item.classList.add("is-copied");
+            setTimeout(() => {
+                item.classList.remove("is-copied");
+            }, 900);
         });
     });
 }
@@ -932,12 +899,8 @@ function initOnboarding() {
         step.dataset.animated = "true";
         step.classList.add("animate");
     };
-    const formatLangLabel = (label) => String(label || "").replace(/^[^\w]*\s*/u, "");
     const updateLangButton = () => {
-        if (!langBtn) return;
-        const idx = lang.languages.findIndex((l) => l.code === lang.current);
-        const next = lang.languages[(idx + 1 + lang.languages.length) % lang.languages.length];
-        if (next) langBtn.textContent = formatLangLabel(next.label);
+        setNextLangButtonLabel(lang, langBtn);
     };
     let keyboardTimer = null;
     const update = () => {
@@ -1009,7 +972,7 @@ function initOnboarding() {
     const open = (startStep = 0) => {
         current = Math.min(Math.max(startStep, 1), total);
         if (startStep === 0) current = 0;
-        modal.classList.add("active");
+        setModalActive(modal, true);
         document.body.classList.add("modal-active");
         update();
         if (startStep === 0) {
@@ -1019,7 +982,7 @@ function initOnboarding() {
     };
 
     const close = () => {
-        modal.classList.remove("active");
+        setModalActive(modal, false);
         document.body.classList.remove("modal-active");
     };
 
@@ -1199,7 +1162,7 @@ function initSystemModal() {
     };
 
     const close = (result) => {
-        overlay.classList.remove("active");
+        setModalActive(overlay, false);
         if (inputEl) inputEl.value = "";
         if (resolver) {
             const resolve = resolver;
@@ -1227,7 +1190,7 @@ function initSystemModal() {
             inputEl.value = wantsInput ? (options.defaultValue || "") : "";
         }
         setActionsLayout(type !== "alert");
-        overlay.classList.add("active");
+        setModalActive(overlay, true);
         setTimeout(() => {
             if (wantsInput && inputEl) inputEl.focus();
             else if (btnConfirm) btnConfirm.focus();
@@ -1315,6 +1278,14 @@ function loadActiveDocument() {
 
 function setupEventListeners() {
     initHelpTabs();
+    const ensureFrameLoaded = (id) => {
+        const frame = document.getElementById(id);
+        if (!frame) return null;
+        const currentSrc = frame.getAttribute("src");
+        const lazySrc = frame.getAttribute("data-src");
+        if (!currentSrc && lazySrc) frame.setAttribute("src", lazySrc);
+        return frame;
+    };
 
       // Views (Editor / Books / Verify)
     const showEditorView = () => {
@@ -1336,10 +1307,16 @@ function setupEventListeners() {
         const bv = document.getElementById("booksView");
         const vv = document.getElementById("verifyView");
         const panel = document.querySelector(".panel");
+        const booksFrame = ensureFrameLoaded("booksFrame");
         if (ev) ev.style.display = "none";
         if (bv) bv.style.display = "block";
         if (vv) vv.style.display = "none";
         if (panel) panel.classList.add("books-active");
+        if (booksFrame) {
+            try {
+                booksFrame.contentWindow?.postMessage({ type: "lang", value: lang.current }, window.location.origin);
+            } catch (_) {}
+        }
         localStorage.setItem("lit_ui_view", "books");
     };
 
@@ -1348,10 +1325,16 @@ function setupEventListeners() {
         const bv = document.getElementById("booksView");
         const vv = document.getElementById("verifyView");
         const panel = document.querySelector(".panel");
+        const verifyFrame = ensureFrameLoaded("verifyFrame");
         if (ev) ev.style.display = "none";
         if (bv) bv.style.display = "none";
         if (vv) vv.style.display = "block";
         if (panel) panel.classList.add("books-active");
+        if (verifyFrame) {
+            try {
+                verifyFrame.contentWindow?.postMessage({ type: "lang", value: lang.current }, window.location.origin);
+            } catch (_) {}
+        }
         localStorage.setItem("lit_ui_view", "verify");
     };
 
@@ -1470,8 +1453,7 @@ function setupEventListeners() {
     function closeFiguresModal() {
         const modal = document.getElementById("figuresModal");
         if (!modal) return;
-        modal.classList.remove("active");
-        modal.setAttribute("aria-hidden", "true");
+        setModalActive(modal, false);
         document.body.classList.remove("figures-open");
     }
 
@@ -1489,8 +1471,7 @@ function setupEventListeners() {
         if (note) note.style.display = lang.current === "pt" ? "none" : "block";
         const support = document.getElementById("figuresSupport");
         if (support) support.style.display = lang.current === "pt" ? "none" : "grid";
-        modal.classList.add("active");
-        modal.setAttribute("aria-hidden", "false");
+        setModalActive(modal, true);
         document.body.classList.add("figures-open");
     }
     window.skrvOpenFiguresModal = openFiguresModal;
@@ -1847,15 +1828,13 @@ function setupEventListeners() {
             });
         }
         setNewTextStep(1);
-        modal.classList.add("active");
-        modal.setAttribute("aria-hidden", "false");
+        setModalActive(modal, true);
     };
 
     const closeNewTextModal = () => {
         const modal = document.getElementById("newTextModal");
         if (!modal) return;
-        modal.classList.remove("active");
-        modal.setAttribute("aria-hidden", "true");
+        setModalActive(modal, false);
     };
 
     const setNewTextStep = (step) => {
@@ -2187,14 +2166,12 @@ function setupEventListeners() {
         filtered.forEach(note => listEl.appendChild(buildNoteCard(note)));
         notesState.overlayType = type;
         notesState.overlayValue = value;
-        overlay.classList.add("active");
-        overlay.setAttribute("aria-hidden", "false");
+        setModalActive(overlay, true);
     };
     const closeNotesOverlay = () => {
         const overlay = document.getElementById("notesOverlay");
         if (!overlay) return;
-        overlay.classList.remove("active");
-        overlay.setAttribute("aria-hidden", "true");
+        setModalActive(overlay, false);
         notesState.overlayType = "";
         notesState.overlayValue = "";
     };
@@ -2385,8 +2362,7 @@ function setupEventListeners() {
         const pomo = document.getElementById("pomodoroModal");
         if (pomo && pomo.classList.contains("active")) return;
         if (!notesModal) return;
-        notesModal.classList.add("active");
-        notesModal.setAttribute("aria-hidden", "false");
+        setModalActive(notesModal, true);
         document.body.classList.add("notes-open");
         renderNotesList();
         setNotesStage("list");
@@ -2396,11 +2372,9 @@ function setupEventListeners() {
         finalizeDraftIfNeeded();
         const overlay = document.getElementById("notesOverlay");
         if (overlay) {
-            overlay.classList.remove("active");
-            overlay.setAttribute("aria-hidden", "true");
+            setModalActive(overlay, false);
         }
-        notesModal.classList.remove("active");
-        notesModal.setAttribute("aria-hidden", "true");
+        setModalActive(notesModal, false);
         document.body.classList.remove("notes-open");
     };
     if (notesClose) notesClose.onclick = () => closeNotesModal();
@@ -2412,8 +2386,7 @@ function setupEventListeners() {
             const insideOverlay = overlay.contains(e.target);
             const insidePanel = panel && panel.contains(e.target);
             if (!insideOverlay && insidePanel) {
-                overlay.classList.remove("active");
-                overlay.setAttribute("aria-hidden", "true");
+                setModalActive(overlay, false);
             } else if (!insideOverlay && !insidePanel) {
                 closeNotesModal();
             }
@@ -2429,8 +2402,6 @@ function setupEventListeners() {
     const notesFab = document.getElementById("notesFab");
     const notesOverlayClose = document.getElementById("notesOverlayClose");
     const notesOverlayNew = document.getElementById("notesOverlayNew");
-    const notesBackToList = document.getElementById("notesBackToList");
-    const notesEdit = document.getElementById("notesEdit");
     const notesBackToPreview = document.getElementById("notesBackToPreview");
     const notesDelete = document.getElementById("notesDelete");
     const notesPinToggle = document.getElementById("notesPinToggle");
@@ -2447,8 +2418,6 @@ function setupEventListeners() {
     if (notesNew) notesNew.onclick = () => createNewNote();
     if (notesEmptyCreate) notesEmptyCreate.onclick = () => createNewNote();
     if (notesFab) notesFab.onclick = () => createNewNote();
-    if (notesBackToList) notesBackToList.onclick = () => setNotesStage("list");
-    if (notesEdit) notesEdit.onclick = () => openNoteEdit(notesState.activeId);
     if (notesBackToPreview) notesBackToPreview.onclick = () => setNotesStage("list");
     if (notesDelete) {
         notesDelete.onclick = async () => {
@@ -2589,6 +2558,10 @@ function setupEventListeners() {
     if (mobileTabMemo) mobileTabMemo.onclick = () => { openNotesModal(); };
     if (mobileTabTheme) mobileTabTheme.onclick = () => { ui.toggleTheme(); };
     if (mobileTabBooks) mobileTabBooks.onclick = () => { ui.closeDrawer(); showBooksView(); };
+    const btnProjectsQuick = document.getElementById("btnProjectsQuick");
+    if (btnProjectsQuick) {
+        btnProjectsQuick.onclick = () => { showEditorView(); ui.openDrawer('files', { renderFiles: renderProjectList }); closeNotesModal(); };
+    }
 
     const mobileControlsTrigger = document.getElementById("mobileControlsTrigger");
     const mobileControlsClose = document.getElementById("mobileControlsClose");
@@ -2614,6 +2587,8 @@ function setupEventListeners() {
 
     const drawerExport = document.getElementById("drawerExport");
     if (drawerExport) drawerExport.onclick = () => document.getElementById("btnSave").click();
+    const drawerProjects = document.getElementById("drawerProjects");
+    if (drawerProjects) drawerProjects.onclick = () => { showEditorView(); ui.openDrawer('files', { renderFiles: renderProjectList }); closeNotesModal(); };
     const drawerReader = document.getElementById("drawerReader");
     if (drawerReader) drawerReader.onclick = () => document.getElementById("btnReader").click();
     const drawerXray = document.getElementById("drawerXray");
@@ -2678,25 +2653,36 @@ function setupEventListeners() {
     // Importar/Exportar
     const btnImport = document.getElementById("btnImport");
     const fileInput = document.getElementById("fileInput");
-    btnImport.onclick = () => fileInput.click();
+    btnImport.onclick = () => {
+        if (!fileInput.dataset.importMode) setImportMode("replace");
+        fileInput.click();
+    };
     fileInput.onchange = (e) => {
         const file = e.target.files[0];
         if (!file) return;
+        const mode = fileInput.dataset.importMode === "append_active" ? "append_active" : consumeImportMode();
+        delete fileInput.dataset.importMode;
         const reader = new FileReader();
         reader.onload = (evt) => {
             if (file.name.endsWith('.skv')) {
                 const payload = importSkrv(evt.target.result);
-                if (payload && applySkrvPayload(payload)) {
-                    handleImportSuccess("alert_capsule_restored");
+                const ok = mode === "append_active"
+                    ? appendPayloadToActiveProject(payload)
+                    : applySkrvPayload(payload);
+                if (payload && ok) {
+                    handleImportSuccess("alert_capsule_restored", buildImportMergeSummary(payload, mode), { source: "file" });
                 } else {
-                    if (window.skvModal) window.skvModal.alert(lang.t("alert_capsule_invalid"));
+                    showImportInvalidError("file");
                 }
             } else if (file.name.endsWith('.b64') || file.name.endsWith('.qr')) {
                 const payload = qrTransfer.decodeBackupBase64(evt.target.result);
-                if (payload && applySkrvPayload(payload)) {
-                    handleImportSuccess("alert_backup_restored");
+                const ok = mode === "append_active"
+                    ? appendPayloadToActiveProject(payload)
+                    : applySkrvPayload(payload);
+                if (payload && ok) {
+                    handleImportSuccess("alert_backup_restored", buildImportMergeSummary(payload, mode), { source: "file" });
                 } else {
-                    if (window.skvModal) window.skvModal.alert(lang.t("alert_backup_invalid"));
+                    showImportInvalidError("file");
                 }
             } else if (file.name.endsWith('.json')) {
                 if (store.importData(evt.target.result)) { 
@@ -2711,20 +2697,19 @@ function setupEventListeners() {
         fileInput.value = ''; 
     };
 
-    document.getElementById("btnSave").onclick = () => document.getElementById("exportModal").classList.add("active");
-    document.getElementById("closeModalExport").onclick = () => document.getElementById("exportModal").classList.remove("active");
-    const btnFediverse = document.getElementById("btnFediverseHelp");
-    if (btnFediverse) {
-        btnFediverse.onclick = () => {
-            const modal = document.getElementById("fediverseModal");
-            if (modal) modal.classList.add("active");
-        };
-    }
+    document.getElementById("btnSave").onclick = () => {
+        const modal = document.getElementById("exportModal");
+        if (modal) setModalActive(modal, true);
+    };
+    document.getElementById("closeModalExport").onclick = () => {
+        const modal = document.getElementById("exportModal");
+        if (modal) setModalActive(modal, false);
+    };
     const closeFediverse = document.getElementById("closeFediverse");
     if (closeFediverse) {
         closeFediverse.onclick = () => {
             const modal = document.getElementById("fediverseModal");
-            if (modal) modal.classList.remove("active");
+            if (modal) setModalActive(modal, false);
         };
     }
     const openElementApp = () => {
@@ -2777,32 +2762,6 @@ function setupEventListeners() {
 
     // Downloads e QR
     // Downloads (JSON / TXT / SKV)
-    const btnMd = document.getElementById("actionDownloadMd");
-    if (btnMd) {
-        btnMd.onclick = () => {
-            store.save(
-                document.getElementById("editor").innerHTML,
-                document.getElementById("memoArea").value
-            );
-            const markdown = buildMarkdownExport();
-            downloadText(markdown, `SKRV_EXPORT_${Date.now()}.md`, "text/markdown");
-            revealExportSupport();
-        };
-    }
-
-    const btnPrintReport = document.getElementById("actionPrintReport");
-    if (btnPrintReport) {
-        btnPrintReport.onclick = () => {
-            store.save(
-                document.getElementById("editor").innerHTML,
-                document.getElementById("memoArea").value
-            );
-            const text = buildReportText();
-            printRawText(text, ".skv Writer - CÁPSULA");
-            revealExportSupport();
-        };
-    }
-
     const btnJson = document.getElementById("actionDownloadJson");
     if (btnJson) {
         btnJson.onclick = () => {
@@ -2841,7 +2800,7 @@ function setupEventListeners() {
     document.getElementById("closeModalHelp").onclick = () => {
         const overlay = document.getElementById("helpModal");
         if (!overlay) return;
-        overlay.classList.remove("active");
+        setModalActive(overlay, false);
         document.body.classList.remove("help-open");
         const tabs = overlay.querySelectorAll(".help-tab");
         const panels = overlay.querySelectorAll(".help-panel");
@@ -2855,54 +2814,142 @@ function setupEventListeners() {
 
     // Evento do Botão Lock
     const btnLock = document.getElementById("btnLock");
-    if(btnLock) btnLock.onclick = () => auth.lock();
+    if(btnLock) {
+        btnLock.onclick = () => {
+            if (typeof window.skrvInkTransition === "function") {
+                window.skrvInkTransition(() => auth.lock());
+                return;
+            }
+            auth.lock();
+        };
+    }
 
     const btnLangToggle = document.getElementById("btnLangToggle");
     if (btnLangToggle) btnLangToggle.onclick = () => lang.cycleLang();
 
+    setupModalFocusTrap();
+
     // Teclas
     const searchInput = document.getElementById("search");
     const editorEl = document.getElementById("editor");
+    const isBootModalBlockingKeyboard = createBootModalBlocker();
+    const handleCtrlGuard = createCtrlGuardHandler({
+        editorEl,
+        onSave: () => document.getElementById("btnSave").click(),
+        onSelectAll: () => selectAllInEditor(editorEl),
+        onCopy: () => document.execCommand("copy"),
+        onCut: () => document.execCommand("cut"),
+        onPaste: () => document.execCommand("paste")
+    });
+    const handleEscape = createEscapeHandler({
+        searchInput,
+        onCloseTerms: () => {
+            const termsModal = document.getElementById("termsModal");
+            if (termsModal && termsModal.classList.contains("active")) {
+                auth.closeTermsModal(true);
+                return true;
+            }
+            return false;
+        },
+        isNotesModalActive: () => {
+            const notesModal = document.getElementById("notesModal");
+            return !!(notesModal && notesModal.classList.contains("active"));
+        },
+        isNotesEditStage: () => notesState.stage === "edit",
+        setNotesListStage: () => setNotesStage("list"),
+        closeNotesModal: () => closeNotesModal(),
+        closeNotesOverlayIfActive: () => {
+            const overlay = document.getElementById("notesOverlay");
+            if (overlay && overlay.classList.contains("active")) {
+                setModalActive(overlay, false);
+                return true;
+            }
+            return false;
+        },
+        canCancelSystemModal: () => {
+            const systemModal = document.getElementById("systemModal");
+            return !!(systemModal && systemModal.classList.contains("active") && window.skvModal?.cancel);
+        },
+        cancelSystemModal: () => window.skvModal.cancel(),
+        closeManifestoModal: () => {
+            const manifestoModal = document.getElementById("manifestoModal");
+            if (manifestoModal && manifestoModal.classList.contains("active")) {
+                setModalActive(manifestoModal, false);
+                document.body.classList.remove("manifesto-open");
+                return true;
+            }
+            return false;
+        },
+        isOnboardingActive: () => {
+            const onboarding = document.getElementById("onboardingModal");
+            return !!(onboarding && onboarding.classList.contains("active"));
+        },
+        isDedicationActive: () => {
+            const dedication = document.getElementById("dedicationModal");
+            return !!(dedication && dedication.classList.contains("active"));
+        },
+        getActiveOverlays: () =>
+            Array.from(document.querySelectorAll(".modal-overlay.active")).map((m) => m.id),
+        closeOverlayById: (id) => {
+            const overlay = document.getElementById(id);
+            if (overlay) setModalActive(overlay, false);
+        },
+        closeDrawerIfOpen: () => {
+            const drawer = document.getElementById("drawer");
+            if (drawer && drawer.classList.contains("open")) {
+                ui.closeDrawer();
+                return true;
+            }
+            return false;
+        },
+        focusEditor: () => { if (editorEl) editorEl.focus(); },
+        resetCleanupFallback: () => {
+            const step2Reset = document.getElementById("step2Reset");
+            const resetPassInput = document.getElementById("resetPassInput");
+            const resetMsg = document.getElementById("resetMsg");
+            if (step2Reset) step2Reset.style.display = "none";
+            if (resetPassInput) resetPassInput.value = "";
+            if (resetMsg) resetMsg.innerText = "";
+        }
+    });
+    const handleAltShortcuts = createAltShortcutHandler({
+        openFilesDrawer: () => ui.openDrawer("files", { renderFiles: renderProjectList }),
+        openNavDrawer: () => ui.openDrawer("nav", { renderNav: renderNavigation }),
+        openMemoDrawer: () => ui.openDrawer("memo", {}),
+        closeDrawer: () => ui.closeDrawer(),
+        lockSession: () => auth.lock(),
+        toggleTemplatePane: () => {
+            templateState.open = !templateState.open;
+            if (!templateState.open) templateState.minimized = false;
+            applyTemplateLayout();
+        },
+        toggleTheme: () => ui.toggleTheme(),
+        toggleAudio: () => document.getElementById("btnAudio").click(),
+        togglePomodoro: () => ui.togglePomodoro(),
+        toggleFont: () => document.getElementById("btnFontType").click()
+    });
+    const handleTypingRedirect = createTypingRedirectHandler({
+        editorEl,
+        getActiveDoc: () => store.getActive(),
+        restoreCursorPos: (pos) => editorFeatures.setCursorPos(pos),
+        insertText: (text) => document.execCommand("insertText", false, text),
+        onTypeFeedback: () => {
+            editorFeatures.playSound("type");
+            editorFeatures.triggerFocusMode();
+        }
+    });
     
     document.addEventListener("keydown", (e) => {
-        const gate = document.getElementById("gatekeeper");
-        if (gate && gate.classList.contains("active")) return;
-        const dedication = document.getElementById("dedicationModal");
-        if (dedication && dedication.classList.contains("active")) return;
-        const onboarding = document.getElementById("onboardingModal");
-        if (onboarding && onboarding.classList.contains("active")) return;
-
-        const isCtrl = e.ctrlKey || e.metaKey;
-        const key = e.key.toLowerCase();
-        if (isCtrl) {
-            const textShortcuts = ["a", "c", "x", "v"];
-            const browserShortcuts = ["l", "t", "w", "r", "n"];
-            if (key === "s") {
-                e.preventDefault();
-                document.getElementById("btnSave").click();
-                return;
-            }
-            if (textShortcuts.includes(key)) {
-                e.preventDefault();
-                editorEl.focus();
-                if (key === "a") selectAllInEditor(editorEl);
-                if (key === "c") document.execCommand("copy");
-                if (key === "x") document.execCommand("cut");
-                if (key === "v") document.execCommand("paste");
-                return;
-            }
-            if (browserShortcuts.includes(key)) {
-                e.preventDefault();
-                return;
-            }
-        }
+        if (isBootModalBlockingKeyboard()) return;
+        if (handleCtrlGuard(e)) return;
 
         if (e.key === "F1") { 
             e.preventDefault(); 
             if (window.totHelpOpen) {
                 window.totHelpOpen();
             } else {
-                document.getElementById("helpModal").classList.add("active");
+                const helpModal = document.getElementById("helpModal");
+                if (helpModal) setModalActive(helpModal, true);
                 document.body.classList.add("help-open");
             }
         } 
@@ -2910,101 +2957,15 @@ function setupEventListeners() {
         if ((e.ctrlKey && e.shiftKey && e.code === "KeyF") || e.key === "F11") { e.preventDefault(); editorFeatures.toggleFullscreen(); }
         if (e.key === "Enter" && document.activeElement === searchInput) document.getElementById("btnSearch").click();
         if (e.ctrlKey && e.key === "f") { e.preventDefault(); searchInput.focus(); }
-
-        if (e.key === "Escape") {
-            const termsModal = document.getElementById("termsModal");
-            if (termsModal && termsModal.classList.contains("active")) {
-                auth.closeTermsModal(true);
-                return;
-            }
-            const notesModal = document.getElementById("notesModal");
-            if (notesModal && notesModal.classList.contains("active")) {
-                const overlay = document.getElementById("notesOverlay");
-                if (overlay && overlay.classList.contains("active")) {
-                    overlay.classList.remove("active");
-                    overlay.setAttribute("aria-hidden", "true");
-                    return;
-                }
-                if (notesState.stage === "edit") {
-                    setNotesStage("list");
-                } else {
-                    closeNotesModal();
-                }
-                return;
-            }
-            const systemModal = document.getElementById("systemModal");
-            if (systemModal && systemModal.classList.contains("active") && window.skvModal?.cancel) {
-                window.skvModal.cancel();
-                return;
-            }
-            const manifestoModal = document.getElementById("manifestoModal");
-            if (manifestoModal && manifestoModal.classList.contains("active")) {
-                manifestoModal.classList.remove("active");
-                document.body.classList.remove("manifesto-open");
-                return;
-            }
-            const onboarding = document.getElementById("onboardingModal");
-            if (onboarding && onboarding.classList.contains("active")) {
-                return;
-            }
-            const dedication = document.getElementById("dedicationModal");
-            if (dedication && dedication.classList.contains("active")) {
-                return;
-            }
-            if (document.activeElement === searchInput) { document.getElementById("btnClear").click(); searchInput.blur(); }
-            let closed = false;
-            document.querySelectorAll(".modal-overlay.active").forEach(m => { 
-                if (m.id !== "gatekeeper" && m.id !== "pomodoroModal" && m.id !== "termsModal" && m.id !== "importSessionModal") {
-                    m.classList.remove("active"); 
-                    if (m.id === "helpModal") {
-                        document.body.classList.remove("help-open");
-                    }
-                    if(m.id==="resetModal") {
-                        document.getElementById("step2Reset").style.display="none"; 
-                        document.getElementById("resetPassInput").value = "";
-                        document.getElementById("resetMsg").innerText = "";
-                    }
-                    closed=true; 
-                }
-            });
-            if(document.getElementById("drawer").classList.contains("open")) { ui.closeDrawer(); closed=true; }
-            if(closed) editorEl.focus();
-        }
-
-        if (e.altKey) {
-            if (e.key === "1") { e.preventDefault(); ui.openDrawer('files', { renderFiles: renderProjectList }); }
-            if (e.key === "2") { e.preventDefault(); ui.openDrawer('nav', { renderNav: renderNavigation }); }
-            if (e.key === "3") { e.preventDefault(); ui.openDrawer('memo', {}); }
-            if (e.key === "0") { e.preventDefault(); ui.closeDrawer(); }
-            if (e.code === "KeyL") { e.preventDefault(); auth.lock(); }
-            if (e.code === "KeyT" && e.shiftKey) {
-                e.preventDefault();
-                templateState.open = !templateState.open;
-                if (!templateState.open) templateState.minimized = false;
-                applyTemplateLayout();
-            }
-            if (e.code === "KeyT" && !e.shiftKey) { e.preventDefault(); ui.toggleTheme(); }
-            if (e.code === "KeyM") { e.preventDefault(); document.getElementById("btnAudio").click(); }
-            if (e.code === "KeyP") { e.preventDefault(); ui.togglePomodoro(); }
-            if (e.code === "KeyF") { e.preventDefault(); document.getElementById("btnFontType").click(); }
-        }
+        if (handleEscape(e)) return;
+        if (handleAltShortcuts(e)) return;
 
         if (e.ctrlKey || e.metaKey) {
             if (e.key === 's') { e.preventDefault(); document.getElementById("btnSave").click(); }
             if (e.key === 'o') { e.preventDefault(); document.getElementById("fileInput").click(); }
         }
 
-        if (e.key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
-            const activeTag = document.activeElement.tagName.toLowerCase();
-            if (activeTag !== 'input' && activeTag !== 'textarea' && document.activeElement !== editorEl) {
-                e.preventDefault(); editorEl.focus();   
-                const activeDoc = store.getActive();
-                if(activeDoc && activeDoc.cursorPos) editorFeatures.setCursorPos(activeDoc.cursorPos);
-                document.execCommand("insertText", false, e.key);
-                editorFeatures.playSound('type');
-                editorFeatures.triggerFocusMode();
-            }
-        }
+        handleTypingRedirect(e);
     });
 
     const btnInsert = document.getElementById("btnInsertChapter");
@@ -3012,231 +2973,50 @@ function setupEventListeners() {
     const btnVerifyTot = document.getElementById("btnVerifyTot");
     if (btnVerifyTot) btnVerifyTot.onclick = () => { ui.closeDrawer(); showVerifyView(); };
 
+    const NON_CLOSABLE_OVERLAYS = new Set([
+        "gatekeeper",
+        "pomodoroModal",
+        "termsModal",
+        "manifestoModal",
+        "onboardingModal",
+        "dedicationModal",
+        "importSessionModal"
+    ]);
+    let resetOverlayStateFallback = () => {};
+    const handleOverlayBackdropClick = createOverlayBackdropHandler({
+        nonClosableOverlays: NON_CLOSABLE_OVERLAYS,
+        onSystemOverlayClick: (event, overlay) => {
+            if (event.target === overlay && window.skvModal?.cancel) window.skvModal.cancel();
+        },
+        onResetOverlayClose: () => resetOverlayStateFallback()
+    });
+
     document.querySelectorAll(".modal-overlay").forEach(overlay => {
         overlay.addEventListener("click", (e) => {
-            if (overlay.id === "gatekeeper" || overlay.id === "pomodoroModal" || overlay.id === "termsModal" || overlay.id === "manifestoModal" || overlay.id === "onboardingModal" || overlay.id === "dedicationModal" || overlay.id === "importSessionModal") return;
-            if (overlay.id === "systemModal") {
-                if (e.target === overlay && window.skvModal?.cancel) window.skvModal.cancel();
-                return;
-            }
-            if (e.target === overlay) {
-                overlay.classList.remove("active");
-                if(overlay.id === "resetModal") {
-                     document.getElementById("step2Reset").style.display = "none";
-                     document.getElementById("btnConfirmReset1").style.display = "none";
-                     document.getElementById("step0Reset").style.display = "block";
-                     document.getElementById("resetPassInput").value = "";
-                     document.getElementById("resetMsg").innerText = "";
-                     document.getElementById("resetProofInput").value = "";
-                     document.getElementById("resetProofMsg").innerText = "";
-                }
-            }
+            handleOverlayBackdropClick(overlay, e);
         });
     });
 
     document.getElementById("btnNewProject").onclick = () => createSimpleProject();
 
-    const btnMobileNewProject = document.getElementById("btnMobileNewProject");
-    if (btnMobileNewProject) {
-        btnMobileNewProject.onclick = () => createSimpleProject();
-    }
-    
     document.getElementById("btnThemeToggle").onclick = () => ui.toggleTheme();
     document.getElementById("hudFs").onclick = () => editorFeatures.toggleFullscreen();
-    
-    // --- LÓGICA DA CAVEIRA (Reset Interno) ---
-    const resetModal = document.getElementById("resetModal");
-    const step2 = document.getElementById("step2Reset");
-    const passInput = document.getElementById("resetPassInput");
-    const msg = document.getElementById("resetMsg");
-    const step0 = document.getElementById("step0Reset");
-    const proofWordEl = document.getElementById("resetProofWord");
-    const proofInput = document.getElementById("resetProofInput");
-    const proofMsg = document.getElementById("resetProofMsg");
-    const btnProof = document.getElementById("btnConfirmReset0");
-    const btnStep1 = document.getElementById("btnConfirmReset1");
-    const debugReset = (typeof window !== "undefined" && typeof window.debugReset === "function")
-        ? window.debugReset
-        : () => {};
-    const closeResetModal = () => {
-        debugReset("close reset modal");
-        resetModal.classList.remove("active");
-        if (step2) step2.style.display = "none";
-        if (btnStep1) btnStep1.style.display = "none";
-        if (step0) step0.style.display = "block";
-        if (passInput) passInput.value = "";
-        if (msg) msg.innerText = "";
-        if (proofInput) proofInput.value = "";
-        if (proofMsg) proofMsg.innerText = "";
-    };
-
-    let currentProofWord = "";
-
-    const generateProofWord = () => {
-        const text = document.getElementById("editor").innerText || "";
-        const words = text.split(/\s+/).map(w => w.trim()).filter(w => w.length >= 4);
-        if (words.length === 0) return "";
-        return words[Math.floor(Math.random() * words.length)];
-    };
-
-    const openResetModal = () => {
-        resetModal.classList.add("active");
-        if (step2) step2.style.display = "none";
-        if (btnStep1) btnStep1.style.display = "none";
-        if (step0) step0.style.display = "block";
-        if (proofInput) proofInput.value = "";
-        if (proofMsg) proofMsg.innerText = "";
-        if(passInput) passInput.value = "";
-        if(msg) msg.innerText = "";
-        currentProofWord = generateProofWord();
-        if (proofWordEl) proofWordEl.innerText = currentProofWord ? `"${currentProofWord}"` : "[SEM CONTEÚDO]";
-        setTimeout(() => { if (proofInput) proofInput.focus(); }, 50);
-    };
-
-    const resetBtn = document.getElementById("btnHardReset");
-    if (resetBtn) {
-        resetBtn.onclick = () => {
-            openResetModal();
-        };
-    }
-    document.addEventListener("click", (e) => {
-        const trigger = e.target.closest && e.target.closest("#btnHardReset, .danger-trigger");
-        if (!trigger) return;
-        e.preventDefault();
-        openResetModal();
+    const resetFlow = setupResetFlow({
+        lang,
+        hardReset: () => store.hardReset()
     });
-    
-    const closeResetBtn = document.getElementById("closeModalReset");
-    if (closeResetBtn) {
-        closeResetBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            closeResetModal();
-        });
-    }
-    if (resetModal) {
-        resetModal.addEventListener("click", (e) => {
-            const target = e.target.closest && e.target.closest("#closeModalReset");
-            if (!target) return;
-            e.preventDefault();
-            e.stopPropagation();
-            closeResetModal();
-        });
-    }
-    
-    if (btnProof) {
-        btnProof.onclick = () => {
-            const expected = (currentProofWord || "").toLowerCase();
-            const got = (proofInput ? proofInput.value : "").trim().toLowerCase();
-            if (!expected) {
-                if (proofMsg) proofMsg.innerText = lang.t("reset_no_text");
-                if (btnStep1) btnStep1.style.display = "block";
-                if (step0) step0.style.display = "none";
-                return;
-            }
-            if (got === expected) {
-                if (proofMsg) proofMsg.innerText = lang.t("reset_proof_ok");
-                if (btnStep1) btnStep1.style.display = "block";
-                if (step0) step0.style.display = "none";
-                btnStep1.focus();
-            } else {
-                if (proofMsg) proofMsg.innerText = lang.t("reset_proof_fail");
-                if (proofInput) {
-                    proofInput.value = "";
-                    proofInput.focus();
-                    proofInput.classList.add('shake');
-                    setTimeout(() => proofInput.classList.remove('shake'), 500);
-                }
-            }
-        };
-    }
-    if (proofInput) {
-        proofInput.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") {
-                e.preventDefault();
-                btnProof?.click();
-            }
-        });
-    }
+    resetOverlayStateFallback = resetFlow.resetOverlayStateFallback;
 
-    if (btnStep1) {
-        btnStep1.onclick = () => {
-            if (step2) step2.style.display = "block";
-            setTimeout(() => { if(passInput) passInput.focus(); }, 100);
-        };
-    }
-    if (btnStep1) {
-        btnStep1.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") {
-                e.preventDefault();
-                btnStep1.click();
-            }
-        });
-    }
-    
-    const triggerReset = () => {
-        const storedKey = localStorage.getItem('lit_auth_key');
-        const inputVal = passInput ? passInput.value : "";
-        
-        if (!storedKey || inputVal === storedKey) {
-            if(msg) msg.innerText = lang.t("reset_executing");
-            setTimeout(() => store.hardReset(), 500); 
-        } else {
-            if(msg) msg.innerText = lang.t("reset_denied");
-            if(passInput) {
-                passInput.value = "";
-                passInput.focus();
-                passInput.classList.add('shake');
-                setTimeout(() => passInput.classList.remove('shake'), 500);
-            }
-        }
-    };
-
-    document.getElementById("btnConfirmReset2").onclick = triggerReset;
-    
-    if(passInput) {
-        passInput.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") triggerReset();
-        });
-    }
-
-    editorEl.addEventListener("input", () => {
-        const cursorPos = editorFeatures.getCursorPos();
-        store.save(editorEl.innerHTML, document.getElementById("memoArea").value, cursorPos);
-        if (window.innerWidth <= 900) {
-            document.body.classList.add("mobile-typing");
-            clearTimeout(window.__mobileTypingTimer);
-            window.__mobileTypingTimer = setTimeout(() => {
-                document.body.classList.remove("mobile-typing");
-            }, 800);
-        }
+    setupPersistenceBindings({
+        editorEl,
+        memoEl: document.getElementById("memoArea"),
+        panelEl: document.querySelector(".panel"),
+        store,
+        editorFeatures
     });
-    
-    editorEl.addEventListener("keyup", () => store.save(undefined, undefined, editorFeatures.getCursorPos()));
-    editorEl.addEventListener("click", () => store.save(undefined, undefined, editorFeatures.getCursorPos()));
-    
-    document.getElementById("memoArea").addEventListener("input", (e) => store.save(undefined, e.target.value));
-
-    const panelEl = document.querySelector(".panel");
-    if (panelEl) {
-        panelEl.addEventListener("scroll", () => {
-            const active = store.getActive();
-            const key = (active && active.id) ? `lit_ui_editor_scroll_${active.id}` : "lit_ui_editor_scroll";
-            localStorage.setItem(key, panelEl.scrollTop.toString());
-        });
-    }
 
     restoreUiState(showEditorView, showBooksView);
 
-    const mobileThemeBtn = document.getElementById("btnMobileTheme");
-    if (mobileThemeBtn) {
-        mobileThemeBtn.onclick = () => {
-            if (window.innerWidth <= 900 && !window.skvMobileRenderProjects) {
-                ensureMobileModule().catch(() => {});
-            }
-            ui.toggleTheme();
-        };
-    }
 }
 
 // Funções auxiliares mantidas iguais
@@ -3322,7 +3102,33 @@ function getMobileProjectTag() {
     return localStorage.getItem("skrv_mobile_project_tag") || "";
 }
 
+function trackMobileFunnelEvent(eventName, meta = {}) {
+    if (!eventName) return;
+    if (typeof window.skrvMobileFunnelTrack === "function") {
+        window.skrvMobileFunnelTrack(eventName, meta);
+        return;
+    }
+    try {
+        const key = "skrv_mobile_funnel_v1";
+        const raw = localStorage.getItem(key);
+        const state = raw ? JSON.parse(raw) : {};
+        const now = Date.now();
+        state.version = 1;
+        state.updatedAt = now;
+        state.counters = state.counters || {};
+        state.events = Array.isArray(state.events) ? state.events : [];
+        state.counters[eventName] = (state.counters[eventName] || 0) + 1;
+        if (eventName === "mobile_open" && !state.firstOpenAt) state.firstOpenAt = now;
+        if (eventName === "note_created" && !state.firstNoteAt) state.firstNoteAt = now;
+        if (eventName === "import_success" && !state.firstImportSuccessAt) state.firstImportSuccessAt = now;
+        state.events.push({ event: eventName, ts: now, meta });
+        if (state.events.length > 80) state.events = state.events.slice(-80);
+        localStorage.setItem(key, JSON.stringify(state));
+    } catch (_) {}
+}
+
 window.skrvSetMobileProjectMeta = setMobileProjectMeta;
+window.skrvSetImportMode = setImportMode;
 
 function initImportSessionModal() {
     if (!isMobileContext()) return;
@@ -3331,6 +3137,8 @@ function initImportSessionModal() {
     if (sessionStorage.getItem("skrv_mobile_import_pending") !== "1") return;
     const projectName = sessionStorage.getItem("skrv_mobile_import_name") || (store.getActive()?.name || "");
     const successEl = document.getElementById("importSessionSuccess");
+    const flowEl = document.getElementById("importSessionFlow");
+    const mergeEl = document.getElementById("importSessionMerge");
     const pass1 = document.getElementById("importSessionPass1");
     const pass2 = document.getElementById("importSessionPass2");
     const msg = document.getElementById("importSessionMsg");
@@ -3338,6 +3146,38 @@ function initImportSessionModal() {
     if (successEl) {
         const text = lang.t("mobile_import_success") || "Projeto {project} importado com sucesso.";
         successEl.textContent = text.replace("{project}", projectName);
+    }
+    if (flowEl) {
+        const source = sessionStorage.getItem("skrv_mobile_import_source") || "";
+        const target = sessionStorage.getItem("skrv_mobile_import_target") || "";
+        const mode = sessionStorage.getItem("skrv_mobile_import_mode") || "";
+        const sourceLabel = source === "qr"
+            ? (lang.t("mobile_import_source_qr") || "QR")
+            : source === "file"
+                ? (lang.t("mobile_import_source_file") || "Arquivo")
+                : (lang.t("mobile_import_source_unknown") || "Indefinida");
+        const targetLabel = target === "new"
+            ? (lang.t("mobile_import_target_new") || "novo projeto")
+            : target === "active"
+                ? (lang.t("mobile_import_target_active") || "projeto ativo")
+                : (lang.t("mobile_import_target_unknown") || "indefinido");
+        const actionLabel = mode === "replace"
+            ? (lang.t("mobile_import_action_replace") || "substituir")
+            : (lang.t("mobile_import_action_append") || "adicionar");
+        const template = lang.t("mobile_import_flow") || "Origem: {source} · Destino: {target} · Ação: {action}";
+        flowEl.textContent = template
+            .replace("{source}", sourceLabel)
+            .replace("{target}", targetLabel)
+            .replace("{action}", actionLabel);
+    }
+    if (mergeEl) {
+        const raw = sessionStorage.getItem("skrv_mobile_import_merge");
+        let summary = null;
+        if (raw) {
+            try { summary = JSON.parse(raw); } catch (_) {}
+        }
+        mergeEl.textContent = formatImportMergeSummary(summary);
+        mergeEl.style.display = mergeEl.textContent ? "" : "none";
     }
     const showError = (text) => {
         if (msg) {
@@ -3367,7 +3207,11 @@ function initImportSessionModal() {
         localStorage.setItem("lit_auth_key", v1);
         sessionStorage.removeItem("skrv_mobile_import_pending");
         sessionStorage.removeItem("skrv_mobile_import_name");
-        modal.classList.remove("active");
+        sessionStorage.removeItem("skrv_mobile_import_merge");
+        sessionStorage.removeItem("skrv_mobile_import_source");
+        sessionStorage.removeItem("skrv_mobile_import_mode");
+        sessionStorage.removeItem("skrv_mobile_import_target");
+        setModalActive(modal, false);
         document.body.classList.remove("modal-active");
         setTimeout(() => openMobileNotesView(), 80);
     };
@@ -3386,7 +3230,7 @@ function initImportSessionModal() {
         });
     });
     updateBtn();
-    modal.classList.add("active");
+    setModalActive(modal, true);
     document.body.classList.add("modal-active");
 }
 
@@ -3460,16 +3304,108 @@ function applySkrvPayload(payload) {
     return true;
 }
 
-function handleImportSuccess(messageKey) {
+function extractPayloadMainText(payload) {
+    if (!payload) return "";
+    const direct = String(payload.MASTER_TEXT || "").trim();
+    if (direct) return direct;
+    const archive = payload.ARCHIVE_STATE;
+    if (!archive || !Array.isArray(archive.projects) || !archive.projects.length) return "";
+    const active = archive.projects.find((p) => p.id === archive.activeId) || archive.projects[0];
+    return String((active && active.content) || "").trim();
+}
+
+function appendPayloadToActiveProject(payload) {
+    const incoming = extractPayloadMainText(payload);
+    if (!incoming) return false;
+    let active = store.getActive();
+    if (!active) {
+        const fallbackName = lang.t("default_project") || "Projeto";
+        store.createProject(fallbackName, "");
+        active = store.getActive();
+    }
+    if (!active) return false;
+    const currentText = String(active.content || "").trim();
+    active.content = currentText ? `${currentText}\n\n${incoming}` : incoming;
+    active.date = new Date().toLocaleString();
+    store.data.skvTitle = active.name || store.data.skvTitle;
+    store.persist(true);
+    return true;
+}
+
+function buildImportMergeSummary(payload, mode = "replace") {
+    if (!payload) return null;
+    const archive = payload.ARCHIVE_STATE || {};
+    const projectCount = Array.isArray(archive.projects) ? archive.projects.length : 0;
+    const incoming = extractPayloadMainText(payload);
+    const incomingWords = incoming ? incoming.split(/\s+/).filter(Boolean).length : 0;
+    const normalizedMode = mode === "append_active" ? "append_active" : "replace";
+    const createdItems = normalizedMode === "append_active"
+        ? (incoming ? 1 : 0)
+        : Math.max(projectCount, incoming ? 1 : 0);
+    const updatedItems = normalizedMode === "append_active"
+        ? (incoming ? 1 : 0)
+        : Math.max(projectCount, 1);
+    return {
+        mode: normalizedMode,
+        createdItems,
+        updatedItems,
+        conflicts: 0,
+        incomingWords
+    };
+}
+
+function showImportInvalidError(source = "unknown") {
+    if (!window.skvModal) return;
+    if (!isMobileContext()) {
+        const key = source === "file" ? "alert_capsule_invalid" : "alert_backup_invalid";
+        window.skvModal.alert(lang.t(key));
+        return;
+    }
+    const template = lang.t("mobile_import_invalid") || "Importação inválida ({source}).";
+    const sourceLabel = source === "file"
+        ? (lang.t("mobile_import_source_file") || "Arquivo")
+        : source === "qr"
+            ? (lang.t("mobile_import_source_qr") || "QR")
+            : (lang.t("mobile_import_source_unknown") || "Indefinida");
+    window.skvModal.alert(template.replace("{source}", sourceLabel));
+}
+
+function formatImportMergeSummary(summary) {
+    if (!summary) return "";
+    const createdLabel = lang.t("mobile_import_merge_created") || "Novos";
+    const updatedLabel = lang.t("mobile_import_merge_updated") || "Atualizados";
+    const conflictsLabel = lang.t("mobile_import_merge_conflicts") || "Conflitos";
+    const wordsLabel = lang.t("mobile_import_merge_words") || "Palavras";
+    return [
+        `${createdLabel}: ${summary.createdItems || 0}`,
+        `${updatedLabel}: ${summary.updatedItems || 0}`,
+        `${conflictsLabel}: ${summary.conflicts || 0}`,
+        `${wordsLabel}: ${summary.incomingWords || 0}`
+    ].join("\n");
+}
+
+function handleImportSuccess(messageKey, mergeSummary = null, context = {}) {
     if (isMobileContext()) {
         const active = store.getActive();
         const projectName = store.data && store.data.skvTitle
             ? store.data.skvTitle
             : (active && active.name ? active.name : (lang.t("default_project") || "Projeto"));
+        trackMobileFunnelEvent("import_success", {
+            projectName,
+            mode: (mergeSummary && mergeSummary.mode) || "replace",
+            words: (mergeSummary && mergeSummary.incomingWords) || 0
+        });
         setMobileProjectMeta(projectName);
         localStorage.removeItem("lit_auth_key");
         sessionStorage.setItem("skrv_mobile_import_pending", "1");
         sessionStorage.setItem("skrv_mobile_import_name", projectName);
+        sessionStorage.setItem("skrv_mobile_import_source", context.source || "unknown");
+        sessionStorage.setItem("skrv_mobile_import_mode", (mergeSummary && mergeSummary.mode) || "replace");
+        if (mergeSummary) {
+            sessionStorage.setItem("skrv_mobile_import_merge", JSON.stringify(mergeSummary));
+        } else {
+            sessionStorage.removeItem("skrv_mobile_import_merge");
+        }
         location.reload();
         return;
     }
@@ -3515,49 +3451,6 @@ function textToParagraphs(text) {
         .join("");
 }
 
-function htmlToMarkdown(html) {
-    const container = document.createElement("div");
-    container.innerHTML = html || "";
-
-    const nodeToMd = (node) => {
-        if (node.nodeType === Node.TEXT_NODE) return node.textContent || "";
-        if (node.nodeType !== Node.ELEMENT_NODE) return "";
-        const tag = node.tagName.toLowerCase();
-        const childText = Array.from(node.childNodes).map(nodeToMd).join("");
-
-        switch (tag) {
-            case "br":
-                return "\n";
-            case "strong":
-            case "b":
-                return `**${childText}**`;
-            case "em":
-            case "i":
-                return `*${childText}*`;
-            case "h1":
-                return `\n\n# ${childText}\n\n`;
-            case "h2":
-                return `\n\n## ${childText}\n\n`;
-            case "h3":
-                return `\n\n### ${childText}\n\n`;
-            case "li":
-                return `${childText}\n`;
-            case "ul":
-                return `\n${Array.from(node.children).map(li => `- ${nodeToMd(li)}`).join("")}\n`;
-            case "ol":
-                return `\n${Array.from(node.children).map((li, idx) => `${idx + 1}. ${nodeToMd(li)}`).join("")}\n`;
-            case "p":
-            case "div":
-                return `\n\n${childText}\n\n`;
-            default:
-                return childText;
-        }
-    };
-
-    const raw = Array.from(container.childNodes).map(nodeToMd).join("");
-    return raw.replace(/\n{3,}/g, "\n\n").trim();
-}
-
 function downloadText(text, filename, mime) {
     const blob = new Blob([text], { type: `${mime};charset=utf-8` });
     const url = URL.createObjectURL(blob);
@@ -3566,123 +3459,6 @@ function downloadText(text, filename, mime) {
     a.download = filename;
     a.click();
     URL.revokeObjectURL(url);
-}
-
-function buildMarkdownExport() {
-    const projects = Array.isArray(store.data.projects) ? store.data.projects : [];
-    const blocks = [];
-    blocks.push("# .skv Writer Export\n");
-    blocks.push(`_Gerado em ${new Date().toISOString()}_\n`);
-    const manifestText = localStorage.getItem("skrv_manifest_text") || localStorage.getItem("tot_manifest_text");
-    const manifestSignedAt = localStorage.getItem("skrv_manifest_signed_at") || localStorage.getItem("tot_manifest_signed_at");
-    const accessCount = localStorage.getItem("skrv_access_count") || localStorage.getItem("tot_access_count");
-    if (manifestText) {
-        blocks.push("\n## Manifesto Assinado\n");
-        if (manifestSignedAt) blocks.push(`Assinado em: ${manifestSignedAt}\n`);
-        if (accessCount) blocks.push(`Acessos locais: ${accessCount}\n`);
-        blocks.push("\n" + manifestText + "\n");
-    }
-
-    projects.forEach((proj, idx) => {
-        const title = proj.name || `DOC ${idx + 1}`;
-        const md = htmlToMarkdown(proj.content || "");
-        blocks.push(`\n## ${title}\n`);
-        blocks.push(md || "_(vazio)_");
-        if (proj.mobileNote) {
-            blocks.push(`\n### Nota do projeto\n`);
-            blocks.push(proj.mobileNote);
-        }
-    });
-
-    if (Array.isArray(store.data.mobileNotes) && store.data.mobileNotes.length) {
-        blocks.push(`\n## Notas (mobile)\n`);
-        store.data.mobileNotes.forEach((note, idx) => {
-            const title = note.title ? note.title : `Nota ${idx + 1}`;
-            const date = note.updatedAt || note.createdAt || "";
-            const folder = note.folder ? `Pasta: ${note.folder}` : "";
-            const tags = (note.tags || []).length ? `Tags: ${(note.tags || []).map(t => `#${t}`).join(" ")}` : "";
-            blocks.push(`\n### ${title}\n`);
-            if (date) blocks.push(`_${new Date(date).toLocaleString()}_\n`);
-            if (folder) blocks.push(folder);
-            if (tags) blocks.push(tags);
-            blocks.push("\n" + (note.text || ""));
-        });
-    }
-
-    const registryRaw = localStorage.getItem("skrvbook_registry") || localStorage.getItem("totbook_registry");
-    let registry = [];
-    try { registry = JSON.parse(registryRaw || "[]"); } catch (_) { registry = []; }
-    if (registry.length) {
-        blocks.push("\n## .skvBooks\n");
-        registry.forEach((entry, idx) => {
-            const id = typeof entry === "string" ? entry : entry.id;
-            if (!id) return;
-            const title = localStorage.getItem(`title_${id}`) || `.skvBook ${idx + 1}`;
-            blocks.push(`\n### ${title}\n`);
-            let pages = [];
-            try { pages = JSON.parse(localStorage.getItem(`pages_${id}`) || "[]"); } catch (_) { pages = []; }
-            if (!pages.length) {
-                blocks.push("_(sem paginas)_");
-                return;
-            }
-            pages.forEach((page, pageIdx) => {
-                blocks.push(`\n#### Pagina ${pageIdx + 1}\n`);
-                blocks.push(htmlToMarkdown(page || "") || "_(vazio)_");
-            });
-        });
-    }
-
-    return blocks.join("\n").trim() + "\n";
-}
-
-function buildReportText() {
-    const projects = Array.isArray(store.data.projects) ? store.data.projects : [];
-    const blocks = projects.map((proj, idx) => {
-        const title = proj.name || `DOC ${idx + 1}`;
-        const text = htmlToText(proj.content || "");
-        let out = `=== ${title} ===\n\n${text}`;
-        if (proj.mobileNote) {
-            out += `\n\n--- NOTA DO PROJETO ---\n\n${proj.mobileNote}`;
-        }
-        return out;
-    });
-    if (Array.isArray(store.data.mobileNotes) && store.data.mobileNotes.length) {
-        blocks.push("=== NOTAS (MOBILE) ===");
-        store.data.mobileNotes.forEach((note, idx) => {
-            const title = note.title ? note.title : `Nota ${idx + 1}`;
-            const date = note.updatedAt || note.createdAt || "";
-            const folder = note.folder ? `Pasta: ${note.folder}` : "";
-            const tags = (note.tags || []).length ? `Tags: ${(note.tags || []).map(t => `#${t}`).join(" ")}` : "";
-            blocks.push(`\n--- ${title} ---`);
-            if (date) blocks.push(`${new Date(date).toLocaleString()}`);
-            if (folder) blocks.push(folder);
-            if (tags) blocks.push(tags);
-            blocks.push(`\n${note.text || ""}`);
-        });
-    }
-    const registryRaw = localStorage.getItem("skrvbook_registry") || localStorage.getItem("totbook_registry");
-    let registry = [];
-    try { registry = JSON.parse(registryRaw || "[]"); } catch (_) { registry = []; }
-    if (registry.length) {
-        blocks.push("=== .skvBooks ===");
-        registry.forEach((entry, idx) => {
-            const id = typeof entry === "string" ? entry : entry.id;
-            if (!id) return;
-            const title = localStorage.getItem(`title_${id}`) || `.skvBook ${idx + 1}`;
-            blocks.push(`\n--- ${title} ---`);
-            let pages = [];
-            try { pages = JSON.parse(localStorage.getItem(`pages_${id}`) || "[]"); } catch (_) { pages = []; }
-            if (!pages.length) {
-                blocks.push("(sem paginas)");
-                return;
-            }
-            pages.forEach((page, pageIdx) => {
-                const text = htmlToText(page || "");
-                blocks.push(`\n[Pagina ${pageIdx + 1}]\n${text}`);
-            });
-        });
-    }
-    return blocks.join("\n\n");
 }
 
 function buildProjectReportText(project) {
@@ -3912,7 +3688,7 @@ function initHelpTabs() {
     const openHelpModal = () => {
         const overlay = document.getElementById("helpModal");
         if (!overlay) return;
-        overlay.classList.add("active");
+        setModalActive(overlay, true);
         if (!tabs.length || !panels.length) return;
         tabs.forEach(t => t.classList.remove("active"));
         panels.forEach(p => p.classList.remove("active"));
@@ -4107,9 +3883,6 @@ function renderProjectList() {
         if (!proj) return;
         list.appendChild(createProjectItem(proj));
     });
-    if (document.getElementById("mobileProjectList") && window.skvMobileRenderProjects) {
-        window.skvMobileRenderProjects();
-    }
 }
 
 function enableInlineRename(container, id, currentName) {

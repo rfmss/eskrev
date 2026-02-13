@@ -39,6 +39,8 @@
 ^\s*\.skr\s*$
 ^\s*\.skr Mobile\s*$
 ^\s*\.skrBooks\s*$
+^\s*\.skv\s*$
+^\s*\.skv Mobile\s*$
 ^Mastodon$
 ^Lemmy$
 ^Pixelfed$
@@ -70,3 +72,16 @@
 ^--music$
 ^--pomo$
 ^★$
+^EN$
+^PTBR$
+^ES$
+^FR$
+^0%$
+^rafa mass$
+^hachyderm\.io/@rfmss$
+^contato:\s*rfmss@disr\.it$
+^Continuar$
+^Bluesky$
+^WhatsApp$
+^bitcoin$
+^pix/paypal$

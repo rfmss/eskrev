@@ -37,3 +37,48 @@ It is technical verification.
 It provides technical evidence.
 
 Interpretation remains human.
+
+## Tests
+
+To validate copy inventory:
+
+```bash
+python3 tests/check_copy_inventory.py
+```
+
+To validate the UIX technical budget (size/lines/inline styles/inline handlers/duplicate IDs):
+
+```bash
+python3 tests/check_uix_budget.py
+```
+
+To validate DOM wiring (IDs used in JS vs IDs declared in HTML):
+
+```bash
+python3 tests/check_dom_wiring.py
+```
+
+To validate i18n key collisions (duplicate keys per language):
+
+```bash
+python3 tests/check_lang_duplicates.py
+```
+
+To validate i18n schema consistency (same keys across all languages):
+
+```bash
+python3 tests/check_lang_schema.py
+```
+
+To validate consistency between `languages[]` and language blocks in `lang.js`:
+
+```bash
+python3 tests/check_lang_codes.py
+```
+
+To run the suite with `pytest` (when dependency installation is available):
+
+```bash
+make venv
+make test
+```

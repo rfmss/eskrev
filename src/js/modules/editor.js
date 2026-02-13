@@ -3,6 +3,7 @@ import { lexicon } from './lexicon.js';
 import { xrayTests } from './xray_tests.js';
 import { ptDictionary } from './pt_dictionary.js';
 import { ptPosLexicon } from './pt_pos_lexicon.js';
+import { setModalActive } from './modal_state.js';
 
 export const editorFeatures = {
     editor: null,
@@ -25,8 +26,6 @@ export const editorFeatures = {
     xrayRaf: null,
     xrayOverlay: null,
     xrayPanel: null,
-    xrayVerbsEl: null,
-    xrayAdjsEl: null,
     xrayEmptyEl: null,
     xrayObserver: null,
     ptLexicon: null,
@@ -203,7 +202,7 @@ export const editorFeatures = {
                     } else {
                         const helpModal = document.getElementById('helpModal');
                         if (!helpModal) return false;
-                        helpModal.classList.add('active');
+                        setModalActive(helpModal, true);
                         document.body.classList.add("help-open");
                     }
                 }
@@ -214,7 +213,7 @@ export const editorFeatures = {
                 }, 50);
                 return this.flashInlineData();
             case '--save':
-                document.getElementById('exportModal').classList.add('active');
+                setModalActive(document.getElementById('exportModal'), true);
                 return this.flashInlineData();
             case '--open':
                 document.getElementById('btnImport').click();
@@ -398,7 +397,7 @@ export const editorFeatures = {
             const blueBtn = document.getElementById("pasteChoiceBlue");
             const redBtn = document.getElementById("pasteChoiceRed");
             const close = () => {
-                modal.classList.remove("active");
+                setModalActive(modal, false);
                 document.body.classList.remove("modal-active");
             };
             const allow = () => {
@@ -413,7 +412,7 @@ export const editorFeatures = {
             if (closeBtn) closeBtn.onclick = cancel;
             if (blueBtn) blueBtn.onclick = cancel;
             if (redBtn) redBtn.onclick = allow;
-            modal.classList.add("active");
+            setModalActive(modal, true);
             document.body.classList.add("modal-active");
         };
         const isNativeClipboard = (clip) => {
@@ -551,12 +550,6 @@ export const editorFeatures = {
 
     // --- SENSORY ---
     initSensoryFeatures() {
-        const panel = document.querySelector(".panel");
-        const hud = document.querySelector(".hud");
-        const controls = document.querySelector(".controls");
-        const logoArea = document.querySelector(".logo-area");
-        const drawer = document.querySelector(".drawer");
-        const templatePane = document.getElementById("templatePane");
         let idleTimer = null;
         const showChrome = () => {
             document.body.classList.remove("chrome-hidden");
@@ -569,8 +562,9 @@ export const editorFeatures = {
             if (idleTimer) clearTimeout(idleTimer);
             idleTimer = setTimeout(() => {
                 showChrome();
-            }, 3000);
+            }, 2000);
         };
+        const panel = document.querySelector(".panel");
         if (panel) {
             panel.addEventListener("scroll", () => {
                 this.lastUserScrollTime = Date.now();
@@ -579,7 +573,6 @@ export const editorFeatures = {
                 this.lastUserScrollTime = Date.now();
             }, { passive: true });
         }
-        const shouldProtectChapterMarker = this.shouldProtectChapterMarker.bind(this);
         this.editor.addEventListener("keydown", (e) => {
             if (e.key === "Backspace") this.playSound('backspace');
             if (e.key === "Backspace" && this.shouldProtectChapterMarker()) {
@@ -764,12 +757,7 @@ export const editorFeatures = {
         const range = original.cloneRange();
         range.collapse(true);
 
-        const marker = document.createElement("span");
-        marker.textContent = "\u200b";
-        marker.style.display = "inline-block";
-        marker.style.width = "0";
-        marker.style.height = "1em";
-        marker.style.pointerEvents = "none";
+        const marker = this.createCaretMarker();
         range.insertNode(marker);
 
         const panelRect = scroller.getBoundingClientRect();
@@ -804,18 +792,23 @@ export const editorFeatures = {
         if (rects && rects.length) {
             return rects[0];
         }
-        const marker = document.createElement("span");
-        marker.textContent = "\u200b";
-        marker.style.display = "inline-block";
-        marker.style.width = "0";
-        marker.style.height = "1em";
-        marker.style.pointerEvents = "none";
+        const marker = this.createCaretMarker();
         range.insertNode(marker);
         const rect = marker.getBoundingClientRect();
         marker.remove();
         sel.removeAllRanges();
         sel.addRange(original);
         return rect;
+    },
+
+    createCaretMarker() {
+        const marker = document.createElement("span");
+        marker.textContent = "\u200b";
+        marker.style.display = "inline-block";
+        marker.style.width = "0";
+        marker.style.height = "1em";
+        marker.style.pointerEvents = "none";
+        return marker;
     },
 
     initLexicon() {
@@ -1157,8 +1150,6 @@ export const editorFeatures = {
         this.xrayPanel = document.getElementById("xrayPanel");
         this.xrayHeader = this.xrayPanel ? this.xrayPanel.querySelector(".xray-header") : null;
         this.xrayDragHandle = document.getElementById("xrayDragBtn");
-        this.xrayVerbsEl = document.getElementById("xrayVerbs");
-        this.xrayAdjsEl = document.getElementById("xrayAdjs");
         this.xrayEmptyEl = document.getElementById("xrayEmpty");
         this.ptLexiconStatusEl = document.getElementById("xrayLexiconStatus");
         this.xrayAuditToggle = document.getElementById("xrayAuditToggle");
@@ -1274,9 +1265,7 @@ export const editorFeatures = {
                 this.ensurePtPosLexicon();
             }
             this.scheduleXrayUpdate();
-        } else if (this.xrayVerbsEl && this.xrayAdjsEl && this.xrayEmptyEl) {
-            this.xrayVerbsEl.innerHTML = "";
-            this.xrayAdjsEl.innerHTML = "";
+        } else if (this.xrayEmptyEl) {
             this.xrayEmptyEl.style.display = "block";
         }
         if (this.xrayList) this.xrayList.innerHTML = "";
@@ -2683,6 +2672,9 @@ export const editorFeatures = {
         if (window.skrvModal?.alert) {
             window.skrvModal.alert(`X-RAY TESTS: ${passed}/${total} OK`);
         } else {
+            alert(`X-RAY TESTS: ${passed}/${total} OK`);
+        }
+        if (localStorage.getItem("skrv_debug") === "true") {
             console.log("X-RAY TESTS", results);
         }
     },
@@ -3360,7 +3352,7 @@ export const editorFeatures = {
         this.readerContent.scrollTop = 0;
         this.readerGlossary.innerHTML = "";
         this.updateGlossary(text);
-        this.readerModal.classList.add("active");
+        setModalActive(this.readerModal, true);
         document.body.classList.add("reader-open");
         this.readerBox.classList.remove("show-glossary");
         this.readerBox.classList.remove("show-ruler");
@@ -3381,7 +3373,7 @@ export const editorFeatures = {
 
     closeReaderMode() {
         this.stopReaderAutoScroll();
-        if (this.readerModal) this.readerModal.classList.remove("active");
+        if (this.readerModal) setModalActive(this.readerModal, false);
         document.body.classList.remove("reader-open");
         if (document.fullscreenElement) {
             document.exitFullscreen().catch(() => {});
@@ -3779,15 +3771,13 @@ export const editorFeatures = {
             });
         }
 
-        this.consultModal.classList.add("active");
-        this.consultModal.setAttribute("aria-hidden", "false");
+        setModalActive(this.consultModal, true);
         document.body.classList.add("consult-open");
     },
 
     closeConsult() {
         if (!this.consultModal) return;
-        this.consultModal.classList.remove("active");
-        this.consultModal.setAttribute("aria-hidden", "true");
+        setModalActive(this.consultModal, false);
         document.body.classList.remove("consult-open");
     },
 
@@ -4100,10 +4090,10 @@ export const editorFeatures = {
         if (!data) return;
         this.goalTitle.textContent = data.title;
         this.goalBody.textContent = data.body;
-        this.goalModal.classList.add("active");
+        setModalActive(this.goalModal, true);
         this.goalModal.classList.toggle("goal-celebrate", milestone === 2000);
         setTimeout(() => {
-            this.goalModal.classList.remove("active");
+            setModalActive(this.goalModal, false);
             this.goalModal.classList.remove("goal-celebrate");
         }, 4000);
     }

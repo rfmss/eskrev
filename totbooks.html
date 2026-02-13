@@ -63,6 +63,14 @@ body {
   vertical-align: -0.125em;
 }
 
+.icon-lg {
+  font-size: 24px;
+}
+
+.sheet-hidden {
+  display: none;
+}
+
 /* --- REGRAS NOVAS DE TEXTO (LINHA ÚNICA) --- */
 .book-cover h2, .book-content h2 {
     white-space: nowrap;
@@ -317,6 +325,7 @@ body:hover .bg-hint { opacity: 0.4; }
   inset:0;
   background: linear-gradient(145deg, #1f1f1f, #2a2a2a);
   border-radius: inherit;
+  overflow: hidden;
   transform-origin: left center;
   transition:
     transform .9s cubic-bezier(.22,.61,.36,1),
@@ -330,7 +339,7 @@ body:hover .bg-hint { opacity: 0.4; }
 
 .cover .sheen{
   position:absolute;
-  inset:-40px -80px;
+  inset:-22px -42px;
   background: radial-gradient(circle at 30% 20%, rgba(244, 241, 234, 0.12), transparent 55%);
   transform: rotate(-8deg);
   pointer-events:none;
@@ -653,7 +662,7 @@ body.is-dragging #trash-zone {
 <div class="library" id="library"></div>
 
 <div id="trash-zone">
-    <svg class="icon" viewBox="0 0 256 256" aria-hidden="true" style="font-size: 24px;">
+    <svg class="icon icon-lg" viewBox="0 0 256 256" aria-hidden="true">
       <line x1="216" y1="56" x2="40" y2="56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
       <line x1="104" y1="104" x2="104" y2="168" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
       <line x1="152" y1="104" x2="152" y2="168" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
@@ -1085,7 +1094,7 @@ function createBook(title, x, y, opts = {}){
   book.innerHTML = `
     <div class="cover" aria-label="${escapeHtml(coverLabel)}">
       <div class="sheen"></div>
-    <div class="strap" style="background:${savedColor}">
+    <div class="strap">
         <span class="phi-mark"></span>
         <span class="title-text">${escapeHtml(savedTitle)}</span>
       </div>
@@ -1101,7 +1110,7 @@ function createBook(title, x, y, opts = {}){
         <div class="sheet sheet-a">
           <div class="page-text" contenteditable="true" spellcheck="false"></div>
         </div>
-        <div class="sheet sheet-b" style="display:none">
+        <div class="sheet sheet-b sheet-hidden">
           <div class="page-text" contenteditable="true" spellcheck="false"></div>
         </div>
       </div>
@@ -1116,6 +1125,8 @@ function createBook(title, x, y, opts = {}){
 
   const cover = book.querySelector('.cover');
   const handle = book.querySelector('.drag-handle');
+  const strap = book.querySelector('.strap');
+  if (strap) strap.style.background = savedColor;
 
   const pagesEl = book.querySelector('.pages');
   const prevBtn = book.querySelector('.prev');

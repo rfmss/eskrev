@@ -4,6 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>eskrev mobile</title>
+    <script>
+        (function () {
+            var params = new URLSearchParams(window.location.search || "");
+            if (params.get("legacy") === "1") return;
+            window.location.replace("index.html?mobile=notes");
+        })();
+    </script>
     <meta property="og:image" content="https://eskrev.rafa.pro.br/qr-bitcoin.png" />
     <meta property="og:image:alt" content="QR support code for Eskrev" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -18,7 +25,8 @@
     <link rel="stylesheet" href="src/mobile/mobile.css" />
 </head>
 <body data-theme="paper">
-    <main class="mobile-shell">
+    <a class="skip-link" href="#mainContent" data-i18n="skip_link_main">Pular para o conteúdo principal</a>
+    <main id="mainContent" class="mobile-shell">
         <header class="mobile-top">
             <div class="mobile-brand">
                 <img src="src/assets/icons/logoEskrev.svg" alt="" aria-hidden="true" />
@@ -77,7 +85,7 @@
         <div class="mobile-support" data-i18n-html="mobile_footer_support">apoie</div>
     </footer>
 
-    <div id="mobileGate" class="overlay">
+    <div id="mobileGate" class="overlay" aria-hidden="true">
         <div class="gate-hero">
             <header class="gate-header">
                 <div class="gate-brand">
@@ -94,7 +102,7 @@
         </div>
     </div>
 
-    <div id="qrScanModal" class="overlay">
+    <div id="qrScanModal" class="overlay" aria-hidden="true">
         <div class="modal qr-modal">
             <div class="modal-title" data-i18n="qr_scan_title">SCAN QR</div>
             <div class="qr-layout">
@@ -105,7 +113,7 @@
                     <div id="qrScanGrid" class="qr-grid"></div>
                     <div class="help" data-i18n="qr_fallback_hint">Sem câmera? Importe o arquivo .b64/.skv ou cole a string.</div>
                     <button id="qrScanImport" class="btn-full" data-i18n="qr_fallback_import">IMPORTAR ARQUIVO</button>
-                    <input id="qrScanFile" type="file" accept=".b64,.skv,.json,.txt" style="display:none;" />
+                    <input id="qrScanFile" type="file" class="hidden-file-input" accept=".b64,.skv,.json,.txt" />
                     <textarea id="qrScanPaste" class="note-input" data-i18n-ph="qr_fallback_paste" placeholder="Cole a string base64"></textarea>
                     <button id="qrScanRestore" class="btn-full" data-i18n="qr_fallback_restore">RESTAURAR</button>
                     <button id="qrScanStop" class="btn-full" data-i18n="qr_scan_stop">PARAR SCAN</button>
@@ -114,13 +122,13 @@
         </div>
     </div>
 
-    <div id="qrStreamModal" class="overlay">
+    <div id="qrStreamModal" class="overlay" aria-hidden="true">
         <div class="modal qr-modal">
             <div class="modal-header">
                 <div class="modal-title" data-i18n="qr_stream_title">STREAM QR</div>
                 <button id="qrStreamCloseX" class="btn-icon" aria-label="Fechar">×</button>
             </div>
-            <div id="qrStreamCode" class="qr-code" style="margin:0 auto;"></div>
+            <div id="qrStreamCode" class="qr-code"></div>
             <div id="qrStreamStatus" class="help"></div>
             <div id="qrStreamMeta" class="help"></div>
             <div class="btn-row">
@@ -134,7 +142,7 @@
     </div>
 
     <div id="bookModal" class="overlay book-modal" aria-hidden="true">
-        <div class="modal book-modal-panel" role="dialog" aria-modal="true">
+        <div class="modal book-modal-panel" role="dialog" aria-modal="true" aria-label="Projeto">
             <div id="bookModalHeader" class="book-modal-header"></div>
             <div id="bookModalBody" class="book-modal-body"></div>
             <div id="bookModalActions" class="book-modal-actions"></div>

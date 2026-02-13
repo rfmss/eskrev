@@ -66,6 +66,7 @@ export const lang = {
             dedication_hint: "Pressione ENTER ou toque na seta",
             toggle_password_show: "Mostrar senha",
             close_label: "Fechar",
+            skip_link_main: "Pular para o conteúdo principal",
             manifesto_open: "Manifesto",
             newtext_title: "Novo texto",
             newtext_subtitle: "Como você quer começar?",
@@ -302,6 +303,7 @@ export const lang = {
             desktop_footer_note: "Nada é enviado. Nada é rastreado. Tudo fica local.",
             mobile_tag_fixed_label: "#mobile",
             mobile_tag_fixed_status: "fixo",
+            mobile_fallback_link: "Abrir versão mobile",
             qr_frame: "FRAME",
             xray_locked_ptbr: "VOCABULÁRIO é um modo desenvolvido em português do Brasil.\nOutras línguas aguardam adaptação.",
             xray_locked_intl: "VOCABULÁRIO é um modo desenvolvido em português do Brasil.\nOutras línguas aguardam adaptação.",
@@ -404,7 +406,6 @@ export const lang = {
             xray_badge_article: "ART",
             xray_badge_numeral: "NUM",
             xray_badge_interjection: "INTERJ",
-            xray_badge_alert: "ALERTA",
             xray_figures_title: "Figuras mais recorrentes (pistas)",
             xray_figures_empty: "Sem pistas suficientes.",
             xray_lemma_tooltip: "LEMA é a forma-base da palavra, usada para agrupar variações. Ex.: amo, amar, amarei → amar. Se aparecer FORMA NÃO RECONHECIDA, pode ser nome próprio, gíria ou flexão rara.",
@@ -418,14 +419,6 @@ export const lang = {
             xray_part_reason_coord: "Coordenação com adjetivo.",
             xray_part_reason_amb: "Contexto insuficiente para decidir.",
             xray_part_alternatives: "Possíveis análises",
-            xray_alert_tag: "ALERTA",
-            xray_alert_doubt: "Duda",
-            xray_alert_regency: "Régimen",
-            xray_alert_style_adj: "Repetición de adjetivo",
-            xray_alert_style_tense: "Verbos en el mismo tiempo",
-            xray_alert_style_serestar: "Uso excesivo de ser/estar",
-            xray_alert_paragraph: "párrafo",
-            xray_alert_occurrences: "ocurrencias",
             xray_badge_alert: "ALERTA",
             xray_alert_tag: "ALERTA",
             xray_alert_doubt: "Dúvida",
@@ -583,6 +576,25 @@ export const lang = {
             mobile_gate_scan: "LER QR CODE",
             mobile_gate_hint: "Ou ↑ para criar novo",
             mobile_gate_share: "Compartilhe o eskrev",
+            mobile_import_dest_title: "Destino da importação",
+            mobile_import_dest_body: "Escolha para onde o conteúdo importado vai.",
+            mobile_import_dest_active_hint: "Projeto ativo",
+            mobile_import_dest_active: "Adicionar ao projeto ativo",
+            mobile_import_dest_new: "Criar novo projeto",
+            mobile_import_dest_cancel: "Cancelar",
+            mobile_import_new_project_name: "Projeto importado",
+            mobile_help_title: "AJUDA RAPIDA",
+            mobile_help_body: "<p>Use o celular para captar ideia e transportar projeto.</p><p><strong>Nova nota</strong> inicia escrita local. <strong>QR/Arquivo</strong> traz conteudo para o projeto ativo ou um novo.</p>",
+            mobile_funnel_debug_title: "FUNIL LOCAL (DEBUG)",
+            mobile_funnel_debug_refresh: "ATUALIZAR",
+            mobile_funnel_debug_reset: "LIMPAR",
+            mobile_funnel_debug_empty: "Sem dados ainda.",
+            mobile_funnel_kpi_ttv: "TTV",
+            mobile_funnel_kpi_import_rate: "Sucesso import",
+            mobile_funnel_kpi_abandon_rate: "Abandono inicial",
+            mobile_funnel_kpi_first_import: "Tempo até 1o import",
+            mobile_funnel_kpi_note_to_import: "Conversão nota->import",
+            mobile_funnel_kpi_no_data: "sem dados",
             mobile_export_title: "EXPORTAR",
             mobile_export_qr: "ENVIAR POR QR",
             mobile_export_save: "SALVAR ARQUIVO",
@@ -594,6 +606,20 @@ export const lang = {
             mobile_import_confirm: "CONFIRMAR",
             mobile_import_pass_error: "Digite a senha provisória.",
             mobile_import_pass_mismatch: "As senhas não coincidem.",
+            mobile_import_source_qr: "QR",
+            mobile_import_source_file: "Arquivo",
+            mobile_import_source_unknown: "Indefinida",
+            mobile_import_target_active: "projeto ativo",
+            mobile_import_target_new: "novo projeto",
+            mobile_import_target_unknown: "indefinido",
+            mobile_import_action_append: "adicionar",
+            mobile_import_action_replace: "substituir",
+            mobile_import_flow: "Origem: {source} · Destino: {target} · Ação: {action}",
+            mobile_import_invalid: "Importação inválida ({source}).",
+            mobile_import_merge_created: "Novos",
+            mobile_import_merge_updated: "Atualizados",
+            mobile_import_merge_conflicts: "Conflitos",
+            mobile_import_merge_words: "Palavras",
             mobile_clear_cache: "Atualizar offline",
             mobile_quick_reader: "LEITOR",
             mobile_quick_export: "EXPORTAR",
@@ -730,6 +756,7 @@ export const lang = {
             dedication_hint: "Press ENTER or tap the arrow",
             toggle_password_show: "Show password",
             close_label: "Close",
+            skip_link_main: "Skip to main content",
             manifesto_open: "Manifesto",
             newtext_title: "New text",
             newtext_subtitle: "How do you want to start?",
@@ -966,6 +993,7 @@ export const lang = {
             desktop_footer_note: "Nothing is sent. Nothing is tracked. Everything stays local.",
             mobile_tag_fixed_label: "#mobile",
             mobile_tag_fixed_status: "fixed",
+            xray_locked_ptbr: "VOCABULÁRIO is currently a Brazilian Portuguese mode.\nOther languages are pending adaptation.",
             qr_frame: "FRAME",
             xray_locked_intl: "VOCABULÁRIO é um projeto do português (pt-BR), por enquanto.",
             consult_title: "Consult",
@@ -1117,8 +1145,6 @@ export const lang = {
             export_note: "Contains the text and technical proof of the writing process.",
             export_share: "Eskrev is a free, offline-first text editor. Write on desktop and load it on your phone through offline streaming — no internet needed. No data collection, no privacy invasion, no learning from your content. Liked it? Support 💙 pix/paypal: eskrev@disroot.org | eskrev.rafa.pro.br",
             export_support: "Support the project: eskrev@disroot.org",
-            export_support_title: "Eskrev is free. If you found it useful, consider supporting the project to keep domain, hosting, and maintenance:",
-            export_support_html: "Support: <span class=\"support-item support-bitcoin marquee-copy\" data-copy=\"BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP\">bitcoin</span> | <span class=\"support-item marquee-copy\" data-copy=\"eskrev@disroot.org\">pix/paypal</span>",
             export_support_title: "Eskrev is a free, offline-first text editor. Write on desktop and load it on your phone through offline streaming — no internet needed. No data collection, no privacy invasion, no learning from your content. Liked it? Support 💙 pix/paypal: eskrev@disroot.org | eskrev.rafa.pro.br",
             export_support_html: "Support: <span class=\"marquee-copy\" data-copy=\"BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP\">BC1QUX0NG3WYLXESMFCWWP5D3QEMSVRL8TENL2HNVP</span> | <span class=\"marquee-copy\" data-copy=\"eskrev@disroot.org\">eskrev@disroot.org</span> pix/paypal",
             export_social_title: "FEDERATED NETWORKS",
@@ -1239,6 +1265,25 @@ export const lang = {
             mobile_gate_scan: "READ QR CODE",
             mobile_gate_hint: "Or ↑ to create new",
             mobile_gate_share: "Share eskrev",
+            mobile_import_dest_title: "Import destination",
+            mobile_import_dest_body: "Choose where imported content goes.",
+            mobile_import_dest_active_hint: "Active project",
+            mobile_import_dest_active: "Add to active project",
+            mobile_import_dest_new: "Create new project",
+            mobile_import_dest_cancel: "Cancel",
+            mobile_import_new_project_name: "Imported project",
+            mobile_help_title: "QUICK HELP",
+            mobile_help_body: "<p>Use mobile to capture ideas and carry projects.</p><p><strong>New note</strong> starts local writing. <strong>QR/File</strong> imports content to the active project or a new one.</p>",
+            mobile_funnel_debug_title: "LOCAL FUNNEL (DEBUG)",
+            mobile_funnel_debug_refresh: "REFRESH",
+            mobile_funnel_debug_reset: "RESET",
+            mobile_funnel_debug_empty: "No data yet.",
+            mobile_funnel_kpi_ttv: "TTV",
+            mobile_funnel_kpi_import_rate: "Import success",
+            mobile_funnel_kpi_abandon_rate: "Early drop-off",
+            mobile_funnel_kpi_first_import: "Time to 1st import",
+            mobile_funnel_kpi_note_to_import: "Note->import conversion",
+            mobile_funnel_kpi_no_data: "no data",
             mobile_export_title: "EXPORT",
             mobile_export_qr: "SEND BY QR",
             mobile_export_save: "SAVE FILE",
@@ -1250,6 +1295,20 @@ export const lang = {
             mobile_import_confirm: "CONFIRM",
             mobile_import_pass_error: "Enter the provisional password.",
             mobile_import_pass_mismatch: "Passwords do not match.",
+            mobile_import_source_qr: "QR",
+            mobile_import_source_file: "File",
+            mobile_import_source_unknown: "Unknown",
+            mobile_import_target_active: "active project",
+            mobile_import_target_new: "new project",
+            mobile_import_target_unknown: "undefined",
+            mobile_import_action_append: "append",
+            mobile_import_action_replace: "replace",
+            mobile_import_flow: "Source: {source} · Target: {target} · Action: {action}",
+            mobile_import_invalid: "Invalid import ({source}).",
+            mobile_import_merge_created: "New",
+            mobile_import_merge_updated: "Updated",
+            mobile_import_merge_conflicts: "Conflicts",
+            mobile_import_merge_words: "Words",
             mobile_clear_cache: "Refresh offline",
             mobile_quick_reader: "READER",
             mobile_quick_export: "EXPORT",
@@ -1387,6 +1446,7 @@ export const lang = {
             dedication_hint: "Presiona ENTER o toca la flecha",
             toggle_password_show: "Mostrar contraseña",
             close_label: "Cerrar",
+            skip_link_main: "Saltar al contenido principal",
             manifesto_open: "Manifiesto",
             newtext_title: "Nuevo texto",
             newtext_subtitle: "¿Cómo quieres empezar?",
@@ -1623,6 +1683,7 @@ export const lang = {
             desktop_footer_note: "Nada se envía. Nada se rastrea. Todo queda local.",
             mobile_tag_fixed_label: "#mobile",
             mobile_tag_fixed_status: "fijo",
+            xray_locked_ptbr: "VOCABULÁRIO es actualmente un modo en portugués de Brasil.\nOtros idiomas están pendientes de adaptación.",
             qr_frame: "FRAME",
             xray_locked_intl: "VOCABULÁRIO es un proyecto en portugués (pt-BR), por ahora.",
             consult_title: "Consultar",
@@ -1724,12 +1785,6 @@ export const lang = {
             xray_badge_article: "ART",
             xray_badge_numeral: "NUM",
             xray_badge_interjection: "INTJ",
-            xray_badge_pronoun: "PRON",
-            xray_badge_prep: "PREP",
-            xray_badge_conj: "CONJ",
-            xray_badge_article: "ART",
-            xray_badge_numeral: "NUM",
-            xray_badge_interjection: "INTJ",
             xray_badge_alert: "ALERTA",
             xray_figures_title: "Figuras más frecuentes (pistas)",
             xray_figures_empty: "No hay pistas suficientes.",
@@ -1744,6 +1799,14 @@ export const lang = {
             xray_part_reason_coord: "Coordinado con adjetivo.",
             xray_part_reason_amb: "Contexto insuficiente para decidir.",
             xray_part_alternatives: "Posibles análisis",
+            xray_alert_tag: "ALERTA",
+            xray_alert_doubt: "Duda",
+            xray_alert_regency: "Régimen",
+            xray_alert_style_adj: "Repetición de adjetivo",
+            xray_alert_style_tense: "Verbos en el mismo tiempo",
+            xray_alert_style_serestar: "Uso excesivo de ser/estar",
+            xray_alert_paragraph: "párrafo",
+            xray_alert_occurrences: "ocurrencias",
             xray_legend_lex: "LÉX",
             xray_legend_heur: "HEUR",
             xray_legend_amb: "AMB",
@@ -1892,6 +1955,25 @@ export const lang = {
             mobile_gate_scan: "LEER QR",
             mobile_gate_hint: "O ↑ para crear nuevo",
             mobile_gate_share: "Comparte eskrev",
+            mobile_import_dest_title: "Destino de importación",
+            mobile_import_dest_body: "Elige dónde se agrega el contenido importado.",
+            mobile_import_dest_active_hint: "Proyecto activo",
+            mobile_import_dest_active: "Agregar al proyecto activo",
+            mobile_import_dest_new: "Crear proyecto nuevo",
+            mobile_import_dest_cancel: "Cancelar",
+            mobile_import_new_project_name: "Proyecto importado",
+            mobile_help_title: "AYUDA RAPIDA",
+            mobile_help_body: "<p>Usa el movil para capturar ideas y transportar proyectos.</p><p><strong>Nueva nota</strong> inicia escritura local. <strong>QR/Archivo</strong> importa contenido al proyecto activo o a uno nuevo.</p>",
+            mobile_funnel_debug_title: "FUNIL LOCAL (DEBUG)",
+            mobile_funnel_debug_refresh: "ACTUALIZAR",
+            mobile_funnel_debug_reset: "LIMPIAR",
+            mobile_funnel_debug_empty: "Sin datos todavia.",
+            mobile_funnel_kpi_ttv: "TTV",
+            mobile_funnel_kpi_import_rate: "Exito import",
+            mobile_funnel_kpi_abandon_rate: "Abandono inicial",
+            mobile_funnel_kpi_first_import: "Tiempo hasta 1er import",
+            mobile_funnel_kpi_note_to_import: "Conversión nota->import",
+            mobile_funnel_kpi_no_data: "sin datos",
             mobile_export_title: "EXPORTAR",
             mobile_export_qr: "ENVIAR POR QR",
             mobile_export_save: "GUARDAR ARCHIVO",
@@ -1903,6 +1985,20 @@ export const lang = {
             mobile_import_confirm: "CONFIRMAR",
             mobile_import_pass_error: "Ingresa la contraseña provisional.",
             mobile_import_pass_mismatch: "Las contraseñas no coinciden.",
+            mobile_import_source_qr: "QR",
+            mobile_import_source_file: "Archivo",
+            mobile_import_source_unknown: "Indefinida",
+            mobile_import_target_active: "proyecto activo",
+            mobile_import_target_new: "proyecto nuevo",
+            mobile_import_target_unknown: "indefinido",
+            mobile_import_action_append: "agregar",
+            mobile_import_action_replace: "reemplazar",
+            mobile_import_flow: "Origen: {source} · Destino: {target} · Acción: {action}",
+            mobile_import_invalid: "Importación inválida ({source}).",
+            mobile_import_merge_created: "Nuevos",
+            mobile_import_merge_updated: "Actualizados",
+            mobile_import_merge_conflicts: "Conflictos",
+            mobile_import_merge_words: "Palabras",
             mobile_clear_cache: "Actualizar offline",
             mobile_quick_reader: "LECTOR",
             mobile_quick_export: "EXPORTAR",
@@ -2040,6 +2136,7 @@ export const lang = {
             dedication_hint: "Appuyez sur ENTRÉE ou touchez la flèche",
             toggle_password_show: "Afficher le mot de passe",
             close_label: "Fermer",
+            skip_link_main: "Aller au contenu principal",
             manifesto_open: "Manifeste",
             newtext_title: "Nouveau texte",
             newtext_subtitle: "Comment voulez-vous commencer ?",
@@ -2276,6 +2373,7 @@ export const lang = {
             desktop_footer_note: "Rien n'est envoyé. Rien n'est suivi. Tout reste local.",
             mobile_tag_fixed_label: "#mobile",
             mobile_tag_fixed_status: "fixe",
+            xray_locked_ptbr: "VOCABULÁRIO est actuellement un mode en portugais du Brésil.\nLes autres langues sont en attente d’adaptation.",
             qr_frame: "CADRE",
             xray_locked_intl: "VOCABULÁRIO est un projet en portugais (pt-BR), pour l’instant.",
             consult_title: "Consulter",
@@ -2547,6 +2645,25 @@ export const lang = {
             mobile_gate_scan: "LIRE QR CODE",
             mobile_gate_hint: "Ou ↑ pour créer",
             mobile_gate_share: "Partager eskrev",
+            mobile_import_dest_title: "Destination d'import",
+            mobile_import_dest_body: "Choisissez où ajouter le contenu importé.",
+            mobile_import_dest_active_hint: "Projet actif",
+            mobile_import_dest_active: "Ajouter au projet actif",
+            mobile_import_dest_new: "Créer un nouveau projet",
+            mobile_import_dest_cancel: "Annuler",
+            mobile_import_new_project_name: "Projet importé",
+            mobile_help_title: "AIDE RAPIDE",
+            mobile_help_body: "<p>Utilisez le mobile pour capturer des idees et transporter des projets.</p><p><strong>Nouvelle note</strong> demarre l'ecriture locale. <strong>QR/Fichier</strong> importe le contenu vers le projet actif ou un nouveau.</p>",
+            mobile_funnel_debug_title: "ENTONNOIR LOCAL (DEBUG)",
+            mobile_funnel_debug_refresh: "ACTUALISER",
+            mobile_funnel_debug_reset: "EFFACER",
+            mobile_funnel_debug_empty: "Pas encore de donnees.",
+            mobile_funnel_kpi_ttv: "TTV",
+            mobile_funnel_kpi_import_rate: "Succes import",
+            mobile_funnel_kpi_abandon_rate: "Abandon initial",
+            mobile_funnel_kpi_first_import: "Temps jusqu'au 1er import",
+            mobile_funnel_kpi_note_to_import: "Conversion note->import",
+            mobile_funnel_kpi_no_data: "pas de donnees",
             mobile_export_title: "EXPORTER",
             mobile_export_qr: "ENVOYER PAR QR",
             mobile_export_save: "ENREGISTRER LE FICHIER",
@@ -2558,6 +2675,20 @@ export const lang = {
             mobile_import_confirm: "CONFIRMER",
             mobile_import_pass_error: "Entrez le mot de passe provisoire.",
             mobile_import_pass_mismatch: "Les mots de passe ne correspondent pas.",
+            mobile_import_source_qr: "QR",
+            mobile_import_source_file: "Fichier",
+            mobile_import_source_unknown: "Indefinie",
+            mobile_import_target_active: "projet actif",
+            mobile_import_target_new: "nouveau projet",
+            mobile_import_target_unknown: "indefini",
+            mobile_import_action_append: "ajouter",
+            mobile_import_action_replace: "remplacer",
+            mobile_import_flow: "Source : {source} · Cible : {target} · Action : {action}",
+            mobile_import_invalid: "Import invalide ({source}).",
+            mobile_import_merge_created: "Nouveaux",
+            mobile_import_merge_updated: "Mis a jour",
+            mobile_import_merge_conflicts: "Conflits",
+            mobile_import_merge_words: "Mots",
             mobile_clear_cache: "Actualiser offline",
             mobile_quick_reader: "LECTURE",
             mobile_quick_export: "EXPORTER",
@@ -2645,9 +2776,15 @@ export const lang = {
         const t = this.db[this.current] || {};
         return t[key] || key;
     },
+    resolveLang(code) {
+        const langCode = typeof code === 'string' ? code : '';
+        const exists = this.languages.some((item) => item.code === langCode);
+        return exists ? langCode : 'pt';
+    },
     setLang(l) {
-        this.current = l;
-        localStorage.setItem('lit_lang', l);
+        const nextLang = this.resolveLang(l);
+        this.current = nextLang;
+        localStorage.setItem('lit_lang', nextLang);
         this.apply();
     },
     cycleLang() {
@@ -2655,67 +2792,98 @@ export const lang = {
         const next = this.languages[(index + 1 + this.languages.length) % this.languages.length];
         this.setLang(next.code);
     },
-    apply() {
-        const t = this.db[this.current];
+    getScopedText(key, currentDict) {
+        if (!key) return undefined;
         const xray = this.db.pt || {};
-        const getText = (key) => {
-            if (key && key.startsWith("xray_") && !key.startsWith("xray_locked")) {
-                return xray[key] || t[key];
-            }
-            return t[key];
-        };
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            const val = getText(key);
+        if (key.startsWith('xray_') && !key.startsWith('xray_locked')) {
+            return xray[key] || currentDict[key];
+        }
+        return currentDict[key];
+    },
+    translateNodeList(nodeList, keyAttr, resolver) {
+        nodeList.forEach((el) => {
+            const key = el.getAttribute(keyAttr);
+            const val = resolver(key);
             if (val) el.innerText = val;
         });
-        document.querySelectorAll('[data-i18n-html]').forEach(el => {
-            const key = el.getAttribute('data-i18n-html');
-            const val = getText(key);
-            if (val) el.innerHTML = val;
+    },
+    translateAttrNodeList(nodeList, keyAttr, resolver, applyValue) {
+        nodeList.forEach((el) => {
+            const key = el.getAttribute(keyAttr);
+            const val = resolver(key);
+            applyValue(el, val);
         });
-        document.querySelectorAll('[data-i18n-title]').forEach(el => {
-            const key = el.getAttribute('data-i18n-title');
-            const val = getText(key);
-            if (val) {
-                el.setAttribute('aria-label', val);
+    },
+    applyLanguageLabel(label) {
+        if (!label) return;
+        document.querySelectorAll('[data-i18n-lang]').forEach((el) => {
+            el.innerText = label;
+        });
+        const langButtons = [document.getElementById("btnLangToggle"), document.getElementById("setupLangToggle")];
+        langButtons.forEach((btn) => {
+            if (btn) btn.innerText = label;
+        });
+    },
+    apply() {
+        const t = this.db[this.current] || this.db.pt || {};
+        const getText = (key) => this.getScopedText(key, t);
+        this.translateNodeList(document.querySelectorAll('[data-i18n]'), 'data-i18n', getText);
+        this.translateAttrNodeList(
+            document.querySelectorAll('[data-i18n-html]'),
+            'data-i18n-html',
+            getText,
+            (el, val) => {
+                if (val) el.innerHTML = val;
+            }
+        );
+        this.translateAttrNodeList(
+            document.querySelectorAll('[data-i18n-title]'),
+            'data-i18n-title',
+            getText,
+            (el, val) => {
+                if (val) {
+                    el.setAttribute('aria-label', val);
+                    el.removeAttribute('title');
+                }
+            }
+        );
+        this.translateAttrNodeList(
+            document.querySelectorAll('[data-i18n-tip]'),
+            'data-i18n-tip',
+            getText,
+            (el, val) => {
+                if (val) {
+                    el.setAttribute('data-tip', val);
+                } else {
+                    el.removeAttribute('data-tip');
+                }
                 el.removeAttribute('title');
             }
-        });
-        document.querySelectorAll('[data-i18n-tip]').forEach(el => {
-            const key = el.getAttribute('data-i18n-tip');
-            const val = getText(key);
-            if (val) {
-                el.setAttribute('data-tip', val);
-            } else {
-                el.removeAttribute('data-tip');
-            }
-            el.removeAttribute('title');
-        });
-        document.querySelectorAll('[title]').forEach(el => {
+        );
+        document.querySelectorAll('[title]').forEach((el) => {
             const title = el.getAttribute('title');
             if (title && !el.getAttribute('aria-label')) {
                 el.setAttribute('aria-label', title);
             }
             el.removeAttribute('title');
         });
-        document.querySelectorAll('input[data-i18n-ph], textarea[data-i18n-ph]').forEach(el => {
-            const key = el.getAttribute('data-i18n-ph');
-            const val = getText(key);
-            if (val) el.placeholder = val;
-        });
-        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-            const key = el.getAttribute('data-i18n-placeholder');
-            const val = getText(key);
-            if (val) el.setAttribute('data-placeholder', val);
-        });
-        document.querySelectorAll('[data-i18n-lang]').forEach(el => {
-            if (t.lang_label) el.innerText = t.lang_label;
-        });
-        const langButtons = [document.getElementById("btnLangToggle"), document.getElementById("setupLangToggle")];
-        langButtons.forEach((btn) => {
-            if (btn && t.lang_label) btn.innerText = t.lang_label;
-        });
+        this.translateAttrNodeList(
+            document.querySelectorAll('input[data-i18n-ph], textarea[data-i18n-ph]'),
+            'data-i18n-ph',
+            getText,
+            (el, val) => {
+                if (val) el.placeholder = val;
+            }
+        );
+        this.translateAttrNodeList(
+            document.querySelectorAll('[data-i18n-placeholder]'),
+            'data-i18n-placeholder',
+            getText,
+            (el, val) => {
+                if (val) el.setAttribute('data-placeholder', val);
+            }
+        );
+        this.applyLanguageLabel(t.lang_label);
         document.dispatchEvent(new CustomEvent("lang:changed", { detail: { code: this.current } }));
     }
 };

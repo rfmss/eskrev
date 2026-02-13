@@ -42,3 +42,48 @@ A interpretação cabe sempre a quem avalia.
 
 Projeto ativo, em desenvolvimento contínuo.
 Criado por um escritor usando LLMs como ferramentas de programação.
+
+## Testes
+
+Para validar o inventário de textos:
+
+```bash
+python3 tests/check_copy_inventory.py
+```
+
+Para validar orçamento técnico de UIX (tamanho/linhas/inline style/inline handlers/IDs duplicados):
+
+```bash
+python3 tests/check_uix_budget.py
+```
+
+Para validar wiring DOM (IDs usados no JS vs IDs declarados no HTML):
+
+```bash
+python3 tests/check_dom_wiring.py
+```
+
+Para validar colisões de chave no i18n (chaves duplicadas por idioma):
+
+```bash
+python3 tests/check_lang_duplicates.py
+```
+
+Para validar consistência de schema i18n (mesmas chaves em todos os idiomas):
+
+```bash
+python3 tests/check_lang_schema.py
+```
+
+Para validar consistência entre `languages[]` e os blocos de idioma em `lang.js`:
+
+```bash
+python3 tests/check_lang_codes.py
+```
+
+Para rodar suíte com `pytest` (quando houver rede para instalar dependências):
+
+```bash
+make venv
+make test
+```

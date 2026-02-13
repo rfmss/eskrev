@@ -1,6 +1,7 @@
 import { store } from './store.js';
 import { buildSkrvPayload, importSkrv } from './export_skrv.js';
 import { lang } from './lang.js';
+import { setModalActive } from './modal_state.js';
 
 const QR_VERSION = 'v1';
 const CHUNK_SIZE = 200;
@@ -190,7 +191,7 @@ const qrTransfer = (() => {
       return;
     }
     const base64 = buildBase64FromPayload(payload);
-    if (els.streamModal) els.streamModal.classList.add('active');
+    if (els.streamModal) setModalActive(els.streamModal, true);
     setupStreamFromBase64(base64, label);
   }
 
@@ -444,14 +445,13 @@ const qrTransfer = (() => {
 
   function bindUi() {
     const btnStream = document.getElementById('actionQrStream');
-    const btnBase64 = document.getElementById('actionQrString');
     const btnScan = document.getElementById('btnScanQr');
     const streamSupportBitcoin = els.streamModal ? els.streamModal.querySelector('.support-bitcoin') : null;
 
     if (btnStream) {
       btnStream.onclick = () => {
-        document.getElementById('exportModal').classList.remove('active');
-        if (els.streamModal) els.streamModal.classList.add('active');
+        setModalActive(document.getElementById('exportModal'), false);
+        if (els.streamModal) setModalActive(els.streamModal, true);
         initStream();
         const support = document.getElementById('qrStreamSupport');
         if (support) {
@@ -461,16 +461,9 @@ const qrTransfer = (() => {
       };
     }
 
-    if (btnBase64) {
-      btnBase64.onclick = () => {
-        downloadBase64Backup();
-        document.getElementById('exportModal').classList.remove('active');
-      };
-    }
-
     if (btnScan) {
       btnScan.onclick = () => {
-        if (els.scanModal) els.scanModal.classList.add('active');
+        if (els.scanModal) setModalActive(els.scanModal, true);
         startScan();
       };
       btnScan.dataset.bound = '1';
@@ -489,7 +482,7 @@ const qrTransfer = (() => {
     const closeStream = document.getElementById('closeModalQrStream');
     if (closeStream) {
       closeStream.onclick = () => {
-        if (els.streamModal) els.streamModal.classList.remove('active');
+        if (els.streamModal) setModalActive(els.streamModal, false);
         stopStream();
       };
     }
@@ -497,7 +490,7 @@ const qrTransfer = (() => {
     const closeScan = document.getElementById('closeModalQrScan');
     if (closeScan) {
       closeScan.onclick = () => {
-        if (els.scanModal) els.scanModal.classList.remove('active');
+        if (els.scanModal) setModalActive(els.scanModal, false);
         stopScan();
       };
     }
@@ -508,7 +501,7 @@ const qrTransfer = (() => {
 
     if (els.scanStop) {
       els.scanStop.onclick = () => {
-        if (els.scanModal) els.scanModal.classList.remove('active');
+        if (els.scanModal) setModalActive(els.scanModal, false);
         stopScan();
       };
     }
@@ -561,11 +554,11 @@ const qrTransfer = (() => {
 
     document.addEventListener('click', (e) => {
       if (els.streamModal && e.target === els.streamModal) {
-        els.streamModal.classList.remove('active');
+        setModalActive(els.streamModal, false);
         stopStream();
       }
       if (els.scanModal && e.target === els.scanModal) {
-        els.scanModal.classList.remove('active');
+        setModalActive(els.scanModal, false);
         stopScan();
       }
     });
@@ -579,7 +572,7 @@ const qrTransfer = (() => {
       els.scanModal.addEventListener('touchend', (e) => {
         const endY = e.changedTouches && e.changedTouches[0] ? e.changedTouches[0].clientY : touchStartY;
         if (touchStartY - endY > 60) {
-          els.scanModal.classList.remove('active');
+          setModalActive(els.scanModal, false);
           stopScan();
         }
       });

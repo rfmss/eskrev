@@ -11,9 +11,10 @@
     html, body {
       height: auto;
       overflow-y: auto;
+      background: transparent !important;
     }
     body {
-      background: var(--bg-core);
+      background: transparent !important;
       color: var(--color-text);
       display: flex;
       align-items: flex-start;
@@ -23,16 +24,12 @@
     }
     .verify-shell {
       width: min(880px, 92vw);
-      background: var(--bg-panel);
+      background: transparent;
       border: 2px solid var(--color-accent-dim);
       border-radius: calc(var(--radius) + 2px);
       box-shadow: none;
       padding: 28px 22px 32px;
       position: relative;
-      background-image:
-        repeating-linear-gradient(30deg, rgba(0,0,0,0.04) 0 1px, transparent 1px 22px),
-        repeating-linear-gradient(150deg, rgba(0,0,0,0.03) 0 1px, transparent 1px 22px);
-      background-size: auto;
     }
     .verify-shell::before {
       content: "";
@@ -340,7 +337,8 @@
   </style>
 </head>
 <body>
-  <div class="verify-shell">
+  <a class="skip-link" href="#mainContent" data-i18n="skip_link_main">Pular para o conteúdo principal</a>
+  <main id="mainContent" class="verify-shell">
     <div class="verify-header">
       <h1 class="verify-title" data-i18n="verify_title">.skv Verify</h1>
       <p class="verify-subtitle" data-i18n="verify_subtitle">eskrev · Verificação técnica de escrita humana</p>
@@ -444,7 +442,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
 
   <script type="module">
     import { lang } from "./src/js/modules/lang.js";

@@ -351,6 +351,7 @@ body.has-open-book {
     inset: 0;
     background: linear-gradient(145deg, #1f1f1f, #2a2a2a);
     border-radius: inherit;
+    overflow: hidden;
     transform-origin: left center;
     transition: transform .8s cubic-bezier(.22,.61,.36,1), opacity .45s ease;
     z-index: 3;
@@ -369,7 +370,7 @@ body.has-open-book {
 
 .cover .sheen {
     position: absolute;
-    inset: -40px -80px;
+    inset: -22px -42px;
     background: radial-gradient(circle at 30% 20%, rgba(244, 241, 234, 0.12), transparent 55%);
     transform: rotate(-8deg);
     pointer-events: none;

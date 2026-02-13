@@ -2,6 +2,7 @@ import { store } from './store.js';
 import { lang } from './lang.js';
 import { ui } from './ui.js';
 import { birthTracker } from './birth_tracker.js';
+import { setModalActive } from './modal_state.js';
 
 export const auth = {
     termsVersion: {
@@ -13,10 +14,6 @@ export const auth = {
     pendingCycle: null,
     termsModal: null,
     termsBody: null,
-    termsCheck: null,
-    termsChoice25: null,
-    termsChoice50: null,
-    termsBack: null,
     termsClose: null,
     termsLink: null,
     termsScrolledEnough: false,
@@ -68,7 +65,7 @@ export const auth = {
         };
         this.applyManifestoText = applyManifestoText;
         if (!modal) return;
-        modal.classList.add("active");
+        setModalActive(modal, true);
         modal.classList.remove("manifesto-full");
         if (supportBlock) supportBlock.classList.remove("active");
         document.body.classList.add("manifesto-open");
@@ -111,7 +108,7 @@ export const auth = {
             } catch (_) {
                 // ignore hash failure
             }
-            modal.classList.remove("active");
+            setModalActive(modal, false);
             document.body.classList.remove("manifesto-open");
             this.runGatekeeper();
         };
@@ -127,7 +124,7 @@ export const auth = {
             if (vv) vv.style.display = "block";
             if (panel) panel.classList.add("books-active");
             localStorage.setItem("lit_ui_view", "verify");
-            modal.classList.remove("active");
+            setModalActive(modal, false);
             document.body.classList.remove("manifesto-open");
         };
         document.addEventListener("lang:changed", updateLangToggle);
@@ -138,7 +135,8 @@ export const auth = {
         const body = document.getElementById("manifestoText");
         const supportBlock = document.getElementById("manifestoSupport");
         if (!modal || !body) return;
-        modal.classList.add("active", "manifesto-full");
+        setModalActive(modal, true);
+        modal.classList.add("manifesto-full");
         document.body.classList.add("manifesto-open");
         if (supportBlock) supportBlock.classList.add("active");
         if (typeof this.applyManifestoText === "function") {
@@ -267,24 +265,6 @@ export const auth = {
         const authInput = document.getElementById('authPass');
         if (authInput) authInput.onkeydown = (e) => { if(e.key === 'Enter') tryUnlock(); };
 
-        // Botão de Pânico (Caveira) - AGORA COM PROTEÇÃO
-        const emergencyBtn = document.getElementById('emergencyReset');
-        if (emergencyBtn) emergencyBtn.onclick = async () => {
-            const stored = localStorage.getItem('lit_auth_key');
-            // Pede a senha para confirmar a destruição
-            if (!window.skrvModal) return;
-            const pass = await window.skrvModal.prompt(lang.t("reset_prompt"), { title: lang.t("modal_title") });
-            
-            if (pass === stored) {
-                const ok = await window.skrvModal.confirm(lang.db[lang.current].reset_warn, { title: lang.t("modal_title") });
-                if (ok) {
-                    store.hardReset();
-                }
-            } else {
-                if (window.skrvModal) await window.skrvModal.alert(lang.t("reset_cancel"));
-            }
-        };
-
         // Toggle de senha (olho)
         document.querySelectorAll(".password-toggle").forEach((btn) => {
             const targetId = btn.getAttribute("data-target");
@@ -315,10 +295,6 @@ export const auth = {
     setupTerms() {
         this.termsModal = document.getElementById("termsModal");
         this.termsBody = document.getElementById("termsBody");
-        this.termsCheck = document.getElementById("termsCheck");
-        this.termsChoice25 = document.getElementById("termsChoice25");
-        this.termsChoice50 = document.getElementById("termsChoice50");
-        this.termsBack = document.getElementById("termsBack");
         this.termsClose = document.getElementById("termsClose");
 
         const updateTermsText = () => {
@@ -425,13 +401,13 @@ export const auth = {
     openTermsModal() {
         if (!this.termsModal) return;
         document.body.classList.add("terms-open");
-        this.termsModal.classList.add("active");
+        setModalActive(this.termsModal, true);
         this.updateTermsScrollState(true);
         if (this.termsClose) this.termsClose.focus();
     },
 
     closeTermsModal(clearPending = false) {
-        if (this.termsModal) this.termsModal.classList.remove("active");
+        if (this.termsModal) setModalActive(this.termsModal, false);
         document.body.classList.remove("terms-open");
         if (clearPending) this.pendingCycle = null;
     },
@@ -444,14 +420,14 @@ export const auth = {
     async openPrivacyModal() {
         if (!this.privacyModal) return;
         document.body.classList.add("privacy-open");
-        this.privacyModal.classList.add("active");
+        setModalActive(this.privacyModal, true);
         await this.loadPrivacyContent();
         if (this.privacyBody) this.privacyBody.scrollTop = 0;
         if (this.privacyClose) this.privacyClose.focus();
     },
 
     closePrivacyModal() {
-        if (this.privacyModal) this.privacyModal.classList.remove("active");
+        if (this.privacyModal) setModalActive(this.privacyModal, false);
         document.body.classList.remove("privacy-open");
     },
 
@@ -555,7 +531,7 @@ export const auth = {
 
         localStorage.setItem('lit_is_locked', 'true'); // Grava que está trancado
         
-        gate.classList.add('active');
+        setModalActive(gate, true);
         gate.style.display = 'flex';
         gate.style.opacity = '1';
         viewSetup.style.display = 'none';
@@ -574,12 +550,12 @@ export const auth = {
         
         if (skipAnim) {
             gate.style.display = 'none';
-            gate.classList.remove('active');
+            setModalActive(gate, false);
         } else {
             gate.style.opacity = '0';
             setTimeout(() => {
                 gate.style.display = 'none';
-                gate.classList.remove('active');
+                setModalActive(gate, false);
             }, 500);
         }
         
@@ -598,7 +574,7 @@ export const auth = {
     showSetup() {
         const gate = document.getElementById('gatekeeper');
         if (gate) {
-            gate.classList.remove('active');
+            setModalActive(gate, false);
             gate.style.display = 'none';
             document.getElementById('viewLock').style.display = 'none';
         }
@@ -615,7 +591,7 @@ export const auth = {
             window.skrvOnboarding.open(0);
         } else {
             if (gate) {
-                gate.classList.add("active");
+                setModalActive(gate, true);
                 gate.style.display = "flex";
                 const viewSetup = document.getElementById("viewSetup");
                 if (viewSetup) viewSetup.style.display = "flex";

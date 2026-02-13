@@ -1,4 +1,5 @@
 import { lang } from './lang.js';
+import { setModalActive } from './modal_state.js';
 
 export const ui = {
     elements: {},
@@ -228,13 +229,16 @@ export const ui = {
             const btn = document.createElement("button");
             btn.className = "btn"; btn.id = "pomodoroBtn";
             btn.innerHTML = `<img class="icon" src="src/assets/icons/timer.svg" alt="" aria-hidden="true"> 25:00`;
+            controls.appendChild(btn);
+        }
+        const btn = document.getElementById("pomodoroBtn");
+        if (btn) {
             const pomoHint = lang.t("help_pomo_short") || lang.t("pomo_btn") || "Pomodoro";
             btn.setAttribute("data-i18n-title", "help_pomo_short");
             btn.setAttribute("data-i18n-tip", "help_pomo_short");
             btn.setAttribute("aria-label", pomoHint);
             btn.setAttribute("data-tip", pomoHint);
             btn.onclick = () => this.togglePomodoro();
-            controls.appendChild(btn);
         }
         this.cachePomodoroElements();
         this.bindPomodoroModal();
@@ -248,7 +252,12 @@ export const ui = {
         if (activeTarget) {
             return;
         }
-        this.showChoiceOnly();
+        const open = () => this.showChoiceOnly();
+        if (typeof window.skrvInkTransition === "function") {
+            window.skrvInkTransition(open);
+            return;
+        }
+        open();
     },
 
     stopPomodoro() {
@@ -361,11 +370,10 @@ export const ui = {
 
     showBreakModal() {
         if (!this.pomoModal) return;
-        this.pomoModal.classList.add("active");
+        setModalActive(this.pomoModal, true);
         const notesModal = document.getElementById("notesModal");
         if (notesModal && notesModal.classList.contains("active")) {
-            notesModal.classList.remove("active");
-            notesModal.setAttribute("aria-hidden", "true");
+            setModalActive(notesModal, false);
             document.body.classList.remove("notes-open");
         }
         if (this.pomoBreakView) this.pomoBreakView.style.display = "block";
@@ -379,11 +387,10 @@ export const ui = {
         localStorage.setItem("lit_pomo_phase", "await_unlock");
         document.body.classList.add("pomo-active");
         if (!this.pomoModal) return;
-        this.pomoModal.classList.add("active");
+        setModalActive(this.pomoModal, true);
         const notesModal = document.getElementById("notesModal");
         if (notesModal && notesModal.classList.contains("active")) {
-            notesModal.classList.remove("active");
-            notesModal.setAttribute("aria-hidden", "true");
+            setModalActive(notesModal, false);
             document.body.classList.remove("notes-open");
         }
         if (this.pomoBreakView) this.pomoBreakView.style.display = "none";
@@ -401,7 +408,7 @@ export const ui = {
 
     showChoiceOnly() {
         if (!this.pomoModal) return;
-        this.pomoModal.classList.add("active");
+        setModalActive(this.pomoModal, true);
         document.body.classList.add("pomo-active");
         if (this.pomoBreakView) this.pomoBreakView.style.display = "none";
         if (this.pomoUnlockView) this.pomoUnlockView.style.display = "block";
@@ -419,7 +426,7 @@ export const ui = {
     },
 
     hidePomodoroModal() {
-        if (this.pomoModal) this.pomoModal.classList.remove("active");
+        if (this.pomoModal) setModalActive(this.pomoModal, false);
         document.body.classList.remove("pomo-active");
     },
 
@@ -444,38 +451,51 @@ export const ui = {
     },
 
     initTheme() {
-        const allowed = ["paper", "chumbo", "study"];
-        let currentTheme = localStorage.getItem("lit_theme_pref") || "paper";
+        const allowed = ["xilo", "xilo-amber", "xilo-invert"];
+        let currentTheme = localStorage.getItem("lit_theme_pref") || "xilo";
         const legacyMap = {
-            "ibm-blue": "chumbo",
-            "ibm-dark": "chumbo",
-            "journal": "paper",
-            "mist": "paper"
+            "ibm-blue": "xilo-invert",
+            "ibm-dark": "xilo-invert",
+            "journal": "xilo",
+            "mist": "xilo",
+            "paper": "xilo",
+            "chumbo": "xilo-invert",
+            "study": "xilo",
+            "amber-invert": "xilo-amber",
+            "ink-dark": "xilo-invert",
+            "terminal": "xilo-invert"
         };
         if (legacyMap[currentTheme]) currentTheme = legacyMap[currentTheme];
-        if (!allowed.includes(currentTheme)) currentTheme = "paper";
+        if (!allowed.includes(currentTheme)) currentTheme = "xilo";
         document.body.setAttribute("data-theme", currentTheme);
         localStorage.setItem("lit_theme_pref", currentTheme);
         this.updateFavicon();
     },
 
     toggleTheme() {
-        const themes = ["paper", "chumbo", "study"];
-        const current = document.body.getAttribute("data-theme");
-        let nextIndex = themes.indexOf(current) + 1;
-        if (nextIndex >= themes.length) nextIndex = 0;
-        const newTheme = themes[nextIndex];
-        document.body.setAttribute("data-theme", newTheme);
-        localStorage.setItem("lit_theme_pref", newTheme);
-        this.updateFavicon();
-        const verifyFrame = document.getElementById("verifyFrame");
-        if (verifyFrame && verifyFrame.contentWindow) {
-            verifyFrame.contentWindow.postMessage({ type: "theme", value: newTheme }, window.location.origin);
+        const themes = ["xilo", "xilo-amber", "xilo-invert"];
+        const apply = () => {
+            const current = document.body.getAttribute("data-theme");
+            let nextIndex = themes.indexOf(current) + 1;
+            if (nextIndex >= themes.length) nextIndex = 0;
+            const newTheme = themes[nextIndex];
+            document.body.setAttribute("data-theme", newTheme);
+            localStorage.setItem("lit_theme_pref", newTheme);
+            this.updateFavicon();
+            const verifyFrame = document.getElementById("verifyFrame");
+            if (verifyFrame && verifyFrame.contentWindow) {
+                verifyFrame.contentWindow.postMessage({ type: "theme", value: newTheme }, window.location.origin);
+            }
+            const booksFrame = document.getElementById("booksFrame");
+            if (booksFrame && booksFrame.contentWindow) {
+                booksFrame.contentWindow.postMessage({ type: "theme", value: newTheme }, window.location.origin);
+            }
+        };
+        if (typeof window.skrvInkTransition === "function") {
+            window.skrvInkTransition(apply);
+            return;
         }
-        const booksFrame = document.getElementById("booksFrame");
-        if (booksFrame && booksFrame.contentWindow) {
-            booksFrame.contentWindow.postMessage({ type: "theme", value: newTheme }, window.location.origin);
-        }
+        apply();
     },
 
     initMobile() {

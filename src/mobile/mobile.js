@@ -239,6 +239,11 @@
         const dict = LANGS[state.lang] || LANGS.pt;
         return dict[key] || LANGS.pt[key] || key;
     };
+    const setOverlayActive = (el, isActive) => {
+        if (!el) return;
+        el.classList.toggle("active", Boolean(isActive));
+        el.setAttribute("aria-hidden", isActive ? "false" : "true");
+    };
 
     const applyI18n = () => {
         document.querySelectorAll("[data-i18n]").forEach((el) => {
@@ -439,11 +444,11 @@
 
 
     const openGate = () => {
-        if (els.gate) els.gate.classList.add("active");
+        if (els.gate) setOverlayActive(els.gate, true);
     };
 
     const closeGate = () => {
-        if (els.gate) els.gate.classList.remove("active");
+        if (els.gate) setOverlayActive(els.gate, false);
         sessionStorage.setItem("skrv_mobile_gate_done", "1");
     };
 
@@ -483,7 +488,7 @@
     const openBookModal = (sourceRect) => {
         if (!els.bookModal) return;
         renderBookModal();
-        els.bookModal.classList.add("active");
+        setOverlayActive(els.bookModal, true);
         document.body.classList.add("has-open-book");
         if (sourceRect && els.bookModalHeader) {
             requestAnimationFrame(() => {
@@ -506,7 +511,7 @@
 
     const closeBookModal = () => {
         if (!els.bookModal) return;
-        els.bookModal.classList.remove("active");
+        setOverlayActive(els.bookModal, false);
         document.body.classList.remove("has-open-book");
     };
 
@@ -558,12 +563,12 @@
     };
 
     const openScanModal = () => {
-        if (els.scanModal) els.scanModal.classList.add("active");
+        if (els.scanModal) setOverlayActive(els.scanModal, true);
         startScan();
     };
 
     const closeScanModal = () => {
-        if (els.scanModal) els.scanModal.classList.remove("active");
+        if (els.scanModal) setOverlayActive(els.scanModal, false);
         stopScan();
     };
 
@@ -822,12 +827,12 @@
     };
 
     const openStreamModal = () => {
-        if (els.streamModal) els.streamModal.classList.add("active");
+        if (els.streamModal) setOverlayActive(els.streamModal, true);
         startStream(buildPayload());
     };
 
     const closeStreamModal = () => {
-        if (els.streamModal) els.streamModal.classList.remove("active");
+        if (els.streamModal) setOverlayActive(els.streamModal, false);
         stopStream();
     };
 
