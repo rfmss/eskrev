@@ -276,6 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const touchPoints = navigator.maxTouchPoints || 0;
     const isMobile = forcedMobile || uaMobile || (coarse && hoverNone && touchPoints > 0);
     const forceMobileNotes = /(?:^|[?&])mobile=notes(?:&|$)/.test(location.search);
+    const forceMobileNotesOnly = forceMobileNotes && /(?:^|[?&])notes_only=1(?:&|$)/.test(location.search);
     const onMobilePage = /mobile\.html$/.test(location.pathname);
     if (!forcedMobile && isMobile && !onMobilePage && !location.search.includes("fallback=1") && !forceMobileNotes) {
         location.replace("mobile.html");
@@ -283,6 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (isMobile) {
         document.body.classList.add("mobile-lite");
+        if (forceMobileNotesOnly) document.body.classList.add("mobile-notes-only");
     }
     ui.init();
     initInkTransition();

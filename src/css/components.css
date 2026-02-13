@@ -5205,6 +5205,19 @@ body.mobile-lite .mobile-funnel-debug {
 body.mobile-lite.mobile-debug-on .mobile-funnel-debug {
     display: block;
 }
+body.mobile-notes-only #btnMobileExport,
+body.mobile-notes-only #btnMobileCtaScanQr,
+body.mobile-notes-only #btnMobileCtaImportFile,
+body.mobile-notes-only #mobileExportSectionTitle,
+body.mobile-notes-only #mobileExportSectionActions,
+body.mobile-notes-only #mobileImportSectionTitle,
+body.mobile-notes-only #mobileImportSectionActions,
+body.mobile-notes-only #mobileGateModal,
+body.mobile-notes-only #mobileImportTargetModal,
+body.mobile-notes-only #qrScanModal,
+body.mobile-notes-only #qrStreamModal {
+    display: none !important;
+}
 .onboarding-box {
     width: min(720px, calc(100vw - 40px));
     background-color: var(--bg-drawer-solid, var(--bg-core));

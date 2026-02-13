@@ -2,6 +2,7 @@
     const LANGS = {
         pt: {
             lang_label: "PTBR",
+            mobile_notes_mode: "NOTAS",
             mobile_gate_title: "Importar projeto",
             mobile_gate_body: "Abra o scanner e traga seu projeto de um notebook (exportar > stream QR), tablet ou outra carteira eskrev em outro celular.",
             mobile_gate_scan: "LER QR CODE",
@@ -57,6 +58,7 @@
         },
         en: {
             lang_label: "EN",
+            mobile_notes_mode: "NOTES",
             mobile_gate_title: "Import project",
             mobile_gate_body: "Open the scanner and bring your project from a notebook (export > stream QR), tablet, or another eskrev wallet on a different phone.",
             mobile_gate_scan: "READ QR CODE",
@@ -112,6 +114,7 @@
         },
         es: {
             lang_label: "ES",
+            mobile_notes_mode: "NOTAS",
             mobile_gate_title: "Importar proyecto",
             mobile_gate_body: "Abre el escáner y trae tu proyecto desde un notebook (exportar > stream QR), tablet u otra billetera eskrev en otro celular.",
             mobile_gate_scan: "LEER QR",
@@ -167,6 +170,7 @@
         },
         fr: {
             lang_label: "FR",
+            mobile_notes_mode: "NOTES",
             mobile_gate_title: "Importer un projet",
             mobile_gate_body: "Ouvrez le scanner et importez votre projet depuis un notebook (exporter > stream QR), une tablette ou un autre portefeuille eskrev sur un autre téléphone.",
             mobile_gate_scan: "LIRE QR",
@@ -840,6 +844,7 @@
 
 
     const initElements = () => {
+        els.notesMode = document.getElementById("mobileNotesMode");
         els.langToggle = document.getElementById("mobileLangToggle");
         els.gateLangToggle = document.getElementById("mobileGateLangToggle");
         els.library = document.getElementById("library");
@@ -880,6 +885,11 @@
     };
 
     const bindEvents = () => {
+        if (els.notesMode) {
+            els.notesMode.addEventListener("click", () => {
+                window.location.href = "index.html?mobile=notes&notes_only=1";
+            });
+        }
         if (els.langToggle) els.langToggle.addEventListener("click", cycleLang);
         if (els.gateLangToggle) els.gateLangToggle.addEventListener("click", cycleLang);
         if (els.gateScan) els.gateScan.addEventListener("click", () => {

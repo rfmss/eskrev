@@ -183,6 +183,12 @@ body.has-books .mobile-intro {
     gap: 12px;
 }
 
+.mobile-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .mobile-brand {
     display: inline-flex;
     align-items: center;
