@@ -1,7 +1,6 @@
 body.mobile-only-page {
     overflow: hidden;
 }
-body.mobile-only-page #frame,
 body.mobile-only-page .panel,
 body.mobile-only-page .hud,
 body.mobile-only-page .controls,
@@ -21,7 +20,7 @@ body.mobile-only-page #dedicationModal {
     display: none;
 }
 body.mobile-only-page #onboardingModal.active {
-    display: flex;
+    display: none !important;
 }
 body.mobile-only-page .drawer {
     position: relative;
@@ -35,6 +34,11 @@ body.mobile-only-page .drawer {
     background: transparent;
     box-shadow: none;
     border: none;
+}
+body.mobile-only-page #editorView,
+body.mobile-only-page #booksView,
+body.mobile-only-page #verifyView {
+    display: none !important;
 }
 body.mobile-only-page .drawer-tabs,
 body.mobile-only-page .drawer-search,

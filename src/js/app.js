@@ -276,6 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const touchPoints = navigator.maxTouchPoints || 0;
     const isMobile = forcedMobile || uaMobile || (coarse && hoverNone && touchPoints > 0);
     const forceMobileNotes = /(?:^|[?&])mobile=notes(?:&|$)/.test(location.search);
+    const forceMobileStandalone = forceMobileNotes && /(?:^|[?&])standalone=1(?:&|$)/.test(location.search);
     const onMobilePage = /mobile\.html$/.test(location.pathname);
     if (!forcedMobile && isMobile && !onMobilePage && !location.search.includes("fallback=1") && !forceMobileNotes) {
         location.replace("mobile.html");
@@ -283,6 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (isMobile) {
         document.body.classList.add("mobile-lite");
+        if (forceMobileStandalone) document.body.classList.add("mobile-only-page");
     }
     ui.init();
     initInkTransition();
@@ -317,9 +319,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     syncLangToFrames(lang.current);
     window.skrvModal = initSystemModal();
-    window.skrvOnboarding = initOnboarding();
+    window.skrvOnboarding = forceMobileStandalone ? null : initOnboarding();
     // Safety: if dedication already done but onboarding didn't open, force it.
-    if (!mobileGateActive && introDone) {
+    if (!forceMobileStandalone && !mobileGateActive && introDone) {
         const onboardDone = localStorage.getItem("skrv_onboard_done") === "true";
         const dedicationActive = document.getElementById("dedicationModal")?.classList.contains("active");
         const onboardingActive = document.getElementById("onboardingModal")?.classList.contains("active");
