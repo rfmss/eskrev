@@ -349,6 +349,7 @@
         if (!items.length) {
             els.empty.classList.remove("is-hidden");
             document.body.classList.add("empty-only");
+            document.body.classList.remove("has-books");
             if (els.scanBar) els.scanBar.style.display = "none";
             if (els.scanPrimary) {
                 els.scanPrimary.classList.add("in-empty");
@@ -357,6 +358,7 @@
         } else {
             els.empty.classList.add("is-hidden");
             document.body.classList.remove("empty-only");
+            document.body.classList.add("has-books");
             if (els.scanBar) els.scanBar.style.display = "";
             if (els.scanPrimary && els.scanBar && !els.scanBar.contains(els.scanPrimary)) {
                 els.scanPrimary.classList.remove("in-empty");

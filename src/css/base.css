@@ -546,6 +546,24 @@ body::after {
   opacity: var(--paper-ink-opacity, 0.08);
   mix-blend-mode: multiply;
 }
+
+@media (max-width: 900px) {
+  html,
+  body {
+    background-size: 220px 220px, 340px 340px, 100% 100%, 100% 100%;
+  }
+  body::before {
+    background-size: 280px 280px;
+    opacity: calc(var(--paper-fiber-opacity, 0.17) * 0.62);
+  }
+  body::after {
+    background-size: 190px 190px;
+    opacity: calc(var(--paper-ink-opacity, 0.08) * 0.62);
+  }
+  .modal-overlay {
+    backdrop-filter: none;
+  }
+}
 body.booting::after {
   content: "";
   position: fixed;
