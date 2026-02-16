@@ -12,32 +12,32 @@ Consolidar os fluxos por modo (escrita, notas, transferencia, leitura) com estab
 ## Checklist
 
 ### A. Fluxo Mobile Wallet
-- [ ] Validar entrada em `mobile.html` sem redirecionamento em loop.
+- [x] Validar entrada em `mobile.html` sem redirecionamento em loop.
 - [ ] Validar caderninhos com abrir/fechar consistente.
 - [ ] Validar gesto de arrastar para baixo e confirmar delete.
 - [ ] Validar empty state e limite de projetos.
 
 ### B. Fluxo Mobile Notes Standalone
-- [ ] Validar botao `NOTAS` no wallet abrindo `index.html?mobile=notes&standalone=1`.
-- [ ] Validar ausencia de onboarding/dedicatoria no standalone.
-- [ ] Validar painel de notas aberto por padrao.
+- [x] Validar botao `NOTAS` no wallet abrindo `index.html?mobile=notes&standalone=1`.
+- [x] Validar ausencia de onboarding/dedicatoria no standalone.
+- [x] Validar painel de notas aberto por padrao.
 - [ ] Validar criacao/edicao/remocao de notas com tags/pastas.
 
 ### C. Importacao e Merge (QR/Arquivo)
-- [ ] Garantir modal de destino antes de importar (`ativo`, `novo`, `cancelar`).
-- [ ] Garantir `append_active` quando destino for projeto ativo.
-- [ ] Garantir criacao de projeto quando destino for novo.
-- [ ] Exibir resumo de merge apos sucesso.
-- [ ] Garantir rollback seguro em payload invalido.
+- [x] Garantir modal de destino antes de importar (`ativo`, `novo`, `cancelar`).
+- [x] Garantir `append_active` quando destino for projeto ativo.
+- [x] Garantir criacao de projeto quando destino for novo.
+- [x] Exibir resumo de merge apos sucesso.
+- [x] Garantir rollback seguro em payload invalido.
 
 ### D. Regressao Visual e Tema
 - [ ] Verificar consistencia dos temas xilo/papel em desktop e mobile.
 - [ ] Verificar modais sem quebra de contraste.
-- [ ] Verificar icones sem filtros indevidos.
+- [x] Verificar icones sem filtros indevidos.
 
 ### E. Performance e Telemetria Local
 - [ ] Medir tempo de entrada no mobile notes (alvo: primeira acao util < 30s).
-- [ ] Validar que debug de funil local continua funcional (`?debug=1`).
+- [x] Validar que debug de funil local continua funcional (`?debug=1`).
 - [ ] Garantir ausencia de travas visiveis em importacao/scan.
 
 ## Criterio de aceite F1

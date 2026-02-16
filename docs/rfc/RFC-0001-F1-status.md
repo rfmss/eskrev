@@ -4,6 +4,7 @@
 - Status geral: **em andamento**
 - Evidencia automatica: checks tecnicos passaram.
 - Pendencias: validacao manual de gestos/fluxo visual em mobile.
+- Observacao de ambiente: browser headless bloqueado no sandbox (Playwright/Chromium), entao a rodada visual-interativa precisa de execucao manual no dispositivo/navegador real.
 
 ## Evidencias automatizadas
 - `python3 tests/check_uix_budget.py` -> **pass**
