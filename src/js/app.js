@@ -277,12 +277,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMobile = forcedMobile || uaMobile || (coarse && hoverNone && touchPoints > 0);
     const forceMobileNotes = /(?:^|[?&])mobile=notes(?:&|$)/.test(location.search);
     const forceMobileStandalone = forceMobileNotes && /(?:^|[?&])standalone=1(?:&|$)/.test(location.search);
+    const notesStandaloneMode = forceMobileNotes && forceMobileStandalone;
     const onMobilePage = /mobile\.html$/.test(location.pathname);
     if (!forcedMobile && isMobile && !onMobilePage && !location.search.includes("fallback=1") && !forceMobileNotes) {
         location.replace("mobile.html");
         return;
     }
-    if (isMobile) {
+    if (isMobile || notesStandaloneMode) {
         document.body.classList.add("mobile-lite");
         if (forceMobileStandalone) document.body.classList.add("mobile-only-page");
     }
@@ -332,10 +333,17 @@ document.addEventListener('DOMContentLoaded', () => {
     auth.init();
     initImportSessionModal();
 
-    if (isMobile && forceMobileNotes) {
+    if (forceMobileNotes) {
         ui.openDrawer("notes", {});
         localStorage.setItem("lit_ui_drawer_open", "true");
         localStorage.setItem("lit_ui_drawer_panel", "notes");
+        if (forceMobileStandalone) {
+            const notesPanel = document.getElementById("panelNotes");
+            const drawer = document.getElementById("drawer");
+            if (notesPanel) notesPanel.style.display = "block";
+            if (drawer) drawer.classList.add("open", "mobile-all");
+            document.body.classList.add("drawer-open", "mobile-drawer-open");
+        }
     }
 
     // Safety: avoid stuck white overlay if modal-active remains without active modal.
