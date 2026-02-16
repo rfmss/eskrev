@@ -862,5 +862,5 @@ body.bar-morphing #xiloMorphBar {
 
 body.slow-return .hud,
 body.slow-return .controls,
-body.logo-area,
-body.drawer { transition: opacity 6s ease-in; }
+body.slow-return .logo-area,
+body.slow-return .drawer { transition: opacity 6s ease-in; }

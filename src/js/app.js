@@ -256,6 +256,7 @@ function initInkTransition() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    document.documentElement.style.visibility = "";
     document.body.classList.add("booting");
     setTimeout(() => document.body.classList.remove("booting"), 2000);
 

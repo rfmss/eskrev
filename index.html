@@ -36,6 +36,12 @@
                 if (!forcedMobile && isMobile) {
                     document.documentElement.style.visibility = "hidden";
                     location.replace("mobile.html");
+                    setTimeout(function () {
+                        if (document.hidden) return;
+                        if (!/mobile\.html$/.test(location.pathname)) {
+                            document.documentElement.style.visibility = "";
+                        }
+                    }, 1400);
                 }
             } catch (e) {}
         })();
