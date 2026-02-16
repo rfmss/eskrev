@@ -401,6 +401,43 @@ body.mobile-typing .mobile-trigger {
         pointer-events: auto;
         opacity: 0.8;
     }
+    body.layout-2030 .controls-inner {
+        background: transparent;
+        background-image: none;
+        border: none;
+        border-radius: 999px;
+        box-shadow: none;
+        padding: 0 4px;
+        gap: 6px;
+        opacity: 0.58;
+        transition: opacity 220ms ease, transform 220ms ease;
+    }
+    body.layout-2030 .controls:hover .controls-inner,
+    body.layout-2030 .controls-inner:focus-within {
+        opacity: 0.95;
+        transform: translateY(-1px);
+    }
+    body.layout-2030 .controls-inner .status-label {
+        font-size: 10px;
+        letter-spacing: 0.06em;
+        opacity: 0.66;
+    }
+    body.layout-2030 .controls-inner .divider {
+        opacity: 0.25;
+    }
+    body.layout-2030 .controls-inner .btn {
+        min-height: 34px;
+        padding: 6px 8px;
+        font-size: 11px;
+        opacity: 0.78;
+    }
+    body.layout-2030 .controls-inner .btn span {
+        letter-spacing: 0.04em;
+    }
+    body.layout-2030 .controls-inner .search-wrapper {
+        border: none;
+        background: transparent;
+    }
 
     body.layout-2030 .drawer {
         position: relative;
