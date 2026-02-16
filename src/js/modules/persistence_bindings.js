@@ -1,11 +1,15 @@
 export function setupPersistenceBindings({ editorEl, memoEl, panelEl, store, editorFeatures }) {
     if (!editorEl) return;
+    const isMobileContext = () =>
+        document.body.classList.contains("mobile-lite")
+        || document.body.classList.contains("mobile-only-page")
+        || /mobile\.html$/i.test(window.location.pathname || "");
 
     editorEl.addEventListener("input", () => {
         const cursorPos = editorFeatures.getCursorPos();
         const memoValue = memoEl ? memoEl.value : "";
         store.save(editorEl.innerHTML, memoValue, cursorPos);
-        if (window.innerWidth <= 900) {
+        if (isMobileContext()) {
             document.body.classList.add("mobile-typing");
             clearTimeout(window.__mobileTypingTimer);
             window.__mobileTypingTimer = setTimeout(() => {

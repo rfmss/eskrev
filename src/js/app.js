@@ -284,16 +284,26 @@ document.addEventListener('DOMContentLoaded', () => {
         location.replace("mobile.html");
         return;
     }
-    if (isMobile || notesStandaloneMode) {
+    if (notesStandaloneMode) {
         document.body.classList.add("mobile-lite");
         if (forceMobileStandalone) document.body.classList.add("mobile-only-page");
+    } else if (!onMobilePage) {
+        document.body.classList.add("desktop-locked");
+        const applyDesktopScale = () => {
+            const minW = 1200;
+            const minH = 700;
+            const scale = Math.min(1, window.innerWidth / minW, window.innerHeight / minH);
+            document.documentElement.style.setProperty("--desktop-scale", String(Math.max(0.5, scale)));
+        };
+        applyDesktopScale();
+        window.addEventListener("resize", applyDesktopScale);
     }
     ui.init();
     initInkTransition();
     
     lang.init();
     window.skrvLoading = initGlobalPending();
-    const mobileGateActive = (isMobile && !forceMobileNotes) ? initMobileGate() : false;
+    const mobileGateActive = false;
     const introDone = localStorage.getItem("skrv_intro_done") === "1";
     if (!mobileGateActive && !introDone && !forceMobileNotes) initDedication();
     const syncLangToFrames = (code) => {
@@ -2708,7 +2718,7 @@ function setupEventListeners() {
     const panelArea = document.querySelector(".panel");
     if (panelArea) {
         panelArea.addEventListener("touchstart", () => {
-            if (window.innerWidth <= 900) ui.closeDrawer();
+            if (isMobileContext()) ui.closeDrawer();
         }, { passive: true });
     }
 
@@ -3101,7 +3111,7 @@ function restoreUiState(showEditorView, showBooksView) {
     if (drawerOpen && callbacks[panel]) {
         ui.openDrawer(panel, callbacks[panel]);
     }
-    const isMobile = window.innerWidth <= 900;
+    const isMobile = isMobileContext();
     const mobileBooted = localStorage.getItem("lit_mobile_booted") === "true";
     if (isMobile && !drawerOpen && !mobileBooted) {
         ui.openDrawer("notes", {});
@@ -3815,7 +3825,7 @@ function renderProjectList() {
         infoDiv.innerHTML = `<div class="file-name-display">${proj.name}</div><div class="list-item-meta">${proj.date.split(',')[0]}</div>`;
         infoDiv.onclick = (e) => {
             e.stopPropagation();
-            if (window.innerWidth <= 900) {
+            if (isMobileContext()) {
                 store.setActive(proj.id);
                 renderProjectList();
                 const run = () => {

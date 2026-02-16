@@ -1,6 +1,21 @@
 /* --- LAYOUT E ESTRUTURA --- */
 #frame { position: fixed; inset: 12px; display: flex; flex-direction: column; overflow: hidden; z-index: 1; }
 
+body.desktop-locked {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+body.desktop-locked #frame {
+  inset: auto;
+  left: 50%;
+  top: 50%;
+  width: max(1200px, calc(100vw - 24px));
+  height: max(700px, calc(100vh - 24px));
+  transform: translate(-50%, -50%) scale(var(--desktop-scale, 1));
+  transform-origin: center center;
+}
+
 .logo-area {
   position: absolute; top: 10px; left: calc(var(--hud-w) + var(--gap)); right: 24px;
   display: flex; align-items: center; gap: 15px; z-index: 10; height: 30px; overflow: hidden;
@@ -594,5 +609,57 @@ body.mobile-typing .mobile-trigger {
     .notes-panel {
         left: 0;
         width: 100vw;
+    }
+
+    body.desktop-locked .hud {
+        transform: none;
+        background: transparent;
+        border-right: none;
+        height: auto;
+        top: 80px;
+        bottom: 80px;
+        left: 0;
+        width: var(--hud-w);
+    }
+    body.desktop-locked .mobile-trigger,
+    body.desktop-locked .mobile-controls-trigger {
+        display: none !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+    body.desktop-locked .drawer {
+        left: var(--hud-w);
+        top: 80px;
+        bottom: 80px;
+        border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    body.desktop-locked .drawer.open,
+    body.desktop-locked .drawer.mobile-all {
+        width: var(--drawer-w);
+        border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    body.desktop-locked .logo-area {
+        display: flex;
+    }
+    body.desktop-locked #booksView {
+        left: var(--hud-w);
+    }
+    body.desktop-locked .panel {
+        top: 60px;
+        bottom: 80px;
+        padding: 0 28px;
+    }
+    body.desktop-locked #editorWrap {
+        width: min(70ch, 80vw);
+        margin-top: 0;
+    }
+    body.desktop-locked .controls {
+        display: flex;
+        left: var(--hud-w);
+        right: 0;
+        bottom: 14px;
+    }
+    body.desktop-locked .controls-inner {
+        display: flex;
     }
 }

@@ -1,6 +1,12 @@
 import { lang } from './lang.js';
 import { setModalActive } from './modal_state.js';
 
+function isMobileUiContext() {
+    return document.body.classList.contains("mobile-lite")
+        || document.body.classList.contains("mobile-only-page")
+        || /mobile\.html$/i.test(window.location.pathname || "");
+}
+
 export const ui = {
     elements: {},
     pomodoroInterval: null,
@@ -73,7 +79,7 @@ export const ui = {
         const controls = document.querySelector(".controls-inner");
         if (!hud || !controls) return;
         const update = () => {
-            const isMobile = document.body.classList.contains("mobile-lite") || window.innerWidth <= 900;
+            const isMobile = isMobileUiContext();
             if (isMobile) {
                 hud.classList.remove("has-overflow");
                 controls.classList.remove("has-overflow");
@@ -562,7 +568,7 @@ export const ui = {
         }
         Object.values(panels).forEach(p => { if (p) p.style.display = "none"; });
         document.querySelectorAll(".hud-btn").forEach(b => b.classList.remove("active"));
-        const isMobile = window.innerWidth <= 900;
+        const isMobile = isMobileUiContext();
         const resolvedPanel = isMobile ? "notes" : panelName;
         if (isMobile) {
             if (panels.notes) panels.notes.style.display = "block";
@@ -595,7 +601,7 @@ export const ui = {
         this.elements.drawer.classList.remove("open");
         this.elements.drawer.classList.remove("mobile-all");
         document.querySelectorAll(".hud-btn").forEach(b => b.classList.remove("active"));
-        if(window.innerWidth <= 900) {
+        if (isMobileUiContext()) {
             document.body.classList.remove("mobile-drawer-open");
         }
         document.body.classList.remove("drawer-open");
