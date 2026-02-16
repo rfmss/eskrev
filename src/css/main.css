@@ -4,3 +4,415 @@
 @import 'layout.css';
 @import 'components.css';
 @import 'mobile-only.css';
+
+/* -------------------------------------------------------------------------- */
+/* Neo-Swiss Zen - Presentation Layer (layout-2030 only)                     */
+/* -------------------------------------------------------------------------- */
+:root {
+  --neo-bg: #f5f5f2;
+  --neo-surface: #f7f7f5;
+  --neo-text: #151517;
+  --neo-muted: #63656b;
+  --neo-accent: #2f5bff;
+  --neo-radius: 12px;
+  --neo-space-1: 8px;
+  --neo-space-2: 12px;
+  --neo-space-3: 16px;
+  --neo-space-4: 24px;
+  --neo-space-5: 32px;
+  --neo-space-6: 48px;
+}
+
+body.layout-2030 {
+  --radius: var(--neo-radius);
+  --border-style: 0 solid transparent;
+  --shadow-float: 0 0 0 rgba(0, 0, 0, 0);
+  --color-accent: var(--neo-accent);
+  --color-accent-dim: color-mix(in srgb, var(--neo-accent) 14%, transparent);
+  --color-text: var(--neo-text);
+  --color-muted: var(--neo-muted);
+  --bg-core: var(--neo-bg);
+  --bg-drawer: var(--neo-surface);
+  --bg-drawer-solid: var(--neo-surface);
+  background: var(--neo-bg);
+  color: var(--neo-text);
+  overflow-x: hidden;
+}
+
+body.layout-2030 .icon {
+  stroke-width: 1.8;
+}
+
+body.layout-2030 .modal-box,
+body.layout-2030 .notes-panel,
+body.layout-2030 .drawer,
+body.layout-2030 .panel,
+body.layout-2030 .controls-inner {
+  border: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
+  border-radius: var(--neo-radius) !important;
+}
+
+body.layout-2030 #frame {
+  inset: var(--neo-space-3);
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: var(--neo-space-3);
+}
+
+body.layout-2030 .logo-area {
+  position: relative;
+  left: auto;
+  right: auto;
+  top: auto;
+  grid-column: 2;
+  grid-row: 1;
+  height: auto;
+  min-height: 80px;
+  padding: 0 var(--neo-space-2);
+  align-items: flex-end;
+}
+
+body.layout-2030 .logo-area .marquee-content {
+  opacity: 1;
+  animation: neoHeroIn 520ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  font-size: clamp(2.2rem, 7vw, 4.8rem);
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  font-weight: 650;
+  color: var(--neo-text);
+  text-transform: lowercase;
+}
+
+body.layout-2030 .hud {
+  position: relative;
+  left: auto;
+  top: auto;
+  bottom: auto;
+  width: 52px;
+  grid-column: 1;
+  grid-row: 1 / 4;
+  padding: var(--neo-space-2) 0;
+  gap: var(--neo-space-2);
+  background: transparent;
+}
+
+body.layout-2030 .hud .hud-rail,
+body.layout-2030 .hud-separator,
+body.layout-2030 .logo-dot {
+  display: none !important;
+}
+
+body.layout-2030 .hud-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  color: var(--neo-muted);
+  background: transparent;
+}
+
+body.layout-2030 .hud-btn::before,
+body.layout-2030 .hud-btn::after {
+  display: none;
+}
+
+body.layout-2030 .hud-btn:hover,
+body.layout-2030 .hud-btn:focus-visible,
+body.layout-2030 .hud-btn.active {
+  color: var(--neo-accent);
+  background: color-mix(in srgb, var(--neo-accent) 10%, transparent);
+  transform: none;
+}
+
+body.layout-2030 .panel {
+  position: relative;
+  left: auto;
+  right: auto;
+  top: auto;
+  bottom: auto;
+  grid-column: 2;
+  grid-row: 2;
+  padding: var(--neo-space-4);
+  background: var(--neo-surface);
+}
+
+body.layout-2030 #editorView,
+body.layout-2030 #booksView {
+  position: relative;
+  left: auto;
+  right: auto;
+  top: auto;
+  bottom: auto;
+}
+
+body.layout-2030 #editorWrap {
+  width: min(68ch, 100%);
+  margin: clamp(18px, 4vh, 42px) auto 0;
+  padding: 0;
+}
+
+body.layout-2030 #editor {
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+  line-height: 1.74;
+  letter-spacing: 0;
+  color: var(--neo-text);
+}
+
+body.layout-2030 .drawer {
+  position: fixed;
+  top: var(--neo-space-3);
+  right: var(--neo-space-3);
+  bottom: var(--neo-space-3);
+  left: auto;
+  width: min(360px, calc(100vw - 2 * var(--neo-space-3)));
+  transform: translateX(110%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 45;
+  background: var(--neo-surface);
+}
+
+body.layout-2030 .drawer::before {
+  display: none !important;
+}
+
+body.layout-2030 .drawer.open {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+  width: min(360px, calc(100vw - 2 * var(--neo-space-3)));
+  border-right: none;
+}
+
+body.layout-2030 .drawer-header {
+  border: none;
+  min-height: 58px;
+  justify-content: flex-start;
+  padding: 0 var(--neo-space-3);
+}
+
+body.layout-2030 #drawerTitle {
+  font-size: 0.77rem;
+  letter-spacing: 0.18em;
+  font-weight: 620;
+  text-transform: uppercase;
+  color: var(--neo-muted);
+}
+
+body.layout-2030 .notes-panel {
+  left: 60px;
+  top: var(--neo-space-3);
+  bottom: var(--neo-space-3);
+  width: min(360px, calc(100vw - 60px - 2 * var(--neo-space-3)));
+  border-right: none;
+  background: var(--neo-surface);
+}
+
+body.layout-2030 .notes-header,
+body.layout-2030 .notes-search {
+  border: none;
+  background: transparent;
+}
+
+body.layout-2030 .controls {
+  position: relative;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  grid-column: 2;
+  grid-row: 3;
+  justify-content: flex-start;
+  margin-bottom: 18px;
+  min-height: 38px;
+}
+
+body.layout-2030 .controls-inner {
+  display: flex;
+  gap: var(--neo-space-2);
+  padding: 0;
+  min-height: 38px;
+  background: transparent !important;
+  border-radius: 0 !important;
+  overflow-x: auto;
+}
+
+body.layout-2030 .controls-inner .btn,
+body.layout-2030 .controls-inner .btn-icon {
+  min-height: 34px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: var(--neo-muted);
+  font-size: 0.73rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+body.layout-2030 .controls-inner .btn:hover,
+body.layout-2030 .controls-inner .btn:focus-visible,
+body.layout-2030 .controls-inner .btn-icon:hover,
+body.layout-2030 .controls-inner .btn-icon:focus-visible {
+  background: color-mix(in srgb, var(--neo-accent) 12%, transparent);
+  color: var(--neo-accent);
+}
+
+body.layout-2030 .controls-inner .search-wrapper {
+  background: #eef0f5;
+  border-radius: 999px;
+  padding-inline: 10px;
+}
+
+body.layout-2030 .desktop-footer-note {
+  bottom: 2px;
+  opacity: 0.42;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+}
+
+body.layout-2030 .modal-overlay {
+  background: rgba(12, 14, 18, 0.28);
+  backdrop-filter: blur(6px);
+}
+
+body.layout-2030 .modal-box {
+  max-width: 620px;
+  padding: 0;
+  background: var(--neo-surface);
+}
+
+body.layout-2030 #resetModal .modal-box {
+  border: none;
+  box-shadow: none;
+}
+
+body.layout-2030 #resetModal .reset-destroy-btn,
+body.layout-2030 #resetModal .btn-full {
+  border: none;
+  border-radius: 999px;
+  background: color-mix(in srgb, #ff5f57 14%, transparent);
+  color: #c8332a;
+}
+
+@media (min-width: 901px) {
+  body.layout-2030 #frame {
+    grid-template-columns: 56px minmax(0, 1fr) minmax(0, 340px);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: var(--neo-space-4);
+  }
+
+  body.layout-2030 .logo-area {
+    grid-column: 2 / 4;
+    min-height: 112px;
+    padding-inline: var(--neo-space-4);
+  }
+
+  body.layout-2030 .panel {
+    grid-column: 2;
+    grid-row: 2;
+    padding: var(--neo-space-5);
+  }
+
+  body.layout-2030 .drawer {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    grid-column: 3;
+    grid-row: 1 / 4;
+    width: 100%;
+    transform: translateX(16px);
+    opacity: 0;
+  }
+
+  body.layout-2030 .drawer.open {
+    width: 100%;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 900px) {
+  body.layout-2030 #frame {
+    inset: 10px;
+    grid-template-columns: 44px minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  body.layout-2030 .logo-area {
+    grid-column: 2;
+    min-height: 54px;
+    padding: 0 4px;
+  }
+
+  body.layout-2030 .logo-area .marquee-content {
+    font-size: clamp(1.35rem, 7.2vw, 2rem);
+    letter-spacing: -0.02em;
+  }
+
+  body.layout-2030 .hud {
+    width: 44px;
+    padding: 8px 0;
+    gap: 8px;
+  }
+
+  body.layout-2030 .hud-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+  }
+
+  body.layout-2030 .panel {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 14px;
+  }
+
+  body.layout-2030 #editorWrap {
+    width: min(100%, 64ch);
+    margin-top: 10px;
+  }
+
+  body.layout-2030 #editor {
+    font-size: 1rem;
+    line-height: 1.68;
+  }
+
+  body.layout-2030 .drawer {
+    top: 8px;
+    right: 8px;
+    bottom: 8px;
+    width: min(88vw, 340px);
+    border-radius: 12px !important;
+  }
+
+  body.layout-2030 .drawer.open {
+    width: min(88vw, 340px);
+  }
+
+  body.layout-2030 .notes-panel {
+    left: 48px;
+    top: 8px;
+    bottom: 8px;
+    width: min(88vw, 340px);
+    border-radius: 12px !important;
+  }
+
+  body.layout-2030 .controls {
+    display: none;
+  }
+}
+
+@keyframes neoHeroIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

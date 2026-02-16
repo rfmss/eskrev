@@ -7,12 +7,12 @@ body.desktop-locked {
 }
 
 body.desktop-locked #frame {
-  inset: auto;
-  left: 50%;
-  top: 50%;
-  width: max(1200px, calc(100vw - 24px));
-  height: max(700px, calc(100vh - 24px));
-  transform: translate(-50%, -50%) scale(var(--desktop-scale, 1));
+  inset: 12px;
+  left: auto;
+  top: auto;
+  width: auto;
+  height: auto;
+  transform: none;
   transform-origin: center center;
 }
 
@@ -331,15 +331,15 @@ body.mobile-typing .mobile-trigger {
 /* RE-LAYOUT 2030 (desktop): vazio ativo + rail/stage/utility */
 @media (min-width: 901px) {
     body.layout-2030 #frame {
-        inset: clamp(10px, 1.8vw, 24px);
+        inset: clamp(12px, 1.8vw, 24px);
         display: grid;
-        grid-template-columns: minmax(52px, 5vw) minmax(0, 1fr) 0;
+        grid-template-columns: clamp(56px, 4.8vw, 68px) minmax(0, 1fr) 0;
         grid-template-rows: auto minmax(0, 1fr) auto;
-        gap: clamp(14px, 2.2vw, 34px);
+        gap: clamp(16px, 2vw, 30px);
         transition: grid-template-columns 260ms cubic-bezier(0.22, 0.61, 0.36, 1);
     }
     body.layout-2030.drawer-open #frame {
-        grid-template-columns: minmax(52px, 5vw) minmax(0, 1fr) minmax(260px, 21vw);
+        grid-template-columns: clamp(56px, 4.8vw, 68px) minmax(0, 1fr) clamp(280px, 23vw, 360px);
     }
 
     body.layout-2030 .logo-area {
@@ -354,7 +354,7 @@ body.mobile-typing .mobile-trigger {
         align-self: start;
         justify-self: start;
         margin-top: 0;
-        padding-left: clamp(26px, 5vw, 100px);
+        padding-left: clamp(24px, 4.5vw, 88px);
     }
 
     body.layout-2030 .hud {
@@ -365,14 +365,19 @@ body.mobile-typing .mobile-trigger {
         bottom: auto;
         grid-column: 1;
         grid-row: 2 / 4;
-        width: clamp(52px, 6vw, 72px);
-        min-width: 52px;
+        width: clamp(56px, 4.8vw, 68px);
+        min-width: 56px;
         align-self: start;
-        padding-top: 20px;
-        gap: 16px;
+        padding: 10px 8px;
+        gap: 7px;
+        border-radius: 16px;
+        background: color-mix(in srgb, var(--bg-core) 88%, transparent);
+        box-shadow: 0 18px 36px rgba(0, 0, 0, 0.05);
     }
     body.layout-2030 .hud-separator {
-        display: none;
+        width: 16px;
+        margin: 2px auto;
+        opacity: 0.22;
     }
 
     body.layout-2030 .panel {
@@ -383,22 +388,22 @@ body.mobile-typing .mobile-trigger {
         bottom: auto;
         grid-column: 2;
         grid-row: 2;
-        padding: clamp(12px, 2vw, 24px) clamp(14px, 2.4vw, 30px) clamp(8px, 1.6vw, 18px);
-        border: none;
-        border-radius: 18px;
-        background: color-mix(in srgb, var(--bg-core) 72%, transparent);
-        box-shadow: 0 22px 46px rgba(0, 0, 0, 0.028);
+        padding: clamp(12px, 1.8vw, 22px) clamp(14px, 2.2vw, 28px) clamp(10px, 1.6vw, 18px);
+        border: 1px solid color-mix(in srgb, var(--color-text) 9%, transparent);
+        border-radius: 14px;
+        background: color-mix(in srgb, var(--bg-core) 80%, transparent);
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.03);
     }
 
     body.layout-2030 #editorWrap {
-        width: min(58ch, 49%);
-        margin-left: clamp(32px, 7vw, 136px);
-        margin-top: clamp(64px, 14vh, 172px);
+        width: min(60ch, 54%);
+        margin-left: clamp(26px, 6.2vw, 110px);
+        margin-top: clamp(56px, 12vh, 154px);
     }
 
     body.layout-2030 #editor {
-        font-size: clamp(15px, 1.05vw, 18px);
-        line-height: 1.78;
+        font-size: clamp(15px, 1.02vw, 18px);
+        line-height: 1.76;
         letter-spacing: 0.002em;
         text-wrap: pretty;
     }
@@ -412,39 +417,40 @@ body.mobile-typing .mobile-trigger {
         grid-row: 3;
         min-height: 0;
         justify-content: flex-start;
-        padding-left: clamp(28px, 6vw, 112px);
+        padding-left: clamp(20px, 5vw, 96px);
         pointer-events: auto;
-        opacity: 0.8;
+        opacity: 0.92;
+        margin-bottom: 14px;
     }
     body.layout-2030 .controls-inner {
-        background: transparent;
+        background: color-mix(in srgb, var(--bg-core) 86%, transparent);
         background-image: none;
-        border: none;
-        border-radius: 999px;
-        box-shadow: none;
-        padding: 0 4px;
-        gap: 6px;
-        opacity: 0.58;
+        border: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+        border-radius: 14px;
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.05);
+        padding: 0 8px;
+        gap: 8px;
+        opacity: 0.86;
         transition: opacity 220ms ease, transform 220ms ease;
     }
     body.layout-2030 .controls:hover .controls-inner,
     body.layout-2030 .controls-inner:focus-within {
-        opacity: 0.95;
+        opacity: 1;
         transform: translateY(-1px);
     }
     body.layout-2030 .controls-inner .status-label {
-        font-size: 10px;
-        letter-spacing: 0.06em;
-        opacity: 0.66;
+        font-size: 11px;
+        letter-spacing: 0.05em;
+        opacity: 0.78;
     }
     body.layout-2030 .controls-inner .divider {
         opacity: 0.25;
     }
     body.layout-2030 .controls-inner .btn {
         min-height: 34px;
-        padding: 6px 8px;
-        font-size: 11px;
-        opacity: 0.78;
+        padding: 6px 9px;
+        font-size: 12px;
+        opacity: 0.9;
     }
     body.layout-2030 .controls-inner .btn span {
         letter-spacing: 0.04em;
@@ -465,26 +471,56 @@ body.mobile-typing .mobile-trigger {
         max-width: none;
         min-width: 0;
         height: auto;
-        border-radius: 22px;
+        border-radius: 14px;
         border-right: none;
-        box-shadow: 0 26px 50px rgba(0, 0, 0, 0.03);
+        box-shadow: 0 24px 45px rgba(0, 0, 0, 0.06);
         backdrop-filter: none;
         opacity: 0;
         pointer-events: none;
-        transition: opacity 200ms ease;
-        background: color-mix(in srgb, var(--bg-core) 78%, transparent);
+        transform: translateX(-10px);
+        transition: opacity 220ms ease, transform 280ms cubic-bezier(0.22, 0.61, 0.36, 1);
+        background: color-mix(in srgb, var(--bg-core) 90%, transparent);
+        border: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+    }
+    body.layout-2030 .drawer::before {
+        content: "MENU";
+        position: absolute;
+        left: -16px;
+        top: 18px;
+        width: 14px;
+        height: 62px;
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        font-size: 9px;
+        letter-spacing: 0.2em;
+        color: color-mix(in srgb, var(--color-text) 60%, transparent);
+        background: color-mix(in srgb, var(--bg-core) 84%, transparent);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        opacity: 0;
+        transition: opacity 220ms ease;
+        pointer-events: none;
     }
     body.layout-2030 .drawer.open {
         opacity: 1;
         pointer-events: auto;
         width: 100%;
         border-right: none;
-        box-shadow: 0 26px 50px rgba(0, 0, 0, 0.03);
+        box-shadow: 0 24px 45px rgba(0, 0, 0, 0.06);
+        transform: translateX(0);
+    }
+    body.layout-2030 .drawer.open::before {
+        opacity: 1;
+        background: #2f5bff;
+        color: rgba(255, 255, 255, 0.92);
+        box-shadow: 0 14px 28px rgba(47, 91, 255, 0.28);
     }
 
     body.layout-2030 .drawer-header {
         min-height: 56px;
-        border-bottom: none;
+        border-bottom: 1px solid color-mix(in srgb, var(--color-text) 14%, transparent);
         justify-content: flex-start;
         padding-inline: 18px;
     }
@@ -531,6 +567,20 @@ body.mobile-typing .mobile-trigger {
         font-size: clamp(16px, 1.08vw, 19px);
         line-height: 1.82;
     }
+}
+
+/* Desktop fallback scale: preserve horizontal layout below 1200x700 without page scroll */
+body.desktop-locked.desktop-scaled #frame {
+    inset: auto !important;
+    left: 50% !important;
+    top: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: calc(100vw - 24px) !important;
+    height: calc(100vh - 24px) !important;
+    min-width: 1200px !important;
+    min-height: 700px !important;
+    transform: translate(-50%, -50%) scale(var(--desktop-scale, 1)) !important;
 }
 
 /* MOBILE */

@@ -292,11 +292,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const applyDesktopScale = () => {
             const minW = 1200;
             const minH = 700;
-            const scale = Math.min(1, window.innerWidth / minW, window.innerHeight / minH);
-            document.documentElement.style.setProperty("--desktop-scale", String(Math.max(0.5, scale)));
+            const vw = Math.max(0, window.innerWidth || 0);
+            const vh = Math.max(0, window.innerHeight || 0);
+            const needsScale = vw < minW || vh < minH;
+            const scale = needsScale ? Math.min(vw / minW, vh / minH) : 1;
+            document.body.classList.toggle("desktop-scaled", needsScale);
+            document.documentElement.style.setProperty("--desktop-scale", String(Math.max(0.35, scale || 1)));
         };
-        applyDesktopScale();
+        requestAnimationFrame(applyDesktopScale);
+        setTimeout(applyDesktopScale, 120);
         window.addEventListener("resize", applyDesktopScale);
+        window.addEventListener("orientationchange", applyDesktopScale);
     }
     ui.init();
     initInkTransition();

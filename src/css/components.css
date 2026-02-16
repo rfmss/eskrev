@@ -626,8 +626,8 @@ select:focus-visible {
 }
 .template-tab {
     position: absolute;
-    right: 6px;
-    top: 140px;
+    right: 18px;
+    top: 124px;
     display: none;
     align-items: center;
     justify-content: center;
@@ -917,31 +917,75 @@ body.mobile-lite .guide-rail {
         text-align: left;
     }
     body.layout-2030 .logo-area .marquee-content {
-        opacity: 0.9;
+        opacity: 0.94;
         animation: none;
         margin-top: 0;
-        font-size: clamp(24px, 4.8vw, 64px);
-        letter-spacing: 0.02em;
-        font-weight: 320;
-        line-height: 0.96;
-        color: color-mix(in srgb, var(--color-text) 82%, transparent);
-        text-transform: uppercase;
-        max-width: min(54vw, 16ch);
-        white-space: normal;
-        word-break: break-word;
+        font-size: clamp(14px, 0.98vw, 16px);
+        letter-spacing: 0.07em;
+        font-weight: 600;
+        line-height: 1;
+        color: color-mix(in srgb, var(--color-text) 84%, transparent);
+        text-transform: lowercase;
+        max-width: min(30vw, 24ch);
+        white-space: nowrap;
     }
     body.layout-2030 .hud-btn {
-        opacity: 0.62;
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        opacity: 0.84;
+        color: color-mix(in srgb, var(--color-text) 74%, transparent);
         transform: translateX(0) scale(1);
+    }
+    body.layout-2030 .hud-btn::before {
+        opacity: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+    body.layout-2030 .hud-btn::after {
+        background: linear-gradient(
+            120deg,
+            color-mix(in srgb, var(--color-text) 16%, transparent) 0%,
+            color-mix(in srgb, var(--color-text) 9%, transparent) 100%
+        );
+        opacity: 0;
+        transform: scaleX(0.4);
     }
     body.layout-2030 .hud-btn:hover,
     body.layout-2030 .hud-btn:focus-visible,
     body.layout-2030 .hud-btn.active {
         opacity: 1;
-        transform: translateX(2px) scale(1.02);
+        color: var(--color-text);
+        transform: translateX(1px) scale(1.015);
     }
-    body.layout-2030 .hud-btn::after {
-        transition: transform 320ms cubic-bezier(0.22, 0.61, 0.36, 1), opacity 220ms ease;
+    body.layout-2030 .hud-btn:hover::after,
+    body.layout-2030 .hud-btn:focus-visible::after,
+    body.layout-2030 .hud-btn.active::after {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+    body.layout-2030 .hud .hud-rail {
+        width: 100%;
+        min-height: 28px;
+        border-radius: 12px;
+        margin-bottom: 6px;
+        background: color-mix(in srgb, var(--bg-core) 86%, transparent);
+        box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-text) 10%, transparent);
+        display: grid;
+        place-items: center;
+        position: relative;
+    }
+    body.layout-2030 .hud .hud-rail::before {
+        content: "MENU";
+        font-size: 8px;
+        letter-spacing: 0.18em;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        color: color-mix(in srgb, var(--color-text) 66%, transparent);
+    }
+    body.layout-2030.drawer-open .hud .hud-rail {
+        background: color-mix(in srgb, #2f5bff 20%, var(--bg-core));
+        box-shadow: inset 0 0 0 1px color-mix(in srgb, #2f5bff 48%, transparent);
     }
 }
 @keyframes signalPulse { 0%, 70%, 100% { opacity: 0; } 75%, 85% { opacity: 0.6; } }
@@ -1338,8 +1382,8 @@ body.xray-active #editor *::selection {
 .goal-stars {
     position: fixed;
     right: 16px;
-    top: 120px;
-    bottom: 120px;
+    top: 124px;
+    bottom: 126px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -1453,6 +1497,18 @@ body.pomo-active .goal-stars {
 .notes-modal.active .notes-panel {
     opacity: 1;
     transform: translateX(0);
+}
+@media (min-width: 901px) {
+    body.layout-2030 .notes-panel {
+        top: 80px;
+        bottom: 80px;
+        left: calc(var(--hud-w) + 8px);
+        width: clamp(280px, 23vw, 360px);
+        border: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+        border-right: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+        border-radius: 14px;
+        box-shadow: 0 24px 45px rgba(0, 0, 0, 0.06);
+    }
 }
 .notes-header {
     height: 56px;
@@ -1897,17 +1953,7 @@ body.privacy-open #frame {
 }
 .modal-box { 
     background-color: var(--bg-drawer-solid, var(--bg-core));
-    background-image:
-        radial-gradient(140% 120% at 12% 8%, rgba(255, 250, 238, 0.4), transparent 66%),
-        radial-gradient(130% 120% at 90% 92%, rgba(0, 0, 0, 0.1), transparent 70%),
-        repeating-linear-gradient(
-            10deg,
-            rgba(0, 0, 0, 0.03) 0px,
-            rgba(0, 0, 0, 0.03) 1px,
-            rgba(255, 255, 255, 0.02) 1px,
-            rgba(255, 255, 255, 0.02) 4px
-        );
-    background-blend-mode: multiply, multiply, normal;
+    background-image: none;
     border: var(--border-style); 
     box-shadow: var(--shadow-float); 
     border-radius: var(--radius); 
@@ -1931,23 +1977,11 @@ body.privacy-open #frame {
 .onboarding-box {
     background-color: var(--bg-drawer-solid, var(--bg-core));
     background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='2' seed='11' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='0.34'/%3E%3C/svg%3E"),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='340' viewBox='0 0 340 340'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.34' numOctaves='2' seed='23' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='340' height='340' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E"),
-        repeating-linear-gradient(
-            90deg,
-            rgba(0, 0, 0, 0.014) 0px,
-            rgba(0, 0, 0, 0.014) 1px,
-            rgba(255, 255, 255, 0.01) 1px,
-            rgba(255, 255, 255, 0.01) 6px
-        ),
-        repeating-linear-gradient(
-            0deg,
-            rgba(0, 0, 0, 0.014) 0px,
-            rgba(0, 0, 0, 0.014) 1px,
-            rgba(255, 255, 255, 0.01) 1px,
-            rgba(255, 255, 255, 0.01) 6px
-        );
-    background-size: 150px 150px, 240px 240px, 100% 100%, 100% 100%;
+        radial-gradient(120% 110% at 12% 8%, rgba(255, 255, 255, 0.08), transparent 64%),
+        radial-gradient(120% 110% at 88% 92%, rgba(0, 0, 0, 0.05), transparent 68%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='11' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.22' numOctaves='2' seed='23' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+    background-size: 100% 100%, 100% 100%, 170px 170px, 280px 280px;
     background-position: center, center, center, center;
     background-blend-mode: multiply, multiply, soft-light, soft-light;
 }
@@ -3157,14 +3191,14 @@ body.consult-open .selection-toolbar {
 
 @media (min-width: 901px) {
     body.layout-2030 .desktop-footer-note {
-        left: calc(clamp(10px, 1.8vw, 24px) + clamp(52px, 5vw, 72px) + clamp(14px, 2.2vw, 34px) + clamp(28px, 6vw, 112px));
+        left: calc(clamp(12px, 1.8vw, 24px) + clamp(56px, 4.8vw, 68px) + clamp(16px, 2vw, 30px) + clamp(20px, 5vw, 96px));
         right: auto;
-        bottom: 12px;
+        bottom: 2px;
         text-align: left;
-        opacity: 0.34;
+        opacity: 0.42;
         max-width: 32vw;
         font-size: 9px;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.06em;
     }
 }
 
