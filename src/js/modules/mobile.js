@@ -586,8 +586,18 @@ const initMobileMemos = () => {
     }
 
     if (viewItems && viewItems.length) {
+        const setActiveView = (activeBtn) => {
+            viewItems.forEach((item) => {
+                const isActive = item === activeBtn;
+                item.classList.toggle("is-active", isActive);
+                if (isActive) item.setAttribute("aria-current", "true");
+                else item.removeAttribute("aria-current");
+            });
+        };
+        setActiveView(viewItems[0]);
         viewItems.forEach(btn => {
             btn.addEventListener("click", () => {
+                setActiveView(btn);
                 const target = btn.getAttribute("data-target");
                 const filter = btn.getAttribute("data-filter");
                 if (filter) {

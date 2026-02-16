@@ -179,6 +179,29 @@
   --radius: 2px;
 }
 
+/* 2.1 OLED (PRETO ABSOLUTO) */
+[data-theme="oled"] {
+  --bg-core: #000000;
+  --bg-panel: transparent;
+  --bg-drawer: #030303;
+  --bg-drawer-solid: #030303;
+  --bg-xray: #050505;
+  --bg-controls: #030303;
+  --xray-surface: rgba(255, 255, 255, 0.025);
+  --xray-border: 1px solid rgba(255, 255, 255, 0.08);
+  --color-text: #f4f4f4;
+  --color-accent: #f4f4f4;
+  --color-accent-dim: rgba(244, 244, 244, 0.18);
+  --color-muted: rgba(244, 244, 244, 0.64);
+  --border-style: 1px solid rgba(244, 244, 244, 0.12);
+  --grid-opacity: 0;
+  --selection-bg: rgba(255, 255, 255, 0.28);
+  --selection-text: #060606;
+  --search-bg: rgba(255, 255, 255, 0.18);
+  --search-text: #f8f8f8;
+  --radius: 2px;
+}
+
 /* 3. VERDE DE ESTUDO */
 [data-theme="study"] {
   --bg-core: #2b1c12;
@@ -472,7 +495,10 @@
 /* BARRA INFERIOR: seguir a linguagem da barra lateral esquerda */
 [data-theme="xilo"] .controls-inner,
 [data-theme="xilo-invert"] .controls-inner,
-[data-theme="xilo-amber"] .controls-inner {
+[data-theme="xilo-amber"] .controls-inner,
+[data-theme="paper"] .controls-inner,
+[data-theme="chumbo"] .controls-inner,
+[data-theme="oled"] .controls-inner {
   background: transparent;
   background-image: none;
   border: none;
@@ -525,6 +551,40 @@ html, body {
   background-blend-mode: multiply, multiply, soft-light, soft-light;
   transition: background var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1), 
               color var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.calm-ui,
+body.calm-ui * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+}
+body.calm-ui .btn,
+body.calm-ui .btn-icon,
+body.calm-ui .search-input,
+body.calm-ui .modal-box,
+body.calm-ui .drawer,
+body.calm-ui .hud {
+  box-shadow: none;
+}
+body[data-theme="oled"] {
+  background-image: none;
+}
+body[data-theme="oled"]::before,
+body[data-theme="oled"]::after {
+  opacity: 0;
+}
+
+.skeleton {
+  border-radius: 10px;
+  background:
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent),
+    color-mix(in srgb, var(--bg-core) 88%, transparent);
+  background-size: 220% 100%, 100% 100%;
+  animation: calmShimmer 1.6s linear infinite;
+}
+
+@keyframes calmShimmer {
+  from { background-position: 200% 0, 0 0; }
+  to { background-position: -20% 0, 0 0; }
 }
 
 body::before {
@@ -626,7 +686,10 @@ svg.icon,
 
 [data-theme="xilo"] .modal-box,
 [data-theme="xilo-invert"] .modal-box,
-[data-theme="xilo-amber"] .modal-box {
+[data-theme="xilo-amber"] .modal-box,
+[data-theme="paper"] .modal-box,
+[data-theme="chumbo"] .modal-box,
+[data-theme="oled"] .modal-box {
   background-color: var(--bg-drawer-solid);
   background-image:
     radial-gradient(120% 100% at 8% 4%, rgba(255, 255, 255, 0.08), transparent 52%),

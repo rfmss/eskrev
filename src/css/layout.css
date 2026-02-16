@@ -196,8 +196,8 @@ body.mobile-typing .mobile-trigger {
     width: 42px;
     height: 42px;
     border-radius: 12px;
-    border: var(--border-style);
-    background: rgba(244, 241, 234, 0.04);
+    border: none;
+    background: transparent;
     color: var(--color-accent);
 }
 .drawer-tab-btn .icon { width: 20px; height: 20px; }
@@ -312,6 +312,174 @@ body.mobile-typing .mobile-trigger {
   min-height: var(--controls-h);
 }
 .controls-inner::-webkit-scrollbar { display: none; }
+
+/* RE-LAYOUT 2030 (desktop): vazio ativo + rail/stage/utility */
+@media (min-width: 901px) {
+    body.layout-2030 #frame {
+        inset: clamp(10px, 1.8vw, 24px);
+        display: grid;
+        grid-template-columns: minmax(52px, 5vw) minmax(0, 1fr) 0;
+        grid-template-rows: auto minmax(0, 1fr) auto;
+        gap: clamp(14px, 2.2vw, 34px);
+        transition: grid-template-columns 260ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    body.layout-2030.drawer-open #frame {
+        grid-template-columns: minmax(52px, 5vw) minmax(0, 1fr) minmax(260px, 21vw);
+    }
+
+    body.layout-2030 .logo-area {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        grid-column: 2 / 4;
+        grid-row: 1;
+        height: auto;
+        min-height: 30px;
+        align-self: start;
+        justify-self: start;
+        margin-top: 0;
+        padding-left: clamp(26px, 5vw, 100px);
+    }
+
+    body.layout-2030 .hud {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+        grid-column: 1;
+        grid-row: 2 / 4;
+        width: clamp(52px, 6vw, 72px);
+        min-width: 52px;
+        align-self: start;
+        padding-top: 20px;
+        gap: 16px;
+    }
+    body.layout-2030 .hud-separator {
+        display: none;
+    }
+
+    body.layout-2030 .panel {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+        grid-column: 2;
+        grid-row: 2;
+        padding: clamp(12px, 2vw, 24px) clamp(14px, 2.4vw, 30px) clamp(8px, 1.6vw, 18px);
+        border: none;
+        border-radius: 18px;
+        background: color-mix(in srgb, var(--bg-core) 72%, transparent);
+        box-shadow: 0 22px 46px rgba(0, 0, 0, 0.028);
+    }
+
+    body.layout-2030 #editorWrap {
+        width: min(58ch, 49%);
+        margin-left: clamp(32px, 7vw, 136px);
+        margin-top: clamp(64px, 14vh, 172px);
+    }
+
+    body.layout-2030 #editor {
+        font-size: clamp(15px, 1.05vw, 18px);
+        line-height: 1.78;
+        letter-spacing: 0.002em;
+        text-wrap: pretty;
+    }
+
+    body.layout-2030 .controls {
+        position: relative;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        grid-column: 2;
+        grid-row: 3;
+        min-height: 0;
+        justify-content: flex-start;
+        padding-left: clamp(28px, 6vw, 112px);
+        pointer-events: auto;
+        opacity: 0.8;
+    }
+
+    body.layout-2030 .drawer {
+        position: relative;
+        left: auto;
+        top: auto;
+        bottom: auto;
+        grid-column: 3;
+        grid-row: 1 / 4;
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+        height: auto;
+        border-radius: 22px;
+        border-right: none;
+        box-shadow: 0 26px 50px rgba(0, 0, 0, 0.03);
+        backdrop-filter: none;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 200ms ease;
+        background: color-mix(in srgb, var(--bg-core) 78%, transparent);
+    }
+    body.layout-2030 .drawer.open {
+        opacity: 1;
+        pointer-events: auto;
+        width: 100%;
+        border-right: none;
+        box-shadow: 0 26px 50px rgba(0, 0, 0, 0.03);
+    }
+
+    body.layout-2030 .drawer-header {
+        min-height: 56px;
+        border-bottom: none;
+        justify-content: flex-start;
+        padding-inline: 18px;
+    }
+
+    body.layout-2030 #drawerTitle {
+        font-size: clamp(13px, 0.95vw, 16px);
+        letter-spacing: 0.08em;
+        font-weight: 500;
+        opacity: 0.86;
+    }
+
+    body.layout-2030 #booksView {
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+        grid-column: 2;
+        grid-row: 2 / 4;
+        position: relative;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
+    }
+}
+
+/* STEP 3: escala tipográfica e ritmo por breakpoint desktop */
+@media (min-width: 901px) and (max-width: 1279px) {
+    body.layout-2030 #editorWrap {
+        width: min(62ch, 56%);
+        margin-top: clamp(52px, 10vh, 120px);
+    }
+    body.layout-2030 #editor {
+        font-size: clamp(14px, 0.98vw, 16px);
+        line-height: 1.74;
+    }
+}
+
+@media (min-width: 1280px) {
+    body.layout-2030 #editorWrap {
+        width: min(56ch, 46%);
+        margin-top: clamp(72px, 14vh, 186px);
+    }
+    body.layout-2030 #editor {
+        font-size: clamp(16px, 1.08vw, 19px);
+        line-height: 1.82;
+    }
+}
 
 /* MOBILE */
 @media (max-width: 900px) {

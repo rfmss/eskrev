@@ -2544,11 +2544,36 @@ function setupEventListeners() {
     setupTemplateResize();
     applyTemplateLayout();
 
-    document.getElementById("tabFiles").onclick = () => { showEditorView(); ui.openDrawer('files', { renderFiles: renderProjectList }); closeNotesModal(); };
-    document.getElementById("tabNav").onclick = () => { showEditorView(); ui.openDrawer('nav', { renderNav: renderNavigation }); closeNotesModal(); };
+    const setHudActive = (id) => {
+        document.querySelectorAll(".hud-btn").forEach((btn) => btn.classList.remove("active"));
+        if (!id) return;
+        const active = document.getElementById(id);
+        if (active) active.classList.add("active");
+    };
+
+    document.getElementById("tabFiles").onclick = () => {
+        showEditorView();
+        ui.openDrawer('files', { renderFiles: renderProjectList });
+        closeNotesModal();
+        setHudActive("tabFiles");
+    };
+    document.getElementById("tabNav").onclick = () => {
+        showEditorView();
+        ui.openDrawer('nav', { renderNav: renderNavigation });
+        closeNotesModal();
+        setHudActive("tabNav");
+    };
     const tabNotes = document.getElementById("tabNotes");
-    if (tabNotes) tabNotes.onclick = () => { openNotesModal(); };
-    document.getElementById("tabMemo").onclick = () => { showEditorView(); ui.openDrawer('memo', {}); closeNotesModal(); };
+    if (tabNotes) tabNotes.onclick = () => {
+        openNotesModal();
+        setHudActive("tabNotes");
+    };
+    document.getElementById("tabMemo").onclick = () => {
+        showEditorView();
+        ui.openDrawer('memo', {});
+        closeNotesModal();
+        setHudActive("tabMemo");
+    };
     document.getElementById("closeDrawer").onclick = () => ui.closeDrawer();
     document.addEventListener("mobile:openDrawer", () => {
         showEditorView();
@@ -2557,20 +2582,46 @@ function setupEventListeners() {
 
     // Books (modo interno via iframe)
     const tabBooks = document.getElementById("tabBooks");
-    if (tabBooks) tabBooks.onclick = () => { ui.closeDrawer(); showBooksView(); };
+    if (tabBooks) tabBooks.onclick = () => {
+        ui.closeDrawer();
+        showBooksView();
+        setHudActive("tabBooks");
+    };
     const mobileTabFiles = document.getElementById("mobileTabFiles");
     const mobileTabNav = document.getElementById("mobileTabNav");
     const mobileTabMemo = document.getElementById("mobileTabMemo");
     const mobileTabTheme = document.getElementById("mobileTabTheme");
     const mobileTabBooks = document.getElementById("mobileTabBooks");
-    if (mobileTabFiles) mobileTabFiles.onclick = () => { showEditorView(); ui.openDrawer('files', { renderFiles: renderProjectList }); closeNotesModal(); };
-    if (mobileTabNav) mobileTabNav.onclick = () => { showEditorView(); ui.openDrawer('nav', { renderNav: renderNavigation }); closeNotesModal(); };
-    if (mobileTabMemo) mobileTabMemo.onclick = () => { openNotesModal(); };
+    if (mobileTabFiles) mobileTabFiles.onclick = () => {
+        showEditorView();
+        ui.openDrawer('files', { renderFiles: renderProjectList });
+        closeNotesModal();
+        setHudActive("tabFiles");
+    };
+    if (mobileTabNav) mobileTabNav.onclick = () => {
+        showEditorView();
+        ui.openDrawer('nav', { renderNav: renderNavigation });
+        closeNotesModal();
+        setHudActive("tabNav");
+    };
+    if (mobileTabMemo) mobileTabMemo.onclick = () => {
+        openNotesModal();
+        setHudActive("tabNotes");
+    };
     if (mobileTabTheme) mobileTabTheme.onclick = () => { ui.toggleTheme(); };
-    if (mobileTabBooks) mobileTabBooks.onclick = () => { ui.closeDrawer(); showBooksView(); };
+    if (mobileTabBooks) mobileTabBooks.onclick = () => {
+        ui.closeDrawer();
+        showBooksView();
+        setHudActive("tabBooks");
+    };
     const btnProjectsQuick = document.getElementById("btnProjectsQuick");
     if (btnProjectsQuick) {
-        btnProjectsQuick.onclick = () => { showEditorView(); ui.openDrawer('files', { renderFiles: renderProjectList }); closeNotesModal(); };
+        btnProjectsQuick.onclick = () => {
+            showEditorView();
+            ui.openDrawer('files', { renderFiles: renderProjectList });
+            closeNotesModal();
+            setHudActive("tabFiles");
+        };
     }
 
     const mobileControlsTrigger = document.getElementById("mobileControlsTrigger");

@@ -4,6 +4,7 @@ import { setModalActive } from './modal_state.js';
 export const ui = {
     elements: {},
     pomodoroInterval: null,
+    themeModes: ["paper", "carbon", "oled"],
     
     init() {
         this.elements = {
@@ -23,6 +24,7 @@ export const ui = {
             }
         };
         this.initTheme();
+        this.initThemeMonolith();
         this.bindFaviconScheme();
         this.initMobile();
         this.initScrollHints();
@@ -450,46 +452,86 @@ export const ui = {
         }
     },
 
-    initTheme() {
-        const allowed = ["xilo", "xilo-amber", "xilo-invert"];
-        let currentTheme = localStorage.getItem("lit_theme_pref") || "xilo";
+    normalizeTheme(theme) {
+        const allowed = ["paper", "chumbo", "oled"];
+        let currentTheme = theme || "paper";
         const legacyMap = {
-            "ibm-blue": "xilo-invert",
-            "ibm-dark": "xilo-invert",
-            "journal": "xilo",
-            "mist": "xilo",
-            "paper": "xilo",
-            "chumbo": "xilo-invert",
-            "study": "xilo",
-            "amber-invert": "xilo-amber",
-            "ink-dark": "xilo-invert",
-            "terminal": "xilo-invert"
+            "ibm-blue": "chumbo",
+            "ibm-dark": "chumbo",
+            "journal": "paper",
+            "mist": "paper",
+            "study": "paper",
+            "amber-invert": "paper",
+            "ink-dark": "chumbo",
+            "terminal": "chumbo",
+            "xilo": "paper",
+            "xilo-invert": "chumbo",
+            "xilo-amber": "paper",
+            "carbon": "chumbo"
         };
         if (legacyMap[currentTheme]) currentTheme = legacyMap[currentTheme];
-        if (!allowed.includes(currentTheme)) currentTheme = "xilo";
-        document.body.setAttribute("data-theme", currentTheme);
-        localStorage.setItem("lit_theme_pref", currentTheme);
+        if (!allowed.includes(currentTheme)) currentTheme = "paper";
+        return currentTheme;
+    },
+
+    resolveThemeMode(themeValue) {
+        const theme = this.normalizeTheme(themeValue);
+        if (theme === "oled") return "oled";
+        if (theme === "chumbo") return "carbon";
+        return "paper";
+    },
+
+    themeForMode(mode) {
+        if (mode === "oled") return "oled";
+        if (mode === "carbon") return "chumbo";
+        return "paper";
+    },
+
+    applyTheme(theme, modeHint) {
+        const normalizedTheme = this.normalizeTheme(theme);
+        const mode = modeHint || this.resolveThemeMode(normalizedTheme);
+        document.body.setAttribute("data-theme", normalizedTheme);
+        localStorage.setItem("lit_theme_pref", normalizedTheme);
+        localStorage.setItem("lit_theme_mode", mode);
         this.updateFavicon();
+
+        const monoBtn = document.getElementById("themeMonoBtn");
+        if (monoBtn) {
+            monoBtn.dataset.mode = mode;
+            monoBtn.setAttribute("aria-label", `Theme: ${mode}`);
+            monoBtn.setAttribute("title", `Theme: ${mode}`);
+        }
+        const verifyFrame = document.getElementById("verifyFrame");
+        if (verifyFrame && verifyFrame.contentWindow) {
+            verifyFrame.contentWindow.postMessage({ type: "theme", value: normalizedTheme }, window.location.origin);
+        }
+        const booksFrame = document.getElementById("booksFrame");
+        if (booksFrame && booksFrame.contentWindow) {
+            booksFrame.contentWindow.postMessage({ type: "theme", value: normalizedTheme }, window.location.origin);
+        }
+    },
+
+    initTheme() {
+        const currentTheme = this.normalizeTheme(localStorage.getItem("lit_theme_pref") || "paper");
+        const currentMode = this.resolveThemeMode(currentTheme);
+        this.applyTheme(currentTheme, currentMode);
+    },
+
+    initThemeMonolith() {
+        const monoBtn = document.getElementById("themeMonoBtn");
+        if (!monoBtn) return;
+        monoBtn.addEventListener("click", () => this.toggleTheme());
+        const currentTheme = document.body.getAttribute("data-theme") || localStorage.getItem("lit_theme_pref") || "paper";
+        monoBtn.dataset.mode = this.resolveThemeMode(currentTheme);
     },
 
     toggleTheme() {
-        const themes = ["xilo", "xilo-amber", "xilo-invert"];
         const apply = () => {
-            const current = document.body.getAttribute("data-theme");
-            let nextIndex = themes.indexOf(current) + 1;
-            if (nextIndex >= themes.length) nextIndex = 0;
-            const newTheme = themes[nextIndex];
-            document.body.setAttribute("data-theme", newTheme);
-            localStorage.setItem("lit_theme_pref", newTheme);
-            this.updateFavicon();
-            const verifyFrame = document.getElementById("verifyFrame");
-            if (verifyFrame && verifyFrame.contentWindow) {
-                verifyFrame.contentWindow.postMessage({ type: "theme", value: newTheme }, window.location.origin);
-            }
-            const booksFrame = document.getElementById("booksFrame");
-            if (booksFrame && booksFrame.contentWindow) {
-                booksFrame.contentWindow.postMessage({ type: "theme", value: newTheme }, window.location.origin);
-            }
+            const currentMode = localStorage.getItem("lit_theme_mode") || this.resolveThemeMode(document.body.getAttribute("data-theme"));
+            let nextIndex = this.themeModes.indexOf(currentMode) + 1;
+            if (nextIndex >= this.themeModes.length) nextIndex = 0;
+            const nextMode = this.themeModes[nextIndex];
+            this.applyTheme(this.themeForMode(nextMode), nextMode);
         };
         if (typeof window.skrvInkTransition === "function") {
             window.skrvInkTransition(apply);
