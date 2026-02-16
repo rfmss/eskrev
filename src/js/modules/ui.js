@@ -385,7 +385,15 @@ export const ui = {
             document.body.classList.remove("notes-open");
         }
         if (this.pomoBreakView) this.pomoBreakView.style.display = "block";
-        if (this.pomoUnlockView) this.pomoUnlockView.style.display = "none";
+        if (this.pomoUnlockView) this.pomoUnlockView.style.display = "block";
+        const unlockPrompt = document.getElementById("pomoUnlockPrompt");
+        if (unlockPrompt) unlockPrompt.style.display = "none";
+        if (this.pomoChoice) {
+            this.pomoChoice.querySelectorAll("[data-duration]").forEach((btn) => {
+                btn.disabled = true;
+            });
+        }
+        if (this.pomoMsg) this.pomoMsg.innerText = lang.t("pomo_break_hint");
         this.updateBreakCountdown("06:00");
     },
 
@@ -401,7 +409,7 @@ export const ui = {
             setModalActive(notesModal, false);
             document.body.classList.remove("notes-open");
         }
-        if (this.pomoBreakView) this.pomoBreakView.style.display = "none";
+        if (this.pomoBreakView) this.pomoBreakView.style.display = "block";
         if (this.pomoUnlockView) this.pomoUnlockView.style.display = "block";
         const unlockPrompt = document.getElementById("pomoUnlockPrompt");
         if (unlockPrompt) unlockPrompt.style.display = "";
