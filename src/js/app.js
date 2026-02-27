@@ -11,7 +11,10 @@ import { exportSkrv, importSkrv, buildSkrvPayloadWithChain } from './modules/exp
 import { birthTracker } from './modules/birth_tracker.js';
 import { processTracker } from './modules/process_tracker.js';
 import { qrTransfer } from './modules/qr_transfer.js';
-import { createCtrlGuardHandler, createAltShortcutHandler, createTypingRedirectHandler, createEscapeHandler } from './modules/keyboard.js';
+import { initShortcutsController } from './modules/shortcuts_controller.js';
+import { initViewsRouter } from './modules/views_router.js';
+import { initIsoPresetController } from './modules/iso_preset_controller.js';
+import { initDevTools } from './modules/dev_tools.js';
 import { setupModalFocusTrap, createBootModalBlocker, createOverlayBackdropHandler } from './modules/modal_accessibility.js';
 import { setupResetFlow } from './modules/reset_flow.js';
 import { setupPersistenceBindings } from './modules/persistence_bindings.js';
@@ -469,7 +472,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     const editorEl = document.getElementById("editor");
+    if (!editorEl) {
+        console.error("[eskrev] Critical: #editor element not found in DOM");
+        throw new Error("Editor element (#editor) is required but not found. Check index.html structure.");
+    }
     editorFeatures.init(editorEl);
+    window.editorFeatures = editorFeatures;
     birthTracker.init(editorEl);
     processTracker.init(editorEl);
     setupCopyGuard(editorEl);
@@ -478,6 +486,8 @@ document.addEventListener('DOMContentLoaded', () => {
     editorFeatures.schedulePaginationUpdate();
     editorFeatures.refreshStats();
     setupEventListeners();
+    initIsoPresetController();
+    initDevTools();
     restoreEditorScroll();
     if (isMobile) {
         setupMobileFallbackTriggers();
@@ -1293,6 +1303,9 @@ function loadActiveDocument() {
                 editorEl.focus(); 
             }
         }
+        if (editorFeatures.getPageMode && editorFeatures.getPageMode() === "browse") {
+            editorFeatures.ensureBrowsePagesFromEditor();
+        }
         editorFeatures.schedulePaginationUpdate();
         editorFeatures.refreshStats();
         setTimeout(() => {
@@ -1305,65 +1318,10 @@ function loadActiveDocument() {
 
 function setupEventListeners() {
     initHelpTabs();
-    const ensureFrameLoaded = (id) => {
-        const frame = document.getElementById(id);
-        if (!frame) return null;
-        const currentSrc = frame.getAttribute("src");
-        const lazySrc = frame.getAttribute("data-src");
-        if (!currentSrc && lazySrc) frame.setAttribute("src", lazySrc);
-        return frame;
-    };
-
-      // Views (Editor / Books / Verify)
-    const showEditorView = () => {
-        const ev = document.getElementById("editorView");
-        const bv = document.getElementById("booksView");
-        const vv = document.getElementById("verifyView");
-        const panel = document.querySelector(".panel");
-        if (ev) ev.style.display = "";
-        if (bv) bv.style.display = "none";
-        if (vv) vv.style.display = "none";
-        const editorEl = document.getElementById("editor");
-        if (editorEl) editorEl.focus();
-        if (panel) panel.classList.remove("books-active");
-        localStorage.setItem("lit_ui_view", "editor");
-    };
-
-    const showBooksView = () => {
-        const ev = document.getElementById("editorView");
-        const bv = document.getElementById("booksView");
-        const vv = document.getElementById("verifyView");
-        const panel = document.querySelector(".panel");
-        const booksFrame = ensureFrameLoaded("booksFrame");
-        if (ev) ev.style.display = "none";
-        if (bv) bv.style.display = "block";
-        if (vv) vv.style.display = "none";
-        if (panel) panel.classList.add("books-active");
-        if (booksFrame) {
-            try {
-                booksFrame.contentWindow?.postMessage({ type: "lang", value: lang.current }, window.location.origin);
-            } catch (_) {}
-        }
-        localStorage.setItem("lit_ui_view", "books");
-    };
-
-    const showVerifyView = () => {
-        const ev = document.getElementById("editorView");
-        const bv = document.getElementById("booksView");
-        const vv = document.getElementById("verifyView");
-        const panel = document.querySelector(".panel");
-        const verifyFrame = ensureFrameLoaded("verifyFrame");
-        if (ev) ev.style.display = "none";
-        if (bv) bv.style.display = "none";
-        if (vv) vv.style.display = "block";
-        if (panel) panel.classList.add("books-active");
-        if (verifyFrame) {
-            try {
-                verifyFrame.contentWindow?.postMessage({ type: "lang", value: lang.current }, window.location.origin);
-            } catch (_) {}
-        }
-        localStorage.setItem("lit_ui_view", "verify");
-    };
+    const views = initViewsRouter({ lang });
+    const showEditorView = views.openEditor;
+    const showBooksView = views.openBooks;
+    const showVerifyView = views.openVerify;
 
     // Template Pane + Novo Texto
     const templateState = {
@@ -2562,10 +2520,30 @@ function setupEventListeners() {
     applyTemplateLayout();
 
     const setHudActive = (id) => {
-        document.querySelectorAll(".hud-btn").forEach((btn) => btn.classList.remove("active"));
+        document.querySelectorAll(".hud .hud-btn").forEach((btn) => {
+            btn.classList.remove("active");
+            btn.setAttribute("aria-current", "false");
+        });
         if (!id) return;
         const active = document.getElementById(id);
-        if (active) active.classList.add("active");
+        if (active && active.classList.contains("hud-btn")) {
+            active.classList.add("active");
+            active.setAttribute("aria-current", "true");
+        }
+    };
+
+    const trackUiEvent = (name, payload = {}) => {
+        try {
+            if (window.posthog && typeof window.posthog.capture === "function") {
+                window.posthog.capture(name, payload);
+            }
+            if (Array.isArray(window.dataLayer)) {
+                window.dataLayer.push({ event: name, ...payload });
+            }
+            if (window.localStorage && localStorage.getItem("skrv_debug_ui") === "true") {
+                console.log(`[UI] ${name}`, payload);
+            }
+        } catch (_) {}
     };
 
     document.getElementById("tabFiles").onclick = () => {
@@ -2573,6 +2551,7 @@ function setupEventListeners() {
         ui.openDrawer('files', { renderFiles: renderProjectList });
         closeNotesModal();
         setHudActive("tabFiles");
+        trackUiEvent("rail_docs_open");
     };
     document.getElementById("tabNav").onclick = () => {
         showEditorView();
@@ -2584,6 +2563,13 @@ function setupEventListeners() {
     if (tabNotes) tabNotes.onclick = () => {
         openNotesModal();
         setHudActive("tabNotes");
+    };
+    const tabOverview = document.getElementById("tabOverview");
+    if (tabOverview) tabOverview.onclick = () => {
+        showEditorView();
+        editorFeatures.toggleNavOverview();
+        setHudActive("tabOverview");
+        trackUiEvent("rail_overview_toggle");
     };
     document.getElementById("tabMemo").onclick = () => {
         showEditorView();
@@ -2604,6 +2590,7 @@ function setupEventListeners() {
         showBooksView();
         setHudActive("tabBooks");
     };
+    setHudActive("tabFiles");
     const mobileTabFiles = document.getElementById("mobileTabFiles");
     const mobileTabNav = document.getElementById("mobileTabNav");
     const mobileTabMemo = document.getElementById("mobileTabMemo");
@@ -2631,15 +2618,31 @@ function setupEventListeners() {
         showBooksView();
         setHudActive("tabBooks");
     };
-    const btnProjectsQuick = document.getElementById("btnProjectsQuick");
-    if (btnProjectsQuick) {
-        btnProjectsQuick.onclick = () => {
-            showEditorView();
-            ui.openDrawer('files', { renderFiles: renderProjectList });
-            closeNotesModal();
-            setHudActive("tabFiles");
+    const btnPageMode = document.getElementById("btnPageMode");
+    if (btnPageMode) {
+        btnPageMode.onclick = () => {
+            editorFeatures.togglePageMode();
         };
     }
+    const railMode = document.getElementById("railMode");
+    if (railMode) railMode.onclick = () => {
+        editorFeatures.togglePageMode();
+        setHudActive("railMode");
+        trackUiEvent("rail_mode_toggle", { mode: document.body.dataset.mode || "" });
+    };
+    const railExport = document.getElementById("railExport");
+    if (railExport) railExport.onclick = () => {
+        setHudActive("railExport");
+        trackUiEvent("rail_export_click");
+        document.getElementById("btnSave").click();
+    };
+    const railTools = document.getElementById("railTools");
+    if (railTools) railTools.onclick = () => {
+        showEditorView();
+        ui.openDrawer("nav", { renderNav: renderNavigation });
+        setHudActive("railTools");
+        trackUiEvent("rail_tools_open");
+    };
 
     const mobileControlsTrigger = document.getElementById("mobileControlsTrigger");
     const mobileControlsClose = document.getElementById("mobileControlsClose");
@@ -2705,6 +2708,134 @@ function setupEventListeners() {
     if (drawerSearchPrev) drawerSearchPrev.onclick = () => document.getElementById("btnSearchPrev").click();
     if (drawerSearchNext) drawerSearchNext.onclick = () => document.getElementById("btnSearchNext").click();
     if (drawerSearchClear) drawerSearchClear.onclick = () => { document.getElementById("btnClear").click(); if (drawerSearchInput) drawerSearchInput.value = ""; };
+
+    const commandPaletteModal = document.getElementById("commandPaletteModal");
+    const commandPaletteInput = document.getElementById("commandPaletteInput");
+    const commandPaletteList = document.getElementById("commandPaletteList");
+    const closeCommandPaletteBtn = document.getElementById("closeCommandPalette");
+    const btnCommandPalette = document.getElementById("btnCommandPalette");
+    const railSearch = document.getElementById("railSearch");
+    const railSettings = document.getElementById("railSettings");
+    const editorWrap = document.getElementById("editorWrap");
+    let commandPaletteIndex = 0;
+    const commandEntries = [
+        { label: "Visão geral", kbd: "Ctrl+Shift+M", run: () => editorFeatures.toggleNavOverview() },
+        { label: "Alternar modo da página", kbd: "--mode", run: () => editorFeatures.togglePageMode() },
+        { label: "Buscar no texto", kbd: "Ctrl+F", run: () => mainSearchInput?.focus() },
+        { label: "Exportar", kbd: "Ctrl+S", run: () => document.getElementById("btnSave").click() },
+        { label: "Modo leitor", kbd: "", run: () => document.getElementById("btnReader")?.click() },
+        { label: "Vocabulário", kbd: "", run: () => document.getElementById("btnXray")?.click() },
+        { label: "Som", kbd: "Alt+M", run: () => document.getElementById("btnAudio")?.click() },
+        { label: "Tema", kbd: "Alt+T", run: () => document.getElementById("btnThemeToggle")?.click() },
+        { label: "Idioma", kbd: "", run: () => document.getElementById("btnLangToggle")?.click() },
+        { label: "Ajustes", kbd: "", run: () => ui.openDrawer("memo", {}) }
+    ];
+    const renderCommandPalette = () => {
+        if (!commandPaletteList) return;
+        const q = (commandPaletteInput?.value || "").trim().toLowerCase();
+        const filtered = commandEntries.filter((item) => !q || item.label.toLowerCase().includes(q));
+        commandPaletteIndex = Math.max(0, Math.min(commandPaletteIndex, Math.max(0, filtered.length - 1)));
+        commandPaletteList.innerHTML = "";
+        filtered.forEach((item, idx) => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "command-palette-item";
+            if (idx === commandPaletteIndex) btn.classList.add("is-active");
+            btn.innerHTML = `<span>${item.label}</span><span class="command-palette-kbd">${item.kbd || ""}</span>`;
+            btn.onclick = () => {
+                closeCommandPalette();
+                trackUiEvent("palette_execute_click", { command: item.label });
+                item.run();
+            };
+            commandPaletteList.appendChild(btn);
+        });
+        if (filtered.length === 0) {
+            commandPaletteList.innerHTML = `<div class="status-label">Sem resultados.</div>`;
+        }
+    };
+    const closeCommandPalette = () => {
+        if (!commandPaletteModal) return;
+        setModalActive(commandPaletteModal, false);
+        document.body.classList.remove("command-palette-open");
+        if (editorWrap) editorWrap.removeAttribute("inert");
+        if (commandPaletteInput) commandPaletteInput.value = "";
+        setHudActive("tabFiles");
+        trackUiEvent("palette_close");
+        if (editorEl) editorEl.focus();
+    };
+    const openCommandPalette = (seed = "") => {
+        if (!commandPaletteModal) return;
+        setModalActive(commandPaletteModal, true);
+        document.body.classList.add("command-palette-open");
+        if (editorWrap) editorWrap.setAttribute("inert", "");
+        commandPaletteIndex = 0;
+        trackUiEvent("palette_open", { seed });
+        if (commandPaletteInput) {
+            commandPaletteInput.value = seed;
+            renderCommandPalette();
+            commandPaletteInput.focus();
+            commandPaletteInput.select();
+        }
+    };
+    window.closeCommandPalette = closeCommandPalette;
+    window.openCommandPalette = openCommandPalette;
+    if (btnCommandPalette) btnCommandPalette.onclick = () => {
+        openCommandPalette("");
+    };
+    if (railSearch) railSearch.onclick = () => {
+        setHudActive("railSearch");
+        openCommandPalette("buscar");
+    };
+    if (railSettings) railSettings.onclick = () => {
+        setHudActive("railSettings");
+        openCommandPalette("tema");
+    };
+    if (closeCommandPaletteBtn) closeCommandPaletteBtn.onclick = closeCommandPalette;
+    if (commandPaletteModal) {
+        commandPaletteModal.addEventListener("click", (e) => {
+            if (e.target === commandPaletteModal) closeCommandPalette();
+        });
+    }
+    if (commandPaletteInput) {
+        commandPaletteInput.addEventListener("input", renderCommandPalette);
+        commandPaletteInput.addEventListener("keydown", (e) => {
+            const items = Array.from(commandPaletteList?.querySelectorAll(".command-palette-item") || []);
+            if (e.key === "ArrowDown") {
+                e.preventDefault();
+                commandPaletteIndex = Math.min(commandPaletteIndex + 1, Math.max(0, items.length - 1));
+                renderCommandPalette();
+            } else if (e.key === "ArrowUp") {
+                e.preventDefault();
+                commandPaletteIndex = Math.max(commandPaletteIndex - 1, 0);
+                renderCommandPalette();
+            } else if (e.key === "Enter") {
+                e.preventDefault();
+                trackUiEvent("palette_execute_keyboard");
+                if (items[commandPaletteIndex]) items[commandPaletteIndex].click();
+            } else if (e.key === "Escape") {
+                e.preventDefault();
+                closeCommandPalette();
+            }
+        });
+    }
+
+    let edgeRevealTimer = null;
+    const hideEdgeRevealSoon = () => {
+        if (edgeRevealTimer) clearTimeout(edgeRevealTimer);
+        edgeRevealTimer = setTimeout(() => {
+            document.body.classList.remove("edge-reveal");
+        }, 900);
+    };
+    document.addEventListener("mousemove", (e) => {
+        if (document.body.dataset.cloak !== "true") return;
+        const nearLeft = e.clientX <= 14;
+        const nearBottom = e.clientY >= window.innerHeight - 18;
+        if (nearLeft || nearBottom) {
+            document.body.classList.add("edge-reveal");
+            hideEdgeRevealSoon();
+        }
+    }, { passive: true });
+    document.addEventListener("mouseleave", () => document.body.classList.remove("edge-reveal"));
 
 
     document.addEventListener('click', (e) => {
@@ -2843,8 +2974,11 @@ function setupEventListeners() {
     const btnJson = document.getElementById("actionDownloadJson");
     if (btnJson) {
         btnJson.onclick = () => {
+            const persistHtml = (editorFeatures && typeof editorFeatures.getPersistHtml === "function")
+                ? editorFeatures.getPersistHtml()
+                : document.getElementById("editor").innerHTML;
             store.save(
-                document.getElementById("editor").innerHTML,
+                persistHtml,
                 document.getElementById("memoArea").value
             );
             const active = store.getActive && store.getActive();
@@ -2911,139 +3045,23 @@ function setupEventListeners() {
     const searchInput = document.getElementById("search");
     const editorEl = document.getElementById("editor");
     const isBootModalBlockingKeyboard = createBootModalBlocker();
-    const handleCtrlGuard = createCtrlGuardHandler({
+    initShortcutsController({
         editorEl,
-        onSave: () => document.getElementById("btnSave").click(),
-        onSelectAll: () => selectAllInEditor(editorEl),
-        onCopy: () => document.execCommand("copy"),
-        onCut: () => document.execCommand("cut"),
-        onPaste: () => document.execCommand("paste")
-    });
-    const handleEscape = createEscapeHandler({
         searchInput,
-        onCloseTerms: () => {
-            const termsModal = document.getElementById("termsModal");
-            if (termsModal && termsModal.classList.contains("active")) {
-                auth.closeTermsModal(true);
-                return true;
-            }
-            return false;
-        },
-        isNotesModalActive: () => {
-            const notesModal = document.getElementById("notesModal");
-            return !!(notesModal && notesModal.classList.contains("active"));
-        },
-        isNotesEditStage: () => notesState.stage === "edit",
-        setNotesListStage: () => setNotesStage("list"),
-        closeNotesModal: () => closeNotesModal(),
-        closeNotesOverlayIfActive: () => {
-            const overlay = document.getElementById("notesOverlay");
-            if (overlay && overlay.classList.contains("active")) {
-                setModalActive(overlay, false);
-                return true;
-            }
-            return false;
-        },
-        canCancelSystemModal: () => {
-            const systemModal = document.getElementById("systemModal");
-            return !!(systemModal && systemModal.classList.contains("active") && window.skvModal?.cancel);
-        },
-        cancelSystemModal: () => window.skvModal.cancel(),
-        closeManifestoModal: () => {
-            const manifestoModal = document.getElementById("manifestoModal");
-            if (manifestoModal && manifestoModal.classList.contains("active")) {
-                setModalActive(manifestoModal, false);
-                document.body.classList.remove("manifesto-open");
-                return true;
-            }
-            return false;
-        },
-        isOnboardingActive: () => {
-            const onboarding = document.getElementById("onboardingModal");
-            return !!(onboarding && onboarding.classList.contains("active"));
-        },
-        isDedicationActive: () => {
-            const dedication = document.getElementById("dedicationModal");
-            return !!(dedication && dedication.classList.contains("active"));
-        },
-        getActiveOverlays: () =>
-            Array.from(document.querySelectorAll(".modal-overlay.active")).map((m) => m.id),
-        closeOverlayById: (id) => {
-            const overlay = document.getElementById(id);
-            if (overlay) setModalActive(overlay, false);
-        },
-        closeDrawerIfOpen: () => {
-            const drawer = document.getElementById("drawer");
-            if (drawer && drawer.classList.contains("open")) {
-                ui.closeDrawer();
-                return true;
-            }
-            return false;
-        },
-        focusEditor: () => { if (editorEl) editorEl.focus(); },
-        resetCleanupFallback: () => {
-            const step2Reset = document.getElementById("step2Reset");
-            const resetPassInput = document.getElementById("resetPassInput");
-            const resetMsg = document.getElementById("resetMsg");
-            if (step2Reset) step2Reset.style.display = "none";
-            if (resetPassInput) resetPassInput.value = "";
-            if (resetMsg) resetMsg.innerText = "";
-        }
-    });
-    const handleAltShortcuts = createAltShortcutHandler({
-        openFilesDrawer: () => ui.openDrawer("files", { renderFiles: renderProjectList }),
-        openNavDrawer: () => ui.openDrawer("nav", { renderNav: renderNavigation }),
-        openMemoDrawer: () => ui.openDrawer("memo", {}),
-        closeDrawer: () => ui.closeDrawer(),
-        lockSession: () => auth.lock(),
-        toggleTemplatePane: () => {
-            templateState.open = !templateState.open;
-            if (!templateState.open) templateState.minimized = false;
-            applyTemplateLayout();
-        },
-        toggleTheme: () => ui.toggleTheme(),
-        toggleAudio: () => document.getElementById("btnAudio").click(),
-        togglePomodoro: () => ui.togglePomodoro(),
-        toggleFont: () => document.getElementById("btnFontType").click()
-    });
-    const handleTypingRedirect = createTypingRedirectHandler({
-        editorEl,
-        getActiveDoc: () => store.getActive(),
-        restoreCursorPos: (pos) => editorFeatures.setCursorPos(pos),
-        insertText: (text) => document.execCommand("insertText", false, text),
-        onTypeFeedback: () => {
-            editorFeatures.playSound("type");
-            editorFeatures.triggerFocusMode();
-        }
-    });
-    
-    document.addEventListener("keydown", (e) => {
-        if (isBootModalBlockingKeyboard()) return;
-        if (handleCtrlGuard(e)) return;
-
-        if (e.key === "F1") { 
-            e.preventDefault(); 
-            if (window.totHelpOpen) {
-                window.totHelpOpen();
-            } else {
-                const helpModal = document.getElementById("helpModal");
-                if (helpModal) setModalActive(helpModal, true);
-                document.body.classList.add("help-open");
-            }
-        } 
-        
-        if ((e.ctrlKey && e.shiftKey && e.code === "KeyF") || e.key === "F11") { e.preventDefault(); editorFeatures.toggleFullscreen(); }
-        if (e.key === "Enter" && document.activeElement === searchInput) document.getElementById("btnSearch").click();
-        if (e.ctrlKey && e.key === "f") { e.preventDefault(); searchInput.focus(); }
-        if (handleEscape(e)) return;
-        if (handleAltShortcuts(e)) return;
-
-        if (e.ctrlKey || e.metaKey) {
-            if (e.key === 's') { e.preventDefault(); document.getElementById("btnSave").click(); }
-            if (e.key === 'o') { e.preventDefault(); document.getElementById("fileInput").click(); }
-        }
-
-        handleTypingRedirect(e);
+        isBootModalBlockingKeyboard,
+        editorFeatures,
+        selectAllInEditor,
+        auth,
+        ui,
+        store,
+        templateState,
+        applyTemplateLayout,
+        renderProjectList,
+        renderNavigation,
+        notesState,
+        setNotesStage,
+        closeNotesModal,
+        setModalActive
     });
 
     const btnInsert = document.getElementById("btnInsertChapter");

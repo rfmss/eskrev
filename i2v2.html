@@ -1,0 +1,1532 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>index2 — Slice Writer (Word Pages)</title>
+
+  <style>
+    :root{
+      --bg: #e9e7df;
+      --ink: rgba(0,0,0,.86);
+      --muted: rgba(0,0,0,.48);
+
+      --accent: #d3572e;
+
+      /* single border (the “green check” border in your ref) */
+      --frame-radius: 6px;
+      --frame-border: rgba(0,0,0,.10);
+
+      /* page */
+      --page-bg: rgba(247,246,243,.88);
+      --page-border: rgba(0,0,0,.10);
+      --page-radius: 4px;
+      --page-width: 760px;
+      --page-height: 960px; /* “Word-ish” viewport page */
+      --page-pad: 56px;
+
+      /* soft shadows */
+      --shadow-1:
+        0 0 0 1px rgba(0,0,0,.05),
+        0 1px 1px rgba(0,0,0,.05),
+        0 4px 4px rgba(0,0,0,.05),
+        0 8px 8px rgba(0,0,0,.05),
+        0 16px 16px rgba(0,0,0,.05);
+      --shadow-2:
+        0 0 0 1px rgba(0,0,0,.05),
+        0 2px 2px rgba(0,0,0,.05),
+        0 6px 6px rgba(0,0,0,.05),
+        0 12px 12px rgba(0,0,0,.05);
+
+      /* blueprint */
+      --grid-1: rgba(0,0,0,.05);
+      --grid-2: rgba(0,0,0,.025);
+
+      /* motion */
+      --motion-fast: 180ms;
+      --motion-base: 260ms;
+      --motion-slow: 340ms;
+      --ease-standard: cubic-bezier(.22,.61,.36,1);
+      --ease-emphasis: cubic-bezier(.2,.8,.2,1);
+
+      /* dock tag palette */
+      --tag-define: #D3572E;
+      --tag-vocab: #6B6F73;
+      --tag-help: #8B8377;
+      --tag-consult: #7A7F86;
+      --tag-unknown: #76706A;
+    }
+
+    html, body { height: 100%; margin: 0; overflow: hidden !important; }
+    body{
+      color: var(--ink);
+      background: var(--bg);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      overflow: hidden; /* lock page scroll */
+      cursor: url("assets/cursors/bibata-ice/default.svg") 4 2, default;
+    }
+    .pageContent{
+      cursor: url("assets/cursors/bibata-ice/text.svg") 16 16, text;
+    }
+    button,
+    [role="button"],
+    .gutter,
+    .sliceTopHandle,
+    .sliceDockBtn{
+      cursor: url("assets/cursors/bibata-ice/pointer.svg") 9 3, pointer;
+    }
+
+    /* background grid inspired by lookeandfeel reference */
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .72;
+      background:
+        linear-gradient(to right, rgba(114,108,97,.035) 1px, transparent 1px) 0 0 / 188px 188px,
+        linear-gradient(to bottom, rgba(114,108,97,.035) 1px, transparent 1px) 0 0 / 188px 188px,
+        linear-gradient(to right, rgba(114,108,97,.03) 1px, transparent 1px) 0 0 / 47px 47px,
+        linear-gradient(to bottom, rgba(114,108,97,.03) 1px, transparent 1px) 0 0 / 47px 47px,
+        linear-gradient(to bottom, rgba(255,255,255,.08), rgba(0,0,0,.01));
+    }
+
+    /* app */
+    .app{
+      height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 8px;
+      box-sizing: border-box;
+      overflow-x: hidden;
+    }
+
+    /* SINGLE OUTER BORDER ONLY */
+    .frame{
+      width: min(1200px, 98vw);
+      height: calc(100vh - 16px);
+      border-radius: var(--frame-radius);
+      border: none; /* no outer border */
+      background: transparent; /* no frame fill */
+      box-shadow: none; /* no floating effect */
+      position: relative;
+      overflow: hidden;
+      overflow-x: hidden;
+      backdrop-filter: none;
+    }
+
+    .chrome{
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      display: flex;
+      gap: 8px;
+      opacity: .85;
+      z-index: 10;
+    }
+    .dot{
+      width: 10px; height: 10px; border-radius: 999px;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.08) inset;
+      background: rgba(0,0,0,.10);
+    }
+    .dot.a{ background: #d3572e; }
+    .dot.b{ background: rgba(0,0,0,.12); }
+    .dot.c{ background: rgba(0,0,0,.10); }
+
+    /* header (no boxes, just text) */
+    .topbar{
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: min(var(--page-width), 92vw);
+      transform: translateX(-50%) scale(var(--topbar-scale, 1));
+      transform-origin: top center;
+      padding: 10px 18px;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 5;
+      color: rgba(0,0,0,.55);
+      font-size: 12px;
+      letter-spacing: .06em;
+      text-transform: none;
+      white-space: nowrap;
+      overflow: visible;
+      text-overflow: clip;
+      text-align: center;
+      box-sizing: border-box;
+      user-select: none;
+      pointer-events: none; /* stays “in the air” */
+    }
+    .topbar .muted{
+      display: block;
+      max-width: min(100%, 920px);
+      letter-spacing: normal;
+      text-transform: none;
+      opacity: .85;
+      font-size: 12px;
+      margin-left: 10px;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+
+    /* scroll area */
+    .viewport{
+      position: absolute;
+      inset: 34px 0 2px 0;
+      overflow-y: hidden; /* paper stays fixed; only inner editor scrolls */
+      overflow-x: hidden; /* never horizontal scrolling */
+      padding: 6px 0 2px;
+      scrollbar-width: none;
+      scrollbar-color: transparent transparent;
+    }
+    .viewport::-webkit-scrollbar{
+      width: 0;
+      height: 0;
+    }
+    .viewport::-webkit-scrollbar:horizontal{
+      height: 0;
+    }
+    .viewport::-webkit-scrollbar-track{
+      background: transparent;
+    }
+    .viewport::-webkit-scrollbar-thumb{
+      background: rgba(0,0,0,.20);
+      border-radius: 999px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+    }
+    .viewport::-webkit-scrollbar-thumb:hover{
+      background: rgba(0,0,0,.28);
+      background-clip: padding-box;
+    }
+
+    /* external scrollbar: drives only the inner editor content */
+    .outerScroll{
+      position: absolute;
+      top: 34px;
+      right: 2px;
+      bottom: 2px;
+      width: 10px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      z-index: 7;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0,0,0,.22) transparent;
+    }
+    .outerScroll::-webkit-scrollbar{
+      width: 8px;
+    }
+    .outerScroll::-webkit-scrollbar-track{
+      background: transparent;
+    }
+    .outerScroll::-webkit-scrollbar-thumb{
+      background: rgba(0,0,0,.20);
+      border-radius: 999px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+    }
+    .outerScroll::-webkit-scrollbar-thumb:hover{
+      background: rgba(0,0,0,.28);
+      background-clip: padding-box;
+    }
+    .outerScrollSizer{
+      width: 1px;
+      height: 100%;
+    }
+
+    /* external tags rail: denim-pocket style label, glued to paper edge */
+    .sliceDock{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      display: block;
+      z-index: 1; /* below page layer, above background */
+      pointer-events: none;
+    }
+    .pageFlowMarkers{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      z-index: 1; /* below paper, above background */
+      pointer-events: none;
+      overflow: visible;
+    }
+    .flowMarker{
+      position: absolute;
+      left: -68px; /* two nudges left for readability */
+      appearance: none;
+      border: 1px solid color-mix(in srgb, var(--tag-vocab) 44%, #cfcbc2);
+      background: color-mix(in srgb, var(--tag-vocab) 10%, #f7f6f3);
+      color: var(--tag-vocab);
+      border-radius: 5px 5px 0 0;
+      padding: 1px 5px;
+      min-width: 38px; /* proportional to reduced height */
+      height: 10px; /* ~30% shorter */
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      font-family: inherit;
+      font-size: 8px;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      box-shadow: 0 1px 1px rgba(0,0,0,.03);
+      transform-origin: top left;
+      transform: rotate(-90deg);
+      transition: opacity var(--motion-fast) var(--ease-standard), transform var(--motion-fast) var(--ease-standard);
+      opacity: .82;
+      pointer-events: none;
+    }
+    .sliceTag{
+      appearance: none;
+      position: absolute;
+      right: 0;
+      border: 1px solid rgba(0,0,0,.14);
+      background: rgba(247,246,243,.90);
+      color: rgba(0,0,0,.68);
+      border-radius: 7px 7px 0 0;
+      padding: 4px 10px 4px 15px; /* larger left wing */
+      text-align: left;
+      font-family: inherit;
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      min-width: 108px;
+      height: 22px;
+      line-height: 1.1;
+      cursor: url("assets/cursors/bibata-ice/ns-resize.svg") 16 16, ns-resize;
+      touch-action: none;
+      user-select: none;
+      box-shadow: none;
+      transform-origin: top right;
+      transform: rotate(90deg);
+      pointer-events: auto;
+      transition:
+        border-color var(--motion-fast) linear,
+        background-color var(--motion-fast) linear,
+        color var(--motion-fast) linear,
+        transform var(--motion-fast) var(--ease-standard),
+        opacity var(--motion-fast) var(--ease-standard);
+    }
+    .sliceTag:hover{
+      transform: rotate(90deg) translateY(-1px);
+      color: rgba(0,0,0,.82);
+    }
+    .sliceTag.isDragging{
+      cursor: url("assets/cursors/bibata-ice/grabbing.svg") 10 6, grabbing;
+    }
+    .sliceTag.k-define{
+      border-color: color-mix(in srgb, var(--tag-define) 45%, #cfcbc2);
+      background: color-mix(in srgb, var(--tag-define) 12%, #f7f6f3);
+      color: var(--tag-define);
+    }
+    .sliceTag.k-vocab{
+      border-color: color-mix(in srgb, var(--tag-vocab) 44%, #cfcbc2);
+      background: color-mix(in srgb, var(--tag-vocab) 10%, #f7f6f3);
+      color: var(--tag-vocab);
+    }
+    .sliceTag.k-help{
+      border-color: color-mix(in srgb, var(--tag-help) 44%, #cfcbc2);
+      background: color-mix(in srgb, var(--tag-help) 10%, #f7f6f3);
+      color: var(--tag-help);
+    }
+    .sliceTag.k-consult{
+      border-color: color-mix(in srgb, var(--tag-consult) 44%, #cfcbc2);
+      background: color-mix(in srgb, var(--tag-consult) 10%, #f7f6f3);
+      color: var(--tag-consult);
+    }
+    .sliceTag.k-unknown{
+      border-color: color-mix(in srgb, var(--tag-unknown) 44%, #cfcbc2);
+      background: color-mix(in srgb, var(--tag-unknown) 10%, #f7f6f3);
+      color: var(--tag-unknown);
+    }
+
+    /* single infinite paper */
+    .pages{
+      display: grid;
+      justify-items: center;
+      align-items: start;
+      gap: 0;
+      padding: 0 20px;
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    .page{
+      width: min(var(--page-width), 92vw);
+      height: calc(92% + 1.65em);
+      min-height: calc(92% + 1.65em);
+      max-height: calc(92% + 1.65em);
+      background: var(--page-bg);
+      border: 1px solid var(--page-border);
+      border-radius: var(--page-radius);
+      box-shadow: var(--shadow-1);
+      position: relative;
+      z-index: 2; /* paper above external right-side tags */
+      isolation: isolate; /* local stacking context for predictable layering */
+      overflow: visible;
+      box-sizing: border-box;
+    }
+
+    /* light “paper” tint, no extra inner borders */
+    .page::before{
+      content:"";
+      position:absolute;
+      inset: 0;
+      border-radius: var(--page-radius);
+      pointer-events:none;
+      z-index: 2; /* white paper layer above side tags */
+      background:
+        radial-gradient(1200px 420px at 50% -10%, rgba(0,0,0,.04), transparent 60%),
+        var(--page-bg);
+      opacity: 1;
+    }
+
+    .pageContent{
+      position: absolute;
+      inset: 0;
+      z-index: 3; /* text/cuts above paper skin */
+      padding: calc(var(--page-pad) * .9) var(--page-pad) var(--page-pad);
+      outline: none;
+      white-space: pre-wrap;
+      color: var(--ink);
+      font-size: 20px;
+      line-height: 1.65;
+      letter-spacing: .01em;
+      caret-color: var(--accent);
+      overflow-y: auto; /* only content scrolls */
+      overflow-x: hidden; /* never horizontal scrollbar */
+      scrollbar-gutter: auto;
+      overscroll-behavior: contain;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      box-sizing: border-box;
+      scrollbar-width: none; /* Firefox: hide internal bar */
+      -ms-overflow-style: none; /* old Edge/IE */
+    }
+    .pageContent::-webkit-scrollbar{
+      width: 0 !important;
+      height: 0 !important;
+      display: none;
+    }
+    .pageContent::-webkit-scrollbar:horizontal{
+      height: 0;
+    }
+    .sliceAnchor{
+      display: block;
+      width: 0;
+      height: 0;
+      margin: 0;
+      padding: 0;
+      pointer-events: none;
+    }
+
+    /* pagination separator disabled (infinite scroll mode) */
+    .tear{
+      display: none;
+    }
+
+    /* =========================
+       SLICES (full width of page)
+       ========================= */
+    .slice{
+      display:block;
+      margin: .25em 0;
+      position: relative;
+      user-select: text;
+      white-space: normal; /* do not inherit editor pre-wrap */
+      line-height: 1.1;
+      --slice-gutter-w: 20px;
+      transform-origin: top center;
+      will-change: opacity, clip-path;
+    }
+    .sliceRow,
+    .sliceCard,
+    .sliceHead,
+    .sliceBody{
+      transition:
+        opacity var(--motion-fast) var(--ease-standard),
+        transform var(--motion-base) var(--ease-standard),
+        background-color var(--motion-fast) linear,
+        min-height var(--motion-fast) var(--ease-emphasis),
+        padding var(--motion-fast) var(--ease-standard);
+    }
+    .sliceRow{
+      clip-path: inset(0 0 0 0);
+      transition:
+        clip-path var(--motion-base) var(--ease-emphasis),
+        opacity var(--motion-fast) var(--ease-standard);
+    }
+    .slice.isEntering .sliceRow{
+      clip-path: inset(0 0 96% 0);
+      opacity: 0;
+    }
+    .slice.isEntering .sliceCard{
+      opacity: 0;
+    }
+    .slice.isEntering .sliceBody{
+      opacity: 0;
+    }
+
+    /* no decorative cut lines */
+    .slice::before,
+    .slice::after{
+      content: none;
+    }
+
+    /* === CUT: ocupar 100% do retângulo de escrita (pageContent) === */
+    .sliceRow{
+      position: relative;
+      width: calc(100% + (var(--page-pad) * 2));
+      margin-left: calc(-1 * var(--page-pad));
+      margin-right: calc(-1 * var(--page-pad));
+      padding-top: 10px; /* reserve space for top handle so text never overlaps */
+      overflow: visible;
+      align-items: stretch;
+    }
+    .sliceTopHandle{
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 10px;
+      z-index: 3;
+      cursor: url("assets/cursors/bibata-ice/pointer.svg") 9 3, pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      background: rgba(124,124,124,.10);
+      transition: background-color var(--motion-fast) linear;
+    }
+    .sliceTopHandle:hover{
+      background: rgba(110,110,110,.16);
+    }
+    .sliceDockBtn{
+      position: absolute;
+      top: 10px;
+      right: calc(var(--slice-gutter-w) + 12px); /* avoid conflict with close gutter */
+      width: 18px;
+      height: 12px;
+      border: none;
+      background: transparent;
+      cursor: url("assets/cursors/bibata-ice/pointer.svg") 9 3, pointer;
+      z-index: 6;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .sliceDockBtn::before{
+      content: "";
+      position: absolute;
+      left: 2px;
+      right: 2px;
+      top: 5px;
+      height: 2px;
+      border-radius: 2px;
+      background: rgba(0,0,0,.42);
+      transition: background-color var(--motion-fast) linear, transform var(--motion-fast) var(--ease-standard);
+    }
+    .sliceDockBtn:hover::before{
+      background: rgba(211,87,46,.62);
+      transform: scaleX(1.08);
+    }
+
+    .sliceRow::before{
+      content:"";
+      position:absolute;
+      inset: 0;
+      pointer-events:none;
+      opacity: 1;
+      transition: opacity var(--motion-base) var(--ease-standard);
+      background:
+        linear-gradient(to right, var(--grid-2) 1px, transparent 1px) 0 0 / 44px 44px,
+        linear-gradient(to bottom, var(--grid-2) 1px, transparent 1px) 0 0 / 44px 44px,
+        rgba(22, 22, 22, .035);
+      box-shadow:
+        inset 0 10px 20px rgba(0,0,0,.03),
+        inset 0 0 0 1px rgba(0,0,0,.035);
+    }
+
+    /* o conteúdo do corte agora é full-width (sem grid, sem padding lateral extra) */
+    .sliceCard{
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      border-radius: 0;
+      border: none;
+      background: transparent;
+      box-shadow: none;
+      overflow: visible;
+      padding: .2em var(--page-pad);
+      margin: 0;
+      min-height: 0;
+      width: 100%;
+      box-sizing: border-box;
+      white-space: normal;
+    }
+
+    .sliceHead{
+      display:flex;
+      justify-content: space-between;
+      gap: 6px;
+      padding-bottom: .12em;
+      border-bottom: none;
+      align-items: baseline;
+      line-height: 1.15;
+      white-space: normal;
+    }
+    .sliceHead::after{
+      content: "";
+      display: none;
+    }
+
+    .badge{
+      font-size: 11px;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.60);
+      display:flex;
+      gap: 8px;
+      align-items: baseline;
+    }
+    .badge strong{
+      color: var(--accent);
+      font-weight: 800;
+      letter-spacing: .10em;
+      border-left: 3px solid var(--accent);
+      padding-left: 10px;
+    }
+
+    .sliceMeta{
+      font-size: 11px;
+      color: rgba(0,0,0,.45);
+      white-space: normal;
+      overflow-wrap: anywhere;
+      text-align: right;
+      line-height: 1.15;
+    }
+
+    .sliceBody{
+      padding-top: 1em; /* one-line distance from title/meta */
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: .2em;
+      white-space: normal;
+      overflow: hidden;
+    }
+
+    /* minimized slice: one compact gray line, full width */
+    .slice.isMinimized .sliceCard{
+      padding: 0 var(--page-pad);
+      grid-template-rows: auto 0fr;
+    }
+    .slice.isMinimized .sliceRow{
+      padding-top: 4px;
+    }
+    .slice.isMinimized .sliceTopHandle{
+      height: 4px;
+    }
+    .slice.isMinimized .sliceRow::before{
+      background: rgba(0,0,0,.04);
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.06);
+    }
+    .slice.isMinimized .sliceHead{
+      min-height: 20px;
+      height: 20px;
+      padding: 2px 0;
+      align-items: center;
+      border: none;
+      overflow: hidden;
+    }
+    .slice.isMinimized .sliceBody{
+      opacity: 0;
+      transform: none;
+      max-height: 0;
+      padding-top: 0;
+      pointer-events: none;
+      display: none;
+    }
+    .slice.isMinimized .badge,
+    .slice.isMinimized .sliceMeta{
+      color: rgba(0,0,0,.62);
+      font-size: 10px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .slice.isMinimized .badge strong{
+      border-left: none;
+      padding-left: 0;
+      color: rgba(0,0,0,.66);
+    }
+    .slice.isMinimized .sliceHead::after{
+      content: "minimizado";
+      display: inline-block;
+      margin-left: auto;
+      color: rgba(0,0,0,.45);
+      font-size: 10px;
+      letter-spacing: .02em;
+      text-transform: lowercase;
+      white-space: nowrap;
+    }
+    .slice:not(.isMinimized) .sliceBody{
+      opacity: 1;
+      transform: none;
+    }
+    .slice.isClosing{
+      pointer-events: none;
+    }
+    .slice.isClosing .sliceCard{
+      opacity: 0;
+      transform: none;
+    }
+    .slice.isClosing .sliceBody{
+      opacity: 0;
+      transform: none;
+    }
+    .slice.isClosing .sliceRow::before{
+      opacity: 0;
+      transition: opacity .18s ease;
+    }
+    .slice.isClosing .sliceRow{
+      clip-path: inset(0 0 96% 0);
+      opacity: 0;
+    }
+
+    .panel{
+      border-radius: 0;
+      border: none;
+      background: transparent;
+      box-shadow: none;
+      overflow: visible;
+      white-space: normal;
+    }
+    .panelHeader{
+      padding: 0;
+      border-bottom: none;
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.52);
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .panelBody{
+      padding: 0;
+      color: rgba(0,0,0,.78);
+      font-size: 13px;
+      line-height: 1.3;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .debugPanel{
+      opacity: .72;
+      font-size: .96em;
+    }
+
+    /* gutters NÃO comem largura: ficam fora, por position absolute */
+    .gutter{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: var(--slice-gutter-w);
+      cursor: url("assets/cursors/bibata-ice/pointer.svg") 9 3, pointer;
+      z-index: 4;
+      background: rgba(0,0,0,.03);
+      opacity: .14;
+      transition:
+        opacity var(--motion-fast) var(--ease-standard),
+        transform var(--motion-fast) var(--ease-standard),
+        background-color var(--motion-fast) linear;
+    }
+    .gutter::before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(211,87,46,.14);
+      opacity: 0;
+      transform: scaleX(1);
+      pointer-events: none;
+      transition:
+        opacity 220ms var(--ease-standard),
+        transform 360ms var(--ease-emphasis);
+    }
+    .gutter::after{
+      content: "×";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(.84);
+      font-size: 12px;
+      line-height: 1;
+      color: rgba(0,0,0,.58);
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        opacity 120ms var(--ease-standard),
+        transform 240ms var(--ease-emphasis);
+      transition-delay: 0ms;
+    }
+    .gutter.left  { left: 0; }
+    .gutter.right { right: 0; }
+    .gutter.left{
+      transform: translateX(-4px);
+      transform-origin: left center;
+    }
+    .gutter.right{
+      transform: translateX(4px);
+      transform-origin: right center;
+    }
+    .sliceRow:hover .gutter{
+      opacity: .22;
+      transform: translateX(0);
+    }
+    .gutter.left:hover{
+      background: rgba(211,87,46,.14);
+      opacity: .92;
+      transform: translateX(0);
+    }
+    .gutter.right:hover{
+      background: rgba(211,87,46,.14);
+      opacity: .92;
+      transform: translateX(0);
+    }
+    .gutter:hover::before{
+      opacity: .95;
+      transform: scaleX(1.2);
+      transition-delay: 900ms; /* reinforce only if cursor stays */
+    }
+    .gutter:hover::after{
+      opacity: .72;
+      transform: translate(-50%, -50%) scale(1);
+      transition-delay: 980ms; /* show X shortly after delayed expand */
+    }
+
+    /* footer status */
+    .statusBar{
+      display: none;
+    }
+
+    @media (max-width: 920px){
+      :root{
+        --page-pad: 34px;
+        --page-height: 900px;
+      }
+      .sliceBody{ grid-template-columns: 1fr; }
+      .slice{ --slice-gutter-w: 14px; }
+      .sliceTag{
+        font-size: 9px;
+      }
+      .flowMarker{
+        font-size: 9px;
+        min-width: 74px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .sliceRow,
+      .sliceCard,
+      .sliceHead,
+      .sliceBody,
+      .sliceTopHandle,
+      .gutter,
+      .gutter::after,
+      .sliceTag,
+      .sliceDockBtn::before{
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body data-ui-version="v2">
+  <div class="app">
+    <div class="frame">
+      <div class="chrome" aria-hidden="true">
+        <span class="dot a"></span><span class="dot b"></span><span class="dot c"></span>
+      </div>
+
+      <div class="topbar">
+        eskrev: --d define • --v vocabulário • --h ajuda • --c consulta • topo minimiza/abre • laterais fecham
+      </div>
+
+      <div class="viewport">
+        <div id="pages" class="pages" aria-label="Documento">
+          <div class="page" data-page="1">
+            <div class="pageContent" id="page1" contenteditable="true" spellcheck="false" aria-label="Editor página 1">
+Querido e gentil leitor, doravante --d
+
+Continue escrevendo. Abra cortes. Eles não “contam” para virar página.
+            </div>
+          </div>
+        </div>
+        <aside id="pageFlowRail" class="pageFlowMarkers" aria-label="Indicadores de páginas virtuais"></aside>
+        <aside id="sliceDockRail" class="sliceDock" aria-label="Tags de cortes"></aside>
+      </div>
+      <div id="outerScroll" class="outerScroll" aria-label="Rolagem do conteúdo">
+        <div id="outerScrollSizer" class="outerScrollSizer"></div>
+      </div>
+
+      <div class="statusBar"><span id="status">ready</span></div>
+    </div>
+  </div>
+
+  <script>
+    const pagesEl = document.getElementById('pages');
+    const statusEl = document.getElementById('status');
+    const topbarEl = document.querySelector('.topbar');
+    const viewportEl = document.querySelector('.viewport');
+    const outerScrollEl = document.getElementById('outerScroll');
+    const outerScrollSizerEl = document.getElementById('outerScrollSizer');
+    const pageFlowRailEl = document.getElementById('pageFlowRail');
+    const sliceDockEl = document.getElementById('sliceDockRail');
+
+    const vocab = {
+      "doravante": "A partir de agora; daqui em diante.",
+      "outrossim": "Além disso; do mesmo modo; igualmente.",
+      "amiúde": "Com frequência; muitas vezes.",
+      "destarte": "Dessa maneira; portanto.",
+      "mormente": "Principalmente; sobretudo.",
+    };
+
+    let sliceId = 0;
+    let dockAnchorId = 0;
+    let syncOuterLock = false;
+    let syncInnerLock = false;
+    const dockOffsetX = 20;
+    const dockOffsetY = 0;
+    const flowOffsetY = 0;
+
+    function setStatus(msg){ statusEl.textContent = msg; }
+
+    function fitTopbar(){
+      if(!topbarEl) return;
+      topbarEl.style.setProperty('--topbar-scale', '1');
+      const usable = Math.max(1, topbarEl.clientWidth - 4);
+      const needed = Math.max(1, topbarEl.scrollWidth);
+      const scale = needed > usable ? Math.max(0.72, usable / needed) : 1;
+      topbarEl.style.setProperty('--topbar-scale', String(scale));
+    }
+
+    function positionSliceDockRail(){
+      if(!sliceDockEl || !viewportEl) return;
+      const page = document.querySelector('.page');
+      if(!page){
+        sliceDockEl.style.display = 'none';
+        return;
+      }
+      const content = page.querySelector('.pageContent');
+      if(!content){
+        sliceDockEl.style.display = 'none';
+        return;
+      }
+      const viewportRect = viewportEl.getBoundingClientRect();
+      const pageRect = page.getBoundingClientRect();
+      const contentRect = content.getBoundingClientRect();
+      const left = Math.round(pageRect.right - viewportRect.left + dockOffsetX);
+      const top = Math.round(contentRect.top - viewportRect.top + dockOffsetY);
+      const height = Math.max(0, Math.round(contentRect.height));
+      sliceDockEl.style.display = 'block';
+      sliceDockEl.style.left = `${left}px`;
+      sliceDockEl.style.top = `${top}px`;
+      sliceDockEl.style.height = `${height}px`;
+    }
+
+    function positionPageFlowRail(contentEl){
+      if(!pageFlowRailEl || !viewportEl || !contentEl) return;
+      const page = contentEl.closest('.page');
+      if(!page){
+        pageFlowRailEl.style.display = 'none';
+        return;
+      }
+      const cs = getComputedStyle(contentEl);
+      const padTop = parseFloat(cs.paddingTop) || 0;
+      const padBottom = parseFloat(cs.paddingBottom) || 0;
+      const padLeft = parseFloat(cs.paddingLeft) || 0;
+      const viewportRect = viewportEl.getBoundingClientRect();
+      const pageRect = page.getBoundingClientRect();
+      const left = Math.round(pageRect.left - viewportRect.left + padLeft);
+      const top = Math.round(pageRect.top - viewportRect.top + padTop + flowOffsetY);
+      const height = Math.max(0, Math.round(pageRect.height - padTop - padBottom - flowOffsetY));
+      pageFlowRailEl.style.display = 'block';
+      pageFlowRailEl.style.left = `${left}px`;
+      pageFlowRailEl.style.top = `${top}px`;
+      pageFlowRailEl.style.height = `${height}px`;
+    }
+
+    function getDockTagBounds(tag){
+      const dock = tag.parentElement;
+      const dockHeight = dock ? dock.clientHeight : 0;
+      // With transform-origin: top right + rotate(90deg), the visual box extends UP by its own rotated height.
+      // So top clamp must include this upward protrusion.
+      const visualHeight = Math.max(18, Math.ceil(tag.getBoundingClientRect().height || tag.offsetWidth || 108));
+      const edgeGap = 3; // keep 3px breathing room from top and bottom of pageContent rail
+      const minTop = visualHeight + edgeGap;
+      const maxTop = Math.max(minTop, dockHeight - edgeGap);
+      return { minTop, maxTop };
+    }
+
+    function positionDockTag(tag){
+      const hasManualTop = Object.prototype.hasOwnProperty.call(tag.dataset, 'manualTop');
+      const manualTop = Number(tag.dataset.manualTop);
+      if(hasManualTop && Number.isFinite(manualTop)){
+        const { minTop, maxTop } = getDockTagBounds(tag);
+        const clamped = Math.min(Math.max(minTop, manualTop), maxTop);
+        tag.style.top = `${Math.round(clamped)}px`;
+        return;
+      }
+
+      const anchorId = tag.dataset.anchorId;
+      if(!anchorId) return;
+      const anchor = document.getElementById(anchorId);
+      if(!anchor) return;
+      const page = anchor.closest('.page');
+      if(!page) return;
+      const content = page.querySelector('.pageContent');
+      const contentRect = content ? content.getBoundingClientRect() : page.getBoundingClientRect();
+      const anchorRect = anchor.getBoundingClientRect();
+      const top = Math.round(anchorRect.top - contentRect.top + 2);
+      const { minTop, maxTop } = getDockTagBounds(tag);
+      const clamped = Math.min(Math.max(minTop, top), maxTop);
+      tag.style.top = `${clamped}px`;
+    }
+
+    function refreshDockTags(){
+      document.querySelectorAll('.sliceTag[data-anchor-id]').forEach((tag) => {
+        positionDockTag(tag);
+      });
+    }
+
+    function syncOuterScrollerMetric(contentEl){
+      if(!outerScrollEl || !outerScrollSizerEl || !contentEl) return;
+      const maxInner = Math.max(0, contentEl.scrollHeight - contentEl.clientHeight);
+      const targetHeight = outerScrollEl.clientHeight + maxInner;
+      outerScrollSizerEl.style.height = `${Math.max(outerScrollEl.clientHeight, targetHeight)}px`;
+    }
+
+    function syncOuterScrollerFromContent(contentEl){
+      if(!outerScrollEl || !contentEl || syncInnerLock) return;
+      syncOuterLock = true;
+      outerScrollEl.scrollTop = contentEl.scrollTop;
+      syncOuterLock = false;
+    }
+
+    function syncFlowPageMarkers(contentEl, { allowGrowth = true } = {}){
+      const page = contentEl.closest('.page');
+      if(!page) return;
+      const layer = pageFlowRailEl || page.querySelector('.pageFlowMarkers');
+      if(!layer) return;
+
+      const cs = getComputedStyle(contentEl);
+      const padTop = parseFloat(cs.paddingTop) || 0;
+      const padBottom = parseFloat(cs.paddingBottom) || 0;
+      const padLeft = parseFloat(cs.paddingLeft) || 0;
+
+      positionPageFlowRail(contentEl);
+      const liveMetric = Math.max(1, contentEl.clientHeight - padTop - padBottom); // writable area height
+      const metric = Number(contentEl.dataset.pageMetric || "0") || liveMetric;
+      if(!contentEl.dataset.pageMetric){
+        contentEl.dataset.pageMetric = String(metric); // lock metric to avoid resize/zoom marker jumps
+      }
+      const totalRaw = Math.max(metric, contentEl.scrollHeight - padTop - padBottom);
+      const total = Math.max(metric, totalRaw);
+      const eps = 2; // avoid phantom extra page by rounding noise
+      const adjustedTotal = Math.max(metric, total - eps);
+      const stableCount = Math.max(1, Math.ceil(adjustedTotal / metric));
+      const prevMax = Number(contentEl.dataset.maxPagesSeen || "1");
+      const maxSeen = allowGrowth ? Math.max(prevMax, stableCount) : prevMax;
+      contentEl.dataset.maxPagesSeen = String(maxSeen);
+      const slot = 16; // fixed marker slots; compact like reference
+      const bornTop = Number(layer.dataset.bornTop || "0") || 2; // start from top of page/rail
+      if(!layer.dataset.bornTop){
+        layer.dataset.bornTop = String(bornTop);
+      }
+
+      for(let i = 1; i <= maxSeen; i += 1){
+        const id = `pg-${i}`;
+        let tag = layer.querySelector(`.flowMarker[data-id="${id}"]`);
+        if(!tag){
+          tag = document.createElement('span');
+          tag.className = 'flowMarker';
+          tag.dataset.id = id;
+          tag.textContent = `PG${String(i).padStart(2, '0')}`;
+          layer.appendChild(tag);
+        }
+
+        // Fixed in content coordinates; moves with scroll.
+        const anchorY = bornTop + ((i - 1) * metric);
+        const y = anchorY - contentEl.scrollTop;
+        const layerHeight = layer.clientHeight || page.clientHeight;
+        const visible = y > -14 && y < (layerHeight - 2);
+        tag.style.top = `${Math.round(y)}px`;
+        tag.style.opacity = visible ? ".82" : "0";
+      }
+    }
+
+    function resetFlowMarkerState(contentEl){
+      const page = contentEl.closest('.page');
+      if(!page) return;
+      const layer = pageFlowRailEl || page.querySelector('.pageFlowMarkers');
+      if(!layer) return;
+      layer.innerHTML = "";
+      delete layer.dataset.bornTop;
+      delete contentEl.dataset.pageMetric;
+      delete contentEl.dataset.maxPagesSeen;
+    }
+
+    function currentPageEditable(){
+      // activeElement may be a pageContent div
+      const ae = document.activeElement;
+      if(ae && ae.classList && ae.classList.contains('pageContent')) return ae;
+      // fallback: first page
+      return document.querySelector('.pageContent');
+    }
+
+    function getSelectionRange(){
+      const sel = window.getSelection();
+      if(!sel || sel.rangeCount === 0) return null;
+      return sel.getRangeAt(0);
+    }
+
+    function getTextBeforeCaretWithin(el){
+      const range = getSelectionRange();
+      if(!range) return "";
+      // ensure selection inside this el
+      if(!el.contains(range.endContainer)) return "";
+      const pre = range.cloneRange();
+      pre.selectNodeContents(el);
+      pre.setEnd(range.endContainer, range.endOffset);
+      return pre.toString();
+    }
+
+    function deleteCharsBeforeCaretWithin(el, n){
+      const range = getSelectionRange();
+      if(!range) return;
+      if(!el.contains(range.startContainer)) return;
+
+      const pre = range.cloneRange();
+      pre.collapse(true);
+
+      let remaining = n;
+
+      function prevTextNode(node){
+        const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+        let prev = null;
+        while(walker.nextNode()){
+          if(walker.currentNode === node) return prev;
+          prev = walker.currentNode;
+        }
+        return prev;
+      }
+
+      let node = pre.startContainer;
+      let offset = pre.startOffset;
+
+      if(node.nodeType !== Node.TEXT_NODE){
+        // find last text node
+        const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+        let last = null;
+        while(walker.nextNode()) last = walker.currentNode;
+        if(!last) return;
+        node = last;
+        offset = last.textContent.length;
+      }
+
+      while(remaining > 0 && node){
+        const take = Math.min(remaining, offset);
+        const start = offset - take;
+
+        const del = document.createRange();
+        del.setStart(node, start);
+        del.setEnd(node, offset);
+        del.deleteContents();
+
+        remaining -= take;
+        if(remaining <= 0) break;
+
+        node = prevTextNode(node);
+        offset = node ? node.textContent.length : 0;
+      }
+    }
+
+    function insertNodeAtCaret(node){
+      const range = getSelectionRange();
+      if(!range) return;
+      range.collapse(false);
+      range.insertNode(node);
+
+      // move caret after
+      const sel = window.getSelection();
+      const after = document.createRange();
+      after.setStartAfter(node);
+      after.collapse(true);
+      sel.removeAllRanges();
+      sel.addRange(after);
+    }
+
+    function insertTextAtCaret(text){
+      const range = getSelectionRange();
+      if(!range) return;
+      range.deleteContents();
+      const node = document.createTextNode(text);
+      range.insertNode(node);
+      const sel = window.getSelection();
+      const after = document.createRange();
+      after.setStartAfter(node);
+      after.collapse(true);
+      sel.removeAllRanges();
+      sel.addRange(after);
+    }
+
+    function escapeHtml(s){
+      return String(s ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    function makeSlice({badge, title, kind, kindKey, meta, body, debug}){
+      const root = document.createElement('div');
+      root.className = 'slice isEntering';
+      root.setAttribute('contenteditable', 'false');
+      root.dataset.sliceId = String(++sliceId);
+      root.dataset.kind = kindKey || 'unknown';
+
+      root.innerHTML = `
+        <div class="sliceRow">
+          <div class="sliceTopHandle" title="Minimizar/expandir corte"></div>
+          <button class="sliceDockBtn" type="button" title="Enviar para lateral"></button>
+          <div class="gutter left" title="Fechar corte"></div>
+
+          <div class="sliceCard">
+            <div class="sliceHead">
+              <div class="badge"><strong>${escapeHtml(badge)}</strong> <span>${escapeHtml(title)}</span></div>
+              <div class="sliceMeta">${escapeHtml(meta || "")}</div>
+            </div>
+            <div class="sliceBody">
+              <div class="panel">
+                <div class="panelBody">${escapeHtml(body)}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="gutter right" title="Fechar corte"></div>
+        </div>
+      `;
+
+      const closeWithAnimation = () => {
+        if(root.classList.contains('isClosing')) return;
+        root.classList.add('isClosing');
+        const removeNow = () => {
+          if(root.parentNode) root.remove();
+        };
+        root.addEventListener('transitionend', removeNow, { once: true });
+        setTimeout(removeNow, 420);
+      };
+
+      const dockSlice = () => {
+        const page = root.closest('.page');
+        const dock = sliceDockEl || document.querySelector('.sliceDock');
+        if(!dock) return;
+        if(root.classList.contains('isClosing')) return;
+
+        const parent = root.parentNode;
+        if(!parent) return;
+
+        const anchor = document.createElement('span');
+        anchor.className = 'sliceAnchor';
+        anchor.id = `sliceAnchor${++dockAnchorId}`;
+        anchor.setAttribute('contenteditable', 'false');
+        parent.insertBefore(anchor, root.nextSibling);
+
+        const tag = document.createElement('button');
+        tag.type = 'button';
+        tag.className = `sliceTag k-${root.dataset.kind || 'unknown'}`;
+        tag.textContent = `${badge} ${title}`;
+        tag.title = `Reabrir ${title}`;
+        tag.dataset.sliceId = root.dataset.sliceId;
+        tag.dataset.anchorId = anchor.id;
+
+        let drag = null;
+        let moved = false;
+        const dragThreshold = 4;
+        const stopDrag = () => {
+          drag = null;
+          tag.classList.remove('isDragging');
+        };
+        const onPointerMove = (ev) => {
+          if(!drag) return;
+          const nextTop = drag.startTop + (ev.clientY - drag.startY);
+          const { minTop, maxTop } = getDockTagBounds(tag);
+          const clampedTop = Math.min(Math.max(minTop, nextTop), maxTop);
+          tag.dataset.manualTop = String(clampedTop);
+          tag.style.top = `${Math.round(clampedTop)}px`;
+          if(Math.abs(ev.clientY - drag.startY) > dragThreshold){
+            moved = true;
+          }
+        };
+        const onPointerUp = () => {
+          stopDrag();
+        };
+
+        tag.addEventListener('pointerdown', (ev) => {
+          if(ev.button !== 0) return;
+          const currentTop = Number.parseFloat(tag.style.top || "0");
+          drag = {
+            startY: ev.clientY,
+            startTop: Number.isFinite(currentTop) ? currentTop : 0
+          };
+          moved = false;
+          tag.classList.add('isDragging');
+          tag.setPointerCapture(ev.pointerId);
+          ev.preventDefault();
+        });
+
+        tag.addEventListener('pointermove', onPointerMove);
+        tag.addEventListener('pointerup', (ev) => {
+          onPointerUp();
+          try{ tag.releasePointerCapture(ev.pointerId); } catch(_e){}
+        });
+        tag.addEventListener('pointercancel', onPointerUp);
+
+        tag.addEventListener('click', () => {
+          if(moved){
+            moved = false;
+            return;
+          }
+          const targetContent = page ? page.querySelector('.pageContent') : document.getElementById('page1');
+          if(targetContent){
+            targetContent.appendChild(root);
+            root.classList.add('isEntering');
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => root.classList.remove('isEntering'));
+            });
+            const anchorEl = document.getElementById(tag.dataset.anchorId || "");
+            if(anchorEl) anchorEl.remove();
+            tag.remove();
+            setStatus(`reopened: ${title}`);
+          }
+        });
+
+        dock.prepend(tag);
+        positionSliceDockRail();
+        positionDockTag(tag);
+        root.remove();
+        setStatus(`docked: ${title}`);
+      };
+
+      // top border toggles minimize/expand; side gutters close
+      const toggle = () => root.classList.toggle('isMinimized');
+      const topHandle = root.querySelector('.sliceTopHandle');
+      const dockBtn = root.querySelector('.sliceDockBtn');
+      topHandle.addEventListener('click', toggle);
+      dockBtn.addEventListener('click', (ev) => {
+        ev.stopPropagation();
+        dockSlice();
+      });
+      root.querySelector('.gutter.left').addEventListener('click', closeWithAnimation);
+      root.querySelector('.gutter.right').addEventListener('click', closeWithAnimation);
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          root.classList.remove('isEntering');
+        });
+      });
+
+      return root;
+    }
+
+    function getLastWordBeforeToken(textBeforeCaret, token){
+      const idx = textBeforeCaret.lastIndexOf(token);
+      if(idx === -1) return "";
+      const before = textBeforeCaret.slice(0, idx).trimEnd();
+      const m = before.match(/([A-Za-zÀ-ÿ0-9_-]+)\s*$/);
+      return m ? m[1] : "";
+    }
+
+    function handleCommand(el, cmd, wordOverride){
+      const token = `--${cmd}`;
+      const textBefore = getTextBeforeCaretWithin(el);
+      const word = wordOverride ?? ((cmd === 'd' || cmd === 'c') ? getLastWordBeforeToken(textBefore, token) : "");
+
+      const debug = [
+        `command: ${token}`,
+        `word: ${word || "(none)"}`,
+        `pagination: disabled (infinite scroll)`,
+        `top: minimize/expand | gutters: close`
+      ].join('\n');
+
+      if(cmd === 'h'){
+        return makeSlice({
+          badge: "01",
+          title: "HELP",
+          kind: "Help",
+          kindKey: "help",
+          meta: "comandos e regras",
+          body:
+`- palavra --d  → define a palavra anterior
+- --v          → vocabulário local
+- --c          → consulta (placeholder)
+- --h          → ajuda
+
+Topo do corte: minimiza/abre.
+Laterais (gutter): fecham o corte.
+Você continua escrevendo sempre.`,
+          debug
+        });
+      }
+
+      if(cmd === 'v'){
+        const list = Object.entries(vocab).map(([k,v]) => `• ${k} — ${v}`).join('\n');
+        return makeSlice({
+          badge: "02",
+          title: "VOCAB",
+          kind: "Vocabulary",
+          kindKey: "vocab",
+          meta: `${Object.keys(vocab).length} entradas`,
+          body: list || "(vazio)",
+          debug
+        });
+      }
+
+      if(cmd === 'd'){
+        const w = (word || "").toLowerCase();
+        const def = vocab[w] || `Não encontrei definição local para “${word}”.\n\n(Depois ligamos seu dicionário real / base offline.)`;
+        return makeSlice({
+          badge: "03",
+          title: "DEFINE",
+          kind: "Definition",
+          kindKey: "define",
+          meta: word ? `“${word}”` : "nenhuma palavra detectada",
+          body: def,
+          debug
+        });
+      }
+
+      if(cmd === 'c'){
+        return makeSlice({
+          badge: "04",
+          title: "CONSULT",
+          kind: "Consult",
+          kindKey: "consult",
+          meta: word ? `termo: ${word}` : "termo: (vazio)",
+          body:
+`Aqui entra sua consulta real (transplante do legado):
+- buscar local
+- buscar em notas
+- chamar app.js via adapter
+- etc`,
+          debug
+        });
+      }
+
+      return makeSlice({
+        badge: "00",
+        title: "UNKNOWN",
+        kind: "Error",
+        kindKey: "unknown",
+        meta: token,
+        body: `Não existe handler para ${token}.`,
+        debug
+      });
+    }
+
+    function maybeTriggerCommand(el){
+      const textBefore = getTextBeforeCaretWithin(el);
+      const m = textBefore.match(/--([a-z])\s*$/i);
+      if(!m) return;
+
+      const cmd = (m[1] || "").toLowerCase();
+      const token = `--${cmd}`;
+      const tokenLen = token.length;
+      const word = (cmd === 'd' || cmd === 'c') ? getLastWordBeforeToken(textBefore, token) : "";
+
+      // remove token
+      deleteCharsBeforeCaretWithin(el, tokenLen);
+
+      // insert slice
+      const sliceNode = handleCommand(el, cmd, word);
+      insertNodeAtCaret(sliceNode);
+
+      setStatus(`slice: --${cmd}`);
+    }
+
+    // pagination removed: infinite single document
+
+    // ====== wiring ======
+    function wirePage(el){
+      let t = null;
+      resetFlowMarkerState(el);
+      el.addEventListener('keydown', (ev) => {
+        if(ev.key !== 'Enter') return;
+        ev.preventDefault();
+        insertTextAtCaret('\n');
+        el.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      el.addEventListener('input', () => {
+        clearTimeout(t);
+        t = setTimeout(() => {
+          maybeTriggerCommand(el);
+          syncFlowPageMarkers(el, { allowGrowth: true });
+          syncOuterScrollerMetric(el);
+          syncOuterScrollerFromContent(el);
+        }, 60);
+      });
+      el.addEventListener('scroll', () => {
+        syncFlowPageMarkers(el, { allowGrowth: false });
+        syncOuterScrollerMetric(el);
+        syncOuterScrollerFromContent(el);
+      });
+      syncFlowPageMarkers(el, { allowGrowth: true });
+      syncOuterScrollerMetric(el);
+      syncOuterScrollerFromContent(el);
+      positionPageFlowRail(el);
+      positionSliceDockRail();
+    }
+
+    // wire first page
+    wirePage(document.getElementById('page1'));
+    positionSliceDockRail();
+    fitTopbar();
+    window.addEventListener('resize', fitTopbar);
+
+    if(outerScrollEl){
+      outerScrollEl.addEventListener('scroll', () => {
+        if(syncOuterLock) return;
+        const el = currentPageEditable() || document.getElementById('page1');
+        if(!el) return;
+        syncInnerLock = true;
+        el.scrollTop = outerScrollEl.scrollTop;
+        syncInnerLock = false;
+        syncFlowPageMarkers(el, { allowGrowth: false });
+        refreshDockTags();
+      });
+    }
+
+    window.addEventListener('resize', () => {
+      const el = document.getElementById('page1');
+      if(el) positionPageFlowRail(el);
+      positionSliceDockRail();
+      refreshDockTags();
+      if(el){
+        syncOuterScrollerMetric(el);
+        syncOuterScrollerFromContent(el);
+      }
+    });
+
+    // focus first page
+    document.getElementById('page1').focus();
+    setStatus('ready');
+  </script>
+</body>
+</html>

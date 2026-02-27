@@ -4,126 +4,781 @@
 @import 'layout.css';
 @import 'components.css';
 @import 'mobile-only.css';
+@import 'tokens_iso.css';
+@import 'theme_iso.css';
 
 /* -------------------------------------------------------------------------- */
-/* Stability Patch - layout/theme integrity                                   */
+/* The Basics Fix - Whitespace, Hierarchy, Grid, Simplicity                  */
 /* -------------------------------------------------------------------------- */
 :root {
-  --stb-radius: 12px;
+  --ui-content-max: 1200px;
+  --ui-gutter: clamp(16px, 2vw, 32px);
+  --ui-space-1: 8px;
+  --ui-space-2: 16px;
+  --ui-space-3: 24px;
+  --ui-space-4: 32px;
+  --ui-space-5: 48px;
+  --ui-space-6: 64px;
+  --ui-text-primary: #1a1a1a;
+  --ui-text-secondary: #6d6f75;
+  --ui-surface: color-mix(in srgb, var(--bg-core) 94%, #f5f5f7);
+  --ui-accent: #2f5bff;
+  --ui-radius: 8px;
+  --hairline: var(--hairline-base);
+  --editor-measure-ch: 72ch;
+  --editor-page-pad-inline: clamp(22px, 2.2vw, 42px);
+  --editor-page-pad-block: clamp(26px, 2.6vw, 54px);
 }
 
 body.layout-2030 {
   overflow-x: hidden;
+  color: var(--ui-text-primary);
 }
 
-/* Keep current theme variables intact; only normalize geometry and rhythm. */
-body.layout-2030 .panel,
-body.layout-2030 .drawer,
-body.layout-2030 .notes-panel,
-body.layout-2030 .modal-box,
-body.layout-2030 .controls-inner {
-  border-radius: var(--stb-radius);
+body.layout-2030 #frame {
+  inset: var(--ui-gutter);
 }
 
-/* Centering integrity for editor/books stage */
-body.layout-2030 #editorView,
-body.layout-2030 #booksView,
-body.layout-2030 #verifyView {
-  width: 100%;
-}
-
-body.layout-2030 #editorWrap {
-  width: min(64ch, 100%);
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Hero remains expressive but lightweight */
-body.layout-2030 .logo-area .marquee-content {
-  animation: eskrevHeroIn 420ms cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-/* Desktop grid: drawer column must not reserve space when closed */
+/* LEI 1 + LEI 3: container central e alinhamento matemático */
 @media (min-width: 901px) {
   body.layout-2030 #frame {
-    grid-template-columns: clamp(56px, 4.8vw, 68px) minmax(0, 1fr) 0;
+    left: 50%;
+    right: auto;
+    top: var(--ui-gutter);
+    bottom: var(--ui-gutter);
+    width: min(calc(100vw - (2 * var(--ui-gutter))), var(--ui-content-max));
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr) 0;
     grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: var(--ui-space-4);
   }
 
   body.layout-2030.drawer-open #frame {
-    grid-template-columns: clamp(56px, 4.8vw, 68px) minmax(0, 1fr) clamp(280px, 23vw, 360px);
+    grid-template-columns: 64px minmax(0, 1fr) clamp(280px, 26vw, 360px);
   }
 
   body.layout-2030 .logo-area {
     grid-column: 2 / 4;
+    grid-row: 1;
+    min-height: 88px;
+    padding-left: 0;
+    align-items: flex-end;
+    justify-self: stretch;
+  }
+
+  /* LEI 2: título mais forte */
+  body.layout-2030 .logo-area .marquee-content {
+    font-size: clamp(22px, 2.4vw, 42px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    font-weight: 620;
+    color: var(--ui-text-primary);
+    animation: uiTitleIn 380ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  body.layout-2030 .hud {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    width: 64px;
+    padding-top: var(--ui-space-3);
+    gap: var(--ui-space-2);
+    background: transparent;
   }
 
   body.layout-2030 .panel {
     grid-column: 2;
     grid-row: 2;
-    padding: clamp(12px, 1.8vw, 22px) clamp(14px, 2.2vw, 28px) clamp(10px, 1.6vw, 18px);
+    padding: var(--ui-space-5);
+    background: var(--ui-surface);
+    border: none;
+    box-shadow: none;
+    border-radius: var(--ui-radius);
   }
 
   body.layout-2030 #editorWrap {
-    margin-top: clamp(56px, 12vh, 154px);
+    width: min(62ch, 100%);
+    margin: var(--ui-space-4) auto 0;
+    padding: 0;
+  }
+
+  body.layout-2030 .controls {
+    grid-column: 2;
+    grid-row: 3;
+    margin-bottom: var(--ui-space-3);
+    justify-content: flex-start;
+  }
+
+  body.layout-2030 .controls-inner {
+    gap: var(--ui-space-2);
+    padding: 0 var(--ui-space-2);
+    min-height: 40px;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    border-radius: var(--ui-radius);
   }
 
   body.layout-2030 .drawer {
     grid-column: 3;
     grid-row: 1 / 4;
     width: 100%;
-    transform: translateX(-10px);
+    border: none;
+    background: var(--ui-surface);
+    box-shadow: none;
+    border-radius: var(--ui-radius);
     opacity: 0;
+    transform: translateX(-10px);
     pointer-events: none;
   }
 
   body.layout-2030 .drawer.open {
-    transform: translateX(0);
     opacity: 1;
+    transform: translateX(0);
     pointer-events: auto;
   }
 
   body.layout-2030 .notes-panel {
-    top: 80px;
-    bottom: 80px;
-    left: calc(var(--hud-w) + 8px);
-    width: clamp(280px, 23vw, 360px);
-  }
-
-  body.layout-2030 .controls {
-    margin-bottom: 14px;
+    top: calc(var(--ui-gutter) + 64px);
+    bottom: calc(var(--ui-gutter) + 64px);
+    left: calc(64px + var(--ui-space-2));
+    width: clamp(280px, 26vw, 360px);
+    border: none;
+    box-shadow: none;
+    border-radius: var(--ui-radius);
+    background: var(--ui-surface);
   }
 
   body.layout-2030 .desktop-footer-note {
-    bottom: 2px;
-    opacity: 0.42;
+    left: calc(var(--ui-gutter) + 64px + var(--ui-space-4));
+    bottom: 0;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    opacity: 0.52;
+    color: var(--ui-text-secondary);
   }
 }
 
-/* Mobile safety: preserve native mobile flow, avoid desktop overrides bleeding */
+/* LEI 2 + LEI 4: tipografia e ruído */
+body.layout-2030 #editor {
+  color: var(--ui-text-primary);
+  text-align: left;
+  line-height: 1.72;
+  font-size: clamp(17px, 1.24vw, 23px);
+  letter-spacing: 0;
+}
+
+body.layout-2030 .list-item-meta,
+body.layout-2030 .status-label,
+body.layout-2030 .desktop-footer-note,
+body.layout-2030 .help-text,
+body.layout-2030 .drawer-section-title,
+body.layout-2030 #drawerTitle {
+  color: var(--ui-text-secondary);
+}
+
+body.layout-2030 .panel,
+body.layout-2030 .drawer,
+body.layout-2030 .notes-panel,
+body.layout-2030 .modal-box,
+body.layout-2030 .controls-inner,
+body.layout-2030 .list-item,
+body.layout-2030 .list-folder,
+body.layout-2030 .notes-empty,
+body.layout-2030 .notes-search-row,
+body.layout-2030 .btn-full,
+body.layout-2030 .btn-half {
+  border: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
+}
+
+body.layout-2030 .btn-full,
+body.layout-2030 .btn-half,
+body.layout-2030 .btn,
+body.layout-2030 .btn-icon {
+  border-radius: var(--ui-radius);
+}
+
+body.layout-2030 .btn-full:hover,
+body.layout-2030 .btn-half:hover,
+body.layout-2030 .btn:hover,
+body.layout-2030 .btn-icon:hover {
+  background: color-mix(in srgb, var(--ui-accent) 12%, transparent);
+  color: var(--ui-text-primary);
+}
+
+body.layout-2030 .guide-rail,
+body.layout-2030 .goal-stars {
+  opacity: 0.34;
+}
+
+/* Mobile-first safety */
 @media (max-width: 900px) {
-  body.layout-2030 #editorWrap {
-    width: min(92vw, 64ch);
-    margin-top: 8px;
+  body.layout-2030 #frame {
+    inset: 10px;
+    transform: none;
+    width: auto;
+    left: 10px;
+    right: 10px;
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  body.layout-2030 .logo-area {
+    min-height: 48px;
+  }
+
+  body.layout-2030 .logo-area .marquee-content {
+    font-size: clamp(18px, 7vw, 28px);
+    line-height: 1;
   }
 
   body.layout-2030 .panel {
-    padding: 0 14px;
+    padding: var(--ui-space-3);
   }
 
-  body.layout-2030 .drawer,
-  body.layout-2030 .notes-panel {
-    border-radius: 0;
+  body.layout-2030 #editorWrap {
+    width: min(92vw, 62ch);
+    margin-top: var(--ui-space-2);
+  }
+
+  body.layout-2030 #editor {
+    font-size: 18px;
+    line-height: 1.64;
   }
 }
 
-@keyframes eskrevHeroIn {
+@keyframes uiTitleIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Paged cards: neutraliza o "palco" amplo no layout-2030 */
+@media (min-width: 901px) {
+  body.layout-2030.editor-paged .panel {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.layout-2030.editor-paged #editorView {
+    width: 100%;
+    justify-content: center;
+    overflow: visible;
+  }
+
+  body.layout-2030.editor-paged #workspace,
+  body.layout-2030.editor-paged #editorPane {
+    width: 100%;
+    background: transparent !important;
+  }
+
+  body.layout-2030.editor-paged .logo-area {
+    min-height: 22px;
+    padding-left: 0 !important;
+    margin-top: -6px;
+    align-items: flex-start;
+  }
+
+  body.layout-2030.editor-paged .logo-area .marquee-content {
+    font-size: clamp(17px, 1.5vw, 26px);
+    line-height: 1;
+    opacity: 0.92;
+  }
+
+  body.layout-2030.editor-paged #editorWrap {
+    --editor-visible-pages: 1;
+    width: min(calc((var(--editor-page-width) * var(--editor-visible-pages)) + (var(--editor-page-gap) * (var(--editor-visible-pages) - 1)) + 28px), 100%) !important;
+    max-width: min(calc((var(--editor-page-width) * var(--editor-visible-pages)) + (var(--editor-page-gap) * (var(--editor-visible-pages) - 1)) + 28px), 100%) !important;
+    min-width: min(var(--editor-page-width), 100%);
+    height: var(--editor-page-height) !important;
+    max-height: calc(100vh - 170px);
+    margin: 0 auto !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    background: transparent !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none;
+    overscroll-behavior-x: contain;
+    padding: 0 var(--editor-card-pad-inline) !important;
+  }
+  body.layout-2030.editor-paged #editorWrap::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  body.layout-2030.editor-paged #editor {
+    background: transparent !important;
+    width: auto !important;
+    max-width: none !important;
+    min-height: var(--editor-page-height) !important;
+    height: var(--editor-page-height) !important;
+    max-height: var(--editor-page-height) !important;
+    column-width: auto !important;
+    column-count: var(--editor-page-count, 1);
+    column-gap: var(--editor-page-gap);
+    column-fill: auto !important;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: none;
+    padding: 26px 0 !important;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
+    overflow: hidden !important;
+  }
+
+  body.layout-2030.editor-paged .page-card {
+    animation: pageCardIn 320ms cubic-bezier(0.22, 0.7, 0.26, 1) both;
+  }
+
+  body.layout-2030.editor-paged .page-card.is-entering {
+    animation: pageCardIn 420ms cubic-bezier(0.22, 0.7, 0.26, 1) both;
+  }
+
+  body.editor-paged .panel {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  body.layout-2030.editor-paged .desktop-footer-note {
+    display: block !important;
+    opacity: 0.62 !important;
+    left: calc(var(--ui-gutter) + 64px + 8px) !important;
+    bottom: 4px !important;
+  }
+}
+
+@keyframes pageCardIn {
+  from {
+    opacity: 0;
+    transform: translateX(24px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Toggle modo de página (barra inferior) */
+#btnPageMode .icon-mode {
+  display: none;
+}
+body.editor-mode-infinite #btnPageMode .icon-mode-infinite,
+body.editor-mode-browse #btnPageMode .icon-mode-browse {
+  display: inline-block;
+}
+
+#railMode .icon-mode {
+  display: none;
+}
+body.editor-mode-infinite #railMode .icon-mode-browse,
+body.editor-mode-browse #railMode .icon-mode-infinite {
+  display: inline-block;
+}
+
+body.editor-mode-browse .page-card {
+  opacity: 0.34;
+  transform: scale(0.985);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+body.editor-mode-browse .page-card.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+body.editor-mode-browse .page-card.is-ghost {
+  opacity: 0;
+}
+
+@media (min-width: 901px) {
+  /* ---------------------------------------------------------------------- */
+  /* triPage (browse mode)                                                  */
+  /* Invariants: center hero, ghost previews, base aligned, zero h-scroll. */
+  /* ---------------------------------------------------------------------- */
+  body.editor-mode-browse #editorWrap.triPage {
+    --tp-gap: clamp(22px, 2.2vw, 44px);
+    --tp-radius: 16px;
+    --tp-hero-scale: 1;
+    --tp-ghost-opacity: 0.38;
+    --tp-hero-width: var(--editor-page-width);
+    --tp-side-width: clamp(300px, 24vw, 420px);
+    --tp-hero-bg: color-mix(in srgb, var(--bg-drawer-solid, var(--bg-core)) 94%, #d4d4d4 6%);
+    --tp-ghost-bg: color-mix(in srgb, var(--bg-core) 96%, #efefef 4%);
+
+    width: min(
+      calc(var(--tp-side-width) + var(--tp-hero-width) + var(--tp-side-width) + (var(--tp-gap) * 2) + (var(--editor-card-pad-inline) * 2)),
+      100%
+    ) !important;
+    max-width: min(
+      calc(var(--tp-side-width) + var(--tp-hero-width) + var(--tp-side-width) + (var(--tp-gap) * 2) + (var(--editor-card-pad-inline) * 2)),
+      100%
+    ) !important;
+    overflow: hidden !important;
+    position: relative !important;
+    padding: 0 var(--editor-card-pad-inline) !important;
+  }
+
+  body.editor-mode-browse #editorWrap.triPage #pageMarkers {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, var(--tp-side-width)) minmax(0, var(--tp-hero-width)) minmax(0, var(--tp-side-width));
+    align-items: end;
+    justify-content: center;
+    gap: var(--tp-gap);
+    pointer-events: none;
+  }
+
+  body.editor-mode-browse #editorWrap.triPage #editorLayer {
+    position: absolute !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: min(100%, var(--tp-hero-width)) !important;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    padding: 0 !important;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  body.editor-mode-browse #editorWrap.triPage .page-card {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    width: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    height: 82% !important;
+    border-radius: var(--tp-radius) !important;
+    background: var(--tp-ghost-bg) !important;
+    opacity: var(--tp-ghost-opacity);
+    transform: none !important;
+    overflow: hidden !important;
+    pointer-events: auto;
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.05);
+  }
+
+  body.editor-mode-browse #editorWrap.triPage .page-card.is-active {
+    height: 100% !important;
+    background: var(--tp-hero-bg) !important;
+    opacity: 1 !important;
+    transform: scale(var(--tp-hero-scale)) !important;
+  }
+
+  body.editor-mode-browse #editorWrap.triPage .page-card.is-ghost {
+    opacity: 0 !important;
+    box-shadow: none !important;
+  }
+
+  body.editor-mode-browse #editorWrap.triPage .page-card-label {
+    top: auto;
+    bottom: 10px;
+    right: 14px;
+  }
+
+  body.editor-mode-browse #editorWrap.triPage .page-card-content {
+    position: absolute;
+    inset: 0;
+    padding: 42px var(--editor-card-pad-inline) 38px;
+    font-size: clamp(14px, 1.02vw, 18px);
+    line-height: 1.44;
+    white-space: pre-wrap;
+    overflow: hidden;
+    color: var(--color-text);
+    opacity: 0.95;
+    pointer-events: none;
+    min-width: 0;
+  }
+
+  body.editor-mode-browse #editorWrap.triPage .page-card.is-side .page-card-content::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 26%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), var(--tp-ghost-bg) 80%);
+  }
+
+  body.editor-mode-browse #editorWrap.triPage .page-card.is-active .page-card-content {
+    opacity: 1;
+    pointer-events: auto;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+
+  body.editor-mode-browse #editorWrap.triPage #editor {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: 100% !important;
+    padding: 0 !important;
+    background: transparent !important;
+    z-index: 1 !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    white-space: pre-wrap !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+    hyphens: none !important;
+    min-inline-size: 0 !important;
+    contain: content;
+    pointer-events: auto;
+  }
+
+  body.editor-mode-browse #editorWrap.triPage #editor:empty::before {
+    opacity: 0.56;
+  }
+
+}
+
+/* -------------------------------------------------------------------------- */
+/* Paged notebook - hard lock (evita texto fora do card)                      */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 901px) {
+  body.editor-paged #editorView {
+    overflow: visible !important;
+  }
+
+  body.editor-paged #editorWrap {
+    position: relative !important;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  body.editor-paged #editorWrap::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  body.editor-paged #pageMarkers {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+  }
+
+  body.editor-paged .page-card {
+    top: 0 !important;
+    bottom: 0 !important;
+    height: auto !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+  }
+
+  body.editor-paged #editor {
+    position: relative !important;
+    z-index: 2 !important;
+    overflow: hidden !important;
+    white-space: pre-wrap !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+    hyphens: none !important;
+    box-sizing: border-box !important;
+  }
+}
+
+@media (min-width: 901px) {
+  .panel,
+  .drawer,
+  .controls-inner,
+  .hud,
+  .modal-box {
+    box-shadow: var(--shadow-porcelain-5) !important;
+    border: 1px solid var(--hairline) !important;
+    background-image: none !important;
+  }
+  #editorWrap.triPage .page-card.is-active,
+  #editorWrap:not(.triPage) #editor {
+    box-shadow: var(--shadow-porcelain-6) !important;
+  }
+
+  .hud-btn.active,
+  .hud-btn[aria-current="true"] {
+    background: rgba(0, 0, 0, 0.05) !important;
+    border-radius: 999px;
+  }
+
+  .hud > #tabNav,
+  .hud > #tabMemo,
+  .hud > #tabBooks,
+  .hud > #btnLangToggle,
+  .hud > #btnVerifyTot,
+  .hud > #btnHardReset,
+  .hud > #hudFs {
+    display: none !important;
+  }
+  .hud > #tabFiles { order: 1; }
+  .hud > #tabNotes { order: 2; }
+  .hud > #tabOverview { order: 3; }
+  .hud > #railMode { order: 4; margin-bottom: 14px; }
+  .hud > #railSearch { order: 5; }
+  .hud > #railExport { order: 6; margin-bottom: 14px; }
+  .hud > #railTools { order: 7; }
+  .hud > #railSettings { order: 8; margin-top: auto; }
+  .hud .hud-separator,
+  .hud .u-flex-spacer {
+    display: none !important;
+  }
+
+  .controls-inner > .divider,
+  .controls-inner > #btnPageMode,
+  .controls-inner > .search-wrapper,
+  .controls-inner > #pomodoroBtn,
+  .controls-inner > #btnSave,
+  .controls-inner > #btnReader,
+  .controls-inner > #btnXray,
+  .controls-inner > #btnAudio,
+  .controls-inner > #btnFontType,
+  .controls-inner > #fontMinus,
+  .controls-inner > #fontPlus,
+  .controls-inner > #btnLock {
+    display: none !important;
+  }
+  .controls-inner {
+    display: grid !important;
+    grid-template-columns: auto auto 1fr auto auto;
+    align-items: center;
+    width: min(980px, 94vw);
+    border-radius: 14px !important;
+    padding: 0 12px !important;
+    gap: 10px !important;
+  }
+  #paletteHint {
+    justify-self: center;
+    opacity: 0.6;
+  }
+  #btnCommandPalette {
+    justify-self: end;
+    min-height: 32px;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Editor containment + typographic measure                                    */
+/* -------------------------------------------------------------------------- */
+body {
+  overflow-x: hidden !important;
+}
+
+#editorView,
+#workspace,
+#editorPane,
+#editorWrap,
+#editorLayer {
+  min-width: 0 !important;
+  max-width: 100%;
+}
+
+#editorWrap {
+  box-sizing: border-box;
+  overflow: hidden !important;
+}
+
+#editor {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  white-space: pre-wrap !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  -ms-hyphens: none !important;
+  /* Containment para melhorar performance de layout e evitar reflow desnecessário */
+  contain: layout style !important;
+}
+
+@media (min-width: 901px) {
+  body.editor-mode-infinite #editorWrap {
+    padding-inline: var(--editor-page-pad-inline);
+  }
+
+  body.editor-mode-infinite #editor {
+    width: min(100%, var(--editor-measure-ch)) !important;
+    max-width: min(100%, var(--editor-measure-ch)) !important;
+    margin-inline: auto !important;
+    padding-left: var(--editor-page-pad-inline) !important;
+    padding-right: var(--editor-page-pad-inline) !important;
+    padding-top: var(--editor-page-pad-block) !important;
+  }
+
+  body.editor-mode-browse #editorWrap.triPage #pageMarkers .page-card,
+  body.editor-mode-browse #editorWrap.triPage #pageMarkers .page-card-content {
+    overflow: hidden !important;
+  }
+
+  body.editor-mode-browse #editorWrap.triPage #editor {
+    width: min(
+      calc(var(--tp-hero-width) - (var(--editor-page-pad-inline) * 2)),
+      var(--editor-measure-ch)
+    ) !important;
+    max-width: min(
+      calc(var(--tp-hero-width) - (var(--editor-page-pad-inline) * 2)),
+      var(--editor-measure-ch)
+    ) !important;
+    margin-inline: auto !important;
+    padding-left: var(--editor-page-pad-inline) !important;
+    padding-right: var(--editor-page-pad-inline) !important;
+    padding-top: var(--editor-page-pad-block) !important;
+    padding-bottom: var(--editor-page-pad-block) !important;
+  }
+}
+
+/* Canonical lock: editor sempre contido no frame visual ativo */
+@media (min-width: 901px) {
+  body.editor-mode-browse #editorView,
+  body.editor-mode-browse #editorWrap,
+  body.editor-mode-browse #editorLayer,
+  body.editor-mode-browse #editor {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  body.editor-mode-browse #editorWrap.triPage #editor {
+    white-space: pre-wrap !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
+    -ms-hyphens: none !important;
   }
 }

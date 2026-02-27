@@ -1,0 +1,111 @@
+{
+  "generated_at": "2026-02-19T16:48:46.757939",
+  "base_url": "http://127.0.0.1:4173",
+  "output_dir": "prints/visual_audit_20260219_164830",
+  "runs": [
+    {
+      "page": "index",
+      "path": "/index.html",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:4173/index.html",
+      "screenshot": "prints/visual_audit_20260219_164830/index_desktop.png",
+      "nav_error": "Page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4173/index.html\nCall log:\n  - navigating to \"http://127.0.0.1:4173/index.html\", waiting until \"domcontentloaded\"\n",
+      "errors": [],
+      "console_errors": [],
+      "metrics": {},
+      "severity": "low",
+      "notes": []
+    },
+    {
+      "page": "index",
+      "path": "/index.html",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:4173/index.html",
+      "screenshot": "prints/visual_audit_20260219_164830/index_mobile.png",
+      "nav_error": "Page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4173/index.html\nCall log:\n  - navigating to \"http://127.0.0.1:4173/index.html\", waiting until \"domcontentloaded\"\n",
+      "errors": [],
+      "console_errors": [],
+      "metrics": {},
+      "severity": "low",
+      "notes": []
+    },
+    {
+      "page": "mobile",
+      "path": "/mobile.html",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:4173/mobile.html",
+      "screenshot": "prints/visual_audit_20260219_164830/mobile_desktop.png",
+      "nav_error": "Page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4173/mobile.html\nCall log:\n  - navigating to \"http://127.0.0.1:4173/mobile.html\", waiting until \"domcontentloaded\"\n",
+      "errors": [],
+      "console_errors": [],
+      "metrics": {},
+      "severity": "low",
+      "notes": []
+    },
+    {
+      "page": "mobile",
+      "path": "/mobile.html",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:4173/mobile.html",
+      "screenshot": "prints/visual_audit_20260219_164830/mobile_mobile.png",
+      "nav_error": "Page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4173/mobile.html\nCall log:\n  - navigating to \"http://127.0.0.1:4173/mobile.html\", waiting until \"domcontentloaded\"\n",
+      "errors": [],
+      "console_errors": [],
+      "metrics": {},
+      "severity": "low",
+      "notes": []
+    },
+    {
+      "page": "verify",
+      "path": "/verify.html",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:4173/verify.html",
+      "screenshot": "prints/visual_audit_20260219_164830/verify_desktop.png",
+      "nav_error": "Page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4173/verify.html\nCall log:\n  - navigating to \"http://127.0.0.1:4173/verify.html\", waiting until \"domcontentloaded\"\n",
+      "errors": [],
+      "console_errors": [],
+      "metrics": {},
+      "severity": "low",
+      "notes": []
+    },
+    {
+      "page": "verify",
+      "path": "/verify.html",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:4173/verify.html",
+      "screenshot": "prints/visual_audit_20260219_164830/verify_mobile.png",
+      "nav_error": "Page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4173/verify.html\nCall log:\n  - navigating to \"http://127.0.0.1:4173/verify.html\", waiting until \"domcontentloaded\"\n",
+      "errors": [],
+      "console_errors": [],
+      "metrics": {},
+      "severity": "low",
+      "notes": []
+    },
+    {
+      "page": "totbooks",
+      "path": "/totbooks.html",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:4173/totbooks.html",
+      "screenshot": "prints/visual_audit_20260219_164830/totbooks_desktop.png",
+      "nav_error": "Page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4173/totbooks.html\nCall log:\n  - navigating to \"http://127.0.0.1:4173/totbooks.html\", waiting until \"domcontentloaded\"\n",
+      "errors": [],
+      "console_errors": [],
+      "metrics": {},
+      "severity": "low",
+      "notes": []
+    },
+    {
+      "page": "totbooks",
+      "path": "/totbooks.html",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:4173/totbooks.html",
+      "screenshot": "prints/visual_audit_20260219_164830/totbooks_mobile.png",
+      "nav_error": "Page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4173/totbooks.html\nCall log:\n  - navigating to \"http://127.0.0.1:4173/totbooks.html\", waiting until \"domcontentloaded\"\n",
+      "errors": [],
+      "console_errors": [],
+      "metrics": {},
+      "severity": "low",
+      "notes": []
+    }
+  ]
+}

@@ -1,0 +1,789 @@
+/* Blueprint Porcelana Isometrica
+   Gateado para nao impactar outros layouts. */
+body.layout-2030,
+body.theme-iso {
+  color: var(--iso-ink-900);
+  background-color: var(--iso-paper);
+  background-image:
+    radial-gradient(120% 90% at 50% -10%, rgba(255, 255, 255, 0.5), transparent 58%),
+    repeating-linear-gradient(0deg, var(--iso-grid) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(90deg, var(--iso-grid) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(60deg, var(--iso-grid-iso) 0 1px, transparent 1px 64px),
+    repeating-linear-gradient(-60deg, var(--iso-grid-iso) 0 1px, transparent 1px 64px),
+    radial-gradient(circle at 30% 18%, rgba(0, 0, 0, var(--iso-vignette-alpha-effective)), transparent 36%),
+    radial-gradient(circle at 68% 82%, rgba(0, 0, 0, var(--iso-noise-alpha-effective)), transparent 32%);
+}
+
+/* Presets */
+body.layout-2030.iso-calm,
+body.theme-iso.iso-calm {
+  --iso-grid-alpha: 0.045;
+  --iso-vignette-alpha: 0.1;
+  --iso-noise-alpha: 0.035;
+  --iso-hairline-alpha: 0.55;
+}
+
+body.layout-2030.iso-balanced,
+body.theme-iso.iso-balanced {
+  --iso-grid-alpha: 0.07;
+  --iso-vignette-alpha: 0.14;
+  --iso-noise-alpha: 0.05;
+  --iso-hairline-alpha: 0.7;
+}
+
+body.layout-2030.iso-dense,
+body.theme-iso.iso-dense {
+  --iso-grid-alpha: 0.1;
+  --iso-vignette-alpha: 0.18;
+  --iso-noise-alpha: 0.07;
+  --iso-hairline-alpha: 0.85;
+}
+
+/* Instrument profile axis */
+body.layout-2030.iso-quiet,
+body.theme-iso.iso-quiet {
+  --iso-instrument-contrast: 0.88;
+  --iso-instrument-shadow: 0.82;
+  --iso-instrument-grid: 0.75;
+}
+
+body.layout-2030.iso-tool,
+body.theme-iso.iso-tool {
+  --iso-instrument-contrast: 1.12;
+  --iso-instrument-shadow: 1.18;
+  --iso-instrument-grid: 1.12;
+}
+
+/* Tool profile in navigation/tooling contexts (no JS required) */
+body.layout-2030.command-palette-open,
+body.layout-2030.drawer-open,
+body.layout-2030.editor-mode-browse,
+body.layout-2030.editor-mode-overview,
+body.theme-iso.command-palette-open,
+body.theme-iso.drawer-open,
+body.theme-iso.editor-mode-browse,
+body.theme-iso.editor-mode-overview {
+  --iso-instrument-contrast: 1.12;
+  --iso-instrument-shadow: 1.18;
+  --iso-instrument-grid: 1.12;
+}
+
+/* During writing/focus, reduce blueprint texture contrast. */
+body.layout-2030:has(#editor:focus),
+body.theme-iso:has(#editor:focus),
+body.layout-2030:has(#editorWrap:focus-within),
+body.theme-iso:has(#editorWrap:focus-within) {
+  --iso-grid-alpha: 0.045;
+  --iso-vignette-alpha: 0.1;
+  --iso-noise-alpha: 0.035;
+  --iso-hairline-alpha: 0.55;
+  --iso-instrument-contrast: 0.88;
+  --iso-instrument-shadow: 0.82;
+  --iso-instrument-grid: 0.75;
+}
+
+/* UI input focus should not force quiet writing profile. */
+body.layout-2030:has(.command-palette-box input:focus),
+body.layout-2030:has(.drawer input:focus),
+body.layout-2030:has(.drawer textarea:focus),
+body.layout-2030:has(.drawer select:focus),
+body.theme-iso:has(.command-palette-box input:focus),
+body.theme-iso:has(.drawer input:focus),
+body.theme-iso:has(.drawer textarea:focus),
+body.theme-iso:has(.drawer select:focus) {
+  --iso-instrument-contrast: 1.12;
+  --iso-instrument-shadow: 1.18;
+  --iso-instrument-grid: 1.12;
+}
+
+body.layout-2030:has(.controls .search-input:focus),
+body.theme-iso:has(.controls .search-input:focus) {
+  --iso-instrument-contrast: 1;
+  --iso-instrument-shadow: 1;
+  --iso-instrument-grid: 1;
+}
+
+@media (max-width: 900px) {
+  body.layout-2030,
+  body.theme-iso {
+    background-image:
+      radial-gradient(120% 90% at 50% -10%, rgba(255, 255, 255, 0.44), transparent 58%),
+      repeating-linear-gradient(0deg, var(--iso-grid) 0 1px, transparent 1px 56px),
+      repeating-linear-gradient(90deg, var(--iso-grid) 0 1px, transparent 1px 56px),
+      repeating-linear-gradient(60deg, var(--iso-grid-iso) 0 1px, transparent 1px 74px),
+      repeating-linear-gradient(-60deg, var(--iso-grid-iso) 0 1px, transparent 1px 74px),
+      radial-gradient(circle at 32% 22%, rgba(0, 0, 0, calc(var(--iso-vignette-alpha-effective) * 0.9)), transparent 42%),
+      radial-gradient(circle at 72% 78%, rgba(0, 0, 0, calc(var(--iso-noise-alpha-effective) * 0.9)), transparent 40%);
+  }
+}
+
+body.layout-2030 #editorWrap,
+body.theme-iso #editorWrap,
+body.layout-2030 .editor-page,
+body.theme-iso .editor-page {
+  background: var(--iso-paper-strong);
+  border: 1px solid var(--iso-hairline);
+  border-radius: var(--iso-radius-card);
+  box-shadow: var(--iso-shadow-1);
+  overflow: hidden;
+}
+
+body.layout-2030 .panel,
+body.theme-iso .panel {
+  background: color-mix(in srgb, var(--iso-paper-strong) 92%, transparent) !important;
+  border: 1px solid var(--iso-hairline) !important;
+  border-radius: var(--iso-radius-card) !important;
+  box-shadow: var(--iso-shadow-1) !important;
+}
+
+/* Hairline crispness guard on key wrappers. */
+body.layout-2030 .panel,
+body.layout-2030 .drawer,
+body.layout-2030 .modal-box,
+body.layout-2030 .command-palette-box,
+body.theme-iso .panel,
+body.theme-iso .drawer,
+body.theme-iso .modal-box,
+body.theme-iso .command-palette-box {
+  filter: none;
+  will-change: auto;
+  backface-visibility: hidden;
+}
+
+body.layout-2030 .hud,
+body.layout-2030 .drawer,
+body.layout-2030 .controls-inner,
+body.theme-iso .hud,
+body.theme-iso .drawer,
+body.theme-iso .controls-inner,
+body.layout-2030 .command-palette-box,
+body.theme-iso .command-palette-box,
+body.theme-iso .modal-box,
+body.layout-2030 .modal-box {
+  background: rgba(255, 255, 255, 0.62) !important;
+  border: 1px solid var(--iso-hairline) !important;
+  border-radius: var(--iso-radius-ui) !important;
+  box-shadow: var(--iso-shadow-2) !important;
+  backdrop-filter: blur(6px);
+}
+
+body.layout-2030 .modal-box,
+body.layout-2030 .command-palette-box,
+body.theme-iso .modal-box,
+body.theme-iso .command-palette-box {
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    inset 0 0 0 1px var(--iso-hairline-inset),
+    var(--iso-shadow-3) !important;
+}
+
+body.layout-2030 .modal-box::before,
+body.layout-2030 .command-palette-box::before,
+body.theme-iso .modal-box::before,
+body.theme-iso .command-palette-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(255, 255, 255, 0.06) 45%,
+    transparent 100%
+  );
+}
+
+body.layout-2030 .hud:hover,
+body.layout-2030 .drawer:hover,
+body.layout-2030 .controls-inner:hover,
+body.layout-2030 .modal-box:hover,
+body.layout-2030 .command-palette-box:hover,
+body.theme-iso .hud:hover,
+body.theme-iso .drawer:hover,
+body.theme-iso .controls-inner:hover,
+body.theme-iso .modal-box:hover,
+body.theme-iso .command-palette-box:hover {
+  background: rgba(255, 255, 255, 0.76) !important;
+  border-color: var(--iso-hairline-strong) !important;
+}
+
+body.layout-2030 .status-label,
+body.theme-iso .status-label {
+  color: var(--iso-ink-500);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 11px;
+  opacity: 0.86;
+}
+
+body.layout-2030 .drawer-section-title,
+body.layout-2030 #drawerTitle,
+body.theme-iso .drawer-section-title,
+body.theme-iso #drawerTitle {
+  color: var(--iso-ink-600);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+}
+
+body.layout-2030 #editor,
+body.theme-iso #editor {
+  color: var(--iso-ink-900);
+  line-height: 1.72;
+  letter-spacing: 0.002em;
+}
+
+body.layout-2030 .hud-btn,
+body.layout-2030 .drawer-tab-btn,
+body.theme-iso .hud-btn,
+body.theme-iso .drawer-tab-btn,
+body.layout-2030 .icon-btn,
+body.theme-iso .icon-btn {
+  border-radius: var(--iso-radius-pill) !important;
+  border: 1px solid transparent !important;
+  transition:
+    background var(--iso-dur-fast) var(--iso-ease),
+    border-color var(--iso-dur-fast) var(--iso-ease),
+    color var(--iso-dur-fast) var(--iso-ease),
+    transform var(--iso-dur-fast) var(--iso-ease);
+}
+
+body.layout-2030 .hud-btn::before,
+body.layout-2030 .hud-btn::after,
+body.layout-2030 .drawer-tab-btn::before,
+body.layout-2030 .drawer-tab-btn::after,
+body.theme-iso .hud-btn::before,
+body.theme-iso .hud-btn::after,
+body.theme-iso .drawer-tab-btn::before,
+body.theme-iso .drawer-tab-btn::after {
+  background: none !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+}
+
+body.layout-2030 .hud-btn:hover,
+body.layout-2030 .hud-btn:focus-visible,
+body.layout-2030 .hud-btn.active,
+body.layout-2030 .drawer-tab-btn:hover,
+body.layout-2030 .drawer-tab-btn:focus-visible,
+body.layout-2030 .drawer-tab-btn.active,
+body.theme-iso .hud-btn:hover,
+body.theme-iso .hud-btn:focus-visible,
+body.theme-iso .hud-btn.active,
+body.theme-iso .drawer-tab-btn:hover,
+body.theme-iso .drawer-tab-btn:focus-visible,
+body.theme-iso .drawer-tab-btn.active {
+  background: rgba(0, 0, 0, 0.03) !important;
+  border-color: var(--iso-hairline-strong) !important;
+  transform: scale(1.01);
+}
+
+body.layout-2030 .hud-btn.active,
+body.layout-2030 .hud-btn[aria-current="true"],
+body.theme-iso .hud-btn.active,
+body.theme-iso .hud-btn[aria-current="true"] {
+  box-shadow: inset 0 0 0 1px var(--iso-accent-dim), var(--iso-shadow-0);
+}
+
+body.layout-2030 .command-palette-item,
+body.theme-iso .command-palette-item {
+  background: rgba(255, 255, 255, 0.66);
+  border: 1px solid var(--iso-hairline);
+  border-radius: 12px;
+  transition:
+    background var(--iso-dur-fast) var(--iso-ease),
+    border-color var(--iso-dur-fast) var(--iso-ease);
+}
+
+body.layout-2030 .command-palette-item:hover,
+body.layout-2030 .command-palette-item.is-active,
+body.theme-iso .command-palette-item:hover,
+body.theme-iso .command-palette-item.is-active {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: var(--iso-accent-dim);
+}
+
+body.layout-2030 .command-palette-item.is-active::before,
+body.theme-iso .command-palette-item.is-active::before {
+  content: "";
+  width: 2px;
+  align-self: stretch;
+  background: var(--iso-accent);
+  border-radius: 999px;
+  margin-right: 8px;
+}
+
+/* Goal ladder (meta-tracinho): instrument idle + persona trigger */
+body.layout-2030 #goalStars,
+body.theme-iso #goalStars {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+body.layout-2030 #goalLadderBtn,
+body.theme-iso #goalLadderBtn {
+  position: relative;
+  width: 34px;
+  min-height: 108px;
+  padding: 8px 6px;
+  border-radius: 999px;
+  border: 1px solid var(--iso-hairline);
+  background: color-mix(in srgb, var(--iso-paper-strong) 90%, transparent);
+  box-shadow: var(--iso-shadow-1);
+  transition:
+    background var(--iso-dur-fast) var(--iso-ease),
+    border-color var(--iso-dur-fast) var(--iso-ease),
+    transform var(--iso-dur-fast) var(--iso-ease);
+}
+
+body.layout-2030 #goalLadderBtn .goal-ladder-hint,
+body.theme-iso #goalLadderBtn .goal-ladder-hint {
+  opacity: 0;
+  transform: translateY(-2px);
+  transition: opacity var(--iso-dur-fast) var(--iso-ease), transform var(--iso-dur-fast) var(--iso-ease);
+}
+
+body.layout-2030 #goalLadderBtn .goal-segment,
+body.theme-iso #goalLadderBtn .goal-segment {
+  width: 12px;
+  height: 2px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--iso-ink-700) 28%, transparent);
+  opacity: 0.42;
+}
+
+body.layout-2030 #goalLadderBtn .goal-segment.filled,
+body.theme-iso #goalLadderBtn .goal-segment.filled {
+  background: color-mix(in srgb, var(--iso-ink-700) 72%, transparent);
+  opacity: 0.95;
+}
+
+body.layout-2030 #goalLadderBtn:hover,
+body.layout-2030 #goalLadderBtn:focus-visible,
+body.layout-2030 #goalLadderBtn[aria-expanded="true"],
+body.theme-iso #goalLadderBtn:hover,
+body.theme-iso #goalLadderBtn:focus-visible,
+body.theme-iso #goalLadderBtn[aria-expanded="true"] {
+  background: color-mix(in srgb, var(--iso-paper-strong) 84%, white);
+  border-color: var(--iso-hairline-strong);
+  transform: scale(1.01);
+}
+
+body.layout-2030 #goalLadderBtn[aria-expanded="true"],
+body.theme-iso #goalLadderBtn[aria-expanded="true"] {
+  box-shadow: inset 0 0 0 1px var(--iso-accent-dim), var(--iso-shadow-1);
+}
+
+body.layout-2030 #goalLadderBtn:hover .goal-ladder-hint,
+body.layout-2030 #goalLadderBtn:focus-visible .goal-ladder-hint,
+body.layout-2030 #goalLadderBtn[aria-expanded="true"] .goal-ladder-hint,
+body.theme-iso #goalLadderBtn:hover .goal-ladder-hint,
+body.theme-iso #goalLadderBtn:focus-visible .goal-ladder-hint,
+body.theme-iso #goalLadderBtn[aria-expanded="true"] .goal-ladder-hint {
+  opacity: 0.64;
+  transform: translateY(0);
+}
+
+body.layout-2030 #goalLadderBtn::after,
+body.theme-iso #goalLadderBtn::after {
+  content: "META / PERSONA";
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--iso-hairline);
+  background: color-mix(in srgb, var(--iso-paper-strong) 90%, transparent);
+  box-shadow: var(--iso-shadow-0);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--iso-ink-700) 74%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--iso-dur-fast) var(--iso-ease);
+}
+
+body.layout-2030 #goalLadderBtn:hover::after,
+body.layout-2030 #goalLadderBtn:focus-visible::after,
+body.theme-iso #goalLadderBtn:hover::after,
+body.theme-iso #goalLadderBtn:focus-visible::after {
+  opacity: 1;
+}
+
+body.layout-2030 #goalPersonaMenu,
+body.theme-iso #goalPersonaMenu {
+  border: 1px solid var(--iso-hairline-strong);
+  background: color-mix(in srgb, var(--iso-paper-strong) 92%, white);
+  box-shadow: inset 0 0 0 1px var(--iso-hairline-inset), var(--iso-shadow-3);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+body.layout-2030 #goalPersonaMenu .goal-persona-item,
+body.theme-iso #goalPersonaMenu .goal-persona-item {
+  border-color: var(--iso-hairline);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+body.layout-2030 #goalPersonaMenu .goal-persona-item:hover,
+body.layout-2030 #goalPersonaMenu .goal-persona-item:focus-visible,
+body.theme-iso #goalPersonaMenu .goal-persona-item:hover,
+body.theme-iso #goalPersonaMenu .goal-persona-item:focus-visible {
+  border-color: var(--iso-hairline-strong);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+body.layout-2030 #goalPersonaMenu .goal-persona-item[aria-checked="true"],
+body.theme-iso #goalPersonaMenu .goal-persona-item[aria-checked="true"] {
+  border-color: var(--iso-accent-dim);
+  box-shadow: inset 2px 0 0 var(--iso-accent);
+}
+
+/* Overview mode (nav-thumbnails): camera motion + technical grid/cards */
+body.layout-2030.editor-mode-overview #editorView,
+body.theme-iso.editor-mode-overview #editorView {
+  opacity: 0.92;
+  transform: scale(0.985);
+  transform-origin: 50% 42%;
+  transition:
+    opacity var(--iso-dur-base) var(--iso-ease),
+    transform var(--iso-dur-base) var(--iso-ease);
+}
+
+body.layout-2030.editor-mode-overview #editorWrap,
+body.theme-iso.editor-mode-overview #editorWrap {
+  padding: clamp(14px, 2vw, 24px);
+  border-color: var(--iso-hairline-strong);
+}
+
+body.layout-2030.editor-mode-overview .nav-overview,
+body.theme-iso.editor-mode-overview .nav-overview {
+  background: rgba(18, 18, 18, 0.32);
+  backdrop-filter: blur(2px);
+}
+
+body.layout-2030.editor-mode-overview .nav-overview-inner,
+body.theme-iso.editor-mode-overview .nav-overview-inner {
+  background: color-mix(in srgb, var(--iso-paper-strong) 94%, white);
+  border: 1px solid var(--iso-hairline-strong);
+  border-radius: 16px;
+  box-shadow: inset 0 0 0 1px var(--iso-hairline-inset), var(--iso-shadow-3);
+  transform: scale(0.985);
+  opacity: 0.98;
+  transition:
+    opacity var(--iso-dur-base) var(--iso-ease),
+    transform var(--iso-dur-base) var(--iso-ease);
+}
+
+body.layout-2030.editor-mode-overview .nav-overview.active .nav-overview-inner,
+body.theme-iso.editor-mode-overview .nav-overview.active .nav-overview-inner {
+  transform: scale(1);
+  opacity: 1;
+}
+
+body.layout-2030.editor-mode-overview .nav-overview-grid,
+body.theme-iso.editor-mode-overview .nav-overview-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  max-width: min(1120px, 96%);
+  margin: 0 auto;
+}
+
+body.layout-2030.editor-mode-overview .nav-thumb,
+body.theme-iso.editor-mode-overview .nav-thumb {
+  border: 1px solid var(--iso-hairline);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--iso-paper-strong) 90%, transparent);
+  box-shadow: var(--iso-shadow-1);
+  transition:
+    background var(--iso-dur-fast) var(--iso-ease),
+    border-color var(--iso-dur-fast) var(--iso-ease),
+    transform var(--iso-dur-fast) var(--iso-ease);
+}
+
+body.layout-2030.editor-mode-overview .nav-thumb:hover,
+body.theme-iso.editor-mode-overview .nav-thumb:hover {
+  background: color-mix(in srgb, var(--iso-paper-strong) 84%, white);
+  border-color: var(--iso-hairline-strong);
+}
+
+body.layout-2030.editor-mode-overview .nav-thumb.is-active,
+body.theme-iso.editor-mode-overview .nav-thumb.is-active,
+body.layout-2030.editor-mode-overview .nav-thumb.active,
+body.theme-iso.editor-mode-overview .nav-thumb.active,
+body.layout-2030.editor-mode-overview .nav-thumb[aria-current="true"],
+body.theme-iso.editor-mode-overview .nav-thumb[aria-current="true"] {
+  border-color: var(--iso-accent-dim);
+  box-shadow: var(--iso-shadow-2);
+  transform: scale(1.02);
+}
+
+body.layout-2030.editor-mode-overview .nav-thumb.is-active::before,
+body.theme-iso.editor-mode-overview .nav-thumb.is-active::before,
+body.layout-2030.editor-mode-overview .nav-thumb.active::before,
+body.theme-iso.editor-mode-overview .nav-thumb.active::before,
+body.layout-2030.editor-mode-overview .nav-thumb[aria-current="true"]::before,
+body.theme-iso.editor-mode-overview .nav-thumb[aria-current="true"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--iso-accent);
+  border-radius: 999px;
+}
+
+/* Hook for page-based overview cards if active in this mode */
+body.layout-2030.editor-mode-overview .page-card,
+body.theme-iso.editor-mode-overview .page-card {
+  border: 1px solid var(--iso-hairline);
+  box-shadow: var(--iso-shadow-1);
+  border-radius: 14px;
+}
+
+body.layout-2030.editor-mode-overview .page-card.is-active,
+body.theme-iso.editor-mode-overview .page-card.is-active,
+body.layout-2030.editor-mode-overview .page-card.active,
+body.theme-iso.editor-mode-overview .page-card.active,
+body.layout-2030.editor-mode-overview .page-card[aria-current="true"],
+body.theme-iso.editor-mode-overview .page-card[aria-current="true"] {
+  box-shadow: var(--iso-shadow-2);
+  transform: scale(1.02);
+}
+
+body.layout-2030 [data-animate],
+body.theme-iso [data-animate] {
+  transition:
+    opacity var(--iso-dur-base) var(--iso-ease),
+    transform var(--iso-dur-base) var(--iso-ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.layout-2030 [data-animate],
+  body.theme-iso [data-animate],
+  body.layout-2030 .hud-btn,
+  body.layout-2030 .drawer-tab-btn,
+  body.theme-iso .hud-btn,
+  body.theme-iso .drawer-tab-btn {
+    transition: none !important;
+  }
+}
+
+/* =========================
+   ISO DEBUG (dev-only)
+   ========================= */
+body.iso-debug #editorWrap,
+body.iso-debug .panel,
+body.iso-debug .hud,
+body.iso-debug .drawer,
+body.iso-debug .modal-box,
+body.iso-debug .command-palette-box {
+  outline: 1px dashed rgba(255, 77, 46, 0.35);
+  outline-offset: -2px;
+}
+
+body.iso-debug::after {
+  content: "ISO DEBUG · " attr(class);
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  z-index: 9999;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--iso-hairline-strong);
+  background: color-mix(in srgb, var(--iso-paper) 92%, white);
+  box-shadow: var(--iso-shadow-2);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--iso-ink-700);
+  pointer-events: none;
+}
+
+/* =========================================================
+   ISO CONTRACT OVERRIDES (incremental, reversible)
+   - single field layer (no tiled seams on overlays)
+   - one paper owner per mode
+   - browse carousel/page-cards as container language
+   - unified modal/backdrop treatment
+   ========================================================= */
+
+/* Single continuous field lives on body pseudo-layers only. */
+body.layout-2030.theme-iso {
+  background: var(--iso-paper) !important;
+  background-image: none !important;
+}
+
+body.layout-2030.theme-iso::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    linear-gradient(to right, var(--iso-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--iso-grid) 1px, transparent 1px),
+    linear-gradient(60deg, var(--iso-grid-iso) 1px, transparent 1px),
+    linear-gradient(-60deg, var(--iso-grid-iso) 1px, transparent 1px);
+  background-size: 96px 96px, 96px 96px, 128px 128px, 128px 128px;
+  background-position: 0 0, 0 0, 0 0, 0 0;
+}
+
+body.layout-2030.theme-iso::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      1200px 700px at 50% 35%,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, var(--iso-vignette-alpha-effective)) 72%,
+      rgba(0, 0, 0, calc(var(--iso-vignette-alpha-effective) + 0.045)) 100%
+    ),
+    radial-gradient(
+      circle at 70% 80%,
+      rgba(0, 0, 0, var(--iso-noise-alpha-effective)) 0%,
+      transparent 55%
+    );
+  mix-blend-mode: multiply;
+}
+
+/* Prevent duplicate grids from component surfaces. */
+body.layout-2030.theme-iso #editorWrap,
+body.layout-2030.theme-iso .editor-page,
+body.layout-2030.theme-iso .panel,
+body.layout-2030.theme-iso .hud,
+body.layout-2030.theme-iso .drawer,
+body.layout-2030.theme-iso .modal-box,
+body.layout-2030.theme-iso .command-palette-box {
+  background-image: none !important;
+}
+
+/* Paper contract: wrappers are transparent baseline. */
+body.layout-2030.theme-iso #editorWrap,
+body.layout-2030.theme-iso .editor-page,
+body.layout-2030.theme-iso .panel {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Infinite/editing baseline: #editor is the single paper object. */
+body.layout-2030.theme-iso #editor {
+  background: var(--iso-paper-strong);
+  border: 1px solid var(--iso-hairline);
+  border-radius: var(--iso-radius-card);
+  box-shadow: var(--iso-shadow-2);
+}
+
+/* Browse contract: page cards own the paper; editor becomes clear canvas. */
+@supports selector(:has(*)) {
+  body.layout-2030.theme-iso.editor-mode-browse:has(#pageMarkers .page-card) #editor {
+    background: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  body.layout-2030.theme-iso.editor-mode-browse:has(#pageMarkers .page-card) #pageMarkers {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 12px 12px 18px;
+  }
+
+  body.layout-2030.theme-iso.editor-mode-browse:has(#pageMarkers .page-card) .page-card {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    background: var(--iso-paper-strong);
+    border: 1px solid var(--iso-hairline);
+    border-radius: var(--iso-radius-card);
+    box-shadow: var(--iso-shadow-2);
+    transition:
+      transform var(--iso-dur-base) var(--iso-ease),
+      opacity var(--iso-dur-base) var(--iso-ease),
+      filter var(--iso-dur-base) var(--iso-ease),
+      border-color var(--iso-dur-fast) var(--iso-ease),
+      background var(--iso-dur-fast) var(--iso-ease);
+  }
+
+  body.layout-2030.theme-iso.editor-mode-browse:has(#pageMarkers .page-card) .page-card:not(.active):not(.is-active):not([aria-current="true"]) {
+    opacity: 0.56;
+    filter: blur(0.35px) saturate(0.92) contrast(0.96);
+    transform: scale(0.985);
+  }
+
+  body.layout-2030.theme-iso.editor-mode-browse:has(#pageMarkers .page-card) .page-card.active,
+  body.layout-2030.theme-iso.editor-mode-browse:has(#pageMarkers .page-card) .page-card.is-active,
+  body.layout-2030.theme-iso.editor-mode-browse:has(#pageMarkers .page-card) .page-card[aria-current="true"] {
+    opacity: 1;
+    filter: none;
+    transform: scale(1);
+    border-color: var(--iso-hairline-strong);
+    box-shadow: var(--iso-shadow-3);
+  }
+}
+
+/* Unified modal/backdrop feel. */
+body.layout-2030.theme-iso .modal-overlay {
+  background-image: none !important;
+  background-repeat: no-repeat !important;
+  background-size: auto !important;
+}
+
+body.layout-2030.theme-iso .modal-overlay.active {
+  background: rgba(236, 240, 255, 0.52);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+@supports selector(:has(*)) {
+  body.layout-2030.theme-iso:has(.modal-overlay.active) {
+    --iso-grid-alpha: 0.06;
+    --iso-vignette-alpha: 0.12;
+    --iso-noise-alpha: 0.042;
+  }
+}
+
+body.layout-2030.theme-iso .notes-overlay,
+body.layout-2030.theme-iso .page-overlay {
+  background-image: none !important;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+body.layout-2030.theme-iso .notes-overlay.active {
+  background: rgba(236, 240, 255, 0.56);
+}
+
+body.layout-2030.theme-iso .page-overlay.active {
+  background: rgba(236, 240, 255, 0.46);
+}
+
+/* Keep modal/palette as technical objects on top of veil. */
+body.layout-2030.theme-iso .modal-box,
+body.layout-2030.theme-iso .command-palette-box {
+  background: rgba(245, 243, 239, 0.92) !important;
+  border-color: var(--iso-hairline-strong) !important;
+  box-shadow: inset 0 0 0 1px var(--iso-hairline-inset), var(--iso-shadow-3) !important;
+}
+
+body.layout-2030.theme-iso .modal-box::before,
+body.layout-2030.theme-iso .command-palette-box::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: calc(var(--iso-radius-card) - 10px);
+  border: 1px solid rgba(0, 0, 0, calc(var(--iso-hairline-alpha-effective) * 0.72));
+  pointer-events: none;
+  background: none;
+}

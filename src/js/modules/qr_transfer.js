@@ -93,7 +93,10 @@ const qrTransfer = (() => {
     const editorEl = document.getElementById('editor');
     const memoEl = document.getElementById('memoArea');
     if (editorEl) {
-      store.save(editorEl.innerHTML, memoEl ? memoEl.value : undefined);
+      const html = (window.editorFeatures && typeof window.editorFeatures.getPersistHtml === 'function')
+        ? window.editorFeatures.getPersistHtml()
+        : editorEl.innerHTML;
+      store.save(html, memoEl ? memoEl.value : undefined);
     }
     const payload = buildSkrvPayload(store);
     return buildBase64FromPayload(payload);

@@ -5,10 +5,39 @@ export function setupPersistenceBindings({ editorEl, memoEl, panelEl, store, edi
         || document.body.classList.contains("mobile-only-page")
         || /mobile\.html$/i.test(window.location.pathname || "");
 
-    editorEl.addEventListener("input", () => {
-        const cursorPos = editorFeatures.getCursorPos();
-        const memoValue = memoEl ? memoEl.value : "";
-        store.save(editorEl.innerHTML, memoValue, cursorPos);
+    // Throttle visual para reduzir chamadas durante digitação rápida
+    let inputThrottleTimer = null;
+    let lastInputTime = 0;
+    const INPUT_THROTTLE_MS = 200; // Throttle visual de 200ms
+
+    const handleInput = () => {
+        const now = Date.now();
+        const timeSinceLastInput = now - lastInputTime;
+
+        // Se passou tempo suficiente desde último input, processa imediatamente
+        if (timeSinceLastInput >= INPUT_THROTTLE_MS) {
+            lastInputTime = now;
+            const cursorPos = editorFeatures.getCursorPos();
+            const memoValue = memoEl ? memoEl.value : "";
+            const html = (editorFeatures && typeof editorFeatures.getPersistHtml === "function")
+                ? editorFeatures.getPersistHtml()
+                : editorEl.innerHTML;
+            store.save(html, memoValue, cursorPos);
+        } else {
+            // Caso contrário, agenda para processar após throttle
+            if (inputThrottleTimer) clearTimeout(inputThrottleTimer);
+            inputThrottleTimer = setTimeout(() => {
+                lastInputTime = Date.now();
+                const cursorPos = editorFeatures.getCursorPos();
+                const memoValue = memoEl ? memoEl.value : "";
+                const html = (editorFeatures && typeof editorFeatures.getPersistHtml === "function")
+                    ? editorFeatures.getPersistHtml()
+                    : editorEl.innerHTML;
+                store.save(html, memoValue, cursorPos);
+                inputThrottleTimer = null;
+            }, INPUT_THROTTLE_MS - timeSinceLastInput);
+        }
+
         if (isMobileContext()) {
             document.body.classList.add("mobile-typing");
             clearTimeout(window.__mobileTypingTimer);
@@ -16,7 +45,9 @@ export function setupPersistenceBindings({ editorEl, memoEl, panelEl, store, edi
                 document.body.classList.remove("mobile-typing");
             }, 800);
         }
-    });
+    };
+
+    editorEl.addEventListener("input", handleInput);
 
     editorEl.addEventListener("keyup", () => store.save(undefined, undefined, editorFeatures.getCursorPos()));
     editorEl.addEventListener("click", () => store.save(undefined, undefined, editorFeatures.getCursorPos()));

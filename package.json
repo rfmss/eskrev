@@ -1,0 +1,14 @@
+{
+  "name": "eskrev-index2",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Bundle pipeline for index2",
+  "scripts": {
+    "bundle:index2": "esbuild js/main.js --bundle --format=iife --platform=browser --target=es2020 --outfile=js/main.bundle.js --sourcemap",
+    "bundle:index2:min": "esbuild js/main.js --bundle --format=iife --platform=browser --target=es2020 --outfile=js/main.bundle.js --minify",
+    "watch:index2": "esbuild js/main.js --bundle --format=iife --platform=browser --target=es2020 --outfile=js/main.bundle.js --sourcemap --watch"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.1"
+  }
+}

@@ -1,0 +1,73 @@
+:root {
+  /* Blueprint Porcelana Isometrica - neutrals */
+  --iso-paper: #f6f4ef;
+  --iso-paper-strong: #fbfaf7;
+  --iso-ink-950: #0f0f10;
+  --iso-ink-900: #1a1a1a;
+  --iso-ink-800: #282828;
+  --iso-ink-700: #383838;
+  --iso-ink-600: #4a4a4a;
+  --iso-ink-500: #686868;
+  --iso-ink-400: #8a8a8a;
+  --iso-ink-300: #b7b7b7;
+  --iso-ink-200: #d7d7d7;
+  --iso-ink-100: #ececec;
+  --iso-ink-50: #f7f7f7;
+
+  /* Accent (annotation marker) */
+  --iso-accent: #ff4d2e;
+  --iso-accent-dim: rgba(255, 77, 46, 0.12);
+
+  /* Preset knobs (balanced default) */
+  --iso-grid-alpha: 0.07;
+  --iso-vignette-alpha: 0.14;
+  --iso-noise-alpha: 0.05;
+  --iso-hairline-alpha: 0.7;
+  --iso-instrument-contrast: 1;
+  --iso-instrument-shadow: 1;
+  --iso-instrument-grid: 1;
+
+  /* Effective intensities (preset x instrument profile) */
+  --iso-grid-alpha-effective: clamp(0.06, calc(var(--iso-grid-alpha) * var(--iso-instrument-grid)), 0.26);
+  --iso-vignette-alpha-effective: clamp(0.06, calc(var(--iso-vignette-alpha) * var(--iso-instrument-grid)), 0.22);
+  --iso-noise-alpha-effective: clamp(0.02, calc(var(--iso-noise-alpha) * var(--iso-instrument-grid)), 0.14);
+  --iso-hairline-alpha-effective: clamp(0.08, calc(var(--iso-hairline-alpha) * var(--iso-instrument-contrast)), 0.34);
+
+  /* Hairlines */
+  --iso-hairline: rgba(20, 20, 20, calc(0.14 * var(--iso-hairline-alpha-effective)));
+  --iso-hairline-strong: rgba(20, 20, 20, calc(0.22 * var(--iso-hairline-alpha-effective)));
+  --iso-hairline-inset: rgba(255, 255, 255, 0.55);
+
+  /* Shadows (0..3 only) */
+  --iso-shadow-0:
+    0 0 0 1px rgba(0, 0, 0, calc(0.05 * var(--iso-instrument-shadow))),
+    0 1px 2px rgba(0, 0, 0, calc(0.05 * var(--iso-instrument-shadow)));
+  --iso-shadow-1:
+    0 1px 0 rgba(0, 0, 0, calc(0.06 * var(--iso-instrument-shadow))),
+    0 8px 24px rgba(0, 0, 0, calc(0.1 * var(--iso-instrument-shadow))),
+    0 24px 60px rgba(0, 0, 0, calc(0.08 * var(--iso-instrument-shadow)));
+  --iso-shadow-2:
+    0 0 0 1px rgba(0, 0, 0, calc(0.06 * var(--iso-instrument-shadow))),
+    0 2px 8px rgba(0, 0, 0, calc(0.07 * var(--iso-instrument-shadow))),
+    0 10px 30px rgba(0, 0, 0, calc(0.08 * var(--iso-instrument-shadow))),
+    0 28px 72px rgba(0, 0, 0, calc(0.08 * var(--iso-instrument-shadow)));
+  --iso-shadow-3:
+    0 0 0 1px rgba(0, 0, 0, calc(0.08 * var(--iso-instrument-shadow))),
+    0 3px 12px rgba(0, 0, 0, calc(0.1 * var(--iso-instrument-shadow))),
+    0 18px 44px rgba(0, 0, 0, calc(0.12 * var(--iso-instrument-shadow))),
+    0 36px 90px rgba(0, 0, 0, calc(0.12 * var(--iso-instrument-shadow)));
+
+  /* Radius */
+  --iso-radius-card: 20px;
+  --iso-radius-ui: 14px;
+  --iso-radius-pill: 999px;
+
+  /* Grid and texture */
+  --iso-grid: rgba(20, 20, 20, var(--iso-grid-alpha-effective));
+  --iso-grid-iso: rgba(20, 20, 20, calc(var(--iso-grid-alpha-effective) * 0.55));
+
+  /* Motion */
+  --iso-ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --iso-dur-fast: 120ms;
+  --iso-dur-base: 160ms;
+}

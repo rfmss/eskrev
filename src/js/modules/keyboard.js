@@ -2,6 +2,8 @@ export function createCtrlGuardHandler(deps) {
     const {
         editorEl,
         onSave,
+        onTogglePageMode,
+        onToggleNavOverview,
         onSelectAll,
         onCopy,
         onCut,
@@ -22,9 +24,26 @@ export function createCtrlGuardHandler(deps) {
             return true;
         }
 
+        if (key === "m") {
+            e.preventDefault();
+            if (e.shiftKey) {
+                if (typeof onToggleNavOverview === "function") onToggleNavOverview();
+            } else if (typeof onTogglePageMode === "function") {
+                onTogglePageMode();
+            }
+            return true;
+        }
+
         if (textShortcuts.includes(key)) {
             e.preventDefault();
-            if (editorEl) editorEl.focus();
+            // Verifica se editorEl existe e está visível antes de focar
+            if (editorEl) {
+                const isVisible = editorEl.offsetParent !== null && 
+                                 !editorEl.hasAttribute("hidden") && 
+                                 window.getComputedStyle(editorEl).display !== "none" &&
+                                 window.getComputedStyle(editorEl).visibility !== "hidden";
+                if (isVisible) editorEl.focus();
+            }
             if (key === "a") onSelectAll();
             if (key === "c") onCopy();
             if (key === "x") onCut();
@@ -93,6 +112,14 @@ export function createTypingRedirectHandler(deps) {
         const activeTag = document.activeElement.tagName.toLowerCase();
         if (activeTag === "input" || activeTag === "textarea" || document.activeElement === editorEl) return false;
 
+        // Verifica se editorEl existe e está visível antes de focar
+        if (!editorEl) return false;
+        const isVisible = editorEl.offsetParent !== null && 
+                         !editorEl.hasAttribute("hidden") && 
+                         window.getComputedStyle(editorEl).display !== "none" &&
+                         window.getComputedStyle(editorEl).visibility !== "hidden";
+        if (!isVisible) return false;
+
         e.preventDefault();
         editorEl.focus();
         const activeDoc = getActiveDoc();
@@ -153,7 +180,7 @@ export function createEscapeHandler(deps) {
 
         let closed = false;
         getActiveOverlays().forEach((overlayId) => {
-            if (overlayId === "gatekeeper" || overlayId === "pomodoroModal" || overlayId === "termsModal" || overlayId === "importSessionModal") {
+            if (overlayId === "gatekeeper") {
                 return;
             }
             closeOverlayById(overlayId);

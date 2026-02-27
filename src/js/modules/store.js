@@ -151,15 +151,27 @@ export const store = {
 
         this.data = { projects: [], activeId: null, memo: "" };
 
-        // Limpa todo o estado local para evitar restauração fantasma.
+        // Limpa apenas chaves do app para evitar apagar dados de outros apps no mesmo origin.
         try {
             const forceFull = sessionStorage.getItem("skrv_force_full_reset") === "1";
             const keepKeys = forceFull ? [] : ["skrv_dedication_done"];
+            const appPrefixes = ["skrv_", "lit_", "tot_", "zel_"];
+            const appExactKeys = new Set([
+                "termsVersion",
+                "readerRulerHintSeen"
+            ]);
             const keysToRemove = [];
             for (let i = 0; i < localStorage.length; i += 1) {
                 const key = localStorage.key(i);
                 if (!key) continue;
                 if (keepKeys.includes(key)) continue;
+                const isAppKey =
+                    appPrefixes.some((prefix) => key.startsWith(prefix)) ||
+                    key.startsWith("termsAccepted_") ||
+                    key.startsWith("termsAcceptedAt_") ||
+                    key.startsWith("termsHash_") ||
+                    appExactKeys.has(key);
+                if (!isAppKey) continue;
                 keysToRemove.push(key);
             }
             keysToRemove.forEach((k) => localStorage.removeItem(k));

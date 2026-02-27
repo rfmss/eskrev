@@ -5,6 +5,14 @@ import { ptDictionary } from './pt_dictionary.js';
 import { ptPosLexicon } from './pt_pos_lexicon.js';
 import { setModalActive } from './modal_state.js';
 
+const PERSONAS = [
+    { id: "conto", label: "Conto", shortcut: "1" },
+    { id: "cronica", label: "Cronica", shortcut: "2" },
+    { id: "poesia", label: "Poesia", shortcut: "3" },
+    { id: "ensaio", label: "Ensaio", shortcut: "4" },
+    { id: "roteiro", label: "Roteiro", shortcut: "5" }
+];
+
 export const editorFeatures = {
     editor: null,
     fontList: [
@@ -22,6 +30,25 @@ export const editorFeatures = {
     pageOverlayNumber: null,
     lastPageIndex: 1,
     pageOverlayRaf: null,
+    pagedMode: false,
+    pageModeKey: "skrv_page_mode",
+    pageMode: "infinite",
+    uiMode: "edit-infinite",
+    previousEditMode: "edit-infinite",
+    cloakTimer: null,
+    isCloaked: false,
+    browsePages: [],
+    browseActiveIndex: 0,
+    browseMeasureEl: null,
+    browseMuteInput: false,
+    editorHomeParent: null,
+    editorHomeNextSibling: null,
+    horizontalPageCount: 0,
+    horizontalWheelLockUntil: 0,
+    navOverview: null,
+    navOverviewGrid: null,
+    navOverviewClose: null,
+    editorWasEditableBeforeOverview: true,
     xrayActive: false,
     xrayRaf: null,
     xrayOverlay: null,
@@ -99,6 +126,10 @@ export const editorFeatures = {
     goalBody: null,
     goalCompleted: false,
     goalMilestonesDone: [],
+    goalLadderBtn: null,
+    goalPersonaMenu: null,
+    goalPersonaItems: null,
+    activePersonaId: "cronica",
     
     // SFX Objects
     sfx: {
@@ -118,6 +149,15 @@ export const editorFeatures = {
     focusReady: false,
     writingStarted: false,
     lastUserScrollTime: 0,
+
+    isFlowDebugEnabled() {
+        return localStorage.getItem("skrv_debug_flow") === "true";
+    },
+
+    flowLog(event, payload = {}) {
+        if (!this.isFlowDebugEnabled()) return;
+        console.log(`[eskrev:flow] ${event}`, payload);
+    },
     
     init(editorElement) {
         this.editor = editorElement;
@@ -247,6 +287,13 @@ export const editorFeatures = {
             case '--pomo':
                 const pBtn = document.getElementById('pomodoroBtn');
                 if(pBtn) pBtn.click();
+                return this.flashInlineData();
+            case '--mode':
+                this.togglePageMode();
+                return this.flashInlineData();
+            case '--overview':
+            case '--thumbs':
+                this.toggleNavOverview();
                 return this.flashInlineData();
             case '--visitas':
                 {
@@ -550,17 +597,16 @@ export const editorFeatures = {
 
     // --- SENSORY ---
     initSensoryFeatures() {
-        let idleTimer = null;
         const showChrome = () => {
-            document.body.classList.remove("chrome-hidden");
+            this.setCloak(false);
             this.writingStarted = false;
         };
         const hideChrome = () => {
-            document.body.classList.add("chrome-hidden");
+            this.setCloak(true);
         };
         const scheduleIdleShow = () => {
-            if (idleTimer) clearTimeout(idleTimer);
-            idleTimer = setTimeout(() => {
+            if (this.cloakTimer) clearTimeout(this.cloakTimer);
+            this.cloakTimer = setTimeout(() => {
                 showChrome();
             }, 2000);
         };
@@ -588,6 +634,7 @@ export const editorFeatures = {
             this.scheduleFocusBlockUpdate();
         });
         this.editor.addEventListener("input", () => {
+            if (this.getUiMode() === "nav-thumbnails") return;
             const text = (this.editor.innerText || "").trim();
             const words = text ? text.split(/\s+/).filter(Boolean) : [];
             if (words.length >= 1) {
@@ -620,6 +667,12 @@ export const editorFeatures = {
                 this.scheduleFocusBlockUpdate();
             }
         });
+    },
+
+    setCloak(active) {
+        this.isCloaked = !!active;
+        document.body.classList.toggle("chrome-hidden", this.isCloaked);
+        document.body.dataset.cloak = this.isCloaked ? "true" : "false";
     },
 
     shouldProtectChapterMarker() {
@@ -742,14 +795,14 @@ export const editorFeatures = {
         this.scrollRaf = requestAnimationFrame(() => {
             requestAnimationFrame(() => {
                 this.scrollRaf = null;
-                const scroller = this.editor.closest(".panel");
+                const scroller = this.getEditorScroller();
                 if (!scroller) return;
-                this.centerCaretInPanel(scroller);
+                this.centerCaretInScroller(scroller);
             });
         });
     },
 
-    centerCaretInPanel(scroller) {
+    centerCaretInScroller(scroller) {
         const sel = window.getSelection();
         if (!sel || sel.rangeCount === 0) return;
         const original = sel.getRangeAt(0);
@@ -762,18 +815,25 @@ export const editorFeatures = {
 
         const panelRect = scroller.getBoundingClientRect();
         const rect = marker.getBoundingClientRect();
-        const caretTop = rect.top - panelRect.top + scroller.scrollTop;
-        const panelHeight = panelRect.height || 1;
-        const editorStyle = window.getComputedStyle(this.editor);
-        const fontSize = parseFloat(editorStyle.fontSize) || 20;
-        const lineHeightRaw = editorStyle.lineHeight;
-        const lineHeight = lineHeightRaw === "normal"
-            ? fontSize * 1.7
-            : parseFloat(lineHeightRaw) || fontSize * 1.7;
-        const targetY = Math.max(0, panelHeight * 0.5);
-        if (caretTop > targetY) {
-            marker.scrollIntoView({ block: "center", behavior: "smooth" });
-            scroller.scrollBy({ top: -lineHeight, behavior: "smooth" });
+        if (this.pagedMode) {
+            const caretLeft = rect.left - panelRect.left + scroller.scrollLeft;
+            const stride = this.getPageStride();
+            const currentPage = Math.max(0, Math.floor(caretLeft / stride));
+            this.centerPageInView(currentPage, "smooth");
+        } else {
+            const caretTop = rect.top - panelRect.top + scroller.scrollTop;
+            const panelHeight = panelRect.height || 1;
+            const editorStyle = window.getComputedStyle(this.editor);
+            const fontSize = parseFloat(editorStyle.fontSize) || 20;
+            const lineHeightRaw = editorStyle.lineHeight;
+            const lineHeight = lineHeightRaw === "normal"
+                ? fontSize * 1.7
+                : parseFloat(lineHeightRaw) || fontSize * 1.7;
+            const targetY = Math.max(0, panelHeight * 0.5);
+            if (caretTop > targetY) {
+                marker.scrollIntoView({ block: "center", behavior: "smooth" });
+                scroller.scrollBy({ top: -lineHeight, behavior: "smooth" });
+            }
         }
 
         marker.remove();
@@ -1072,15 +1132,776 @@ export const editorFeatures = {
         if (!this.pageMarkers) return;
         this.pageOverlay = document.getElementById("pageOverlay");
         this.pageOverlayNumber = document.getElementById("pageOverlayNumber");
+        if (this.editor && !this.editorHomeParent) {
+            this.editorHomeParent = this.editor.parentNode;
+            this.editorHomeNextSibling = this.editor.nextSibling;
+        }
+        const storedMode = localStorage.getItem(this.pageModeKey);
+        this.pageMode = storedMode === "browse" ? "browse" : "infinite";
+        this.pagedMode = this.shouldUseHorizontalPagination();
+        this.uiMode = this.pageMode === "browse" ? "edit-horizontal" : "edit-infinite";
+        this.previousEditMode = this.uiMode;
+        this.flowLog("initPagination", {
+            storedMode,
+            pageMode: this.pageMode,
+            uiMode: this.uiMode
+        });
+        this.syncPageModeClasses();
+        this.syncPageModeLabel();
+        this.ensureNavOverview();
+        this.setCloak(false);
         const schedule = () => this.schedulePaginationUpdate();
         const panel = this.editor.closest(".panel");
-        this.editor.addEventListener("input", schedule);
-        window.addEventListener("resize", schedule);
+        const wrap = document.getElementById("editorWrap");
+        this.editor.addEventListener("input", (e) => {
+            if (this.getPageMode() === "browse" && !this.browseMuteInput) {
+                const beforeLen = this.browsePages.length;
+                this.browsePages[this.browseActiveIndex] = this.editor.innerText || "";
+                const overflowed = !this.browseTextFits(this.browsePages[this.browseActiveIndex] || "");
+                this.rebalanceBrowseFrom(this.browseActiveIndex);
+                const grew = this.browsePages.length > beforeLen;
+                const canAdvance = e && e.inputType && e.inputType.startsWith("insert");
+                if (overflowed && grew && canAdvance) {
+                    this.browseActiveIndex = Math.min(this.browseActiveIndex + 1, this.browsePages.length - 1);
+                }
+                this.flowLog("browseInput", {
+                    inputType: e && e.inputType ? e.inputType : null,
+                    activeIndex: this.browseActiveIndex,
+                    pagesBefore: beforeLen,
+                    pagesAfter: this.browsePages.length,
+                    overflowed,
+                    autoAdvanced: Boolean(overflowed && grew && canAdvance),
+                    activeChars: (this.browsePages[this.browseActiveIndex] || "").length,
+                    docChars: this.composeBrowseDocumentText().length
+                });
+                this.renderBrowseCards();
+            }
+            schedule();
+        });
+        window.addEventListener("resize", () => {
+            this.pagedMode = this.shouldUseHorizontalPagination();
+            this.syncPageModeClasses();
+            schedule();
+        });
         if (panel) {
             panel.addEventListener("scroll", () => this.schedulePageOverlayUpdate());
             panel.addEventListener("wheel", () => this.schedulePageOverlayUpdate(), { passive: true });
         }
+        if (wrap) {
+            wrap.addEventListener("scroll", () => this.schedulePageOverlayUpdate(), { passive: true });
+            wrap.addEventListener("wheel", () => this.schedulePageOverlayUpdate(), { passive: true });
+            this.bindPagedCardInteraction(wrap);
+            this.bindHorizontalWheelNavigation(wrap);
+        }
+        this.bindHorizontalArrowNavigation();
         this.schedulePaginationUpdate();
+    },
+
+    shouldUseHorizontalPagination() {
+        return this.pageMode === "browse" && window.matchMedia("(min-width: 901px)").matches;
+    },
+
+    getPageMode() {
+        return this.pageMode === "browse" ? "browse" : "infinite";
+    },
+
+    getUiMode() {
+        return this.uiMode || "edit-infinite";
+    },
+
+    syncPageModeLabel() {
+        const label = document.getElementById("pageModeLabel");
+        const btn = document.getElementById("btnPageMode");
+        const railBtn = document.getElementById("railMode");
+        const mode = this.getUiMode();
+        const isBrowse = mode === "edit-horizontal";
+        if (label) label.textContent = isBrowse ? "BROWSE" : "PÁGINA";
+        if (btn) {
+            btn.setAttribute("aria-pressed", isBrowse ? "true" : "false");
+            btn.setAttribute("title", isBrowse ? "Modo browse [Ctrl+M]" : "Modo página [Ctrl+M]");
+        }
+        if (railBtn) {
+            railBtn.setAttribute("aria-pressed", isBrowse ? "true" : "false");
+            railBtn.setAttribute("title", isBrowse ? "Trocar para modo pagina infinita" : "Trocar para modo horizontal (baralhos)");
+        }
+    },
+
+    setPageMode(nextMode) {
+        const mode = nextMode === "browse" ? "browse" : "infinite";
+        if (this.pageMode === mode) return;
+        if (this.pageMode === "browse" && mode === "infinite") {
+            this.syncBrowsePagesToEditor();
+        }
+        this.pageMode = mode;
+        localStorage.setItem(this.pageModeKey, mode);
+        if (mode === "browse") {
+            this.ensureBrowsePagesFromEditor();
+        }
+        this.pagedMode = this.shouldUseHorizontalPagination();
+        this.uiMode = mode === "browse" ? "edit-horizontal" : "edit-infinite";
+        this.previousEditMode = this.uiMode;
+        this.flowLog("setPageMode", {
+            toMode: mode,
+            uiMode: this.uiMode,
+            pagedMode: this.pagedMode,
+            pages: this.browsePages.length,
+            docChars: this.getDocumentText().length
+        });
+        this.syncPageModeClasses();
+        this.syncPageModeLabel();
+        this.schedulePaginationUpdate();
+    },
+
+    togglePageMode() {
+        const current = this.getUiMode();
+        if (current === "nav-thumbnails") {
+            this.closeNavOverview(null);
+            return;
+        }
+        const next = current === "edit-horizontal" ? "edit-infinite" : "edit-horizontal";
+        this.setUiMode(next);
+    },
+
+    toggleNavOverview() {
+        if (this.getUiMode() === "nav-thumbnails") {
+            this.closeNavOverview(null);
+            return;
+        }
+        this.openNavOverview();
+    },
+
+    setUiMode(nextMode) {
+        const normalized = (nextMode === "edit-horizontal" || nextMode === "nav-thumbnails")
+            ? nextMode
+            : "edit-infinite";
+        if (normalized === "nav-thumbnails") {
+            this.openNavOverview();
+            return;
+        }
+        this.closeNavOverview(null);
+        const previousUiMode = this.getUiMode();
+        const previousPageMode = this.pageMode;
+        this.uiMode = normalized;
+        this.previousEditMode = normalized;
+        const nextPageMode = normalized === "edit-horizontal" ? "browse" : "infinite";
+        if (previousPageMode === "browse" && nextPageMode === "infinite") {
+            this.syncBrowsePagesToEditor();
+        }
+        if (this.pageMode !== nextPageMode) {
+            this.pageMode = nextPageMode;
+            localStorage.setItem(this.pageModeKey, nextPageMode);
+            if (nextPageMode === "browse") this.ensureBrowsePagesFromEditor();
+        }
+        this.pagedMode = this.shouldUseHorizontalPagination();
+        this.flowLog("setUiMode", {
+            previousUiMode,
+            nextUiMode: normalized,
+            previousPageMode,
+            nextPageMode: this.pageMode,
+            pagedMode: this.pagedMode,
+            pages: this.browsePages.length
+        });
+        this.syncPageModeClasses();
+        this.syncPageModeLabel();
+        this.schedulePaginationUpdate();
+    },
+
+    syncBodyModeDataset() {
+        document.body.dataset.mode = this.getUiMode();
+    },
+
+    syncPageModeClasses() {
+        const browse = this.pageMode === "browse";
+        document.body.classList.toggle("editor-mode-browse", browse);
+        document.body.classList.toggle("editor-mode-infinite", !browse);
+        document.body.classList.toggle("editor-paged", this.pagedMode);
+        document.body.classList.toggle("editor-mode-overview", this.getUiMode() === "nav-thumbnails");
+        this.syncBodyModeDataset();
+        const wrap = document.getElementById("editorWrap");
+        if (wrap) {
+            wrap.classList.toggle("triPage", browse && this.pagedMode);
+        }
+        if (!browse) {
+            this.mountEditorToHome();
+        }
+    },
+
+    mountEditorToHome() {
+        if (!this.editor || !this.editorHomeParent) return;
+        if (this.editor.parentNode === this.editorHomeParent) return;
+        if (this.editorHomeNextSibling && this.editorHomeNextSibling.parentNode === this.editorHomeParent) {
+            this.editorHomeParent.insertBefore(this.editor, this.editorHomeNextSibling);
+        } else {
+            this.editorHomeParent.appendChild(this.editor);
+        }
+    },
+
+    getPersistHtml() {
+        if (this.getPageMode() !== "browse") return this.editor ? this.editor.innerHTML : "";
+        const text = this.composeBrowseDocumentText();
+        return this.escapeHtml(text).replace(/\n/g, "<br>");
+    },
+
+    getDocumentText() {
+        if (this.getPageMode() !== "browse") return this.editor ? (this.editor.innerText || "") : "";
+        return this.composeBrowseDocumentText();
+    },
+
+    composeBrowseDocumentText() {
+        return (this.browsePages || []).join("\n").trimEnd();
+    },
+
+    syncBrowsePagesToEditor() {
+        if (!this.editor) return;
+        const mergedText = this.composeBrowseDocumentText();
+        const currentText = this.editor.innerText || "";
+        if (currentText === mergedText) {
+            this.flowLog("syncBrowsePagesToEditor:skip", { reason: "same_text", chars: mergedText.length });
+            return;
+        }
+        this.browseMuteInput = true;
+        this.editor.innerText = mergedText;
+        this.browseMuteInput = false;
+        this.flowLog("syncBrowsePagesToEditor:apply", {
+            charsBefore: currentText.length,
+            charsAfter: mergedText.length,
+            pages: this.browsePages.length
+        });
+    },
+
+    getEditorScroller() {
+        const wrap = document.getElementById("editorWrap");
+        if (this.pagedMode && wrap) return wrap;
+        return this.editor.closest(".panel");
+    },
+
+    getPageStride() {
+        const pageWidth = this.getPageWidth();
+        const pageGap = this.getCardInlinePadding() * 2;
+        return pageWidth + pageGap;
+    },
+
+    getPageWidth() {
+        const rootStyles = window.getComputedStyle(document.documentElement);
+        const pageWidthRaw = rootStyles.getPropertyValue("--editor-page-width").trim();
+        return parseFloat(pageWidthRaw) || 620;
+    },
+
+    getCardInlinePadding() {
+        const rootStyles = window.getComputedStyle(document.documentElement);
+        const cardPadRaw = rootStyles.getPropertyValue("--editor-card-pad-inline").trim();
+        return parseFloat(cardPadRaw) || 26;
+    },
+
+    getCardWidth() {
+        return this.getPageWidth() + (this.getCardInlinePadding() * 2);
+    },
+
+    getHorizontalPageCount() {
+        if (this.getPageMode() === "browse") {
+            return Math.max(1, this.browsePages.length || 1);
+        }
+        return Math.max(1, this.horizontalPageCount || 1);
+    },
+
+    getPageIndexFromClientX(clientX, scroller) {
+        if (this.getPageMode() === "browse") {
+            const rect = scroller.getBoundingClientRect();
+            const x = clientX - rect.left;
+            if (x < rect.width * 0.33) return Math.max(0, this.browseActiveIndex - 1);
+            if (x > rect.width * 0.67) return Math.min(this.getLastPageIndex(), this.browseActiveIndex + 1);
+            return this.browseActiveIndex;
+        }
+        const scrollerRect = scroller.getBoundingClientRect();
+        const localX = Math.max(0, clientX - scrollerRect.left + scroller.scrollLeft);
+        const stride = this.getPageStride();
+        const cardPad = this.getCardInlinePadding();
+        const corrected = localX + cardPad;
+        return Math.max(0, Math.floor(corrected / stride));
+    },
+
+    getCenteredPageIndex(scroller) {
+        if (this.getPageMode() === "browse") return this.browseActiveIndex;
+        if (!scroller) return 0;
+        const stride = this.getPageStride();
+        const cardPad = this.getCardInlinePadding();
+        const viewportCenter = (scroller.scrollLeft || 0) + ((scroller.clientWidth || 0) / 2);
+        const corrected = viewportCenter + cardPad;
+        return Math.max(0, Math.floor(corrected / stride));
+    },
+
+    getLastPageIndex() {
+        return Math.max(0, (this.horizontalPageCount || this.getHorizontalPageCount()) - 1);
+    },
+
+    getPageHeight() {
+        const rootStyles = window.getComputedStyle(document.documentElement);
+        const pageHeightRaw = rootStyles.getPropertyValue("--editor-page-height").trim();
+        return parseFloat(pageHeightRaw) || 940;
+    },
+
+    measurePageCountByHeight(pageWidth, pageHeight) {
+        if (!this.editor) return 1;
+        const prev = {
+            width: this.editor.style.width,
+            maxWidth: this.editor.style.maxWidth,
+            minWidth: this.editor.style.minWidth,
+            columnCount: this.editor.style.columnCount,
+            columnWidth: this.editor.style.columnWidth,
+            columnFill: this.editor.style.columnFill,
+            height: this.editor.style.height,
+            minHeight: this.editor.style.minHeight,
+            maxHeight: this.editor.style.maxHeight
+        };
+
+        this.editor.style.columnCount = "1";
+        this.editor.style.columnWidth = "auto";
+        this.editor.style.columnFill = "auto";
+        this.editor.style.width = `${pageWidth}px`;
+        this.editor.style.maxWidth = `${pageWidth}px`;
+        this.editor.style.minWidth = `${pageWidth}px`;
+        this.editor.style.height = "auto";
+        this.editor.style.minHeight = "auto";
+        this.editor.style.maxHeight = "none";
+
+        const totalHeight = Math.max(this.editor.scrollHeight, this.editor.offsetHeight);
+        const pageCount = Math.max(1, Math.ceil(totalHeight / pageHeight));
+
+        this.editor.style.width = prev.width;
+        this.editor.style.maxWidth = prev.maxWidth;
+        this.editor.style.minWidth = prev.minWidth;
+        this.editor.style.columnCount = prev.columnCount;
+        this.editor.style.columnWidth = prev.columnWidth;
+        this.editor.style.columnFill = prev.columnFill;
+        this.editor.style.height = prev.height;
+        this.editor.style.minHeight = prev.minHeight;
+        this.editor.style.maxHeight = prev.maxHeight;
+
+        return pageCount;
+    },
+
+    clampPageIndex(pageIndex) {
+        const max = this.getLastPageIndex();
+        return Math.max(0, Math.min(max, pageIndex));
+    },
+
+    focusCenterPageContent() {
+        const scroller = this.getEditorScroller();
+        if (!scroller || !this.editor) return;
+        const centerIndex = this.getCenteredPageIndex(scroller);
+        const sel = window.getSelection();
+        if (!sel || sel.rangeCount === 0) return;
+        const range = sel.getRangeAt(0);
+        if (!this.editor.contains(range.commonAncestorContainer)) return;
+        const rect = this.getCaretRect();
+        if (!rect) return;
+        const currentIndex = this.getPageIndexFromClientX(rect.left, scroller);
+        if (currentIndex !== centerIndex) {
+            const fallback = document.createRange();
+            fallback.selectNodeContents(this.editor);
+            fallback.collapse(false);
+            sel.removeAllRanges();
+            sel.addRange(fallback);
+        }
+    },
+
+    scrollToPage(pageIndex, behavior = "smooth") {
+        if (this.getPageMode() === "browse") {
+            const safeIndex = this.clampPageIndex(pageIndex);
+            if (safeIndex === this.browseActiveIndex) return;
+            this.browseActiveIndex = safeIndex;
+            this.renderBrowseCards();
+            return;
+        }
+        const scroller = this.getEditorScroller();
+        if (!scroller) return;
+        const stride = this.getPageStride();
+        const cardWidth = this.getCardWidth();
+        const cardPad = this.getCardInlinePadding();
+        const safeIndex = this.clampPageIndex(pageIndex);
+        const cardLeft = (safeIndex * stride) - cardPad;
+        const viewportWidth = scroller.clientWidth || 1;
+        const rawTarget = cardLeft - ((viewportWidth - cardWidth) / 2);
+        const maxLeft = Math.max(0, (scroller.scrollWidth || 0) - viewportWidth);
+        const targetLeft = Math.max(0, Math.min(rawTarget, maxLeft));
+        if (Math.abs((scroller.scrollLeft || 0) - targetLeft) < 8) return;
+        scroller.scrollTo({ left: targetLeft, behavior });
+    },
+
+    centerPageInView(pageIndex, behavior = "smooth") {
+        this.scrollToPage(pageIndex, behavior);
+    },
+
+    setCenterPage(pageIndex) {
+        if (this.getPageMode() === "browse") {
+            this.scrollToPage(pageIndex, "smooth");
+            this.focusCenterPageContent();
+            return;
+        }
+        this.scrollToPage(pageIndex, "smooth");
+        requestAnimationFrame(() => this.focusCenterPageContent());
+    },
+
+    canEditAtClientX(clientX, scroller) {
+        if (this.getPageMode() === "browse") {
+            const targetIndex = this.getPageIndexFromClientX(clientX, scroller);
+            return targetIndex === this.browseActiveIndex;
+        }
+        const targetIndex = this.getPageIndexFromClientX(clientX, scroller);
+        const centerIndex = this.getCenteredPageIndex(scroller);
+        return targetIndex === centerIndex;
+    },
+
+    ensureBrowseMeasure() {
+        if (this.browseMeasureEl) return this.browseMeasureEl;
+        const el = document.createElement("div");
+        el.style.position = "fixed";
+        el.style.left = "-99999px";
+        el.style.top = "-99999px";
+        el.style.visibility = "hidden";
+        el.style.pointerEvents = "none";
+        el.style.whiteSpace = "pre-wrap";
+        el.style.wordBreak = "break-word";
+        el.style.overflowWrap = "anywhere";
+        el.style.boxSizing = "border-box";
+        el.style.padding = "0";
+        el.style.margin = "0";
+        document.body.appendChild(el);
+        this.browseMeasureEl = el;
+        return el;
+    },
+
+    getBrowsePageTextHeightLimit() {
+        return Math.max(280, this.getPageHeight() - 52);
+    },
+
+    browseTextFits(text) {
+        const measure = this.ensureBrowseMeasure();
+        const style = window.getComputedStyle(this.editor);
+        measure.style.width = `${this.getPageWidth()}px`;
+        measure.style.fontFamily = style.fontFamily;
+        measure.style.fontSize = style.fontSize;
+        measure.style.fontWeight = style.fontWeight;
+        measure.style.lineHeight = style.lineHeight;
+        measure.style.letterSpacing = style.letterSpacing;
+        measure.textContent = text && text.length ? text : " ";
+        return measure.scrollHeight <= this.getBrowsePageTextHeightLimit();
+    },
+
+    splitToFittingPrefix(text) {
+        if (!text) return { prefix: "", suffix: "" };
+        let lo = 0;
+        let hi = text.length;
+        let best = 0;
+        while (lo <= hi) {
+            const mid = Math.floor((lo + hi) / 2);
+            const chunk = text.slice(0, mid);
+            if (this.browseTextFits(chunk)) {
+                best = mid;
+                lo = mid + 1;
+            } else {
+                hi = mid - 1;
+            }
+        }
+        if (best <= 0) best = Math.max(1, Math.floor(text.length * 0.6));
+        if (best < text.length) {
+            const ws = text.lastIndexOf(" ", best);
+            if (ws > 0) best = ws;
+        }
+        return {
+            prefix: text.slice(0, best).trimEnd(),
+            suffix: text.slice(best).trimStart()
+        };
+    },
+
+    rebalanceBrowseFrom(index) {
+        let i = Math.max(0, Math.min(index, this.browsePages.length - 1));
+        while (i < this.browsePages.length) {
+            const text = this.browsePages[i] || "";
+            if (this.browseTextFits(text)) break;
+            const fit = this.splitToFittingPrefix(text);
+            this.browsePages[i] = fit.prefix;
+            const carry = fit.suffix;
+            if (!carry) break;
+            this.browsePages[i + 1] = this.browsePages[i + 1]
+                ? `${carry}\n${this.browsePages[i + 1]}`.trim()
+                : carry;
+            i += 1;
+        }
+        for (let j = this.browsePages.length - 1; j > 0; j -= 1) {
+            if ((this.browsePages[j] || "").trim().length === 0) this.browsePages.splice(j, 1);
+        }
+        if (this.browsePages.length === 0) this.browsePages = [""];
+        this.browseActiveIndex = Math.max(0, Math.min(this.browseActiveIndex, this.browsePages.length - 1));
+    },
+
+    ensureBrowsePagesFromEditor() {
+        const raw = this.editor ? (this.editor.innerText || "") : "";
+        if (!raw.trim()) {
+            this.browsePages = [""];
+            this.browseActiveIndex = 0;
+            this.flowLog("ensureBrowsePagesFromEditor", {
+                sourceChars: 0,
+                pages: 1,
+                activeIndex: 0
+            });
+            return;
+        }
+        this.browsePages = [raw];
+        this.browseActiveIndex = 0;
+        this.rebalanceBrowseFrom(0);
+        this.flowLog("ensureBrowsePagesFromEditor", {
+            sourceChars: raw.length,
+            pages: this.browsePages.length,
+            activeIndex: this.browseActiveIndex
+        });
+    },
+
+    renderBrowseCards() {
+        if (this.getPageMode() !== "browse" || !this.pageMarkers || !this.editor) return;
+        const total = Math.max(1, this.browsePages.length || 1);
+        const active = Math.max(0, Math.min(this.browseActiveIndex, total - 1));
+        this.browseActiveIndex = active;
+        this.horizontalPageCount = total;
+
+        if (this.pageMarkers.dataset.mode !== "browse" || this.pageMarkers.childElementCount !== 3) {
+            this.pageMarkers.innerHTML = "";
+            this.pageMarkers.dataset.mode = "browse";
+            this.pageMarkers.style.width = "100%";
+            this.pageMarkers.style.height = "100%";
+            ["left", "center", "right"].forEach((slot) => {
+                const card = document.createElement("div");
+                card.className = `page-card page-card-${slot}`;
+                const label = document.createElement("div");
+                label.className = "page-card-label";
+                card.appendChild(label);
+                const content = document.createElement("div");
+                content.className = "page-card-content";
+                card.appendChild(content);
+                this.pageMarkers.appendChild(card);
+            });
+        }
+
+        const cards = Array.from(this.pageMarkers.children);
+        const map = [
+            { idx: active - 1, slot: "left" },
+            { idx: active, slot: "center" },
+            { idx: active + 1, slot: "right" }
+        ];
+        map.forEach((it, cardPos) => {
+            const card = cards[cardPos];
+            const exists = it.idx >= 0 && it.idx < total;
+            const label = card.querySelector(".page-card-label");
+            const content = card.querySelector(".page-card-content");
+            card.classList.toggle("is-ghost", !exists);
+            card.classList.toggle("is-active", it.slot === "center");
+            card.classList.toggle("is-side", it.slot !== "center");
+            if (!exists) {
+                if (label) label.textContent = "";
+                if (content) content.textContent = "";
+                return;
+            }
+            if (label) label.textContent = String(it.idx + 1).padStart(2, "0");
+            if (content) {
+                if (it.slot === "center") {
+                    content.textContent = "";
+                } else {
+                    content.textContent = this.browsePages[it.idx] || "";
+                }
+            }
+        });
+
+        const editorLayer = document.getElementById("editorLayer");
+        if (editorLayer && this.editor.parentNode !== editorLayer) {
+            editorLayer.appendChild(this.editor);
+        }
+
+        const currentText = this.browsePages[active] || "";
+        if (this.editor.innerText !== currentText) {
+            this.browseMuteInput = true;
+            this.editor.innerText = currentText;
+            this.browseMuteInput = false;
+        }
+        this.syncPageModeLabel();
+    },
+
+    ensureNavOverview() {
+        if (this.navOverview) return;
+        const overlay = document.createElement("div");
+        overlay.id = "navOverview";
+        overlay.className = "nav-overview";
+        overlay.setAttribute("aria-hidden", "true");
+        overlay.innerHTML = `
+            <div class="nav-overview-inner" role="dialog" aria-modal="true" aria-label="Navegação por páginas">
+                <div class="nav-overview-head">
+                    <span>VISÃO GERAL</span>
+                    <button type="button" class="btn-icon nav-overview-close" aria-label="Fechar">×</button>
+                </div>
+                <div class="nav-overview-grid" tabindex="-1"></div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+        this.navOverview = overlay;
+        this.navOverviewGrid = overlay.querySelector(".nav-overview-grid");
+        this.navOverviewClose = overlay.querySelector(".nav-overview-close");
+        if (this.navOverviewClose) {
+            this.navOverviewClose.addEventListener("click", () => this.closeNavOverview(null));
+        }
+        overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) this.closeNavOverview(null);
+        });
+    },
+
+    openNavOverview() {
+        this.ensureNavOverview();
+        if (!this.navOverview || !this.navOverviewGrid) return;
+        this.previousEditMode = this.pageMode === "browse" ? "edit-horizontal" : "edit-infinite";
+        this.uiMode = "nav-thumbnails";
+        this.setCloak(false);
+        this.syncPageModeClasses();
+        this.syncPageModeLabel();
+        const wrap = document.getElementById("editorWrap");
+        this.editor.blur();
+        if (wrap) wrap.setAttribute("inert", "");
+        this.editorWasEditableBeforeOverview = this.editor.getAttribute("contenteditable") !== "false";
+        this.editor.setAttribute("contenteditable", "false");
+        this.renderNavOverviewThumbs();
+        this.navOverview.classList.add("active");
+        this.navOverview.setAttribute("aria-hidden", "false");
+        this.navOverviewGrid.focus();
+    },
+
+    closeNavOverview(targetIndex = null) {
+        if (this.getUiMode() !== "nav-thumbnails") return;
+        if (targetIndex !== null && this.pageMode === "browse") {
+            const safe = Math.max(0, Math.min(targetIndex, this.browsePages.length - 1));
+            this.browseActiveIndex = safe;
+        }
+        if (this.navOverview) {
+            this.navOverview.classList.remove("active");
+            this.navOverview.setAttribute("aria-hidden", "true");
+        }
+        const wrap = document.getElementById("editorWrap");
+        if (wrap) wrap.removeAttribute("inert");
+        if (this.editorWasEditableBeforeOverview) this.editor.setAttribute("contenteditable", "true");
+        const resumeMode = this.previousEditMode === "edit-horizontal" ? "edit-horizontal" : "edit-infinite";
+        this.uiMode = resumeMode;
+        this.setCloak(false);
+        if (this.pageMode === "browse" && resumeMode !== "edit-horizontal") {
+            this.syncBrowsePagesToEditor();
+        }
+        this.pageMode = resumeMode === "edit-horizontal" ? "browse" : "infinite";
+        localStorage.setItem(this.pageModeKey, this.pageMode);
+        this.pagedMode = this.shouldUseHorizontalPagination();
+        this.syncPageModeClasses();
+        this.syncPageModeLabel();
+        this.schedulePaginationUpdate();
+        requestAnimationFrame(() => {
+            if (this.pageMode === "browse" && targetIndex !== null) this.renderBrowseCards();
+            this.editor.focus();
+        });
+    },
+
+    renderNavOverviewThumbs() {
+        if (!this.navOverviewGrid) return;
+        const pages = this.pageMode === "browse"
+            ? (this.browsePages.length ? this.browsePages : [""])
+            : this.buildInfinitePreviewPages();
+        const current = this.pageMode === "browse" ? this.browseActiveIndex : 0;
+        this.navOverviewGrid.innerHTML = "";
+        pages.forEach((text, idx) => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "nav-thumb";
+            if (idx === current) btn.classList.add("is-active");
+            btn.innerHTML = `
+                <div class="nav-thumb-body"></div>
+                <div class="nav-thumb-label">PG${idx + 1}</div>
+            `;
+            const body = btn.querySelector(".nav-thumb-body");
+            if (body) body.textContent = text || " ";
+            btn.addEventListener("click", () => this.closeNavOverview(idx));
+            this.navOverviewGrid.appendChild(btn);
+        });
+    },
+
+    buildInfinitePreviewPages() {
+        const raw = (this.editor && this.editor.innerText) ? this.editor.innerText : "";
+        if (!raw.trim()) return [""];
+        const chunks = [];
+        const limit = 1400;
+        let buffer = raw;
+        while (buffer.length > limit) {
+            let cut = buffer.lastIndexOf("\n", limit);
+            if (cut < Math.floor(limit * 0.5)) cut = buffer.lastIndexOf(" ", limit);
+            if (cut < 1) cut = limit;
+            chunks.push(buffer.slice(0, cut).trim());
+            buffer = buffer.slice(cut).trimStart();
+        }
+        chunks.push(buffer.trim());
+        return chunks.slice(0, 12);
+    },
+
+    bindHorizontalArrowNavigation() {
+        if (this._horizontalArrowBound) return;
+        this._horizontalArrowBound = true;
+        document.addEventListener("keydown", (e) => {
+            if (this.getUiMode() !== "edit-horizontal" || !this.pagedMode) return;
+            if (e.ctrlKey || e.metaKey || e.altKey) return;
+            if (document.querySelector(".modal-overlay.active")) return;
+            if (e.key === "ArrowLeft") {
+                e.preventDefault();
+                this.scrollToPage(this.browseActiveIndex - 1, "smooth");
+                return;
+            }
+            if (e.key === "ArrowRight") {
+                e.preventDefault();
+                this.scrollToPage(this.browseActiveIndex + 1, "smooth");
+            }
+        });
+    },
+
+    bindHorizontalWheelNavigation(wrap) {
+        if (!wrap || this._horizontalWheelBound) return;
+        this._horizontalWheelBound = true;
+        wrap.addEventListener("wheel", (e) => {
+            if (this.getUiMode() !== "edit-horizontal" || !this.pagedMode) return;
+            if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+            const now = Date.now();
+            if (now < this.horizontalWheelLockUntil) {
+                e.preventDefault();
+                return;
+            }
+            e.preventDefault();
+            this.horizontalWheelLockUntil = now + 180;
+            const dir = e.deltaY > 0 ? 1 : -1;
+            this.scrollToPage(this.browseActiveIndex + dir, "smooth");
+        }, { passive: false });
+    },
+
+    bindPagedCardInteraction(wrap) {
+        if (!wrap || this._pagedInteractionBound) return;
+        this._pagedInteractionBound = true;
+
+        wrap.addEventListener("mousedown", (e) => {
+            if (!this.pagedMode) return;
+            if (this.canEditAtClientX(e.clientX, wrap)) return;
+            e.preventDefault();
+            const targetIndex = this.getPageIndexFromClientX(e.clientX, wrap);
+            this.setCenterPage(targetIndex);
+        }, { capture: true });
+
+        wrap.addEventListener("click", (e) => {
+            if (!this.pagedMode) return;
+            if (this.canEditAtClientX(e.clientX, wrap)) return;
+            e.preventDefault();
+            const targetIndex = this.getPageIndexFromClientX(e.clientX, wrap);
+            this.setCenterPage(targetIndex);
+        });
+    },
+
+    unbindPagedCardInteraction() {
+        this._pagedInteractionBound = false;
     },
 
     schedulePaginationUpdate() {
@@ -1094,6 +1915,110 @@ export const editorFeatures = {
 
     updatePaginationMarkers() {
         if (!this.pageMarkers) return;
+        if (this.pagedMode) {
+            if (this.getPageMode() === "browse") {
+                const wrap = document.getElementById("editorWrap");
+                const pageHeight = this.getPageHeight();
+                const pageWidth = this.getPageWidth();
+                if (!this.browsePages.length) this.ensureBrowsePagesFromEditor();
+                this.horizontalPageCount = Math.max(1, this.browsePages.length || 1);
+                this.editor.style.width = `${pageWidth}px`;
+                this.editor.style.maxWidth = `${pageWidth}px`;
+                this.editor.style.minWidth = `${pageWidth}px`;
+                this.editor.style.height = `${pageHeight}px`;
+                this.editor.style.minHeight = `${pageHeight}px`;
+                this.editor.style.maxHeight = `${pageHeight}px`;
+                this.editor.style.columnCount = "1";
+                this.editor.style.columnWidth = "auto";
+                this.editor.style.columnGap = "0";
+                this.editor.style.columnFill = "auto";
+                if (wrap) {
+                    wrap.style.setProperty("--editor-page-count", String(this.horizontalPageCount));
+                    wrap.style.setProperty("--editor-visible-pages", "3");
+                    wrap.style.height = `${pageHeight}px`;
+                }
+                this.renderBrowseCards();
+                this.schedulePageOverlayUpdate();
+                return;
+            }
+            this.pageMarkers.dataset.mode = "infinite";
+            const wrap = document.getElementById("editorWrap");
+            const pageHeight = this.getPageHeight();
+            const prevCount = this.horizontalPageCount || 0;
+            const stride = this.getPageStride();
+            const cardPad = this.getCardInlinePadding();
+            const pageGap = cardPad * 2;
+            const pageWidth = this.getPageWidth();
+            const pageCount = this.measurePageCountByHeight(pageWidth, pageHeight);
+            this.horizontalPageCount = pageCount;
+            const visiblePages = Math.min(3, pageCount);
+            if (wrap) {
+                wrap.style.setProperty("--editor-visible-pages", String(visiblePages));
+            }
+            const textWidth = Math.max(pageWidth, (pageCount * stride) - (stride - pageWidth));
+            const cardWidth = this.getCardWidth();
+            const cardsWidth = `${Math.max(cardWidth, (pageCount * stride) - (stride - pageWidth) + cardPad)}px`;
+            this.editor.style.width = `${textWidth}px`;
+            this.editor.style.maxWidth = `${textWidth}px`;
+            this.editor.style.minWidth = `${textWidth}px`;
+            this.editor.style.height = `${pageHeight}px`;
+            this.editor.style.minHeight = `${pageHeight}px`;
+            this.editor.style.maxHeight = `${pageHeight}px`;
+            this.editor.style.columnCount = String(pageCount);
+            this.editor.style.columnWidth = `${pageWidth}px`;
+            this.editor.style.columnGap = `${pageGap}px`;
+            this.editor.style.columnFill = "auto";
+            if (wrap) {
+                wrap.style.setProperty("--editor-page-count", String(pageCount));
+                wrap.style.height = `${pageHeight}px`;
+                wrap.style.setProperty("--editor-page-gap", `${pageGap}px`);
+            }
+            if (this.pageMarkers.children.length === pageCount) {
+                this.pageMarkers.style.width = cardsWidth;
+                this.pageMarkers.style.height = "100%";
+                this.schedulePageOverlayUpdate();
+                return;
+            }
+            this.pageMarkers.innerHTML = "";
+            this.pageMarkers.style.width = cardsWidth;
+            this.pageMarkers.style.height = "100%";
+            for (let i = 0; i < pageCount; i += 1) {
+                const card = document.createElement("div");
+                card.className = "page-card";
+                if (pageCount > prevCount && i === pageCount - 1) {
+                    card.classList.add("is-entering");
+                }
+                card.style.left = `${(i * stride) - cardPad}px`;
+                card.style.width = `${cardWidth}px`;
+
+                const label = document.createElement("div");
+                label.className = "page-card-label";
+                label.textContent = String(i + 1).padStart(2, "0");
+                card.appendChild(label);
+
+                this.pageMarkers.appendChild(card);
+            }
+            this.schedulePageOverlayUpdate();
+            return;
+        }
+        this.horizontalPageCount = 0;
+        this.pageMarkers.dataset.mode = "vertical";
+        this.editor.style.width = "";
+        this.editor.style.maxWidth = "";
+        this.editor.style.minWidth = "";
+        this.editor.style.height = "";
+        this.editor.style.minHeight = "";
+        this.editor.style.maxHeight = "";
+        this.editor.style.columnCount = "";
+        this.editor.style.columnWidth = "";
+        this.editor.style.columnGap = "";
+        this.editor.style.columnFill = "";
+        const wrap = document.getElementById("editorWrap");
+        if (wrap) {
+            wrap.style.removeProperty("--editor-page-count");
+            wrap.style.removeProperty("--editor-visible-pages");
+            wrap.style.height = "";
+        }
         const rootStyles = window.getComputedStyle(document.documentElement);
         const pageHeightRaw = rootStyles.getPropertyValue("--page-height").trim();
         const pageHeight = parseFloat(pageHeightRaw) || 960;
@@ -1130,13 +2055,24 @@ export const editorFeatures = {
 
     updatePageOverlay() {
         if (!this.pageOverlay || !this.pageOverlayNumber) return;
-        const panel = this.editor.closest(".panel");
-        if (!panel) return;
-        const rootStyles = window.getComputedStyle(document.documentElement);
-        const pageHeightRaw = rootStyles.getPropertyValue("--page-height").trim();
-        const pageHeight = parseFloat(pageHeightRaw) || 960;
-        const scrollTop = panel.scrollTop || 0;
-        const pageIndex = Math.max(1, Math.floor(scrollTop / pageHeight) + 1);
+        const scroller = this.getEditorScroller();
+        if (!scroller) return;
+        let pageIndex = 1;
+        if (this.pagedMode) {
+            pageIndex = this.getCenteredPageIndex(scroller) + 1;
+            const center = pageIndex - 1;
+            const cards = this.pageMarkers ? Array.from(this.pageMarkers.children) : [];
+            cards.forEach((card, idx) => {
+                card.classList.toggle("is-active", idx === center);
+                card.classList.toggle("is-side", idx !== center);
+            });
+        } else {
+            const rootStyles = window.getComputedStyle(document.documentElement);
+            const pageHeightRaw = rootStyles.getPropertyValue("--page-height").trim();
+            const pageHeight = parseFloat(pageHeightRaw) || 960;
+            const scrollTop = scroller.scrollTop || 0;
+            pageIndex = Math.max(1, Math.floor(scrollTop / pageHeight) + 1);
+        }
         if (pageIndex === this.lastPageIndex) return;
         this.lastPageIndex = pageIndex;
         this.pageOverlayNumber.textContent = String(pageIndex).padStart(2, "0");
@@ -4018,13 +4954,201 @@ export const editorFeatures = {
     },
 
     initGoal() {
-        this.goalStars = document.querySelectorAll(".goal-star");
+        this.goalStars = document.querySelectorAll(".goal-segment");
         this.goalModal = document.getElementById("goalModal");
         this.goalTitle = document.getElementById("goalTitle");
         this.goalBody = document.getElementById("goalBody");
+        this.goalLadderBtn = document.getElementById("goalLadderBtn");
+        this.goalPersonaMenu = document.getElementById("goalPersonaMenu");
+        this.goalPersonaItems = document.getElementById("goalPersonaItems");
+        this.activePersonaId = localStorage.getItem("skrv_persona_active") || "cronica";
         const storedMilestones = localStorage.getItem("lit_goal_milestones");
         this.goalMilestonesDone = storedMilestones ? storedMilestones.split("|").map((v) => parseInt(v, 10)).filter(Number.isFinite) : [];
+        this.initGoalPersonaMenu();
         this.updateGoalProgress();
+    },
+
+    initGoalPersonaMenu() {
+        if (!this.goalLadderBtn || !this.goalPersonaMenu || !this.goalPersonaItems) return;
+        if (!this.goalLadderBtn.id) this.goalLadderBtn.id = "goalLadderBtn";
+        this.goalLadderBtn.setAttribute("aria-haspopup", "menu");
+        this.goalLadderBtn.setAttribute("aria-expanded", "false");
+        this.goalPersonaMenu.setAttribute("aria-labelledby", this.goalLadderBtn.id);
+
+        let openTimer = 0;
+        let closeTimer = 0;
+        const canHover = window.matchMedia ? window.matchMedia("(hover: hover)").matches : true;
+        const getGoalWrap = () => document.getElementById("goalStars");
+        const clearOpenTimer = () => {
+            if (!openTimer) return;
+            clearTimeout(openTimer);
+            openTimer = 0;
+        };
+        const clearCloseTimer = () => {
+            if (!closeTimer) return;
+            clearTimeout(closeTimer);
+            closeTimer = 0;
+        };
+        const shouldSuppressHoverOpen = () => {
+            const editorWrap = document.getElementById("editorWrap");
+            return !!(
+                document.body.classList.contains("is-typing") &&
+                editorWrap &&
+                editorWrap.contains(document.activeElement)
+            );
+        };
+        const scheduleOpen = (focusItem = false, delay = 140) => {
+            clearCloseTimer();
+            clearOpenTimer();
+            openTimer = setTimeout(() => {
+                openTimer = 0;
+                this.openGoalPersonaMenu(focusItem);
+            }, delay);
+        };
+        const scheduleClose = (focusBack = false, delay = 240) => {
+            clearOpenTimer();
+            clearCloseTimer();
+            closeTimer = setTimeout(() => {
+                closeTimer = 0;
+                const wrap = getGoalWrap();
+                const focusInside = wrap && wrap.contains(document.activeElement);
+                const hoverInside =
+                    this.goalLadderBtn.matches(":hover") ||
+                    this.goalPersonaMenu.matches(":hover");
+                if (focusInside || hoverInside) return;
+                this.closeGoalPersonaMenu(focusBack);
+            }, delay);
+        };
+
+        const renderPersonaItems = () => {
+            this.goalPersonaItems.innerHTML = "";
+            PERSONAS.forEach((persona) => {
+                const item = document.createElement("button");
+                item.type = "button";
+                item.className = "goal-persona-item";
+                item.setAttribute("role", "menuitemradio");
+                item.setAttribute("aria-checked", String(persona.id === this.activePersonaId));
+                item.dataset.personaId = persona.id;
+                item.innerHTML = `
+                    <span>${persona.label}</span>
+                    <span class="goal-persona-key">${persona.shortcut || ""}</span>
+                `;
+                item.addEventListener("click", () => {
+                    this.activePersonaId = persona.id;
+                    localStorage.setItem("skrv_persona_active", persona.id);
+                    document.documentElement.dataset.persona = persona.id;
+                    renderPersonaItems();
+                    this.closeGoalPersonaMenu(true);
+                });
+                this.goalPersonaItems.appendChild(item);
+            });
+        };
+
+        const movePersonaFocus = (step) => {
+            const items = Array.from(this.goalPersonaItems.querySelectorAll(".goal-persona-item"));
+            if (!items.length) return;
+            const current = items.indexOf(document.activeElement);
+            const safeCurrent = current < 0 ? 0 : current;
+            const next = Math.max(0, Math.min(items.length - 1, safeCurrent + step));
+            items[next].focus();
+        };
+
+        this.openGoalPersonaMenu = (focusItem = false) => {
+            clearCloseTimer();
+            this.goalPersonaMenu.classList.add("active");
+            this.goalPersonaMenu.setAttribute("aria-hidden", "false");
+            this.goalLadderBtn.setAttribute("aria-expanded", "true");
+            if (focusItem) {
+                const active = this.goalPersonaItems.querySelector(`[data-persona-id="${this.activePersonaId}"]`);
+                const first = this.goalPersonaItems.querySelector(".goal-persona-item");
+                (active || first)?.focus();
+            }
+        };
+
+        this.closeGoalPersonaMenu = (focusBack = false) => {
+            clearOpenTimer();
+            this.goalPersonaMenu.classList.remove("active");
+            this.goalPersonaMenu.setAttribute("aria-hidden", "true");
+            this.goalLadderBtn.setAttribute("aria-expanded", "false");
+            if (focusBack) this.goalLadderBtn.focus();
+        };
+
+        renderPersonaItems();
+        document.documentElement.dataset.persona = this.activePersonaId;
+
+        if (canHover) {
+            this.goalLadderBtn.addEventListener("mouseenter", () => {
+                if (shouldSuppressHoverOpen()) return;
+                scheduleOpen(false, 140);
+            });
+            this.goalLadderBtn.addEventListener("mouseleave", () => {
+                scheduleClose(false, 240);
+            });
+            this.goalPersonaMenu.addEventListener("mouseenter", () => {
+                clearCloseTimer();
+            });
+            this.goalPersonaMenu.addEventListener("mouseleave", () => {
+                scheduleClose(false, 240);
+            });
+        }
+
+        this.goalLadderBtn.addEventListener("focus", () => scheduleOpen(false, 120));
+        this.goalLadderBtn.addEventListener("click", () => {
+            clearOpenTimer();
+            clearCloseTimer();
+            if (this.goalPersonaMenu.classList.contains("active")) {
+                this.closeGoalPersonaMenu(false);
+            } else {
+                this.openGoalPersonaMenu(true);
+            }
+        });
+        this.goalLadderBtn.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                this.openGoalPersonaMenu(true);
+                return;
+            }
+            if (e.key === "Escape") {
+                e.preventDefault();
+                this.closeGoalPersonaMenu(false);
+            }
+        });
+        this.goalPersonaMenu.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                e.preventDefault();
+                this.closeGoalPersonaMenu(true);
+                return;
+            }
+            if (e.key === "ArrowDown") {
+                e.preventDefault();
+                movePersonaFocus(1);
+                return;
+            }
+            if (e.key === "ArrowUp") {
+                e.preventDefault();
+                movePersonaFocus(-1);
+                return;
+            }
+            if (e.key === "Enter") {
+                const id = document.activeElement?.dataset?.personaId;
+                if (!id) return;
+                e.preventDefault();
+                this.activePersonaId = id;
+                localStorage.setItem("skrv_persona_active", id);
+                document.documentElement.dataset.persona = id;
+                renderPersonaItems();
+                this.closeGoalPersonaMenu(true);
+            }
+        });
+        document.addEventListener("mousedown", (e) => {
+            const wrap = document.getElementById("goalStars");
+            if (!wrap || !wrap.contains(e.target)) this.closeGoalPersonaMenu(false);
+        });
+        document.addEventListener("focusin", (e) => {
+            const wrap = document.getElementById("goalStars");
+            if (!wrap || wrap.contains(e.target)) return;
+            if (this.goalPersonaMenu.classList.contains("active")) this.closeGoalPersonaMenu(false);
+        });
     },
 
     updateGoalProgress(wordCount) {

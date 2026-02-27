@@ -264,7 +264,7 @@ body.mobile-typing .mobile-trigger {
   width: 100%;
   min-height: 80vh;
   outline: none; caret-color: var(--color-accent);
-  padding-bottom: 180px; line-height: 1.65;
+  line-height: 1.65;
   white-space: pre-wrap; word-break: break-word; overflow-wrap: break-word;
   position: relative;
   z-index: 1;
@@ -273,7 +273,67 @@ body.mobile-typing .mobile-trigger {
   height: auto;
   text-align: left;
   border: none;
-  padding: 10px 12px 180px;
+  padding: 10px 12px;
+  padding-bottom: 180px;
+  /* Containment para melhorar performance de layout */
+  contain: layout style;
+}
+
+/* Padding-bottom reduzido em mobile para evitar scroll excessivo */
+@media (max-width: 900px) {
+  #editor {
+    padding-bottom: 80px;
+    min-height: auto;
+  }
+}
+
+/* Paginação horizontal (desktop) */
+@media (min-width: 901px) {
+  body.editor-paged .panel {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  body.editor-paged #editorView {
+    align-items: stretch;
+  }
+
+  body.editor-paged #editorWrap {
+    --editor-visible-pages: 1;
+    width: min(calc((var(--editor-page-width) * var(--editor-visible-pages)) + (var(--editor-page-gap) * (var(--editor-visible-pages) - 1)) + 24px), 100%);
+    max-width: min(calc((var(--editor-page-width) * var(--editor-visible-pages)) + (var(--editor-page-gap) * (var(--editor-visible-pages) - 1)) + 24px), 100%);
+    height: min(var(--editor-page-height), calc(100vh - 220px));
+    min-height: 520px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    padding: 0 var(--editor-card-pad-inline);
+    margin-top: 0;
+    background: transparent;
+  }
+
+  body.editor-paged #editor {
+    min-height: 100%;
+    height: 100%;
+    width: auto;
+    max-width: none;
+    column-width: var(--editor-page-width);
+    column-gap: var(--editor-page-gap);
+    column-fill: auto;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    padding: 34px 0;
+    box-sizing: border-box;
+    overflow: visible !important;
+    position: relative;
+    z-index: 2;
+  }
 }
 
 /* CONTROLS (Correção de posição e tamanho) */

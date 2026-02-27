@@ -94,6 +94,10 @@
   --glass-blur: blur(12px);
   --shadow-float: 0 6px 20px rgba(0, 0, 0, 0.18);
   --page-height: 1120px;
+  --editor-page-width: 620px;
+  --editor-page-gap: 56px;
+  --editor-page-height: 940px;
+  --editor-card-pad-inline: 32px;
   --content-max: 760px;
   --content-narrow: 640px;
   --space-2xs: 4px;
@@ -654,7 +658,9 @@ mark.search-active { box-shadow: 0 0 0 2px var(--color-accent-dim); }
 [data-theme="study"] mark { background-color: var(--search-bg, var(--selection-bg)); color: var(--search-text, var(--selection-text)); }
 
 #editor {
-    -webkit-hyphens: auto; -moz-hyphens: auto; -ms-hyphens: auto; hyphens: auto;
+    -webkit-hyphens: none; -moz-hyphens: none; -ms-hyphens: none; hyphens: none;
+    overflow-wrap: anywhere;
+    word-break: break-word;
     text-align: left;
     font-family: var(--font-main);
 }
