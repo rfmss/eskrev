@@ -4,6 +4,9 @@ import { getLastWordBeforeToken } from "./textops.js";
 import { getDockTagBounds, positionDockTag } from "./dock.js";
 import { positionSliceDockRail } from "./layout.js";
 import { attachPostitComposer } from "./postits.js";
+import { toggleWordClass } from "./wordclass.js";
+import { lookupVerbete } from "./verbete.js";
+import { corpus } from "../../src/js/modules/corpus.js";
 
 function decodeSliceHtml(value) {
   if (!value) return "";
@@ -115,6 +118,47 @@ function renderMarkdown(text) {
   flushParagraph();
   flushList();
   return out.join("") || `<p>${renderInlineMarkdown(String(text || ""))}</p>`;
+}
+
+// Agrupa heading + conteúdo seguinte em .modos-section para alternância de fundo
+function groupModosIntoSections(container) {
+  const children = Array.from(container.childNodes);
+  const sections = [];
+  let current = null;
+
+  for (const node of children) {
+    const isHeading = node.nodeType === Node.ELEMENT_NODE &&
+      /^H[123]$/.test(node.tagName);
+    const isHr = node.nodeType === Node.ELEMENT_NODE && node.tagName === "HR";
+
+    if (isHr) {
+      current = null;
+      continue; // descarta separadores — a alternância visual substitui
+    }
+    if (isHeading) {
+      // Destaca número inicial no heading (ex: "1) TÍTULO" → <mark>1)</mark> TÍTULO)
+      const txt = node.textContent || "";
+      const numMatch = txt.match(/^(\d+\))\s+(.+)$/);
+      if (numMatch) {
+        node.innerHTML = `<span class="modos-sec-num">${numMatch[1]}</span> ${numMatch[2]}`;
+      }
+      current = document.createElement("div");
+      current.className = "modos-section";
+      current.appendChild(node.cloneNode(true));
+      sections.push(current);
+      continue;
+    }
+    if (!current) {
+      // Conteúdo antes do primeiro heading — seção de introdução
+      current = document.createElement("div");
+      current.className = "modos-section";
+      sections.push(current);
+    }
+    current.appendChild(node.cloneNode(true));
+  }
+
+  container.innerHTML = "";
+  sections.forEach((s) => container.appendChild(s));
 }
 
 function normalizePersonaGuideText(text) {
@@ -309,7 +353,6 @@ function bindSliceInteractions(ctx, root) {
 
   const dockSlice = () => {
     const { badge, title } = getSliceBadgeTitle(root);
-    const page = root.closest(".page");
     const dock = ctx.refs.sliceDockEl || document.querySelector(".sliceDock");
     if (!dock || root.classList.contains("isClosing")) return;
 
@@ -638,7 +681,7 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
       title: "TRANSPLANT",
       kindKey: "consult",
       meta: `--${c} • carregando modal legado`,
-      body: "Lendo index_old.html e convertendo modal para corte...",
+      body: "Lendo fullm.html e convertendo modal para corte...",
     });
     modalPromise.then((result) => {
       if (!result) return;
@@ -734,20 +777,11 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
 
   const isServiceCmd = new Set([
     "h", "help",
-    "b", "buscar",
-    "s", "exportar",
     "n", "notas",
-    "i", "importar",
-    "books",
     "a", "arquivos",
-    "v", "verificacao", "verificação",
-    "f", "fullscreen",
-    "d", "hardreset",
-    "l", "idioma",
-    "t", "toolbar",
-    "p", "postit", "note",
-    "r", "reader",
-    "w", "writer",
+    "w",
+    "d",
+    "m",
   ]);
   if (!isServiceCmd.has(c)) {
     ctx.flashCommandError?.();
@@ -774,13 +808,32 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
     });
   }
   if (c === "n" || c === "notas") {
-    return legacyModalSlice("notes", "notes") || openLocalSlice({
-      badge: "03",
-      title: "NOTAS",
-      kindKey: "consult",
-      meta: "notas",
-      body: "Notas está indisponível no legado agora.",
-    });
+    const sidebar = document.getElementById("notesSidebar");
+    if (sidebar) {
+      sidebar.classList.toggle("is-open");
+      const isOpen = sidebar.classList.contains("is-open");
+      ctx.setStatus?.(isOpen ? "notas: aberto" : "notas: fechado");
+      if (isOpen) {
+        const searchInput = sidebar.querySelector(".notes-search-input");
+        searchInput?.focus();
+      }
+      return null;
+    }
+    return null;
+  }
+  if (c === "a" || c === "arquivos") {
+    const sidebar = document.getElementById("filesSidebar");
+    if (sidebar) {
+      sidebar.classList.toggle("is-open");
+      const isOpen = sidebar.classList.contains("is-open");
+      ctx.setStatus?.(isOpen ? "arquivos: aberto" : "arquivos: fechado");
+      if (isOpen) {
+        const newBtn = document.getElementById("mesaNewBtn");
+        newBtn?.focus();
+      }
+      return null;
+    }
+    return null;
   }
   if (c === "i" || c === "importar") {
     return legacyModalSlice("import", "import") || openLocalSlice({
@@ -798,15 +851,6 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
       kindKey: "consult",
       meta: "catálogo",
       body: "Books está em transplante. Em breve aqui no corte.",
-    });
-  }
-  if (c === "a" || c === "arquivos") {
-    return legacyModalSlice("system", "system") || openLocalSlice({
-      badge: "06",
-      title: "ARQUIVOS",
-      kindKey: "consult",
-      meta: "projetos e backups",
-      body: "Arquivos está indisponível no legado agora.",
     });
   }
   if (c === "v" || c === "verificacao" || c === "verificação") {
@@ -835,7 +879,7 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
       body: active ? "Saindo da tela cheia." : "Entrando em tela cheia.",
     });
   }
-  if (c === "d" || c === "hardreset") {
+  if (c === "hardreset") {
     ctx.integrations?.persistence?.clear?.(el);
     return openLocalSlice({
       badge: "09",
@@ -870,7 +914,7 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
       title: "TOOLBAR",
       kindKey: "help",
       meta: "atalhos de superfície",
-      body: "Comandos ativos: --h --b --s --n --i --books --a --v --f --d --l --t --p --r --w\n\nUse --w para personas de escrita.",
+      body: "Comandos ativos: --h --b --s --n --i --books --a --v --f --d --l --t --p --r --w --m\n\nUse --m para modos de escrita (conto, romance, poesia…).",
     });
   }
 
@@ -896,19 +940,170 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
     });
   }
 
-  if (c === "w" || c === "writer") {
+  if (c === "writer") {
     return openWriterSlice(word);
   }
 
+  if (c === "d") {
+    const target = word || "?";
+    const slice = makeSlice(ctx, {
+      badge: "DEF",
+      title: "VERBETE",
+      kindKey: "help",
+      meta: target.toLowerCase(),
+      body: "Consultando corpus…",
+    });
+    lookupVerbete(target).then((result) => {
+      if (!result) {
+        updateSliceContent(slice, {
+          meta: target.toLowerCase(),
+          body: `"${target}" não encontrado no corpus local.`,
+        });
+        return;
+      }
+      updateSliceContent(slice, {
+        meta: result.label ? `${result.label}` : target.toLowerCase(),
+        body: result.body,
+      });
+    }).catch(() => {
+      updateSliceContent(slice, { meta: "erro", body: "Falha ao consultar o corpus." });
+    });
+    return slice;
+  }
+
+  if (c === "m") {
+    const MODOS = [
+      { id: "conto",         label: "Conto",         desc: "Narrativa breve, tensão e corte." },
+      { id: "romance",       label: "Romance",        desc: "Arco longo, personagens, mundos." },
+      { id: "cronica",       label: "Crônica",        desc: "Cotidiano, voz e tempo presente." },
+      { id: "poesia",        label: "Poesia",         desc: "Imagem, ritmo, silêncio." },
+      { id: "ensaio",        label: "Ensaio",         desc: "Argumento, reflexão, forma aberta." },
+      { id: "roteiro",       label: "Roteiro",        desc: "Cena, diálogo, ação visual." },
+      { id: "enem",          label: "Enem",           desc: "Redação dissertativa-argumentativa." },
+      { id: "universitario", label: "Universitário",  desc: "Texto acadêmico, ABNT." },
+    ];
+    const slice = openLocalSlice({
+      badge: "M",
+      title: "MODOS",
+      kindKey: "consult",
+      meta: "modos de escrita",
+      body: " ",
+    });
+    const bodyEl = slice.querySelector(".panelBody");
+    if (bodyEl) {
+      bodyEl.innerHTML = `
+        <div class="modosSliceList">
+          ${MODOS.map((m) => `
+            <button type="button" class="modosSliceItem" data-modo="${escapeHtml(m.id)}">
+              <span class="modosSliceLabel">${escapeHtml(m.label)}</span>
+              <span class="modosSliceDesc">${escapeHtml(m.desc)}</span>
+            </button>
+          `).join("")}
+        </div>
+      `;
+      bodyEl.querySelectorAll(".modosSliceItem").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-modo") || "";
+          const sidebar = document.getElementById("modosSidebar");
+          const titleEl = document.getElementById("modosTitle");
+          const contentEl = document.getElementById("modosContent");
+          if (!sidebar || !contentEl) return;
+          bodyEl.querySelectorAll(".modosSliceItem").forEach((b) => b.classList.remove("is-active"));
+          btn.classList.add("is-active");
+          const modo = MODOS.find((m) => m.id === id);
+          if (titleEl) titleEl.textContent = (modo?.label || id).toUpperCase();
+          contentEl.innerHTML = `<p class="modos-loading">Carregando…</p>`;
+          sidebar.classList.add("is-open");
+          ctx.integrations?.personaTransplant?.resolve?.(id).then((result) => {
+            if (!result || !result.templates?.length) {
+              contentEl.innerHTML = renderMarkdown(modo?.desc || "Modo não encontrado.");
+              return;
+            }
+            const combined = result.templates.map((tpl) =>
+              normalizePersonaGuideText(tpl.text || "")
+            ).join("\n\n---\n\n");
+            contentEl.innerHTML = renderMarkdown(combined) || renderMarkdown(modo?.desc || "");
+            groupModosIntoSections(contentEl);
+          }).catch(() => {
+            contentEl.innerHTML = renderMarkdown(modo?.desc || "Falha ao carregar modo.");
+          });
+        });
+      });
+    }
+    return slice;
+  }
+
+  if (c === "w") {
+    const wasActive = ctx.state.wcActive;
+    const slice = makeSlice(ctx, {
+      badge: "W",
+      title: "CLASSES",
+      kindKey: "help",
+      meta: wasActive ? "desativando…" : "carregando léxico…",
+      body: wasActive
+        ? "Removendo cores do texto."
+        : "Aguarde — carregando léxico de português.",
+    });
+    toggleWordClass(ctx).then(() => {
+      const active = ctx.state.wcActive;
+      const secs = active ? 10 : 5;
+      updateSliceContent(slice, {
+        meta: active ? "ativo" : "inativo",
+        body: active ? " " : "Modo desativado.",
+      });
+      if (active) {
+        const panelBody = slice.querySelector(".panelBody");
+        if (panelBody) {
+          const dot = '<span style="opacity:.4"> · </span>';
+          const br  = '<br>';
+          const c = (cls, label) =>
+            `<strong class="wc-${cls}" style="font-weight:700">${label}</strong>`;
+          panelBody.innerHTML =
+            `<p style="margin-bottom:.6em;font-weight:600">Cores ativas no texto.</p>` +
+            `<p style="line-height:1.9">` +
+              c("verb","VERB") + dot + c("subst","SUBST") + dot + c("adj","ADJ") + dot + c("adv","ADV") + dot + c("pron","PRON") + br +
+              c("art","ART")  + dot + c("prep","PREP")  + dot + c("conj","CONJ") + dot + c("num","NUM")  + dot + c("intj","INTJ") +
+            `</p>` +
+            `<p style="opacity:.6;margin-top:.6em">Passe o mouse sobre uma palavra para ver a classe.<br>Digite --w novamente para desativar.</p>`;
+        }
+      }
+
+      // Reloginho countdown — SVG circular estilo LCD
+      const r = 13;
+      const circum = +(2 * Math.PI * r).toFixed(3);
+      const countdownEl = document.createElement("div");
+      countdownEl.className = "wcCountdown";
+      countdownEl.innerHTML =
+        `<svg viewBox="0 0 32 32" width="32" height="32">` +
+          `<circle class="wcc-track" cx="16" cy="16" r="${r}"/>` +
+          `<circle class="wcc-fill" cx="16" cy="16" r="${r}"` +
+            ` stroke-dasharray="${circum}" stroke-dashoffset="0"/>` +
+          `<text class="wcc-num" x="16" y="16">${secs}</text>` +
+        `</svg>`;
+      slice.querySelector(".sliceCard")?.appendChild(countdownEl);
+
+      const fillEl = countdownEl.querySelector(".wcc-fill");
+      const numEl  = countdownEl.querySelector(".wcc-num");
+      let remaining = secs - 1;
+      const iv = setInterval(() => {
+        if (!slice.isConnected) { clearInterval(iv); return; }
+        if (remaining <= 0) { clearInterval(iv); slice.remove(); return; }
+        const progress = remaining / secs;
+        if (fillEl) fillEl.style.strokeDashoffset = String(+(circum * (1 - progress)).toFixed(3));
+        if (numEl)  numEl.textContent = String(remaining);
+        remaining--;
+      }, 1000);
+    });
+    return slice;
+  }
+
   if (c === "h" || c === "help") {
-    const modalList = ctx.integrations?.modalTransplant?.list?.() || [];
-    const transplanted = modalList.map((m) => `- ${m.cmd}  → ${m.title} (${m.id})`).join("\n");
     return makeSlice(ctx, {
       badge: "01",
       title: "HELP",
       kindKey: "help",
-      meta: "comandos e regras",
-      body: `- palavra --d    → define a palavra anterior\n- --v            → vocabulário local\n- --c            → consulta local (vocab + texto + dúvidas + regência)\n- --postit       → captura de post-it fora da página\n- --h / --help   → ajuda\n- --o / --modals → inventário de transplantes\n- alvo --modal   → abre modal legado pelo alias anterior\n- conto --persona (ou --conto/--romance/--poesia...) → persona em corte\n- --templates    → inventário de templates\n- alvo --template → abre template por id/persona\n- persona --figures (ou --figures) → figuras de linguagem no corte\n\nCompat legado:\n- --save --open --theme --dark --light --zen --fs\n- --music --mute --unmute --pomo --mode --overview --thumbs\n- --visitas --reset --roll/--dice/--dado --kb --qr\n\nTransplantes (modal -> corte):\n${transplanted || "(nenhum pacote ativo)"}\n\nTopo do corte: minimiza/abre.\nLaterais (gutter): fecham o corte.\nVocê continua escrevendo sempre.`,
+      meta: "comandos disponíveis",
+      body: `--n  →  notas laterais (salvas localmente)\n--a  →  arquivos — salvar .skv / .txt, importar, limpar\n--w  →  classes de palavras (cores + hover)\n--d  →  verbete da palavra anterior (ex: amor --d)\n--h  →  esta ajuda\n\nAtalhos de teclado:\n  Ctrl+S      →  salvar / exportar\n  ↓ no fim    →  próxima página\n  ↑ no início →  página anterior\n  ← no início →  mescla com página anterior\n\nTopo do corte: minimiza/abre.\nLaterais (gutter): fecham o corte.`,
     });
   }
 
@@ -1434,6 +1629,81 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
     });
 
     return slice;
+  }
+
+  if (c === "g" || c === "gram" || c === "grammar") {
+    const gl = ctx.grammarLint;
+    const editorEl = el;
+
+    // palavra --g  →  consulta corpus para a regra associada à palavra
+    if (word && gl) {
+      const slice = makeSlice(ctx, {
+        badge: "GR",
+        title: "GRAMÁTICA",
+        kindKey: "help",
+        meta: word.toLowerCase(),
+        body: "Consultando corpus…",
+      });
+      Promise.all([
+        corpus.search("syntax", "concordancia", word),
+        corpus.search("syntax", "regencia", word),
+        corpus.search("stylistics", "figures", word),
+      ]).then(([c1, c2, c3]) => {
+        const all = [...c1, ...c2, ...c3];
+        const lines = [];
+        if (!all.length) {
+          lines.push(`Nenhuma regra encontrada para **${word}** no corpus.`);
+          lines.push("");
+          lines.push("Tente usar **--d** para buscar a definição no verbete.");
+        } else {
+          lines.push(`Ocorrências para "${word}" no corpus:`);
+          lines.push("");
+          all.slice(0, 8).forEach(e => {
+            const id   = e.id   ? `**${e.id}**  ` : "";
+            const rule = e.rule || e.tip || e.description || "";
+            const ex   = e.correct || e.example || "";
+            lines.push(`- ${id}${rule}`);
+            if (ex) lines.push(`  ✓ ${ex}`);
+          });
+        }
+        updateSliceContent(slice, {
+          meta: `gramática: ${word.toLowerCase()}`,
+          body: lines.join("\n"),
+        });
+      }).catch(() => {
+        updateSliceContent(slice, { meta: "erro", body: "Falha ao consultar o corpus." });
+      });
+      return slice;
+    }
+
+    // --g  (sem palavra)  →  toggle do verificador + status
+    if (gl) {
+      const nowActive = gl.toggle();
+      if (nowActive) {
+        gl.scan(editorEl);
+      } else {
+        gl.clear(editorEl);
+      }
+      const status = nowActive ? "ativo — desvios marcados" : "desativado";
+      ctx.setStatus?.(`verificador gramatical: ${status}`);
+      return makeSlice(ctx, {
+        badge: "GR",
+        title: "GRAMÁTICA",
+        kindKey: "help",
+        meta: status,
+        body: nowActive
+          ? "Verificador ativado.\n\nDesvios comuns da norma padrão aparecem sublinhados em ondas.\nPasse o mouse para ver a explicação.\n\nDigite **--g** novamente para desativar."
+          : "Verificador desativado.",
+      });
+    }
+
+    return makeSlice(ctx, {
+      badge: "GR",
+      title: "GRAMÁTICA",
+      kindKey: "help",
+      meta: "indisponível",
+      body: "Verificador gramatical não foi inicializado. Verifique o console.",
+    });
   }
 
   const modalToken = c === "modal" ? word : c;

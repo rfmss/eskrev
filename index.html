@@ -3,10 +3,73 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="eskrev — editor offline para escritores. Escreva, organize e exporte com verificação técnica de autoria." />
+  <meta name="theme-color" content="#f5f2ea" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="eskrev" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="src/assets/icons/eskrev.ico" sizes="any" />
+  <link rel="icon" href="src/assets/icons/logoEskrev.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="src/assets/icons/eskrev.png" />
   <title>eskrev — Slice Writer</title>
   <link rel="stylesheet" href="styles/index2.css" />
+  <style>
+    /* Cache progress bar — discreta, some ao completar */
+    #cacheBar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(to right, #2f5bff, #6b8aff);
+      z-index: 9998;
+      transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.8s ease;
+      opacity: 1;
+      pointer-events: none;
+    }
+    #cacheBar.done { opacity: 0; }
+
+    /* Offline banner — aparece apenas quando sem conexão */
+    #offlineBanner {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      background: rgba(26, 26, 26, 0.92);
+      color: #f5f2ea;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-align: center;
+      padding: 8px 20px;
+      pointer-events: none;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      border-radius: 4px;
+      white-space: nowrap;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.22);
+      animation: offlineFadeIn 0.3s ease;
+    }
+    #offlineBanner.visible { display: block; }
+    @keyframes offlineFadeIn {
+      from { opacity: 0; transform: translateX(-50%) translateY(6px); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+  </style>
 </head>
 <body data-ui-version="v2">
+  <!-- Cache progress indicator -->
+  <div id="cacheBar" aria-hidden="true"></div>
+
+  <!-- Offline banner -->
+  <div id="offlineBanner" role="status" aria-live="polite">
+    offline · tudo salvo localmente
+  </div>
+
   <div class="app">
     <div class="frame">
       <div class="chrome" aria-label="Temas">
@@ -23,16 +86,7 @@
       </div>
 
       <div class="viewport">
-        <div id="pages" class="pages" aria-label="Documento">
-          <div class="page" data-page="1">
-            <aside id="pageBreakRail" class="pageBreakRail" aria-label="Separadores de páginas virtuais"></aside>
-            <div class="pageContent" id="page1" contenteditable="true" spellcheck="false" aria-label="Editor página 1" data-placeholder="Escreva livremente e use --h para ver os comandos.">
-Querido e gentil leitor, doravante --d
-
-Continue escrevendo. Abra cortes. Eles não “contam” para virar página.
-            </div>
-          </div>
-        </div>
+        <div id="pages" class="pages" aria-label="Documento"></div>
         <aside id="pageFlowRail" class="pageFlowMarkers" aria-label="Indicadores de páginas virtuais"></aside>
         <aside id="sliceDockRail" class="sliceDock" aria-label="Tags de cortes"></aside>
         <aside id="postitLayer" class="postitLayer" aria-label="Post-its"></aside>
@@ -49,6 +103,177 @@ Continue escrevendo. Abra cortes. Eles não “contam” para virar página.
     <button type="button" class="selectionToolbarBtn" data-act="postit">POST-IT</button>
   </div>
 
+  <!-- Notes sidebar — toggled by --n -->
+  <div id="notesSidebar" class="notesSidebar" aria-label="Notas" aria-hidden="true">
+    <div class="notes-header">
+      <h2>NOTAS</h2>
+      <button class="notesSidebarClose notes-close" type="button" aria-label="Fechar notas">&#x2715;</button>
+    </div>
+    <div class="notes-body">
+
+      <!-- Stage: list -->
+      <div class="notes-stage notes-stage-list is-active" data-stage="list">
+        <div class="notes-search">
+          <div class="notes-search-row">
+            <svg class="notes-search-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input id="onepNotesSearch" class="notes-search-input" placeholder="Buscar... (#tag ou /pasta)" />
+          </div>
+          <button id="onepNotesNew" class="notes-new-btn" type="button">NOVA NOTA</button>
+        </div>
+        <div id="onepNotesFoldersWrap" class="notes-filters" style="display:none">
+          <div class="notes-filter-title">PASTAS</div>
+          <div id="onepNotesFolders" class="notes-filter-list"></div>
+        </div>
+        <div id="onepNotesTagsWrap" class="notes-filters" style="display:none">
+          <div class="notes-filter-title">TAGS</div>
+          <div id="onepNotesTagsList" class="notes-filter-list"></div>
+        </div>
+        <div id="onepNotesEmpty" class="notes-empty" style="display:none">
+          <div class="notes-empty-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>
+          </div>
+          <div class="notes-empty-title">Sem notas ainda.</div>
+          <div class="notes-empty-body">Crie sua primeira nota para começar.</div>
+          <button id="onepNotesEmptyCreate" class="notes-new-btn" type="button" style="margin-top:8px">CRIAR NOTA</button>
+        </div>
+        <div id="onepNotesList" class="notes-list"></div>
+        <button id="onepNotesFab" class="notes-fab" type="button" aria-label="Nova nota">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+
+        <!-- Overlay (pastas / tags) -->
+        <div id="onepNotesOverlay" class="notes-overlay">
+          <div class="notes-overlay-header">
+            <span id="onepNotesOverlayTitle"></span>
+            <div class="notes-overlay-actions">
+              <button id="onepNotesOverlayNew" class="notes-new-btn" type="button" style="padding:3px 8px;font-size:9px">+ NOVA</button>
+              <button id="onepNotesOverlayClose" class="notes-close" type="button">&#x2715;</button>
+            </div>
+          </div>
+          <div id="onepNotesOverlayList" class="notes-list"></div>
+        </div>
+      </div>
+
+      <!-- Stage: edit -->
+      <div class="notes-stage notes-stage-edit" data-stage="edit">
+        <div class="notes-stage-header">
+          <button id="onepNotesBack" class="notes-stage-back" type="button" aria-label="Voltar">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div style="flex:1"></div>
+          <button id="onepNotesPinToggle" class="notes-pin-toggle" type="button" aria-label="Fixar nota">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/></svg>
+          </button>
+          <button id="onepNotesDelete" class="notes-delete-btn" type="button" aria-label="Apagar nota">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+          </button>
+        </div>
+        <div class="notes-edit">
+          <input id="onepNotesTitle" class="notes-input" placeholder="Título" spellcheck="false" />
+          <input id="onepNotesTags" class="notes-input" placeholder="Tags (#tag, #outra)" spellcheck="false" />
+          <input id="onepNotesFolder" class="notes-input" placeholder="Pasta (opcional)" spellcheck="false" />
+          <textarea id="onepNotesBody" class="notes-textarea" placeholder="Texto..." spellcheck="false"></textarea>
+          <div class="notes-meta" id="onepNotesMeta"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mesa — toggled by --a -->
+  <!-- Modos sidebar — toggled by --m -->
+  <div id="modosSidebar" class="modosSidebar" aria-label="Modos de escrita" aria-hidden="true">
+    <div class="modos-header">
+      <span id="modosTitle">MODOS</span>
+      <button id="modosSidebarClose" type="button" aria-label="Fechar modos" onclick="document.getElementById('modosSidebar').classList.remove('is-open')">&#x2715;</button>
+    </div>
+    <div id="modosContent" class="modos-content"></div>
+  </div>
+
+  <div id="filesSidebar" class="filesSidebar" aria-label="Mesa de projetos" aria-hidden="true">
+    <div class="mesaHead">
+      <span class="mesaTitle">MESA</span>
+      <button class="filesSidebarClose" type="button" aria-label="Fechar mesa">&#x2715;</button>
+    </div>
+    <div class="mesaBody">
+      <p class="mesaDesc">Aqui você continua projetos exportados de outras sessões do eskrev, por arquivo (.skv) ou pelo celular.</p>
+      <div class="mesaActions">
+        <button id="mesaNewBtn" class="mesaActionBtn is-primary" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          NOVO
+        </button>
+        <button id="mesaOpenBtn" class="mesaActionBtn" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          ABRIR CÁPSULA
+        </button>
+        <button class="mesaActionBtn is-disabled" type="button" disabled title="Em breve: importar via QR do celular">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h7v7"/><path d="M14 17h3v4"/></svg>
+          PUXAR DO CELULAR
+        </button>
+      </div>
+      <div id="mesaProjectList" class="mesaProjectList"></div>
+      <p class="mesaHint">Faça backup regularmente.<br>Use ABRIR CÁPSULA para restaurar um .skv.</p>
+      <input type="file" id="mesaFileInput" class="mesaFileInput" accept=".skv,.json" />
+    </div>
+  </div>
+
   <script type="module" src="js/main.js"></script>
+  <script>
+    // Service Worker registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then((reg) => {
+            // Listen for cache progress updates
+            navigator.serviceWorker.addEventListener('message', (event) => {
+              const data = event.data || {};
+              if (data.type === 'cache-status') {
+                const bar = document.getElementById('cacheBar');
+                if (!bar) return;
+                const pct = data.total > 0 ? Math.round((data.cached / data.total) * 100) : 0;
+                bar.style.width = pct + '%';
+                if (pct >= 100) {
+                  bar.classList.add('done');
+                  setTimeout(() => bar.remove(), 800);
+                }
+              }
+            });
+            // Trigger background caching of extended assets
+            if (reg.active) {
+              reg.active.postMessage({ type: 'cache-extras' });
+              reg.active.postMessage({ type: 'cache-status' });
+            }
+            reg.addEventListener('updatefound', () => {
+              const newWorker = reg.installing;
+              if (newWorker) {
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'activated') {
+                    reg.active.postMessage({ type: 'cache-extras' });
+                  }
+                });
+              }
+            });
+          })
+          .catch(() => {
+            // SW registration failed silently — app still works
+          });
+      });
+    }
+
+    // Offline / online detection
+    const offlineBanner = document.getElementById('offlineBanner');
+    const updateOnlineStatus = () => {
+      if (!offlineBanner) return;
+      if (!navigator.onLine) {
+        offlineBanner.classList.add('visible');
+      } else {
+        offlineBanner.classList.remove('visible');
+      }
+    };
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+    updateOnlineStatus();
+  </script>
+
 </body>
 </html>

@@ -1,11 +1,30 @@
 {
-  "name": "eskrev - editor de textos",
+  "name": "eskrev — editor para escritores",
   "short_name": "eskrev",
-  "start_url": "./index.html?v=5",
+  "description": "Editor offline para escritores. Escreva, organize cortes e exporte com verificação técnica de autoria via Authoria.",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
+  "orientation": "any",
   "background_color": "#f5f2ea",
   "theme_color": "#f5f2ea",
+  "prefer_related_applications": false,
+  "categories": ["productivity", "utilities"],
   "icons": [
+    {
+      "src": "src/assets/icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "src/assets/icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
     {
       "src": "src/assets/icons/android-chrome-192x192.png",
       "sizes": "192x192",
@@ -22,7 +41,21 @@
       "src": "src/assets/icons/eskrev.png",
       "sizes": "500x500",
       "type": "image/png",
-      "purpose": "any"
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Authoria — Verificar arquivo",
+      "short_name": "Authoria",
+      "description": "Verificar integridade técnica de um arquivo .skv",
+      "url": "./verify.html",
+      "icons": [
+        {
+          "src": "src/assets/icons/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ]
 }
