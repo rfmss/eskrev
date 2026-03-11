@@ -1,21 +1,22 @@
-/* ── Scrollbar global: fina, arredondada, discreta ───────────────────────
+/* ── Scrollbar global: elegante, com trilha sutil ────────────────────────
    Regra rígida — cobre QUALQUER elemento com overflow neste arquivo.
    Não duplicar em seletores específicos. ──────────────────────────────── */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(0,0,0,.20) transparent;
+  scrollbar-color: rgba(0,0,0,.22) rgba(0,0,0,.06);
 }
-*::-webkit-scrollbar            { width: 4px; height: 4px; }
-*::-webkit-scrollbar-track      { background: transparent; }
-*::-webkit-scrollbar-thumb      { background: rgba(0,0,0,.20); border-radius: 999px; }
-*::-webkit-scrollbar-thumb:hover{ background: rgba(0,0,0,.34); }
+*::-webkit-scrollbar            { width: 6px; height: 6px; }
+*::-webkit-scrollbar-track      { background: rgba(0,0,0,.05); border-radius: 999px; }
+*::-webkit-scrollbar-thumb      { background: rgba(0,0,0,.22); border-radius: 999px; }
+*::-webkit-scrollbar-thumb:hover{ background: rgba(0,0,0,.40); }
 *::-webkit-scrollbar-corner     { background: transparent; }
 
 body[data-theme="chumbo"] * {
-  scrollbar-color: rgba(255,255,255,.18) transparent;
+  scrollbar-color: rgba(255,255,255,.22) rgba(255,255,255,.06);
 }
-body[data-theme="chumbo"] *::-webkit-scrollbar-thumb      { background: rgba(255,255,255,.18); }
-body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255,255,255,.30); }
+body[data-theme="chumbo"] *::-webkit-scrollbar-track      { background: rgba(255,255,255,.05); }
+body[data-theme="chumbo"] *::-webkit-scrollbar-thumb      { background: rgba(255,255,255,.22); }
+body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255,255,255,.42); }
 
     :root{
       --bg: #e9e7df;
@@ -847,17 +848,20 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
         padding var(--motion-fast) var(--ease-standard);
     }
     .sliceRow{
-      clip-path: inset(0 0 0 0);
+      clip-path: inset(0 0 0 0 round 0px);
       transition:
-        clip-path var(--motion-base) var(--ease-emphasis),
-        opacity var(--motion-fast) var(--ease-standard);
+        clip-path 320ms cubic-bezier(.16,1,.3,1),
+        opacity 200ms var(--ease-standard),
+        transform 320ms cubic-bezier(.16,1,.3,1);
     }
     .slice.isEntering .sliceRow{
-      clip-path: inset(0 0 96% 0);
+      clip-path: inset(0 0 100% 0 round 0px);
       opacity: 0;
+      transform: translateY(-6px);
     }
     .slice.isEntering .sliceCard{
       opacity: 0;
+      transform: translateY(-4px);
     }
     .slice.isEntering .sliceBody{
       opacity: 0;
@@ -992,6 +996,55 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
         inset 0 0 0 1px rgba(0,0,0,.05);
     }
 
+    /* ── Fundos diferenciados por categoria de corte ─────────────────────────
+       Cada tipo recebe um peso tonal distinto — como as personas.
+       O grid base fica, o rgba final muda por tipo. ──────────────────────── */
+    /* define → tom âmbar morno, espírito de verbete enciclopédico */
+    .slice[data-kind="define"] .sliceRow::before{
+      background:
+        linear-gradient(to right, rgba(180,130,60,.06) 1px, transparent 1px) 0 0 / 44px 44px,
+        linear-gradient(to bottom, rgba(180,130,60,.06) 1px, transparent 1px) 0 0 / 44px 44px,
+        rgba(180,130,60,.045);
+      box-shadow:
+        inset 4px 0 0 rgba(180,130,60,.20),
+        inset 0 -1px 0 rgba(180,130,60,.14),
+        inset 0 0 0 1px rgba(180,130,60,.08);
+    }
+    /* vocab → tom índigo frio, espírito de taxonomia linguística */
+    .slice[data-kind="vocab"] .sliceRow::before{
+      background:
+        linear-gradient(to right, rgba(60,90,180,.055) 1px, transparent 1px) 0 0 / 44px 44px,
+        linear-gradient(to bottom, rgba(60,90,180,.055) 1px, transparent 1px) 0 0 / 44px 44px,
+        rgba(60,90,180,.038);
+      box-shadow:
+        inset 4px 0 0 rgba(60,90,180,.18),
+        inset 0 -1px 0 rgba(60,90,180,.12),
+        inset 0 0 0 1px rgba(60,90,180,.07);
+    }
+    /* consult → tom teal sóbrio, espírito de referência gramatical */
+    .slice[data-kind="consult"] .sliceRow::before{
+      background:
+        linear-gradient(to right, rgba(0,110,100,.055) 1px, transparent 1px) 0 0 / 44px 44px,
+        linear-gradient(to bottom, rgba(0,110,100,.055) 1px, transparent 1px) 0 0 / 44px 44px,
+        rgba(0,110,100,.032);
+      box-shadow:
+        inset 4px 0 0 rgba(0,110,100,.16),
+        inset 0 -1px 0 rgba(0,110,100,.10),
+        inset 0 0 0 1px rgba(0,110,100,.06);
+    }
+    /* help → neutro levemente mais escuro, espírito de manual funcional */
+    .slice[data-kind="help"] .sliceRow::before{
+      background:
+        linear-gradient(to right, rgba(60,60,60,.065) 1px, transparent 1px) 0 0 / 44px 44px,
+        linear-gradient(to bottom, rgba(60,60,60,.065) 1px, transparent 1px) 0 0 / 44px 44px,
+        rgba(22,22,22,.048);
+      box-shadow:
+        inset 4px 0 0 rgba(60,60,60,.14),
+        inset 0 -1px 0 rgba(0,0,0,.10),
+        inset 0 0 0 1px rgba(0,0,0,.07);
+    }
+    /* unknown → cinza base (padrão visual existente) */
+
     /* o conteúdo do corte agora é full-width (sem grid, sem padding lateral extra) */
     .sliceCard{
       position: relative;
@@ -1036,12 +1089,18 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       align-items: baseline;
     }
     .badge strong{
-      color: var(--accent);
+      color: var(--slice-accent, var(--accent));
       font-weight: 800;
       letter-spacing: .10em;
-      border-left: 3px solid var(--accent);
+      border-left: 3px solid var(--slice-accent, var(--accent));
       padding-left: 10px;
     }
+    /* Accent de borda por categoria */
+    .slice[data-kind="define"]  { --slice-accent: #b8882a; }
+    .slice[data-kind="vocab"]   { --slice-accent: #3c5ab4; }
+    .slice[data-kind="consult"] { --slice-accent: #006e64; }
+    .slice[data-kind="help"]    { --slice-accent: #555; }
+    .slice[data-kind="unknown"] { --slice-accent: var(--accent); }
 
     .sliceMeta{
       font-size: 11px;
@@ -1168,19 +1227,23 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
     }
     .slice.isClosing .sliceCard{
       opacity: 0;
-      transform: none;
+      transform: translateY(-3px);
+      transition: opacity 160ms var(--ease-standard), transform 160ms var(--ease-standard);
     }
     .slice.isClosing .sliceBody{
       opacity: 0;
-      transform: none;
+      transition: opacity 100ms var(--ease-standard);
     }
     .slice.isClosing .sliceRow::before{
       opacity: 0;
-      transition: opacity .18s ease;
+      transition: opacity .14s ease;
     }
     .slice.isClosing .sliceRow{
-      clip-path: inset(0 0 96% 0);
+      clip-path: inset(0 0 100% 0 round 0px);
       opacity: 0;
+      transition:
+        clip-path 240ms cubic-bezier(.4,0,1,1),
+        opacity 160ms var(--ease-standard);
     }
 
     .panel{
@@ -1351,74 +1414,70 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       width: var(--slice-gutter-w);
       cursor: url("../assets/cursors/bibata-ice/pointer.svg") 9 3, pointer;
       z-index: 4;
-      background: rgba(0,0,0,.03);
-      opacity: .14;
+      background: transparent;
+      opacity: 0;
       transition:
-        opacity var(--motion-fast) var(--ease-standard),
-        transform var(--motion-fast) var(--ease-standard),
-        background-color var(--motion-fast) linear;
+        opacity 200ms var(--ease-standard),
+        background-color 200ms linear;
     }
+    /* borda interna que aparece ao hover do sliceRow */
     .gutter::before{
       content: "";
       position: absolute;
-      inset: 0;
-      background: rgba(196,84,42,.14);
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: rgba(0,0,0,.14);
       opacity: 0;
-      transform: scaleX(1);
       pointer-events: none;
-      transition:
-        opacity 220ms var(--ease-standard),
-        transform 360ms var(--ease-emphasis);
+      transition: opacity 180ms var(--ease-standard);
     }
+    .gutter.left::before  { right: 0; left: auto; }
+    .gutter.right::before { left: 0; right: auto; }
+
+    /* ícone × — aparece apenas ao hover direto do gutter */
     .gutter::after{
       content: "×";
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%) scale(.84);
-      font-size: 12px;
+      transform: translate(-50%, -50%) scale(.7);
+      font-size: 11px;
       line-height: 1;
-      color: rgba(0,0,0,.58);
+      font-weight: 300;
+      color: rgba(196,84,42,.0);
       opacity: 0;
       pointer-events: none;
       transition:
-        opacity 120ms var(--ease-standard),
-        transform 240ms var(--ease-emphasis);
-      transition-delay: 0ms;
+        opacity 160ms var(--ease-standard),
+        color 160ms linear,
+        transform 220ms cubic-bezier(.16,1,.3,1);
     }
+
     .gutter.left  { left: 0; }
     .gutter.right { right: 0; }
-    .gutter.left{
-      transform: translateX(-4px);
-      transform-origin: left center;
-    }
-    .gutter.right{
-      transform: translateX(4px);
-      transform-origin: right center;
-    }
+
+    /* ao hover do sliceRow: borda de borda aparece */
     .sliceRow:hover .gutter{
-      opacity: .22;
-      transform: translateX(0);
+      opacity: 1;
     }
-    .gutter.left:hover{
-      background: rgba(196,84,42,.14);
-      opacity: .92;
-      transform: translateX(0);
+    .sliceRow:hover .gutter::before{
+      opacity: 1;
     }
-    .gutter.right:hover{
-      background: rgba(196,84,42,.14);
-      opacity: .92;
-      transform: translateX(0);
+
+    /* ao hover direto do gutter: fundo terracotta suave + × visível */
+    .gutter:hover{
+      background: rgba(196,84,42,.07);
+      opacity: 1;
     }
     .gutter:hover::before{
-      opacity: .95;
-      transform: scaleX(1.2);
-      transition-delay: 900ms; /* reinforce only if cursor stays */
+      background: rgba(196,84,42,.32);
+      opacity: 1;
     }
     .gutter:hover::after{
-      opacity: .72;
+      opacity: 1;
+      color: rgba(196,84,42,.72);
       transform: translate(-50%, -50%) scale(1);
-      transition-delay: 980ms; /* show X shortly after delayed expand */
     }
 
     /* footer status */
@@ -1565,6 +1624,38 @@ body[data-theme="chumbo"] .sliceRow::before {
   box-shadow:
     inset 0 -1px 0 rgba(255,255,255,.06),   /* borda inferior mínima */
     inset 0 0 0 1px rgba(255,255,255,.05);  /* contorno geral */
+}
+
+/* Fundos por categoria — dark mode */
+body[data-theme="chumbo"] .slice[data-kind="define"] .sliceRow::before{
+  background:
+    linear-gradient(to right, rgba(210,165,80,.06) 1px, transparent 1px) 0 0 / 44px 44px,
+    linear-gradient(to bottom, rgba(210,165,80,.06) 1px, transparent 1px) 0 0 / 44px 44px,
+    rgba(210,165,80,.035);
+  box-shadow:
+    inset 4px 0 0 rgba(210,165,80,.22),
+    inset 0 -1px 0 rgba(210,165,80,.10),
+    inset 0 0 0 1px rgba(210,165,80,.07);
+}
+body[data-theme="chumbo"] .slice[data-kind="vocab"] .sliceRow::before{
+  background:
+    linear-gradient(to right, rgba(100,130,220,.06) 1px, transparent 1px) 0 0 / 44px 44px,
+    linear-gradient(to bottom, rgba(100,130,220,.06) 1px, transparent 1px) 0 0 / 44px 44px,
+    rgba(100,130,220,.030);
+  box-shadow:
+    inset 4px 0 0 rgba(100,130,220,.20),
+    inset 0 -1px 0 rgba(100,130,220,.08),
+    inset 0 0 0 1px rgba(100,130,220,.06);
+}
+body[data-theme="chumbo"] .slice[data-kind="consult"] .sliceRow::before{
+  background:
+    linear-gradient(to right, rgba(0,165,150,.06) 1px, transparent 1px) 0 0 / 44px 44px,
+    linear-gradient(to bottom, rgba(0,165,150,.06) 1px, transparent 1px) 0 0 / 44px 44px,
+    rgba(0,165,150,.025);
+  box-shadow:
+    inset 4px 0 0 rgba(0,165,150,.18),
+    inset 0 -1px 0 rgba(0,165,150,.08),
+    inset 0 0 0 1px rgba(0,165,150,.05);
 }
 
 body[data-theme="chumbo"] .sliceTag {
@@ -2291,7 +2382,8 @@ body[data-theme="chumbo"] .modosSliceItem.is-active { background: rgba(196,84,42
 }
 .mesaBody {
   flex: 1;
-  overflow-y: auto;
+  min-height: 0;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -2347,8 +2439,9 @@ body[data-theme="chumbo"] .modosSliceItem.is-active { background: rgba(196,84,42
 }
 .mesaProjectList {
   flex: 1;
+  min-height: 0;       /* permite encolher e rolar */
+  overflow-y: auto;    /* rola internamente — hint fica sempre visível */
   padding: 8px 0;
-  min-height: 40px;
 }
 
 /* ── Mesa folder ─────────────────────────────────────────────── */

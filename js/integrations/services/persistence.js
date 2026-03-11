@@ -5,13 +5,24 @@ const POSTIT_HTML_KEY = "eskrev:index2:postit:html";
 const SCROLL_KEY = "eskrev:index2:page1:scroll";
 
 export function createPersistencePackage(ctx) {
+  /** Remove slices e gram-marks de um nó clone antes de salvar/restaurar. */
+  function stripEphemeral(root) {
+    root.querySelectorAll(".slice").forEach(s => s.remove());
+    root.querySelectorAll(".gram-mark").forEach(mark => {
+      mark.replaceWith(document.createTextNode(mark.textContent));
+    });
+  }
+
   function restore(el) {
     if (!el) return;
     try {
       const storedHtml = localStorage.getItem(CONTENT_HTML_KEY);
       const storedText = localStorage.getItem(CONTENT_TEXT_KEY);
       if (storedHtml && storedHtml.trim()) {
-        el.innerHTML = storedHtml;
+        const tmp = document.createElement("div");
+        tmp.innerHTML = storedHtml;
+        stripEphemeral(tmp);        // remove slices que porventura foram salvos
+        el.innerHTML = tmp.innerHTML;
       } else if (storedText && storedText.trim()) {
         // backward compatibility with previous text-only persistence
         el.innerText = storedText;
@@ -41,8 +52,10 @@ export function createPersistencePackage(ctx) {
     let timer = null;
     const save = () => {
       try {
-        localStorage.setItem(CONTENT_HTML_KEY, el.innerHTML || "");
-        localStorage.setItem(CONTENT_TEXT_KEY, el.innerText || "");
+        const clone = el.cloneNode(true);
+        stripEphemeral(clone);
+        localStorage.setItem(CONTENT_HTML_KEY, clone.innerHTML || "");
+        localStorage.setItem(CONTENT_TEXT_KEY, clone.innerText || "");
         localStorage.setItem(SCROLL_KEY, String(el.scrollTop || 0));
         const dock = ctx?.refs?.sliceDockEl || document.getElementById("sliceDockRail");
         if (dock) localStorage.setItem(DOCK_HTML_KEY, dock.innerHTML || "");
