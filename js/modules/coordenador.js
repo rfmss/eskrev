@@ -305,6 +305,7 @@ function buildOverlay() {
       <div class="coord-bot">
         <div class="coord-filters" id="coordFilters"></div>
         <div class="coord-queue" id="coordQueue"></div>
+        <div class="coord-tech-panel" id="coordTechPanel"></div>
       </div>
 
     </div>
@@ -452,6 +453,21 @@ function render() {
         `;
       }).join("");
     }
+  }
+
+  // Tech panel
+  const techEl = document.getElementById("coordTechPanel");
+  if (techEl) {
+    const totalRegras = [R1,R2,R3,R4,R5,R6].flat().filter(r => r.c).length;
+    const ativosArr = [...ativos].sort().join(", ");
+    techEl.innerHTML = `
+      <span>agentes_ativos: [${ativosArr}]</span>
+      <span>regras_totais: ${totalRegras}</span>
+      <span>deduplicação: sobreposição + prioridade agente × categoria</span>
+      <span>debounce: 600ms · corrigir_tudo: offset acumulado</span>
+      <span>fila_ativa: ${erros.length} ocorrência${erros.length !== 1 ? "s" : ""}</span>
+      <span>agentes: OR · MO · SI · SE · PO · CR — todos integrados</span>
+    `;
   }
 }
 
