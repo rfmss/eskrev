@@ -1,7 +1,7 @@
 :root {
   /* Blueprint Porcelana Isometrica - neutrals */
-  --iso-paper: #f6f4ef;
-  --iso-paper-strong: #fbfaf7;
+  --iso-paper: #e9e6de;        /* desk: warm beige — contraste com o card */
+  --iso-paper-strong: #fdfcfa; /* card: near-white — flutua sobre o desk */
   --iso-ink-950: #0f0f10;
   --iso-ink-900: #1a1a1a;
   --iso-ink-800: #282828;
@@ -14,9 +14,13 @@
   --iso-ink-100: #ececec;
   --iso-ink-50: #f7f7f7;
 
-  /* Accent (annotation marker) */
-  --iso-accent: #ff4d2e;
-  --iso-accent-dim: rgba(255, 77, 46, 0.12);
+  /* Accent dual-channel:
+     --iso-accent       → terracotta (conteúdo, personas, anotação)
+     --iso-accent-sys   → azul cobalto (sistema, ações, links) */
+  --iso-accent: #c4542a;
+  --iso-accent-dim: rgba(196, 84, 42, 0.13);
+  --iso-accent-sys: #2f5bff;
+  --iso-accent-sys-dim: rgba(47, 91, 255, 0.13);
 
   /* Preset knobs (balanced default) */
   --iso-grid-alpha: 0.07;
@@ -43,14 +47,14 @@
     0 0 0 1px rgba(0, 0, 0, calc(0.05 * var(--iso-instrument-shadow))),
     0 1px 2px rgba(0, 0, 0, calc(0.05 * var(--iso-instrument-shadow)));
   --iso-shadow-1:
-    0 1px 0 rgba(0, 0, 0, calc(0.06 * var(--iso-instrument-shadow))),
-    0 8px 24px rgba(0, 0, 0, calc(0.1 * var(--iso-instrument-shadow))),
-    0 24px 60px rgba(0, 0, 0, calc(0.08 * var(--iso-instrument-shadow)));
+    0 1px 0 rgba(0, 0, 0, calc(0.09 * var(--iso-instrument-shadow))),
+    0 8px 24px rgba(0, 0, 0, calc(0.14 * var(--iso-instrument-shadow))),
+    0 24px 60px rgba(0, 0, 0, calc(0.11 * var(--iso-instrument-shadow)));
   --iso-shadow-2:
-    0 0 0 1px rgba(0, 0, 0, calc(0.06 * var(--iso-instrument-shadow))),
-    0 2px 8px rgba(0, 0, 0, calc(0.07 * var(--iso-instrument-shadow))),
-    0 10px 30px rgba(0, 0, 0, calc(0.08 * var(--iso-instrument-shadow))),
-    0 28px 72px rgba(0, 0, 0, calc(0.08 * var(--iso-instrument-shadow)));
+    0 0 0 1px rgba(0, 0, 0, calc(0.09 * var(--iso-instrument-shadow))),
+    0 2px 8px rgba(0, 0, 0, calc(0.11 * var(--iso-instrument-shadow))),
+    0 10px 30px rgba(0, 0, 0, calc(0.14 * var(--iso-instrument-shadow))),
+    0 28px 72px rgba(0, 0, 0, calc(0.12 * var(--iso-instrument-shadow)));
   --iso-shadow-3:
     0 0 0 1px rgba(0, 0, 0, calc(0.08 * var(--iso-instrument-shadow))),
     0 3px 12px rgba(0, 0, 0, calc(0.1 * var(--iso-instrument-shadow))),

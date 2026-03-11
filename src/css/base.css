@@ -162,24 +162,24 @@
 
 /* 2. CHUMBO EDITORIAL */
 [data-theme="chumbo"] {
-  --bg-core: #2f3133;
+  --bg-core: #111110;
   --bg-panel: transparent;
-  --bg-drawer: #34363a;
-  --bg-drawer-solid: #34363a;
-  --bg-xray: #35373c;
-  --bg-controls: #34363a;
-  --xray-surface: rgba(231, 234, 242, 0.04);
-  --xray-border: 1px solid rgba(231, 234, 242, 0.08);
-  --color-text: #e6e6e6;
-  --color-accent: #c7c7c7;
-  --color-accent-dim: rgba(199, 199, 199, 0.24);
-  --color-muted: #c4c4c4;
-  --border-style: 1px solid rgba(199, 199, 199, 0.18);
-  --grid-opacity: 0.035;
-  --selection-bg: rgba(199, 199, 199, 0.26);
-  --selection-text: #2f3133;
-  --search-bg: rgba(199, 199, 199, 0.26);
-  --search-text: #2f3133;
+  --bg-drawer: #1a1918;
+  --bg-drawer-solid: #1a1918;
+  --bg-xray: #1e1d1c;
+  --bg-controls: #1a1918;
+  --xray-surface: rgba(240, 237, 230, 0.04);
+  --xray-border: 1px solid rgba(240, 237, 230, 0.07);
+  --color-text: #e8e4dc;
+  --color-accent: #c4542a;
+  --color-accent-dim: rgba(196, 84, 42, 0.22);
+  --color-muted: #8a8680;
+  --border-style: 1px solid rgba(240, 237, 230, 0.12);
+  --grid-opacity: 0.028;
+  --selection-bg: rgba(196, 84, 42, 0.28);
+  --selection-text: #e8e4dc;
+  --search-bg: rgba(196, 84, 42, 0.22);
+  --search-text: #e8e4dc;
   --radius: 2px;
 }
 

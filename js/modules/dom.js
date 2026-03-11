@@ -45,6 +45,9 @@ export function deleteCharsBeforeCaretWithin(el, n) {
     offset = last.textContent.length;
   }
 
+  let caretNode = null;
+  let caretOffset = 0;
+
   while (remaining > 0 && node) {
     const take = Math.min(remaining, offset);
     const start = offset - take;
@@ -54,11 +57,29 @@ export function deleteCharsBeforeCaretWithin(el, n) {
     del.setEnd(node, offset);
     del.deleteContents();
 
+    caretNode = node;
+    caretOffset = start;
+
     remaining -= take;
     if (remaining <= 0) break;
 
     node = prevTextNode(node);
     offset = node ? node.textContent.length : 0;
+  }
+
+  // Reposiciona o caret explicitamente após a deleção para evitar que
+  // insertNodeAtCaret use um range obsoleto e destrua conteúdo adjacente.
+  if (caretNode) {
+    const sel = window.getSelection();
+    if (sel) {
+      const newRange = document.createRange();
+      try {
+        newRange.setStart(caretNode, caretOffset);
+        newRange.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(newRange);
+      } catch (_) { /* node pode ter sido removido em edge case */ }
+    }
   }
 }
 
@@ -96,6 +117,11 @@ export function ensureEditableAnchorAfterNode(node) {
 }
 
 export function insertTextAtCaret(text) {
+  // execCommand('insertText') registra no stack de undo do browser (Ctrl+Z).
+  // Fallback manual apenas se execCommand não estiver disponível.
+  const ok = document.execCommand("insertText", false, text);
+  if (ok) return;
+
   const range = getSelectionRange();
   if (!range) return;
   range.deleteContents();

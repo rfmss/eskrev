@@ -1,5 +1,5 @@
 // src/js/modules/export_skrv.js
-// SKRV/1 — Transfer Only Text (cápsula offline)
+// SKRV/1 — Transfer Only Text (cápsula offline) + Authoria signature
 
 function downloadTextAsFile(text, filename) {
   const blob = new Blob([text], { type: "application/json;charset=utf-8" });
@@ -195,11 +195,37 @@ export function buildSkrvPayload(store) {
   };
 }
 
-export async function buildSkrvPayloadWithChain(store) {
+export async function buildSkrvPayloadWithChain(store, signingPassword) {
   const payload = buildSkrvPayload(store);
   const chain = await buildBirthChain(payload.MASTER_TEXT || "");
   payload.BIRTH_CHAIN = chain;
-  payload.proof.content_hash = await sha256Hex(payload.content.text || "");
+  const contentHash = await sha256Hex(payload.content.text || "");
+  payload.proof.content_hash = contentHash;
+
+  // Authoria: assinar se houver senha e chave configurada
+  if (signingPassword) {
+    try {
+      const { signContent, hasKey } = await import("./crypto_manager.js");
+      const keyExists = await hasKey();
+      if (keyExists) {
+        const sig = await signContent(contentHash, signingPassword);
+        payload.AUTHORIA_SIGNATURE = {
+          algorithm: "ECDSA-P256-SHA256",
+          signature: sig.signature,
+          public_key_jwk: sig.publicKeyJwk,
+          signed_at: sig.signed_at,
+          note: "Verificável em Authoria (verify.html) com a chave pública do autor.",
+        };
+      }
+    } catch (err) {
+      // Assinatura falhou (senha incorreta, etc.) — exportar sem assinatura
+      payload.AUTHORIA_SIGNATURE = {
+        error: "Assinatura não aplicada.",
+        reason: err && err.message ? err.message : "Erro desconhecido.",
+      };
+    }
+  }
+
   return payload;
 }
 

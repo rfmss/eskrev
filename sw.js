@@ -1,8 +1,9 @@
-const CACHE_NAME = "skrv-cache-v116";
+const CACHE_NAME = "skrv-cache-v118";
 const CORE_ASSETS = [
   "./",
   "./index.html",
-  "./index.html?v=5",
+  "./fullm.html",
+  "./onep.html",
   "./mobile.html",
   "./src/mobile/mobile.css",
   "./src/mobile/mobile.js",
@@ -10,6 +11,7 @@ const CORE_ASSETS = [
   "./verify.html",
   "./manifest.json?v=5",
   "./src/css/main.css",
+  "./src/css/motion_eskrev.css",
   "./src/css/mobile-only.css",
   "./src/css/fonts.css",
   "./src/css/base.css",
@@ -18,6 +20,7 @@ const CORE_ASSETS = [
   "./src/js/app.js",
   "./src/js/modules/auth.js",
   "./src/js/modules/birth_tracker.js",
+  "./src/js/modules/crypto_manager.js",
   "./src/js/modules/editor.js",
   "./src/js/modules/export_skrv.js",
   "./src/js/modules/lang.js",
@@ -41,7 +44,8 @@ const CORE_ASSETS = [
 const CACHE_ASSETS_ALL = [
   "./",
   "./index.html",
-  "./index.html?v=5",
+  "./fullm.html",
+  "./onep.html",
   "./mobile.html",
   "./src/mobile/mobile.css",
   "./src/mobile/mobile.js",
@@ -49,6 +53,7 @@ const CACHE_ASSETS_ALL = [
   "./verify.html",
   "./manifest.json?v=5",
   "./src/css/main.css",
+  "./src/css/motion_eskrev.css",
   "./src/css/mobile-only.css",
   "./src/css/fonts.css",
   "./src/css/base.css",
@@ -57,6 +62,7 @@ const CACHE_ASSETS_ALL = [
   "./src/js/app.js",
   "./src/js/modules/auth.js",
   "./src/js/modules/birth_tracker.js",
+  "./src/js/modules/crypto_manager.js",
   "./src/js/modules/editor.js",
   "./src/js/modules/export_skrv.js",
   "./src/js/modules/lang.js",
@@ -257,14 +263,18 @@ self.addEventListener("fetch", (event) => {
           }
           return response;
         })
-        .catch(async () => {
+        .catch(async (err) => {
+          console.warn("[sw] fetch failed, serving from cache:", err && err.message);
           if (wantsMobile) {
             const mobileCached = await caches.match("./mobile.html");
             if (mobileCached) return mobileCached;
           }
           const indexCached = await caches.match("./index.html");
           if (indexCached) return indexCached;
-          return new Response("", { status: 504, statusText: "offline" });
+          return new Response(
+            '<!doctype html><html><head><meta charset="utf-8"><title>offline — eskrev</title></head><body style="font-family:system-ui;display:flex;align-items:center;justify-content:center;min-height:100vh;background:#f5f2ea;color:#1a1a1a;text-align:center;"><div><p style="font-size:13px;opacity:.7;letter-spacing:.04em">Sem conexão. Reabra quando online para sincronizar.</p></div></body></html>',
+            { status: 200, headers: { "Content-Type": "text/html;charset=utf-8" } }
+          );
         })
     );
     return;
@@ -279,7 +289,11 @@ self.addEventListener("fetch", (event) => {
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
           return response;
         })
-        .catch(() => cached || new Response("", { status: 504, statusText: "offline" }));
+        .catch((err) => {
+          console.warn("[sw] asset fetch failed:", err && err.message);
+          if (cached) return cached;
+          return new Response("", { status: 504, statusText: "Gateway Timeout" });
+        });
     })
   );
 });
@@ -300,6 +314,13 @@ self.addEventListener("message", (event) => {
       await Promise.all(EXTRA_ASSETS.map((asset) => cacheAsset(asset)));
       const fioFiles = await loadFiodoversoFiles();
       await Promise.all(fioFiles.map((asset) => cacheAsset(asset)));
+      // Notify all clients that extended cache is complete
+      const clients = await self.clients.matchAll({ type: "window" });
+      clients.forEach((client) => client.postMessage({
+        type: "cache-status",
+        cached: CACHE_ASSETS_ALL.length,
+        total: CACHE_ASSETS_ALL.length
+      }));
     })());
     return;
   }

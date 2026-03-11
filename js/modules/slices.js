@@ -1014,6 +1014,7 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
           if (titleEl) titleEl.textContent = (modo?.label || id).toUpperCase();
           contentEl.innerHTML = `<p class="modos-loading">Carregando…</p>`;
           sidebar.classList.add("is-open");
+          sidebar.setAttribute("aria-hidden", "false");
           ctx.integrations?.personaTransplant?.resolve?.(id).then((result) => {
             if (!result || !result.templates?.length) {
               contentEl.innerHTML = renderMarkdown(modo?.desc || "Modo não encontrado.");

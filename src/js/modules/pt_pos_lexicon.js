@@ -87,20 +87,38 @@ export const ptPosLexicon = {
         if (!key) return null;
         const lower = key.toLowerCase();
 
-        if (/^\d+$/.test(lower)) return { pos: ["NUM"], probable: true };
-        if (/mente$/.test(lower)) return { pos: ["ADV"], probable: true };
-        if (/(ção|ções|mento|mentos|dade|dades|ismo|ismos|agem|agens|são|sões|ez|eza)$/.test(lower)) {
+        if (/^\d+([.,]\d+)?$/.test(lower)) return { pos: ["NUM"], probable: true };
+
+        // Advérbios por sufixo -mente
+        if (/mente$/.test(lower) && lower.length > 6) return { pos: ["ADV"], probable: true };
+
+        // Verbos: gerúndio e particípio passado
+        if (/(ando|endo|indo)$/.test(lower) && lower.length > 5) return { pos: ["VERB"], probable: true };
+        if (/(ado|ido)$/.test(lower) && lower.length > 4) return { pos: ["VERB"], probable: true };
+
+        // Substantivos por sufixo
+        if (/(cao|coes|cao|sao|soes|mento|mentos|dade|dades|ismo|ismos|agem|agens|ez|eza|ezas|ncia|ncias|ncia|ura|uras|tude|tudes|ude|udes|eiro|eira|eiros|eiras)$/.test(lower)) {
             return { pos: ["SUBST"], probable: true };
         }
-        if (/(ável|ível|oso|osa|ivo|iva|al|ais|ico|ica|ário|ária|nte)$/.test(lower)) {
+
+        // Adjetivos por sufixo
+        if (/(avel|ivel|oso|osa|osos|osas|ivo|iva|ivos|ivas|ico|ica|icos|icas|ario|aria|arios|arias|ante|antes|ente|entes|udo|uda|udos|udas|undo|unda|undos|undas)$/.test(lower)) {
             return { pos: ["ADJ"], probable: true };
         }
-        if (/(ar|er|ir)$/.test(lower) && lower.length > 3) {
+        if (/(al|ais|ual|uais|vel|veis)$/.test(lower) && lower.length > 4) {
+            return { pos: ["ADJ"], probable: true };
+        }
+
+        // Verbos no infinitivo
+        if (/[aei]r$/.test(lower) && lower.length > 3) {
             return { pos: ["VERB"], probable: true };
         }
-        if (/^(meu|minha|teu|tua|seu|sua|nosso|nossa|este|esta|esse|essa|aquele|aquela|isso|aquilo|alguém|ninguém|todos|cada|qualquer)$/.test(lower)) {
+
+        // Pronomes conhecidos
+        if (/^(meu|minha|meus|minhas|teu|tua|teus|tuas|seu|sua|seus|suas|nosso|nossa|nossos|nossas|este|esta|estes|estas|esse|essa|esses|essas|aquele|aquela|aqueles|aquelas|isto|isso|aquilo|alguem|ninguem|todos|todas|cada|qualquer|outro|outra|outros|outras|algum|alguma|alguns|algumas|nenhum|nenhuma|cujo|cuja|cujos|cujas)$/.test(lower)) {
             return { pos: ["PRON"], probable: true };
         }
+
         return null;
     },
 

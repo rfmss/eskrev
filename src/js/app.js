@@ -2962,6 +2962,206 @@ function setupEventListeners() {
         });
     });
 
+    // ── Authoria: onboarding — gera a primeira chave do autor ─────────────
+    // Retorna a senha criada (para assinar o export imediato), ou null se pular.
+    const setupAuthoriaKey = () => {
+        return new Promise((resolve) => {
+            const existing = document.getElementById("authoriaSetupOverlay");
+            if (existing) { existing.remove(); }
+
+            const overlay = document.createElement("div");
+            overlay.id = "authoriaSetupOverlay";
+            overlay.setAttribute("role", "dialog");
+            overlay.setAttribute("aria-modal", "true");
+            overlay.setAttribute("aria-label", "Configurar assinatura Authoria");
+            overlay.style.cssText = [
+                "position:fixed", "inset:0", "z-index:10000",
+                "display:flex", "align-items:center", "justify-content:center",
+                "background:rgba(0,0,0,0.52)", "backdrop-filter:blur(4px)",
+                "-webkit-backdrop-filter:blur(4px)"
+            ].join(";");
+
+            const box = document.createElement("div");
+            box.style.cssText = [
+                "background:var(--bg-panel,#f5f2ea)",
+                "border:1px solid var(--hairline,rgba(0,0,0,.1))",
+                "border-radius:10px", "padding:28px 24px 20px",
+                "width:min(420px,92vw)", "display:grid", "gap:14px",
+                "font-family:var(--font-ui,system-ui,sans-serif)"
+            ].join(";");
+
+            box.innerHTML = `
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:2px">
+                <svg width="24" height="24" viewBox="0 0 40 40" fill="none" aria-hidden="true" style="opacity:.75;flex-shrink:0">
+                  <circle cx="20" cy="20" r="17" stroke="currentColor" stroke-width="1.5" opacity=".4"/>
+                  <circle cx="20" cy="20" r="13" stroke="currentColor" stroke-width="1"/>
+                  <path d="M20 10L23.5 18L32 18.5L26 24L28 33L20 28.5L12 33L14 24L8 18.5L16.5 18Z" stroke="currentColor" stroke-width="1" fill="none" stroke-linejoin="round"/>
+                </svg>
+                <strong style="font-size:14px;letter-spacing:.2px">Configurar assinatura Authoria</strong>
+              </div>
+              <p style="font-size:12px;color:var(--color-muted,#888);line-height:1.6;margin:0">
+                Crie uma chave criptográfica para assinar seus arquivos <code style="font-size:11px;background:rgba(0,0,0,.06);padding:1px 4px;border-radius:3px">.skv</code>.<br>
+                A assinatura permite verificar que o arquivo não foi alterado após a exportação.
+              </p>
+              <input
+                id="authoriaSetupPass"
+                type="password"
+                placeholder="Crie uma senha (mín. 8 caracteres)"
+                autocomplete="new-password"
+                style="padding:10px 12px;border-radius:6px;border:1px solid var(--hairline,rgba(0,0,0,.15));font-size:13px;font-family:inherit;background:var(--bg-core,#fff);color:var(--color-text,#1a1a1a);outline:none;width:100%;box-sizing:border-box"
+              />
+              <p id="authoriaSetupError" style="font-size:11px;color:#d9534f;display:none;margin:0"></p>
+              <p id="authoriaSetupSuccess" style="font-size:12px;color:#2d7a3f;display:none;margin:0;line-height:1.6;padding:10px 12px;background:rgba(45,122,63,.07);border-radius:6px;border:1px solid rgba(45,122,63,.18)">
+                <strong style="display:block;margin-bottom:3px">Chave criada com sucesso.</strong>
+                O arquivo <code style="font-size:11px">.authoria-pub.json</code> foi baixado automaticamente.<br>
+                <span style="opacity:.75;font-size:11px">Guarde-o: é sua chave pública verificável por editoras e avaliadores.</span>
+              </p>
+              <div id="authoriaSetupActions" style="display:flex;gap:10px;justify-content:flex-end;margin-top:4px">
+                <button id="authoriaSetupSkip" type="button"
+                  style="padding:8px 14px;border-radius:6px;border:1px solid var(--hairline,rgba(0,0,0,.1));background:transparent;font-size:12px;cursor:pointer;font-family:inherit;color:var(--color-muted,#888)">
+                  Exportar sem assinar
+                </button>
+                <button id="authoriaSetupGen" type="button"
+                  style="padding:8px 16px;border-radius:6px;border:none;background:var(--color-accent,#2f5bff);color:#fff;font-size:12px;cursor:pointer;font-family:inherit;font-weight:500">
+                  Gerar chave de autor
+                </button>
+              </div>`;
+
+            overlay.appendChild(box);
+            document.body.appendChild(overlay);
+
+            const passInput = overlay.querySelector("#authoriaSetupPass");
+            const genBtn    = overlay.querySelector("#authoriaSetupGen");
+            const skipBtn   = overlay.querySelector("#authoriaSetupSkip");
+            const errEl     = overlay.querySelector("#authoriaSetupError");
+            const successEl = overlay.querySelector("#authoriaSetupSuccess");
+
+            const cleanup = () => overlay.remove();
+
+            genBtn.onclick = async () => {
+                const pass = passInput ? passInput.value.trim() : "";
+                if (pass.length < 8) {
+                    if (errEl) { errEl.textContent = "A senha deve ter pelo menos 8 caracteres."; errEl.style.display = "block"; }
+                    return;
+                }
+                genBtn.disabled = true;
+                genBtn.textContent = "Gerando…";
+                if (errEl) errEl.style.display = "none";
+                try {
+                    const { generateAuthorKey, exportPublicCert } = await import("./modules/crypto_manager.js");
+                    await generateAuthorKey(pass);
+                    const cert = await exportPublicCert();
+                    if (cert) {
+                        downloadText(JSON.stringify(cert, null, 2), ".authoria-pub.json", "application/json");
+                    }
+                    if (successEl) successEl.style.display = "block";
+                    if (passInput) passInput.disabled = true;
+                    genBtn.style.display = "none";
+                    skipBtn.textContent = "Fechar e exportar assinado";
+                    skipBtn.onclick = () => { cleanup(); resolve(pass); };
+                } catch (_e) {
+                    genBtn.disabled = false;
+                    genBtn.textContent = "Gerar chave de autor";
+                    if (errEl) { errEl.textContent = "Erro ao gerar chave. Tente novamente."; errEl.style.display = "block"; }
+                }
+            };
+
+            skipBtn.onclick = () => { cleanup(); resolve(null); };
+            overlay.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" && !genBtn.disabled && genBtn.style.display !== "none") genBtn.click();
+                if (e.key === "Escape") { cleanup(); resolve(null); }
+            });
+            if (passInput) setTimeout(() => passInput.focus(), 60);
+        });
+    };
+    window.totAuthoriaSetup = () => setupAuthoriaKey();
+
+    // ── Authoria: prompt de senha para assinatura ─────────────────────────
+    // Retorna a senha digitada, ou null se o usuário cancelar/pular.
+    const promptAuthoriaPassword = () => {
+        return new Promise((resolve) => {
+            // Reutilizar overlay existente se disponível, ou criar minimal inline dialog
+            const existing = document.getElementById("authoriaSignOverlay");
+            if (existing) { existing.remove(); }
+
+            const overlay = document.createElement("div");
+            overlay.id = "authoriaSignOverlay";
+            overlay.setAttribute("role", "dialog");
+            overlay.setAttribute("aria-modal", "true");
+            overlay.setAttribute("aria-label", "Assinar exportação com Authoria");
+            overlay.style.cssText = [
+                "position:fixed", "inset:0", "z-index:10000",
+                "display:flex", "align-items:center", "justify-content:center",
+                "background:rgba(0,0,0,0.52)", "backdrop-filter:blur(4px)",
+                "-webkit-backdrop-filter:blur(4px)"
+            ].join(";");
+
+            const box = document.createElement("div");
+            box.style.cssText = [
+                "background:var(--bg-panel,#f5f2ea)",
+                "border:1px solid var(--hairline,rgba(0,0,0,.1))",
+                "border-radius:10px", "padding:28px 24px 20px",
+                "width:min(380px,90vw)", "display:grid", "gap:14px",
+                "font-family:var(--font-ui,system-ui,sans-serif)"
+            ].join(";");
+
+            box.innerHTML = `
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:2px">
+                <svg width="22" height="22" viewBox="0 0 40 40" fill="none" aria-hidden="true" style="opacity:.7">
+                  <circle cx="20" cy="20" r="17" stroke="currentColor" stroke-width="1.5" opacity=".4"/>
+                  <circle cx="20" cy="20" r="13" stroke="currentColor" stroke-width="1"/>
+                  <path d="M20 10L23.5 18L32 18.5L26 24L28 33L20 28.5L12 33L14 24L8 18.5L16.5 18Z" stroke="currentColor" stroke-width="1" fill="none" stroke-linejoin="round"/>
+                </svg>
+                <strong style="font-size:14px;letter-spacing:.2px">Assinar com Authoria</strong>
+              </div>
+              <p style="font-size:12px;color:var(--color-muted,#888);line-height:1.55;margin:0">
+                Digite a senha da sua chave de autor para assinar este arquivo.
+              </p>
+              <input
+                id="authoriaSignPass"
+                type="password"
+                placeholder="Senha da chave de autor"
+                autocomplete="current-password"
+                style="padding:10px 12px;border-radius:6px;border:1px solid var(--hairline,rgba(0,0,0,.15));font-size:13px;font-family:inherit;background:var(--bg-core,#fff);color:var(--color-text,#1a1a1a);outline:none;width:100%;box-sizing:border-box"
+              />
+              <p id="authoriaSignError" style="font-size:11px;color:#d9534f;display:none;margin:0">Senha incorreta ou erro ao assinar.</p>
+              <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:4px">
+                <button id="authoriaSignSkip" type="button"
+                  style="padding:8px 14px;border-radius:6px;border:1px solid var(--hairline,rgba(0,0,0,.1));background:transparent;font-size:12px;cursor:pointer;font-family:inherit;color:var(--color-muted,#888)">
+                  Exportar sem assinar
+                </button>
+                <button id="authoriaSignConfirm" type="button"
+                  style="padding:8px 16px;border-radius:6px;border:none;background:var(--color-accent,#2f5bff);color:#fff;font-size:12px;cursor:pointer;font-family:inherit;font-weight:500">
+                  Assinar e exportar
+                </button>
+              </div>`;
+
+            overlay.appendChild(box);
+            document.body.appendChild(overlay);
+
+            const passInput = overlay.querySelector("#authoriaSignPass");
+            const confirmBtn = overlay.querySelector("#authoriaSignConfirm");
+            const skipBtn = overlay.querySelector("#authoriaSignSkip");
+            const errEl = overlay.querySelector("#authoriaSignError");
+
+            const cleanup = () => overlay.remove();
+
+            confirmBtn.onclick = () => {
+                const pass = passInput ? passInput.value.trim() : "";
+                if (!pass) { if (errEl) { errEl.textContent = "Digite a senha."; errEl.style.display = "block"; } return; }
+                cleanup();
+                resolve(pass);
+            };
+            skipBtn.onclick = () => { cleanup(); resolve(null); };
+            overlay.addEventListener("keydown", (e) => {
+                if (e.key === "Enter") confirmBtn.click();
+                if (e.key === "Escape") { cleanup(); resolve(null); }
+            });
+            if (passInput) setTimeout(() => passInput.focus(), 60);
+        });
+    };
+    // ─────────────────────────────────────────────────────────────────────
+
     const revealExportSupport = () => {
         const support = document.getElementById("exportSupport");
         if (!support) return;
@@ -3000,10 +3200,26 @@ function setupEventListeners() {
                 String(now.getHours()).padStart(2, "0"),
                 String(now.getMinutes()).padStart(2, "0")
             ].join("");
-            buildSkrvPayloadWithChain(store).then((payload) => {
-                downloadText(JSON.stringify(payload, null, 2), `${slug}_${stamp}.skv`, "application/json");
-                revealExportSupport();
-            });
+            // Authoria: verificar se há chave configurada antes de exportar
+            (async () => {
+                let signingPassword = null;
+                try {
+                    const { hasKey } = await import("./modules/crypto_manager.js");
+                    const keyExists = await hasKey();
+                    if (keyExists) {
+                        signingPassword = await promptAuthoriaPassword();
+                    } else {
+                        // Primeira exportação sem chave: oferecer onboarding
+                        signingPassword = await setupAuthoriaKey();
+                    }
+                } catch (_) {
+                    // crypto_manager indisponível — exportar sem assinatura
+                }
+                buildSkrvPayloadWithChain(store, signingPassword).then((payload) => {
+                    downloadText(JSON.stringify(payload, null, 2), `${slug}_${stamp}.skv`, "application/json");
+                    revealExportSupport();
+                });
+            })();
         };
     }
 

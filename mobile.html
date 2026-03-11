@@ -147,5 +147,40 @@
     <script src="src/assets/js/jsqr.min.js"></script>
     <script src="src/assets/js/lz-string.min.js"></script>
     <script src="src/mobile/mobile.js"></script>
+
+    <style>
+      #mobileOfflineBanner {
+        display: none;
+        position: fixed;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        background: rgba(26, 26, 26, 0.9);
+        color: #f5f2ea;
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        padding: 7px 18px;
+        border-radius: 4px;
+        white-space: nowrap;
+        pointer-events: none;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+      #mobileOfflineBanner.visible { display: block; }
+    </style>
+    <div id="mobileOfflineBanner" role="status" aria-live="polite">offline · salvo localmente</div>
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js').catch(() => {});
+        });
+      }
+      const _mob = document.getElementById('mobileOfflineBanner');
+      const _upd = () => { if (_mob) _mob.classList.toggle('visible', !navigator.onLine); };
+      window.addEventListener('online', _upd);
+      window.addEventListener('offline', _upd);
+      _upd();
+    </script>
 </body>
 </html>

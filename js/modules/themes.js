@@ -1,11 +1,11 @@
 const THEME_KEY = "eskrev:index2:theme";
-const THEMES = new Set(["paper", "ink", "blueprint"]);
-const THEME_ORDER = ["paper", "ink", "blueprint"];
+const THEMES = new Set(["paper", "chumbo"]);
+const THEME_ORDER = ["paper", "chumbo"];
 
 function applyTheme(theme) {
   const safe = THEMES.has(theme) ? theme : "paper";
   document.body.dataset.theme = safe;
-  const isDark = safe === "ink";
+  const isDark = safe === "chumbo";
   document.querySelectorAll(".chrome .themeToggle").forEach((el) => {
     el.classList.toggle("is-dark", isDark);
     el.setAttribute("aria-pressed", isDark ? "true" : "false");
@@ -41,13 +41,13 @@ export function initThemes() {
   document.querySelectorAll(".chrome .themeToggle").forEach((btn) => {
     btn.addEventListener("click", () => {
       const current = getCurrentTheme();
-      setTheme(current === "ink" ? "paper" : "ink");
+      setTheme(current === "chumbo" ? "paper" : "chumbo");
     });
     btn.addEventListener("keydown", (ev) => {
       if (ev.key !== "Enter" && ev.key !== " ") return;
       ev.preventDefault();
       const current = getCurrentTheme();
-      setTheme(current === "ink" ? "paper" : "ink");
+      setTheme(current === "chumbo" ? "paper" : "chumbo");
     });
   });
 

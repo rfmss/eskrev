@@ -50,8 +50,8 @@ function normalizeText(text) {
 }
 
 async function loadOldDocument() {
-  const res = await fetch("index_old.html", { cache: "no-store" });
-  if (!res.ok) throw new Error("index_old.html indisponível");
+  const res = await fetch("fullm.html", { cache: "no-store" });
+  if (!res.ok) throw new Error("fullm.html indisponível");
   const html = await res.text();
   const parser = new DOMParser();
   return parser.parseFromString(html, "text/html");

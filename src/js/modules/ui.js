@@ -10,7 +10,7 @@ function isMobileUiContext() {
 export const ui = {
     elements: {},
     pomodoroInterval: null,
-    themeModes: ["paper", "carbon", "oled"],
+    themeModes: ["paper", "carbon"],
     
     init() {
         this.elements = {
@@ -467,17 +467,20 @@ export const ui = {
     },
 
     normalizeTheme(theme) {
-        const allowed = ["paper", "chumbo", "oled"];
+        const allowed = ["paper", "chumbo"];
         let currentTheme = theme || "paper";
         const legacyMap = {
             "ibm-blue": "chumbo",
             "ibm-dark": "chumbo",
+            "oled": "chumbo",
             "journal": "paper",
             "mist": "paper",
             "study": "paper",
             "amber-invert": "paper",
+            "ink": "chumbo",
             "ink-dark": "chumbo",
             "terminal": "chumbo",
+            "blueprint": "paper",
             "xilo": "paper",
             "xilo-invert": "chumbo",
             "xilo-amber": "paper",
@@ -490,15 +493,11 @@ export const ui = {
 
     resolveThemeMode(themeValue) {
         const theme = this.normalizeTheme(themeValue);
-        if (theme === "oled") return "oled";
-        if (theme === "chumbo") return "carbon";
-        return "paper";
+        return theme === "chumbo" ? "carbon" : "paper";
     },
 
     themeForMode(mode) {
-        if (mode === "oled") return "oled";
-        if (mode === "carbon") return "chumbo";
-        return "paper";
+        return mode === "carbon" ? "chumbo" : "paper";
     },
 
     applyTheme(theme, modeHint) {

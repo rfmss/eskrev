@@ -887,7 +887,7 @@
     const bindEvents = () => {
         if (els.notesMode) {
             els.notesMode.addEventListener("click", () => {
-                window.location.href = "index.html?mobile=notes&standalone=1";
+                window.location.href = "fullm.html?mobile=notes&standalone=1";
             });
         }
         if (els.langToggle) els.langToggle.addEventListener("click", cycleLang);

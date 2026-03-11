@@ -87,8 +87,9 @@ export function positionPageBreakRail(ctx, contentEl) {
   const height = Math.max(0, Math.round(page.clientHeight - padTop - padBottom));
 
   pageBreakRailEl.style.display = "block";
-  pageBreakRailEl.style.left = `${Math.round(padLeft)}px`;
+  pageBreakRailEl.style.left = "";   // CSS inset:0 — span full page card width
+  pageBreakRailEl.style.right = "";  // CSS inset:0
+  pageBreakRailEl.style.width = "";  // CSS inset:0
   pageBreakRailEl.style.top = `${Math.round(padTop)}px`;
-  pageBreakRailEl.style.width = `${width}px`;
   pageBreakRailEl.style.height = `${height}px`;
 }

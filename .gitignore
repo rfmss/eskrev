@@ -1,3 +1,22 @@
 RECURSOS APAGÁVEIS/
 .venv/
 node_modules/
+
+# Local browser/test artifacts
+.tmp-chromium-profile/
+prints/
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Build artifacts (regenerated — não versionar)
+js/main.bundle.js
+js/main.bundle.js.map
+
+# Editor local
+.vscode/settings.json
+
+# OS artifacts
+.DS_Store
+Thumbs.db

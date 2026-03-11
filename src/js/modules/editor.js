@@ -6,11 +6,11 @@ import { ptPosLexicon } from './pt_pos_lexicon.js';
 import { setModalActive } from './modal_state.js';
 
 const PERSONAS = [
-    { id: "conto", label: "Conto", shortcut: "1" },
-    { id: "cronica", label: "Cronica", shortcut: "2" },
-    { id: "poesia", label: "Poesia", shortcut: "3" },
-    { id: "ensaio", label: "Ensaio", shortcut: "4" },
-    { id: "roteiro", label: "Roteiro", shortcut: "5" }
+    { id: "conto", label: "Conto", shortcut: "1", desc: "Narrativa breve, tensão e corte." },
+    { id: "cronica", label: "Crônica", shortcut: "2", desc: "Cotidiano, voz e tempo presente." },
+    { id: "poesia", label: "Poesia", shortcut: "3", desc: "Imagem, ritmo, silêncio." },
+    { id: "ensaio", label: "Ensaio", shortcut: "4", desc: "Argumento, reflexão, forma aberta." },
+    { id: "roteiro", label: "Roteiro", shortcut: "5", desc: "Cena, diálogo, ação visual." }
 ];
 
 export const editorFeatures = {
@@ -4342,7 +4342,7 @@ export const editorFeatures = {
             const words = text.trim() ? text.trim().split(/\s+/).length : 0;
             const charsLabel = lang.t("stats_chars");
             const wordsLabel = lang.t("stats_words");
-            statsEl.textContent = `${charsLabel}: ${text.length} | ${wordsLabel}: ${words}`;
+            statsEl.textContent = `${charsLabel}: ${text.length} · ${wordsLabel}: ${words}`;
             this.updateGoalProgress(words);
         };
         update();
@@ -5030,8 +5030,8 @@ export const editorFeatures = {
                 item.setAttribute("aria-checked", String(persona.id === this.activePersonaId));
                 item.dataset.personaId = persona.id;
                 item.innerHTML = `
-                    <span>${persona.label}</span>
-                    <span class="goal-persona-key">${persona.shortcut || ""}</span>
+                    <span class="goal-persona-label">${persona.label}</span>
+                    <span class="goal-persona-desc">${persona.desc || ""}</span>
                 `;
                 item.addEventListener("click", () => {
                     this.activePersonaId = persona.id;

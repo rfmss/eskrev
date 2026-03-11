@@ -6,6 +6,7 @@
   <meta name="description" content="eskrev — editor offline para escritores. Escreva, organize e exporte com verificação técnica de autoria." />
   <meta name="theme-color" content="#f5f2ea" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+  <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="eskrev" />
@@ -185,7 +186,7 @@
   <div id="modosSidebar" class="modosSidebar" aria-label="Modos de escrita" aria-hidden="true">
     <div class="modos-header">
       <span id="modosTitle">MODOS</span>
-      <button id="modosSidebarClose" type="button" aria-label="Fechar modos" onclick="document.getElementById('modosSidebar').classList.remove('is-open')">&#x2715;</button>
+      <button id="modosSidebarClose" type="button" aria-label="Fechar modos" onclick="const s=document.getElementById('modosSidebar');s.classList.remove('is-open');s.setAttribute('aria-hidden','true')">&#x2715;</button>
     </div>
     <div id="modosContent" class="modos-content"></div>
   </div>
