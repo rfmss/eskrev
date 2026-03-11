@@ -2530,6 +2530,12 @@ body[data-theme="chumbo"] .mesa-rename-input {
 .gram-mark[data-cat="acento"]       { text-decoration-color: rgba(124, 77,  255, 0.80); text-decoration-style: dotted; }
 .gram-mark[data-cat="hifen"]        { text-decoration-color: rgba(21,  101, 192, 0.80); }
 .gram-mark[data-cat="tipografia"]   { text-decoration-color: rgba(120, 144, 156, 0.65); text-decoration-style: dotted; }
+/* Novos agentes */
+.gram-mark[data-cat="morfologia"]   { text-decoration-color: rgba(84,  110, 122, 0.80); }
+.gram-mark[data-cat="paronimia"]    { text-decoration-color: rgba(198, 40,  40,  0.80); text-decoration-style: dotted; }
+.gram-mark[data-cat="pontuacao"]    { text-decoration-color: rgba(239, 108, 0,   0.80); }
+.gram-mark[data-cat="crase"]        { text-decoration-color: rgba(123, 31,  162, 0.80); text-decoration-style: dotted; }
+.gram-mark[data-cat="semantica"]    { text-decoration-color: rgba(46,  125, 50,  0.80); }
 
 /* Hover: fundo suave por categoria */
 .gram-mark[data-cat="grafia"]:hover       { background: rgba(239, 83,  80,  0.07); }
@@ -2540,6 +2546,11 @@ body[data-theme="chumbo"] .mesa-rename-input {
 .gram-mark[data-cat="acento"]:hover       { background: rgba(124, 77,  255, 0.07); }
 .gram-mark[data-cat="hifen"]:hover        { background: rgba(21,  101, 192, 0.07); }
 .gram-mark[data-cat="tipografia"]:hover   { background: rgba(120, 144, 156, 0.07); }
+.gram-mark[data-cat="morfologia"]:hover   { background: rgba(84,  110, 122, 0.07); }
+.gram-mark[data-cat="paronimia"]:hover    { background: rgba(198, 40,  40,  0.07); }
+.gram-mark[data-cat="pontuacao"]:hover    { background: rgba(239, 108, 0,   0.07); }
+.gram-mark[data-cat="crase"]:hover        { background: rgba(123, 31,  162, 0.07); }
+.gram-mark[data-cat="semantica"]:hover    { background: rgba(46,  125, 50,  0.07); }
 
 /* ── Badge — #lintBadge ──────────────────────────────────────── */
 #lintBadge {
@@ -2745,3 +2756,8 @@ body[data-theme="chumbo"] .gram-mark[data-cat="norma"]:hover        { background
 body[data-theme="chumbo"] .gram-mark[data-cat="acento"]:hover       { background: rgba(124, 77,  255, 0.10); }
 body[data-theme="chumbo"] .gram-mark[data-cat="hifen"]:hover        { background: rgba(21,  101, 192, 0.10); }
 body[data-theme="chumbo"] .gram-mark[data-cat="tipografia"]:hover   { background: rgba(120, 144, 156, 0.10); }
+body[data-theme="chumbo"] .gram-mark[data-cat="morfologia"]:hover   { background: rgba(84,  110, 122, 0.12); }
+body[data-theme="chumbo"] .gram-mark[data-cat="paronimia"]:hover    { background: rgba(198, 40,  40,  0.12); }
+body[data-theme="chumbo"] .gram-mark[data-cat="pontuacao"]:hover    { background: rgba(239, 108, 0,   0.12); }
+body[data-theme="chumbo"] .gram-mark[data-cat="crase"]:hover        { background: rgba(123, 31,  162, 0.12); }
+body[data-theme="chumbo"] .gram-mark[data-cat="semantica"]:hover    { background: rgba(46,  125, 50,  0.12); }
