@@ -1,3 +1,22 @@
+/* ── Scrollbar global: fina, arredondada, discreta ───────────────────────
+   Regra rígida — cobre QUALQUER elemento com overflow neste arquivo.
+   Não duplicar em seletores específicos. ──────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,.20) transparent;
+}
+*::-webkit-scrollbar            { width: 4px; height: 4px; }
+*::-webkit-scrollbar-track      { background: transparent; }
+*::-webkit-scrollbar-thumb      { background: rgba(0,0,0,.20); border-radius: 999px; }
+*::-webkit-scrollbar-thumb:hover{ background: rgba(0,0,0,.34); }
+*::-webkit-scrollbar-corner     { background: transparent; }
+
+body[data-theme="chumbo"] * {
+  scrollbar-color: rgba(255,255,255,.18) transparent;
+}
+body[data-theme="chumbo"] *::-webkit-scrollbar-thumb      { background: rgba(255,255,255,.18); }
+body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255,255,255,.30); }
+
     :root{
       --bg: #e9e7df;
       --ink: rgba(0,0,0,.86);
@@ -308,28 +327,10 @@
       scrollbar-width: none;
       scrollbar-color: transparent transparent;
     }
-    .viewport::-webkit-scrollbar{
-      width: 0;
-      height: 0;
-    }
-    .viewport::-webkit-scrollbar:horizontal{
-      height: 0;
-    }
-    .viewport::-webkit-scrollbar-track{
-      background: transparent;
-    }
-    .viewport::-webkit-scrollbar-thumb{
-      background: rgba(0,0,0,.20);
-      border-radius: 999px;
-      border: 2px solid transparent;
-      background-clip: padding-box;
-    }
-    .viewport::-webkit-scrollbar-thumb:hover{
-      background: rgba(0,0,0,.28);
-      background-clip: padding-box;
-    }
+    /* viewport: scrollbar propositalmente invisível (scroll proxy externo) */
+    .viewport::-webkit-scrollbar{ width: 0; height: 0; }
 
-    /* external scrollbar: drives only the inner editor content */
+    /* external scrollbar: proxy de scroll do editor — mantém largura própria */
     .outerScroll{
       position: absolute;
       top: 10px;
@@ -339,25 +340,8 @@
       overflow-y: auto;
       overflow-x: hidden;
       z-index: 7;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(0,0,0,.22) transparent;
     }
-    .outerScroll::-webkit-scrollbar{
-      width: 8px;
-    }
-    .outerScroll::-webkit-scrollbar-track{
-      background: transparent;
-    }
-    .outerScroll::-webkit-scrollbar-thumb{
-      background: rgba(0,0,0,.20);
-      border-radius: 999px;
-      border: 2px solid transparent;
-      background-clip: padding-box;
-    }
-    .outerScroll::-webkit-scrollbar-thumb:hover{
-      background: rgba(0,0,0,.28);
-      background-clip: padding-box;
-    }
+    .outerScroll::-webkit-scrollbar{ width: 8px; }
     .outerScrollSizer{
       width: 1px;
       height: 100%;
@@ -1004,7 +988,8 @@
         rgba(22, 22, 22, .035);
       box-shadow:
         inset 0 10px 20px rgba(0,0,0,.03),
-        inset 0 0 0 1px rgba(0,0,0,.035);
+        inset 0 -1px 0 rgba(0,0,0,.08),
+        inset 0 0 0 1px rgba(0,0,0,.05);
     }
 
     /* o conteúdo do corte agora é full-width (sem grid, sem padding lateral extra) */
@@ -1235,25 +1220,6 @@
       overflow-x: hidden;
       overscroll-behavior: contain;
       scrollbar-gutter: stable;
-    }
-    .panelBody::-webkit-scrollbar{
-      width: 6px;
-      height: 0;
-    }
-    .panelBody::-webkit-scrollbar-track{
-      background: transparent;
-    }
-    .panelBody::-webkit-scrollbar-thumb{
-      background: rgba(0,0,0,.24);
-      border-radius: 999px;
-      border: 0;
-    }
-    .panelBody::-webkit-scrollbar-thumb:hover{
-      background: rgba(0,0,0,.30);
-    }
-    .panelBody{
-      scrollbar-width: auto;
-      scrollbar-color: rgba(0,0,0,.24) transparent;
     }
     .postitComposer{
       display: grid;
@@ -1584,7 +1550,6 @@ body[data-theme="chumbo"] .panelBody h3 { color: rgba(232,228,220,.55); }
 body[data-theme="chumbo"] .panelBody blockquote { color: rgba(232,228,220,.56); }
 body[data-theme="chumbo"] .panelBody code { color: rgba(232,228,220,.72); }
 body[data-theme="chumbo"] .panelBody hr { background: rgba(255,255,255,.08); }
-body[data-theme="chumbo"] .panelBody::-webkit-scrollbar-thumb { background: rgba(255,255,255,.14); }
 
 body[data-theme="chumbo"] .slice.isMinimized .badge,
 body[data-theme="chumbo"] .slice.isMinimized .sliceMeta { color: rgba(232,228,220,.50); }
@@ -1787,8 +1752,6 @@ body[data-theme="chumbo"] .sliceTag:hover { color: rgba(232,228,220,.85); }
   flex-direction: column;
   position: relative;
 }
-.notesSidebar .notes-body::-webkit-scrollbar { width: 4px; }
-.notesSidebar .notes-body::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.10); border-radius: 2px; }
 .notesSidebar .notes-stage { display: none; height: 100%; }
 .notesSidebar .notes-stage.is-active {
   display: flex;
@@ -2094,7 +2057,6 @@ body[data-theme="chumbo"] .notesSidebar .notes-textarea:focus { border-color: rg
 body[data-theme="chumbo"] .notesSidebar .notes-overlay { background: var(--page-bg); }
 body[data-theme="chumbo"] .notesSidebar .notes-overlay-header { border-color: rgba(255,255,255,0.07); }
 body[data-theme="chumbo"] .notesSidebar .notes-stage-header { background: var(--page-bg); }
-body[data-theme="chumbo"] .notesSidebar .notes-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.14); }
 body[data-theme="chumbo"] .notesSidebar .notes-filter-btn { border-color: rgba(255,255,255,0.09); }
 body[data-theme="chumbo"] .notesSidebar .notes-filter-btn:hover { background: rgba(255,255,255,0.06); }
 body[data-theme="chumbo"] .notesSidebar .notes-filter-btn.active { background: rgba(196,84,42,0.18); border-color: rgba(196,84,42,0.32); }
@@ -2160,16 +2122,7 @@ body[data-theme="chumbo"] .notesSidebar .notes-new-btn:hover { background: rgba(
   font-size: 13px;
   line-height: 1.65;
   color: var(--ink, rgba(0,0,0,.86));
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0,0,0,.18) transparent;
 }
-.modos-content::-webkit-scrollbar { width: 4px; }
-.modos-content::-webkit-scrollbar-track { background: transparent; }
-.modos-content::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,.20);
-  border-radius: 999px;
-}
-.modos-content::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,.30); }
 
 /* ── Sections com alternância de fundo ───────────────────────── */
 .modos-section {
@@ -2271,7 +2224,6 @@ body[data-theme="chumbo"] .modosSidebar {
   border-color: rgba(255,255,255,0.07);
 }
 body[data-theme="chumbo"] .modos-header { border-color: rgba(255,255,255,0.07); }
-body[data-theme="chumbo"] .modos-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,.18); }
 body[data-theme="chumbo"] .modos-content code { background: rgba(255,255,255,0.06); }
 body[data-theme="chumbo"] .modos-section:nth-child(even) { background: rgba(255,255,255,0.05); }
 body[data-theme="chumbo"] .modosSliceItem { background: rgba(255,255,255,0.04); }
@@ -2343,8 +2295,6 @@ body[data-theme="chumbo"] .modosSliceItem.is-active { background: rgba(196,84,42
   display: flex;
   flex-direction: column;
 }
-.mesaBody::-webkit-scrollbar { width: 4px; }
-.mesaBody::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.10); border-radius: 2px; }
 
 .mesaDesc {
   font-size: 12px;
@@ -2557,23 +2507,153 @@ body[data-theme="chumbo"] .mesa-rename-input {
   color: rgba(232, 228, 220, 0.88);
   border-color: var(--accent, #c4542a);
 }
-body[data-theme="chumbo"] .mesaBody::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.14); }
 
-/* ── Grammar linter — .gram-mark + #gramFloater ──────────────── */
+/* ── Grammar linter — .gram-mark + #gramFloater + #lintBadge ─── */
 
-@keyframes gram-pulse {
-  0%, 100% { text-decoration-color: rgba(196, 84, 42, 0.70); }
-  50%       { text-decoration-color: rgba(196, 84, 42, 0.18); }
-}
-
+/* Base: categorias definem cor e estilo do sublinhado */
 .gram-mark {
-  text-decoration: underline wavy rgba(196, 84, 42, 0.70);
   text-decoration-skip-ink: none;
   text-underline-offset: 3px;
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: rgba(239, 83, 80, 0.75);
   cursor: help;
-  animation: gram-pulse 1.8s ease-in-out infinite;
+  border-radius: 1px;
 }
 
+/* Cores por categoria */
+.gram-mark[data-cat="grafia"]       { text-decoration-color: rgba(239, 83,  80,  0.75); }
+.gram-mark[data-cat="concordancia"] { text-decoration-color: rgba(92,  107, 192, 0.80); }
+.gram-mark[data-cat="regencia"]     { text-decoration-color: rgba(0,   131, 143, 0.80); }
+.gram-mark[data-cat="pleonasmo"]    { text-decoration-color: rgba(85,  139, 47,  0.80); }
+.gram-mark[data-cat="norma"]        { text-decoration-color: rgba(230, 81,  0,   0.80); }
+.gram-mark[data-cat="acento"]       { text-decoration-color: rgba(124, 77,  255, 0.80); text-decoration-style: dotted; }
+.gram-mark[data-cat="hifen"]        { text-decoration-color: rgba(21,  101, 192, 0.80); }
+.gram-mark[data-cat="tipografia"]   { text-decoration-color: rgba(120, 144, 156, 0.65); text-decoration-style: dotted; }
+
+/* Hover: fundo suave por categoria */
+.gram-mark[data-cat="grafia"]:hover       { background: rgba(239, 83,  80,  0.07); }
+.gram-mark[data-cat="concordancia"]:hover { background: rgba(92,  107, 192, 0.07); }
+.gram-mark[data-cat="regencia"]:hover     { background: rgba(0,   131, 143, 0.07); }
+.gram-mark[data-cat="pleonasmo"]:hover    { background: rgba(85,  139, 47,  0.07); }
+.gram-mark[data-cat="norma"]:hover        { background: rgba(230, 81,  0,   0.07); }
+.gram-mark[data-cat="acento"]:hover       { background: rgba(124, 77,  255, 0.07); }
+.gram-mark[data-cat="hifen"]:hover        { background: rgba(21,  101, 192, 0.07); }
+.gram-mark[data-cat="tipografia"]:hover   { background: rgba(120, 144, 156, 0.07); }
+
+/* ── Badge — #lintBadge ──────────────────────────────────────── */
+#lintBadge {
+  --lb-color: #ef5350;
+  position: fixed;
+  bottom: 36px;
+  right: 16px;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px 5px 8px;
+  background: var(--page-bg, #f7f6f3);
+  border: 1px solid color-mix(in srgb, var(--lb-color) 30%, transparent);
+  border-radius: 999px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  color: var(--lb-color);
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,.12);
+  opacity: 0;
+  transform: translateY(6px) scale(0.92);
+  pointer-events: none;
+  transition: opacity 200ms ease, transform 200ms ease, border-color 300ms ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+#lintBadge.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+#lintBadge:hover  { filter: brightness(0.94); }
+#lintBadge:active { transform: scale(0.96); }
+.lb-icon  { font-size: 9px; opacity: 0.65; }
+.lb-count { font-weight: 700; font-size: 12px; }
+
+body[data-theme="chumbo"] #lintBadge {
+  background: rgba(26, 25, 24, 0.96);
+  box-shadow: 0 2px 12px rgba(0,0,0,.5);
+}
+
+/* ── Lint report — slice de relatório ──────────────────────────── */
+.lint-report {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 2px 0 6px;
+}
+.lint-cat-block { display: flex; flex-direction: column; gap: 2px; }
+.lint-cat-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--lc, #888);
+  padding: 4px 0 3px;
+  border-bottom: 1px solid color-mix(in srgb, var(--lc) 20%, transparent);
+  margin-bottom: 2px;
+}
+.lint-cat-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  padding: 0 4px;
+  background: color-mix(in srgb, var(--lc) 12%, transparent);
+  font-size: 9px;
+  font-weight: 800;
+}
+.lint-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  background: rgba(0,0,0,.025);
+  transition: background 100ms;
+}
+.lint-item:hover { background: rgba(0,0,0,.05); }
+.lint-pair { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.lint-wrong {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 12px;
+  color: var(--muted, rgba(0,0,0,.48));
+  text-decoration: line-through;
+}
+.lint-arrow { font-size: 11px; color: var(--muted, rgba(0,0,0,.32)); }
+.lint-right {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 12px;
+  color: #2a6e1e;
+  font-weight: 600;
+}
+.lint-item-label {
+  font-size: 11px;
+  color: var(--muted, rgba(0,0,0,.45));
+  line-height: 1.4;
+  padding-top: 1px;
+}
+.lint-report-footer {
+  font-size: 10px;
+  color: var(--muted, rgba(0,0,0,.30));
+  text-align: center;
+  padding-top: 4px;
+  letter-spacing: 0.04em;
+}
+
+/* ── Floater #gramFloater ─────────────────────────────────────── */
 #gramFloater {
   position: fixed;
   z-index: 11000;
@@ -2581,7 +2661,7 @@ body[data-theme="chumbo"] .mesaBody::-webkit-scrollbar-thumb { background: rgba(
   background: var(--page-bg, #f7f6f3);
   border: 1px solid rgba(196, 84, 42, 0.28);
   border-radius: 6px;
-  padding: 11px 13px 11px;
+  padding: 11px 13px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.15);
   display: flex;
   flex-direction: column;
@@ -2605,14 +2685,11 @@ body[data-theme="chumbo"] .mesaBody::-webkit-scrollbar-thumb { background: rgba(
   color: var(--accent, #c4542a);
   margin-bottom: 1px;
 }
-
 .gf-expl {
   font-size: 12.5px;
   color: var(--ink, rgba(0,0,0,.84));
   line-height: 1.5;
 }
-
-/* par ✗ → ✓ */
 .gf-pair {
   display: flex;
   align-items: flex-start;
@@ -2625,22 +2702,9 @@ body[data-theme="chumbo"] .mesaBody::-webkit-scrollbar-thumb { background: rgba(
   line-height: 1.45;
   flex-wrap: wrap;
 }
-.gf-wrong {
-  color: rgba(0,0,0,.48);
-  text-decoration: line-through;
-  flex: 1 1 auto;
-}
-.gf-arrow {
-  color: var(--accent, #c4542a);
-  font-size: 11px;
-  flex-shrink: 0;
-  padding-top: 1px;
-}
-.gf-right {
-  color: #2a6e1e;
-  font-weight: 600;
-  flex: 1 1 auto;
-}
+.gf-wrong { color: rgba(0,0,0,.48); text-decoration: line-through; flex: 1 1 auto; }
+.gf-arrow { color: var(--accent, #c4542a); font-size: 11px; flex-shrink: 0; padding-top: 1px; }
+.gf-right { color: #2a6e1e; font-weight: 600; flex: 1 1 auto; }
 
 .gf-btn {
   margin-top: 6px;
@@ -2661,12 +2725,23 @@ body[data-theme="chumbo"] .mesaBody::-webkit-scrollbar-thumb { background: rgba(
 .gf-btn:hover  { background: rgba(196, 84, 42, 0.08); }
 .gf-btn:active { background: rgba(196, 84, 42, 0.16); }
 
-/* Dark mode */
+/* ── Dark mode ───────────────────────────────────────────────── */
 body[data-theme="chumbo"] #gramFloater {
   background: rgba(26, 25, 24, 0.97);
   border-color: rgba(196, 84, 42, 0.34);
 }
-body[data-theme="chumbo"] .gf-expl   { color: rgba(232, 228, 220, 0.84); }
-body[data-theme="chumbo"] .gf-wrong  { color: rgba(232, 228, 220, 0.36); }
-body[data-theme="chumbo"] .gf-right  { color: #7ec870; }
-body[data-theme="chumbo"] .gf-pair   { background: rgba(196, 84, 42, 0.10); }
+body[data-theme="chumbo"] .gf-expl  { color: rgba(232, 228, 220, 0.84); }
+body[data-theme="chumbo"] .gf-wrong { color: rgba(232, 228, 220, 0.36); }
+body[data-theme="chumbo"] .gf-right { color: #7ec870; }
+body[data-theme="chumbo"] .gf-pair  { background: rgba(196, 84, 42, 0.10); }
+body[data-theme="chumbo"] .lint-item       { background: rgba(255,255,255,.03); }
+body[data-theme="chumbo"] .lint-item:hover { background: rgba(255,255,255,.06); }
+body[data-theme="chumbo"] .lint-right      { color: #7ec870; }
+body[data-theme="chumbo"] .gram-mark[data-cat="grafia"]:hover       { background: rgba(239, 83,  80,  0.10); }
+body[data-theme="chumbo"] .gram-mark[data-cat="concordancia"]:hover { background: rgba(92,  107, 192, 0.10); }
+body[data-theme="chumbo"] .gram-mark[data-cat="regencia"]:hover     { background: rgba(0,   131, 143, 0.10); }
+body[data-theme="chumbo"] .gram-mark[data-cat="pleonasmo"]:hover    { background: rgba(85,  139, 47,  0.10); }
+body[data-theme="chumbo"] .gram-mark[data-cat="norma"]:hover        { background: rgba(230, 81,  0,   0.10); }
+body[data-theme="chumbo"] .gram-mark[data-cat="acento"]:hover       { background: rgba(124, 77,  255, 0.10); }
+body[data-theme="chumbo"] .gram-mark[data-cat="hifen"]:hover        { background: rgba(21,  101, 192, 0.10); }
+body[data-theme="chumbo"] .gram-mark[data-cat="tipografia"]:hover   { background: rgba(120, 144, 156, 0.10); }
