@@ -11,6 +11,7 @@ import { initMesa, exportSkv } from "./modules/mesa.js";
 import { addPage, restorePagesState } from "./modules/pageFlow.js";
 import { initWordClass } from "./modules/wordclass.js";
 import { initGrammarLint } from "./modules/grammarLint.js";
+import { initLexCheck }   from "./modules/lexCheck.js";
 
 const refs = {
   frameEl:             document.querySelector(".frame"),
@@ -88,6 +89,9 @@ initWordClass(ctx);
 
 // ── Verificador gramatical ────────────────────────────────────────────────
 initGrammarLint(ctx);
+
+// ── Verificador de vocabulário (léxico PT-BR) ─────────────────────────────
+initLexCheck();
 
 // ── Foco sempre no editor ao carregar ────────────────────────────────────
 requestAnimationFrame(() => {

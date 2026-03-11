@@ -33,9 +33,9 @@ function normNoAccent(w) {
 // Palavras que existem sem acento como forma CORRETA na maioria dos contextos.
 // O mapa Hunspell inclui variantes acentuadas (quê, sé, pará, sô...) que são
 // corretas em contextos específicos mas não podem ser marcadas genericamente.
-const ACCENT_IGNORELIST = new Set([
+export const ACCENT_IGNORELIST = new Set([
   // Conjunções / pronomes ambíguos
-  "que", "se", "pois", "porque",
+  "que", "se", "pois", "porque", "ora",
   // Preposições / contrações (pará é cidade; para é preposição)
   "para", "pela", "pelo", "pelas", "pelos",
   // Verbos comuns que coincidem com topônimos/variantes

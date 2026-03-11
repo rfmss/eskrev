@@ -2791,6 +2791,90 @@ body[data-theme="chumbo"] .mesa-rename-input {
   border-bottom-color: var(--accent, #c4542a);
 }
 
+/* ── Lex checker — .lex-mark + #lexFloater ──────────────────── */
+.lex-mark {
+  text-decoration: underline dotted rgba(0, 0, 0, 0.30);
+  text-decoration-skip-ink: none;
+  text-underline-offset: 3px;
+  cursor: help;
+  border-radius: 1px;
+}
+body[data-theme="chumbo"] .lex-mark {
+  text-decoration-color: rgba(255, 255, 255, 0.22);
+}
+
+#lexFloater {
+  position: absolute;
+  z-index: 10100;
+  background: var(--page-bg, #fdfcfa);
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 140px;
+  max-width: 240px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-3px);
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+#lexFloater.isVisible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.lf-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted, rgba(0, 0, 0, 0.38));
+}
+.lf-hint {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted, rgba(0, 0, 0, 0.32));
+}
+.lf-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.lf-chip {
+  appearance: none;
+  border: none;
+  border-left: 2px solid rgba(196, 84, 42, 0.40);
+  border-radius: 0;
+  background: transparent;
+  padding: 3px 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  color: var(--ink, #1a1a1a);
+  cursor: pointer;
+  transition: background 100ms, border-left-color 100ms;
+}
+.lf-chip:hover {
+  background: rgba(196, 84, 42, 0.06);
+  border-left-color: var(--accent, #c4542a);
+}
+body[data-theme="chumbo"] #lexFloater {
+  border-color: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.36);
+}
+body[data-theme="chumbo"] .lf-chip {
+  border-left-color: rgba(196, 84, 42, 0.48);
+  color: rgba(232, 228, 220, 0.84);
+}
+body[data-theme="chumbo"] .lf-chip:hover {
+  background: rgba(196, 84, 42, 0.10);
+  border-left-color: #c4542a;
+}
+
 /* ── Grammar linter — .gram-mark + #gramFloater + #lintBadge ─── */
 
 /* Base: categorias definem cor e estilo do sublinhado */
