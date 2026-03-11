@@ -1,167 +1,250 @@
-# TRABALHO UNIVERSITÁRIO (ABNT / Artigo / TCC)
+# TRABALHO UNIVERSITÁRIO — guia completo (ABNT / Artigo / TCC)
 
-Isso aqui é só um apoio.  
+> "Uma pesquisa começa com uma pergunta, não com uma resposta que você quer confirmar."
+
+Isso aqui é só um apoio.
 O texto mesmo você escreve do lado.
 
-Este guia mostra a estrutura mais comum e aceita para trabalhos acadêmicos no Brasil.
-As normas podem variar por instituição, mas este desenho funciona na prática.
+Este guia cobre a estrutura mais comum e aceita para trabalhos acadêmicos no Brasil.
+As normas podem variar por instituição — sempre confirme o manual do seu curso.
 
 ---
 
-## 1) Antes de escrever (fundamental)
-Um trabalho acadêmico começa com uma pergunta.
+## 1) O ponto de partida — a pergunta de pesquisa
 
-Pergunte:
-- qual problema você quer investigar?
-- por que isso importa?
-- o que já foi dito sobre isso?
+Um trabalho acadêmico começa com uma **pergunta** — não com um tema.
 
-Sem pergunta clara, o texto vira resumo solto.
+"Violência escolar" é um tema.
+"Quais fatores socioeconômicos se correlacionam com maior incidência de violência em escolas públicas de capitais brasileiras?" é uma pergunta de pesquisa.
+
+**A pergunta de pesquisa precisa ser:**
+- Específica (não genérica demais)
+- Investigável (pode ser respondida com dados, análises ou argumentos)
+- Delimitada (não tenta cobrir tudo — escolhe um recorte)
+- Relevante (por que importa responder isso agora?)
+
+Sem pergunta clara, o texto vira resumo solto de livros sobre o tema.
+
+**Como formular a pergunta:**
+Parta do que você não sabe dentro do tema, não do que você quer confirmar. Pesquisa que começa com a conclusão em mente tende a confirmar o que já se acredita — e perde o valor científico.
 
 ---
 
-## 2) Estrutura geral do trabalho
+## 2) Estrutura geral — a espinha dorsal
+
 A maioria dos TCCs e artigos segue esta ordem:
 
-1. Introdução  
-2. Referencial teórico  
-3. Metodologia  
-4. Análise / Discussão  
-5. Considerações finais  
-6. Referências  
+1. **Introdução**
+2. **Referencial teórico** (também chamado de Revisão de literatura)
+3. **Metodologia**
+4. **Análise / Discussão dos resultados**
+5. **Considerações finais**
+6. **Referências**
 
-Nem todo trabalho precisa de todos os itens na mesma proporção, mas essa é a base.
+Elementos pré-textuais (capa, folha de rosto, sumário, resumo) e pós-textuais (apêndices, anexos) seguem normas específicas da ABNT e do seu curso.
 
----
-
-## 3) Introdução
-A introdução apresenta o trabalho.
-
-Ela costuma conter:
-- contextualização do tema
-- delimitação do problema
-- objetivo geral e, quando couber, objetivos específicos
-- justificativa (por que pesquisar isso)
-
-Ao final da introdução, o leitor precisa saber exatamente o que será investigado.
+**Proporção aproximada em um TCC de 40 páginas:**
+- Introdução: 2-4 páginas
+- Referencial teórico: 10-15 páginas
+- Metodologia: 3-5 páginas
+- Análise: 12-18 páginas
+- Considerações finais: 2-4 páginas
+- Referências: conforme o número de fontes
 
 ---
 
-## 4) Referencial teórico
-Aqui você dialoga com outros autores.
+## 3) Introdução — o mapa do trabalho
 
-Função:
-- mostrar o que já foi estudado
-- posicionar sua pesquisa nesse campo
-- sustentar teoricamente a análise
+A introdução apresenta o trabalho ao leitor. Ao final dela, o leitor precisa saber exatamente o que será investigado, por quê importa e como.
 
-Não é resumo de textos.
-É organização de ideias alheias em torno do seu problema.
+**O que a introdução costuma conter:**
 
----
+**Contextualização do tema:**
+Situar o problema no contexto mais amplo. Por que esse tema é relevante hoje? Há dados, eventos ou tendências que justificam investigá-lo?
 
-## 5) Metodologia
-Explique como a pesquisa foi feita.
+**Delimitação do problema:**
+O recorte específico. De todo o tema, qual aspecto você vai investigar? (aqui entra a pergunta de pesquisa)
 
-Inclua:
-- tipo de pesquisa (bibliográfica, documental, de campo, etc.)
-- abordagem (qualitativa, quantitativa ou mista)
-- procedimentos utilizados
-- critérios de análise
+**Objetivo geral:**
+O que o trabalho pretende alcançar. Use verbos de ação: analisar, investigar, comparar, identificar, avaliar, discutir.
 
-Quem lê precisa entender como você chegou aos resultados.
+**Objetivos específicos** (quando couber):
+Os passos que levam ao objetivo geral. Geralmente 3 a 5 objetivos específicos derivados do geral.
 
----
+**Justificativa:**
+Por que pesquisar isso? Qual é a lacuna no conhecimento que você está tentando preencher? Qual é a relevância prática ou teórica?
 
-## 6) Análise ou discussão
-É o núcleo do trabalho.
-
-Aqui você:
-- analisa dados, textos, documentos ou resultados
-- dialoga com o referencial teórico
-- responde, aos poucos, à pergunta inicial
-
-Evite apenas descrever.
-Analisar é interpretar.
+**Estrutura do trabalho:**
+Breve descrição de como o trabalho está organizado: "O primeiro capítulo trata de... O segundo aborda... "
 
 ---
 
-## 7) Considerações finais
-Não é resumo do trabalho.
+## 4) Referencial teórico — diálogo com autores
 
-Função:
-- retomar o problema e os objetivos
-- apresentar as principais conclusões
-- indicar limites da pesquisa
-- sugerir caminhos futuros, se couber
+O referencial teórico não é um resumo de livros. É uma organização das ideias de outros autores **em torno do seu problema de pesquisa**.
 
-Nada de ideias novas aqui.
+**A diferença na prática:**
 
----
+❌ Resumo de livros:
+> "Foucault (1975) argumenta que o poder é difuso nas relações sociais. Bourdieu (1984) desenvolveu o conceito de capital cultural. Freire (1970) propõe a educação como prática da liberdade."
 
-## 8) Citações (padrão autor-data)
-No corpo do texto, o mais comum é:
+✓ Organização em torno do problema:
+> "Para compreender como as práticas disciplinares nas escolas reproduzem desigualdades, é necessário articular a análise do poder difuso nas instituições (FOUCAULT, 1975) com a dimensão do capital cultural que determina trajetórias escolares (BOURDIEU, 1984). Nessa perspectiva, a proposta pedagógica de Freire (1970) surge como alternativa crítica a esse modelo..."
 
-- Citação direta curta:  
-  (SOBRENOME, ano, p. x)
+Na segunda versão, os autores estão a serviço do argumento — não o contrário.
 
-- Citação indireta:  
-  (SOBRENOME, ano)
-
-Citações longas costumam:
-- ficar em parágrafo próprio
-- ter recuo
-- fonte menor (conforme norma da instituição)
-
-Sempre confira o manual da sua faculdade.
+**Como organizar:**
+Agrupe os autores por tema ou perspectiva — não em ordem cronológica de publicação. O leitor deve entender como as ideias se relacionam, não apenas quem escreveu o quê.
 
 ---
 
-## 9) Referências
-As referências aparecem no final, em ordem alfabética.
+## 5) Metodologia — como você chegou ao resultado
 
-Cada referência precisa:
-- autor
-- título
-- edição (se houver)
-- local
-- editora
-- ano
+A metodologia explica o **método** — como a pesquisa foi feita — para que alguém possa entender, replicar ou criticar o processo.
 
-A lista deve corresponder exatamente ao que foi citado no texto.
+**O que a metodologia precisa responder:**
+
+**Tipo de pesquisa:**
+- Bibliográfica (análise de fontes já publicadas)
+- Documental (análise de documentos primários)
+- De campo (coleta de dados por observação, entrevistas, questionários)
+- Experimental (com grupo controle)
+- Estudo de caso
+
+**Abordagem:**
+- Qualitativa: interpreta, analisa sentidos e contextos
+- Quantitativa: mede, conta, estatística
+- Mista: combina as duas
+
+**Procedimentos:**
+Como os dados foram coletados? Quem foi entrevistado e por quê? Como os documentos foram selecionados? Quais critérios de inclusão/exclusão?
+
+**Critérios de análise:**
+Com base em quê você vai interpretar os dados? Qual referencial teórico guia a análise?
+
+**Atenção:** metodologia vaga é um dos erros mais comuns em TCCs. "A pesquisa foi de caráter bibliográfico" não é suficiente — especifique quais bases de dados, quais descritores de busca, quais critérios de seleção de fontes.
 
 ---
 
-## 10) Extensão (dados práticos)
-Pode variar, mas na prática:
+## 6) Análise e discussão — o núcleo do trabalho
 
-- **Artigo acadêmico:** 10 a 20 páginas  
-- **TCC de graduação:** 30 a 60 páginas  
-- **TCC de especialização:** 40 a 80 páginas  
+Esta é a seção mais importante e onde a maioria dos trabalhos fraqueja.
 
-Sempre siga a exigência do seu curso.
+**O que analisar significa:**
+Analisar não é descrever o que você encontrou. É interpretar — conectar os dados ao referencial teórico e responder, progressivamente, à sua pergunta de pesquisa.
+
+❌ Descrição sem análise:
+> "Os dados mostram que 70% dos alunos entrevistados relataram ter sofrido alguma forma de violência na escola."
+
+✓ Análise com interpretação:
+> "Os dados revelam que 70% dos alunos entrevistados relataram experiência de violência escolar — proporção que, quando cruzada com o perfil socioeconômico, concentra-se entre alunos com renda familiar abaixo de dois salários mínimos. Esse padrão dialoga com a análise de Bourdieu (1984) sobre a escola como espaço de reprodução das desigualdades, sugerindo que a violência não é fenômeno aleatório, mas estruturalmente condicionado."
+
+**Como estruturar:**
+Divida a análise em subtópicos que correspondam aos seus objetivos específicos. Cada subtópico analisa um aspecto do problema, dialoga com o referencial teórico e avança em direção à resposta.
+
+**Tabelas, gráficos e figuras:**
+Se usar, devem ter número, título e fonte. E devem ser comentados no texto — nunca inseridos sem análise.
+
+---
+
+## 7) Considerações finais — não é resumo, é síntese
+
+As considerações finais não resumem o que foi dito. São uma síntese crítica que:
+
+- **Retoma o problema e os objetivos** — de forma breve
+- **Apresenta as principais conclusões** — respondendo à pergunta de pesquisa
+- **Indica os limites da pesquisa** — o que não foi coberto, o que o método não permite afirmar
+- **Sugere caminhos futuros** — o que pesquisas futuras poderiam investigar
+
+**O que não fazer:**
+- Apresentar ideias novas que não apareceram na análise
+- Fazer generalizações que os dados não sustentam
+- Concluir com frases vagas ("assim, fica evidente a importância do tema")
+
+**Exemplo de consideração final bem construída:**
+> "Esta pesquisa investigou [problema], com o objetivo de [objetivo]. Os resultados indicam que [principais conclusões]. Essas conclusões são coerentes com [referencial teórico] e divergem de [outro autor] no ponto em que [especificidade]. Como limitação, este estudo não abrangeu [recorte não coberto], o que abre espaço para pesquisas futuras que possam [próximo passo]."
+
+---
+
+## 8) Citações — como usar corretamente
+
+O sistema ABNT usa o padrão **autor-data** (SOBRENOME, ano).
+
+### Citação indireta (paráfrase)
+Você usa a ideia do autor com suas próprias palavras:
+> A escola reproduz as desigualdades sociais ao valorizar capitais culturais que só determinados grupos possuem (BOURDIEU, 1984).
+
+### Citação direta curta (até 3 linhas)
+Aspas duplas, mantida no texto:
+> Segundo Freire (1970, p. 34), "a educação é um ato de amor e, por isso, um ato de coragem."
+
+### Citação direta longa (4 linhas ou mais)
+Parágrafo separado, recuo de 4 cm, sem aspas, fonte menor (geralmente 10pt):
+
+> A violência simbólica se exerce com a cumplicidade de quem a sofre, pois as disposições que a tornam possível foram incorporadas em condições de dominação que produzem uma forma de reconhecimento da dominação como legítima (BOURDIEU, 2003, p. 47).
+
+**Regra de ouro:** cite apenas o que você leu. Não cite citação de citação (apud) a menos que seja absolutamente impossível acessar o original.
+
+---
+
+## 9) Referências — lista completa e precisa
+
+As referências vão no final, em ordem alfabética pelo sobrenome do autor.
+
+**Livro:**
+SOBRENOME, Nome. *Título em itálico*. Edição (se houver). Local: Editora, ano.
+
+BOURDIEU, Pierre. *A reprodução: elementos para uma teoria do sistema de ensino*. 3. ed. Petrópolis: Vozes, 2008.
+
+**Artigo em revista:**
+SOBRENOME, Nome. Título do artigo. *Nome da Revista*, Local, v. X, n. X, p. XX-XX, mês/ano.
+
+**Capítulo de livro:**
+SOBRENOME, Nome. Título do capítulo. In: SOBRENOME, Nome (org.). *Título do livro*. Local: Editora, ano. p. XX-XX.
+
+**Site / página web:**
+SOBRENOME, Nome (ou INSTITUIÇÃO). Título. Local: ano. Disponível em: [URL]. Acesso em: dia mês. ano.
+
+**Atenção:** a lista de referências deve conter **exatamente** o que foi citado no texto — nem mais, nem menos. Fontes consultadas mas não citadas vão em "Bibliografia" (seção opcional).
+
+---
+
+## 10) Extensão — dados práticos
+
+| Tipo de trabalho | Páginas (aprox.) |
+|---|---|
+| Artigo científico | 10 a 20 |
+| TCC de graduação | 30 a 60 |
+| TCC de especialização | 40 a 80 |
+| Dissertação de mestrado | 80 a 150 |
+| Tese de doutorado | 150 a 300+ |
+
+Sempre siga a exigência específica do seu curso e orientador. Essas são médias práticas, não regras universais.
 
 ---
 
 ## 11) O que geralmente não funciona em TCC
-Alguns problemas comuns:
-- introdução sem problema claro
-- excesso de citação sem análise
-- metodologia vaga
-- conclusões genéricas
-- referências incompletas ou inconsistentes
-- formatação descuidada
 
-Trabalho acadêmico é clareza e método.
+- **Introdução sem problema claro** — o leitor termina a introdução sem saber o que será investigado
+- **Referencial teórico como fichamento** — autores listados sem conexão com o problema
+- **Excesso de citação sem análise** — paráfrase atrás de paráfrase sem voz do pesquisador
+- **Metodologia vaga** — "foi feita pesquisa bibliográfica" sem especificar nada
+- **Análise descritiva** — descreve os dados sem interpretá-los
+- **Conclusões genéricas** — "concluímos que o tema é importante e merece mais pesquisas"
+- **Referências incompletas** — falta ano, página, editora
+- **Referências que não foram citadas** — ou citações que não estão nas referências
+- **Formatação descuidada** — margens, espaçamento, fonte fora do padrão
 
 ---
 
-## 12) Revisão final (checagem prática)
-Antes de entregar, pergunte:
-- o problema está claro desde o início?
-- os objetivos são respondidos ao longo do texto?
-- a metodologia está bem explicada?
-- as conclusões dialogam com o problema?
-- as referências conferem com as citações?
+## 12) Revisão final — checagem antes de entregar
 
-Se sim, o trabalho está consistente.
+- [ ] O problema de pesquisa está claro desde a introdução?
+- [ ] Os objetivos são respondidos progressivamente ao longo do texto?
+- [ ] O referencial teórico dialoga com o problema — não apenas descreve autores?
+- [ ] A metodologia está específica o suficiente para ser replicada?
+- [ ] A análise interpreta, não apenas descreve?
+- [ ] As considerações finais respondem à pergunta de pesquisa?
+- [ ] Todas as citações estão nas referências? Todas as referências foram citadas?
+- [ ] A formatação segue a norma ABNT e o manual da instituição?
+- [ ] O texto tem consistência de tempo verbal ao longo de cada seção?
