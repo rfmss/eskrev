@@ -3130,23 +3130,26 @@ body[data-theme="chumbo"] .gram-mark[data-cat="crase"]:hover        { background
 body[data-theme="chumbo"] .gram-mark[data-cat="semantica"]:hover    { background: rgba(46,  125, 50,  0.12); }
 
 /* ══════════════════════════════════════════════════════════════════════════
-   COORDENADOR CENTRAL — cockpit escuro, estética gundam/blueprint
-   Always-dark: ignora tema da página — é o interior do mech.
+   COORDENADOR CENTRAL — herda tokens do tema ativo (paper / chumbo)
    Animação: clip-path expande do centro (Megazord assembly, 420ms)
    ══════════════════════════════════════════════════════════════════════════ */
 
-/* ── Tokens internos (sempre dark) ────────────────────────────────────── */
+/* ── Tokens — derivados dos vars do tema ──────────────────────────────── */
 .coord-overlay {
-  --co-bg:        #07090f;
-  --co-surface:   #0b0e18;
-  --co-surface2:  #0e1120;
-  --co-border:    rgba(255, 255, 255, 0.07);
-  --co-border-hi: rgba(255, 255, 255, 0.14);
-  --co-text:      rgba(210, 215, 230, 0.88);
-  --co-muted:     rgba(150, 160, 185, 0.45);
-  --co-accent:    #c4542a;
-  --co-green:     #69db7c;
-  --co-red:       #ff6b6b;
+  --co-bg:        var(--bg);
+  --co-surface:   var(--page-bg);
+  --co-border:    color-mix(in srgb, var(--ink) 9%, transparent);
+  --co-border-hi: color-mix(in srgb, var(--ink) 18%, transparent);
+  --co-text:      var(--ink);
+  --co-muted:     var(--muted);
+  --co-accent:    var(--accent);
+  /* Semântico: erro (vermelho) / correção (verde) — fixos por serem diagnósticos */
+  --co-err:       #c0392b;
+  --co-fix:       #2e7d32;
+}
+body[data-theme="chumbo"] .coord-overlay {
+  --co-err: #ff8a8a;
+  --co-fix: #6fcf97;
 }
 
 /* ── Overlay container ─────────────────────────────────────────────────── */
@@ -3157,7 +3160,6 @@ body[data-theme="chumbo"] .gram-mark[data-cat="semantica"]:hover    { background
   background: var(--co-bg);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   color: var(--co-text);
-  /* Animação Megazord: dois painéis saem de fora (top/bottom) e encaixam */
   clip-path: inset(50% 0 50% 0);
   pointer-events: none;
   opacity: 0;
@@ -3174,7 +3176,7 @@ body[data-theme="chumbo"] .gram-mark[data-cat="semantica"]:hover    { background
     opacity 0ms linear;
 }
 
-/* ── Shell: flex column fill ───────────────────────────────────────────── */
+/* ── Shell ─────────────────────────────────────────────────────────────── */
 .coord-shell {
   display: flex;
   flex-direction: column;
@@ -3191,115 +3193,72 @@ body[data-theme="chumbo"] .gram-mark[data-cat="semantica"]:hover    { background
 /* ── Topo ──────────────────────────────────────────────────────────────── */
 .coord-top {
   flex: none;
-  padding-top: 22px;
+  padding-top: 18px;
   background: var(--co-bg);
   border-bottom: 1px solid var(--co-border);
   position: relative;
   z-index: 2;
 }
-/* Blueprint mark no topo */
-.coord-top::before {
-  content: "└ COORD";
-  position: absolute;
-  top: 7px;
-  left: 28px;
-  font-size: 8px;
-  letter-spacing: 0.20em;
-  color: var(--co-accent);
-  opacity: 0.45;
-  pointer-events: none;
-}
 
 /* ── Header row ────────────────────────────────────────────────────────── */
 .coord-header {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 18px;
-  padding-top: 12px;
+  margin-bottom: 16px;
 }
-.coord-title-group {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-/* Hub SVG container */
-.coord-icon-wrap {
-  width: 44px;
-  height: 44px;
-  background: var(--co-surface);
-  border: 1px solid rgba(77, 171, 247, 0.18);
-  border-left: 2px solid #4dabf7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  box-shadow: inset 0 0 20px rgba(77, 171, 247, 0.06);
-}
-.coord-hub-icon {
-  width: 26px;
-  height: 26px;
-  display: block;
-}
-
 .coord-title-text {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.coord-badge {
-  font-size: 8px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: #4dabf7;
-  background: rgba(77, 171, 247, 0.08);
-  border: 1px solid rgba(77, 171, 247, 0.20);
-  border-left: 2px solid #4dabf7;
-  padding: 2px 8px 2px 7px;
-  line-height: 1.4;
-  display: inline-block;
+  align-items: baseline;
+  gap: 10px;
 }
 .coord-subtitle {
-  font-size: 20px;
-  font-family: Georgia, "Times New Roman", serif;
-  letter-spacing: -0.01em;
-  color: rgba(210, 215, 230, 0.92);
+  font-size: 15px;
+  font-family: ui-monospace, monospace;
+  letter-spacing: 0.04em;
+  color: var(--co-text);
   font-weight: 400;
   line-height: 1.2;
 }
-
+.coord-subtitle-tag {
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--co-muted);
+}
 .coord-header-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 .coord-corrected {
   font-size: 11px;
   letter-spacing: 0.06em;
-  color: var(--co-green);
+  color: var(--co-fix);
   font-family: ui-monospace, monospace;
 }
 .coord-apply-all {
   font-family: ui-monospace, monospace;
   font-size: 10px;
   letter-spacing: 0.08em;
-  padding: 6px 14px;
-  background: rgba(105, 219, 124, 0.06);
-  border: 1px solid rgba(105, 219, 124, 0.28);
-  border-left: 2px solid var(--co-green);
-  color: var(--co-green);
+  padding: 5px 12px;
+  background: color-mix(in srgb, var(--co-accent) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--co-accent) 28%, transparent);
+  border-left: 2px solid var(--co-accent);
+  color: var(--co-accent);
   cursor: pointer;
   border-radius: 0;
   transition: background 120ms;
 }
-.coord-apply-all:hover { background: rgba(105, 219, 124, 0.12); }
+.coord-apply-all:hover {
+  background: color-mix(in srgb, var(--co-accent) 12%, transparent);
+}
 .coord-close {
   font-family: ui-monospace, monospace;
   font-size: 13px;
-  padding: 5px 10px;
-  background: var(--co-surface);
+  padding: 4px 9px;
+  background: transparent;
   border: 1px solid var(--co-border-hi);
   color: var(--co-muted);
   cursor: pointer;
@@ -3316,15 +3275,15 @@ body[data-theme="chumbo"] .gram-mark[data-cat="semantica"]:hover    { background
 .coord-agents {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 6px;
+  gap: 5px;
   margin-bottom: 8px;
 }
 .coord-agent-chip {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
-  padding: 10px 6px;
+  gap: 4px;
+  padding: 9px 6px;
   background: var(--co-surface);
   border: 1px solid var(--co-border);
   border-left: 2px solid transparent;
@@ -3335,65 +3294,64 @@ body[data-theme="chumbo"] .gram-mark[data-cat="semantica"]:hover    { background
 }
 .coord-agent-chip.is-active {
   border-left-color: var(--agt-cor);
-  background: color-mix(in srgb, var(--agt-cor) 8%, var(--co-surface));
+  background: color-mix(in srgb, var(--agt-cor) 7%, var(--co-surface));
 }
 .coord-agent-chip:hover {
-  background: color-mix(in srgb, var(--agt-cor, #fff) 12%, var(--co-surface));
-  border-color: var(--co-border-hi);
+  background: color-mix(in srgb, var(--agt-cor, var(--co-accent)) 10%, var(--co-surface));
 }
 .coord-chip-sigla {
-  font-size: 15px;
-  font-weight: 800;
+  font-size: 14px;
+  font-weight: 700;
   letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.12);
+  color: var(--co-muted);
   transition: color 120ms;
 }
 .coord-agent-chip.is-active .coord-chip-sigla { color: var(--agt-cor); }
 .coord-chip-nome {
-  font-size: 9px;
+  font-size: 8px;
   color: var(--co-muted);
   text-align: center;
   line-height: 1.2;
 }
 .coord-chip-count {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.18);
+  font-size: 10px;
+  color: var(--co-muted);
   background: transparent;
-  padding: 0 5px;
-  min-width: 20px;
+  padding: 0 4px;
+  min-width: 18px;
   text-align: center;
   transition: all 120ms;
 }
 .coord-agent-chip.is-active .coord-chip-count {
   color: var(--agt-cor);
-  background: color-mix(in srgb, var(--agt-cor) 16%, transparent);
+  background: color-mix(in srgb, var(--agt-cor) 12%, transparent);
 }
 
 /* ── Stat bar ──────────────────────────────────────────────────────────── */
 .coord-stat-bar {
   display: flex;
-  gap: 6px;
+  gap: 5px;
   align-items: center;
   flex-wrap: wrap;
-  padding: 7px 0 10px;
+  padding: 6px 0 10px;
   font-size: 9px;
   letter-spacing: 0.1em;
 }
 .coord-stat-label {
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.18);
+  color: var(--co-muted);
   letter-spacing: 0.16em;
 }
 .coord-stat-chip {
-  padding: 2px 8px;
+  padding: 1px 7px;
   border: 1px solid;
   font-size: 9px;
   font-family: ui-monospace, monospace;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
 }
 .coord-stat-total {
   margin-left: auto;
-  color: rgba(255, 255, 255, 0.20);
+  color: var(--co-muted);
   font-family: ui-monospace, monospace;
 }
 
@@ -3405,11 +3363,6 @@ body[data-theme="chumbo"] .gram-mark[data-cat="semantica"]:hover    { background
   overflow: hidden;
   background: var(--co-surface);
   border-bottom: 1px solid var(--co-border);
-  /* Blueprint subtle grid */
-  background-image:
-    linear-gradient(rgba(77, 171, 247, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(77, 171, 247, 0.03) 1px, transparent 1px);
-  background-size: 44px 44px;
 }
 .coord-textarea,
 .coord-highlight {
@@ -3433,13 +3386,13 @@ body[data-theme="chumbo"] .gram-mark[data-cat="semantica"]:hover    { background
   background: transparent;
 }
 .coord-textarea {
-  color: rgba(210, 215, 230, 0.90);
+  color: var(--co-text);
   caret-color: var(--co-accent);
   resize: none;
   z-index: 2;
 }
 .coord-textarea::placeholder {
-  color: rgba(255, 255, 255, 0.18);
+  color: var(--co-muted);
   font-style: italic;
 }
 .coord-highlight {
@@ -3448,7 +3401,6 @@ body[data-theme="chumbo"] .gram-mark[data-cat="semantica"]:hover    { background
   user-select: none;
   z-index: 1;
 }
-/* Error spans: text transparent, wavy border visible */
 .coord-err {
   color: transparent;
   border-bottom: 2.5px wavy;
@@ -3466,15 +3418,14 @@ body[data-theme="chumbo"] .gram-mark[data-cat="semantica"]:hover    { background
   position: relative;
   z-index: 2;
 }
-/* Scrollbar escura */
 .coord-bot::-webkit-scrollbar { width: 3px; }
 .coord-bot::-webkit-scrollbar-track { background: transparent; }
-.coord-bot::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.10); }
+.coord-bot::-webkit-scrollbar-thumb { background: var(--co-border-hi); }
 
 /* ── Filtros ─────────────────────────────────────────────────────────── */
 .coord-filters {
   display: flex;
-  gap: 6px;
+  gap: 5px;
   align-items: center;
   flex-wrap: wrap;
   padding: 10px 0 8px;
@@ -3483,7 +3434,7 @@ body[data-theme="chumbo"] .gram-mark[data-cat="semantica"]:hover    { background
   font-size: 8px;
   letter-spacing: 0.20em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.20);
+  color: var(--co-muted);
 }
 .coord-filter-btn {
   font-family: ui-monospace, monospace;
@@ -3509,7 +3460,7 @@ body[data-theme="chumbo"] .gram-mark[data-cat="semantica"]:hover    { background
 }
 
 /* ── Fila de correções ─────────────────────────────────────────────────── */
-.coord-queue { display: flex; flex-direction: column; gap: 5px; }
+.coord-queue { display: flex; flex-direction: column; gap: 4px; }
 .coord-empty {
   font-size: 11px;
   color: var(--co-muted);
@@ -3522,18 +3473,18 @@ body[data-theme="chumbo"] .gram-mark[data-cat="semantica"]:hover    { background
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  padding: 10px 14px;
+  padding: 9px 12px;
   background: var(--co-surface);
   border: 1px solid var(--co-border);
   border-left: 3px solid;
   transition: background 100ms;
 }
 .coord-queue-item:hover {
-  background: var(--co-surface2);
+  background: color-mix(in srgb, var(--co-text) 4%, var(--co-surface));
 }
 .coord-queue-sigla {
   font-size: 8px;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.12em;
   padding: 2px 5px;
   border: 1px solid;
@@ -3551,26 +3502,25 @@ body[data-theme="chumbo"] .gram-mark[data-cat="semantica"]:hover    { background
 .coord-queue-wrong {
   font-family: ui-monospace, monospace;
   font-size: 13px;
-  color: #ff8a8a;
-  background: rgba(255, 107, 107, 0.10);
+  color: var(--co-err);
+  background: color-mix(in srgb, var(--co-err) 8%, transparent);
   padding: 1px 7px;
 }
-.coord-queue-arrow { color: rgba(255, 255, 255, 0.20); font-size: 11px; }
+.coord-queue-arrow { color: var(--co-muted); font-size: 11px; }
 .coord-queue-fix {
   font-family: ui-monospace, monospace;
   font-size: 13px;
-  color: #8ce99a;
-  background: rgba(105, 219, 124, 0.08);
+  color: var(--co-fix);
+  background: color-mix(in srgb, var(--co-fix) 8%, transparent);
   padding: 1px 7px;
-  border: 1px solid rgba(105, 219, 124, 0.25);
+  border: 1px solid color-mix(in srgb, var(--co-fix) 28%, transparent);
   border-radius: 0;
   cursor: pointer;
   line-height: 1.5;
-  transition: background 100ms, border-color 100ms;
+  transition: background 100ms;
 }
 .coord-queue-fix:hover {
-  background: rgba(105, 219, 124, 0.16);
-  border-color: rgba(105, 219, 124, 0.50);
+  background: color-mix(in srgb, var(--co-fix) 16%, transparent);
 }
 .coord-queue-cat {
   font-size: 8px;
@@ -3582,7 +3532,7 @@ body[data-theme="chumbo"] .gram-mark[data-cat="semantica"]:hover    { background
 }
 .coord-queue-rule {
   font-size: 11px;
-  color: rgba(150, 160, 185, 0.60);
+  color: var(--co-muted);
   line-height: 1.5;
   font-family: ui-monospace, monospace;
   letter-spacing: 0.01em;
@@ -3601,46 +3551,46 @@ body[data-theme="chumbo"] .gram-mark[data-cat="semantica"]:hover    { background
   transition: border-color 100ms, color 100ms;
 }
 .coord-queue-apply:hover {
-  border-left: 2px solid var(--co-green);
-  color: var(--co-green);
+  border-left: 2px solid var(--co-accent);
+  color: var(--co-accent);
 }
 
 /* ── Floater (hover detail) ────────────────────────────────────────────── */
 .coord-floater {
   position: fixed;
   z-index: 9300;
-  width: 320px;
-  background: var(--co-surface);
+  width: 300px;
+  background: var(--co-bg);
   border: 1px solid var(--co-border-hi);
   border-left: 2px solid var(--co-accent);
-  padding: 14px 16px;
+  padding: 12px 14px;
   font-family: ui-monospace, monospace;
   pointer-events: all;
   opacity: 0;
   transition: opacity 140ms ease;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.60);
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--co-text) 12%, transparent);
 }
 .coord-floater.is-visible { opacity: 1; }
-.coord-floater-header { display: flex; gap: 6px; align-items: center; margin-bottom: 10px; }
+.coord-floater-header { display: flex; gap: 6px; align-items: center; margin-bottom: 8px; }
 .coord-floater-agt {
   font-size: 8px;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.14em;
-  padding: 2px 7px;
+  padding: 2px 6px;
   border: 1px solid;
 }
 .coord-floater-cat {
   font-size: 8px;
   letter-spacing: 0.10em;
   text-transform: uppercase;
-  padding: 2px 7px;
+  padding: 2px 6px;
   border: 1px solid;
 }
 .coord-floater-rule {
   font-size: 12px;
-  color: rgba(150, 160, 185, 0.70);
-  line-height: 1.58;
-  margin: 0 0 12px;
+  color: var(--co-muted);
+  line-height: 1.55;
+  margin: 0 0 10px;
   font-family: Georgia, serif;
 }
 .coord-floater-pair {
@@ -3648,50 +3598,50 @@ body[data-theme="chumbo"] .gram-mark[data-cat="semantica"]:hover    { background
   gap: 6px;
   align-items: center;
   flex-wrap: wrap;
-  padding-top: 10px;
+  padding-top: 8px;
   border-top: 1px solid var(--co-border);
 }
 .coord-floater-wrong {
   font-size: 13px;
-  color: #ff8a8a;
-  background: rgba(255, 107, 107, 0.10);
+  color: var(--co-err);
+  background: color-mix(in srgb, var(--co-err) 8%, transparent);
   padding: 2px 7px;
   font-family: ui-monospace, monospace;
 }
-.coord-floater-arrow { color: rgba(255, 255, 255, 0.18); }
+.coord-floater-arrow { color: var(--co-muted); }
 .coord-floater-fix {
   font-size: 13px;
-  color: #8ce99a;
-  background: rgba(105, 219, 124, 0.08);
+  color: var(--co-fix);
+  background: color-mix(in srgb, var(--co-fix) 8%, transparent);
   padding: 2px 7px;
-  border: 1px solid rgba(105, 219, 124, 0.28);
+  border: 1px solid color-mix(in srgb, var(--co-fix) 28%, transparent);
   border-radius: 0;
   cursor: pointer;
   font-family: ui-monospace, monospace;
   transition: background 100ms;
 }
-.coord-floater-fix:hover { background: rgba(105, 219, 124, 0.16); }
+.coord-floater-fix:hover { background: color-mix(in srgb, var(--co-fix) 16%, transparent); }
 .coord-floater-hint {
   display: block;
   font-size: 9px;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.16);
-  margin-top: 8px;
+  color: var(--co-muted);
+  margin-top: 7px;
 }
 
-/* ── Painel técnico (debug/status interno) ─────────────────────────────── */
+/* ── Painel técnico ────────────────────────────────────────────────────── */
 .coord-tech-panel {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4px 28px;
-  margin-top: 16px;
-  padding: 12px 16px;
-  background: #050709;
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-left: 2px solid rgba(255, 255, 255, 0.06);
+  gap: 3px 24px;
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: color-mix(in srgb, var(--co-text) 4%, transparent);
+  border: 1px solid var(--co-border);
+  border-left: 2px solid var(--co-border-hi);
   font-family: ui-monospace, monospace;
   font-size: 10px;
-  color: rgba(80, 100, 140, 0.70);
+  color: var(--co-muted);
   line-height: 1.8;
   letter-spacing: 0.02em;
 }

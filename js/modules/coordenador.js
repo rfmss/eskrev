@@ -314,18 +314,7 @@ function buildOverlay() {
   ov.className = "coord-overlay";
   ov.setAttribute("aria-modal", "true");
   ov.setAttribute("role", "dialog");
-  ov.setAttribute("aria-label", "Coordenador Central");
-
-  // SVG hub icon — 8 agente spokes radiating from center
-  const HUB_COLORS = ["#ff6b6b","#4dabf7","#69db7c","#ffd43b","#f783ac","#da77f2","#20c997","#ff922b"];
-  const HUB_POINTS = [[15,2],[15,28],[2,15],[28,15],[4,4],[26,26],[26,4],[4,26]];
-  const hubSvg = `<svg class="coord-hub-icon" viewBox="0 0 30 30" fill="none" aria-hidden="true">
-    <circle cx="15" cy="15" r="3" fill="#4dabf7" opacity="0.9"/>
-    ${HUB_POINTS.map(([x,y],i)=>`
-      <line x1="15" y1="15" x2="${x}" y2="${y}" stroke="${HUB_COLORS[i]}" stroke-width="1.2" stroke-linecap="round" opacity="0.75"/>
-      <circle cx="${x}" cy="${y}" r="1.8" fill="${HUB_COLORS[i]}" opacity="0.85"/>
-    `).join("")}
-  </svg>`;
+  ov.setAttribute("aria-label", "Inspeção Linguística");
 
   ov.innerHTML = `
     <div class="coord-shell">
@@ -333,12 +322,9 @@ function buildOverlay() {
       <!-- ── TOPO: cabeçalho + agentes ── -->
       <div class="coord-top">
         <div class="coord-header">
-          <div class="coord-title-group">
-            <div class="coord-icon-wrap">${hubSvg}</div>
-            <div class="coord-title-text">
-              <span class="coord-badge">COORDENADOR CENTRAL · v1.0</span>
-              <span class="coord-subtitle">Sistema de Inspeção Linguística</span>
-            </div>
+          <div class="coord-title-text">
+            <span class="coord-subtitle">Inspeção Linguística</span>
+            <span class="coord-subtitle-tag">6 agentes</span>
           </div>
           <div class="coord-header-actions">
             <span class="coord-corrected" id="coordCorrected"></span>
