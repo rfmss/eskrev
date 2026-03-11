@@ -7,6 +7,7 @@ import { attachPostitComposer } from "./postits.js";
 import { toggleWordClass } from "./wordclass.js";
 import { lookupVerbete } from "./verbete.js";
 import { corpus } from "../../src/js/modules/corpus.js";
+import { openCoordenador } from "./coordenador.js";
 
 function decodeSliceHtml(value) {
   if (!value) return "";
@@ -803,6 +804,7 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
     "w",
     "d",
     "m",
+    "c",
   ]);
   if (!isServiceCmd.has(c)) {
     ctx.flashCommandError?.();
@@ -1117,6 +1119,11 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
       }, 1000);
     });
     return slice;
+  }
+
+  if (c === "c") {
+    openCoordenador(ctx);
+    return null; // não cria slice — abre overlay diretamente
   }
 
   if (c === "h" || c === "help") {
