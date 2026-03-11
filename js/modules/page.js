@@ -205,7 +205,7 @@ export function currentPageEditable() {
 }
 
 function getKnownCommands(ctx) {
-  return ["h", "n", "a", "w", "d"];
+  return ["h", "n", "a", "w", "d", "c"];
 }
 
 function isAmbiguousPrefix(ctx, cmd) {

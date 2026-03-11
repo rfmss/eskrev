@@ -12,6 +12,7 @@ import { addPage, restorePagesState } from "./modules/pageFlow.js";
 import { initWordClass } from "./modules/wordclass.js";
 import { initGrammarLint } from "./modules/grammarLint.js";
 import { initLexCheck }   from "./modules/lexCheck.js";
+import { initCoordenador } from "./modules/coordenador.js";
 
 const refs = {
   frameEl:             document.querySelector(".frame"),
@@ -92,6 +93,9 @@ initGrammarLint(ctx);
 
 // ── Verificador de vocabulário (léxico PT-BR) ─────────────────────────────
 initLexCheck();
+
+// ── Coordenador Central ───────────────────────────────────────────────────
+initCoordenador(ctx);
 
 // ── Foco sempre no editor ao carregar ────────────────────────────────────
 requestAnimationFrame(() => {
