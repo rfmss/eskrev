@@ -1,22 +1,22 @@
 /* ── Scrollbar global: elegante, com trilha sutil ────────────────────────
    Regra rígida — cobre QUALQUER elemento com overflow neste arquivo.
    Não duplicar em seletores específicos. ──────────────────────────────── */
+/* Scrollbar: fantasma — 2px, só o polegar, sem trilha */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(0,0,0,.22) rgba(0,0,0,.06);
+  scrollbar-color: rgba(0,0,0,.18) transparent;
 }
-*::-webkit-scrollbar            { width: 6px; height: 6px; }
-*::-webkit-scrollbar-track      { background: rgba(0,0,0,.05); border-radius: 999px; }
-*::-webkit-scrollbar-thumb      { background: rgba(0,0,0,.22); border-radius: 999px; }
-*::-webkit-scrollbar-thumb:hover{ background: rgba(0,0,0,.40); }
+*::-webkit-scrollbar            { width: 2px; height: 2px; }
+*::-webkit-scrollbar-track      { background: transparent; }
+*::-webkit-scrollbar-thumb      { background: rgba(0,0,0,.18); border-radius: 999px; }
+*::-webkit-scrollbar-thumb:hover{ background: rgba(0,0,0,.32); }
 *::-webkit-scrollbar-corner     { background: transparent; }
 
 body[data-theme="chumbo"] * {
-  scrollbar-color: rgba(255,255,255,.22) rgba(255,255,255,.06);
+  scrollbar-color: rgba(255,255,255,.14) transparent;
 }
-body[data-theme="chumbo"] *::-webkit-scrollbar-track      { background: rgba(255,255,255,.05); }
-body[data-theme="chumbo"] *::-webkit-scrollbar-thumb      { background: rgba(255,255,255,.22); }
-body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255,255,255,.42); }
+body[data-theme="chumbo"] *::-webkit-scrollbar-thumb      { background: rgba(255,255,255,.14); }
+body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255,255,255,.28); }
 
     :root{
       --bg: #e9e7df;
@@ -1686,9 +1686,9 @@ body[data-theme="chumbo"] .badge { color: rgba(232,228,220,.52); }
 body[data-theme="chumbo"] .sliceMeta { color: rgba(232,228,220,.40); }
 body[data-theme="chumbo"] .panelHeader { color: rgba(232,228,220,.44); }
 body[data-theme="chumbo"] .panelBody { color: rgba(232,228,220,.82); }
-/* h2 — blueprint header no dark: accent herdado + linha clara */
-body[data-theme="chumbo"] .panelBody h2 { border-top-color: rgba(255,255,255,.10); }
-body[data-theme="chumbo"] .panelBody h2::before { border-color: rgba(255,255,255,.18); }
+/* h2 — blueprint header no dark: usa o accent vivo definido acima */
+body[data-theme="chumbo"] .panelBody h2 { border-top-color: currentColor; opacity: 0.72; }
+body[data-theme="chumbo"] .panelBody h2::before { border-color: currentColor; }
 body[data-theme="chumbo"] .panelBody h3 { color: rgba(232,228,220,.42); border-bottom-color: rgba(255,255,255,.08); }
 body[data-theme="chumbo"] .panelBody h1 { color: rgba(232,228,220,.52); }
 /* hr — tracejado claro */
@@ -1725,6 +1725,13 @@ body[data-theme="chumbo"] .slice.isMinimized .badge,
 body[data-theme="chumbo"] .slice.isMinimized .sliceMeta { color: rgba(232,228,220,.50); }
 body[data-theme="chumbo"] .slice.isMinimized .badge strong { color: rgba(232,228,220,.55); }
 body[data-theme="chumbo"] .slice.isMinimized .sliceHead::after { color: rgba(232,228,220,.36); }
+
+/* Accents por tipo — dark mode: cores vivas sobre fundo escuro */
+body[data-theme="chumbo"] .slice[data-kind="help"]    { --slice-accent: #c4542a; }   /* terracotta do projeto */
+body[data-theme="chumbo"] .slice[data-kind="define"]  { --slice-accent: #d4a445; }   /* âmbar quente */
+body[data-theme="chumbo"] .slice[data-kind="vocab"]   { --slice-accent: #7b9ee8; }   /* índigo claro */
+body[data-theme="chumbo"] .slice[data-kind="consult"] { --slice-accent: #26b2a0; }   /* teal vivo */
+body[data-theme="chumbo"] .slice[data-kind="unknown"] { --slice-accent: #c4542a; }
 
 /* Sombra do corte no dark mode — os valores claros do tema paper ficam invisíveis */
 body[data-theme="chumbo"] .sliceRow::before {
