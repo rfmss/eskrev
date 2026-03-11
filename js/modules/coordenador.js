@@ -31,6 +31,15 @@ const R1 = [
   { e: /\bguarda\s+chuva\b/gi, c: "guarda-chuva", r: "Compostos com 'guarda' levam hífen.", cat: "hifen", agt: 1 },
   { e: /\bchegou\s+em\b/gi, c: "chegou a", r: "'Chegar' rege preposição 'a', não 'em'.", cat: "regencia", agt: 1 },
   { e: /\bprefiro\s+mais\b/gi, c: "prefiro", r: "'Prefiro' já indica comparação. 'Prefiro mais' é redundante.", cat: "pleonasmo", agt: 1 },
+  // Contrações e registro informal
+  { e: /\bpra\b/gi, c: "para", r: "'Pra' é contração informal de 'para'. Em escrita formal ou literária, prefira 'para'.", cat: "norma", agt: 1 },
+  { e: /\bpro\b(?!\s*(?:rata|tempore|forma|xy|domo))/gi, c: "para o", r: "'Pro' é contração informal de 'para o'.", cat: "norma", agt: 1 },
+  { e: /\bpros\b/gi, c: "para os", r: "'Pros' é contração informal de 'para os'.", cat: "norma", agt: 1 },
+  { e: /\bpras\b/gi, c: "para as", r: "'Pras' é contração informal de 'para as'.", cat: "norma", agt: 1 },
+  { e: /\bpq\b/gi, c: "porque / por quê", r: "'Pq' é abreviação informal. Use 'porque' (explicação) ou 'por quê' (pergunta).", cat: "norma", agt: 1 },
+  // Mal vs mau
+  { e: /\bmau\s+(?:humor|cheiro|hálito|gosto|jeito|exemplo|caminho|estado|sinal)\b/gi, c: "mau humor / mau cheiro…", r: "'Mau' (adjetivo = ruim) não se confunde com 'mal' (advérbio). Use 'mau' antes de substantivos.", cat: "grafia", agt: 1 },
+  { e: /\bmal\s+(?:criado|educado|humorado|agradecido|tratado|comportado|entendido|estar|jeito)\b/gi, c: "mal-criado / mal-educado…", r: "Compostos com 'mal' + adjetivo/particípio levam hífen.", cat: "hifen", agt: 1 },
 ];
 
 // ── AGENTE 2 — MORFOLOGIA ─────────────────────────────────────────────────
@@ -51,6 +60,18 @@ const R2 = [
   { e: /\bonde\s+que\b/gi, c: "onde", r: "'Onde que' não é aceito na norma culta.", cat: "classe_palavras", agt: 2 },
   { e: /\bo\s+sentinela\b/gi, c: "a sentinela", r: "'Sentinela' é sempre feminino.", cat: "genero", agt: 2 },
   { e: /\bde\s+encontro\s+com\b/gi, c: "de encontro a / ao encontro de", r: "'De encontro a' = contra. 'Ao encontro de' = a favor.", cat: "semantica_morfologica", agt: 2 },
+  // Formas verbais informais / coloquiais
+  { e: /\btô\b|\btou\b/gi, c: "estou", r: "'Tô'/'Tou' são formas coloquiais de 'estou'. Em texto escrito, prefira a forma completa.", cat: "registro", agt: 2 },
+  { e: /\btá\b/gi, c: "está", r: "'Tá' é forma coloquial de 'está'. Em texto escrito, prefira a forma completa.", cat: "registro", agt: 2 },
+  { e: /\btô\s+(?:indo|vindo|fazendo|pensando|tentando|trabalhando|estudando|querendo|podendo)\b/gi, c: "estou indo / estou vindo…", r: "Use a forma completa 'estou' em vez de 'tô'.", cat: "registro", agt: 2 },
+  // Abreviações informais
+  { e: /\bvc\b/gi, c: "você", r: "'Vc' é abreviação informal de 'você'. Use a forma completa.", cat: "registro", agt: 2 },
+  { e: /\btbm?\b/gi, c: "também", r: "'Tb'/'Tbm' são abreviações informais de 'também'.", cat: "registro", agt: 2 },
+  { e: /\bmsm\b/gi, c: "mesmo", r: "'Msm' é abreviação informal de 'mesmo'.", cat: "registro", agt: 2 },
+  { e: /\bqdo\b/gi, c: "quando", r: "'Qdo' é abreviação informal de 'quando'.", cat: "registro", agt: 2 },
+  // Impessoal: "tem" existencial com plural → "há"
+  { e: /\btem\s+(?:muitos?|muitas?|vários?|várias?|inúmeros?|inúmeras?|diversos?|diversas?|centenas?|milhares?|bilhões?)\b/gi, c: "há muitos / há vários…", r: "'Ter' como verbo existencial impessoal é coloquial. Na norma culta, use 'há': 'há muitos problemas'.", cat: "norma", agt: 2 },
+  { e: /\btinham\s+(?:muitos?|muitas?|vários?|várias?)\b/gi, c: "havia muitos / havia vários…", r: "'Tinham' existencial impessoal deve ser 'havia': 'havia muitas pessoas'.", cat: "flexao_verbal", agt: 2 },
 ];
 
 // ── AGENTE 3 — SINTAXE ────────────────────────────────────────────────────
@@ -72,6 +93,13 @@ const R3 = [
   { e: /\baonde\s+(?!vou|vai|foram|ir|fica|você\s+vai|ele\s+vai)\b/gi, c: "onde", r: "'Aonde' indica movimento (destino). Para lugar sem movimento, use 'onde'.", cat: "regencia_verbal", agt: 3 },
   { e: /\bnenhum\s+dos\s+\w+\s+(?:foram|estavam|fizeram|disseram)\b/gi, c: "nenhum dos … (singular)", r: "Com 'nenhum dos', o verbo vai para o singular: 'nenhum dos alunos foi'.", cat: "concordancia_verbal", agt: 3 },
   { e: /\bonde\s+(?=\w+\s+(?:disse|afirmou|declarou|escreveu|relatou|menciona))/gi, c: "em que / no qual / na qual", r: "'Onde' indica lugar físico. Para texto ou situação, use 'em que' ou 'no qual'.", cat: "ambiguidade", agt: 3 },
+  // "Para mim" + infinitivo — erro muito frequente
+  { e: /\bpara\s+mim\s+(?:fazer|ir|ser|ter|poder|dever|querer|falar|dizer|escrever|jogar|trabalhar|estudar|comer|beber|resolver|comprar|vender|trazer|criar|usar|abrir|fechar|entrar|sair|voltar|chegar|ficar|levar|ajudar|pensar|saber|ver|ouvir|ler|correr|ganhar|perder|começar|terminar|acabar|continuar|mudar|passar|dar|pegar|colocar|tirar|deixar)\b/gi, c: "para eu fazer / para eu ir…", r: "Antes de verbo no infinitivo, o pronome deve ser 'eu' (sujeito), não 'mim' (oblíquo): 'é fácil para eu fazer'.", cat: "regencia_nominal", agt: 3 },
+  { e: /\bchegar\s+em\b/gi, c: "chegar a", r: "'Chegar' transitivo indireto rege 'a': 'chegar ao aeroporto', não 'chegar no aeroporto'.", cat: "regencia_verbal", agt: 3 },
+  { e: /\bchegar\s+no\b|\bchegar\s+na\b|\bchegar\s+nos\b|\bchegar\s+nas\b/gi, c: "chegar ao / chegar à…", r: "'Chegar' rege preposição 'a': 'chegar à cidade', 'chegar ao trabalho'.", cat: "regencia_verbal", agt: 3 },
+  { e: /\bem\s+(?:casa|escola|hospital|trabalho|faculdade|universidade)\s+(?:cheguei|chegou|chegaram|chegamos)\b/gi, c: "à escola / ao trabalho…", r: "'Chegar' rege 'a': 'cheguei à escola', 'chegou ao hospital'.", cat: "regencia_verbal", agt: 3 },
+  { e: /\bvou\s+(?:no|na|nos|nas)\s+(?:médico|dentista|banco|mercado|cinema|teatro|supermercado|padaria|farmácia|academia|clube|parque)\b/gi, c: "vou ao médico / vou à farmácia…", r: "'Ir a' é o regente correto. Use 'ao/à' em vez de 'no/na': 'vou ao médico'.", cat: "regencia_verbal", agt: 3 },
+  { e: /\bfui\s+(?:no|na)\s+(?:médico|dentista|banco|mercado|cinema|teatro|supermercado|padaria|farmácia|academia)\b/gi, c: "fui ao médico / fui à farmácia…", r: "Use 'ao/à' (preposição 'a' + artigo): 'fui ao médico', 'fui à farmácia'.", cat: "regencia_verbal", agt: 3 },
 ];
 
 // ── AGENTE 4 — SEMÂNTICA ──────────────────────────────────────────────────
@@ -98,6 +126,14 @@ const R4 = [
   { e: /\bdividir\s+em\s+duas\s+metades\b/gi, c: "dividir ao meio", r: "'Metade' já significa cada uma das duas partes. Redundante.", cat: "redundancia", agt: 4 },
   { e: /\bliteralmente\s+(?:morri|matei|explodi|destruí)\b/gi, c: "(remova 'literalmente' ou use 'quase')", r: "'Literalmente' = de forma exata, não figurada. Usá-lo com hipérboles é contradição semântica.", cat: "ambiguidade", agt: 4 },
   { e: /\bno\s+caso\s+de\s+que\b/gi, c: "no caso de / caso", r: "'No caso de que' é calco do espanhol/inglês. Use 'no caso de' + infinitivo ou 'caso' + subjuntivo.", cat: "inadequado", agt: 4 },
+  // Parônimos e confusões semânticas frequentes
+  { e: /\bcessão\s+de\s+(?:palavras?|voz|vez|lugar)\b/gi, c: "concessão de palavras / ceder a vez", r: "'Cessão' = transferência de direito. Para ceder vez/lugar, use 'ceder' ou 'concessão'.", cat: "paronimia", agt: 4 },
+  { e: /\bseção\s+(?:eleitoral|de\s+votação)\b|\bsessão\s+(?:do\s+dente|odontológica)\b/gi, c: "seção eleitoral / sessão odontológica", r: "'Seção' = divisão/repartição. 'Sessão' = período/reunião. 'Cessão' = transferência.", cat: "paronimia", agt: 4 },
+  { e: /\bao\s+invés\s+de\b/gi, c: "em vez de", r: "'Ao invés de' significa 'ao contrário de'. Para alternativa/substituição, use 'em vez de'.", cat: "paronimia", agt: 4 },
+  { e: /\bporque\s+não\?/gi, c: "por que não?", r: "Em perguntas diretas ou indiretas, use 'por que' (separado e sem acento).", cat: "acento", agt: 4 },
+  { e: /\bnão\s+obstante\s+(?:de\s+)?isso\b/gi, c: "não obstante isso / não obstante", r: "'Não obstante' não requer preposição 'de'. Diga 'não obstante isso' ou apenas 'não obstante'.", cat: "regencia_nominal", agt: 4 },
+  { e: /\bapesar\s+que\b/gi, c: "apesar de (que)", r: "'Apesar de' rege preposição 'de'. 'Apesar que' não está consagrado; use 'apesar de que' ou 'embora'.", cat: "regencia_nominal", agt: 4 },
+  { e: /\bem\s+função\s+que\b/gi, c: "em função de", r: "'Em função de' rege preposição 'de', não 'que'.", cat: "regencia_nominal", agt: 4 },
 ];
 
 // ── AGENTE 5 — PONTUAÇÃO ──────────────────────────────────────────────────
@@ -119,6 +155,16 @@ const R5 = [
   { e: /\bé\s*:\s*(?:o|a|os|as|um|uma)\b/gi, c: "é o / é a…", r: "Dois-pontos após 'é' antes de predicativo simples é uso incorreto.", cat: "dois_pontos", agt: 5 },
   { e: /\.{4,}/g, c: "…", r: "Reticências têm exatamente três pontos. Quatro ou mais é incorreto.", cat: "reticencias", agt: 5 },
   { e: /[.!?]\s*\.\.\./g, c: "… (sem ponto antes)", r: "Não se usa ponto antes de reticências. As reticências já encerram a frase.", cat: "reticencias", agt: 5 },
+  // Vírgulas obrigatórias — conectivos frequentes
+  { e: /\bContudo\s+(?=[a-záéíóúàâêôãõçü])/gi, c: "Contudo,", r: "'Contudo' é conjunção adversativa que exige vírgula.", cat: "virgula_obrigatoria", agt: 5 },
+  { e: /\bTodavia\s+(?=[a-záéíóúàâêôãõçü])/gi, c: "Todavia,", r: "'Todavia' é conjunção adversativa que exige vírgula.", cat: "virgula_obrigatoria", agt: 5 },
+  { e: /\bOutrossim\s+(?=[a-záéíóúàâêôãõçü])/gi, c: "Outrossim,", r: "'Outrossim' (além disso) como conectivo exige vírgula.", cat: "virgula_obrigatoria", agt: 5 },
+  { e: /\bDessa\s+forma\s+(?=[a-záéíóúàâêôãõçü])/gi, c: "Dessa forma,", r: "'Dessa forma' como locução conclusiva exige vírgula.", cat: "virgula_obrigatoria", agt: 5 },
+  { e: /\bDesse\s+modo\s+(?=[a-záéíóúàâêôãõçü])/gi, c: "Desse modo,", r: "'Desse modo' como locução conclusiva exige vírgula.", cat: "virgula_obrigatoria", agt: 5 },
+  { e: /\bPor\s+conseguinte\s+(?=[a-záéíóúàâêôãõçü])/gi, c: "Por conseguinte,", r: "'Por conseguinte' é locução conclusiva que exige vírgula.", cat: "virgula_obrigatoria", agt: 5 },
+  { e: /\bEm\s+suma\s+(?=[a-záéíóúàâêôãõçü])/gi, c: "Em suma,", r: "'Em suma' é locução conclusiva que exige vírgula.", cat: "virgula_obrigatoria", agt: 5 },
+  // Hífen em palavras compostas comuns
+  { e: /\bfim\s+de\s+semana\b/gi, c: "fim de semana", r: "Atenção: 'fim de semana' não leva hífen na norma do Acordo de 1990.", cat: "hifen", agt: 5 },
 ];
 
 // ── AGENTE 6 — CRASE ──────────────────────────────────────────────────────
@@ -145,6 +191,17 @@ const R6 = [
   { e: /\bde\s+à\b/gi, c: "da", r: "Não há crase após a preposição 'de'. Use 'da'.", cat: "crase_proibida", agt: 6 },
   { e: /\bfoi\s+a\s+(?:França|Espanha|Itália|Alemanha|Holanda|Portugal|Grécia|Irlanda|Bélgica|Suécia)\b/gi, c: "foi à França / à Espanha…", r: "Países femininos com artigo exigem crase: 'foi à França'.", cat: "crase_paises", agt: 6 },
   { e: /\bvou\s+a\s+(?:França|Espanha|Itália|Alemanha|Holanda|Portugal|Grécia|Irlanda|Bélgica|Suécia)\b/gi, c: "vou à França / à Espanha…", r: "Países femininos com artigo exigem crase no destino: 'vou à França'.", cat: "crase_paises", agt: 6 },
+  // Locuções adverbiais que exigem crase (sem o acento)
+  { e: /\ba\s+última\s+hora\b/gi, c: "à última hora", r: "'À última hora' é locução adverbial que exige crase.", cat: "crase_obrigatoria", agt: 6 },
+  { e: /\ba\s+distância\b/gi, c: "à distância", r: "'À distância' é locução adverbial que exige crase.", cat: "crase_obrigatoria", agt: 6 },
+  { e: /\ba\s+força\b/gi, c: "à força", r: "'À força' é locução adverbial que exige crase.", cat: "crase_obrigatoria", agt: 6 },
+  { e: /\ba\s+mão\b/gi, c: "à mão", r: "'À mão' é locução adverbial que exige crase.", cat: "crase_obrigatoria", agt: 6 },
+  { e: /\ba\s+vista\b/gi, c: "à vista", r: "'À vista' (pagamento ou percepção) é locução que exige crase.", cat: "crase_obrigatoria", agt: 6 },
+  { e: /\ba\s+deriva\b/gi, c: "à deriva", r: "'À deriva' é locução adverbial que exige crase.", cat: "crase_obrigatoria", agt: 6 },
+  { e: /\ba\s+revelia\b/gi, c: "à revelia", r: "'À revelia' (sem consentimento) exige crase.", cat: "crase_obrigatoria", agt: 6 },
+  { e: /\ba\s+flor\s+da\b/gi, c: "à flor da", r: "'À flor da pele' é locução que exige crase.", cat: "crase_obrigatoria", agt: 6 },
+  { e: /\ba\s+queima-roupa\b|\ba\s+queima\s+roupa\b/gi, c: "à queima-roupa", r: "'À queima-roupa' é locução adverbial que exige crase.", cat: "crase_obrigatoria", agt: 6 },
+  { e: /\ba\s+(?:uma|duas|três|quatro|cinco|seis|sete|oito|nove|dez|onze|doze|treze|catorze|quatorze|quinze|dezesseis|dezessete|dezoito|dezenove|vinte)\s*(?:e\s*(?:meia|meia))?\s*h\b/gi, c: "às … h", r: "Antes de horas determinadas, a crase é obrigatória: 'às 15h'.", cat: "crase_horas", agt: 6 },
 ];
 
 // ── TABELAS ────────────────────────────────────────────────────────────────
