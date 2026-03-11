@@ -1340,51 +1340,134 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       border-color: rgba(196,84,42,.42);
       transform: translateY(-1px);
     }
+    /* ── Blueprint / Technical Japanese — panelBody typography ──────────────
+       Sistema de estilo para todo conteúdo renderizado dentro de cortes.
+       Inspiração: desenho técnico, mecha engineering panel, minimalismo oriental.
+       ─────────────────────────────────────────────────────────────────────── */
+
     .panelBody p{
-      margin: 0 0 12px 0;
+      margin: 0 0 0.7em 0;
     }
-    .panelBody h1,
-    .panelBody h2,
-    .panelBody h3{
-      margin: 12px 0 8px 0;
-      font-size: 12px;
-      letter-spacing: .06em;
+
+    /* h2 — Cabeçalho de seção blueprint: linha fina + marca de canto + label */
+    .panelBody h2{
+      position: relative;
+      margin: 1.4em 0 0.65em 0;
+      padding: 8px 0 5px 14px;
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: rgba(0,0,0,.62);
+      color: var(--slice-accent, var(--accent));
+      border-top: 1px solid var(--slice-accent, rgba(0,0,0,.20));
     }
+    /* Marca de canto — L superior esquerdo */
+    .panelBody h2::before{
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -1px;
+      width: 9px;
+      height: 9px;
+      border-left: 1px solid var(--slice-accent, rgba(0,0,0,.32));
+      border-top: 1px solid var(--slice-accent, rgba(0,0,0,.32));
+    }
+    /* Primeiro h2: sem margin-top extra */
+    .panelBody h2:first-child{ margin-top: 0.2em; }
+
+    /* h3 — Sub-seção: linha pontilhada inferior */
+    .panelBody h3{
+      margin: 1em 0 0.45em 0;
+      padding: 0 0 4px 0;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.46);
+      border-bottom: 1px dotted rgba(0,0,0,.14);
+    }
+    .panelBody h1{
+      margin: 1em 0 0.5em 0;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.54);
+    }
+
+    /* hr — Divisor técnico: linha tracejada */
+    .panelBody hr{
+      border: 0;
+      margin: 1em 0;
+      height: 1px;
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(0,0,0,.18) 0, rgba(0,0,0,.18) 5px,
+        transparent 5px, transparent 10px
+      );
+    }
+
+    /* code inline */
+    .panelBody code{
+      font-family: inherit;
+      font-size: 0.88em;
+      padding: 1px 5px;
+      background: rgba(0,0,0,.06);
+      border: 1px solid rgba(0,0,0,.10);
+      border-radius: 2px;
+      color: var(--slice-accent, rgba(0,0,0,.78));
+      letter-spacing: 0.01em;
+    }
+
+    /* pre — Caixa técnica: grid de fundo + borda accent */
+    .panelBody pre{
+      margin: 0.5em 0 0.9em;
+      padding: 10px 14px;
+      background:
+        linear-gradient(to right,  rgba(0,0,0,.03) 1px, transparent 1px) 0 0 / 24px 100%,
+        linear-gradient(to bottom, rgba(0,0,0,.02) 1px, transparent 1px) 0 0 / 100% 20px,
+        rgba(0,0,0,.032);
+      border: 1px solid rgba(0,0,0,.08);
+      border-left: 2px solid var(--slice-accent, rgba(0,0,0,.22));
+      border-radius: 0 2px 2px 0;
+      overflow-x: auto;
+    }
+    .panelBody pre code{
+      padding: 0;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      font-size: 0.88em;
+      color: inherit;
+      white-space: pre;
+      display: block;
+      line-height: 1.75;
+    }
+
+    /* blockquote — borda accent esquerda */
+    .panelBody blockquote{
+      margin: 0.4em 0 0.8em 0;
+      padding: 5px 10px;
+      border-left: 2px solid var(--slice-accent, rgba(0,0,0,.22));
+      background: rgba(0,0,0,.025);
+      color: rgba(0,0,0,.66);
+      font-style: normal;
+    }
+
     .panelBody ul,
     .panelBody ol{
-      margin: 0 0 12px 18px;
+      margin: 0 0 0.8em 16px;
       padding: 0;
     }
     .panelBody li{
-      margin: 0 0 6px 0;
+      margin: 0 0 0.3em 0;
     }
-    .panelBody blockquote{
-      margin: 0 0 12px 0;
-      padding-left: 0;
-      border-left: none;
-      color: rgba(0,0,0,.66);
-      font-style: italic;
-    }
-    .panelBody code{
-      padding: 0;
-      border-radius: 0;
-      background: transparent;
-      font-size: .92em;
-      color: rgba(0,0,0,.78);
-    }
-    .panelBody hr{
-      border: 0;
-      height: 1px;
-      margin: 10px 0 12px 0;
-      background: rgba(0,0,0,.1);
-    }
+
     .panelBody table{
       width: 100%;
       border-collapse: collapse;
       border: none;
-      margin: 0 0 12px 0;
+      margin: 0 0 0.8em 0;
       background: transparent;
     }
     .panelBody thead,
@@ -1603,12 +1686,40 @@ body[data-theme="chumbo"] .badge { color: rgba(232,228,220,.52); }
 body[data-theme="chumbo"] .sliceMeta { color: rgba(232,228,220,.40); }
 body[data-theme="chumbo"] .panelHeader { color: rgba(232,228,220,.44); }
 body[data-theme="chumbo"] .panelBody { color: rgba(232,228,220,.82); }
-body[data-theme="chumbo"] .panelBody h1,
-body[data-theme="chumbo"] .panelBody h2,
-body[data-theme="chumbo"] .panelBody h3 { color: rgba(232,228,220,.55); }
-body[data-theme="chumbo"] .panelBody blockquote { color: rgba(232,228,220,.56); }
-body[data-theme="chumbo"] .panelBody code { color: rgba(232,228,220,.72); }
-body[data-theme="chumbo"] .panelBody hr { background: rgba(255,255,255,.08); }
+/* h2 — blueprint header no dark: accent herdado + linha clara */
+body[data-theme="chumbo"] .panelBody h2 { border-top-color: rgba(255,255,255,.10); }
+body[data-theme="chumbo"] .panelBody h2::before { border-color: rgba(255,255,255,.18); }
+body[data-theme="chumbo"] .panelBody h3 { color: rgba(232,228,220,.42); border-bottom-color: rgba(255,255,255,.08); }
+body[data-theme="chumbo"] .panelBody h1 { color: rgba(232,228,220,.52); }
+/* hr — tracejado claro */
+body[data-theme="chumbo"] .panelBody hr {
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255,255,255,.14) 0, rgba(255,255,255,.14) 5px,
+    transparent 5px, transparent 10px
+  );
+}
+/* code inline dark */
+body[data-theme="chumbo"] .panelBody code {
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.10);
+  color: var(--slice-accent, rgba(232,228,220,.78));
+}
+/* pre dark */
+body[data-theme="chumbo"] .panelBody pre {
+  background:
+    linear-gradient(to right,  rgba(255,255,255,.025) 1px, transparent 1px) 0 0 / 24px 100%,
+    linear-gradient(to bottom, rgba(255,255,255,.015) 1px, transparent 1px) 0 0 / 100% 20px,
+    rgba(255,255,255,.022);
+  border-color: rgba(255,255,255,.06);
+  border-left-color: var(--slice-accent, rgba(255,255,255,.18));
+}
+/* blockquote dark */
+body[data-theme="chumbo"] .panelBody blockquote {
+  background: rgba(255,255,255,.025);
+  color: rgba(232,228,220,.60);
+  border-left-color: var(--slice-accent, rgba(255,255,255,.18));
+}
 
 body[data-theme="chumbo"] .slice.isMinimized .badge,
 body[data-theme="chumbo"] .slice.isMinimized .sliceMeta { color: rgba(232,228,220,.50); }

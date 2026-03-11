@@ -45,6 +45,8 @@ function renderMarkdown(text) {
   let paragraph = [];
   let listType = null;
   let listItems = [];
+  let inCodeBlock = false;
+  let codeLines = [];
 
   const flushParagraph = () => {
     if (!paragraph.length) return;
@@ -59,9 +61,27 @@ function renderMarkdown(text) {
     listItems = [];
   };
 
+  const flushCode = () => {
+    out.push(`<pre><code>${codeLines.map((l) => escapeHtml(l)).join("\n")}</code></pre>`);
+    codeLines = [];
+    inCodeBlock = false;
+  };
+
   for (const raw of lines) {
     const line = String(raw || "");
     const trimmed = line.trim();
+
+    // Fenced code block handling
+    if (inCodeBlock) {
+      if (trimmed === "```" || trimmed === "~~~") { flushCode(); }
+      else { codeLines.push(line); }
+      continue;
+    }
+    if (trimmed.startsWith("```") || trimmed.startsWith("~~~")) {
+      flushParagraph(); flushList();
+      inCodeBlock = true;
+      continue;
+    }
 
     if (!trimmed) {
       flushParagraph();
@@ -93,7 +113,7 @@ function renderMarkdown(text) {
       continue;
     }
 
-    const ul = trimmed.match(/^[-*]\s+(.+)$/);
+    const ul = trimmed.match(/^[-*✓✗]\s+(.+)$/);
     if (ul) {
       flushParagraph();
       if (listType && listType !== "ul") flushList();
@@ -117,6 +137,7 @@ function renderMarkdown(text) {
 
   flushParagraph();
   flushList();
+  if (inCodeBlock && codeLines.length) flushCode(); // unclosed block
   return out.join("") || `<p>${renderInlineMarkdown(String(text || ""))}</p>`;
 }
 
@@ -1104,7 +1125,7 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
       title: "HELP",
       kindKey: "help",
       meta: "comandos disponíveis",
-      body: `--n  →  notas laterais (salvas localmente)\n--a  →  arquivos — salvar .skv / .txt, importar, limpar\n--w  →  classes de palavras (cores + hover)\n--d  →  verbete da palavra anterior (ex: amor --d)\n--h  →  esta ajuda\n\nAtalhos de teclado:\n  Ctrl+S      →  salvar / exportar\n  ↓ no fim    →  próxima página\n  ↑ no início →  página anterior\n  ← no início →  mescla com página anterior\n\nTopo do corte: minimiza/abre.\nLaterais (gutter): fecham o corte.`,
+      body: `## Comandos\n--n  →  notas laterais (salvas localmente)\n--a  →  arquivos — salvar .skv / .txt, importar, limpar\n--w  →  classes de palavras (cores + hover)\n--d  →  verbete da palavra anterior (ex: amor --d)\n--h  →  esta ajuda\n\n## Atalhos de teclado\n\`\`\`\nCtrl+S      →  salvar / exportar\n↓ no fim    →  próxima página\n↑ no início →  página anterior\n← no início →  mesclar com página anterior\n\`\`\`\n\n## Cortes\nTopo do corte: minimiza / abre.\nLaterais (gutter): fecham o corte.`,
     });
   }
 
