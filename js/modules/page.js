@@ -205,7 +205,9 @@ export function currentPageEditable() {
 }
 
 function getKnownCommands(ctx) {
-  return ["h", "n", "a", "w", "d", "c"];
+  // "theme" aqui faz --t esperar 360ms antes de disparar,
+  // dando tempo para o usuário digitar --theme completo.
+  return ["h", "n", "a", "w", "d", "c", "theme"];
 }
 
 function isAmbiguousPrefix(ctx, cmd) {

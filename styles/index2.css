@@ -2070,6 +2070,9 @@ body[data-theme="chumbo"] .sliceTag:hover { color: rgba(232,228,220,.85); }
 .notesSidebar .notes-empty-icon svg { width: 24px; height: 24px; }
 .notesSidebar .notes-empty-title { font-size: 12px; color: var(--ink, #1a1a1a); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 .notesSidebar .notes-empty-body  { font-size: 10px; color: var(--muted, rgba(0,0,0,.38)); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.notesSidebar .notes-empty-create { margin-top: 8px; }
+.notesSidebar .notes-overlay-new  { padding: 3px 8px; font-size: 9px; }
+.notesSidebar .notes-spacer        { flex: 1; }
 .notesSidebar .notes-list {
   display: grid;
   gap: 2px;
@@ -3274,7 +3277,7 @@ body[data-theme="chumbo"] .coord-overlay {
 /* ── Agent chips grid ──────────────────────────────────────────────────── */
 .coord-agents {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   gap: 5px;
   margin-bottom: 8px;
 }
@@ -3353,6 +3356,31 @@ body[data-theme="chumbo"] .coord-overlay {
   margin-left: auto;
   color: var(--co-muted);
   font-family: ui-monospace, monospace;
+}
+
+/* ── Def lines (abaixo dos chips, acima do editor) ──────────────────────── */
+.coord-defs {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0;
+}
+.coord-def-line {
+  font-size: 10.5px;
+  line-height: 1.4;
+  padding: 5px 10px;
+  border-left: 2.5px solid var(--def-cor);
+  color: #111110;
+  background: color-mix(in srgb, var(--def-cor) 18%, var(--co-surface));
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  animation: coordDefIn 180ms ease;
+}
+@keyframes coordDefIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ── Editor area (mirror-textarea pattern) ─────────────────────────────── */
@@ -3646,3 +3674,198 @@ body[data-theme="chumbo"] .coord-overlay {
   letter-spacing: 0.02em;
 }
 
+
+/* ── --v slice (verificação) ─────────────────────────────────────────────── */
+.vSlice {
+  display: grid;
+  gap: 0;
+}
+.vSection {
+  padding: 14px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
+}
+.vSection:last-child {
+  border-bottom: none;
+  padding-bottom: 4px;
+}
+.vSectionTitle {
+  font-size: 9px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+.vGrid {
+  display: grid;
+  gap: 5px;
+}
+.vRow {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.vLabel {
+  color: var(--muted);
+  font-size: 11px;
+}
+.vVal {
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.vVal.vHash {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 10px;
+  cursor: pointer;
+  word-break: break-all;
+  opacity: .7;
+  transition: opacity .15s;
+}
+.vVal.vHash:hover {
+  opacity: 1;
+}
+.vVal.vHash.copied {
+  color: var(--accent);
+  opacity: 1;
+}
+.vNote {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 8px 0 0;
+}
+.vFileLabel {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.vFileInput {
+  display: none;
+}
+.vFileBtn {
+  display: inline-block;
+  padding: 5px 11px;
+  border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent);
+  border-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+  background: transparent;
+  color: var(--ink);
+  letter-spacing: .3px;
+  transition: border-color .15s, color .15s;
+}
+.vFileBtn:hover {
+  border-color: color-mix(in srgb, var(--ink) 32%, transparent);
+}
+.vVerifyResult {
+  margin-top: 10px;
+  padding: 9px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+.vVerifyResult.ok {
+  background: color-mix(in srgb, #6faf86 12%, transparent);
+  color: #3d7a55;
+  border: 1px solid color-mix(in srgb, #6faf86 30%, transparent);
+}
+.vVerifyResult.fail {
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+}
+.vVerifyResult.warn {
+  background: color-mix(in srgb, #b8932a 8%, transparent);
+  color: #8a6c1f;
+  border: 1px solid color-mix(in srgb, #b8932a 20%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .vVerifyResult.ok   { color: #6faf86; }
+  .vVerifyResult.warn { color: #d4aa50; }
+}
+[data-theme="chumbo"] .vVerifyResult.ok   { color: #6faf86; }
+[data-theme="chumbo"] .vVerifyResult.warn { color: #d4aa50; }
+
+/* ── --v: separação visual — seção "ferramenta" vs "leitura" ─────────────── */
+.vSection--tool {
+  margin-top: 6px;
+  padding-top: 20px;
+  border-top: 1.5px solid color-mix(in srgb, var(--ink) 15%, transparent);
+  background: color-mix(in srgb, var(--ink) 2.5%, transparent);
+  margin-left: -12px;
+  margin-right: -12px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 0 0 6px 6px;
+}
+.vSection--tool .vSectionTitle {
+  color: color-mix(in srgb, var(--ink) 50%, transparent);
+}
+
+/* ── --h slice (help) ────────────────────────────────────────────────────── */
+.hSlice {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.hGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 24px;
+}
+.hGrid .vSection {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.vSection--tip {
+  border-top: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
+  padding-top: 10px;
+  padding-bottom: 4px;
+  border-bottom: none;
+}
+.hRow {
+  display: grid;
+  grid-template-columns: 128px 1fr;
+  gap: 8px;
+  align-items: baseline;
+  margin-bottom: 7px;
+  font-size: 12px;
+}
+.hKey {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 10px;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  border-radius: 3px;
+  padding: 2px 6px;
+  white-space: nowrap;
+  line-height: 1.5;
+}
+.hCmd {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: .2px;
+}
+.hDesc {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.hCmdExtra {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 9px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: color-mix(in srgb, var(--ink) 35%, transparent);
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  border-radius: 3px;
+  padding: 1px 5px;
+  vertical-align: middle;
+}

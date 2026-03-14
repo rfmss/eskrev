@@ -402,6 +402,13 @@ function bindSliceInteractions(ctx, root) {
     dock.prepend(tag);
     positionSliceDockRail(ctx);
     positionDockTag(ctx, tag);
+
+    // Tag live para o --v: substitui texto estático por contador de palavras/chars
+    if (root.dataset.liveVerify) {
+      tag.dataset.liveVerify = "1";
+      startLiveVerifyTag(ctx, tag);
+    }
+
     root.remove();
     ctx.setStatus(`docked: ${title}`);
   };
@@ -690,6 +697,279 @@ export function openSelectionConsultSlice(ctx, editorEl, selectedText) {
   return slice;
 }
 
+// ── --v Verificação ───────────────────────────────────────────────────────
+
+function getEditorText() {
+  return Array.from(document.querySelectorAll(".pageContent")).map(el => {
+    const clone = el.cloneNode(true);
+    clone.querySelectorAll(".slice").forEach(s => s.remove());
+    return clone.innerText || "";
+  }).join("\n");
+}
+
+function computeTextStats(text) {
+  const t = text || "";
+  const words = t.trim() ? t.trim().split(/\s+/).filter(Boolean).length : 0;
+  const chars = t.length;
+  const charsNoSpaces = t.replace(/\s/g, "").length;
+  const sentences = t.split(/[.!?…]+/).filter(s => s.trim().length > 2).length;
+  const paragraphs = t.split(/\n{2,}|\r\n{2,}/).filter(p => p.trim()).length || (t.trim() ? 1 : 0);
+  const readSec = Math.round((words / 200) * 60);
+  const readTime = readSec < 60
+    ? `${readSec}s`
+    : `${Math.floor(readSec / 60)}min ${readSec % 60}s`;
+  const allWords = t.toLowerCase().match(/[\p{L}]{2,}/gu) || [];
+  const uniqueWords = new Set(allWords);
+  const lexDensity = allWords.length
+    ? `${Math.round((uniqueWords.size / allWords.length) * 100)}%`
+    : "—";
+  const longestWord = allWords.reduce((a, b) => b.length > a.length ? b : a, "");
+  return { words, chars, charsNoSpaces, sentences, paragraphs, readTime, lexDensity, longestWord };
+}
+
+async function sha256HexV(text) {
+  try {
+    const data = new TextEncoder().encode(text || "");
+    const buf = await crypto.subtle.digest("SHA-256", data);
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+  } catch (_) { return ""; }
+}
+
+async function verifySkv(parsed) {
+  // Suporte a formato v2 (onep) e fullm legado
+  const storedHash = parsed?.proof?.content_hash || parsed?.HEADER?.HASH || "";
+  if (!storedHash) return { status: "warn", msg: "Arquivo sem proof.content_hash — não foi exportado com verificação ativa." };
+
+  // Extrai o texto: pode estar em projetos (v2) ou no fullm legado
+  let text = "";
+  if (Array.isArray(parsed.projects)) {
+    text = parsed.projects.map(p => p.content || "").join("\n").trim();
+  } else if (parsed.content?.text) {
+    text = parsed.content.text;
+  } else if (parsed.MASTER_TEXT) {
+    text = parsed.MASTER_TEXT;
+  }
+
+  const computed = await sha256HexV(text);
+  if (!computed) return { status: "warn", msg: "Não foi possível calcular hash." };
+
+  const hashOk = storedHash === computed;
+  const sig = parsed.authoria_sig || parsed.AUTHORIA_SIGNATURE;
+  const hasSig = !!(sig?.signature && sig?.public_key_jwk);
+
+  let sigStatus = "";
+  if (hasSig) {
+    try {
+      const pubKey = await crypto.subtle.importKey(
+        "jwk", sig.public_key_jwk,
+        { name: "ECDSA", namedCurve: "P-256" }, false, ["verify"]
+      );
+      const sigBuf = Uint8Array.from(atob(sig.signature), c => c.charCodeAt(0));
+      const dataBytes = new TextEncoder().encode(computed);
+      const valid = await crypto.subtle.verify({ name: "ECDSA", hash: "SHA-256" }, pubKey, sigBuf, dataBytes);
+      sigStatus = valid ? "\nAssinatura ECDSA · válida ✓" : "\nAssinatura ECDSA · inválida ✗";
+    } catch (_) {
+      sigStatus = "\nAssinatura ECDSA · erro ao verificar";
+    }
+  }
+
+  const created = parsed.proof?.created_at
+    ? new Date(parsed.proof.created_at).toLocaleString("pt-BR")
+    : "—";
+
+  if (hashOk) {
+    return {
+      status: "ok",
+      msg: `Conteúdo íntegro — hash confere ✓\nGerado em: ${created}\nSHA-256: ${storedHash.slice(0, 16)}…${sigStatus}`,
+    };
+  } else {
+    return {
+      status: "fail",
+      msg: `Hash diverge — conteúdo foi alterado após a exportação ✗\nRegistrado: ${storedHash.slice(0, 16)}…\nAtual:      ${computed.slice(0, 16)}…`,
+    };
+  }
+}
+
+function startLiveVerifyTag(ctx, tag) {
+  const fmt = (n) => n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n);
+  const update = () => {
+    if (!tag.isConnected) {
+      clearInterval(intervalId);
+      document.removeEventListener("input", onInput, true);
+      return;
+    }
+    const t = getEditorText();
+    const words = t.trim() ? t.trim().split(/\s+/).filter(Boolean).length : 0;
+    const chars = t.length;
+    tag.textContent = `${fmt(words)} pal · ${fmt(chars)} chr`;
+    tag.title = "Abrir verificação";
+  };
+  update();
+  const intervalId = setInterval(update, 3000);
+  const onInput = () => update();
+  document.addEventListener("input", onInput, { capture: true, passive: true });
+}
+
+function buildHelpSlice(slice) {
+  const bodyEl = slice.querySelector(".panelBody");
+  if (!bodyEl) return;
+
+  const row = (kbd, desc) =>
+    `<div class="hRow"><span class="hKey">${kbd}</span><span class="hDesc">${desc}</span></div>`;
+
+  const cmd = (c, desc, extra = "") =>
+    `<div class="hRow"><span class="hCmd">${c}</span><span class="hDesc">${desc}${extra ? `<span class="hCmdExtra">${extra}</span>` : ""}</span></div>`;
+
+  bodyEl.innerHTML = `
+    <div class="hSlice">
+      <div class="hGrid">
+        <section class="vSection">
+          <div class="vSectionTitle">Escrever</div>
+          ${cmd("--b", "buscar no texto")}
+          ${cmd("palavra --d", "verbete da palavra anterior")}
+          ${cmd("--w", "colorir classes de palavras")}
+          ${cmd("--c", "coordenador linguístico")}
+          ${cmd("--g", "verificação gramatical")}
+          ${cmd("--m", "modos de escrita")}
+        </section>
+        <section class="vSection">
+          <div class="vSectionTitle">Teclado</div>
+          ${row("Ctrl+S", "salvar · exportar .skv")}
+          ${row("Esc", "fechar painel aberto")}
+          ${row("↓ fim da página", "próxima página")}
+          ${row("↑ início da página", "página anterior")}
+          ${row("← início da página", "mesclar com anterior")}
+        </section>
+        <section class="vSection">
+          <div class="vSectionTitle">Arquivos</div>
+          ${cmd("--s", "salvar · exportar .skv")}
+          ${cmd("--a", "mesa de projetos")}
+          ${cmd("--i", "importar .skv")}
+          ${cmd("--v", "verificação + estatísticas")}
+        </section>
+        <section class="vSection">
+          <div class="vSectionTitle">Ferramentas</div>
+          ${cmd("--p", "criar post-it")}
+          ${cmd("--n", "notas laterais")}
+          ${cmd("--r", "modo leitura")}
+          ${cmd("--f", "tela cheia · zen")}
+          ${cmd("--t", "barra de seleção")}
+          ${cmd("--theme", "alternar tema (paper / chumbo)")}
+        </section>
+      </div>
+      <section class="vSection vSection--tip">
+        <p class="vNote">Topo do corte: minimiza · abre. &nbsp;·&nbsp; Laterais (gutter): fecham o corte.</p>
+      </section>
+    </div>
+  `;
+}
+
+function buildVerifySlice(ctx, slice) {
+  const bodyEl = slice.querySelector(".panelBody");
+  const metaEl = slice.querySelector(".sliceMeta");
+  if (!bodyEl) return;
+
+  const text = getEditorText();
+  const stats = computeTextStats(text);
+
+  if (metaEl) metaEl.textContent = `${stats.words} palavras · calculando hash…`;
+
+  const uid = slice.dataset.sliceId || "v";
+  const fileId = `vFile-${uid}`;
+  const resultId = `vResult-${uid}`;
+  const hashId = `vHash-${uid}`;
+  const genId = `vGen-${uid}`;
+
+  bodyEl.innerHTML = `
+    <div class="vSlice">
+      <section class="vSection">
+        <div class="vSectionTitle">Texto</div>
+        <div class="vGrid">
+          <div class="vRow"><span class="vLabel">Palavras</span><span class="vVal">${stats.words.toLocaleString("pt-BR")}</span></div>
+          <div class="vRow"><span class="vLabel">Caracteres</span><span class="vVal">${stats.chars.toLocaleString("pt-BR")}</span></div>
+          <div class="vRow"><span class="vLabel">Sem espaços</span><span class="vVal">${stats.charsNoSpaces.toLocaleString("pt-BR")}</span></div>
+          <div class="vRow"><span class="vLabel">Frases</span><span class="vVal">${stats.sentences}</span></div>
+          <div class="vRow"><span class="vLabel">Parágrafos</span><span class="vVal">${stats.paragraphs}</span></div>
+          <div class="vRow"><span class="vLabel">Leitura estimada</span><span class="vVal">${stats.readTime}</span></div>
+          <div class="vRow"><span class="vLabel">Densidade lexical</span><span class="vVal">${stats.lexDensity}</span></div>
+          ${stats.longestWord ? `<div class="vRow"><span class="vLabel">Palavra + longa</span><span class="vVal">${escapeHtml(stats.longestWord)}</span></div>` : ""}
+        </div>
+      </section>
+      <section class="vSection">
+        <div class="vSectionTitle">Anterioridade</div>
+        <div class="vGrid">
+          <div class="vRow"><span class="vLabel">Hash SHA-256</span><span class="vVal vHash" id="${hashId}" title="Clique para copiar">calculando…</span></div>
+          <div class="vRow"><span class="vLabel">Gerado em</span><span class="vVal" id="${genId}">—</span></div>
+        </div>
+        <p class="vNote">Este hash é uma impressão digital do texto agora. Se uma vírgula mudar, o hash muda. Exporte como .skv para registrar com timestamp.</p>
+      </section>
+      <section class="vSection vSection--tool">
+        <div class="vSectionTitle">Verificar arquivo</div>
+        <p class="vNote">Suba um .skv para confirmar se o conteúdo não foi alterado após a exportação.</p>
+        <label class="vFileLabel">
+          <input type="file" class="vFileInput" id="${fileId}" accept=".skv,.json" />
+          <span class="vFileBtn">Escolher .skv</span>
+        </label>
+        <div class="vVerifyResult" id="${resultId}" style="display:none"></div>
+      </section>
+    </div>
+  `;
+
+  // Calcula hash do texto atual
+  sha256HexV(text).then((hash) => {
+    const hashEl = bodyEl.querySelector(`#${hashId}`);
+    const genEl = bodyEl.querySelector(`#${genId}`);
+    if (hashEl) {
+      const short = hash ? `${hash.slice(0, 12)}…${hash.slice(-8)}` : "—";
+      hashEl.textContent = short;
+      hashEl.title = hash ? `SHA-256: ${hash}\n\nClique para copiar` : "";
+      hashEl.addEventListener("click", () => {
+        if (!hash) return;
+        navigator.clipboard?.writeText(hash).then(() => {
+          hashEl.classList.add("copied");
+          hashEl.textContent = "copiado ✓";
+          setTimeout(() => {
+            hashEl.textContent = short;
+            hashEl.classList.remove("copied");
+          }, 1600);
+        });
+      });
+    }
+    if (genEl) genEl.textContent = new Date().toLocaleString("pt-BR");
+    if (metaEl) metaEl.textContent = `${stats.words} palavras · hash: ${hash.slice(0, 8)}…`;
+  });
+
+  // Verificar .skv inline
+  const fileInput = bodyEl.querySelector(`#${fileId}`);
+  const resultDiv = bodyEl.querySelector(`#${resultId}`);
+  if (fileInput && resultDiv) {
+    fileInput.addEventListener("change", () => {
+      const file = fileInput.files?.[0];
+      if (!file) return;
+      const btn = bodyEl.querySelector(".vFileBtn");
+      if (btn) btn.textContent = "verificando…";
+      const reader = new FileReader();
+      reader.onload = async (ev) => {
+        try {
+          const parsed = JSON.parse(ev.target?.result || "{}");
+          const result = await verifySkv(parsed);
+          resultDiv.className = `vVerifyResult ${result.status}`;
+          resultDiv.textContent = result.msg;
+          resultDiv.style.display = "";
+          if (btn) btn.textContent = "Escolher .skv";
+        } catch (_) {
+          resultDiv.className = "vVerifyResult fail";
+          resultDiv.textContent = "Arquivo inválido ou corrompido.";
+          resultDiv.style.display = "";
+          if (btn) btn.textContent = "Escolher .skv";
+        }
+        fileInput.value = "";
+      };
+      reader.readAsText(file, "utf-8");
+    });
+  }
+}
+
 export function handleCommand(ctx, el, cmd, wordOverride) {
   const token = `--${cmd}`;
   const textBefore = getTextBeforeCaretWithin(el);
@@ -797,21 +1077,6 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
     return slice;
   };
 
-  const isServiceCmd = new Set([
-    "h", "help",
-    "n", "notas",
-    "a", "arquivos",
-    "w",
-    "d",
-    "m",
-    "c",
-  ]);
-  if (!isServiceCmd.has(c)) {
-    ctx.flashCommandError?.();
-    ctx.setStatus?.(`comando inválido: ${token}`);
-    return null;
-  }
-
   if (c === "b" || c === "buscar") {
     return legacyModalSlice("consultlegacy", "consultlegacy") || openLocalSlice({
       badge: "01",
@@ -877,13 +1142,17 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
     });
   }
   if (c === "v" || c === "verificacao" || c === "verificação") {
-    return openLocalSlice({
+    const slice = openLocalSlice({
       badge: "07",
       title: "VERIFICAÇÃO",
       kindKey: "consult",
-      meta: "integridade",
-      body: "Abra `verify.html` para verificar um arquivo .skv.",
+      meta: "calculando…",
+      body: " ",
+      focusScroll: "heavy",
     });
+    slice.dataset.liveVerify = "1";
+    buildVerifySlice(ctx, slice);
+    return slice;
   }
   if (c === "f" || c === "fullscreen") {
     const active = !!document.fullscreenElement;
@@ -1127,13 +1396,16 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
   }
 
   if (c === "h" || c === "help") {
-    return makeSlice(ctx, {
+    const slice = openLocalSlice({
       badge: "01",
       title: "HELP",
       kindKey: "help",
-      meta: "comandos disponíveis",
-      body: `## Comandos\n--n  →  notas laterais (salvas localmente)\n--a  →  arquivos — salvar .skv / .txt, importar, limpar\n--w  →  classes de palavras (cores + hover)\n--d  →  verbete da palavra anterior (ex: amor --d)\n--h  →  esta ajuda\n\n## Atalhos de teclado\n\`\`\`\nCtrl+S      →  salvar / exportar\n↓ no fim    →  próxima página\n↑ no início →  página anterior\n← no início →  mesclar com página anterior\n\`\`\`\n\n## Cortes\nTopo do corte: minimiza / abre.\nLaterais (gutter): fecham o corte.`,
+      meta: "atalhos e comandos",
+      body: " ",
+      focusScroll: "heavy",
     });
+    buildHelpSlice(slice);
+    return slice;
   }
 
   if (c === "o" || c === "modals") {
@@ -1210,9 +1482,6 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
 
   if (c === "persona") {
     return openPersonaSlice(word);
-  }
-  if (personaAliases.has(c)) {
-    return openPersonaSlice(c);
   }
 
   if (c === "templates") {
