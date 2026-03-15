@@ -994,64 +994,12 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       pointer-events:none;
       opacity: 1;
       transition: opacity var(--motion-base) var(--ease-standard);
-      background:
-        linear-gradient(to right, var(--grid-2) 1px, transparent 1px) 0 0 / 44px 44px,
-        linear-gradient(to bottom, var(--grid-2) 1px, transparent 1px) 0 0 / 44px 44px,
-        rgba(22, 22, 22, .035);
+      background: rgba(0,0,0,.018);
       box-shadow:
-        inset 0 10px 20px rgba(0,0,0,.03),
-        inset 0 -1px 0 rgba(0,0,0,.08),
-        inset 0 0 0 1px rgba(0,0,0,.05);
+        inset 0 1px 0 rgba(0,0,0,.07),
+        inset 0 -1px 0 rgba(0,0,0,.06);
     }
-
-    /* ── Fundos diferenciados por categoria de corte ─────────────────────────
-       Cada tipo recebe um peso tonal distinto — como as personas.
-       O grid base fica, o rgba final muda por tipo. ──────────────────────── */
-    /* define → tom âmbar morno, espírito de verbete enciclopédico */
-    .slice[data-kind="define"] .sliceRow::before{
-      background:
-        linear-gradient(to right, rgba(180,130,60,.06) 1px, transparent 1px) 0 0 / 44px 44px,
-        linear-gradient(to bottom, rgba(180,130,60,.06) 1px, transparent 1px) 0 0 / 44px 44px,
-        rgba(180,130,60,.045);
-      box-shadow:
-        inset 4px 0 0 rgba(180,130,60,.20),
-        inset 0 -1px 0 rgba(180,130,60,.14),
-        inset 0 0 0 1px rgba(180,130,60,.08);
-    }
-    /* vocab → tom índigo frio, espírito de taxonomia linguística */
-    .slice[data-kind="vocab"] .sliceRow::before{
-      background:
-        linear-gradient(to right, rgba(60,90,180,.055) 1px, transparent 1px) 0 0 / 44px 44px,
-        linear-gradient(to bottom, rgba(60,90,180,.055) 1px, transparent 1px) 0 0 / 44px 44px,
-        rgba(60,90,180,.038);
-      box-shadow:
-        inset 4px 0 0 rgba(60,90,180,.18),
-        inset 0 -1px 0 rgba(60,90,180,.12),
-        inset 0 0 0 1px rgba(60,90,180,.07);
-    }
-    /* consult → tom teal sóbrio, espírito de referência gramatical */
-    .slice[data-kind="consult"] .sliceRow::before{
-      background:
-        linear-gradient(to right, rgba(0,110,100,.055) 1px, transparent 1px) 0 0 / 44px 44px,
-        linear-gradient(to bottom, rgba(0,110,100,.055) 1px, transparent 1px) 0 0 / 44px 44px,
-        rgba(0,110,100,.032);
-      box-shadow:
-        inset 4px 0 0 rgba(0,110,100,.16),
-        inset 0 -1px 0 rgba(0,110,100,.10),
-        inset 0 0 0 1px rgba(0,110,100,.06);
-    }
-    /* help → neutro levemente mais escuro, espírito de manual funcional */
-    .slice[data-kind="help"] .sliceRow::before{
-      background:
-        linear-gradient(to right, rgba(60,60,60,.065) 1px, transparent 1px) 0 0 / 44px 44px,
-        linear-gradient(to bottom, rgba(60,60,60,.065) 1px, transparent 1px) 0 0 / 44px 44px,
-        rgba(22,22,22,.048);
-      box-shadow:
-        inset 4px 0 0 rgba(60,60,60,.14),
-        inset 0 -1px 0 rgba(0,0,0,.10),
-        inset 0 0 0 1px rgba(0,0,0,.07);
-    }
-    /* unknown → cinza base (padrão visual existente) */
+    /* Sem variações de cor por categoria no fundo — chrome neutro para todos */
 
     /* o conteúdo do corte agora é full-width (sem grid, sem padding lateral extra) */
     .sliceCard{
@@ -1088,22 +1036,19 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
     }
 
     .badge{
-      font-size: 11px;
-      letter-spacing: .10em;
+      font-size: 9px;
+      letter-spacing: .07em;
       text-transform: uppercase;
-      color: rgba(0,0,0,.60);
-      display:flex;
-      gap: 8px;
+      color: rgba(0,0,0,.32);
+      display: flex;
+      gap: 5px;
       align-items: baseline;
     }
     .badge strong{
-      color: var(--slice-accent, var(--accent));
-      font-weight: 800;
-      letter-spacing: .10em;
-      border-left: 3px solid var(--slice-accent, var(--accent));
-      padding-left: 10px;
+      /* número do corte — oculto visualmente, mantido no DOM para o JS da tag */
+      display: none;
     }
-    /* Accent de borda por categoria */
+    /* Accent — mantido só para sliceTag (tag minimizada), não no body */
     .slice[data-kind="define"]  { --slice-accent: #b8882a; }
     .slice[data-kind="vocab"]   { --slice-accent: #3c5ab4; }
     .slice[data-kind="consult"] { --slice-accent: #006e64; }
@@ -1111,12 +1056,17 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
     .slice[data-kind="unknown"] { --slice-accent: var(--accent); }
 
     .sliceMeta{
-      font-size: 11px;
-      color: rgba(0,0,0,.45);
+      font-size: 9px;
+      color: rgba(0,0,0,.28);
       white-space: normal;
       overflow-wrap: anywhere;
       text-align: right;
       line-height: 1.15;
+      opacity: 0;
+      transition: opacity .18s;
+    }
+    .sliceRow:hover .sliceMeta{
+      opacity: 1;
     }
 
     .sliceBody{
@@ -1710,8 +1660,8 @@ body[data-theme="chumbo"] .selectionToolbarBtn:hover {
   background: rgba(255,255,255,.10);
 }
 
-body[data-theme="chumbo"] .badge { color: rgba(232,228,220,.52); }
-body[data-theme="chumbo"] .sliceMeta { color: rgba(232,228,220,.40); }
+body[data-theme="chumbo"] .badge { color: rgba(232,228,220,.30); }
+body[data-theme="chumbo"] .sliceMeta { color: rgba(232,228,220,.30); }
 body[data-theme="chumbo"] .panelHeader { color: rgba(232,228,220,.44); }
 body[data-theme="chumbo"] .panelBody { color: rgba(232,228,220,.82); }
 /* h2 — blueprint header no dark: usa o accent vivo definido acima */
@@ -1763,46 +1713,12 @@ body[data-theme="chumbo"] .slice[data-kind="unknown"] { --slice-accent: #c4542a;
 
 /* Sombra do corte no dark mode — os valores claros do tema paper ficam invisíveis */
 body[data-theme="chumbo"] .sliceRow::before {
-  background:
-    linear-gradient(to right, rgba(255,255,255,.025) 1px, transparent 1px) 0 0 / 44px 44px,
-    linear-gradient(to bottom, rgba(255,255,255,.025) 1px, transparent 1px) 0 0 / 44px 44px,
-    rgba(255,255,255,.018);
+  background: rgba(255,255,255,.022);
   box-shadow:
-    inset 0 -1px 0 rgba(255,255,255,.06),   /* borda inferior mínima */
-    inset 0 0 0 1px rgba(255,255,255,.05);  /* contorno geral */
+    inset 0 1px 0 rgba(255,255,255,.07),
+    inset 0 -1px 0 rgba(255,255,255,.05);
 }
-
-/* Fundos por categoria — dark mode */
-body[data-theme="chumbo"] .slice[data-kind="define"] .sliceRow::before{
-  background:
-    linear-gradient(to right, rgba(210,165,80,.06) 1px, transparent 1px) 0 0 / 44px 44px,
-    linear-gradient(to bottom, rgba(210,165,80,.06) 1px, transparent 1px) 0 0 / 44px 44px,
-    rgba(210,165,80,.035);
-  box-shadow:
-    inset 4px 0 0 rgba(210,165,80,.22),
-    inset 0 -1px 0 rgba(210,165,80,.10),
-    inset 0 0 0 1px rgba(210,165,80,.07);
-}
-body[data-theme="chumbo"] .slice[data-kind="vocab"] .sliceRow::before{
-  background:
-    linear-gradient(to right, rgba(100,130,220,.06) 1px, transparent 1px) 0 0 / 44px 44px,
-    linear-gradient(to bottom, rgba(100,130,220,.06) 1px, transparent 1px) 0 0 / 44px 44px,
-    rgba(100,130,220,.030);
-  box-shadow:
-    inset 4px 0 0 rgba(100,130,220,.20),
-    inset 0 -1px 0 rgba(100,130,220,.08),
-    inset 0 0 0 1px rgba(100,130,220,.06);
-}
-body[data-theme="chumbo"] .slice[data-kind="consult"] .sliceRow::before{
-  background:
-    linear-gradient(to right, rgba(0,165,150,.06) 1px, transparent 1px) 0 0 / 44px 44px,
-    linear-gradient(to bottom, rgba(0,165,150,.06) 1px, transparent 1px) 0 0 / 44px 44px,
-    rgba(0,165,150,.025);
-  box-shadow:
-    inset 4px 0 0 rgba(0,165,150,.18),
-    inset 0 -1px 0 rgba(0,165,150,.08),
-    inset 0 0 0 1px rgba(0,165,150,.05);
-}
+/* Sem variações de cor por categoria no dark mode */
 
 body[data-theme="chumbo"] .sliceTag {
   background: rgba(26,25,24,.9);
