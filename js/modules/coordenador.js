@@ -1,7 +1,7 @@
 /**
  * coordenador.js — Coordenador Central (7 agentes linguísticos)
  *
- * Ativado por --c. Abre overlay full-screen sobre o editor, analisa o
+ * Ativado por ..c. Abre overlay full-screen sobre o editor, analisa o
  * texto com os 7 agentes e permite aplicar correções. Ao fechar, reinjeta
  * o texto corrigido como texto plano na página ativa.
  *

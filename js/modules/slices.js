@@ -1632,11 +1632,11 @@ function buildHelpSlice(slice) {
       <div class="hGrid">
         <section class="vSection">
           <div class="vSectionTitle">Escrever</div>
-          ${cmd("palavra--d", "verbete da palavra anterior")}
-          ${cmd("--w", "colorir classes de palavras")}
-          ${cmd("--c", "coordenador linguístico")}
-          ${cmd("--g", "verificação gramatical")}
-          ${cmd("--m", "modos de escrita")}
+          ${cmd("palavra..d", "verbete da palavra anterior")}
+          ${cmd("..w", "colorir classes de palavras")}
+          ${cmd("..c", "coordenador linguístico")}
+          ${cmd("..g", "verificação gramatical")}
+          ${cmd("..m", "modos de escrita")}
         </section>
         <section class="vSection">
           <div class="vSectionTitle">Teclado</div>
@@ -1644,18 +1644,18 @@ function buildHelpSlice(slice) {
         </section>
         <section class="vSection">
           <div class="vSectionTitle">Arquivos</div>
-          ${cmd("--s", "salvar · exportar .skv")}
-          ${cmd("--a", "mesa de projetos")}
-          ${cmd("--i", "importar .skv")}
-          ${cmd("--v", "verificação + estatísticas")}
+          ${cmd("..s", "salvar · exportar .skv")}
+          ${cmd("..a", "mesa de projetos")}
+          ${cmd("..i", "importar .skv")}
+          ${cmd("..v", "verificação + estatísticas")}
         </section>
         <section class="vSection">
           <div class="vSectionTitle">Ferramentas</div>
-          ${cmd("--p", "criar post-it")}
-          ${cmd("--n", "notas laterais")}
-          ${cmd("--r", "modo leitura")}
-          ${cmd("--f", "pomodoro · foco")}
-          ${cmd("--t", "alternar tema (paper / chumbo)")}
+          ${cmd("..p", "criar post-it")}
+          ${cmd("..n", "notas laterais")}
+          ${cmd("..r", "modo leitura")}
+          ${cmd("..f", "pomodoro · foco")}
+          ${cmd("..t", "alternar tema (paper / chumbo)")}
         </section>
       </div>
       <section class="vSection vSection--tip">
@@ -1860,7 +1860,7 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
         <div class="writerPersonaList" role="list">
           ${items.map((id) => `<button type="button" class="writerPersonaItem" data-persona="${escapeHtml(id)}">${escapeHtml(id)}</button>`).join("")}
         </div>
-        <p>Atalho direto: <code>conto --w</code>, <code>poesia --w</code>...</p>
+        <p>Atalho direto: <code>conto ..w</code>, <code>poesia ..w</code>...</p>
       `;
       bodyEl.querySelectorAll(".writerPersonaItem").forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -2133,7 +2133,7 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
               c("verb","VERB") + dot + c("subst","SUBST") + dot + c("adj","ADJ") + dot + c("adv","ADV") + dot + c("pron","PRON") + br +
               c("art","ART")  + dot + c("prep","PREP")  + dot + c("conj","CONJ") + dot + c("num","NUM")  + dot + c("intj","INTJ") +
             `</p>` +
-            `<p style="opacity:.6;margin-top:.6em">Passe o mouse sobre uma palavra para ver a classe.<br>Digite --w novamente para desativar.</p>`;
+            `<p style="opacity:.6;margin-top:.6em">Passe o mouse sobre uma palavra para ver a classe.<br>Digite ..w novamente para desativar.</p>`;
         }
       }
 
@@ -2225,7 +2225,7 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
       meta: token ? `persona: ${token} • carregando` : "persona: informe uma persona",
       body: token
         ? "Lendo templates do legado..."
-        : "Use: `conto --persona` (ou romance/roteiro/ensaio/universitario/enem/poesia).",
+        : "Use: `conto ..persona` (ou romance/roteiro/ensaio/universitario/enem/poesia).",
       focusScroll: "heavy",
     });
 
@@ -2296,7 +2296,7 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
       title: "TEMPLATE",
       kindKey: "consult",
       meta: key ? `template: ${key} • carregando` : "template: informe o id/persona",
-      body: key ? "Lendo template..." : "Use: `conto --template` ou `romance-capitulo --template`.",
+      body: key ? "Lendo template..." : "Use: `conto ..template` ou `romance-capitulo ..template`.",
       focusScroll: "heavy",
     });
     if (!key) return loading;
@@ -2460,7 +2460,7 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
       title: "RESET",
       kindKey: "unknown",
       meta: "conteúdo local limpo",
-      body: "Persistência local deste editor foi limpa.\n\n(Comando legado `--reset` aplicado no modo seguro v2.)",
+      body: "Persistência local deste editor foi limpa.\n\n(Comando `..reset` aplicado no modo seguro v2.)",
     });
   }
 
@@ -2493,7 +2493,7 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
       title: "KEYBOARD",
       kindKey: "help",
       meta: enabled ? "hardware keyboard: on" : "hardware keyboard: off",
-      body: "Toggle de compatibilidade legado (`--kb`) aplicado.",
+      body: "Toggle de compatibilidade (`..kb`) aplicado.",
     });
   }
 
@@ -2589,9 +2589,9 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
 
     const lines = [];
     if (!term) {
-      lines.push("Consulta local: digite uma palavra e use `--c`.");
+      lines.push("Consulta local: digite uma palavra e use `..c`.");
       lines.push("");
-      lines.push("Exemplo: `doravante --c`");
+      lines.push("Exemplo: `doravante ..c`");
     } else {
       lines.push(`Termo: "${term}"`);
       lines.push(`Vocabulário: ${vocabHits.length} hit(s)`);
@@ -2728,7 +2728,7 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
         if (!all.length) {
           lines.push(`Nenhuma regra encontrada para **${word}** no corpus.`);
           lines.push("");
-          lines.push("Tente usar **--d** para buscar a definição no verbete.");
+          lines.push("Tente usar **..d** para buscar a definição no verbete.");
         } else {
           lines.push(`Ocorrências para "${word}" no corpus:`);
           lines.push("");
@@ -2766,7 +2766,7 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
         kindKey: "help",
         meta: status,
         body: nowActive
-          ? "Verificador ativado.\n\nDesvios comuns da norma padrão aparecem sublinhados em ondas.\nPasse o mouse para ver a explicação.\n\nDigite **--g** novamente para desativar."
+          ? "Verificador ativado.\n\nDesvios comuns da norma padrão aparecem sublinhados em ondas.\nPasse o mouse para ver a explicação.\n\nDigite **..g** novamente para desativar."
           : "Verificador desativado.",
       });
     }

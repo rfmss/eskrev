@@ -26,7 +26,7 @@ export function addPage(ctx, afterContentEl, focus = false) {
   if (pageNum === 1) {
     content.setAttribute(
       "data-placeholder",
-      "--h ajuda  ·  --n notas  ·  --a arquivos",
+      "..h ajuda  ·  ..n notas  ·  ..a arquivos",
     );
   }
 

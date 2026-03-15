@@ -991,7 +991,7 @@ O inspetor usa um léxico de referência com mais de 100 mil palavras acentuadas
 **Proparoxítonas** (antepenúltima): todas se acentuam:
 ✓  lâmpada, médico, óculos, pérola
 
-Se houver dúvida específica sobre esta palavra, abra o dicionário integrado com --d.`,
+Se houver dúvida específica sobre esta palavra, abra o dicionário integrado com ..d.`,
   },
 
   // ═══════════════════════════════════════════════════════════════════════════

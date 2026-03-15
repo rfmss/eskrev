@@ -217,11 +217,11 @@ function isAmbiguousPrefix(ctx, cmd) {
 
 export function maybeTriggerCommand(ctx, el, { force = false } = {}) {
   const textBefore = getTextBeforeCaretWithin(el);
-  const m = textBefore.match(/--([a-z][a-z0-9_-]{0,24})\s*$/i);
+  const m = textBefore.match(/\.\.([a-z][a-z0-9_-]{0,24})\s*$/i);
   if (!m) return;
 
   const cmd = (m[1] || "").toLowerCase();
-  const token = `--${cmd}`;
+  const token = `..${cmd}`;
   const tokenLen = m[0].length;
   const word = getLastWordBeforeToken(textBefore, token);
 
@@ -250,7 +250,7 @@ export function maybeTriggerCommand(ctx, el, { force = false } = {}) {
     if (sliceNode.classList?.contains("slice")) {
       ensureEditableAnchorAfterNode(sliceNode);
     }
-    ctx.setStatus(`slice: --${cmd}`);
+    ctx.setStatus(`slice: ..${cmd}`);
   }
 }
 
