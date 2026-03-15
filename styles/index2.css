@@ -1585,10 +1585,30 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       .slice{ --slice-gutter-w: 14px; }
       .sliceTag{
         font-size: 9px;
+        height: 40px;    /* maior alvo de toque — rotacionado 90°, vira espessura visual */
+        min-width: 120px;
+        padding: 4px 12px 4px 18px;
       }
       .flowMarker{
         font-size: 9px;
         min-width: 74px;
+      }
+    }
+
+    /* ── Touch-only overrides ───────────────────────────────────── */
+    @media (hover: none) and (pointer: coarse) {
+      /* Post-it menor e sem perspectiva no mobile */
+      .postit {
+        transform: none;
+        width: 148px;
+      }
+      .postit.isMinimized {
+        height: 26px;
+        grid-template-rows: 26px;
+        min-height: 0;
+      }
+      .postit.isMinimized .postitTitle {
+        font-size: 8px;
       }
     }
 

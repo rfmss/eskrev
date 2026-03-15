@@ -173,6 +173,37 @@ function onPageMouseOver(e) {
   else hideTooltip();
 }
 
+// ── Touch tap: tap num span wc-* mostra tooltip ────────────────────────────
+function onPageTouchEnd(e) {
+  const t = e.changedTouches?.[0];
+  if (!t) return;
+  const el = document.elementFromPoint(t.clientX, t.clientY);
+  const span = el?.closest?.('span[class^="wc-"]');
+  if (span) {
+    e.preventDefault(); // não dispara mousedown/click fantasma
+    showTooltip(span);
+  } else {
+    hideTooltip(true);
+  }
+}
+
+// ── Cursor via teclado (espaço drag, setas): selectionchange → tooltip ─────
+let _selChangeTimer = null;
+function onSelectionChange() {
+  clearTimeout(_selChangeTimer);
+  _selChangeTimer = setTimeout(() => {
+    const sel = window.getSelection();
+    if (!sel?.rangeCount) return;
+    const range = sel.getRangeAt(0);
+    if (!range.collapsed) { hideTooltip(true); return; }
+    const node = range.startContainer;
+    const span = (node.nodeType === Node.TEXT_NODE ? node.parentElement : node)
+      ?.closest?.('span[class^="wc-"]');
+    if (span) showTooltip(span);
+    // não esconde se não achar — cursor pode estar entre palavras
+  }, 200);
+}
+
 // ── Lexicon ────────────────────────────────────────────────────────────────
 async function loadFullLexicon() {
   await ptPosLexicon.loadCore();
@@ -198,6 +229,7 @@ export async function toggleWordClass(ctx) {
 
     ctx.state._wcListeners = new Map();
     ctx.state._wcHoverListeners = new Map();
+    ctx.state._wcTouchListeners = new Map();
     ctx.state._wcTimers = new Map();
 
     for (const pc of (ctx.state.pages || [])) {
@@ -214,15 +246,25 @@ export async function toggleWordClass(ctx) {
       pc.addEventListener("input", inputFn);
       ctx.state._wcListeners.set(pc, inputFn);
 
-      // hover — esconde ao selecionar
+      // hover (desktop) — esconde ao selecionar
       pc.addEventListener("mouseover", onPageMouseOver);
       pc.addEventListener("mouseleave", () => hideTooltip());
       pc.addEventListener("mousedown", () => hideTooltip(true));
       ctx.state._wcHoverListeners.set(pc, onPageMouseOver);
+
+      // touch tap (mobile)
+      pc.addEventListener("touchend", onPageTouchEnd, { passive: false });
+      ctx.state._wcTouchListeners.set(pc, onPageTouchEnd);
     }
+
+    // selectionchange — cursor via teclado/spacebar drag
+    document.addEventListener("selectionchange", onSelectionChange);
+
     ctx.setStatus?.("classes: ativo");
   } else {
     hideTooltip(true);
+    clearTimeout(_selChangeTimer);
+    document.removeEventListener("selectionchange", onSelectionChange);
     for (const pc of (ctx.state.pages || [])) {
       // cancela debounce pendente antes de strip — evita re-anotação após strip
       clearTimeout(ctx.state._wcTimers?.get(pc));
@@ -233,12 +275,15 @@ export async function toggleWordClass(ctx) {
         pc.removeEventListener("mouseover", hoverFn);
         pc.removeEventListener("mouseleave", () => hideTooltip());
       }
+      const touchFn = ctx.state._wcTouchListeners?.get(pc);
+      if (touchFn) pc.removeEventListener("touchend", touchFn);
       const saved = saveCursorWC(pc);
       stripAnnotations(pc);
       if (saved) restoreCursorWC(saved);
     }
     ctx.state._wcListeners = new Map();
     ctx.state._wcHoverListeners = new Map();
+    ctx.state._wcTouchListeners = new Map();
     ctx.state._wcTimers = new Map();
     ctx.setStatus?.("classes: desativado");
   }
@@ -248,5 +293,6 @@ export function initWordClass(ctx) {
   ctx.state.wcActive = false;
   ctx.state._wcListeners = new Map();
   ctx.state._wcHoverListeners = new Map();
+  ctx.state._wcTouchListeners = new Map();
   ctx.state._wcTimers = new Map();
 }

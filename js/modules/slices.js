@@ -906,9 +906,9 @@ function openPomodoro() {
         font-variant-numeric: tabular-nums;
       }
       .pomo-work .pomo-work-clock {
-        font-size: 11px; letter-spacing: .06em; font-variant-numeric: tabular-nums;
+        font-size: 13px; letter-spacing: .06em; font-variant-numeric: tabular-nums;
         color: var(--iso-ink-3, #aaa);
-        opacity: .18;
+        opacity: .38;
       }
       .pomo-sub { font-size: 11px; opacity: .45; line-height: 1.6; }
       .pomo-btns { display: flex; gap: 12px; }

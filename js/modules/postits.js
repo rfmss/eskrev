@@ -92,6 +92,10 @@ function getVerticalBounds(ctx, noteHeight) {
   return { minY, maxY };
 }
 
+function isMobileViewport() {
+  return window.innerWidth < 600;
+}
+
 function snapPostitOutsidePage(ctx, note) {
   const viewport = getViewport(ctx);
   const pageRect = getPageRect(ctx);
@@ -99,6 +103,23 @@ function snapPostitOutsidePage(ctx, note) {
 
   const vr = viewport.getBoundingClientRect();
   const nr = note.getBoundingClientRect();
+
+  // No mobile, apenas garante que está dentro da viewport — não tenta colocar fora da página
+  if (isMobileViewport()) {
+    const nw = note.offsetWidth || 148;
+    const nh = note.offsetHeight || 96;
+    const currentLeft = Number.parseFloat(note.style.left || "0") || 0;
+    const currentTop = Number.parseFloat(note.style.top || "0") || 0;
+    const x = clamp(currentLeft, 0, Math.max(0, vr.width - nw));
+    const y = clamp(currentTop, 0, Math.max(0, vr.height - nh));
+    if (x !== currentLeft || y !== currentTop) {
+      note.classList.add("isSnapping");
+      note.style.left = `${Math.round(x)}px`;
+      note.style.top = `${Math.round(y)}px`;
+      window.setTimeout(() => note.classList.remove("isSnapping"), 280);
+    }
+    return;
+  }
 
   // If there is no overlap with the white page, keep current placement.
   const overlapsPage = !(
@@ -330,8 +351,15 @@ export function createPostit(ctx, text) {
   const vr = viewport.getBoundingClientRect();
   const nw = note.offsetWidth || 164;
   const nh = note.offsetHeight || 96;
-  const defaultX = clamp((pageRect.right - vr.left) + 18, 0, Math.max(0, vr.width - nw));
-  const defaultY = clamp((pageRect.top - vr.top) + 44 + ((postitSeq % 4) * 46), 0, Math.max(0, vr.height - nh));
+  let defaultX, defaultY;
+  if (isMobileViewport()) {
+    // No mobile: canto superior direito da viewport, cascateando para baixo
+    defaultX = clamp(vr.width - nw - 8, 0, Math.max(0, vr.width - nw));
+    defaultY = clamp(44 + ((postitSeq % 4) * 52), 0, Math.max(0, vr.height - nh));
+  } else {
+    defaultX = clamp((pageRect.right - vr.left) + 18, 0, Math.max(0, vr.width - nw));
+    defaultY = clamp((pageRect.top - vr.top) + 44 + ((postitSeq % 4) * 46), 0, Math.max(0, vr.height - nh));
+  }
   note.style.left = `${Math.round(defaultX)}px`;
   note.style.top = `${Math.round(defaultY)}px`;
 
