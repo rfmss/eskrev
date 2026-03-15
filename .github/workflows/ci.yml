@@ -1,0 +1,220 @@
+name: eskrev CI
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # ── Lint & quality checks ──────────────────────────────────────────────────
+  quality:
+    name: Quality checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: "pip"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Run copy inventory check
+        run: python tests/check_copy_inventory.py
+
+      - name: Run lang schema check
+        run: python tests/check_lang_schema.py
+
+      - name: Run lang duplicates check
+        run: python tests/check_lang_duplicates.py
+
+      - name: Run lang codes check
+        run: python tests/check_lang_codes.py
+
+      - name: Run DOM wiring check
+        run: python tests/check_dom_wiring.py
+
+      - name: Run UIX budget check
+        run: python tests/check_uix_budget.py
+
+  # ── Bundle size check ──────────────────────────────────────────────────────
+  bundle:
+    name: Bundle check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build bundle
+        run: npm run bundle:index2:min
+
+      - name: Check bundle size (max 500KB)
+        run: |
+          BUNDLE_SIZE=$(stat -c%s js/main.bundle.js)
+          MAX_SIZE=$((500 * 1024))
+          echo "Bundle size: ${BUNDLE_SIZE} bytes (max: ${MAX_SIZE})"
+          if [ "$BUNDLE_SIZE" -gt "$MAX_SIZE" ]; then
+            echo "❌ Bundle too large: ${BUNDLE_SIZE} bytes > ${MAX_SIZE} bytes"
+            exit 1
+          fi
+          echo "✅ Bundle size OK: ${BUNDLE_SIZE} bytes"
+
+  # ── HTML validation ────────────────────────────────────────────────────────
+  html:
+    name: HTML structure check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check manifest link in index.html
+        run: |
+          if grep -q 'rel="manifest"' index.html; then
+            echo "✅ manifest link found in index.html"
+          else
+            echo "❌ Missing manifest link in index.html"
+            exit 1
+          fi
+
+      - name: Check service worker registration in index.html
+        run: |
+          if grep -q 'serviceWorker' index.html; then
+            echo "✅ Service worker registration found"
+          else
+            echo "❌ Missing service worker registration in index.html"
+            exit 1
+          fi
+
+      - name: Check theme-color meta in index.html
+        run: |
+          if grep -q 'theme-color' index.html; then
+            echo "✅ theme-color meta found"
+          else
+            echo "❌ Missing theme-color meta in index.html"
+            exit 1
+          fi
+
+      - name: Check Authoria title in verify.html
+        run: |
+          if grep -q 'Authoria' verify.html; then
+            echo "✅ Authoria branding found in verify.html"
+          else
+            echo "❌ verify.html missing Authoria branding"
+            exit 1
+          fi
+
+      - name: Check offline banner in index.html
+        run: |
+          if grep -q 'offlineBanner' index.html; then
+            echo "✅ Offline banner found"
+          else
+            echo "❌ Missing offline banner in index.html"
+            exit 1
+          fi
+
+      - name: Check manifest link in verify.html (Authoria)
+        run: |
+          if grep -q 'rel="manifest"' verify.html; then
+            echo "✅ manifest link found in verify.html"
+          else
+            echo "❌ Missing manifest link in verify.html (Authoria)"
+            exit 1
+          fi
+
+      - name: Check manifest link in totbooks.html
+        run: |
+          if grep -q 'rel="manifest"' totbooks.html; then
+            echo "✅ manifest link found in totbooks.html"
+          else
+            echo "❌ Missing manifest link in totbooks.html"
+            exit 1
+          fi
+
+      - name: Check crypto_manager.js exists and exports key functions
+        run: |
+          if [ -f "src/js/modules/crypto_manager.js" ]; then
+            echo "✅ crypto_manager.js found"
+          else
+            echo "❌ crypto_manager.js not found"
+            exit 1
+          fi
+          for fn in generateAuthorKey signContent verifySignature exportPublicCert hasKey; do
+            if grep -q "export async function ${fn}\|export function ${fn}" src/js/modules/crypto_manager.js; then
+              echo "✅ ${fn} exported"
+            else
+              echo "❌ ${fn} not exported in crypto_manager.js"
+              exit 1
+            fi
+          done
+
+      - name: Check crypto_manager.js cached in sw.js
+        run: |
+          if grep -q 'crypto_manager.js' sw.js; then
+            echo "✅ crypto_manager.js cached in sw.js"
+          else
+            echo "❌ crypto_manager.js not in sw.js cache list"
+            exit 1
+          fi
+
+      - name: Check fullm.html exists and has manifest + SW
+        run: |
+          if [ ! -f "fullm.html" ]; then
+            echo "❌ fullm.html not found"
+            exit 1
+          fi
+          if grep -q 'rel="manifest"' fullm.html; then
+            echo "✅ manifest link found in fullm.html"
+          else
+            echo "❌ Missing manifest link in fullm.html"
+            exit 1
+          fi
+          if grep -q 'mode.*toggle\|modeToggle' fullm.html; then
+            echo "✅ mode toggle found in fullm.html"
+          else
+            echo "❌ Missing mode toggle in fullm.html"
+            exit 1
+          fi
+
+      - name: Check onep.html exists and has mode toggle
+        run: |
+          if [ ! -f "onep.html" ]; then
+            echo "❌ onep.html not found"
+            exit 1
+          fi
+          if grep -q 'modeToggle' onep.html; then
+            echo "✅ mode toggle found in onep.html"
+          else
+            echo "❌ Missing mode toggle in onep.html"
+            exit 1
+          fi
+
+      - name: Check fullm.html and onep.html cached in sw.js
+        run: |
+          if grep -q 'fullm.html' sw.js; then
+            echo "✅ fullm.html cached in sw.js"
+          else
+            echo "❌ fullm.html not in sw.js cache list"
+            exit 1
+          fi
+          if grep -q 'onep.html' sw.js; then
+            echo "✅ onep.html cached in sw.js"
+          else
+            echo "❌ onep.html not in sw.js cache list"
+            exit 1
+          fi
