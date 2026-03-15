@@ -794,10 +794,15 @@ async function verifySkv(parsed) {
   const storedHash = parsed?.proof?.content_hash || parsed?.HEADER?.HASH || "";
   if (!storedHash) return { status: "warn", msg: "Arquivo sem proof.content_hash — não foi exportado com verificação ativa." };
 
-  // Extrai o texto: pode estar em projetos (v2) ou no fullm legado
+  // Extrai o texto: deve ser idêntico ao que foi usado no sha256Hex() em exportSkv().
+  // Export faz: pages.map(getPageText).join("") → saveContent(allText) → active.content = allText
+  // Logo: text = active project.content (sem join com \n e sem trim — ambos mudam o hash).
   let text = "";
   if (Array.isArray(parsed.projects)) {
-    text = parsed.projects.map(p => p.content || "").join("\n").trim();
+    const activeProject =
+      parsed.projects.find(p => p.id === parsed.activeId) ||
+      parsed.projects[0];
+    text = activeProject?.content || "";
   } else if (parsed.content?.text) {
     text = parsed.content.text;
   } else if (parsed.MASTER_TEXT) {
