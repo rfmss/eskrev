@@ -8,6 +8,7 @@ import { toggleWordClass } from "./wordclass.js";
 import { lookupVerbete } from "./verbete.js";
 import { corpus } from "../../src/js/modules/corpus.js";
 import { openCoordenador } from "./coordenador.js";
+import { exportSkv } from "./mesa.js";
 
 // ── Countdown toast ────────────────────────────────────────────────────────
 // Para comandos que mudam o estado visual da tela: exibe "label  3 · 2 · 1"
@@ -1991,13 +1992,8 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
     return slice;
   }
   if (c === "s" || c === "exportar") {
-    return legacyModalSlice("export", "export") || openLocalSlice({
-      badge: "02",
-      title: "EXPORTAR",
-      kindKey: "consult",
-      meta: "exportação",
-      body: "Exportação está indisponível no legado agora.",
-    });
+    exportSkv().then((filename) => ctx.setStatus?.(`salvo: ${filename}`));
+    return null; // sem slice — Ctrl+S behavior
   }
   if (c === "n" || c === "notas") {
     const sidebar = document.getElementById("notesSidebar");
