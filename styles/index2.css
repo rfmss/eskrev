@@ -23,6 +23,12 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       --ink: rgba(0,0,0,.86);
       --muted: rgba(0,0,0,.48);
 
+      /* aliases ISO — usados por slices.js, coordenador e outros módulos JS */
+      --iso-paper: #f7f5f0;
+      --iso-ink-1: #111110;
+      --iso-accent: #c4542a;
+      --iso-accent-sys: #2f5bff;
+
       --accent: #c4542a;
 
       /* single border (the “green check” border in your ref) */
@@ -87,6 +93,8 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       --ink: rgba(232,228,220,.92);
       --muted: rgba(232,228,220,.48);
       --accent: #c4542a;
+      --iso-paper: #111110;
+      --iso-ink-1: rgba(232,228,220,.92);
       --page-bg: rgba(26,25,24,.96);
       --page-border: rgba(255,255,255,.08);
       --grid-1: rgba(255,255,255,.04);
@@ -3285,8 +3293,8 @@ body[data-theme="chumbo"] .coord-overlay {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  padding: 9px 6px;
+  gap: 2px;
+  padding: 6px 10px;
   background: var(--co-surface);
   border: 1px solid var(--co-border);
   border-left: 2px solid transparent;

@@ -1,0 +1,582 @@
+{
+  "version": "1.0",
+  "area": "morphology",
+  "topic": "flexion_verbal",
+  "description": "Conjugação verbal completa do português brasileiro: paradigmas regulares das três conjugações, todos os tempos e modos, formas nominais, e verbos irregulares fundamentais.",
+  "sources": [
+    "Rocha Lima — Gramática Normativa da Língua Portuguesa (49ª ed.)",
+    "Cunha & Cintra — Nova Gramática do Português Contemporâneo (7ª ed.)",
+    "Bechara — Moderna Gramática Portuguesa (37ª ed.)"
+  ],
+  "person_labels": ["1sg", "2sg", "3sg", "1pl", "2pl", "3pl"],
+  "person_pronouns": ["eu", "tu", "ele/ela", "nós", "vós", "eles/elas"],
+  "entries": [
+    {
+      "id": "ar",
+      "label": "Primeira conjugação — verbos em -AR",
+      "model": "amar",
+      "indicativo": {
+        "presente":          ["amo",    "amas",    "ama",    "amamos",   "amais",    "amam"],
+        "pret_imperfeito":   ["amava",  "amavas",  "amava",  "amávamos", "amáveis",  "amavam"],
+        "pret_perfeito":     ["amei",   "amaste",  "amou",   "amamos",   "amastes",  "amaram"],
+        "pret_maisq_perf":   ["amara",  "amaras",  "amara",  "amáramos", "amáreis",  "amaram"],
+        "futuro_presente":   ["amarei", "amarás",  "amará",  "amaremos", "amareis",  "amarão"],
+        "futuro_preterito":  ["amaria", "amarias", "amaria", "amaríamos","amaríeis", "amariam"]
+      },
+      "subjuntivo": {
+        "presente":        ["ame",    "ames",    "ame",    "amemos",   "ameis",    "amem"],
+        "pret_imperfeito": ["amasse", "amasses", "amasse", "amássemos","amásseis", "amassem"],
+        "futuro":          ["amar",   "amares",  "amar",   "amarmos",  "amardes",  "amarem"]
+      },
+      "imperativo": {
+        "afirmativo": [null, "ama",  "ame",  "amemos", "amai",   "amem"],
+        "negativo":   [null, "ames", "ame",  "amemos", "ameis",  "amem"]
+      },
+      "formas_nominais": {
+        "infinitivo_impessoal": "amar",
+        "infinitivo_pessoal":   ["amar", "amares", "amar", "amarmos", "amardes", "amarem"],
+        "gerundio":             "amando",
+        "participio":           "amado"
+      },
+      "tempos_compostos_note": "Formados com auxiliar ter (ou haver na escrita formal) + particípio. Ex: tenho amado (perf. composto do indicativo), havia amado (maisq.-perf. composto), terei amado (futuro composto)."
+    },
+    {
+      "id": "er",
+      "label": "Segunda conjugação — verbos em -ER",
+      "model": "vender",
+      "indicativo": {
+        "presente":          ["vendo",    "vendes",    "vende",    "vendemos",   "vendeis",    "vendem"],
+        "pret_imperfeito":   ["vendia",   "vendias",   "vendia",   "vendíamos",  "vendíeis",   "vendiam"],
+        "pret_perfeito":     ["vendi",    "vendeste",  "vendeu",   "vendemos",   "vendestes",  "venderam"],
+        "pret_maisq_perf":   ["vendera",  "venderas",  "vendera",  "vendêramos", "vendêreis",  "venderam"],
+        "futuro_presente":   ["venderei", "venderás",  "venderá",  "venderemos", "vendereis",  "venderão"],
+        "futuro_preterito":  ["venderia", "venderias", "venderia", "venderíamos","venderíeis", "venderiam"]
+      },
+      "subjuntivo": {
+        "presente":        ["venda",    "vendas",    "venda",    "vendamos",    "vendais",    "vendam"],
+        "pret_imperfeito": ["vendesse", "vendesses", "vendesse", "vendêssemos", "vendêsseis", "vendessem"],
+        "futuro":          ["vender",   "venderes",  "vender",   "vendermos",   "venderdes",  "venderem"]
+      },
+      "imperativo": {
+        "afirmativo": [null, "vende",  "venda",  "vendamos", "vendei",   "vendam"],
+        "negativo":   [null, "vendas", "venda",  "vendamos", "vendais",  "vendam"]
+      },
+      "formas_nominais": {
+        "infinitivo_impessoal": "vender",
+        "infinitivo_pessoal":   ["vender", "venderes", "vender", "vendermos", "venderdes", "venderem"],
+        "gerundio":             "vendendo",
+        "participio":           "vendido"
+      }
+    },
+    {
+      "id": "ir",
+      "label": "Terceira conjugação — verbos em -IR",
+      "model": "partir",
+      "indicativo": {
+        "presente":          ["parto",    "partes",    "parte",    "partimos",   "partis",     "partem"],
+        "pret_imperfeito":   ["partia",   "partias",   "partia",   "partíamos",  "partíeis",   "partiam"],
+        "pret_perfeito":     ["parti",    "partiste",  "partiu",   "partimos",   "partistes",  "partiram"],
+        "pret_maisq_perf":   ["partira",  "partiras",  "partira",  "partíramos", "partíreis",  "partiram"],
+        "futuro_presente":   ["partirei", "partirás",  "partirá",  "partiremos", "partireis",  "partirão"],
+        "futuro_preterito":  ["partiria", "partirias", "partiria", "partiríamos","partiríeis", "partiriam"]
+      },
+      "subjuntivo": {
+        "presente":        ["parta",    "partas",    "parta",    "partamos",    "partais",    "partam"],
+        "pret_imperfeito": ["partisse", "partisses", "partisse", "partíssemos", "partísseis", "partissem"],
+        "futuro":          ["partir",   "partires",  "partir",   "partirmos",   "partirdes",  "partirem"]
+      },
+      "imperativo": {
+        "afirmativo": [null, "parte",   "parta",  "partamos", "parti",    "partam"],
+        "negativo":   [null, "partas",  "parta",  "partamos", "partais",  "partam"]
+      },
+      "formas_nominais": {
+        "infinitivo_impessoal": "partir",
+        "infinitivo_pessoal":   ["partir", "partires", "partir", "partirmos", "partirdes", "partirem"],
+        "gerundio":             "partindo",
+        "participio":           "partido"
+      }
+    }
+  ],
+  "irregulars": [
+    {
+      "id": "ser",
+      "infinitive": "ser",
+      "note": "Verbo de ligação fundamental. Apresenta a maior irregularidade do sistema verbal português.",
+      "indicativo": {
+        "presente":         ["sou",   "és",    "é",    "somos",  "sois",   "são"],
+        "pret_imperfeito":  ["era",   "eras",  "era",  "éramos", "éreis",  "eram"],
+        "pret_perfeito":    ["fui",   "foste", "foi",  "fomos",  "fostes", "foram"],
+        "pret_maisq_perf":  ["fora",  "foras", "fora", "fôramos","fôreis", "foram"],
+        "futuro_presente":  ["serei", "serás", "será", "seremos","sereis", "serão"],
+        "futuro_preterito": ["seria", "serias","seria","seríamos","seríeis","seriam"]
+      },
+      "subjuntivo": {
+        "presente":        ["seja",   "sejas",  "seja",  "sejamos",  "sejais",  "sejam"],
+        "pret_imperfeito": ["fosse",  "fosses", "fosse", "fôssemos", "fôsseis", "fossem"],
+        "futuro":          ["for",    "fores",  "for",   "formos",   "fordes",  "forem"]
+      },
+      "imperativo": {
+        "afirmativo": [null, "sê",    "seja",  "sejamos", "sede",  "sejam"],
+        "negativo":   [null, "sejas", "seja",  "sejamos", "sejais","sejam"]
+      },
+      "formas_nominais": {
+        "infinitivo_impessoal": "ser",
+        "infinitivo_pessoal": ["ser","seres","ser","sermos","serdes","serem"],
+        "gerundio": "sendo",
+        "participio": "sido"
+      }
+    },
+    {
+      "id": "estar",
+      "infinitive": "estar",
+      "note": "Verbo de ligação; indica estado transitório. Irregularidade no presente do indicativo e subjuntivo.",
+      "indicativo": {
+        "presente":         ["estou",   "estás",   "está",   "estamos",   "estais",    "estão"],
+        "pret_imperfeito":  ["estava",  "estavas", "estava", "estávamos", "estáveis",  "estavam"],
+        "pret_perfeito":    ["estive",  "estiveste","esteve","estivemos", "estivestes","estiveram"],
+        "pret_maisq_perf":  ["estivera","estiveras","estivera","estivéramos","estivéreis","estiveram"],
+        "futuro_presente":  ["estarei", "estarás", "estará","estaremos", "estareis",  "estarão"],
+        "futuro_preterito": ["estaria", "estarias","estaria","estaríamos","estaríeis", "estariam"]
+      },
+      "subjuntivo": {
+        "presente":        ["esteja",   "estejas",  "esteja",  "estejamos",  "estejais",  "estejam"],
+        "pret_imperfeito": ["estivesse","estivesses","estivesse","estivéssemos","estivésseis","estivessem"],
+        "futuro":          ["estiver",  "estiveres","estiver", "estivermos", "estiverdes","estiverem"]
+      },
+      "imperativo": {
+        "afirmativo": [null, "está",    "esteja",  "estejamos", "estai",   "estejam"],
+        "negativo":   [null, "estejas", "esteja",  "estejamos", "estejais","estejam"]
+      },
+      "formas_nominais": {
+        "infinitivo_impessoal": "estar",
+        "gerundio": "estando",
+        "participio": "estado"
+      }
+    },
+    {
+      "id": "ter",
+      "infinitive": "ter",
+      "note": "Principal auxiliar dos tempos compostos. Irregularidade notável no presente.",
+      "indicativo": {
+        "presente":         ["tenho",  "tens",    "tem",   "temos",    "tendes",   "têm"],
+        "pret_imperfeito":  ["tinha",  "tinhas",  "tinha", "tínhamos", "tínheis",  "tinham"],
+        "pret_perfeito":    ["tive",   "tiveste", "teve",  "tivemos",  "tivestes", "tiveram"],
+        "pret_maisq_perf":  ["tivera", "tiveras", "tivera","tivéramos","tivéreis", "tiveram"],
+        "futuro_presente":  ["terei",  "terás",   "terá",  "teremos",  "tereis",   "terão"],
+        "futuro_preterito": ["teria",  "terias",  "teria", "teríamos", "teríeis",  "teriam"]
+      },
+      "subjuntivo": {
+        "presente":        ["tenha",   "tenhas",  "tenha",  "tenhamos",  "tenhais",  "tenham"],
+        "pret_imperfeito": ["tivesse", "tivesses","tivesse","tivéssemos","tivésseis","tivessem"],
+        "futuro":          ["tiver",   "tiveres", "tiver",  "tivermos",  "tiverdes", "tiverem"]
+      },
+      "imperativo": {
+        "afirmativo": [null, "tem",    "tenha",  "tenhamos", "tende",   "tenham"],
+        "negativo":   [null, "tenhas", "tenha",  "tenhamos", "tenhais", "tenham"]
+      },
+      "formas_nominais": {
+        "infinitivo_impessoal": "ter",
+        "gerundio": "tendo",
+        "participio": "tido"
+      }
+    },
+    {
+      "id": "haver",
+      "infinitive": "haver",
+      "note": "Auxiliar dos tempos compostos (registro literário/formal). Impessoal no sentido de existência: 'há / havia / houve'. Atenção: 'há' e 'houve' são impessoais — não concordam com o sujeito.",
+      "indicativo": {
+        "presente":         ["hei",    "hás",    "há",    "havemos (ou hemos)","haveis",  "hão"],
+        "pret_imperfeito":  ["havia",  "havias", "havia", "havíamos",           "havíeis", "haviam"],
+        "pret_perfeito":    ["houve",  "houveste","houve","houvemos",           "houvestes","houveram"],
+        "pret_maisq_perf":  ["houvera","houveras","houvera","houvéramos",       "houvéreis","houveram"],
+        "futuro_presente":  ["haverei","haverás","haverá","haveremos",          "havereis", "haverão"],
+        "futuro_preterito": ["haveria","haverias","haveria","haveríamos",       "haveríeis","haveriam"]
+      },
+      "subjuntivo": {
+        "presente":        ["haja",    "hajas",   "haja",   "hajamos",   "hajais",   "hajam"],
+        "pret_imperfeito": ["houvesse","houvesses","houvesse","houvéssemos","houvésseis","houvessem"],
+        "futuro":          ["houver",  "houveres","houver", "houvermos", "houverdes","houverem"]
+      },
+      "formas_nominais": {
+        "infinitivo_impessoal": "haver",
+        "gerundio": "havendo",
+        "participio": "havido"
+      }
+    },
+    {
+      "id": "ir",
+      "infinitive": "ir",
+      "note": "Irregularidade radical em todos os tempos. Presente do indicativo compartilha formas com 'ser' no pretérito.",
+      "indicativo": {
+        "presente":         ["vou",  "vais", "vai",  "vamos",  "ides",   "vão"],
+        "pret_imperfeito":  ["ia",   "ias",  "ia",   "íamos",  "íeis",   "iam"],
+        "pret_perfeito":    ["fui",  "foste","foi",  "fomos",  "fostes", "foram"],
+        "pret_maisq_perf":  ["fora", "foras","fora", "fôramos","fôreis", "foram"],
+        "futuro_presente":  ["irei", "irás", "irá",  "iremos", "ireis",  "irão"],
+        "futuro_preterito": ["iria", "irias","iria", "iríamos","iríeis", "iriam"]
+      },
+      "subjuntivo": {
+        "presente":        ["vá",    "vás",   "vá",   "vamos (ou vamos)","vades","vão"],
+        "pret_imperfeito": ["fosse", "fosses","fosse","fôssemos","fôsseis","fossem"],
+        "futuro":          ["for",   "fores", "for",  "formos", "fordes", "forem"]
+      },
+      "imperativo": {
+        "afirmativo": [null, "vai",  "vá",   "vamos", "ide",   "vão"],
+        "negativo":   [null, "vás",  "vá",   "vamos", "vades", "vão"]
+      },
+      "formas_nominais": {
+        "infinitivo_impessoal": "ir",
+        "gerundio": "indo",
+        "participio": "ido"
+      }
+    },
+    {
+      "id": "vir",
+      "infinitive": "vir",
+      "note": "Irregularidade em quase todos os tempos. Atenção ao acento diferencial: vem (3sg) vs vêm (3pl). Derivados: advir, convir, intervir, provir, sobrevir — mesma conjugação.",
+      "indicativo": {
+        "presente":         ["venho",  "vens",    "vem",   "vimos",    "vindes",   "vêm"],
+        "pret_imperfeito":  ["vinha",  "vinhas",  "vinha", "vínhamos", "vínheis",  "vinham"],
+        "pret_perfeito":    ["vim",    "vieste",  "veio",  "viemos",   "viestes",  "vieram"],
+        "pret_maisq_perf":  ["viera",  "vieras",  "viera", "viéramos", "viéreis",  "vieram"],
+        "futuro_presente":  ["virei",  "virás",   "virá",  "viremos",  "vireis",   "virão"],
+        "futuro_preterito": ["viria",  "virias",  "viria", "viríamos", "viríeis",  "viriam"]
+      },
+      "subjuntivo": {
+        "presente":        ["venha",  "venhas",  "venha",  "venhamos",  "venhais",  "venham"],
+        "pret_imperfeito": ["viesse", "viesses", "viesse", "viéssemos", "viésseis", "viessem"],
+        "futuro":          ["vier",   "vieres",  "vier",   "viermos",   "vierdes",  "vierem"]
+      },
+      "imperativo": {
+        "afirmativo": [null, "vem",    "venha",  "venhamos", "vinde",   "venham"],
+        "negativo":   [null, "venhas", "venha",  "venhamos", "venhais", "venham"]
+      },
+      "formas_nominais": {
+        "infinitivo_impessoal": "vir",
+        "gerundio": "vindo",
+        "participio": "vindo"
+      }
+    },
+    {
+      "id": "fazer",
+      "infinitive": "fazer",
+      "note": "Irregularidade no presente do indicativo (faço) e no pretérito perfeito (fiz/fez). Derivados: desfazer, refazer, satisfazer.",
+      "indicativo": {
+        "presente":         ["faço",   "fazes",   "faz",    "fazemos",  "fazeis",   "fazem"],
+        "pret_imperfeito":  ["fazia",  "fazias",  "fazia",  "fazíamos", "fazíeis",  "faziam"],
+        "pret_perfeito":    ["fiz",    "fizeste", "fez",    "fizemos",  "fizestes", "fizeram"],
+        "pret_maisq_perf":  ["fizera", "fizeras", "fizera", "fizéramos","fizéreis", "fizeram"],
+        "futuro_presente":  ["farei",  "farás",   "fará",   "faremos",  "fareis",   "farão"],
+        "futuro_preterito": ["faria",  "farias",  "faria",  "faríamos", "faríeis",  "fariam"]
+      },
+      "subjuntivo": {
+        "presente":        ["faça",    "faças",   "faça",   "façamos",   "façais",   "façam"],
+        "pret_imperfeito": ["fizesse", "fizesses","fizesse","fizéssemos","fizésseis","fizessem"],
+        "futuro":          ["fizer",   "fizeres", "fizer",  "fizermos",  "fizerdes", "fizerem"]
+      },
+      "imperativo": {
+        "afirmativo": [null, "faz/faze","faça",  "façamos", "fazei",   "façam"],
+        "negativo":   [null, "faças",   "faça",  "façamos", "façais",  "façam"]
+      },
+      "formas_nominais": {
+        "infinitivo_impessoal": "fazer",
+        "gerundio": "fazendo",
+        "participio": "feito"
+      }
+    },
+    {
+      "id": "poder",
+      "infinitive": "poder",
+      "note": "Verbo auxiliar modal. Irregularidade no presente (posso) e alternância ó/o no presente do indicativo.",
+      "indicativo": {
+        "presente":         ["posso",  "podes",   "pode",   "podemos",  "podeis",   "podem"],
+        "pret_imperfeito":  ["podia",  "podias",  "podia",  "podíamos", "podíeis",  "podiam"],
+        "pret_perfeito":    ["pude",   "pudeste", "pôde",   "pudemos",  "pudestes", "puderam"],
+        "pret_maisq_perf":  ["pudera", "puderas", "pudera", "pudéramos","pudéreis", "puderam"],
+        "futuro_presente":  ["poderei","poderás", "poderá", "poderemos","podereis", "poderão"],
+        "futuro_preterito": ["poderia","poderias","poderia","poderíamos","poderíeis","poderiam"]
+      },
+      "subjuntivo": {
+        "presente":        ["possa",   "possas",  "possa",  "possamos",  "possais",  "possam"],
+        "pret_imperfeito": ["pudesse", "pudesses","pudesse","pudéssemos","pudésseis","pudessem"],
+        "futuro":          ["puder",   "puderes", "puder",  "pudermos",  "puderdes", "puderem"]
+      },
+      "formas_nominais": {
+        "infinitivo_impessoal": "poder",
+        "gerundio": "podendo",
+        "participio": "podido"
+      }
+    },
+    {
+      "id": "querer",
+      "infinitive": "querer",
+      "note": "Irregularidade no presente (quero/quer) e pretérito perfeito (quis).",
+      "indicativo": {
+        "presente":         ["quero",   "queres",   "quer",    "queremos",  "quereis",   "querem"],
+        "pret_imperfeito":  ["queria",  "querias",  "queria",  "queríamos", "queríeis",  "queriam"],
+        "pret_perfeito":    ["quis",    "quiseste", "quis",    "quisemos",  "quisestes", "quiseram"],
+        "pret_maisq_perf":  ["quisera", "quiseras", "quisera", "quiséramos","quiséreis", "quiseram"],
+        "futuro_presente":  ["quererei","quererás", "quererá", "quereremos","querereis", "quererão"],
+        "futuro_preterito": ["quereria","quererias","quereria","quereríamos","quereríeis","quereriam"]
+      },
+      "subjuntivo": {
+        "presente":        ["queira",   "queiras",  "queira",  "queiramos",  "queirais",  "queiram"],
+        "pret_imperfeito": ["quisesse", "quisesses","quisesse","quiséssemos","quisésseis","quisessem"],
+        "futuro":          ["quiser",   "quiseres", "quiser",  "quisermos",  "quiserdes", "quiserem"]
+      },
+      "imperativo": {
+        "afirmativo": [null, "quer/quere","queira","queiramos","querei",  "queiram"],
+        "negativo":   [null, "queiras",  "queira","queiramos","queirais","queiram"]
+      },
+      "formas_nominais": {
+        "infinitivo_impessoal": "querer",
+        "gerundio": "querendo",
+        "participio": "querido"
+      }
+    },
+    {
+      "id": "saber",
+      "infinitive": "saber",
+      "note": "Irregularidade no presente (sei) e pretérito perfeito (soube).",
+      "indicativo": {
+        "presente":         ["sei",    "sabes",   "sabe",   "sabemos",  "sabeis",   "sabem"],
+        "pret_imperfeito":  ["sabia",  "sabias",  "sabia",  "sabíamos", "sabíeis",  "sabiam"],
+        "pret_perfeito":    ["soube",  "soubeste","soube",  "soubemos", "soubestes","souberam"],
+        "pret_maisq_perf":  ["soubera","souberas","soubera","soubéramos","soubéreis","souberam"],
+        "futuro_presente":  ["saberei","saberás", "saberá", "saberemos","sabereis", "saberão"],
+        "futuro_preterito": ["saberia","saberias","saberia","saberíamos","saberíeis","saberiam"]
+      },
+      "subjuntivo": {
+        "presente":        ["saiba",   "saibas",  "saiba",  "saibamos",  "saibais",  "saibam"],
+        "pret_imperfeito": ["soubesse","soubesses","soubesse","soubéssemos","soubésseis","soubessem"],
+        "futuro":          ["souber",  "souberes","souber", "soubermos", "souberdes","souberem"]
+      },
+      "imperativo": {
+        "afirmativo": [null, "sabe",   "saiba",  "saibamos", "sabei",   "saibam"],
+        "negativo":   [null, "saibas", "saiba",  "saibamos", "saibais", "saibam"]
+      },
+      "formas_nominais": {
+        "infinitivo_impessoal": "saber",
+        "gerundio": "sabendo",
+        "participio": "sabido"
+      }
+    },
+    {
+      "id": "dar",
+      "infinitive": "dar",
+      "note": "Irregularidade no presente (dou) e em todo o pretérito perfeito e seus derivados. Verbo frequentíssimo.",
+      "indicativo": {
+        "presente":         ["dou",   "dás",    "dá",    "damos",   "dais",    "dão"],
+        "pret_imperfeito":  ["dava",  "davas",  "dava",  "dávamos", "dáveis",  "davam"],
+        "pret_perfeito":    ["dei",   "deste",  "deu",   "demos",   "destes",  "deram"],
+        "pret_maisq_perf":  ["dera",  "deras",  "dera",  "déramos", "déreis",  "deram"],
+        "futuro_presente":  ["darei", "darás",  "dará",  "daremos", "dareis",  "darão"],
+        "futuro_preterito": ["daria", "darias", "daria", "daríamos","daríeis", "dariam"]
+      },
+      "subjuntivo": {
+        "presente":        ["dê",    "dês",    "dê",    "demos",    "deis",    "deem"],
+        "pret_imperfeito": ["desse", "desses", "desse", "déssemos", "désseis", "dessem"],
+        "futuro":          ["der",   "deres",  "der",   "dermos",   "derdes",  "derem"]
+      },
+      "imperativo": {
+        "afirmativo": [null, "dá",   "dê",   "demos", "dai",   "deem"],
+        "negativo":   [null, "dês",  "dê",   "demos", "deis",  "deem"]
+      },
+      "formas_nominais": {
+        "infinitivo_impessoal": "dar",
+        "gerundio": "dando",
+        "participio": "dado"
+      }
+    },
+    {
+      "id": "ver",
+      "infinitive": "ver",
+      "note": "Irregularidade em quase todos os tempos. Derivados: antever, entrever, prever, rever.",
+      "indicativo": {
+        "presente":         ["vejo",  "vês",    "vê",    "vemos",   "vedes",   "veem"],
+        "pret_imperfeito":  ["via",   "vias",   "via",   "víamos",  "víeis",   "viam"],
+        "pret_perfeito":    ["vi",    "viste",  "viu",   "vimos",   "vistes",  "viram"],
+        "pret_maisq_perf":  ["vira",  "viras",  "vira",  "víramos", "víreis",  "viram"],
+        "futuro_presente":  ["verei", "verás",  "verá",  "veremos", "vereis",  "verão"],
+        "futuro_preterito": ["veria", "verias", "veria", "veríamos","veríeis", "veriam"]
+      },
+      "subjuntivo": {
+        "presente":        ["veja",   "vejas",  "veja",  "vejamos",  "vejais",  "vejam"],
+        "pret_imperfeito": ["visse",  "visses", "visse", "víssemos", "vísseis", "vissem"],
+        "futuro":          ["vir",    "vires",  "vir",   "virmos",   "virdes",  "virem"]
+      },
+      "imperativo": {
+        "afirmativo": [null, "vê",    "veja",  "vejamos", "vede",  "vejam"],
+        "negativo":   [null, "vejas", "veja",  "vejamos", "vejais","vejam"]
+      },
+      "formas_nominais": {
+        "infinitivo_impessoal": "ver",
+        "gerundio": "vendo",
+        "participio": "visto"
+      }
+    },
+    {
+      "id": "por",
+      "infinitive": "pôr",
+      "note": "Única forma verbal com acento circunflexo no infinitivo (para distinguir da preposição 'por'). Derivados: compor, dispor, expor, impor, opor, propor, repor, supor, transpor.",
+      "indicativo": {
+        "presente":         ["ponho",  "pões",    "põe",    "pomos",    "pondes",   "põem"],
+        "pret_imperfeito":  ["punha",  "punhas",  "punha",  "púnhamos", "púnheis",  "punham"],
+        "pret_perfeito":    ["pus",    "puseste", "pôs",    "pusemos",  "pusestes", "puseram"],
+        "pret_maisq_perf":  ["pusera", "puseras", "pusera", "puséramos","puséreis", "puseram"],
+        "futuro_presente":  ["porei",  "porás",   "porá",   "poremos",  "poreis",   "porão"],
+        "futuro_preterito": ["poria",  "porias",  "poria",  "poríamos", "poríeis",  "poriam"]
+      },
+      "subjuntivo": {
+        "presente":        ["ponha",   "ponhas",  "ponha",  "ponhamos",  "ponhais",  "ponham"],
+        "pret_imperfeito": ["pusesse", "pusesses","pusesse","puséssemos","pusésseis","pusessem"],
+        "futuro":          ["puser",   "puseres", "puser",  "pusermos",  "puserdes", "puserem"]
+      },
+      "imperativo": {
+        "afirmativo": [null, "põe",    "ponha",  "ponhamos", "ponde",   "ponham"],
+        "negativo":   [null, "ponhas", "ponha",  "ponhamos", "ponhais", "ponham"]
+      },
+      "formas_nominais": {
+        "infinitivo_impessoal": "pôr",
+        "gerundio": "pondo",
+        "participio": "posto"
+      }
+    },
+    {
+      "id": "trazer",
+      "infinitive": "trazer",
+      "note": "Irregularidade no presente (trago), futuro sincopado (trarei) e pretérito (trouxe).",
+      "indicativo": {
+        "presente":         ["trago",   "trazes",   "traz",    "trazemos",  "trazeis",   "trazem"],
+        "pret_imperfeito":  ["trazia",  "trazias",  "trazia",  "trazíamos", "trazíeis",  "traziam"],
+        "pret_perfeito":    ["trouxe",  "trouxeste","trouxe",  "trouxemos", "trouxestes","trouxeram"],
+        "pret_maisq_perf":  ["trouxera","trouxeras","trouxera","trouxéramos","trouxéreis","trouxeram"],
+        "futuro_presente":  ["trarei",  "trarás",   "trará",   "traremos",  "trareis",   "trarão"],
+        "futuro_preterito": ["traria",  "trarias",  "traria",  "traríamos", "traríeis",  "trariam"]
+      },
+      "subjuntivo": {
+        "presente":        ["traga",    "tragas",   "traga",   "tragamos",   "tragais",   "tragam"],
+        "pret_imperfeito": ["trouxesse","trouxesses","trouxesse","trouxéssemos","trouxésseis","trouxessem"],
+        "futuro":          ["trouxer",  "trouxeres","trouxer", "trouxermos", "trouxerdes","trouxerem"]
+      },
+      "formas_nominais": {
+        "infinitivo_impessoal": "trazer",
+        "gerundio": "trazendo",
+        "participio": "trazido"
+      }
+    },
+    {
+      "id": "caber",
+      "infinitive": "caber",
+      "note": "Irregularidade no presente (caibo) e pretérito (coube).",
+      "indicativo": {
+        "presente":        ["caibo",  "cabes",   "cabe",   "cabemos",  "cabeis",   "cabem"],
+        "pret_perfeito":   ["coube",  "coubeste","coube",  "coubemos", "coubestes","couberam"],
+        "futuro_presente": ["caberei","caberás", "caberá", "caberemos","cabereis", "caberão"]
+      },
+      "subjuntivo": {
+        "presente":        ["caiba",   "caibas",  "caiba",  "caibamos",  "caibais",  "caibam"],
+        "pret_imperfeito": ["coubesse","coubesses","coubesse","coubéssemos","coubésseis","coubessem"],
+        "futuro":          ["couber",  "couberes","couber", "coubermos", "couberdes","couberem"]
+      },
+      "formas_nominais": {
+        "infinitivo_impessoal": "caber",
+        "gerundio": "cabendo",
+        "participio": "cabido"
+      }
+    },
+    {
+      "id": "perder",
+      "infinitive": "perder",
+      "note": "Irregularidade apenas no presente do indicativo (perco) e subjuntivo (perca).",
+      "indicativo": {
+        "presente": ["perco", "perdes", "perde", "perdemos", "perdeis", "perdem"]
+      },
+      "subjuntivo": {
+        "presente": ["perca", "percas", "perca", "percamos", "percais", "percam"]
+      },
+      "formas_nominais": {
+        "infinitivo_impessoal": "perder",
+        "gerundio": "perdendo",
+        "participio": "perdido"
+      }
+    },
+    {
+      "id": "ouvir",
+      "infinitive": "ouvir",
+      "note": "Irregularidade no presente (ouço / ouves) e subjuntivo (ouça).",
+      "indicativo": {
+        "presente": ["ouço", "ouves", "ouve", "ouvimos", "ouvis", "ouvem"]
+      },
+      "subjuntivo": {
+        "presente": ["ouça", "ouças", "ouça", "ouçamos", "ouçais", "ouçam"]
+      },
+      "formas_nominais": {
+        "infinitivo_impessoal": "ouvir",
+        "gerundio": "ouvindo",
+        "participio": "ouvido"
+      }
+    },
+    {
+      "id": "subir",
+      "infinitive": "subir",
+      "note": "Alternância vocálica u/o no presente: subo/sobe.",
+      "indicativo": {
+        "presente": ["subo", "sobes", "sobe", "subimos", "subis", "sobem"]
+      },
+      "formas_nominais": {
+        "infinitivo_impessoal": "subir",
+        "gerundio": "subindo",
+        "participio": "subido"
+      }
+    }
+  ],
+  "participios_duplos": {
+    "description": "Verbos com dois particípios: um regular (para tempos compostos com ter/haver) e um irregular (para voz passiva com ser/estar e para adjetivação).",
+    "note": "Com ter e haver → particípio regular. Com ser e estar → particípio irregular (e como adjetivo).",
+    "pairs": [
+      {"infinitive": "aceitar",  "regular": "aceitado",  "irregular": "aceito"},
+      {"infinitive": "acender",  "regular": "acendido",  "irregular": "aceso"},
+      {"infinitive": "despender","regular": "despendido","irregular": "dispendioso (adjetivo derivado)"},
+      {"infinitive": "eleger",   "regular": "elegido",   "irregular": "eleito"},
+      {"infinitive": "entregar", "regular": "entregado", "irregular": "entregue"},
+      {"infinitive": "enxugar",  "regular": "enxugado",  "irregular": "enxuto"},
+      {"infinitive": "envolver", "regular": "envolvido", "irregular": "envolto"},
+      {"infinitive": "escrever", "regular": "escrevido (raro)", "irregular": "escrito"},
+      {"infinitive": "expressar","regular": "expressado","irregular": "expresso"},
+      {"infinitive": "expulsar", "regular": "expulsado", "irregular": "expulso"},
+      {"infinitive": "extinguir","regular": "extinguido","irregular": "extinto"},
+      {"infinitive": "fazer",    "regular": "fazido (arcaico)","irregular": "feito"},
+      {"infinitive": "fixar",    "regular": "fixado",    "irregular": "fixo"},
+      {"infinitive": "fritar",   "regular": "fritado",   "irregular": "frito"},
+      {"infinitive": "ganhar",   "regular": "ganhado",   "irregular": "ganho"},
+      {"infinitive": "gastar",   "regular": "gastado",   "irregular": "gasto"},
+      {"infinitive": "imprimir", "regular": "imprimido", "irregular": "impresso"},
+      {"infinitive": "incluir",  "regular": "incluído",  "irregular": "incluso"},
+      {"infinitive": "isentar",  "regular": "isentado",  "irregular": "isento"},
+      {"infinitive": "limpar",   "regular": "limpado",   "irregular": "limpo"},
+      {"infinitive": "matar",    "regular": "matado",    "irregular": "morto"},
+      {"infinitive": "morrer",   "regular": "morrido",   "irregular": "morto"},
+      {"infinitive": "pagar",    "regular": "pagado",    "irregular": "pago"},
+      {"infinitive": "pegar",    "regular": "pegado",    "irregular": "pego"},
+      {"infinitive": "prender",  "regular": "prendido",  "irregular": "preso"},
+      {"infinitive": "romper",   "regular": "rompido",   "irregular": "roto"},
+      {"infinitive": "salvar",   "regular": "salvado",   "irregular": "salvo"},
+      {"infinitive": "secar",    "regular": "secado",    "irregular": "seco"},
+      {"infinitive": "soltar",   "regular": "soltado",   "irregular": "solto"},
+      {"infinitive": "suspender","regular": "suspendido","irregular": "suspenso"},
+      {"infinitive": "tingir",   "regular": "tingido",   "irregular": "tinto"},
+      {"infinitive": "ver",      "regular": "vido (arcaico)", "irregular": "visto"},
+      {"infinitive": "vender",   "regular": "vendido",   "irregular": "vendido (só regular — 'vindo' vem de 'vir')"},
+      {"infinitive": "vir",      "regular": "vindo",     "irregular": "vindo (mesma forma)"}
+    ]
+  },
+  "tempos_aspectos_note": {
+    "pret_perfeito_simples": "Ação concluída e pontual no passado: 'Escrevi o conto ontem.'",
+    "pret_perfeito_composto": "Ação que se repetiu ou tem relevância presente: 'Tenho escrito muito.' (Atenção: no português europeu este tempo tem valor diferente do brasileiro.)",
+    "pret_imperfeito": "Ação habitual, contínua ou simultânea no passado: 'Escrevia todas as manhãs.' / 'Enquanto lia, chovia.'",
+    "pret_maisq_perf_simples": "Anterioridade em relação a outro fato passado. Na prosa literária, é preferível ao composto: 'Quando chegou, todos já partira.'",
+    "futuro_do_preterito": "Exprime: futuro no passado ('Disse que viria'), condicional ('Viria, se pudesse'), polidez ('Poderia me ajudar?') e hipótese ('Seria ele o autor?').",
+    "subjuntivo_futuro": "Essencial em orações condicionais e temporais na escrita formal: 'Se vier', 'quando for', 'assim que puder'. No coloquial, tende a ser substituído pelo presente do indicativo."
+  }
+}

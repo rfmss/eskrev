@@ -1,1 +1,2786 @@
-{"protegar":{"pos":["VERB"]},"protegando":{"pos":["VERB"]},"protegado":{"pos":["VERB"]},"protegada":{"pos":["VERB"]},"protego":{"pos":["VERB"]},"protegas":{"pos":["VERB"]},"protega":{"pos":["VERB"]},"protegamos":{"pos":["VERB"]},"protegam":{"pos":["VERB"]},"protegei":{"pos":["VERB"]},"protegaste":{"pos":["VERB"]},"protegou":{"pos":["VERB"]},"protegaram":{"pos":["VERB"]},"protegava":{"pos":["VERB"]},"protegavas":{"pos":["VERB"]},"protegavam":{"pos":["VERB"]},"protegavamos":{"pos":["VERB"]},"protegarei":{"pos":["VERB"]},"protegara":{"pos":["VERB"]},"protegaremos":{"pos":["VERB"]},"protegarao":{"pos":["VERB"]},"protege":{"pos":["VERB"]},"proteges":{"pos":["VERB"]},"protegem":{"pos":["VERB"]},"quebrar":{"pos":["VERB"]},"quebrando":{"pos":["VERB"]},"quebrado":{"pos":["VERB"]},"quebrada":{"pos":["VERB"]},"quebro":{"pos":["VERB"]},"quebras":{"pos":["VERB"]},"quebra":{"pos":["VERB"]},"quebramos":{"pos":["VERB"]},"quebram":{"pos":["VERB"]},"quebrei":{"pos":["VERB"]},"quebraste":{"pos":["VERB"]},"quebrou":{"pos":["VERB"]},"quebraram":{"pos":["VERB"]},"quebrava":{"pos":["VERB"]},"quebravas":{"pos":["VERB"]},"quebravam":{"pos":["VERB"]},"quebravamos":{"pos":["VERB"]},"quebrarei":{"pos":["VERB"]},"quebrara":{"pos":["VERB"]},"quebraremos":{"pos":["VERB"]},"quebrarao":{"pos":["VERB"]},"quebre":{"pos":["VERB"]},"quebres":{"pos":["VERB"]},"quebrem":{"pos":["VERB"]},"reciclar":{"pos":["VERB"]},"reciclando":{"pos":["VERB"]},"reciclado":{"pos":["VERB"]},"reciclada":{"pos":["VERB"]},"reciclo":{"pos":["VERB"]},"reciclas":{"pos":["VERB"]},"recicla":{"pos":["VERB"]},"reciclamos":{"pos":["VERB"]},"reciclam":{"pos":["VERB"]},"reciclei":{"pos":["VERB"]},"reciclaste":{"pos":["VERB"]},"reciclou":{"pos":["VERB"]},"reciclaram":{"pos":["VERB"]},"reciclava":{"pos":["VERB"]},"reciclavas":{"pos":["VERB"]},"reciclavam":{"pos":["VERB"]},"reciclavamos":{"pos":["VERB"]},"reciclarei":{"pos":["VERB"]},"reciclara":{"pos":["VERB"]},"reciclaremos":{"pos":["VERB"]},"reciclarao":{"pos":["VERB"]},"recicle":{"pos":["VERB"]},"recicles":{"pos":["VERB"]},"reciclem":{"pos":["VERB"]},"renovar":{"pos":["VERB"]},"renovando":{"pos":["VERB"]},"renovado":{"pos":["VERB"]},"renovada":{"pos":["VERB"]},"renovo":{"pos":["VERB"]},"renovas":{"pos":["VERB"]},"renova":{"pos":["VERB"]},"renovamos":{"pos":["VERB"]},"renovam":{"pos":["VERB"]},"renovei":{"pos":["VERB"]},"renovaste":{"pos":["VERB"]},"renovou":{"pos":["VERB"]},"renovaram":{"pos":["VERB"]},"renovava":{"pos":["VERB"]},"renovavas":{"pos":["VERB"]},"renovavam":{"pos":["VERB"]},"renovavamos":{"pos":["VERB"]},"renovarei":{"pos":["VERB"]},"renovara":{"pos":["VERB"]},"renovaremos":{"pos":["VERB"]},"renovarao":{"pos":["VERB"]},"renove":{"pos":["VERB"]},"renoves":{"pos":["VERB"]},"renovem":{"pos":["VERB"]},"revisar":{"pos":["VERB"]},"revisando":{"pos":["VERB"]},"revisado":{"pos":["VERB"]},"revisada":{"pos":["VERB"]},"reviso":{"pos":["VERB"]},"revisas":{"pos":["VERB"]},"revisa":{"pos":["VERB"]},"revisamos":{"pos":["VERB"]},"revisam":{"pos":["VERB"]},"revisei":{"pos":["VERB"]},"revisaste":{"pos":["VERB"]},"revisou":{"pos":["VERB"]},"revisaram":{"pos":["VERB"]},"revisava":{"pos":["VERB"]},"revisavas":{"pos":["VERB"]},"revisavam":{"pos":["VERB"]},"revisavamos":{"pos":["VERB"]},"revisarei":{"pos":["VERB"]},"revisara":{"pos":["VERB"]},"revisaremos":{"pos":["VERB"]},"revisarao":{"pos":["VERB"]},"revise":{"pos":["VERB"]},"revises":{"pos":["VERB"]},"revisem":{"pos":["VERB"]},"racionar":{"pos":["VERB"]},"racionando":{"pos":["VERB"]},"racionado":{"pos":["VERB"]},"racionada":{"pos":["VERB"]},"raciono":{"pos":["VERB"]},"racionas":{"pos":["VERB"]},"raciona":{"pos":["VERB"]},"racionamos":{"pos":["VERB"]},"racionam":{"pos":["VERB"]},"racionei":{"pos":["VERB"]},"racionaste":{"pos":["VERB"]},"racionou":{"pos":["VERB"]},"racionaram":{"pos":["VERB"]},"racionava":{"pos":["VERB"]},"racionavas":{"pos":["VERB"]},"racionavam":{"pos":["VERB"]},"racionavamos":{"pos":["VERB"]},"racionarei":{"pos":["VERB"]},"racionara":{"pos":["VERB"]},"racionaremos":{"pos":["VERB"]},"racionarao":{"pos":["VERB"]},"racione":{"pos":["VERB"]},"raciones":{"pos":["VERB"]},"racionem":{"pos":["VERB"]},"razoaar":{"pos":["VERB"]},"razoaando":{"pos":["VERB"]},"razoaado":{"pos":["VERB"]},"razoaada":{"pos":["VERB"]},"razoao":{"pos":["VERB"]},"razoaas":{"pos":["VERB"]},"razoaa":{"pos":["VERB"]},"razoaamos":{"pos":["VERB"]},"razoaam":{"pos":["VERB"]},"razoaei":{"pos":["VERB"]},"razoaaste":{"pos":["VERB"]},"razoaou":{"pos":["VERB"]},"razoaaram":{"pos":["VERB"]},"razoaava":{"pos":["VERB"]},"razoaavas":{"pos":["VERB"]},"razoaavam":{"pos":["VERB"]},"razoaavamos":{"pos":["VERB"]},"razoaarei":{"pos":["VERB"]},"razoaara":{"pos":["VERB"]},"razoaaremos":{"pos":["VERB"]},"razoaarao":{"pos":["VERB"]},"razoae":{"pos":["VERB"]},"razoaes":{"pos":["VERB"]},"razoaem":{"pos":["VERB"]},"papel":{"pos":["SUBST"]},"papeis":{"pos":["SUBST"]},"padrao":{"pos":["SUBST"]},"padroes":{"pos":["SUBST"]},"participacao":{"pos":["SUBST"]},"participacoes":{"pos":["SUBST"]},"perspectiva":{"pos":["SUBST"]},"perspectivas":{"pos":["SUBST"]},"plano":{"pos":["SUBST"]},"planos":{"pos":["SUBST"]},"pressao":{"pos":["SUBST"]},"pressoes":{"pos":["SUBST"]},"principio":{"pos":["SUBST"]},"principios":{"pos":["SUBST"]},"produto":{"pos":["SUBST"]},"produtos":{"pos":["SUBST"]},"professor":{"pos":["SUBST"]},"professores":{"pos":["SUBST"]},"programa":{"pos":["SUBST"]},"programas":{"pos":["SUBST"]},"proposta":{"pos":["SUBST"]},"propostas":{"pos":["SUBST"]},"realidade":{"pos":["SUBST"]},"realidades":{"pos":["SUBST"]},"recurso":{"pos":["SUBST"]},"recursos":{"pos":["SUBST"]},"referencia":{"pos":["SUBST"]},"referencias":{"pos":["SUBST"]},"reflexao":{"pos":["SUBST"]},"reflexoes":{"pos":["SUBST"]},"relato":{"pos":["SUBST"]},"relatos":{"pos":["SUBST"]},"responsabilidade":{"pos":["SUBST"]},"responsabilidades":{"pos":["SUBST"]},"reuniao":{"pos":["SUBST"]},"reunioes":{"pos":["SUBST"]},"sabedoria":{"pos":["SUBST"]},"saudade":{"pos":["SUBST"]},"saudades":{"pos":["SUBST"]},"seguranca":{"pos":["SUBST"]},"sentimento":{"pos":["SUBST"]},"sentimentos":{"pos":["SUBST"]},"servico":{"pos":["SUBST"]},"servicos":{"pos":["SUBST"]},"silencio":{"pos":["SUBST"]},"simbolo":{"pos":["SUBST"]},"simbolos":{"pos":["SUBST"]},"tarefa":{"pos":["SUBST"]},"tarefas":{"pos":["SUBST"]},"tendencia":{"pos":["SUBST"]},"tendencias":{"pos":["SUBST"]},"tensao":{"pos":["SUBST"]},"tensoes":{"pos":["SUBST"]},"teoria":{"pos":["SUBST"]},"teorias":{"pos":["SUBST"]},"tradicao":{"pos":["SUBST"]},"tradicoes":{"pos":["SUBST"]},"unidade":{"pos":["SUBST"]},"unidades":{"pos":["SUBST"]},"uso":{"pos":["SUBST"]},"usos":{"pos":["SUBST"]},"visao":{"pos":["SUBST"]},"visoes":{"pos":["SUBST"]},"zona":{"pos":["SUBST"]},"zonas":{"pos":["SUBST"]}}
+{
+  "paciencia": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "paciente": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "pacientes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "padrao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "padre": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "padres": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "padroes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "pagina": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "paginas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "pai": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "pais": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "paisagem": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "paisagens": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "paixao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "paixoes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "palavra": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "palavras": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "palco": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "palida": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "palido": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "pao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "papeis": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "papel": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "paraiso": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "parceira": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "parceiro": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "parceria": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "parede": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "paredes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "parente": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "parentes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "participacao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "participacoes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "passado": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "passagem": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "passagens": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "passional": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "pastor": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "paz": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "pecado": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "pecados": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "peixe": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "peixes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "pequena": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "pequeno": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "perda": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "perdas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "perigo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "perigos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "perigosa": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "perigoso": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "periodo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "periodos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "persistente": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "personagem": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "personagens": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "perspectiva": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "perspectivas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "pesada": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "pesado": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "pesquisador": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "pesquisadora": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "piedosa": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "piedoso": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "piloto": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "pintor": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "pintora": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "plano": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "planos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "pobre": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "pobres": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "poder": {
+    "pos": [
+      "SUBST",
+      "VERB"
+    ]
+  },
+  "poderes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "poes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "poeta": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "poetas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "poetisa": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "policiais": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "policial": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "politica": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "politico": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "porta": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "portas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "prateleira": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "prazer": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "prazeres": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "precisa": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "preciso": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "presenca": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "presente": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "presidente": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "presidentes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "pressao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "pressoes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "preta": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "preto": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "primavera": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "principio": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "principios": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "prisioneiro": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "produto": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "produtos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "professor": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "professora": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "professores": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "profunda": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "profundo": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "programa": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "programador": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "programas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "promessa": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "promessas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "proposta": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "propostas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "prosa": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "protagonista": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "protagonistas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "protega": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protegada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protegado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protegam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protegamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protegando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protegar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protegara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protegaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protegarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protegarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protegaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protegas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protegaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protegava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protegavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protegavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protegavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protege": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protegei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protegem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "proteges": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protego": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "protegou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "proxima": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "proximo": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "pura": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "puro": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "purpura": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "pálido": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "quarto": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "quartos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "quebra": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebrada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebrado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebramos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebrando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebrar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebrara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebraram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebrarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebrarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebraremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebras": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebraste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebrava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebravam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebravamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebravas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebre": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebrei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebrem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebres": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebro": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quebrou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "quieta": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "quieto": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "raciona": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "racionada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "racionado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "racionam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "racionamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "racionando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "racionar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "racionara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "racionaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "racionarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "racionarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "racionaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "racionas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "racionaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "racionava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "racionavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "racionavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "racionavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "racione": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "racionei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "racionem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "raciones": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "raciono": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "racionou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "raiva": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "rancorosa": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "rancoroso": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "rapida": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "rapido": {
+    "pos": [
+      "ADJ",
+      "ADV"
+    ]
+  },
+  "rara": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "raro": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "razao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "razoaa": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoaada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoaado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoaam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoaamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoaando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoaar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoaara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoaaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoaarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoaarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoaaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoaas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoaaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoaava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoaavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoaavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoaavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoae": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoaei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoaem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoaes": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoaou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "razoes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "realidade": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "realidades": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "rebeldia": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "recicla": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reciclada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reciclado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reciclam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reciclamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reciclando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reciclar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reciclara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reciclaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reciclarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reciclarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reciclaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reciclas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reciclaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reciclava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reciclavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reciclavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reciclavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "recicle": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reciclei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reciclem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "recicles": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reciclo": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reciclou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "recordacao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "recurso": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "recursos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "refeicao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "refeicoes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "referencia": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "referencias": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "reflexao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "reflexoes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "regra": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "regras": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "relacao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "relacionamento": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "relacoes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "relato": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "relatos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "remedio": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "remedios": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "renova": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renovada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renovado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renovam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renovamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renovando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renovar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renovara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renovaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renovarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renovarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renovaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renovas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renovaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renovava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renovavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renovavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renovavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renove": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renovei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renovem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renoves": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renovo": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "renovou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "resgate": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "resistencia": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "resoluta": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "resoluto": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "responsabilidade": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "responsabilidades": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "resposta": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "respostas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "reuniao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "reunioes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "revisa": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revisada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revisado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revisam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revisamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revisando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revisar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revisara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revisaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revisarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revisarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revisaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revisas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revisaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revisava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revisavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revisavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revisavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revise": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revisei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revisem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revises": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "reviso": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "revisou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "rica": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "rico": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "rigida": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "rigido": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "risco": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "riscos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "rivais": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "rival": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "rivalidade": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "romance": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "romances": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "rosa": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "rosas": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "roxa": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "roxas": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "roxo": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "roxos": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "rua": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "ruas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "rude": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "ruido": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "ruidos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "ruim": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "ruina": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "ruinas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "sabedoria": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "sacerdote": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "sagrada": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "sagrado": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "sal": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "sala": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "salas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "sarcastica": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "sarcastico": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "sarcástico": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "saudacao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "saudade": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "saudades": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "saude": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "seca": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "seco": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "secreta": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "secreto": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "seculo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "seculos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "segredo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "segredos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "seguranca": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "sela": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "selvagem": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "semana": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "semanas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "senador": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "senadora": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "sensiveis": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "sensivel": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "sentimento": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "sentimentos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "servico": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "servicos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "silencio": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "simbolo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "simbolos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "simples": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "sincera": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "sincero": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "sinistra": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "sinistro": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "sintoma": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "sintomas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "socia": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "sociedade": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "socio": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "sofa": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "sofrimento": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "sofrimentos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "soldado": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "soldados": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "solida": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "solidao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "solidariedade": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "solido": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "solitaria": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "solitario": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "sombra": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "sombras": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "sombria": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "sombrio": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "sopa": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "suave": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "suaves": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "surda": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "surdo": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "sussurro": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "sussurros": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "tapete": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "tarde": {
+    "pos": [
+      "SUBST",
+      "ADV"
+    ]
+  },
+  "tardes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "tarefa": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "tarefas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "teimosa": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "teimoso": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "temor": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "tempero": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "tempestade": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "tempestades": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "tendencia": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "tendencias": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "tenro": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "tensa": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "tensao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "tenso": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "tensoes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "teoria": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "teorias": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "teto": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "tetos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "timida": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "timido": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "tirania": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "tolerante": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "tolerantes": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "torta": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "torto": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "torturada": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "torturado": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "tradicao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "tradicoes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "tragica": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "tragico": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "traicao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "traidor": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "trajetoria": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "tratamento": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "tratamentos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "trauma": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "triste": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "tristes": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "tristeza": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "tristezas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "triunfo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "turquesa": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "unica": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "unico": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "unidade": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "unidades": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "urgente": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "urgentes": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "uso": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "usos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "util": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "vacina": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vaga": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "vago": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "vaidade": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "valente": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "valentes": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "varanda": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "varandas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vaso": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vasos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "velha": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "velhice": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "velho": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "vendedor": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "verao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "verdade": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "verdades": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "verde": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "verdes": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "vereador": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vereadora": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vergonha": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vermelha": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "vermelhas": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "vermelho": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "vermelhos": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "verso": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "versos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vidro": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vidros": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vinculo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vinculos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vingativa": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "vingativo": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "vinho": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vinhos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "violenta": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "violento": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "violeta": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "visao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "visoes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vitima": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vitimas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vitoria": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vitorias": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "viva": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "vivo": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "vizinhanca": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vizinho": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "vizinhos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "volta": {
+    "pos": [
+      "SUBST",
+      "VERB"
+    ]
+  },
+  "voltas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vontade": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vontades": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "voz": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vozes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vulnerabilidade": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "vulneravel": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "zangado": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "zelo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "zelosa": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "zeloso": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "zona": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "zonas": {
+    "pos": [
+      "SUBST"
+    ]
+  }
+}

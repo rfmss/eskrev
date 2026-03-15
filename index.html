@@ -101,6 +101,7 @@
   </div>
   <div id="selectionToolbar" class="selectionToolbar" aria-hidden="true">
     <button type="button" class="selectionToolbarBtn isPrimary" data-act="consult">CONSULTAR</button>
+    <button type="button" class="selectionToolbarBtn isPrimary" data-act="inspect" hidden>INSPECIONAR</button>
     <button type="button" class="selectionToolbarBtn" data-act="postit">POST-IT</button>
   </div>
 
@@ -121,21 +122,21 @@
           </div>
           <button id="onepNotesNew" class="notes-new-btn" type="button">NOVA NOTA</button>
         </div>
-        <div id="onepNotesFoldersWrap" class="notes-filters" style="display:none">
+        <div id="onepNotesFoldersWrap" class="notes-filters" hidden>
           <div class="notes-filter-title">PASTAS</div>
           <div id="onepNotesFolders" class="notes-filter-list"></div>
         </div>
-        <div id="onepNotesTagsWrap" class="notes-filters" style="display:none">
+        <div id="onepNotesTagsWrap" class="notes-filters" hidden>
           <div class="notes-filter-title">TAGS</div>
           <div id="onepNotesTagsList" class="notes-filter-list"></div>
         </div>
-        <div id="onepNotesEmpty" class="notes-empty" style="display:none">
+        <div id="onepNotesEmpty" class="notes-empty" hidden>
           <div class="notes-empty-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>
           </div>
           <div class="notes-empty-title">Sem notas ainda.</div>
           <div class="notes-empty-body">Crie sua primeira nota para começar.</div>
-          <button id="onepNotesEmptyCreate" class="notes-new-btn" type="button" style="margin-top:8px">CRIAR NOTA</button>
+          <button id="onepNotesEmptyCreate" class="notes-new-btn notes-empty-create" type="button">CRIAR NOTA</button>
         </div>
         <div id="onepNotesList" class="notes-list"></div>
         <button id="onepNotesFab" class="notes-fab" type="button" aria-label="Nova nota">
@@ -147,7 +148,7 @@
           <div class="notes-overlay-header">
             <span id="onepNotesOverlayTitle"></span>
             <div class="notes-overlay-actions">
-              <button id="onepNotesOverlayNew" class="notes-new-btn" type="button" style="padding:3px 8px;font-size:9px">+ NOVA</button>
+              <button id="onepNotesOverlayNew" class="notes-new-btn notes-overlay-new" type="button">+ NOVA</button>
               <button id="onepNotesOverlayClose" class="notes-close" type="button">&#x2715;</button>
             </div>
           </div>
@@ -161,7 +162,7 @@
           <button id="onepNotesBack" class="notes-stage-back" type="button" aria-label="Voltar">
             <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
-          <div style="flex:1"></div>
+          <div class="notes-spacer"></div>
           <button id="onepNotesPinToggle" class="notes-pin-toggle" type="button" aria-label="Fixar nota">
             <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/></svg>
           </button>
@@ -186,7 +187,7 @@
   <div id="modosSidebar" class="modosSidebar" aria-label="Modos de escrita" aria-hidden="true">
     <div class="modos-header">
       <span id="modosTitle">MODOS</span>
-      <button id="modosSidebarClose" type="button" aria-label="Fechar modos" onclick="const s=document.getElementById('modosSidebar');s.classList.remove('is-open');s.setAttribute('aria-hidden','true')">&#x2715;</button>
+      <button id="modosSidebarClose" type="button" aria-label="Fechar modos">&#x2715;</button>
     </div>
     <div id="modosContent" class="modos-content"></div>
   </div>

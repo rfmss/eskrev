@@ -1,0 +1,811 @@
+{
+  "version": "1.0",
+  "area": "morphology",
+  "topic": "classes",
+  "description": "As dez classes de palavras do português brasileiro com critérios formais, funcionais, subclasses e notas normativas.",
+  "sources": [
+    "Rocha Lima, C. H. — Gramática Normativa da Língua Portuguesa (49ª ed.)",
+    "Cunha, C.; Cintra, L. — Nova Gramática do Português Contemporâneo (7ª ed.)",
+    "Bechara, E. — Moderna Gramática Portuguesa (37ª ed.)",
+    "Acordo Ortográfico da Língua Portuguesa (1990, vigente no Brasil desde 2009)"
+  ],
+  "entries": [
+    {
+      "id": "SUBST",
+      "label": "substantivo",
+      "wc_class": "wc-subst",
+      "definition": "Palavra que nomeia seres, objetos, lugares, sentimentos, ações, estados e conceitos. É o núcleo do sintagma nominal.",
+      "criteria": {
+        "formal": "Flexiona em gênero (masculino/feminino) e número (singular/plural). Pode receber artigo. Aceita afixos nominais.",
+        "functional": "Exerce função sintática de sujeito, objeto direto, objeto indireto, complemento nominal, aposto e predicativo."
+      },
+      "subclasses": [
+        {
+          "id": "proprio",
+          "label": "próprio",
+          "description": "Nomeia ser ou entidade singular e individualizadora. Grafado com maiúscula inicial.",
+          "examples": ["Brasil", "Machado de Assis", "Atlântico", "Brasília"]
+        },
+        {
+          "id": "comum",
+          "label": "comum",
+          "description": "Nomeia seres de uma mesma espécie ou classe.",
+          "examples": ["cidade", "escritor", "oceano", "livro"]
+        },
+        {
+          "id": "concreto",
+          "label": "concreto",
+          "description": "Nomeia seres com existência independente, real ou imaginária.",
+          "examples": ["mesa", "anjo", "pedra", "fada"]
+        },
+        {
+          "id": "abstrato",
+          "label": "abstrato",
+          "description": "Nomeia ações, qualidades, sentimentos e estados, cuja existência depende de outro ser.",
+          "examples": ["bondade", "corrida", "amor", "tristeza", "beleza"]
+        },
+        {
+          "id": "primitivo",
+          "label": "primitivo",
+          "description": "Não deriva de outra palavra da mesma língua.",
+          "examples": ["pedra", "flor", "ferro", "mar"]
+        },
+        {
+          "id": "derivado",
+          "label": "derivado",
+          "description": "Formado a partir de outro vocábulo por derivação.",
+          "examples": ["pedreiro", "floricultura", "ferreiro", "marinheiro"]
+        },
+        {
+          "id": "simples",
+          "label": "simples",
+          "description": "Formado por um único radical.",
+          "examples": ["casa", "tempo", "luz", "pé"]
+        },
+        {
+          "id": "composto",
+          "label": "composto",
+          "description": "Formado por dois ou mais radicais.",
+          "examples": ["pé-de-moleque", "girassol", "aguardente", "couve-flor"]
+        },
+        {
+          "id": "coletivo",
+          "label": "coletivo",
+          "description": "No singular, designa um conjunto de seres da mesma espécie.",
+          "examples": [
+            {"form": "alcateia", "designates": "lobos"},
+            {"form": "cardume", "designates": "peixes"},
+            {"form": "enxame", "designates": "abelhas/insetos"},
+            {"form": "frota", "designates": "navios/veículos"},
+            {"form": "manada", "designates": "bovinos/elefantes"},
+            {"form": "matilha", "designates": "cães"},
+            {"form": "penca", "designates": "bananas/chaves"},
+            {"form": "piara", "designates": "porcos"},
+            {"form": "revoada", "designates": "pássaros"},
+            {"form": "vara", "designates": "porcos (regional)"},
+            {"form": "bando", "designates": "aves/pessoas"},
+            {"form": "biblioteca", "designates": "livros"},
+            {"form": "constelação", "designates": "estrelas"},
+            {"form": "esquadrilha", "designates": "aviões"},
+            {"form": "fauna", "designates": "animais de uma região"},
+            {"form": "flora", "designates": "plantas de uma região"},
+            {"form": "galeria", "designates": "quadros/pinturas"},
+            {"form": "horda", "designates": "bárbaros/povos nômades"},
+            {"form": "pléiade", "designates": "pessoas ilustres"},
+            {"form": "récua", "designates": "animais de carga"},
+            {"form": "rebanho", "designates": "ovelhas/gado"},
+            {"form": "rom", "designates": "ciganos"},
+            {"form": "vocabulário", "designates": "palavras"}
+          ]
+        },
+        {
+          "id": "epiceno",
+          "label": "epiceno",
+          "description": "Substantivo de gênero único que designa indistintamente indivíduos de ambos os sexos. Não muda a terminação para indicar o sexo do animal.",
+          "examples": ["a cobra macho / a cobra fêmea", "o gavião macho / o gavião fêmea", "a onça", "o jacaré"]
+        },
+        {
+          "id": "sobrecomum",
+          "label": "sobrecomum",
+          "description": "Designa pessoas de ambos os sexos com um único gênero gramatical, sem possibilidade de variação. O artigo não varia.",
+          "examples": ["a criança", "a testemunha", "a vítima", "o cônjuge", "a pessoa"]
+        }
+      ],
+      "flexion": {
+        "gender": "masculino e feminino",
+        "number": "singular e plural",
+        "degree": "aumentativo e diminutivo (morfológico e analítico)"
+      },
+      "syntax_functions": ["sujeito", "objeto direto", "objeto indireto", "complemento nominal", "adjunto adnominal (no SN)", "aposto", "predicativo", "agente da passiva"],
+      "notes": [
+        "O gênero dos substantivos no português não é motivado biologicamente — é arbitrário para seres inanimados (ex: 'a mesa', 'o livro').",
+        "Bechara distingue 'heterônimos' (boi/vaca, pai/mãe) dos 'uniformes' (epicenos e sobrecomuns).",
+        "A distinção concreto/abstrato é semântica e relevante para análise estilística, não para concordância."
+      ]
+    },
+    {
+      "id": "ART",
+      "label": "artigo",
+      "wc_class": "wc-art",
+      "definition": "Palavra que se antepõe ao substantivo para atualizá-lo, determinando-o (artigo definido) ou indeterminando-o (artigo indefinido).",
+      "criteria": {
+        "formal": "Variável em gênero e número. Sempre antecede o substantivo ou outro elemento que funcione como núcleo do SN.",
+        "functional": "Atualiza e determina o substantivo no discurso. Pode transformar outras classes em substantivos (nominalização)."
+      },
+      "subclasses": [
+        {
+          "id": "definido",
+          "label": "definido",
+          "description": "Apresenta um ser já conhecido pelo interlocutor ou único em seu gênero.",
+          "paradigm": {
+            "masc_sg": "o",
+            "fem_sg": "a",
+            "masc_pl": "os",
+            "fem_pl": "as"
+          },
+          "contractions": [
+            {"prep": "de", "forms": {"o": "do", "a": "da", "os": "dos", "as": "das"}},
+            {"prep": "em", "forms": {"o": "no", "a": "na", "os": "nos", "as": "nas"}},
+            {"prep": "a", "forms": {"o": "ao", "a": "à", "os": "aos", "as": "às"}},
+            {"prep": "por", "forms": {"o": "pelo", "a": "pela", "os": "pelos", "as": "pelas"}}
+          ]
+        },
+        {
+          "id": "indefinido",
+          "label": "indefinido",
+          "description": "Apresenta um ser indeterminado ou desconhecido pelo interlocutor.",
+          "paradigm": {
+            "masc_sg": "um",
+            "fem_sg": "uma",
+            "masc_pl": "uns",
+            "fem_pl": "umas"
+          },
+          "contractions": [
+            {"prep": "de", "forms": {"um": "dum", "uma": "duma", "uns": "duns", "umas": "dumas"}},
+            {"prep": "em", "forms": {"um": "num", "uma": "numa", "uns": "nuns", "umas": "numas"}}
+          ],
+          "note": "As contrações com artigo indefinido são facultativas no Brasil."
+        }
+      ],
+      "flexion": {
+        "gender": "masculino e feminino",
+        "number": "singular e plural"
+      },
+      "syntax_functions": ["acompanha o núcleo do sintagma nominal", "substantivação (o belo, o falar)"],
+      "notes": [
+        "O artigo definido antes de nome próprio de pessoa é fenômeno sociolinguístico do português brasileiro ('a Maria chegou') — marcado no português europeu.",
+        "A omissão do artigo antes de possessivo é característica do português europeu: 'minha casa' (Br) vs 'a minha casa' (Pt).",
+        "O artigo pode substantivar qualquer palavra: 'o amanhã', 'o não', 'o sim'."
+      ]
+    },
+    {
+      "id": "ADJ",
+      "label": "adjetivo",
+      "wc_class": "wc-adj",
+      "definition": "Palavra que expressa qualidade, estado, modo de ser ou relação do substantivo ao qual se refere.",
+      "criteria": {
+        "formal": "Variável em gênero e número (concorda com o substantivo). Apresenta formas de grau. Admite sufixos adjetivadores.",
+        "functional": "Exerce função de adjunto adnominal (atributivo) ou predicativo. Pode ser núcleo de locução adjetiva."
+      },
+      "subclasses": [
+        {
+          "id": "qualificativo",
+          "label": "qualificativo",
+          "description": "Atribui qualidade, defeito ou estado ao substantivo.",
+          "examples": ["belo", "triste", "inteligente", "frio", "luminoso"]
+        },
+        {
+          "id": "relacional",
+          "label": "relacional (ou classificador)",
+          "description": "Estabelece relação de classe, origem, matéria ou propriedade. Não aceita grau e não ocupa posição predicativa naturalmente.",
+          "examples": ["financeiro", "federal", "cardíaco", "marítimo", "mineral"]
+        },
+        {
+          "id": "patrio",
+          "label": "pátrio (gentílico)",
+          "description": "Indica origem, naturalidade ou nacionalidade.",
+          "examples": ["brasileiro", "paulistano", "carioca", "europeu", "nipônico"]
+        }
+      ],
+      "degree": {
+        "positive": "grau zero — mero enunciado da qualidade: 'belo'",
+        "comparative": {
+          "superiority": "mais belo do que / mais belo que",
+          "equality": "tão belo quanto / tão belo como",
+          "inferiority": "menos belo do que"
+        },
+        "superlative": {
+          "relative_superiority": "o mais belo (de/entre)",
+          "relative_inferiority": "o menos belo (de/entre)",
+          "absolute_analytic": "muito belo / extremamente belo",
+          "absolute_synthetic": "belíssimo / lindíssimo"
+        },
+        "synthetic_superlatives": [
+          {"base": "bom", "form": "ótimo", "origin": "lat. optimus"},
+          {"base": "mau", "form": "péssimo", "origin": "lat. pessimus"},
+          {"base": "grande", "form": "máximo", "origin": "lat. maximus"},
+          {"base": "pequeno", "form": "mínimo", "origin": "lat. minimus"},
+          {"base": "alto", "form": "supremo / sumo", "origin": "lat. supremus / summus"},
+          {"base": "baixo", "form": "ínfimo", "origin": "lat. infimus"},
+          {"base": "célebre", "form": "celebérrimo"},
+          {"base": "fácil", "form": "facílimo"},
+          {"base": "difícil", "form": "dificílimo"},
+          {"base": "fiel", "form": "fidelíssimo"},
+          {"base": "simples", "form": "simplíssimo"},
+          {"base": "amigo", "form": "amicíssimo"},
+          {"base": "inimigo", "form": "inimicíssimo"},
+          {"base": "livre", "form": "libérrimo"},
+          {"base": "pobre", "form": "paupérrimo"},
+          {"base": "acre", "form": "acérrimo"},
+          {"base": "negro", "form": "nigérrimo"},
+          {"base": "doce", "form": "dulcíssimo"},
+          {"base": "benévolo", "form": "benevolentíssimo"},
+          {"base": "cruel", "form": "crudelíssimo"}
+        ]
+      },
+      "flexion": {
+        "gender": "concorda com o substantivo (belo/bela, feliz/feliz)",
+        "number": "concorda com o substantivo (belo/belos, feliz/felizes)"
+      },
+      "position_effects": {
+        "before_noun": "geralmente valor subjetivo, intensificador ou poético: 'o belo canto'",
+        "after_noun": "geralmente valor objetivo, classificador ou identificador: 'o canto belo'"
+      },
+      "syntax_functions": ["adjunto adnominal", "predicativo do sujeito", "predicativo do objeto", "aposto adjetivo"],
+      "notes": [
+        "Adjetivos relacionais não ocorrem normalmente antes do substantivo nem no predicativo: *'cardíaco o paciente é' é agramatical.",
+        "A posição do adjetivo é recurso estilístico central na literatura: anteposição confere valor afetivo/poético; posposição, valor lógico/descritivo.",
+        "Adjetivos compostos em geral só flexionam o último elemento: 'relações luso-brasileiras', 'olhos castanho-escuros'.",
+        "Exceção: 'surdo-mudo' flexiona ambos os elementos: 'surda-muda', 'surdos-mudos', 'surdas-mudas'."
+      ]
+    },
+    {
+      "id": "NUM",
+      "label": "numeral",
+      "wc_class": "wc-num",
+      "definition": "Palavra que indica quantidade, ordem, múltiplo ou fração em relação ao substantivo.",
+      "criteria": {
+        "formal": "Variável ou invariável conforme o tipo. Cardinais acima de dois são invariáveis (exceto os centos e os adjetivados). Ordinais flexionam em gênero e número.",
+        "functional": "Funciona como adjetivo (adjunto adnominal) ou substantivo conforme o contexto."
+      },
+      "subclasses": [
+        {
+          "id": "cardinal",
+          "label": "cardinal",
+          "description": "Indica quantidade absoluta.",
+          "notes": "Um/uma flexionam em gênero. Dois/duas flexionam em gênero. De 3 a 19 são invariáveis. Duzentos a novecentos flexionam em gênero.",
+          "examples": ["um, uma", "dois, duas", "três", "cem / cento", "duzentos / duzentas", "mil", "um milhão"]
+        },
+        {
+          "id": "ordinal",
+          "label": "ordinal",
+          "description": "Indica posição numa série ordenada. Flexiona em gênero e número.",
+          "examples": ["primeiro/a", "segundo/a", "terceiro/a", "décimo/a", "centésimo/a", "milésimo/a"],
+          "notes": "A partir de 11º, o uso popular frequentemente substitui o ordinal pelo cardinal: 'capítulo onze' por 'capítulo décimo primeiro'."
+        },
+        {
+          "id": "multiplicativo",
+          "label": "multiplicativo",
+          "description": "Indica multiplicação da quantidade.",
+          "examples": ["dobro (duplo)", "triplo (tríplice)", "quádruplo", "quíntuplo", "sêxtuplo", "cêntuplo"]
+        },
+        {
+          "id": "fracionario",
+          "label": "fracionário (partitivo)",
+          "description": "Indica divisão de uma quantidade.",
+          "examples": ["meio/meia", "um terço", "um quarto", "um quinto", "um décimo", "um centésimo"]
+        },
+        {
+          "id": "coletivo_numeral",
+          "label": "coletivo numeral",
+          "description": "Indica conjunto de quantidade determinada.",
+          "examples": [
+            {"form": "par", "value": "2"},
+            {"form": "trio", "value": "3"},
+            {"form": "quartet(o)", "value": "4"},
+            {"form": "quinteto", "value": "5"},
+            {"form": "sexteto", "value": "6"},
+            {"form": "dúzia", "value": "12"},
+            {"form": "quinzena", "value": "15"},
+            {"form": "vintena", "value": "20"},
+            {"form": "centena", "value": "100"},
+            {"form": "grosa", "value": "144"},
+            {"form": "miriada", "value": "10000 (pop. 'incontável')"},
+            {"form": "lustro", "value": "5 anos"},
+            {"form": "biênio", "value": "2 anos"},
+            {"form": "triênio", "value": "3 anos"},
+            {"form": "quadriênio", "value": "4 anos"},
+            {"form": "quinquênio", "value": "5 anos"},
+            {"form": "decênio / década", "value": "10 anos"},
+            {"form": "século", "value": "100 anos"},
+            {"form": "milênio", "value": "1000 anos"}
+          ]
+        }
+      ],
+      "notes": [
+        "Ambos/ambas é numeral que sempre se refere a dois seres já mencionados.",
+        "Numerais ordinais a partir de 11º convivem com o uso do cardinal em linguagem informal; na escrita formal, o ordinal é preferível até 10º.",
+        "Milhar(es), dezena(s), centena(s) podem funcionar como substantivos: 'às dezenas', 'por centenas'."
+      ]
+    },
+    {
+      "id": "PRON",
+      "label": "pronome",
+      "wc_class": "wc-pron",
+      "definition": "Palavra que substitui ou acompanha o substantivo, indicando as pessoas do discurso ou situando seres no espaço, tempo e contexto.",
+      "criteria": {
+        "formal": "Variável em pessoa, gênero, número e caso (os pessoais). Invariável em alguns tipos (indefinidos como 'nada', 'alguém').",
+        "functional": "Substitui o substantivo (pronome substantivo) ou acompanha o substantivo determinando-o (pronome adjetivo)."
+      },
+      "subclasses": [
+        {
+          "id": "pessoal",
+          "label": "pessoal",
+          "description": "Representa as três pessoas do discurso (falante, interlocutor, terceiro).",
+          "paradigm": {
+            "note": "Inclui retos, oblíquos átonos, oblíquos tônicos e de tratamento.",
+            "pers1_sg": {"reto": "eu", "obliquo_atonico": "me", "obliquo_tonico": "mim / comigo"},
+            "pers2_sg": {"reto": "tu", "obliquo_atonico": "te", "obliquo_tonico": "ti / contigo"},
+            "pers3_sg": {"reto": "ele / ela", "obliquo_atonico": "o / a / lhe", "obliquo_tonico": "ele / ela / si / consigo"},
+            "pers1_pl": {"reto": "nós", "obliquo_atonico": "nos", "obliquo_tonico": "nós / conosco"},
+            "pers2_pl": {"reto": "vós", "obliquo_atonico": "vos", "obliquo_tonico": "vós / convosco"},
+            "pers3_pl": {"reto": "eles / elas", "obliquo_atonico": "os / as / lhes", "obliquo_tonico": "eles / elas / si / consigo"}
+          },
+          "treatment_pronouns": [
+            {"form": "você", "register": "coloquial a neutro, 2ª pessoa no uso"},
+            {"form": "vocês", "register": "coloquial a neutro, 2ª pessoa plural no Brasil"},
+            {"form": "o senhor / a senhora", "register": "formal, reverencial"},
+            {"form": "Vossa Excelência (V. Ex.ª)", "register": "chefes de Estado, ministros, parlamentares, magistrados, altas patentes militares"},
+            {"form": "Vossa Magnificência (V. Mag.ª)", "register": "reitores de universidades"},
+            {"form": "Vossa Eminência (V. Em.ª)", "register": "cardeais"},
+            {"form": "Vossa Santidade", "register": "Papa"},
+            {"form": "Vossa Alteza", "register": "príncipes"},
+            {"form": "Vossa Majestade", "register": "reis e imperadores"},
+            {"form": "Vossa Senhoria (V. S.ª)", "register": "oficiais militares, autoridades em geral"},
+            {"form": "Vossa Reverendíssima", "register": "padres e religiosos"}
+          ],
+          "colocacao_pronominal": {
+            "proclise": {
+              "definition": "Oblíquo antes do verbo.",
+              "triggers": [
+                "palavra negativa antes do verbo (não, nunca, jamais, nem, ninguém, nada)",
+                "advérbio antes do verbo (já, sempre, ainda, logo, bem, mal...)",
+                "conjunção subordinativa",
+                "pronome relativo, indefinido ou interrogativo antes do verbo",
+                "oração exclamativa ou optativa"
+              ],
+              "examples": ["Não me diga.", "Já te disse.", "Quem me chamou?", "Que Deus te abençoe."]
+            },
+            "enclise": {
+              "definition": "Oblíquo depois do verbo (ligado por hífen).",
+              "triggers": [
+                "verbo no início da oração (na norma culta escrita)",
+                "verbo no imperativo afirmativo",
+                "verbo no infinitivo impessoal",
+                "verbo no gerúndio (sem 'em')"
+              ],
+              "examples": ["Diga-me a verdade.", "Sente-se.", "Preciso falar-lhe.", "Vendo-me, recuou."]
+            },
+            "mesoclise": {
+              "definition": "Oblíquo no interior da forma verbal. Exclusivo do futuro do presente e futuro do pretérito.",
+              "examples": ["Dir-me-á a verdade.", "Contar-te-ia tudo."],
+              "notes": "A mesóclise é recurso da língua literária / escrita formal elevada. Na fala culta contemporânea, é praticamente inexistente."
+            }
+          }
+        },
+        {
+          "id": "possessivo",
+          "label": "possessivo",
+          "description": "Indica posse ou pertencimento em relação às pessoas do discurso.",
+          "paradigm": {
+            "pers1_sg": {"masc": "meu", "fem": "minha", "masc_pl": "meus", "fem_pl": "minhas"},
+            "pers2_sg": {"masc": "teu", "fem": "tua", "masc_pl": "teus", "fem_pl": "tuas"},
+            "pers3_sg": {"masc": "seu", "fem": "sua", "masc_pl": "seus", "fem_pl": "suas"},
+            "pers1_pl": {"masc": "nosso", "fem": "nossa", "masc_pl": "nossos", "fem_pl": "nossas"},
+            "pers2_pl": {"masc": "vosso", "fem": "vossa", "masc_pl": "vossos", "fem_pl": "vossas"},
+            "pers3_pl": {"masc": "seu", "fem": "sua", "masc_pl": "seus", "fem_pl": "suas"}
+          },
+          "notes": "A ambiguidade de 'seu/sua' (pode referir à 2ª ou 3ª pessoa) é recorrente. Rocha Lima recomenda substituir por 'dele/dela/deles/delas' para a 3ª pessoa quando houver risco de ambiguidade."
+        },
+        {
+          "id": "demonstrativo",
+          "label": "demonstrativo",
+          "description": "Situa o ser em relação às pessoas do discurso no espaço, tempo ou no próprio texto.",
+          "paradigm": [
+            {"form": "este / esta / isto / estes / estas", "reference": "1ª pessoa — próximo ao falante, tempo presente ou futuro imediato, o que acaba de ser dito"},
+            {"form": "esse / essa / isso / esses / essas", "reference": "2ª pessoa — próximo ao interlocutor, tempo passado recente, o que vai ser dito ou o que o outro disse"},
+            {"form": "aquele / aquela / aquilo / aqueles / aquelas", "reference": "3ª pessoa — afastado de ambos, tempo remoto, o que foi dito anteriormente e está distante"}
+          ],
+          "notes": [
+            "Na linguagem coloquial brasileira, 'esse' e 'este' estão em variação livre, com 'esse' dominante.",
+            "Na escrita formal e literária, a distinção dêitica e anafórica é estilística e logicamente relevante.",
+            "Mesmo / próprio como demonstrativos: 'o mesmo livro', 'ela própria disse'."
+          ]
+        },
+        {
+          "id": "relativo",
+          "label": "relativo",
+          "description": "Retoma um antecedente e subordina uma oração adjetiva.",
+          "forms": [
+            {"form": "que", "note": "o mais frequente; invariável; refere-se a pessoas e coisas"},
+            {"form": "quem", "note": "refere-se exclusivamente a pessoas; após preposição: 'a quem', 'com quem'"},
+            {"form": "o qual / a qual / os quais / as quais", "note": "usado após preposições polissilábicas (mediante o qual, perante a qual) ou para evitar ambiguidade"},
+            {"form": "cujo / cuja / cujos / cujas", "note": "indica posse; equivale a 'de que/quem'; o nome seguinte nunca leva artigo: 'o escritor cujo livro ganhou o prêmio'"},
+            {"form": "quanto / quanta / quantos / quantas", "note": "tem como antecedente 'tudo', 'todo', 'tanto', etc."},
+            {"form": "onde", "note": "pronome relativo de lugar; antecedente com sentido de lugar"}
+          ],
+          "notes": [
+            "'Cujo' é frequentemente evitado na fala coloquial e substituído por construções analíticas ('o escritor que o livro dele...'). Na escrita literária, é elegante e preciso.",
+            "O uso de 'onde' com antecedente não-locativo é considerado desvio na norma culta escrita: *'a situação onde tudo começou' → 'a situação em que tudo começou'."
+          ]
+        },
+        {
+          "id": "indefinido",
+          "label": "indefinido",
+          "description": "Refere-se à 3ª pessoa de modo vago, indeterminado ou generalizante.",
+          "forms": {
+            "variables": ["algum / alguma", "nenhum / nenhuma", "todo / toda", "muito / muita", "pouco / pouca", "certo / certa", "outro / outra", "tanto / tanta", "quanto / quanta", "vário / vária", "qual", "qualquer"],
+            "invariables": ["alguém", "ninguém", "tudo", "nada", "outrem", "algo", "cada", "mais", "menos"]
+          }
+        },
+        {
+          "id": "interrogativo",
+          "label": "interrogativo",
+          "description": "Introduz oração interrogativa direta ou indireta.",
+          "forms": ["que", "quem", "qual / quais", "quanto / quanta / quantos / quantas"]
+        }
+      ],
+      "notes": [
+        "A distinção entre pronomes substantivos (substituem o SN) e pronomes adjetivos (acompanham o SN) é crucial para análise sintática.",
+        "O pronome oblíquo átono é clítico — liga-se fonologicamente ao verbo. A posição do clítico (próclise, mesóclise, ênclise) é um dos temas mais complexos da norma culta escrita."
+      ]
+    },
+    {
+      "id": "VERB",
+      "label": "verbo",
+      "wc_class": "wc-verb",
+      "definition": "Palavra que expressa ação, estado, mudança de estado, fenômeno da natureza ou existência, sempre situado no tempo e relacionado a uma pessoa gramatical.",
+      "criteria": {
+        "formal": "É a única classe que apresenta flexão em pessoa, número, tempo, modo, aspecto e voz. Admite afixos verbalizadores. Forma o núcleo do sintagma verbal.",
+        "functional": "Núcleo obrigatório do predicado. Estabelece a relação predicativa central da oração."
+      },
+      "subclasses": [
+        {
+          "id": "transitivo_direto",
+          "label": "transitivo direto (VTD)",
+          "description": "Exige objeto direto (sem preposição) para completar seu sentido.",
+          "examples": ["amar (amar alguém)", "ler (ler um livro)", "comprar", "ver", "fazer"]
+        },
+        {
+          "id": "transitivo_indireto",
+          "label": "transitivo indireto (VTI)",
+          "description": "Exige objeto indireto (com preposição) para completar seu sentido.",
+          "examples": ["gostar de", "precisar de", "obedecer a", "assistir a", "depender de"]
+        },
+        {
+          "id": "transitivo_bitransitivo",
+          "label": "bitransitivo (VTDI)",
+          "description": "Exige simultaneamente objeto direto e objeto indireto.",
+          "examples": ["dar algo a alguém", "oferecer", "enviar", "comunicar", "perguntar"]
+        },
+        {
+          "id": "intransitivo",
+          "label": "intransitivo (VI)",
+          "description": "Não exige complemento para completar seu sentido.",
+          "examples": ["nascer", "morrer", "chover", "sorrir", "dormir", "existir"]
+        },
+        {
+          "id": "ligacao",
+          "label": "de ligação (copulativo)",
+          "description": "Liga o sujeito ao predicativo, sem exprimir ação. O predicado com esse verbo é nominal.",
+          "forms": ["ser", "estar", "ficar", "parecer", "permanecer", "continuar", "andar", "tornar-se", "revelar-se"],
+          "notes": "Ser e estar são os mais produtivos. Ser indica estado permanente/essencial; estar indica estado transitório. Esta distinção, porém, é relativa e contextual."
+        },
+        {
+          "id": "auxiliar",
+          "label": "auxiliar",
+          "description": "Forma os tempos compostos e as locuções verbais junto ao verbo principal.",
+          "primary": ["ter (perfeito composto: tenho feito)", "haver (tempos compostos literários: houvesse dito)", "ser (passiva: foi escolhido)"],
+          "aspectual": ["estar (progressivo: está escrevendo)", "ir (futuro perifrástico: vai escrever)", "andar (iterativo: anda dizendo)", "ficar (resultativo/iterativo: ficou lendo)", "vir (aproximativo: vem crescendo)", "começar a (incoativo)", "acabar de (recente)"]
+        },
+        {
+          "id": "pronominal",
+          "label": "pronominal",
+          "description": "Verbo acompanhado obrigatoriamente de pronome oblíquo reflexivo.",
+          "subtypes": {
+            "essencialmente_pronominal": {
+              "description": "Só existe na forma pronominal.",
+              "examples": ["arrepender-se", "queixar-se", "apoderar-se", "suicidar-se", "zangar-se"]
+            },
+            "acidentalmente_pronominal": {
+              "description": "Pode ser usado com ou sem o pronome, com sentidos diferentes.",
+              "examples": ["ir / ir-se", "perder / perder-se", "achar / achar-se", "lembrar / lembrar-se"]
+            }
+          }
+        },
+        {
+          "id": "impessoal",
+          "label": "impessoal",
+          "description": "Não tem sujeito. Conjugado sempre na 3ª pessoa do singular.",
+          "subtypes": {
+            "meteorologicos": ["chover", "nevar", "gear", "ventar", "trovejar", "amanhecer", "anoitecer"],
+            "existencial_haver": "haver no sentido de existir: 'Há problemas graves.'",
+            "temporal_fazer": "fazer no sentido de tempo decorrido: 'Faz três anos que...'",
+            "temporal_ser": "ser em expressões de tempo: 'Era tarde.' / 'São três horas.'"
+          }
+        }
+      ],
+      "flexion": {
+        "person": "1ª, 2ª, 3ª (singular e plural)",
+        "number": "singular e plural",
+        "tense": "presente, pretérito imperfeito, pretérito perfeito, pretérito mais-que-perfeito, futuro do presente, futuro do pretérito (do indicativo); presente, pretérito imperfeito, futuro (do subjuntivo)",
+        "mood": "indicativo, subjuntivo, imperativo (afirmativo e negativo)",
+        "nominal_forms": "infinitivo pessoal e impessoal, gerúndio, particípio",
+        "voice": "ativa, passiva (analítica: ser + particípio; sintética: se apassivador), reflexiva, recíproca"
+      },
+      "notes": [
+        "A distinção entre objeto direto e indireto depende da regência do verbo, não de uma regra semântica universal.",
+        "Verbos de ligação não admitem objeto — admitem predicativo. É erro frequente chamar o predicativo de 'complemento nominal'.",
+        "O gerúndio é forma nominal imprescindível na construção do aspecto progressivo no português brasileiro (está fazendo, ficou pensando).",
+        "Verbo 'haver' impessoal (existência) não concorda com o sujeito: 'Havia muitas pessoas', não *'Haviam muitas pessoas'. Este é um dos erros mais comuns em redação formal."
+      ]
+    },
+    {
+      "id": "ADV",
+      "label": "advérbio",
+      "wc_class": "wc-adv",
+      "definition": "Palavra invariável que modifica o verbo, o adjetivo, outro advérbio ou toda a oração, acrescentando-lhes uma circunstância.",
+      "criteria": {
+        "formal": "Invariável em gênero e número. Pode apresentar grau (comparativo e superlativo). Formados frequentemente com sufixo -mente a partir de adjetivos femininos.",
+        "functional": "Adjunto adverbial. Pode modificar verbo (ela chegou ontem), adjetivo (muito belo), advérbio (muito tarde), ou toda a predicação (Certamente, choveria)."
+      },
+      "semantic_classes": [
+        {"id": "lugar", "examples": ["aqui", "aí", "ali", "lá", "cá", "onde", "aonde", "acima", "abaixo", "dentro", "fora", "perto", "longe", "atrás", "adiante"]},
+        {"id": "tempo", "examples": ["agora", "hoje", "ontem", "amanhã", "sempre", "nunca", "jamais", "antes", "depois", "logo", "já", "ainda", "cedo", "tarde", "breve"]},
+        {"id": "modo", "examples": ["bem", "mal", "assim", "depressa", "devagar", "facilmente", "rapidamente", "(maioria dos advérbios em -mente)"]},
+        {"id": "intensidade", "examples": ["muito", "pouco", "bastante", "demasiado", "quanto", "tão", "mais", "menos", "demais", "quase"]},
+        {"id": "afirmacao", "examples": ["sim", "certamente", "realmente", "efetivamente", "com certeza", "deveras"]},
+        {"id": "negacao", "examples": ["não", "nunca", "jamais", "de modo algum", "tampouco", "nem"]},
+        {"id": "duvida", "examples": ["talvez", "quiçá", "porventura", "acaso", "provavelmente", "possivelmente"]},
+        {"id": "interrogativo", "examples": ["onde?", "quando?", "como?", "quanto?", "por quê?"]},
+        {"id": "exclusao_inclusao", "examples": ["apenas", "somente", "só", "unicamente", "até", "mesmo", "inclusive", "exclusive"]},
+        {"id": "ordem", "examples": ["primeiramente", "depois", "finalmente", "por fim"]}
+      ],
+      "degree": {
+        "comparative_superiority": "mais cedo do que",
+        "comparative_equality": "tão cedo quanto",
+        "comparative_inferiority": "menos cedo do que",
+        "superlative_absolute_analytic": "muito cedo / tardíssimo",
+        "superlative_absolute_synthetic": "cedíssimo / muitíssimo"
+      },
+      "locucoes_adverbiais": {
+        "description": "Conjunto de palavras com valor de advérbio.",
+        "examples": ["de repente", "às vezes", "a torto e a direito", "de vez em quando", "a rigor", "por acaso", "com efeito", "sem dúvida", "de fato"]
+      },
+      "notes": [
+        "O advérbio 'muito' é intensificador quando acompanha adjetivo ou advérbio, não quando modifica o verbo: 'muito belo' (intensidade) vs 'trabalhou muito' (modo/intensidade verbal).",
+        "Cuidado com a concordância de 'bastante', 'meio', 'caro', 'barato', 'alto', 'baixo': quando advérbios, são invariáveis; quando adjetivos, concordam com o substantivo.",
+        "Advérbios em -mente: quando dois advérbios seguidos, o sufixo é acrescentado apenas ao último — 'lenta e pausadamente'."
+      ]
+    },
+    {
+      "id": "PREP",
+      "label": "preposição",
+      "wc_class": "wc-prep",
+      "definition": "Palavra invariável que liga dois termos, estabelecendo relação de subordinação entre eles.",
+      "criteria": {
+        "formal": "Invariável. Forma contrações e combinações com artigos e pronomes.",
+        "functional": "Subordina o termo regido ao termo regente. Indica as relações de: posse, lugar, matéria, modo, causa, fim, companhia, assunto, tempo, instrumento, origem, oposição, concessão, conformidade."
+      },
+      "essential_prepositions": ["a", "ante", "até", "após", "com", "contra", "de", "desde", "em", "entre", "para", "perante", "por", "sem", "sob", "sobre", "trás"],
+      "accidental_prepositions": {
+        "description": "Palavras de outras classes que funcionam como preposição.",
+        "examples": ["afora", "conforme", "consoante", "durante", "exceto", "fora", "mediante", "menos", "salvo", "segundo", "senão", "visto"]
+      },
+      "contractions": [
+        {"prep": "a + o", "result": "ao"},
+        {"prep": "a + a", "result": "à (crase)"},
+        {"prep": "a + aquele", "result": "àquele"},
+        {"prep": "de + o", "result": "do"},
+        {"prep": "de + a", "result": "da"},
+        {"prep": "de + um", "result": "dum (facultativo)"},
+        {"prep": "de + este", "result": "deste"},
+        {"prep": "de + esse", "result": "desse"},
+        {"prep": "de + aquele", "result": "daquele"},
+        {"prep": "de + aqui", "result": "daqui"},
+        {"prep": "de + aí", "result": "daí"},
+        {"prep": "de + ali", "result": "dali"},
+        {"prep": "de + ele", "result": "dele"},
+        {"prep": "em + o", "result": "no"},
+        {"prep": "em + a", "result": "na"},
+        {"prep": "em + este", "result": "neste"},
+        {"prep": "em + esse", "result": "nesse"},
+        {"prep": "em + aquele", "result": "naquele"},
+        {"prep": "em + um", "result": "num (facultativo)"},
+        {"prep": "em + ele", "result": "nele"},
+        {"prep": "por + o", "result": "pelo"},
+        {"prep": "por + a", "result": "pela"}
+      ],
+      "crase": {
+        "definition": "Fusão da preposição 'a' com o artigo feminino 'a' ou com os pronomes demonstrativos que iniciam por 'a'. Grafada com acento grave (à).",
+        "obligatory": [
+          "antes de substantivo feminino que admite artigo definido: 'Fui à cidade.'",
+          "antes de pronome demonstrativo feminino aquela/aquele/aquilo: 'Refiro-me àquela situação.'",
+          "antes de 'a qual' / 'às quais': 'A lei à qual me refiro...'",
+          "em locuções adverbiais, prepositivas ou conjuntivas femininas: 'à noite', 'à tarde', 'à medida que', 'à beira de', 'às vezes'"
+        ],
+        "forbidden": [
+          "antes de substantivo masculino: 'Fui a pé.' (não: *'à pé')",
+          "antes de verbo: 'Começou a chover.'",
+          "antes de pronome pessoal, indefinido ou demonstrativo this/esse: 'Falei a ele.', 'Dei a todos.'",
+          "antes de artigo indefinido: 'Refiro-me a uma situação.'",
+          "antes de nome de cidade sem artigo: 'Fui a Paris.' (mas: 'Fui à Roma que conheço.')",
+          "antes de 'que' e 'quem': 'A quem ele se referia?' (sem crase quando 'a' é preposição antes de pronome relativo)"
+        ],
+        "facultative": [
+          "antes de nome feminino de pessoa: 'Escrevi a/à Maria.'",
+          "antes de pronome possessivo feminino: 'Refiro-me a/à minha proposta.'",
+          "antes de palavra 'casa' sem especificação: 'Fui a/à casa.' (mas: 'Fui à casa de Ana.' — obrigatória)"
+        ]
+      },
+      "notes": [
+        "A regência verbal determina a preposição correta. Não existe uma regra universal — cada verbo tem sua regência própria.",
+        "Preposições em locuções prepositivas: 'abaixo de', 'acima de', 'ao lado de', 'em vez de', 'por causa de', 'a fim de', 'apesar de', 'junto a'.",
+        "O domínio das contrações e da crase é um dos critérios mais avaliados na escrita formal."
+      ]
+    },
+    {
+      "id": "CONJ",
+      "label": "conjunção",
+      "wc_class": "wc-conj",
+      "definition": "Palavra invariável que une orações ou termos equivalentes de uma mesma oração.",
+      "criteria": {
+        "formal": "Invariável. Ocupa posição inicial ou medial na oração que introduz.",
+        "functional": "Coordenação (une orações independentes) ou subordinação (liga oração dependente à principal)."
+      },
+      "subclasses": [
+        {
+          "id": "coordenativa",
+          "label": "coordenativa",
+          "description": "Une orações sintaticamente independentes.",
+          "types": [
+            {
+              "id": "aditiva",
+              "label": "aditiva",
+              "description": "Liga elementos da mesma natureza, acrescentando.",
+              "forms": ["e", "nem", "mas também", "como também", "bem como", "não só... mas também", "tanto... como"]
+            },
+            {
+              "id": "adversativa",
+              "label": "adversativa",
+              "description": "Indica contraste, oposição ou restrição.",
+              "forms": ["mas", "porém", "contudo", "todavia", "entretanto", "no entanto", "não obstante"]
+            },
+            {
+              "id": "alternativa",
+              "label": "alternativa (disjuntiva)",
+              "description": "Indica alternância, opção ou exclusão.",
+              "forms": ["ou", "ou...ou", "ora...ora", "quer...quer", "seja...seja", "já...já"]
+            },
+            {
+              "id": "conclusiva",
+              "label": "conclusiva",
+              "description": "Anuncia conclusão, consequência ou resultado.",
+              "forms": ["logo", "portanto", "por isso", "pois (posposto)", "assim", "por conseguinte", "então"]
+            },
+            {
+              "id": "explicativa",
+              "label": "explicativa",
+              "description": "Introduz explicação ou justificativa da oração anterior.",
+              "forms": ["pois (anteposto)", "porque", "que", "porquanto"]
+            }
+          ]
+        },
+        {
+          "id": "subordinativa",
+          "label": "subordinativa",
+          "description": "Subordina uma oração a outra, estabelecendo relação de dependência.",
+          "types": [
+            {
+              "id": "integrante",
+              "label": "integrante",
+              "description": "Introduz oração com função de sujeito, objeto ou complemento nominal.",
+              "forms": ["que", "se"]
+            },
+            {
+              "id": "causal",
+              "label": "causal",
+              "description": "Indica causa ou motivo.",
+              "forms": ["porque", "pois", "como", "já que", "visto que", "uma vez que", "dado que", "porquanto"]
+            },
+            {
+              "id": "concessiva",
+              "label": "concessiva",
+              "description": "Indica concessão — fato que não impede a ação da oração principal.",
+              "forms": ["embora", "conquanto", "ainda que", "mesmo que", "posto que", "por mais que", "apesar de que", "se bem que"]
+            },
+            {
+              "id": "condicional",
+              "label": "condicional",
+              "description": "Indica condição ou hipótese para que o fato principal ocorra.",
+              "forms": ["se", "caso", "desde que", "contanto que", "a menos que", "a não ser que", "salvo se", "exceto se"]
+            },
+            {
+              "id": "consecutiva",
+              "label": "consecutiva",
+              "description": "Indica consequência ou resultado do que foi expresso na principal.",
+              "forms": ["que (após tão, tal, tanto, tamanho)", "de modo que", "de sorte que", "de forma que", "de maneira que"]
+            },
+            {
+              "id": "conformativa",
+              "label": "conformativa",
+              "description": "Indica conformidade ou acordo.",
+              "forms": ["como", "conforme", "segundo", "consoante"]
+            },
+            {
+              "id": "final",
+              "label": "final",
+              "description": "Indica finalidade ou objetivo.",
+              "forms": ["para que", "a fim de que", "que (com verbo no subjuntivo)", "para"]
+            },
+            {
+              "id": "proporcional",
+              "label": "proporcional",
+              "description": "Indica proporção entre dois fatos simultâneos.",
+              "forms": ["à medida que", "ao passo que", "à proporção que", "quanto mais...mais", "quanto menos...menos"]
+            },
+            {
+              "id": "temporal",
+              "label": "temporal",
+              "description": "Indica circunstância de tempo em relação à oração principal.",
+              "forms": ["quando", "enquanto", "logo que", "assim que", "antes que", "depois que", "desde que", "até que", "mal", "sempre que", "cada vez que"]
+            },
+            {
+              "id": "comparativa",
+              "label": "comparativa",
+              "description": "Estabelece comparação.",
+              "forms": ["como", "do que", "quanto", "assim como", "tanto quanto", "tal qual", "bem como"]
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "'Pois' é conjunção coordenativa explicativa quando anteposta ao verbo: 'Coma, pois terá fome.' É conclusiva quando posposta: 'Estava com fome; comeu, pois.'",
+        "'Como' pode ser conjunção causal, conformativa, comparativa ou até temporal — o contexto determina a classificação.",
+        "'Que' é a conjunção mais polissêmica do português: pode ser integrante, causal, consecutiva, comparativa ou explicativa. A análise correta exige exame do contexto total.",
+        "Locuções conjuntivas são preferíveis às conjunções simples em prosa formal para evitar ambiguidade."
+      ]
+    },
+    {
+      "id": "INTJ",
+      "label": "interjeição",
+      "wc_class": "wc-intj",
+      "definition": "Palavra ou expressão invariável que exprime, de modo brusco e geralmente exclamativo, emoções, sensações, ordens ou apelos do falante.",
+      "criteria": {
+        "formal": "Invariável. Funciona como enunciado completo — é uma oração condensada. Geralmente seguida de ponto de exclamação.",
+        "functional": "Não exerce função sintática dentro da oração — constitui por si só um enunciado. É o elemento mais pragmático do léxico."
+      },
+      "semantic_classes": [
+        {"id": "alegria", "examples": ["Oba!", "Viva!", "Hurra!", "Ótimo!", "Boa!", "Que bom!"]},
+        {"id": "dor_lamento", "examples": ["Ai!", "Ui!", "Oh!", "Ai de mim!", "Que pena!"]},
+        {"id": "surpresa_espanto", "examples": ["Uau!", "Nossa!", "Caramba!", "Poxa!", "Cruz credo!", "Puxa vida!"]},
+        {"id": "aprovacao", "examples": ["Bravo!", "Parabéns!", "Muito bem!", "Muito bom!"]},
+        {"id": "reprovacao", "examples": ["Vergonha!", "Abaixo!", "Fora!", "Que horror!"]},
+        {"id": "chamamento", "examples": ["Psiu!", "Ei!", "Ó!", "Olá!", "Alô!"]},
+        {"id": "silencio", "examples": ["Silêncio!", "Caluda!", "Basta!", "Chega!"]},
+        {"id": "animacao_encorajamento", "examples": ["Ânimo!", "Coragem!", "Avante!", "Bora!", "Vamos!"]},
+        {"id": "pedido_imploração", "examples": ["Por favor!", "Pelo amor de Deus!", "Socorro!"]},
+        {"id": "afastamento", "examples": ["Fora!", "Para!", "Sai!", "Vai-te!"]},
+        {"id": "saudacao", "examples": ["Olá!", "Oi!", "Bom dia!", "Adeus!", "Tchau!", "Até logo!"]},
+        {"id": "dubitacao", "examples": ["Hum?", "Hem?", "Ahan?"]},
+        {"id": "satisfacao", "examples": ["Uf!", "Ufa!", "Ainda bem!"]}
+      ],
+      "locucoes_interjetivas": ["Cruz credo!", "Puxa vida!", "Meu Deus!", "Graças a Deus!", "Valha-me Deus!", "Ora bolas!"],
+      "notes": [
+        "A interjeição é a classe mais próxima da linguagem oral e da expressão emocional imediata — importantíssima na escrita criativa e no diálogo literário.",
+        "Muitas interjeições são oriundas de outras classes: verbos ('Cuidado!', 'Olha!'), substantivos ('Silêncio!'), adjetivos ('Ótimo!').",
+        "O uso de interjeições na prosa literária é marca de oralidade — pode ser recurso intencional de aproximação com o leitor ou de caracterização de personagem."
+      ]
+    }
+  ]
+}

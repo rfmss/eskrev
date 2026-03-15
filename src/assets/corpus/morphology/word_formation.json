@@ -1,0 +1,257 @@
+{
+  "version": "1.0",
+  "area": "morphology",
+  "topic": "word_formation",
+  "description": "Processos de formação de palavras no português: derivação (prefixação, sufixação, parassíntese, regressiva, imprópria) e composição (justaposição e aglutinação), com exemplos e notas.",
+  "sources": [
+    "Rocha Lima — Gramática Normativa da Língua Portuguesa (49ª ed.)",
+    "Cunha & Cintra — Nova Gramática do Português Contemporâneo (7ª ed.)",
+    "Bechara — Moderna Gramática Portuguesa (37ª ed.)"
+  ],
+  "entries": [
+    {
+      "id": "derivation",
+      "label": "derivação",
+      "definition": "Processo pelo qual uma palavra nova (derivada) é formada a partir de um radical (palavra primitiva) mediante o acréscimo de afixos (prefixos e/ou sufixos) ou pela mudança de classe gramatical.",
+      "subtypes": [
+        {
+          "id": "prefixation",
+          "label": "derivação prefixal (prefixação)",
+          "description": "Acréscimo de prefixo antes do radical. O prefixo geralmente não muda a classe gramatical da palavra primitiva, mas altera o sentido.",
+          "examples": [
+            {"base": "feliz (adj)", "derived": "infeliz (adj)", "prefix": "in-", "note": "negação"},
+            {"base": "fazer (v)", "derived": "desfazer (v)", "prefix": "des-", "note": "reversão"},
+            {"base": "ver (v)", "derived": "prever (v)", "prefix": "pre-", "note": "anterioridade"},
+            {"base": "nacional (adj)", "derived": "supranacional (adj)", "prefix": "supra-", "note": "posição superior"},
+            {"base": "texto (s)", "derived": "hipertexto (s)", "prefix": "hiper-", "note": "excesso / além"}
+          ]
+        },
+        {
+          "id": "suffixation",
+          "label": "derivação sufixal (sufixação)",
+          "description": "Acréscimo de sufixo após o radical. O sufixo frequentemente muda a classe gramatical da palavra primitiva.",
+          "examples": [
+            {"base": "pedra (s)", "derived": "pedreiro (s)", "suffix": "-eiro", "note": "agente / profissão"},
+            {"base": "belo (adj)", "derived": "beleza (s)", "suffix": "-eza", "note": "qualidade abstrata"},
+            {"base": "fácil (adj)", "derived": "facilmente (adv)", "suffix": "-mente", "note": "modo"},
+            {"base": "amor (s)", "derived": "amoroso (adj)", "suffix": "-oso", "note": "qualidade, posse"},
+            {"base": "carta (s)", "derived": "carteiro (s)", "suffix": "-eiro", "note": "profissão"},
+            {"base": "lavar (v)", "derived": "lavagem (s)", "suffix": "-agem", "note": "resultado de ação"},
+            {"base": "computador (s)", "derived": "computadorizar (v)", "suffix": "-izar", "note": "verbalização"}
+          ]
+        },
+        {
+          "id": "parasynthesis",
+          "label": "derivação parassintética (parassíntese)",
+          "description": "Acréscimo simultâneo de prefixo e sufixo ao radical. O prefixo e o sufixo não podem ser acrescentados separadamente — ambos são necessários para a derivação.",
+          "key_test": "Se retirar o prefixo OU o sufixo e a palavra resultante não existir (ou tiver sentido diferente), é parassíntese.",
+          "examples": [
+            {"base": "tarde (s)", "derived": "entardecer (v)", "prefix": "en-", "suffix": "-ecer", "note": "'entarde' e 'tardecer' não existem"},
+            {"base": "magro (adj)", "derived": "emagrecer (v)", "prefix": "en-", "suffix": "-ecer", "note": "'emagre' e 'magrecer' não existem"},
+            {"base": "lado (s)", "derived": "alagar (v — 'pôr de lado', raro) / mais claramente:", "note": "ver exemplos abaixo"},
+            {"base": "noite (s)", "derived": "anoitecer (v)", "prefix": "a-", "suffix": "-ecer"},
+            {"base": "pobre (adj)", "derived": "empobrecer (v)", "prefix": "em-", "suffix": "-ecer"},
+            {"base": "rico (adj)", "derived": "enriquecer (v)", "prefix": "en-", "suffix": "-ecer"},
+            {"base": "velho (adj)", "derived": "envelhecer (v)", "prefix": "en-", "suffix": "-ecer"},
+            {"base": "terra (s)", "derived": "aterrar (v)", "prefix": "a-", "suffix": "-ar"},
+            {"base": "barco (s)", "derived": "embarcar (v)", "prefix": "em-", "suffix": "-ar"},
+            {"base": "prisão (s)", "derived": "aprisionar (v)", "prefix": "a-", "suffix": "-ar"}
+          ]
+        },
+        {
+          "id": "regressive",
+          "label": "derivação regressiva (deverbais)",
+          "description": "Formação de substantivos por truncamento do verbo (supressão da vogal temática + acréscimo eventual de vogal). Cria os chamados 'deverbais' ou 'nomes de ação'.",
+          "pattern": "infinitivo → substantivo (sem a terminação verbal)",
+          "examples": [
+            {"verb": "chorar", "noun": "choro"},
+            {"verb": "cortar", "noun": "corte"},
+            {"verb": "abalar", "noun": "abalo"},
+            {"verb": "ajudar", "noun": "ajuda"},
+            {"verb": "atacar", "noun": "ataque"},
+            {"verb": "besuntar", "noun": "besunto"},
+            {"verb": "caçar", "noun": "caça"},
+            {"verb": "cantar", "noun": "canto / canta (regional)"},
+            {"verb": "carregar", "noun": "carga / cargo / carrego"},
+            {"verb": "debater", "noun": "debate"},
+            {"verb": "embarcar", "noun": "embarca / embarque"},
+            {"verb": "falar", "noun": "fala"},
+            {"verb": "gastar", "noun": "gasto"},
+            {"verb": "gritar", "noun": "grito"},
+            {"verb": "lutar", "noun": "luta"},
+            {"verb": "marcar", "noun": "marca / marco"},
+            {"verb": "perder", "noun": "perda"},
+            {"verb": "pesquisar", "noun": "pesquisa"},
+            {"verb": "protestar", "noun": "protesto"},
+            {"verb": "trabalhar", "noun": "trabalho"}
+          ],
+          "note": "Os deverbais têm forte produtividade em linguagem jornalística, burocrática e coloquial: 'dar uma olhada', 'dar uma descansada', 'o combinado', 'o vivido'."
+        },
+        {
+          "id": "improper",
+          "label": "derivação imprópria (conversão / transposição)",
+          "description": "Mudança de classe gramatical sem alteração morfológica (sem afixos). A mesma forma assume função de outra classe.",
+          "examples": [
+            {"original_class": "adjetivo", "derived_class": "substantivo", "form": "o belo", "example": "'O belo sobrevive ao tempo.'"},
+            {"original_class": "substantivo", "derived_class": "adjetivo", "form": "uma situação monstro", "example": "'Um homem monstro.'"},
+            {"original_class": "verbo (infinitivo)", "derived_class": "substantivo", "form": "o poder / o saber / o jantar", "example": "'O saber não ocupa lugar.'"},
+            {"original_class": "verbo (particípio)", "derived_class": "adjetivo", "form": "agitado / resolvido", "example": "'Estava agitado.' (predicativo)"},
+            {"original_class": "verbo (gerúndio)", "derived_class": "substantivo (arcaico/formal)", "form": "o andante", "example": "Comum na nomenclatura musical."},
+            {"original_class": "advérbio", "derived_class": "substantivo", "form": "o sim e o não", "example": "'Disse um sim definitivo.'"},
+            {"original_class": "adjetivo", "derived_class": "advérbio", "form": "falou alto / custou caro", "example": "Adjetivo invariável com valor de advérbio."},
+            {"original_class": "interjeição", "derived_class": "substantivo", "form": "um uf de alívio", "example": ""},
+            {"original_class": "locução", "derived_class": "substantivo", "form": "os porquês / um não-sei-quê", "example": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "composition",
+      "label": "composição",
+      "definition": "Processo pelo qual palavras novas são formadas pela união de dois ou mais radicais ou vocábulos.",
+      "subtypes": [
+        {
+          "id": "juxtaposition",
+          "label": "composição por justaposição",
+          "description": "Os elementos conservam sua forma original (com ou sem hífen). Cada elemento mantém sua tonicidade.",
+          "examples": [
+            {"form": "pé-de-moleque", "elements": ["pé", "de", "moleque"], "meaning": "doce típico brasileiro"},
+            {"form": "couve-flor", "elements": ["couve", "flor"]},
+            {"form": "guarda-chuva", "elements": ["guarda", "chuva"]},
+            {"form": "segunda-feira", "elements": ["segunda", "feira"]},
+            {"form": "amor-perfeito", "elements": ["amor", "perfeito"], "meaning": "flor"},
+            {"form": "bem-estar", "elements": ["bem", "estar"]},
+            {"form": "beija-flor", "elements": ["beija (v)", "flor"]},
+            {"form": "porta-voz", "elements": ["porta (v)", "voz"]},
+            {"form": "girassol", "note": "Poderia ser aglutinação — fronteira tênue"},
+            {"form": "sempre-viva", "elements": ["sempre", "viva"]},
+            {"form": "passatempo", "note": "Também aceito como justaposição sem hífen"},
+            {"form": "surdo-mudo", "elements": ["surdo", "mudo"]}
+          ]
+        },
+        {
+          "id": "agglutination",
+          "label": "composição por aglutinação",
+          "description": "Os elementos se fundem formando um único vocábulo, com perda de autonomia fonética (supressão de sílaba ou vogal). Uma única tonicidade.",
+          "examples": [
+            {"form": "aguardente", "elements": ["água", "ardente"], "change": "água → aguar"},
+            {"form": "girassol", "elements": ["gira", "sol"], "change": "fusão"},
+            {"form": "fidalgo", "elements": ["filho", "de", "algo"], "change": "filho → fil"},
+            {"form": "vinagre", "elements": ["vinho", "acre"], "change": "vinho → vin"},
+            {"form": "planalto", "elements": ["plano", "alto"], "change": "plano → plan"},
+            {"form": "embora", "elements": ["em", "boa", "hora"], "change": "fusão total"},
+            {"form": "conquanto", "elements": ["com", "quanto"], "change": "fusão"},
+            {"form": "oxalá", "elements": ["árabe: wa sha'a allah"], "note": "empréstimo aglutinado"},
+            {"form": "tenho", "elements": ["te", "nhô (arcaico)", "note": "etimologia disputada"]},
+            {"form": "embaixo", "elements": ["em", "baixo"]},
+            {"form": "agora", "elements": ["a", "hora"], "change": "fusão histórica"},
+            {"form": "todavia", "elements": ["toda", "via"]},
+            {"form": "contanto", "elements": ["com", "tanto"]},
+            {"form": "sequer", "elements": ["se", "quer"]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "other_processes",
+      "label": "outros processos de formação",
+      "subtypes": [
+        {
+          "id": "acronym",
+          "label": "sigla / acrônimo",
+          "description": "Formação de palavra a partir das iniciais ou sílabas de um grupo de palavras.",
+          "examples": [
+            {"form": "IBGE", "from": "Instituto Brasileiro de Geografia e Estatística", "type": "sigla lida por letras"},
+            {"form": "FAPESP", "from": "Fundação de Amparo à Pesquisa do Estado de São Paulo", "type": "sigla lida como palavra"},
+            {"form": "PETROBRAS", "from": "PETRóleo BRAsileiro S.A.", "type": "acrônimo silábico"},
+            {"form": "Embrapa", "from": "Empresa Brasileira de Pesquisa Agropecuária"},
+            {"form": "Bradesco", "from": "BAnco BRAsileiro de DEsconto CO.", "type": "acrônimo"},
+            {"form": "ABNT", "from": "Associação Brasileira de Normas Técnicas"}
+          ]
+        },
+        {
+          "id": "truncation",
+          "label": "abreviação / truncação",
+          "description": "Redução da palavra, preservando apenas parte dela. Comum em linguagem informal e técnica.",
+          "examples": [
+            {"original": "fotografia", "truncated": "foto"},
+            {"original": "automóvel", "truncated": "auto / carro"},
+            {"original": "motocicleta", "truncated": "moto"},
+            {"original": "cinema", "truncated": "cine"},
+            {"original": "extraordinário", "truncated": "extra"},
+            {"original": "professora", "truncated": "profa."},
+            {"original": "telefone", "truncated": "fone"},
+            {"original": "giroscópio", "truncated": "giro"},
+            {"original": "infografia", "truncated": "info"},
+            {"original": "desinformação", "truncated": "desinf." }
+          ]
+        },
+        {
+          "id": "portmanteau",
+          "label": "cruzamento vocabular (blending / palavra-valise)",
+          "description": "Fusão de duas palavras com sobreposição de fonemas, criando uma palavra nova. Recurso criativo com alta produtividade contemporânea.",
+          "examples": [
+            {"form": "portunhol", "from": "português + espanhol"},
+            {"form": "showmício", "from": "show + comício"},
+            {"form": "churrascaria", "note": "não é blending, mas frequentemente citada"},
+            {"form": "telejornal", "from": "televisão + jornal (justaposição erudita)"},
+            {"form": "infomercial", "from": "informação + comercial"},
+            {"form": "fantasia + realidade → fanfic", "note": "internacionalismo"},
+            {"form": "mocumentário", "from": "mock + documentário"},
+            {"form": "dramaturgia", "note": "do grego — não blending moderno"},
+            {"form": "brunch", "from": "breakfast + lunch (inglês — empréstimo)"},
+            {"form": "podcast", "from": "iPod + broadcast (internacionalismo)"}
+          ]
+        },
+        {
+          "id": "onomatopoeia",
+          "label": "onomatopeia",
+          "description": "Criação de palavra cuja forma sonora imita o som referenciado.",
+          "examples": [
+            {"form": "miau", "meaning": "som do gato"},
+            {"form": "au-au", "meaning": "som do cão"},
+            {"form": "cocoricó", "meaning": "som do galo"},
+            {"form": "tique-taque", "meaning": "som do relógio"},
+            {"form": "zunzum", "meaning": "som de abelha / murmúrio"},
+            {"form": "pingue-pongue", "meaning": "esporte de mesa — imitação do som"},
+            {"form": "chocalho", "meaning": "derivado de 'chocar' — origem onomatopaica"},
+            {"form": "sussurrar", "meaning": "verbo de origem onomatopaica"},
+            {"form": "balido", "meaning": "som de ovelha"},
+            {"form": "grunhido", "meaning": "som de porco / pessoa mal-humorada"}
+          ]
+        },
+        {
+          "id": "loan_words",
+          "label": "empréstimo linguístico",
+          "description": "Incorporação de palavras de outros idiomas ao léxico português, com ou sem adaptação fonológica e gráfica.",
+          "subtypes": [
+            {
+              "label": "Latinismos e helenismos (eruditos)",
+              "examples": ["vírus", "campus", "curriculum", "status", "topos", "ethos", "pathos", "logos"]
+            },
+            {
+              "label": "Galicismos (do francês)",
+              "examples": ["chapéu", "batom", "buquê", "garage", "menu", "restau­rante", "ballet", "atelier", "crème", "naïve"]
+            },
+            {
+              "label": "Anglicismos (do inglês)",
+              "examples": ["internet", "design", "marketing", "software", "hardware", "deletar", "hackear", "feedback", "selfie", "streaming"]
+            },
+            {
+              "label": "Italianismos",
+              "examples": ["macarrão", "pizza", "soprano", "piano", "fachada", "novela (via espanhol)", "ópera", "aquarela"]
+            },
+            {
+              "label": "Africanismos (sobretudo quimbundo e iorubá)",
+              "examples": ["samba", "caçamba", "muvuca", "cafuné", "maxixe", "quitanda", "acarajé", "dendê", "axé", "batuque", "jiló", "moleque", "quilombo"]
+            },
+            {
+              "label": "Tupismos (línguas indígenas)",
+              "examples": ["pipoca", "capim", "mandioca", "jacaré", "jaguatirica", "tucano", "piranha", "caju", "abacaxi", "tatu", "capivara"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

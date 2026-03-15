@@ -12,41 +12,51 @@ FILE_SIZE_BUDGETS = {
     "index.html": 140_000,
     "mobile.html": 20_000,
     "verify.html": 45_000,
-    "totbooks.html": 60_000,
-    os.path.join("src", "js", "app.js"): 190_000,
-    os.path.join("src", "css", "components.css"): 160_000,  # Ajustado: atual 154471
+    os.path.join("js", "main.js"): 20_000,
+    os.path.join("js", "modules", "slices.js"): 80_000,
+    os.path.join("styles", "index2.css"): 130_000,
 }
 
 LINE_BUDGETS = {
-    os.path.join("src", "js", "app.js"): 4_500,
-    os.path.join("src", "css", "components.css"): 6_500,  # Ajustado: atual 6368
+    os.path.join("js", "modules", "slices.js"): 2_200,
+    os.path.join("styles", "index2.css"): 4_200,
 }
 
 MAIN_HTML = [
     "index.html",
     "mobile.html",
     "verify.html",
-    "totbooks.html",
 ]
 
 JS_RUNTIME_FILES = [
-    os.path.join("src", "js", "app.js"),
-    os.path.join("src", "js", "modules", "auth.js"),
-    os.path.join("src", "js", "modules", "editor.js"),
-    os.path.join("src", "js", "modules", "mobile.js"),
-    os.path.join("src", "js", "modules", "qr_transfer.js"),
-    os.path.join("src", "js", "modules", "ui.js"),
-    os.path.join("src", "js", "modules", "reset_flow.js"),
-    os.path.join("src", "js", "modules", "modal_accessibility.js"),
-    os.path.join("src", "mobile", "mobile.js"),
+    os.path.join("js", "main.js"),
+    os.path.join("js", "modules", "coordenador.js"),
+    os.path.join("js", "modules", "dock.js"),
+    os.path.join("js", "modules", "dom.js"),
+    os.path.join("js", "modules", "flowMarkers.js"),
+    os.path.join("js", "modules", "grammarLint.js"),
+    os.path.join("js", "modules", "keyboardSfx.js"),
+    os.path.join("js", "modules", "layout.js"),
+    os.path.join("js", "modules", "lexCheck.js"),
+    os.path.join("js", "modules", "mesa.js"),
+    os.path.join("js", "modules", "notes.js"),
+    os.path.join("js", "modules", "page.js"),
+    os.path.join("js", "modules", "pageFlow.js"),
+    os.path.join("js", "modules", "postits.js"),
+    os.path.join("js", "modules", "scrollSync.js"),
+    os.path.join("js", "modules", "selectionToolbar.js"),
+    os.path.join("js", "modules", "slices.js"),
+    os.path.join("js", "modules", "textops.js"),
+    os.path.join("js", "modules", "themes.js"),
+    os.path.join("js", "modules", "verbete.js"),
+    os.path.join("js", "modules", "wordclass.js"),
 ]
 
 REQUIRED_INDEX_IDS = [
-    "manifestoModal",
-    "manifestoText",
-    "manifestoAccept",
-    "manifestoLangToggle",
-    "manifestoSupport",
+    "postitLayer",
+    "filesSidebar",
+    "modosSidebar",
+    "sliceDockRail",
 ]
 
 

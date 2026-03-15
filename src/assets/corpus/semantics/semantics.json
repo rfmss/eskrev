@@ -1,0 +1,435 @@
+{
+  "version": "1.0",
+  "area": "semantics",
+  "topic": "semantics",
+  "description": "Semântica do português brasileiro — relações de sentido entre palavras (sinonímia, antonímia, polissemia, homonímia, paronímia), campos semânticos, figuras semânticas e mudança de sentido histórica.",
+  "sources": [
+    "Rocha Lima — Gramática Normativa (49ª ed.)",
+    "Cunha & Cintra — Nova Gramática (7ª ed.)",
+    "Bechara — Moderna Gramática Portuguesa (37ª ed.)",
+    "Lyons — Semântica Linguística",
+    "Ullmann — Semântica — Introdução à Ciência do Significado"
+  ],
+  "entries": [
+    {
+      "id": "sinonimia",
+      "label": "Sinonímia",
+      "definition": "Relação entre palavras de forma diferente e sentido semelhante ou equivalente em determinado contexto.",
+      "note": "Sinônimos perfeitos (idênticos em todos os contextos) são raros. A maioria é parcial: compartilham sentido central mas diferem em registro, conotação, frequência ou contexto.",
+      "types": [
+        {
+          "id": "sinonimos_perfeitos",
+          "label": "Sinônimos perfeitos (absolutos)",
+          "description": "Intercambiáveis em qualquer contexto. Raríssimos.",
+          "examples": [
+            {"pair": "léxico / vocabulário", "note": "quase intercambiáveis na linguística"},
+            {"pair": "fênix / fênix (var. gráfica)", "note": "variantes, não sinônimos próprios"}
+          ]
+        },
+        {
+          "id": "sinonimos_parciais",
+          "label": "Sinônimos parciais (contextuais)",
+          "description": "Compartilham campo semântico, mas diferem em grau, registro ou matiz.",
+          "examples": [
+            {"pair": "morrer / falecer / perecer / expirar", "note": "falecer = formal/respeitoso; perecer = violência/tragédia; expirar = literário"},
+            {"pair": "casa / lar / moradia / residência / habitação", "note": "lar = sentido afetivo; residência = formal/jurídico"},
+            {"pair": "belo / bonito / formoso / atraente / lindo", "note": "graus e registros distintos"},
+            {"pair": "comer / alimentar-se / nutrir-se / banquetear-se / papar", "note": "do coloquial ao literário"}
+          ]
+        }
+      ],
+      "literary_note": "Na estilística, a sinonímia serve à variação lexical (evitar repetição) e à gradação (escala de intensidade). A escolha entre sinônimos é decisão de voz autoral."
+    },
+    {
+      "id": "antinomia",
+      "label": "Antonímia",
+      "definition": "Relação de oposição de sentido entre palavras.",
+      "types": [
+        {
+          "id": "antonimos_complementares",
+          "label": "Complementares (binários)",
+          "description": "A negação de um implica o outro. Sem meio-termo.",
+          "examples": ["vivo / morto", "presente / ausente", "solteiro / casado", "verdadeiro / falso"]
+        },
+        {
+          "id": "antonimos_graduais",
+          "label": "Graduáveis (contrários)",
+          "description": "Admitem graus intermediários.",
+          "examples": ["quente / frio (morno)", "alto / baixo (médio)", "rico / pobre (remediado)", "rápido / lento"]
+        },
+        {
+          "id": "antonimos_conversivos",
+          "label": "Conversivos (relacionais)",
+          "description": "Exprimem a mesma relação sob perspectivas opostas.",
+          "examples": ["comprar / vender", "dar / receber", "professor / aluno", "empregador / empregado", "pai / filho"]
+        },
+        {
+          "id": "antonimos_diretos",
+          "label": "Por prefixo negativo",
+          "description": "Formados por prefixação (in-, des-, a-, anti-).",
+          "examples": ["feliz / infeliz", "fazer / desfazer", "moral / amoral", "social / antissocial"]
+        }
+      ]
+    },
+    {
+      "id": "polissemia",
+      "label": "Polissemia",
+      "definition": "Uma só palavra com múltiplos sentidos relacionados entre si historicamente. Os sentidos partem de um núcleo comum.",
+      "examples": [
+        {
+          "word": "cabo",
+          "senses": ["extremidade geográfica (Cabo da Boa Esperança)", "posto militar (cabo do exército)", "fio condutor (cabo elétrico)", "extremidade de objeto (cabo da faca)", "artigo esgotado — 'ao cabo de' (= ao fim de)"]
+        },
+        {
+          "word": "banco",
+          "senses": ["assento (banco de praça)", "instituição financeira", "depósito de dados (banco de dados)", "cardume de peixes (banco de peixe)", "banco de areia (geomorfologia)"]
+        },
+        {
+          "word": "cabeça",
+          "senses": ["parte do corpo", "líder/chefe (cabeça do grupo)", "topo/início (cabeça da lista)", "inteligência (boa cabeça)", "cabeça de gado (unidade)"]
+        },
+        {
+          "word": "pé",
+          "senses": ["extremidade do membro inferior", "base de objeto (pé da mesa)", "planta (pé de manga)", "medida (pé = 30 cm)", "posição (em pé)", "pé de página (tipografia)"]
+        }
+      ],
+      "distinction": "Polissemia ≠ Homonímia: na polissemia, os sentidos são relacionados (extensões metafóricas ou metonímicas do sentido original). Na homonímia, as palavras têm origens distintas e sentidos não relacionados."
+    },
+    {
+      "id": "homonimia",
+      "label": "Homonímia",
+      "definition": "Palavras de forma idêntica ou semelhante com sentidos distintos e origens etimológicas diferentes.",
+      "types": [
+        {
+          "id": "homografos",
+          "label": "Homógrafos",
+          "description": "Mesma grafia, pronúncia diferente.",
+          "examples": [
+            {"word": "colher (s.)", "pronunciation": "/ko'ʎɛr/", "meaning": "utensílio para comer"},
+            {"word": "colher (v.)", "pronunciation": "/ko'ʎer/", "meaning": "apanhar, recolher"},
+            {"word": "molho (s.)", "pronunciation": "/'moʎu/", "meaning": "atado, feixe"},
+            {"word": "molho (s.)", "pronunciation": "/'mɔʎu/", "meaning": "preparação culinária"},
+            {"word": "sêco / seco", "note": "antes do AO 1990: acento diferenciava; hoje ambos 'seco'"}
+          ]
+        },
+        {
+          "id": "homofonos",
+          "label": "Homófonos",
+          "description": "Mesma pronúncia, grafia diferente.",
+          "examples": [
+            {"pair": "acento / assento", "meanings": "sinal gráfico / lugar para sentar"},
+            {"pair": "sessão / seção / cessão", "meanings": "reunião / divisão / ato de ceder"},
+            {"pair": "comprimento / cumprimento", "meanings": "extensão / saudação"},
+            {"pair": "ratificar / retificar", "meanings": "confirmar / corrigir"},
+            {"pair": "tráfego / tráfico", "meanings": "circulação de veículos / comércio ilícito"},
+            {"pair": "emergir / imergir", "meanings": "vir à tona / mergulhar"}
+          ]
+        },
+        {
+          "id": "homografos_homofonos",
+          "label": "Homônimos perfeitos",
+          "description": "Mesma grafia E mesma pronúncia, sentidos distintos.",
+          "examples": [
+            {"word": "manga", "senses": ["fruta tropical", "parte da roupa que cobre o braço", "tubo/cano cônico"]},
+            {"word": "cura", "senses": ["ato de curar (saúde)", "padre responsável por paróquia"]},
+            {"word": "são", "senses": ["v. ser (eles são)", "adj. saudável (pessoa sã)", "santo (São Paulo)"]},
+            {"word": "vela", "senses": ["objeto de cera com pavio", "pano náutico", "v. velar (ele vela)"]},
+            {"word": "acordo", "senses": ["v. acordar (eu acordo)", "s. pacto, combinação"]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paronimia",
+      "label": "Paronímia",
+      "definition": "Palavras de forma semelhante (mas não idêntica) e sentidos distintos. Fonte frequente de erros.",
+      "entries": [
+        {"pair": ["absolver", "absorver"], "meanings": ["perdoar, inocentar", "assimilar, sugar"]},
+        {"pair": ["apóstrofe", "apóstrofo"], "meanings": ["figura de interpelação (retórica)", "sinal gráfico (')"]},
+        {"pair": ["cavaleiro", "cavalheiro"], "meanings": ["quem monta a cavalo", "homem de boas maneiras"]},
+        {"pair": ["comprimento", "cumprimento"], "meanings": ["extensão/medida", "saudação; ato de cumprir"]},
+        {"pair": ["deferir", "diferir"], "meanings": ["conceder, aprovar (pedido)", "adiar; ser diferente"]},
+        {"pair": ["delatar", "dilatar"], "meanings": ["denunciar, delacionar", "alargar, expandir"]},
+        {"pair": ["descriminar", "discriminar"], "meanings": ["tirar o caráter criminoso de", "separar; tratar com preconceito"]},
+        {"pair": ["descrição", "discrição"], "meanings": ["ato de descrever", "prudência, reserva"]},
+        {"pair": ["despercebido", "desapercebido"], "meanings": ["não notado", "desprevenido, sem recursos"]},
+        {"pair": ["eminente", "iminente"], "meanings": ["de grande mérito, notável", "que está para acontecer"]},
+        {"pair": ["emigrar", "imigrar"], "meanings": ["sair do país de origem", "entrar em país estrangeiro"]},
+        {"pair": ["estático", "extático"], "meanings": ["parado, sem movimento", "em êxtase, arrebatado"]},
+        {"pair": ["flagrante", "fragrante"], "meanings": ["evidente; pego em ato", "que exala fragrância, perfumado"]},
+        {"pair": ["fluir", "fruir"], "meanings": ["correr (fluidos); transcorrer", "desfrutar, aproveitar"]},
+        {"pair": ["incipiente", "insipiente"], "meanings": ["que está começando, inicial", "ignorante, sem saber"]},
+        {"pair": ["infligir", "infringir"], "meanings": ["aplicar (pena, castigo)", "violar, transgredir (lei, regra)"]},
+        {"pair": ["mandato", "mandado"], "meanings": ["período de cargo eletivo", "ordem judicial; participio de mandar"]},
+        {"pair": ["peão", "pião"], "meanings": ["trabalhador rural; pedestre; peça de xadrez", "brinquedo de madeira que gira"]},
+        {"pair": ["precedente", "procedente"], "meanings": ["que vem antes; caso anterior", "que procede de; que tem fundamento"]},
+        {"pair": ["prescrever", "proscrever"], "meanings": ["receitar; caducar (prazo)", "banir, proibir, exilar"]},
+        {"pair": ["ratificar", "retificar"], "meanings": ["confirmar, reafirmar", "corrigir, endireitar"]},
+        {"pair": ["recrear", "recriar"], "meanings": ["divertir, alegrar (recreation)", "criar novamente"]},
+        {"pair": ["senão", "se não"], "meanings": ["caso contrário; a não ser; defeito ('um senão')", "condicional negativa ('se não vier')"]},
+        {"pair": ["soar", "suar"], "meanings": ["produzir som", "transpirar"]},
+        {"pair": ["tachar", "taxar"], "meanings": ["acusar, qualificar negativamente", "fixar tarifa; tributar"]},
+        {"pair": ["tráfego", "tráfico"], "meanings": ["circulação de veículos", "comércio ilícito"]},
+        {"pair": ["vultoso", "vultuoso"], "meanings": ["de grande vulto, volumoso, importante", "com o rosto avermelhado (médico); erroneamente usado por 'vultoso'"]},
+        {"pair": ["xingar", "enxaguar"], "meanings": ["insultar, ofender", "passar pela água limpa"]}
+      ]
+    },
+    {
+      "id": "campo_semantico",
+      "label": "Campo Semântico",
+      "definition": "Conjunto de palavras que compartilham um traço semântico comum — pertencem ao mesmo domínio de experiência ou conceito.",
+      "examples": [
+        {"field": "mar", "words": ["onda", "maré", "brisa", "tempestade", "barca", "âncora", "marinheiro", "porto", "cais", "naufrágio", "horizonte"]},
+        {"field": "tempo", "words": ["hora", "minuto", "século", "era", "época", "instante", "eternidade", "prazo", "duração", "ontem", "amanhã"]},
+        {"field": "escrita", "words": ["grafia", "traço", "letra", "palavra", "frase", "parágrafo", "capítulo", "manuscrito", "rascunho", "revisão", "publicação"]},
+        {"field": "luz", "words": ["brilho", "clarão", "resplendor", "fulgor", "lusco-fusco", "penumbra", "sombra", "opacidade", "refração", "luminosidade"]}
+      ],
+      "literary_note": "O campo semântico de um texto define sua atmosfera. Textos densos num mesmo campo criam isotopia — coerência semântica que sustenta a unidade temática."
+    },
+    {
+      "id": "denotacao_conotacao",
+      "label": "Denotação e Conotação",
+      "entries": [
+        {
+          "id": "denotacao",
+          "label": "Denotação",
+          "definition": "Sentido literal, referencial, objetivo — o significado registrado no dicionário, sem acréscimo afetivo ou cultural.",
+          "examples": [
+            {"word": "branco", "denotative": "cor ausente de pigmentação"},
+            {"word": "serpente", "denotative": "réptil da ordem Squamata, sem patas"},
+            {"word": "noite", "denotative": "período entre o pôr e o nascer do sol"}
+          ]
+        },
+        {
+          "id": "conotacao",
+          "label": "Conotação",
+          "definition": "Sentido figurado, subjetivo, carregado de valores culturais, afetivos ou ideológicos.",
+          "examples": [
+            {"word": "branco", "connotative": "pureza, inocência, paz, vazio, morte (em algumas culturas)"},
+            {"word": "serpente", "connotative": "traição, tentação, sabedoria (em algumas tradições), perigo"},
+            {"word": "noite", "connotative": "mistério, medo, romantismo, morte, descanso, pecado"}
+          ],
+          "literary_note": "A linguagem literária explora sistematicamente a conotação. O mesmo vocábulo pode ser denotativo numa bula médica e fortemente conotativo num poema."
+        }
+      ]
+    },
+    {
+      "id": "mudanca_semantica",
+      "label": "Mudança Semântica",
+      "definition": "Transformação histórica do sentido das palavras ao longo do tempo.",
+      "types": [
+        {
+          "id": "ampliacao",
+          "label": "Ampliação (extensão)",
+          "description": "A palavra ganha sentido mais abrangente.",
+          "examples": [
+            {"word": "passaro", "original": "latim 'passer' = pardal", "current": "qualquer ave"},
+            {"word": "virtude", "original": "latim 'virtus' = virilidade, força masculina", "current": "qualidade moral de qualquer pessoa"},
+            {"word": "publicar", "original": "tornar público/estatal", "current": "divulgar em qualquer meio"}
+          ]
+        },
+        {
+          "id": "restricao",
+          "label": "Restrição (especialização)",
+          "description": "A palavra ganha sentido mais específico.",
+          "examples": [
+            {"word": "carne", "original": "latim 'caro' = toda matéria orgânica animal", "current": "parte comestível de animal"},
+            {"word": "freira", "original": "qualquer mulher de vida religiosa", "current": "religiosa de ordem específica"},
+            {"word": "licor", "original": "qualquer líquido", "current": "bebida alcoólica adocicada"}
+          ]
+        },
+        {
+          "id": "amelioracao",
+          "label": "Amelioração (elevação)",
+          "description": "Palavra de sentido negativo/neutro ganha conotação positiva.",
+          "examples": [
+            {"word": "ministro", "original": "servo, subalterno (latim)", "current": "cargo de prestígio"},
+            {"word": "maroto", "original": "vagabundo, malandro", "current": "esperto, travesso (tom afetivo)"}
+          ]
+        },
+        {
+          "id": "pejoracao",
+          "label": "Pejorização (degradação)",
+          "description": "Palavra de sentido neutro/positivo ganha conotação negativa.",
+          "examples": [
+            {"word": "velhaco", "original": "ancião (latim 'vellacus')", "current": "trapaceiro, desonesto"},
+            {"word": "vil", "original": "barato, de pouco valor (latim)", "current": "desprezível, perverso"},
+            {"word": "idiota", "original": "grego 'idiótēs' = homem simples, particular (não especialista)", "current": "pessoa de inteligência inferior (pejorativo)"}
+          ]
+        },
+        {
+          "id": "metafora_lexicalizada",
+          "label": "Metáfora lexicalizada",
+          "description": "Metáfora tão incorporada ao uso que perdeu a consciência figurada.",
+          "examples": [
+            "pé da mesa (extensão espacial por forma)",
+            "boca de rio (abertura por analogia)",
+            "braço de rio (extensão lateral)",
+            "folha de papel (alusão à delgadeza)",
+            "tempo voa (movimento aplicado ao abstrato)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "figuras_semanticas",
+      "label": "Figuras de Significação (Semânticas)",
+      "description": "Recursos que alteram o sentido convencional das palavras para efeitos expressivos.",
+      "entries": [
+        {
+          "id": "metafora",
+          "label": "Metáfora",
+          "definition": "Transferência de sentido por semelhança implícita. Comparação sem 'como'.",
+          "examples": [
+            "Meus olhos são dois círios. (Bilac — luz/fixidez)",
+            "A vida é um palco.",
+            "O tempo é dinheiro.",
+            "Ela tem um coração de pedra.",
+            "A reunião foi um naufrágio."
+          ],
+          "literary_note": "A metáfora original (criativa) renova a língua; a gasta ('coração de pedra') vira clichê. O escritor busca metáforas que revelam relações inesperadas."
+        },
+        {
+          "id": "metonimia",
+          "label": "Metonímia",
+          "definition": "Transferência de sentido por contiguidade, relação lógica ou de proximidade — não por semelhança.",
+          "subtypes": [
+            {"type": "causa pelo efeito", "example": "Viver do suor do rosto. (suor = trabalho)"},
+            {"type": "continente pelo conteúdo", "example": "Tomou três copos. (= o líquido nos copos)"},
+            {"type": "autor pela obra", "example": "Lia Machado na varanda. (= obras de Machado de Assis)"},
+            {"type": "parte pelo todo (sinédoque)", "example": "Não havia uma alma no lugar. (alma = pessoa)"},
+            {"type": "todo pela parte (sinédoque)", "example": "O Brasil jogou bem. (= a seleção)"},
+            {"type": "lugar pelo produto", "example": "Bebeu um Bordeaux. (= vinho de Bordeaux)"},
+            {"type": "abstrato pelo concreto", "example": "A juventude não sabe o que quer. (= os jovens)"}
+          ]
+        },
+        {
+          "id": "catacrese",
+          "label": "Catacrese",
+          "definition": "Metáfora lexicalizada usada por necessidade de nomeação — já não é sentida como figura.",
+          "examples": ["pé da mesa", "asa da xícara", "folha de papel", "boca do rio", "cabeça de alho", "dente de alho", "braço de poltrona"]
+        },
+        {
+          "id": "sinestesia",
+          "label": "Sinestesia",
+          "definition": "Fusão de impressões de sentidos diferentes (visão + audição + tato + olfato + paladar) numa só expressão.",
+          "examples": [
+            "voz macia (audição + tato)",
+            "silêncio quente (audição + tato/temperatura)",
+            "perfume azul (olfato + visão)",
+            "olhar doce (visão + paladar)",
+            "cores frias / cores quentes (visão + temperatura)"
+          ]
+        },
+        {
+          "id": "hiperbole",
+          "label": "Hipérbole",
+          "definition": "Exagero expressivo para intensificar sentido.",
+          "examples": [
+            "Chorei um rio de lágrimas.",
+            "Estou morrendo de fome.",
+            "Já te disse isso mil vezes.",
+            "O mundo inteiro te ouve."
+          ]
+        },
+        {
+          "id": "litote",
+          "label": "Lítotes",
+          "definition": "Afirmação pela negação do contrário. Atenuação eufemística.",
+          "examples": [
+            "Não é idiota. (= é inteligente)",
+            "Não é de se jogar fora. (= é bom)",
+            "Não era pouco o que sofremos. (= foi muito)"
+          ]
+        },
+        {
+          "id": "ironia",
+          "label": "Ironia",
+          "definition": "Dizer o contrário do que se quer significar, com intenção crítica, humorística ou sarcástica. Depende do contexto para ser reconhecida.",
+          "examples": [
+            "Que bela ideia! (para uma ideia péssima)",
+            "Muito obrigado pela sua ajuda. (a quem não ajudou)",
+            "Como é modesto… (a quem se vangloria)"
+          ],
+          "note": "Na escrita, a ironia é marcada pelo contexto, pelo conhecimento partilhado ou por aspas/itálico. Na oralidade, pela entonação."
+        },
+        {
+          "id": "eufemismo",
+          "label": "Eufemismo",
+          "definition": "Substituição de expressão direta, desagradável ou tabu por outra mais suave.",
+          "examples": [
+            "Ele passou desta para melhor. (= morreu)",
+            "Funcionário em transição de carreira. (= demitido)",
+            "Episódio de tensão. (= briga, guerra)",
+            "Pessoas de baixa renda. (= pobres)"
+          ]
+        },
+        {
+          "id": "antitese",
+          "label": "Antítese",
+          "definition": "Aproximação de palavras ou ideias de sentido oposto, criando contraste.",
+          "examples": [
+            "O amor é fogo que arde sem se ver. (Camões)",
+            "Feliz aquele que transfere o que sabe e aprende o que ensina. (Cora Coralina)",
+            "Era ao mesmo tempo culpado e inocente.",
+            "Tão perto e tão longe."
+          ]
+        },
+        {
+          "id": "paradoxo",
+          "label": "Paradoxo",
+          "definition": "Afirmação aparentemente contraditória que revela uma verdade mais profunda.",
+          "examples": [
+            "Morro porque não morro. (Santa Teresa de Ávila)",
+            "O silêncio é o mais alto grito.",
+            "Para aprender, é preciso aceitar não saber.",
+            "A morte é o outro lado da vida."
+          ]
+        },
+        {
+          "id": "perifirase",
+          "label": "Perífrase / Antonomásia",
+          "definition": "Substituição do nome próprio por uma expressão descritiva que o identifica.",
+          "examples": [
+            "O Bruxo do Cosme Velho (= Machado de Assis)",
+            "A Cidade Maravilhosa (= Rio de Janeiro)",
+            "O Poeta dos Escravos (= Castro Alves)",
+            "O rei do futebol (= Pelé)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ambiguidade",
+      "label": "Ambiguidade",
+      "definition": "Possibilidade de duas ou mais interpretações de um mesmo enunciado. Pode ser intencional (literária) ou indesejada (falta de clareza).",
+      "types": [
+        {
+          "id": "ambig_lexical",
+          "label": "Lexical",
+          "description": "Palavra polissêmica ou homônima.",
+          "examples": ["Comprou um banco. (assento ou instituição financeira?)"]
+        },
+        {
+          "id": "ambig_sintática",
+          "label": "Sintática (estrutural)",
+          "description": "Estrutura da frase permite duas leituras.",
+          "examples": [
+            "Vi o homem com o binóculo. (eu usava o binóculo? ou o homem tinha o binóculo?)",
+            "Encontrei a aluna que você conhecia grávida. (quem estava grávida?)"
+          ]
+        },
+        {
+          "id": "ambig_referencial",
+          "label": "Referencial (anáfora ambígua)",
+          "description": "Pronome sem referente claro.",
+          "examples": [
+            "Pedro disse a João que ele estava errado. (quem estava errado?)",
+            "Quando a professora repreendeu a aluna, ela chorou. (quem chorou?)"
+          ]
+        }
+      ],
+      "literary_note": "A ambiguidade intencional é recurso literário poderoso — poesia e ficção exploram sentidos simultâneos. Na prosa jornalística e técnica, deve ser evitada."
+    }
+  ]
+}

@@ -1,0 +1,294 @@
+{
+  "version": "1.0",
+  "area": "text_production",
+  "topic": "cohesion_coherence",
+  "description": "Coesão e coerência textual — mecanismos de referência, sequenciação e progressão temática; princípios de unidade e consistência do texto.",
+  "sources": [
+    "Koch & Travaglia — A Coerência Textual",
+    "Koch & Elias — Ler e Escrever: Estratégias de Produção Textual",
+    "Marcuschi — Produção Textual, Análise de Gêneros e Compreensão",
+    "Halliday & Hasan — Cohesion in English"
+  ],
+  "entries": [
+    {
+      "id": "coesao",
+      "label": "Coesão Textual",
+      "definition": "Propriedade superficial do texto — conexão explícita entre seus elementos por meio de recursos linguísticos. Garante a continuidade formal.",
+      "types": [
+        {
+          "id": "coesao_referencial",
+          "label": "Coesão Referencial",
+          "definition": "Mecanismo pelo qual um elemento retoma (anáfora) ou antecipa (catáfora) outro elemento do texto.",
+          "subtypes": [
+            {
+              "id": "anafora",
+              "label": "Anáfora",
+              "definition": "O elemento coesivo retoma algo já mencionado.",
+              "resources": [
+                {
+                  "id": "pronomes_anaf",
+                  "label": "Pronomes",
+                  "examples": [
+                    "Pedro chegou. Ele estava cansado. ('ele' retoma 'Pedro')",
+                    "Comprei flores. Elas enfeitaram a sala. ('elas' retoma 'flores')"
+                  ]
+                },
+                {
+                  "id": "sinonimia_anaf",
+                  "label": "Sinônimos e hiperônimos",
+                  "definition": "Substituição por sinônimo, palavra de sentido mais abrangente (hiperônimo) ou expressão descritiva.",
+                  "examples": [
+                    "O animal avançou. A fera uivou. ('a fera' retoma 'o animal' por sinônimo/hipônimo)",
+                    "Comprei rosas, jasmins e orquídeas. As flores encheram o vaso. ('as flores' = hiperônimo)",
+                    "Machado de Assis nasceu em 1839. O escritor fluminense… ('o escritor fluminense' = expressão descritiva)"
+                  ]
+                },
+                {
+                  "id": "elipse_anaf",
+                  "label": "Elipse anafórica",
+                  "definition": "Omissão de termo retomado pelo contexto.",
+                  "examples": [
+                    "Comprei o livro e (∅) li em dois dias. (∅ = o livro)",
+                    "Ela ama pizza; eu, (∅) macarrão. (∅ = amo)"
+                  ]
+                },
+                {
+                  "id": "demonstrativos",
+                  "label": "Demonstrativos e advérbios de lugar/tempo",
+                  "examples": [
+                    "Disse que viria. Isso nunca aconteceu. ('isso' retoma a oração anterior)",
+                    "Visitei Paris. Nessa cidade tudo me encantou. ('nessa cidade' retoma 'Paris')"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "catafora",
+              "label": "Catáfora",
+              "definition": "O elemento coesivo antecipa algo que será mencionado adiante.",
+              "examples": [
+                "Isto era o que eu queria: paz e silêncio. ('isto' antecipa 'paz e silêncio')",
+                "Eles chegaram primeiro: Pedro e Maria.",
+                "Aqui está minha resposta: não."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "coesao_sequencial",
+          "label": "Coesão Sequencial",
+          "definition": "Mecanismos que encadeiam segmentos do texto garantindo progressão e articulação lógica.",
+          "subtypes": [
+            {
+              "id": "conectores",
+              "label": "Conectores / Operadores argumentativos",
+              "categories": [
+                {
+                  "relation": "Adição",
+                  "connectors": ["e", "também", "além disso", "ademais", "outrossim", "ainda", "bem como", "não só... mas também", "tanto... quanto"],
+                  "examples": ["Estudou muito. Além disso, dormiu cedo."]
+                },
+                {
+                  "relation": "Oposição / Concessão",
+                  "connectors": ["mas", "porém", "contudo", "todavia", "entretanto", "no entanto", "embora", "ainda que", "apesar de", "mesmo que"],
+                  "examples": ["Tentou muito; contudo, não conseguiu.", "Embora cansado, persistiu."]
+                },
+                {
+                  "relation": "Causa",
+                  "connectors": ["porque", "pois", "já que", "visto que", "uma vez que", "como (anteposto)", "dado que"],
+                  "examples": ["Não veio porque estava doente.", "Como chovia, ficaram em casa."]
+                },
+                {
+                  "relation": "Consequência",
+                  "connectors": ["logo", "portanto", "por isso", "assim", "de modo que", "de forma que", "tanto... que", "tão... que"],
+                  "examples": ["Estudou muito, portanto passou.", "Era tão frio que a água gelou."]
+                },
+                {
+                  "relation": "Finalidade",
+                  "connectors": ["para (que)", "a fim de (que)", "com o objetivo de", "com vistas a"],
+                  "examples": ["Acordou cedo para não perder o trem."]
+                },
+                {
+                  "relation": "Condição",
+                  "connectors": ["se", "caso", "contanto que", "desde que", "a menos que", "salvo se"],
+                  "examples": ["Se estudar, passará.", "Contanto que venha, está resolvido."]
+                },
+                {
+                  "relation": "Tempo",
+                  "connectors": ["quando", "enquanto", "assim que", "logo que", "antes que", "depois que", "até que", "sempre que"],
+                  "examples": ["Assim que chegou, avisou.", "Enquanto dormia, nevou."]
+                },
+                {
+                  "relation": "Explicação / Reformulação",
+                  "connectors": ["ou seja", "isto é", "quer dizer", "em outras palavras", "a saber"],
+                  "examples": ["Ela é ambidestra, ou seja, escreve com as duas mãos."]
+                },
+                {
+                  "relation": "Exemplificação",
+                  "connectors": ["por exemplo", "como", "tal como", "a exemplo de", "entre outros"],
+                  "examples": ["Alguns autores, como Machado e Eça, exploraram o realismo."]
+                },
+                {
+                  "relation": "Conclusão / Síntese",
+                  "connectors": ["em suma", "em síntese", "em resumo", "enfim", "afinal", "concluindo", "portanto"],
+                  "examples": ["Em suma, o projeto precisa ser reformulado."]
+                },
+                {
+                  "relation": "Contraste / Comparação",
+                  "connectors": ["enquanto", "ao passo que", "por outro lado", "diferentemente de", "em contrapartida"],
+                  "examples": ["Ela prefere o campo; ao passo que ele ama a cidade."]
+                }
+              ]
+            },
+            {
+              "id": "progressao_tematica",
+              "label": "Progressão Temática",
+              "definition": "Modo como os temas e remas se encadeiam para garantir que o texto avance sem repetição excessiva nem saltos bruscos.",
+              "types": [
+                {
+                  "label": "Progressão linear simples",
+                  "description": "O rema de uma frase torna-se o tema da seguinte.",
+                  "example": "Pedro comprou um livro. O livro falava de viagens. As viagens o fascinavam desde criança."
+                },
+                {
+                  "label": "Progressão com tema constante",
+                  "description": "O mesmo tema é retomado em frases sucessivas; apenas o rema (o que se diz) avança.",
+                  "example": "Clarice Lispector nasceu em 1920. Clarice escrevia de forma lírica e introspectiva. Clarice morreu em 1977."
+                },
+                {
+                  "label": "Progressão com temas derivados",
+                  "description": "Um hiper-tema se desdobra em sub-temas.",
+                  "example": "A cidade tinha problemas graves. O trânsito era caótico. A saúde pública, precária. A educação, deficiente."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "coerencia",
+      "label": "Coerência Textual",
+      "definition": "Propriedade profunda do texto — unidade de sentido, consistência lógica, adequação ao contexto e à situação comunicativa. A coerência não está só no texto, mas na relação texto-leitor-contexto.",
+      "principles": [
+        {
+          "id": "principio_nao_contradicao",
+          "label": "Princípio da não contradição",
+          "definition": "O texto não pode afirmar simultaneamente algo e sua negação (salvo uso retórico intencional: ironia, paradoxo).",
+          "violation_example": "O projeto é urgente. Por isso, vamos analisá-lo com calma nos próximos meses.",
+          "note": "Contradições inadvertidas destroem a coerência; contradições intencionais (paradoxos) são figuras retóricas."
+        },
+        {
+          "id": "principio_nao_tautologia",
+          "label": "Princípio da não tautologia",
+          "definition": "O texto não deve dizer a mesma coisa de formas diferentes sem acrescentar informação.",
+          "violation_example": "O casamento une dois cônjuges em matrimônio nupcial.",
+          "note": "Difere da ênfase retórica, que repete com ganho expressivo."
+        },
+        {
+          "id": "principio_relevancia",
+          "label": "Princípio da relevância",
+          "definition": "Cada parte do texto deve ser relevante para o todo — contribuir para o sentido global.",
+          "violation_example": "O texto sobre o desmatamento inclui um parágrafo sobre culinária amazônica sem relação com o argumento principal.",
+          "note": "Na literatura, o que parece irrelevante pode ter função simbólica — mas deve ser intencional."
+        },
+        {
+          "id": "principio_consistencia",
+          "label": "Consistência de perspectiva e tom",
+          "definition": "O texto deve manter coerência de ponto de vista (foco narrativo, pessoa verbal), registro e tom ao longo de toda a sua extensão.",
+          "violations": [
+            "Narrador que 'sabe' o que o personagem pensa e de repente torna-se onisciente parcial.",
+            "Texto formal que intercala gírias sem propósito estilístico.",
+            "Argumentação que muda de tese no meio sem justificativa."
+          ]
+        },
+        {
+          "id": "principio_conhecimento_mundo",
+          "label": "Conhecimento de mundo e enciclopédico",
+          "definition": "A coerência depende de informações partilhadas entre enunciador e leitor. O texto pode pressupor conhecimentos do leitor-modelo.",
+          "implication": "Um texto coerente para um leitor especializado pode ser incoerente para um leigo, se pressupõe conhecimentos técnicos não compartilhados.",
+          "literary_example": "A intertextualidade pressupõe que o leitor conhece o texto referenciado — se não o conhece, o sentido construído é diferente."
+        },
+        {
+          "id": "principio_intencionalidade",
+          "label": "Intencionalidade",
+          "definition": "O produtor deve demonstrar intenção de comunicar algo coerentemente. Textos sem intenção aparente são julgados incoerentes mesmo que gramaticalmente corretos.",
+          "example": "'A lua nada. O caderno verde chuta.' — gramaticalmente formado, semanticamente incoerente (salvo contexto surrealista intencional)."
+        }
+      ],
+      "cohesion_coherence_relation": {
+        "label": "Coesão ≠ Coerência",
+        "description": "Um texto pode ser coeso (bem conectado formalmente) mas incoerente (sem sentido global). E pode ser coerente sem coesão explícita.",
+        "examples": [
+          {
+            "case": "Coeso mas incoerente",
+            "text": "Pedro comprou flores porque o sol é redondo. Portanto, Maria sorriu."
+          },
+          {
+            "case": "Coerente sem coesão",
+            "text": "Entrou. Olhou. Saiu. (sem conectores explícitos, mas com progressão lógica inferível)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "paragrafo",
+      "label": "O Parágrafo",
+      "definition": "Unidade de composição textual. Agrupa sentenças em torno de uma ideia central (tópico frasal). Cada parágrafo deve ter unidade, coesão e relevância para o texto.",
+      "structure": {
+        "topico_frasal": "Frase que enuncia a ideia central do parágrafo — geralmente a primeira ou segunda sentença.",
+        "desenvolvimento": "Sentenças que explicam, exemplificam, argumentam ou narram em torno do tópico.",
+        "conclusao_transicao": "Sentença de fechamento e/ou de transição para o próximo parágrafo (opcional, mas eficaz)."
+      },
+      "principles": [
+        "Unidade: um parágrafo, uma ideia principal.",
+        "Coesão: sentenças encadeadas com lógica.",
+        "Coerência interna: sem contradições.",
+        "Relevância: contribuição para o texto todo.",
+        "Extensão: nem tão curto (telegráfico) nem tão longo (sufoca o leitor)."
+      ],
+      "common_errors": [
+        "Parágrafo com múltiplas ideias não relacionadas.",
+        "Ausência de tópico frasal claro.",
+        "Parágrafo de uma só linha (sem desenvolvimento).",
+        "Parágrafo que não conecta com o anterior nem com o seguinte."
+      ]
+    },
+    {
+      "id": "intertextualidade",
+      "label": "Intertextualidade",
+      "definition": "Relação de um texto com outros textos — toda produção textual parte de textos preexistentes, retomando-os, respondendo-os ou transformando-os (Bakhtin: dialogismo).",
+      "types": [
+        {
+          "id": "citacao_direta",
+          "label": "Citação direta",
+          "description": "Reprodução textual de trecho de outro texto, com aspas e atribuição.",
+          "example": "Como afirma Drummond: 'No meio do caminho tinha uma pedra.'"
+        },
+        {
+          "id": "citacao_indireta",
+          "label": "Citação indireta / paráfrase",
+          "description": "Reformulação do conteúdo de outro texto com as palavras próprias do enunciador, com atribuição.",
+          "example": "Segundo Drummond, havia um obstáculo no percurso."
+        },
+        {
+          "id": "alusao",
+          "label": "Alusão",
+          "description": "Referência implícita a outro texto, personagem ou obra, sem citação explícita.",
+          "example": "Titulou o artigo 'No meio do caminho tinha uma crise' — alusão ao poema de Drummond."
+        },
+        {
+          "id": "parodia",
+          "label": "Paródia",
+          "description": "Retoma um texto-fonte para subvertê-lo, com efeito cômico, crítico ou desconstrutor.",
+          "distinction": "Paródia ≠ Pastiche: a paródia transforma criticamente; o pastiche imita sem transformação crítica."
+        },
+        {
+          "id": "epígrafe",
+          "label": "Epígrafe",
+          "description": "Citação colocada no início do texto que dialoga com o tema — indica filiação intelectual e orienta a leitura."
+        }
+      ]
+    }
+  ]
+}

@@ -1,1 +1,14 @@
-# Keep empty when no known unresolved IDs exist.
+# IDs criados dinamicamente por JS — não existem em HTML estático
+# page1 é criado por addPage() em pageFlow.js
+page1
+# coordenador overlay é criado via innerHTML em coordenador.js
+coordApplyAll
+coordCorrected
+coordFilters
+coordHighlight
+coordQueue
+coordStatBar
+coordAgents
+coordTechPanel
+coordTextarea
+coordDefs

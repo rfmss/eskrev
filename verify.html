@@ -497,7 +497,7 @@
         <div class="verify-sig-body" id="sigBody">
           <p class="verify-note">Carregue um arquivo .skv para verificar a assinatura.</p>
         </div>
-        <div class="verify-sig-pubkey" id="sigPubkeyRow" style="display:none">
+        <div class="verify-sig-pubkey" id="sigPubkeyRow" hidden>
           <strong class="verify-sig-label">Chave pública embutida no arquivo</strong>
           <div class="verify-note">A chave pública do autor está incluída no arquivo .skv. Nenhum arquivo adicional necessário.</div>
         </div>
@@ -885,14 +885,14 @@
       const sig = parsed.AUTHORIA_SIGNATURE;
       if (!sig || !sig.signature || !sig.public_key_jwk) {
         setSigState("absent", "Este arquivo foi gerado sem chave de autor configurada. A assinatura Authoria não está presente.");
-        if (sigPubkeyRow) sigPubkeyRow.style.display = "none";
+        if (sigPubkeyRow) sigPubkeyRow.setAttribute("hidden", "");
         return;
       }
       if (sig.error) {
         setSigState("absent", `Assinatura não aplicada no momento da exportação: ${sig.reason || "Erro desconhecido."}`);
         return;
       }
-      if (sigPubkeyRow) sigPubkeyRow.style.display = "grid";
+      if (sigPubkeyRow) sigPubkeyRow.removeAttribute("hidden");
       try {
         const valid = await verifySignature(sig.signature, sig.public_key_jwk, contentHash);
         if (valid) {

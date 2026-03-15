@@ -1,0 +1,480 @@
+{
+  "version": "1.0",
+  "area": "orthography",
+  "topic": "spelling_rules",
+  "description": "Regras de ortografia do português brasileiro: uso correto das letras que geram dúvida — s/z, c/ç/ss/sc, x/ch, g/j, m/n em final de sílaba, h, letras maiúsculas, dígrafos e casos especiais.",
+  "sources": [
+    "Acordo Ortográfico da Língua Portuguesa — 1990",
+    "VOLP — ABL, 6ª ed.",
+    "Rocha Lima — Gramática Normativa (49ª ed.)",
+    "Cunha & Cintra — Nova Gramática do Português Contemporâneo (7ª ed.)"
+  ],
+  "entries": [
+    {
+      "id": "s_vs_z",
+      "label": "S / Z — quando usar cada um",
+      "entries": [
+        {
+          "id": "z_uses",
+          "label": "Usa-se Z",
+          "rules": [
+            {
+              "id": "z_derivados_eza",
+              "rule": "Nos sufixos -eza (qualidade abstrata de adjetivos) e -izar (verbalização).",
+              "examples": ["beleza", "tristeza", "pobreza", "riqueza", "modernizar", "neutralizar", "amenizar"]
+            },
+            {
+              "id": "z_izao",
+              "rule": "Nas famílias de palavras com -izar: o substantivo derivado termina em -ização.",
+              "examples": ["modernização", "digitalização", "colonização", "civilização"]
+            },
+            {
+              "id": "z_raiz",
+              "rule": "Em palavras primitivas cujo radical termina em -z.",
+              "examples": ["raiz → raizes (pl. raízes)", "luz → luzir", "cruz → cruzar", "voz → vozear"]
+            },
+            {
+              "id": "z_nomes_proprios",
+              "rule": "Em gentílicos e derivados de nomes próprios terminados em -z.",
+              "examples": ["Cruz → cruzeirense", "Gonçalves → gonçalvense"]
+            }
+          ]
+        },
+        {
+          "id": "s_uses",
+          "label": "Usa-se S",
+          "rules": [
+            {
+              "id": "s_derivados_osa",
+              "rule": "Nos sufixos -oso/-osa, -ismo, -ista.",
+              "examples": ["gostoso", "perigoso", "jornalismo", "socialismo", "jornalista", "realista"]
+            },
+            {
+              "id": "s_esa_isa",
+              "rule": "Nos sufixos -esa (fem. de cargos/títulos) e -isa.",
+              "examples": ["baronesa", "condessa (ss!)", "poetisa", "sacerdotisa"]
+            },
+            {
+              "id": "s_ense_es",
+              "rule": "Nos sufixos -ense, -ês/-esa (gentílicos).",
+              "examples": ["carioca → carioca", "fluminense", "paulistano", "português/portuguesa", "inglês/inglesa"]
+            },
+            {
+              "id": "s_verbos_andar_estar_querer",
+              "rule": "Nas desinências verbais -asse, -esse, -isse, -osse, -usse (subjuntivo imperfeito).",
+              "examples": ["amasse", "vendesse", "partisse", "pusesse", "trouxesse"]
+            },
+            {
+              "id": "s_pos_prefixo",
+              "rule": "S inicial após prefixo terminado em vogal (o s dobra para manter o som /s/).",
+              "examples": ["antissocial", "contrassenso", "ressuscitar", "dissabor", "possível"]
+            },
+            {
+              "id": "s_depois_ditongo",
+              "rule": "S após ditongo.",
+              "examples": ["coisa", "pausa", "causa", "louça (já vem de formação diferente)"]
+            }
+          ]
+        },
+        {
+          "id": "s_z_confusion",
+          "label": "Pares e casos que geram confusão",
+          "cases": [
+            {"word": "analisar", "not": "analizar", "note": "radical 'analise' + sufixo -ar — não é -izar"},
+            {"word": "avisar", "not": "avizar"},
+            {"word": "pesquisar", "not": "pesquizar"},
+            {"word": "improviso", "not": "improvizo"},
+            {"word": "televisão", "not": "televisão (já está certo — -são de tendência latina)"},
+            {"word": "decisão", "note": "de decidir — sufixo -são (não -ção)"},
+            {"word": "beleza", "not": "belesa"},
+            {"word": "certeza", "not": "certesa"},
+            {"word": "prazo", "not": "praso"},
+            {"word": "deslize", "note": "de deslizar"},
+            {"word": "avareza", "note": "de ávaro + -eza"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c_ss_sc_s_x",
+      "label": "C / Ç / SS / SC / S / X — som /s/",
+      "description": "Várias grafias representam o fonema /s/ em posição intervocálica ou inicial.",
+      "entries": [
+        {
+          "id": "ss_rules",
+          "label": "SS — quando usar",
+          "rules": [
+            {
+              "rule": "Entre vogais, quando a pronúncia é /s/ (nunca /z/).",
+              "examples": ["assunto", "passo", "massa", "professor", "resso", "ossatura", "acesso"]
+            },
+            {
+              "rule": "Derivados de verbos com raiz terminada em -d ou -t + sufixo começa por -s.",
+              "examples": ["sede → sessão? Não — ver regra de cada caso.", "ceder → cessão (ced+s+são → cess)", "prometer → promessa", "aceitar → acesso", "expressar → expressão"]
+            },
+            {
+              "rule": "NUNCA use SS após consoante, no início de palavra, ou antes de consoante.",
+              "wrong": ["*ssegurar (→ assegurar)", "*pessoa (correto — sso no meio)"]
+            }
+          ]
+        },
+        {
+          "id": "sc_rules",
+          "label": "SC / SÇ — quando usar",
+          "rules": [
+            {
+              "rule": "SC antes de e ou i (som /s/); SÇ antes de a, o, u.",
+              "examples": ["descer", "discernir", "nascer", "cresço", "desço", "pisco", "fascinante", "prescindir"]
+            }
+          ]
+        },
+        {
+          "id": "c_cedilha",
+          "label": "C / Ç — quando usar",
+          "rules": [
+            {
+              "rule": "C antes de e e i = /s/: cena, cigano, acesso.",
+              "examples": ["cedo", "cidade", "acelerado", "cínico", "cerimônia"]
+            },
+            {
+              "rule": "Ç antes de a, o, u = /s/: maçã, moço, açúcar.",
+              "examples": ["maçã", "moço", "açúcar", "caçar", "forçar", "almoço", "coração", "ação"]
+            },
+            {
+              "rule": "Ç NUNCA ocorre no início de palavra.",
+              "note": "Em início de palavra, usa-se sempre 'c' ou 's': céu, saúde."
+            }
+          ]
+        },
+        {
+          "id": "x_som_s",
+          "label": "X com som /s/ — casos específicos",
+          "rules": [
+            {
+              "rule": "X entre vogal e consoante, em posição pós-ditongo, e em palavras de origem grega ou indígena.",
+              "examples": ["máximo", "táxi", "auxílio", "sexto", "texto", "próximo", "experiência"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "x_vs_ch",
+      "label": "X / CH — som /∫/ (como 'ch' em 'chuva')",
+      "description": "Ambos representam o mesmo som /∫/ em muitos contextos — a grafia correta depende da etimologia.",
+      "use_x": [
+        {
+          "rule": "Após ditongo.",
+          "examples": ["caixa", "frouxo", "feixe", "peixe", "ameixa", "queixo", "deixar", "seixo", "baixo"]
+        },
+        {
+          "rule": "Após a sílaba 'en-' inicial de origem portuguesa (não latina/grega).",
+          "examples": ["enxada", "enxame", "enxergar", "enxuto", "enxoval", "enxugar"]
+        },
+        {
+          "rule": "Em palavras de origem indígena, africana ou de base onomatopaica.",
+          "examples": ["xará", "xavante", "xodó", "xingamento", "xilofone (grego)", "xamã", "xerife (via inglês)"]
+        },
+        {
+          "rule": "Em palavras de origem espanhola com som /∫/.",
+          "examples": ["abacaxi", "xarope (via árabe)"]
+        }
+      ],
+      "use_ch": [
+        {
+          "rule": "Em palavras de origem francesa ou greco-latina com som /∫/.",
+          "examples": ["chave", "cheiro", "cheio", "chocolate", "chuva", "chef", "chamar", "chegar", "choque"]
+        },
+        {
+          "rule": "Em palavras latinas onde havia 'c' ou 'ch' latina.",
+          "examples": ["chamar (lat. clamare)", "choro (lat. chorare)", "chão (lat. planum — evolução fonética)"]
+        }
+      ],
+      "tricky_pairs": [
+        {"x": "xarope", "ch": "não existe 'charope'"},
+        {"word": "enchente", "note": "ch — não 'enxente'"},
+        {"word": "encharcar", "note": "ch"},
+        {"word": "enxaqueca", "note": "x"},
+        {"word": "mochila", "note": "ch — de origem espanhola"},
+        {"word": "fachada", "note": "ch — do italiano 'facciata'"},
+        {"word": "recruta / recrutar", "note": "sem x ou ch — letra t"},
+        {"word": "cachimbo", "note": "ch"},
+        {"word": "capricho", "note": "ch — do italiano"},
+        {"word": "gargancho → gancho", "note": "ch"}
+      ]
+    },
+    {
+      "id": "g_vs_j",
+      "label": "G / J — som /ʒ/ (como 'j' em 'janela')",
+      "use_g": [
+        {
+          "rule": "G antes de e e i = /ʒ/ em palavras de origem grega ou latina.",
+          "examples": ["gente", "girar", "agente", "gênero", "germe", "gigante", "região", "giz", "ágil", "urgente", "frágil", "imaginação"]
+        },
+        {
+          "rule": "Nos sufixos -agem, -igem, -ugem (de origem latina).",
+          "examples": ["viagem", "vantagem", "homenagem", "garagem", "origem", "ferrugem", "penugem"]
+        },
+        {
+          "rule": "Após a partícula 'in-' em palavras de origem latina.",
+          "examples": ["ingênuo", "ingerir", "insurgir"]
+        }
+      ],
+      "use_j": [
+        {
+          "rule": "Em palavras de origem árabe, africana, indígena.",
+          "examples": ["jangada", "jiló", "jabuti", "jararaca", "javali", "jiboia", "jasmim", "jequitibá"]
+        },
+        {
+          "rule": "Em verbos terminados em -jar na conjugação (formas com a, o, u).",
+          "examples": ["viajar → viajo, viaja, viaje", "rejeitar → rejeito", "enraizar → (não tem j)"]
+        },
+        {
+          "rule": "Nas formas do pretérito de verbos com infinitivo em -ger, -gir (a sílaba que antes era 'g+e/i' passa a ser 'j+a/o').",
+          "examples": ["dirigir → dirijo, dirija", "surgir → surjo, surja", "eleger → elejo, elejar? NÃO — elege (não tem j)"]
+        }
+      ],
+      "tricky": [
+        {"word": "jipe", "note": "j — de origem inglesa 'jeep'"},
+        {"word": "janela", "note": "j — do latim 'janua'"},
+        {"word": "sujeito", "note": "j"},
+        {"word": "hoje", "note": "j"},
+        {"word": "agência", "note": "g (não agênsia, não agênjia)"},
+        {"word": "urgência", "note": "g"},
+        {"word": "já / jamais", "note": "j"}
+      ]
+    },
+    {
+      "id": "m_vs_n",
+      "label": "M / N — em final de sílaba antes de consoante",
+      "description": "O m e o n em final de sílaba indicam a nasalização da vogal anterior. A escolha é determinada pela consoante que segue.",
+      "use_m": [
+        {
+          "rule": "Antes de p e b.",
+          "examples": ["campo", "camponês", "ambos", "embora", "sempre", "tempo", "também", "combate", "embarcar", "lombo"],
+          "note": "NUNCA se escreve 'n' antes de 'p' ou 'b': *'canpo', *'senbrar' — ERRADO."
+        },
+        {
+          "rule": "Em final de palavra monossílaba ou oxítona.",
+          "examples": ["sim", "bom", "com", "tom", "rim", "tem", "vem", "alguém", "armazém"]
+        }
+      ],
+      "use_n": [
+        {
+          "rule": "Antes de todas as outras consoantes (f, v, s, z, d, t, c, g, l, r...).",
+          "examples": ["antes", "tender", "contrato", "convencer", "sintetizar", "fantasma", "manchete"]
+        },
+        {
+          "rule": "Antes de vogal em palavras como 'honra', 'innocent'... — na mesma sílaba.",
+          "examples": ["inútil", "inocente", "inaugural", "analisar"]
+        }
+      ],
+      "tricky": [
+        {"word": "imigrante / emigrante", "note": "n antes de g (não m)"},
+        {"word": "imposto / imprimir", "note": "m antes de p"},
+        {"word": "infame", "note": "n antes de f"},
+        {"word": "ambíguo", "note": "m antes de b"},
+        {"word": "comunicar", "note": "m antes de consoante? Não — 'c' com sufixo, o m está antes de vogal — comunicar (com+unic)"},
+        {"correct": "também", "wrong": "*tanbém — m antes de vogal tônica final"},
+        {"correct": "ênfase", "wrong": "*êmfase — n antes de f"}
+      ]
+    },
+    {
+      "id": "h",
+      "label": "H — quando usar e quando não usar",
+      "entries": [
+        {
+          "id": "h_inicial",
+          "label": "H inicial — sem valor fonético",
+          "description": "O h inicial não representa nenhum som em português. É resquício histórico (do latim ou grego). Sua presença é determinada pela etimologia.",
+          "with_h": ["haver", "homem", "hora", "humano", "herói", "hoje", "honra", "hipótese", "história", "humor", "habitação"],
+          "without_h_common_errors": [
+            {"wrong": "*huniversidade", "correct": "universidade"},
+            {"wrong": "*Henrique (com H — nome próprio — tem H)", "note": "nomes próprios respeitam grafia histórica"},
+            {"wrong": "*horelhão", "correct": "orelha"}
+          ]
+        },
+        {
+          "id": "h_digrafos",
+          "label": "H nos dígrafos lh, nh, ch",
+          "description": "Nestes casos, o h faz parte do dígrafo e representa sons específicos.",
+          "examples": [
+            {"form": "lh", "sound": "/λ/ (lh de 'lha-na')", "examples": ["olho", "palha", "milho", "filha", "calha", "vermelho"]},
+            {"form": "nh", "sound": "/ɲ/ (nh de 'se-nhor')", "examples": ["sonho", "banho", "vinha", "manhã", "coelho (lh)", "ninho"]},
+            {"form": "ch", "sound": "/∫/ (ch de 'chu-va')", "examples": ["chave", "cheio", "chuva", "achar", "fachada"]}
+          ]
+        },
+        {
+          "id": "h_medial",
+          "label": "H medial — separação de vogais",
+          "description": "Em alguns compostos e palavras, o h medial separa dois vogais que não formariam ditongo.",
+          "examples": ["desumano (sem h — des+humano? de 'in+humanus' → des... Nota: 'desumano' é forma corrente, 'desumano' e 'desumanizar')", "veicular", "substância"]
+        },
+        {
+          "id": "h_rh_th",
+          "label": "RH e TH em palavras de origem grega",
+          "description": "Algumas palavras de origem grega mantêm rh e th na escrita.",
+          "examples": ["ritmo (de 'rhythmos' → mas hoje sem h em BR: ritmo, não *rhitmo)", "tese (de 'thesis' — sem h em BR)", "teatro (de 'theatrum' — sem h em BR)"],
+          "with_h": ["absinthe → absinto (adaptado)", "thé → chá (galicismo adaptado)"]
+        }
+      ]
+    },
+    {
+      "id": "maiusculas",
+      "label": "Letras maiúsculas — quando usar",
+      "entries": [
+        {
+          "id": "maiusc_inicio_frase",
+          "label": "Início de frase, de texto ou após ponto final",
+          "examples": ["A vida é curta. O tempo é precioso."]
+        },
+        {
+          "id": "maiusc_nomes_proprios",
+          "label": "Nomes próprios — pessoas, lugares, organizações",
+          "examples": ["Machado de Assis", "Brasil", "São Paulo", "Atlântico", "Deus (quando se refere ao deus monoteísta)", "Bíblia", "Corão"],
+          "exceptions": ["os artigos, preposições e conjunções dentro de nomes compostos geralmente ficam minúsculos: 'Rio de Janeiro', 'Ministério das Relações Exteriores'"]
+        },
+        {
+          "id": "maiusc_titulos",
+          "label": "Títulos de obras (livros, filmes, peças)",
+          "rule": "Convenção brasileira: maiúscula apenas na primeira palavra e nos nomes próprios. A norma ABNT indica primeira palavra em maiúscula.",
+          "examples": ["Dom Casmurro", "A hora da estrela", "Grande sertão: veredas"]
+        },
+        {
+          "id": "maiusc_tratamento",
+          "label": "Pronomes de tratamento abreviados",
+          "examples": ["V. Ex.ª", "V. S.ª", "Sr.", "Sra.", "Dr.", "Prof."]
+        },
+        {
+          "id": "maiusc_nao_usar",
+          "label": "Não se usa maiúscula em",
+          "cases": [
+            "Nomes de idiomas: português, inglês, francês",
+            "Gentílicos (salvo inicio de frase): brasileiro, carioca, europeu",
+            "Estações do ano: verão, inverno, primavera, outono",
+            "Dias da semana: segunda-feira, sábado",
+            "Meses do ano: janeiro, março, dezembro",
+            "Pontos cardeais quando usados como direção (e não como região): vire para o norte; mas: o Norte do Brasil",
+            "Nomes de doenças: covid-19, diabetes, aids"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "digrafs_double_consonants",
+      "label": "Dígrafos e consoantes dobradas — regras",
+      "entries": [
+        {
+          "id": "rr",
+          "label": "RR — entre vogais",
+          "rule": "RR entre vogais representa o som do r forte /R/. R no início de palavra e após consoante também tem som forte, mas não se dobra.",
+          "examples": ["carro", "terra", "borra", "arroz", "errar", "serra"],
+          "single_r_strong": ["rua (início)", "Israel (após consoante)", "honra (após n)", "genro (após n)"]
+        },
+        {
+          "id": "ss",
+          "label": "SS — entre vogais",
+          "rule": "SS entre vogais representa /s/ surdo. S entre vogais representa /z/ sonoro.",
+          "contrast": [
+            {"ss_sound": "casa (a-z-a) ≠ cassa (a-s-a)"},
+            {"ss_sound": "vaso (/z/) ≠ passo (/s/)"},
+            {"ss_sound": "mase? → masse? → mas: massa (/s/) ≠ mesa (/z/)"}
+          ]
+        },
+        {
+          "id": "cc_cç",
+          "label": "CC / CÇ — sequências etimológicas",
+          "rule": "CC ocorre em palavras de origem latina onde havia dois c's pronunciados: 'cç' ocorre quando o primeiro c tem som /k/ e o segundo forma com cedilha.",
+          "examples": [
+            {"form": "acção → ação (BR) / ação (AO 1990 eliminou cc antes de ç no Brasil)", "note": "No Brasil, 'ação', não 'acção' (forma europeia)"},
+            {"form": "acidente → acidente (sem cc)"},
+            {"form": "ocção? → opção (pt. europeu: opção também)"}
+          ],
+          "ao_1990_note": "O AO 1990 eliminou no Brasil as sequências 'cc', 'cç', 'ct', 'pc', 'pç', 'pt' quando a primeira consoante não era pronunciada. Ex: facto → fato; acção → ação."
+        },
+        {
+          "id": "silent_consonants",
+          "label": "Consoantes mudas eliminadas pelo AO 1990 (no Brasil)",
+          "description": "Palavras que no português europeu mantêm consoante muda, no Brasil foram simplificadas.",
+          "before_after": [
+            {"pt": "facto", "br": "fato"},
+            {"pt": "óptimo", "br": "ótimo"},
+            {"pt": "baptismo", "br": "batismo"},
+            {"pt": "baptizar", "br": "batizar"},
+            {"pt": "acção", "br": "ação"},
+            {"pt": "direcção", "br": "direção"},
+            {"pt": "Egipto", "br": "Egito"},
+            {"pt": "exacto", "br": "exato"},
+            {"pt": "excepção", "br": "exceção"},
+            {"pt": "inspecção", "br": "inspeção"},
+            {"pt": "objectivo", "br": "objetivo"},
+            {"pt": "projecto", "br": "projeto"},
+            {"pt": "tacto", "br": "tato"},
+            {"pt": "detector", "br": "detector (mantido — ambos pronunciam)"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "x_sounds",
+      "label": "X — os quatro sons do X",
+      "description": "O X é a letra mais ambígua do alfabeto português: pode representar quatro sons distintos.",
+      "values": [
+        {
+          "sound": "/∫/ (como ch)",
+          "rule": "Após ditongo, após 'en-' inicial, em palavras de origem árabe/indígena/africana.",
+          "examples": ["caixa", "deixar", "feixe", "enxame", "enxada", "xarope", "xamã", "xodó"]
+        },
+        {
+          "sound": "/z/ (como z)",
+          "rule": "No início de palavras de origem grega com o prefixo 'xeno-', 'xilo-', etc.",
+          "examples": ["xenofobia /z/", "xilofone /z/", "xerografia /z/"]
+        },
+        {
+          "sound": "/ks/ (duplo som)",
+          "rule": "Em posição intervocálica em palavras latinas ou em grupos finais.",
+          "examples": ["táxi", "sexo", "nexo", "tóxico", "complexo", "êxito", "fixo", "reflexo"]
+        },
+        {
+          "sound": "/s/ (como s simples)",
+          "rule": "Em posição pré-consonantal e em alguns contextos específicos.",
+          "examples": ["extensão", "texto", "contexto", "máximo", "próximo", "expectativa", "sexta"]
+        }
+      ]
+    },
+    {
+      "id": "paronyms",
+      "label": "Parônimos e homônimos ortográficos — armadilhas frequentes",
+      "entries": [
+        {"word1": "acender (ligar, inflamar)", "word2": "ascender (subir, elevar-se)"},
+        {"word1": "acento (sinal gráfico / entonação)", "word2": "assento (lugar para sentar)"},
+        {"word1": "cela (quarto de prisão / célula monástica)", "word2": "sela (arreio de cavalo)"},
+        {"word1": "cessão (ato de ceder)", "word2": "seção / secção (divisão, corte)", "word3": "sessão (reunião, sessão de cinema)"},
+        {"word1": "coser (costurar)", "word2": "cozer (cozinhar)"},
+        {"word1": "comprimento (extensão)", "word2": "cumprimento (saudação)"},
+        {"word1": "concerto (espetáculo musical)", "word2": "conserto (reparo, arrumação)"},
+        {"word1": "deferir (conceder, aprovar)", "word2": "diferir (adiar, ser diferente)"},
+        {"word1": "descrição (ato de descrever)", "word2": "discrição (qualidade de ser discreto)"},
+        {"word1": "emergir (vir à tona)", "word2": "imergir (mergulhar, afundar)"},
+        {"word1": "emigrar (sair do país)", "word2": "imigrar (entrar no país)"},
+        {"word1": "eminente (ilustre, destacado)", "word2": "iminente (que está prestes a acontecer)"},
+        {"word1": "espectador (quem assiste)", "word2": "expectador (variante rara — preferível 'espectador')"},
+        {"word1": "esperto (ativo, inteligente)", "word2": "experto (especialista — anglicismo aceito)"},
+        {"word1": "flagrante (evidente / em flagrante)", "word2": "fragrante (que exala fragrância — raro)"},
+        {"word1": "fluir (correr, deslizar)", "word2": "fruir (usufruir, gozar)"},
+        {"word1": "infligir (aplicar pena ou castigo)", "word2": "infringir (violar, transgredir)"},
+        {"word1": "mandado (ordem judicial)", "word2": "mandato (autorização, período de mandato)"},
+        {"word1": "osso (do esqueleto)", "word2": "urso (animal)"},
+        {"word1": "precedente (que vem antes)", "word2": "procedente (que tem fundamento, que vem de)"},
+        {"word1": "prescrever (determinar, caducar)", "word2": "proscrever (banir, exilar)"},
+        {"word1": "ratificar (confirmar, aprovar formalmente)", "word2": "retificar (corrigir, endireitar)"},
+        {"word1": "recreio (intervalo, lazer)", "word2": "recrio (1sg pres. ind. de 'recriar')"},
+        {"word1": "recrear (divertir, entreter)", "word2": "recriar (criar de novo)"},
+        {"word1": "soar (produzir som)", "word2": "suar (transpirar)"},
+        {"word1": "tachar (censurar, tildar)", "word2": "taxar (cobrar taxa; avaliar)"},
+        {"word1": "tráfego (movimento de veículos)", "word2": "tráfico (comércio ilícito)"},
+        {"word1": "vestiário (local para trocar roupa)", "word2": "vocabulário (conjunto de palavras)"}
+      ]
+    }
+  ]
+}

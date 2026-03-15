@@ -1,0 +1,318 @@
+{
+  "version": "1.0",
+  "area": "syntax",
+  "topic": "concordancia",
+  "description": "Concordância verbal e nominal do português brasileiro — regras gerais e casos especiais, com exemplos corretos e incorretos.",
+  "sources": [
+    "Rocha Lima — Gramática Normativa (49ª ed.)",
+    "Cunha & Cintra — Nova Gramática (7ª ed.)",
+    "Bechara — Moderna Gramática Portuguesa (37ª ed.)"
+  ],
+  "sections": [
+    {
+      "id": "concordancia_verbal",
+      "label": "Concordância Verbal",
+      "definition": "O verbo concorda em número e pessoa com o sujeito.",
+      "rules": [
+        {
+          "id": "cv_geral",
+          "label": "Regra geral",
+          "rule": "O verbo concorda com o núcleo do sujeito.",
+          "examples": [
+            {"correct": "O menino correu.", "incorrect": null},
+            {"correct": "Os meninos correram.", "incorrect": null}
+          ]
+        },
+        {
+          "id": "cv_sujeito_composto_anteposto",
+          "label": "Sujeito composto anteposto",
+          "rule": "Sujeito composto antes do verbo → verbo no plural.",
+          "examples": [
+            {"correct": "Pedro e Maria chegaram.", "incorrect": "Pedro e Maria chegou."},
+            {"correct": "O sol e a lua iluminam o caminho.", "incorrect": null}
+          ],
+          "note": "Exceção literária/formal: quando os núcleos formam um todo indissolúvel ('O ir e vir da maré encanta.') ou são sinônimos ('A dor e o sofrimento o abateu/abateram.')."
+        },
+        {
+          "id": "cv_sujeito_composto_posposto",
+          "label": "Sujeito composto posposto",
+          "rule": "Sujeito composto após o verbo → verbo pode concordar com o mais próximo (por atração) ou ir ao plural. Ambas as formas são aceitas.",
+          "examples": [
+            {"correct": "Chegou Pedro e Maria.", "note": "concorda com o mais próximo"},
+            {"correct": "Chegaram Pedro e Maria.", "note": "concorda com o conjunto"}
+          ]
+        },
+        {
+          "id": "cv_sujeito_composto_pessoas",
+          "label": "Sujeito composto com diferentes pessoas gramaticais",
+          "rule": "1ª + 2ª → 1ª do plural (nós). 1ª + 3ª → 1ª do plural (nós). 2ª + 3ª → 2ª do plural (vós) — na prática, 3ª do plural.",
+          "examples": [
+            {"correct": "Tu e eu fomos ao teatro. (= nós)"},
+            {"correct": "Eu e ele iremos. (= nós)"},
+            {"correct": "Tu e ele ireis / irão. (formal: vós; coloquial: eles)"}
+          ]
+        },
+        {
+          "id": "cv_a_gente",
+          "label": "'A gente' como sujeito",
+          "rule": "'A gente' = pronome coletivo, 3ª pessoa do singular. O verbo vai sempre na 3ª singular.",
+          "examples": [
+            {"correct": "A gente foi ao cinema.", "incorrect": "A gente fomos ao cinema."},
+            {"correct": "A gente precisa estudar.", "incorrect": "A gente precisamos estudar."}
+          ]
+        },
+        {
+          "id": "cv_voce",
+          "label": "'Você', 'o senhor', tratamento",
+          "rule": "Pronomes de tratamento (você, o senhor, a senhora, Vossa Excelência, Vossa Senhoria etc.) → 3ª pessoa.",
+          "examples": [
+            {"correct": "Você veio cedo.", "incorrect": "Você vieste cedo."},
+            {"correct": "O senhor precisa assinar.", "incorrect": null}
+          ]
+        },
+        {
+          "id": "cv_mais_de_um",
+          "label": "'Mais de um'",
+          "rule": "'Mais de um' + singular → verbo no singular. Com ideia de reciprocidade, pode ir ao plural.",
+          "examples": [
+            {"correct": "Mais de um aluno faltou.", "note": "regra geral"},
+            {"correct": "Mais de um professor se desentenderam.", "note": "reciprocidade — aceito"}
+          ]
+        },
+        {
+          "id": "cv_um_dos_que",
+          "label": "'Um dos que'",
+          "rule": "Verbo vai preferencialmente para o plural (concorda com 'os que', não com 'um').",
+          "examples": [
+            {"correct": "Ele é um dos que mais trabalham.", "note": "preferencial"},
+            {"correct": "Ele é um dos que mais trabalha.", "note": "aceito"}
+          ]
+        },
+        {
+          "id": "cv_sujeito_coletivo",
+          "label": "Sujeito com coletivo",
+          "rule": "Coletivo singular → verbo no singular. Quando o coletivo é especificado ('bando de pássaros'), aceita-se o plural.",
+          "examples": [
+            {"correct": "O povo se manifestou."},
+            {"correct": "O bando de pássaros voou alto."},
+            {"correct": "Um bando de crianças correu/correram pelo parque.", "note": "ambos aceitos quando o coletivo é partitivo especificado"}
+          ]
+        },
+        {
+          "id": "cv_porcentagem",
+          "label": "Sujeito com porcentagem",
+          "rule": "O verbo concorda com o numeral (se ele for o núcleo) ou com o substantivo que o acompanha.",
+          "examples": [
+            {"correct": "Vinte por cento dos alunos faltaram.", "note": "concorda com 'alunos'"},
+            {"correct": "Vinte por cento do eleitorado votou.", "note": "concorda com 'eleitorado' (sing.)"},
+            {"correct": "1% dos participantes votou/votaram.", "note": "ambos aceitos"}
+          ]
+        },
+        {
+          "id": "cv_haver_existencial",
+          "label": "'Haver' existencial — verbo impessoal",
+          "rule": "'Haver' com sentido de 'existir' é impessoal: sempre na 3ª singular. Não tem sujeito.",
+          "examples": [
+            {"correct": "Há muitas pessoas no saguão.", "incorrect": "Haviam muitas pessoas no saguão."},
+            {"correct": "Havia dúvidas.", "incorrect": "Haviam dúvidas."},
+            {"correct": "Houve problemas.", "incorrect": "Houveram problemas."}
+          ],
+          "note": "'Ter' com sentido de existência é também impessoal no uso coloquial/literário: 'Tem gente aqui.' → aceito na fala; na escrita formal, prefere-se 'Há gente aqui.'"
+        },
+        {
+          "id": "cv_fazer_temporal",
+          "label": "'Fazer' temporal — verbo impessoal",
+          "rule": "'Fazer' indicando tempo decorrido é impessoal: sempre na 3ª singular.",
+          "examples": [
+            {"correct": "Faz dois anos que não o vejo.", "incorrect": "Fazem dois anos que não o vejo."},
+            {"correct": "Há muito tempo que não nos falamos. ('Há' também impessoal)"},
+            {"correct": "Fazia três horas que esperava.", "incorrect": "Faziam três horas."}
+          ]
+        },
+        {
+          "id": "cv_verbo_ser_predicativo",
+          "label": "Verbo 'ser' com predicativo",
+          "rule": "Quando o sujeito é pronome pessoal (eu, tu, nós, vós) ou demonstrativo, o 'ser' pode concordar com o predicativo nominal (se este for substantivo).",
+          "examples": [
+            {"correct": "Isso são mentiras.", "note": "'isso' = sujeito; verbo concorda com predicativo 'mentiras'"},
+            {"correct": "Isso é mentira.", "note": "também correto — concorda com sujeito"},
+            {"correct": "Tudo são flores.", "note": "concorda com predicativo 'flores'"},
+            {"correct": "Nós somos a esperança do país.", "note": "concordância normal"}
+          ]
+        },
+        {
+          "id": "cv_pronome_relativo_que",
+          "label": "Sujeito = pronome relativo 'que'",
+          "rule": "Verbo concorda com o antecedente do 'que'.",
+          "examples": [
+            {"correct": "Fui eu que disse. (ou: Fui eu quem disse.)", "note": "verbo pode ir para 1ª singular"},
+            {"correct": "Foste tu que disseste.", "note": "verbo vai para 2ª singular — mais formal"},
+            {"correct": "Sou eu que mando aqui.", "note": "comum: 1ª singular"}
+          ]
+        },
+        {
+          "id": "cv_pronome_relativo_quem",
+          "label": "Pronome relativo 'quem'",
+          "rule": "'Quem' funciona como 3ª singular, independente do antecedente.",
+          "examples": [
+            {"correct": "Sou eu quem resolve.", "note": "verbo na 3ª singular — preso a 'quem'"},
+            {"correct": "Sou eu quem resolvo.", "note": "aceito — concordância com 'eu'"}
+          ]
+        },
+        {
+          "id": "cv_nenhum_nem",
+          "label": "'Nenhum de', 'nem um nem outro'",
+          "rule": "'Nenhum dos dois', 'nem um nem outro' → singular (preferencial). Plural aceito.",
+          "examples": [
+            {"correct": "Nenhum dos dois chegou.", "note": "preferencial"},
+            {"correct": "Nem o pai nem a mãe veio.", "note": "concorda com o mais próximo"},
+            {"correct": "Nem o pai nem a mãe vieram.", "note": "também aceito"}
+          ]
+        },
+        {
+          "id": "cv_expressoes_partitivas",
+          "label": "Expressões partitivas e quantitativas",
+          "rule": "Com 'a maioria de', 'a maior parte de', 'grande número de', 'grande parte de' + plural → verbo no singular (concorda com o núcleo) ou plural (concorda com o especificador). Ambos aceitos.",
+          "examples": [
+            {"correct": "A maioria dos alunos passou.", "note": "concorda com 'maioria' — formal"},
+            {"correct": "A maioria dos alunos passaram.", "note": "concorda com 'alunos' — aceito"},
+            {"correct": "Grande parte dos projetos foi aprovada.", "note": "singular"},
+            {"correct": "Grande parte dos projetos foram aprovados.", "note": "plural"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "concordancia_nominal",
+      "label": "Concordância Nominal",
+      "definition": "Artigos, adjetivos, pronomes adjetivos e numerais concordam em gênero e número com o substantivo a que se referem.",
+      "rules": [
+        {
+          "id": "cn_geral",
+          "label": "Regra geral",
+          "rule": "O adjetivo concorda em gênero e número com o substantivo.",
+          "examples": [
+            {"correct": "Uma bela paisagem.", "incorrect": null},
+            {"correct": "Belas paisagens.", "incorrect": null}
+          ]
+        },
+        {
+          "id": "cn_adjetivo_varios_subst_mesmo_genero",
+          "label": "Adjetivo posposto a vários substantivos do mesmo gênero",
+          "rule": "Adjetivo concorda com o mais próximo (singular) ou vai ao plural.",
+          "examples": [
+            {"correct": "Comeu carne e peixe assados.", "note": "plural — referência a ambos"},
+            {"correct": "Comeu carne e peixe assado.", "note": "concorda com o mais próximo — também aceito"}
+          ]
+        },
+        {
+          "id": "cn_adjetivo_varios_subst_generos_diferentes",
+          "label": "Adjetivo posposto a substantivos de gêneros diferentes",
+          "rule": "Adjetivo vai para o masculino plural.",
+          "examples": [
+            {"correct": "Homens e mulheres preocupados.", "incorrect": "Homens e mulheres preocupadas."},
+            {"correct": "O carro e a moto velhos.", "incorrect": "O carro e a moto velhas."}
+          ]
+        },
+        {
+          "id": "cn_adjetivo_anteposto",
+          "label": "Adjetivo anteposto a vários substantivos",
+          "rule": "Adjetivo concorda com o mais próximo (aquele imediatamente seguinte).",
+          "examples": [
+            {"correct": "Belo dia e noite.", "note": "masculino, concordando com 'dia' (mais próximo)"},
+            {"correct": "Bela noite e dia.", "note": "feminino, concordando com 'noite'"}
+          ]
+        },
+        {
+          "id": "cn_expressoes_impessoais",
+          "label": "Expressões impessoais: 'é proibido', 'é necessário', 'é permitido'",
+          "rule": "Quando não há artigo antes do substantivo, o adjetivo fica invariável. Com artigo, concorda.",
+          "examples": [
+            {"correct": "É proibido entrada de menores.", "note": "sem artigo → invariável"},
+            {"correct": "É proibida a entrada de menores.", "note": "com artigo → concorda"},
+            {"correct": "É necessário paciência.", "note": "sem artigo → invariável"},
+            {"correct": "É necessária a paciência.", "note": "com artigo → concorda"}
+          ]
+        },
+        {
+          "id": "cn_meio",
+          "label": "'Meio'",
+          "rule": "'Meio' advérbio (modifica adjetivo/advérbio) = invariável. 'Meio' adjetivo (modifica substantivo) = variável.",
+          "examples": [
+            {"correct": "Ela está meio cansada.", "incorrect": "Ela está meia cansada.", "note": "'meio' advérbio → invariável"},
+            {"correct": "Tomou meio copo de água.", "note": "'meio' adjetivo → concorda (meio copo, meia xícara)"},
+            {"correct": "Bebeu meia garrafa.", "note": "adjetivo concordando com 'garrafa'"}
+          ]
+        },
+        {
+          "id": "cn_mesmo_proprio",
+          "label": "'Mesmo', 'próprio'",
+          "rule": "Funcionando como pronome de reforço, concordam com o termo a que se referem.",
+          "examples": [
+            {"correct": "Ela mesma resolveu.", "incorrect": "Ela mesmo resolveu."},
+            {"correct": "Eles próprios o fizeram.", "incorrect": "Eles próprio o fizeram."},
+            {"correct": "As alunas mesmas pediram.", "incorrect": "As alunas mesmo pediram."}
+          ],
+          "note": "Quando 'mesmo' funciona como advérbio de reforço ('mesmo assim', 'mesmo que'), é invariável."
+        },
+        {
+          "id": "cn_bastante",
+          "label": "'Bastante'",
+          "rule": "'Bastante' advérbio (modifica verbo, adjetivo, advérbio) = invariável. 'Bastante' adjetivo/pronome = variável.",
+          "examples": [
+            {"correct": "Ela ficou bastante triste.", "note": "advérbio → invariável"},
+            {"correct": "Há bastante comida.", "note": "adjetivo (sing.) → singular"},
+            {"correct": "Há bastantes pessoas aqui.", "note": "adjetivo (pl.) → plural"}
+          ]
+        },
+        {
+          "id": "cn_obrigado",
+          "label": "'Obrigado'",
+          "rule": "Funciona como adjetivo: concorda com quem fala.",
+          "examples": [
+            {"correct": "Obrigado. (homem falando)", "incorrect": "Obrigada. (homem falando)"},
+            {"correct": "Obrigada. (mulher falando)", "incorrect": "Obrigado. (mulher falando)"}
+          ]
+        },
+        {
+          "id": "cn_quite_quite",
+          "label": "'Quite', 'quito'",
+          "rule": "Concorda com o sujeito.",
+          "examples": [
+            {"correct": "Estamos quites.", "incorrect": "Estamos quite."},
+            {"correct": "Estou quite com ele.", "note": "aceito no singular"}
+          ]
+        },
+        {
+          "id": "cn_cor_de",
+          "label": "Adjetivos compostos de cor",
+          "rule": "Adjetivos compostos de cor (amarelo-limão, verde-garrafa, azul-marinho) são invariáveis. Exceto quando os dois elementos são adjetivos comuns (azul-escuro, verde-claro).",
+          "examples": [
+            {"correct": "Saias amarelo-limão.", "incorrect": "Saias amarelas-limão.", "note": "segundo elemento = substantivo → invariável"},
+            {"correct": "Camisas verde-escuras.", "note": "dois adjetivos → o segundo elemento concorda"},
+            {"correct": "Parede azul-marinho.", "incorrect": "Parede azul-marinhos."}
+          ]
+        },
+        {
+          "id": "cn_anexo_incluso",
+          "label": "'Anexo', 'incluso', 'junto'",
+          "rule": "Concordam com o substantivo a que se referem.",
+          "examples": [
+            {"correct": "Segue anexa a declaração.", "incorrect": "Segue anexo a declaração."},
+            {"correct": "Seguem anexos os documentos.", "incorrect": "Seguem anexo os documentos."},
+            {"correct": "Inclusa está a fatura.", "incorrect": "Incluso está a fatura."}
+          ]
+        },
+        {
+          "id": "cn_quite_leso",
+          "label": "'Leso' em compostos",
+          "rule": "Em compostos como 'leso-pátria', 'leso-humanidade' → invariável ('leso' é prefixo latino, não adjetivo flexível nesta posição).",
+          "examples": [
+            {"correct": "crime de lesa-pátria", "note": "feminino por tradição — 'lesa' se funde ao composto"},
+            {"correct": "lesa-humanidade", "incorrect": "leso-humanidade"}
+          ]
+        }
+      ]
+    }
+  ]
+}

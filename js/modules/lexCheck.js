@@ -2,11 +2,11 @@
  * lexCheck.js — Verificador de vocabulário baseado no léxico PT-BR
  *
  * Após 2s de inatividade no editor, varre o texto e marca palavras que não
- * existem no dicionário (dictEntries, 360k entradas). Hover mostra sugestões
+ * existem no dicionário (360k entradas via dictHas/dictGet). Hover mostra sugestões
  * por distância de edição; clique substitui a palavra no texto.
  */
 
-import { dictEntries, loadAllDictChunks } from "./verbete.js";
+import { dictHas, dictGet, loadAllDictChunks } from "./verbete.js";
 import { ACCENT_IGNORELIST } from "./grammarLint.js";
 
 // ── Normalização (remove acentos, lowercase) ──────────────────────────────
@@ -38,7 +38,7 @@ async function ensureLoaded() {
 
 function isKnown(word) {
   if (!_ready) return true; // ainda carregando → não marcar
-  return dictEntries.has(normalize(word));
+  return dictHas(word);
 }
 
 // ── Sugestões por distância de edição (algoritmo Norvig) ──────────────────
@@ -73,8 +73,8 @@ export function suggest(word, limit = 4) {
   for (const candidate of edits1(word)) {
     if (candidate.length < 2) continue;
     const norm = normalize(candidate);
-    if (!found.has(norm) && dictEntries.has(norm)) {
-      const entry = dictEntries.get(norm);
+    if (!found.has(norm) && dictHas(candidate)) {
+      const entry = dictGet(candidate);
       found.set(norm, { word: entry?.word || candidate, dist: 1 });
     }
   }
@@ -86,8 +86,8 @@ export function suggest(word, limit = 4) {
       for (const candidate of edits1(e1)) {
         if (candidate === word.toLowerCase() || candidate.length < 2) continue;
         const norm = normalize(candidate);
-        if (!found.has(norm) && dictEntries.has(norm)) {
-          const entry = dictEntries.get(norm);
+        if (!found.has(norm) && dictHas(candidate)) {
+          const entry = dictGet(candidate);
           found.set(norm, { word: entry?.word || candidate, dist: 2 });
           if (found.size >= limit * 3) break outer;
         }

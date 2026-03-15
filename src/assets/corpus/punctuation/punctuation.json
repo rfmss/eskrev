@@ -1,0 +1,864 @@
+{
+  "version": "1.0",
+  "area": "punctuation",
+  "topic": "punctuation",
+  "description": "Regras de pontuação do português brasileiro: uso obrigatório, usos facultativos e usos estilísticos de todos os sinais — com ênfase nos erros mais comuns e nas possibilidades literárias.",
+  "sources": [
+    "Rocha Lima — Gramática Normativa da Língua Portuguesa (49ª ed.)",
+    "Cunha & Cintra — Nova Gramática do Português Contemporâneo (7ª ed.)",
+    "Bechara — Moderna Gramática Portuguesa (37ª ed.)",
+    "Acordo Ortográfico da Língua Portuguesa — 1990"
+  ],
+  "editorial_note": "Pontuação é o sistema de sinais gráficos que organiza o ritmo, a entonação e a hierarquia das relações entre os elementos do discurso escrito. Ela não é apenas norma — é instrumento estilístico. O escritor experiente a domina para subvertê-la com consciência.",
+  "entries": [
+    {
+      "id": "virgula",
+      "label": "vírgula",
+      "symbol": ",",
+      "definition": "Sinal de pausa breve. Organiza elementos dentro da oração, separa orações e isola termos deslocados ou acessórios.",
+      "mandatory_uses": [
+        {
+          "id": "v_enumeracao",
+          "label": "Enumeração de termos da mesma função",
+          "rule": "Separa elementos de uma série (sujeitos, objetos, adjuntos) da mesma função sintática. A última vírgula antes de 'e' é facultativa; antes de 'ou' e 'nem', idem.",
+          "examples": [
+            "Comprou pão, leite, queijo e manteiga.",
+            "Chegaram cedo, trabalharam muito, foram embora tarde.",
+            "Era alto, magro, silencioso."
+          ],
+          "note": "Na enumeração de três elementos, muitos escritores suprimem a vírgula antes do último 'e' (estilo jornalístico). Na prosa literária e formal, o uso é facultativo mas pode ser significativo ritmicamente."
+        },
+        {
+          "id": "v_vocativo",
+          "label": "Vocativo",
+          "rule": "O vocativo — chamamento direto ao interlocutor — é sempre isolado por vírgula(s).",
+          "examples": [
+            "João, venha aqui.",
+            "Venha aqui, João.",
+            "Venha, João, imediatamente.",
+            "Meus amigos, precisamos conversar."
+          ]
+        },
+        {
+          "id": "v_aposto",
+          "label": "Aposto explicativo",
+          "rule": "O aposto que explica, resume ou especifica um termo anterior é isolado por vírgulas.",
+          "examples": [
+            "Machado de Assis, o maior romancista brasileiro, nasceu no Rio.",
+            "A capital do Brasil, Brasília, foi inaugurada em 1960.",
+            "Seu único defeito, a preguiça, custou-lhe o emprego."
+          ],
+          "note": "O aposto especificativo (restritivo) NÃO leva vírgula: 'O poeta Drummond nasceu em Itabira.' — sem vírgula porque 'Drummond' restringe 'poeta'."
+        },
+        {
+          "id": "v_adjunto_deslocado",
+          "label": "Adjunto adverbial deslocado",
+          "rule": "Adjunto adverbial deslocado para antes ou para o meio da oração — especialmente se longo — é separado por vírgula(s).",
+          "examples": [
+            "Na manhã seguinte, tudo havia mudado.",
+            "Depois de muito pensar, tomou a decisão.",
+            "Ele, com toda a cautela, abriu a carta.",
+            "Silenciosamente, ela saiu."
+          ],
+          "note": "Adjuntos adverbiais curtos e naturalmente posicionados no início podem dispensar a vírgula: 'Hoje chegou a encomenda.' — aceitável sem vírgula."
+        },
+        {
+          "id": "v_coord_adversativa",
+          "label": "Antes de conjunção adversativa",
+          "rule": "Vírgula obrigatória antes de mas, porém, contudo, todavia, entretanto, no entanto.",
+          "examples": [
+            "Estudou muito, mas não passou.",
+            "Sabia a resposta, porém se calou.",
+            "Tentou várias vezes, contudo não conseguiu."
+          ]
+        },
+        {
+          "id": "v_coord_conclusiva",
+          "label": "Antes de conjunção conclusiva (quando intercalada)",
+          "rule": "Vírgula antes de logo, portanto, por isso, por conseguinte quando encabeçam a segunda oração.",
+          "examples": [
+            "Penso, logo existo.",
+            "Estava com febre, portanto ficou em casa.",
+            "Mentiu para todos, por isso perdeu a confiança."
+          ]
+        },
+        {
+          "id": "v_coord_explicativa",
+          "label": "Antes de conjunção explicativa",
+          "rule": "Vírgula antes de pois, porque, que com valor explicativo.",
+          "examples": [
+            "Corra, pois vai chover.",
+            "Descanse, que você está exausto."
+          ]
+        },
+        {
+          "id": "v_assindeto",
+          "label": "Orações coordenadas assindéticas",
+          "rule": "Orações coordenadas sem conjunção são separadas por vírgula.",
+          "examples": [
+            "Entrei, vi, venci.",
+            "O sol se pôs, as estrelas apareceram, o silêncio tomou o vale.",
+            "Pensou, hesitou, decidiu."
+          ]
+        },
+        {
+          "id": "v_elipse",
+          "label": "Elipse do verbo",
+          "rule": "A vírgula marca a posição de um verbo eliptido (subentendido, não expresso) na segunda oração.",
+          "examples": [
+            "Pedro foi ao cinema; Maria, ao teatro.",
+            "O pai comprou um livro; a mãe, uma revista.",
+            "Uns preferem o silêncio; outros, a música."
+          ]
+        },
+        {
+          "id": "v_oracao_adjetiva_explicativa",
+          "label": "Oração adjetiva explicativa",
+          "rule": "A oração adjetiva que EXPLICA (e não restringe) é isolada por vírgulas.",
+          "examples": [
+            "Os alunos, que estudaram muito, foram aprovados.",
+            "O Sol, que é a estrela mais próxima da Terra, aquece nosso planeta."
+          ],
+          "distinction": {
+            "explicativa": {
+              "description": "Refere-se a TODOS os elementos do antecedente; traz informação acessória. Leva vírgula.",
+              "example": "Os políticos, que mentem, deveriam ser punidos. (= todos os políticos mentiriam)"
+            },
+            "restritiva": {
+              "description": "Identifica, restringe, especifica um subconjunto do antecedente. SEM vírgula.",
+              "example": "Os políticos que mentem deveriam ser punidos. (= apenas os que mentem)"
+            },
+            "note": "Esta distinção é uma das mais relevantes para o escritor: a presença ou ausência da vírgula muda radicalmente o sentido."
+          }
+        },
+        {
+          "id": "v_oracao_adverbial_anteposta",
+          "label": "Oração adverbial anteposta ou intercalada",
+          "rule": "Oração subordinada adverbial colocada antes da principal, ou no meio dela, é separada por vírgula.",
+          "examples": [
+            "Quando chegou, estava exausto.",
+            "Se houvesse tempo, teria relido o manuscrito.",
+            "Embora soubesse a resposta, não falou.",
+            "O texto, embora longo, era preciso."
+          ],
+          "note": "Oração adverbial POSPOSTA (depois da principal) dispensa a vírgula, a não ser por ênfase estilística: 'Estava exausto quando chegou.' — sem vírgula obrigatória."
+        },
+        {
+          "id": "v_intercalada",
+          "label": "Expressões intercaladas (parentéticas)",
+          "rule": "Expressões que interrompem o curso da oração para acrescentar comentário, ressalva ou esclarecimento — isoladas por vírgulas.",
+          "examples": [
+            "O livro, segundo o crítico, era um fracasso.",
+            "A decisão, como se sabe, foi controversa.",
+            "Ele, ao que parece, não voltará.",
+            "Isso, evidentemente, não resolve o problema.",
+            "A rigor, toda regra tem exceção."
+          ]
+        }
+      ],
+      "forbidden_uses": [
+        {
+          "id": "v_proib_suj_pred",
+          "label": "PROIBIDO: entre sujeito e predicado",
+          "rule": "Vírgula não separa o sujeito do seu verbo.",
+          "wrong": [
+            "*O escritor que viveu na pobreza, nunca foi reconhecido em vida.",
+            "*A decisão mais importante de sua vida, foi adiada."
+          ],
+          "correct": [
+            "O escritor que viveu na pobreza nunca foi reconhecido em vida.",
+            "A decisão mais importante de sua vida foi adiada."
+          ],
+          "exception": "Se houver aposto ou oração adjetiva intercalada entre sujeito e verbo, as vírgulas são do aposto/oração — não separam sujeito e verbo."
+        },
+        {
+          "id": "v_proib_verbo_obj",
+          "label": "PROIBIDO: entre verbo e seu complemento",
+          "rule": "Vírgula não separa verbo de objeto direto, objeto indireto ou predicativo.",
+          "wrong": [
+            "*Ele disse, que a reunião seria às três.",
+            "*Precisamos, de mais tempo para decidir.",
+            "*O resultado foi, surpreendente."
+          ],
+          "correct": [
+            "Ele disse que a reunião seria às três.",
+            "Precisamos de mais tempo para decidir.",
+            "O resultado foi surpreendente."
+          ]
+        },
+        {
+          "id": "v_proib_nome_compl",
+          "label": "PROIBIDO: entre nome e seu complemento nominal",
+          "wrong": ["*Tinha certeza, de que voltaria.", "*Sente falta, de você."],
+          "correct": ["Tinha certeza de que voltaria.", "Sente falta de você."]
+        },
+        {
+          "id": "v_proib_aditiva",
+          "label": "PROIBIDO: antes de 'e' (em geral) em coordenação simples",
+          "rule": "Em série binária com 'e' (apenas dois elementos), não se usa vírgula.",
+          "wrong": ["*Comprou pão, e leite.", "*Chegou, e saiu."],
+          "correct": ["Comprou pão e leite.", "Chegou e saiu."],
+          "exception": "Com 'e' de valor adversativo ('e' = mas), pode ocorrer vírgula: 'Tentei muito, e não consegui.'"
+        }
+      ],
+      "stylistic_uses": [
+        {
+          "id": "v_estil_ritmo",
+          "label": "Vírgula rítmica — cadência e respiração",
+          "description": "O escritor usa a vírgula para controlar o ritmo da frase, independentemente de regra sintática estrita.",
+          "examples": [
+            "Era tarde, e ele sabia disso.",
+            "Não havia pressa, nunca houvera.",
+            "Ela entrou, olhou em volta, e saiu."
+          ]
+        },
+        {
+          "id": "v_estil_enfase",
+          "label": "Vírgula de ênfase ou suspense",
+          "description": "Isolamento de termo para dar-lhe peso especial.",
+          "examples": [
+            "Tudo, absolutamente tudo, havia mudado.",
+            "A resposta era simples, dolorosamente simples.",
+            "Ele foi embora. Para sempre, desta vez."
+          ]
+        },
+        {
+          "id": "v_estil_oral",
+          "label": "Vírgula de oralidade",
+          "description": "Reprodução de hesitações, pausas e padrões da fala.",
+          "examples": [
+            "Bom, não sei bem como explicar.",
+            "Olha, isso é difícil de dizer.",
+            "Você sabe, às vezes as coisas simplesmente acontecem."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ponto",
+      "label": "ponto final",
+      "symbol": ".",
+      "definition": "Pausa máxima. Marca o fim de um enunciado declarativo ou imperativo. Sinaliza também abreviações.",
+      "uses": [
+        {
+          "id": "p_fim_frase",
+          "label": "Fim de oração declarativa ou imperativa",
+          "examples": [
+            "A reunião foi encerrada.",
+            "Feche a porta.",
+            "Ele chegou tarde demais."
+          ]
+        },
+        {
+          "id": "p_abreviatura",
+          "label": "Abreviaturas",
+          "rule": "Indica abreviação de palavras: Dr., Sra., pág., op. cit., etc.",
+          "examples": ["Dr. Fausto", "pág. 42", "cf. nota 3", "vol. II", "art. 5º"],
+          "note": "Quando a abreviatura vem no fim da frase, não se acrescenta segundo ponto: 'Assinou o documento, etc.' — apenas um ponto."
+        },
+        {
+          "id": "p_numeros",
+          "label": "Separação de milhar (convencional — ABNT usa ponto; norma SI usa espaço)",
+          "note": "No Brasil, o ponto pode separar milhar (1.000, 2.500.000) — embora o SI prefira espaço ou não use separador em números de 4 dígitos."
+        }
+      ],
+      "stylistic": [
+        {
+          "label": "Frases curtas e impacto",
+          "description": "O ponto depois de frase muito curta cria impacto, pausa dramática, ou sentido de definitivo.",
+          "examples": [
+            "Acabou.",
+            "Não.",
+            "Era ele."
+          ]
+        },
+        {
+          "label": "Fragmentação para oralidade ou urgência",
+          "description": "Sequência de frases curtas com pontos cria ritmo entrecortado — urgência, agitação ou frieza narrativa.",
+          "examples": [
+            "Entrou. Olhou. Saiu.",
+            "Era tarde. Muito tarde."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ponto_virgula",
+      "label": "ponto e vírgula",
+      "symbol": ";",
+      "definition": "Pausa intermediária, mais longa que a vírgula e mais breve que o ponto. Articula unidades de sentido que guardam relação mais estreita entre si do que parágrafos distintos, mas mais distância do que itens de vírgula.",
+      "uses": [
+        {
+          "id": "pv_coord_longa",
+          "label": "Orações coordenadas longas ou internamente pontuadas",
+          "rule": "Quando as orações coordenadas já contêm vírgulas internamente, usa-se ponto e vírgula para distinguir os blocos.",
+          "examples": [
+            "O primeiro capítulo apresenta o protagonista, seus dilemas e seu passado; o segundo, os antagonistas e o conflito central; o terceiro, o clímax.",
+            "João trouxe o vinho, o queijo e o pão; Maria, as flores e a toalha; Pedro, a guitarra."
+          ]
+        },
+        {
+          "id": "pv_antecede_conclusiva",
+          "label": "Antes de conjunção conclusiva em período complexo",
+          "rule": "Quando o período é longo, usa-se ponto e vírgula antes de logo, portanto, por conseguinte.",
+          "examples": [
+            "Todos os indícios apontavam para o mesmo suspeito; portanto, a investigação foi encerrada.",
+            "A proposta foi debatida durante meses, analisada por especialistas e reformulada três vezes; logo, merecia atenção."
+          ]
+        },
+        {
+          "id": "pv_enumeracao_itens",
+          "label": "Enumeração de itens longos",
+          "rule": "Em listas com descrições extensas, usa-se ponto e vírgula para separar os itens.",
+          "examples": [
+            "O projeto prevê: construção de escolas nas periferias; contratação de professores especializados; aquisição de material didático atualizado; e avaliação semestral dos resultados."
+          ]
+        },
+        {
+          "id": "pv_paralelismo",
+          "label": "Paralelismo e contraste entre orações",
+          "rule": "Para criar paralelismo ou oposição de peso equivalente entre duas orações.",
+          "examples": [
+            "A noite chegou; o silêncio, também.",
+            "Uns partiram; outros ficaram.",
+            "O tempo passou; ela não envelheceu."
+          ]
+        }
+      ],
+      "stylistic": [
+        {
+          "label": "Compasso e equilíbrio",
+          "description": "O ponto e vírgula cria simetria e equilíbrio entre elementos de igual peso. Na prosa cuidada, é sinal de domínio do estilo — evita a fragmentação excessiva do ponto e a fluidez às vezes excessiva da vírgula.",
+          "examples": [
+            "Clarice Lispector usava o ponto e vírgula para marcar o tempo do pensamento — nem o impacto do ponto, nem o fluxo da vírgula; algo entre os dois."
+          ]
+        },
+        {
+          "label": "Reticência velada",
+          "description": "Em alguns contextos, o ponto e vírgula sugere que há mais a dizer — uma pausa que insinua continuação.",
+          "examples": [
+            "Ela abriu a carta; leu; dobrou devagar."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dois_pontos",
+      "label": "dois-pontos",
+      "symbol": ":",
+      "definition": "Anuncia o que vem a seguir: enumeração, explicação, conclusão, citação ou fala de personagem.",
+      "uses": [
+        {
+          "id": "dp_enumeracao",
+          "label": "Antes de enumeração",
+          "rule": "Usa-se após o termo que anuncia a lista.",
+          "examples": [
+            "O autor publicou três livros: um romance, um conto e um ensaio.",
+            "Os candidatos são: Pedro, Maria e João.",
+            "Trouxe tudo o que precisava: paciência, técnica e tempo."
+          ],
+          "note": "NÃO se usa dois-pontos se a enumeração for objeto direto direto do verbo sem complemento anunciador: *'Trouxe: paciência, técnica e tempo.' — ERRADO."
+        },
+        {
+          "id": "dp_explicacao",
+          "label": "Antes de explicação, conclusão ou consequência",
+          "rule": "O que vem depois dos dois-pontos explica, desenvolve ou conclui o que veio antes.",
+          "examples": [
+            "O motivo era claro: ninguém queria assumir a responsabilidade.",
+            "Chegou a conclusão inevitável: era preciso começar de novo.",
+            "Havia um problema: a chave sumira."
+          ]
+        },
+        {
+          "id": "dp_citacao",
+          "label": "Antes de citação direta",
+          "rule": "Antecede a reprodução literal de um texto ou fala.",
+          "examples": [
+            "Machado escreveu: 'O tempo atenua as paixões e as tormentas.'",
+            "Como dizia o filósofo: 'Conhece-te a ti mesmo.'"
+          ]
+        },
+        {
+          "id": "dp_discurso_direto",
+          "label": "No discurso direto — antes da fala",
+          "rule": "Antecede a reprodução da fala de um personagem no contexto narrativo.",
+          "examples": [
+            "Ela disse, sem levantar os olhos:",
+            "O velho respondeu com voz rouca:"
+          ]
+        }
+      ],
+      "stylistic": [
+        {
+          "label": "Dois-pontos como lance narrativo",
+          "description": "Na prosa literária, os dois-pontos podem criar expectativa dramática — o leitor sabe que algo importante vem a seguir.",
+          "examples": [
+            "Havia uma coisa que ele nunca contou a ninguém: o medo.",
+            "O envelope continha apenas uma palavra: adeus."
+          ]
+        },
+        {
+          "label": "Dois-pontos na contração da frase",
+          "description": "Substituem conectivos explicativos (pois, porque, já que), tornando a prosa mais concisa.",
+          "examples": [
+            "Não foi: estava doente.",
+            "Desistiu: cansara de esperar."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reticencias",
+      "label": "reticências",
+      "symbol": "...",
+      "definition": "Sinal de suspensão, incompletude ou supressão. Sempre três pontos — não dois, não quatro.",
+      "uses": [
+        {
+          "id": "ret_interrupcao",
+          "label": "Interrupção da fala ou do pensamento",
+          "examples": [
+            "— Você sabe que eu... — Sei — ela interrompeu.",
+            "Pensei que poderia... Mas não.",
+            "Talvez fosse melhor se..."
+          ]
+        },
+        {
+          "id": "ret_suspense",
+          "label": "Suspense ou expectativa",
+          "examples": [
+            "Abriu a porta devagar... e viu.",
+            "No fundo da gaveta... estava o anel."
+          ]
+        },
+        {
+          "id": "ret_enumeracao_incompleta",
+          "label": "Enumeração incompleta",
+          "rule": "Indica que a lista continua além do que foi enumerado. Equivale a 'etc.'",
+          "examples": [
+            "Comprou frutas: maçãs, peras, bananas...",
+            "Leu todos os clássicos: Machado, Clarice, Guimarães Rosa..."
+          ],
+          "note": "Não usar 'etc...' — as reticências já indicam continuação; 'etc.' significa 'et cetera' (e outros). Usar um ou outro, nunca os dois."
+        },
+        {
+          "id": "ret_emocao",
+          "label": "Emoção contida, hesitação, dúvida",
+          "examples": [
+            "Não sei... talvez.",
+            "Faz tanto tempo... tudo muda.",
+            "Queria ter dito... mas não disse."
+          ]
+        },
+        {
+          "id": "ret_citacao_incompleta",
+          "label": "Supressão em citação",
+          "rule": "Quando se cita trecho e se omite parte, usa-se [...] (reticências entre colchetes) para indicar a supressão.",
+          "examples": [
+            "'O tempo [...] apaga tudo, menos a memória dos que amamos.'"
+          ]
+        }
+      ],
+      "stylistic": [
+        {
+          "label": "Ritmo de hesitação e fluxo de consciência",
+          "description": "Na prosa introspectiva, as reticências reproduzem o movimento do pensamento — a frase que não se fecha porque o personagem também não se fecha.",
+          "examples": [
+            "Clarice Lispector as usa com maestria para indicar o ponto onde o pensamento excede a linguagem.",
+            "Saramago as evita quase completamente — opção estilística oposta."
+          ]
+        },
+        {
+          "label": "Ironia e subentendido",
+          "description": "As reticências podem insinuar o que não foi dito, criando cumplicidade com o leitor.",
+          "examples": [
+            "Claro que ele disse a verdade...",
+            "Era um homem íntegro... à sua maneira."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exclamacao",
+      "label": "ponto de exclamação",
+      "symbol": "!",
+      "definition": "Marca entonação exclamativa — intensidade emocional, ordem enfática, surpresa, ironia ou vocativo forte.",
+      "uses": [
+        {
+          "id": "exc_exclamativa",
+          "label": "Frase exclamativa",
+          "examples": ["Que beleza!", "Que absurdo!", "Meu Deus!", "Magnífico!"]
+        },
+        {
+          "id": "exc_imperativo",
+          "label": "Imperativo enfático",
+          "examples": ["Saia daqui!", "Chega!", "Cale-se!"]
+        },
+        {
+          "id": "exc_interjeicao",
+          "label": "Interjeições",
+          "examples": ["Oba!", "Ai!", "Bravo!", "Nossa!"]
+        },
+        {
+          "id": "exc_vocativo",
+          "label": "Vocativo forte",
+          "examples": ["João! Venha agora!", "Socorro! Alguém me ajude!"]
+        }
+      ],
+      "stylistic": [
+        {
+          "label": "Raridade como intensidade",
+          "description": "Na prosa literária de qualidade, o ponto de exclamação é raro — sua raridade o torna mais poderoso quando aparece. Uso frequente dilui o impacto.",
+          "note": "Evitar o uso decorativo ou habitual. Uma exclamação bem colocada ao final de um conto pode ser devastadora; dez exclamações espalhadas pelo texto não significam nada."
+        },
+        {
+          "label": "Combinação com reticências",
+          "description": "A combinação !... ou ...! é aceita em prosa informal e no discurso direto para indicar exclamação truncada ou que se perde.",
+          "examples": ["— Como é possível!... — ela murmurou."]
+        }
+      ]
+    },
+    {
+      "id": "interrogacao",
+      "label": "ponto de interrogação",
+      "symbol": "?",
+      "definition": "Marca entonação interrogativa — pergunta direta. Não se usa em interrogativas indiretas.",
+      "uses": [
+        {
+          "id": "int_direta",
+          "label": "Pergunta direta",
+          "examples": ["Onde você esteve?", "Quem fez isso?", "Quando voltará?"]
+        },
+        {
+          "id": "int_dubia",
+          "label": "Pergunta retórica",
+          "description": "Pergunta que não espera resposta — afirma ou nega de forma enfática.",
+          "examples": [
+            "Quem em sã consciência aceitaria isso?",
+            "Não é isso que estamos todos querendo?"
+          ]
+        }
+      ],
+      "not_used": [
+        {
+          "label": "NÃO se usa em interrogativa indireta",
+          "rule": "A oração interrogativa indireta é subordinada — termina com ponto final.",
+          "wrong": ["*Perguntei onde ele estava?", "*Não sei quando chegará?"],
+          "correct": ["Perguntei onde ele estava.", "Não sei quando chegará."]
+        }
+      ],
+      "stylistic": [
+        {
+          "label": "Interrogação filosófica e ensaística",
+          "description": "A pergunta como recurso argumentativo e de aproximação com o leitor. Muito usada no ensaio e na prosa reflexiva.",
+          "examples": [
+            "O que é, afinal, a memória?",
+            "Mas por que escrever, se nenhuma palavra alcança o que sentimos?"
+          ]
+        },
+        {
+          "label": "Combinação com exclamação",
+          "description": "?! ou !? marcam surpresa indignada ou pergunta entrecortada de emoção — mais frequente no discurso direto.",
+          "examples": ["— Você fez isso?!", "— Como assim?!"]
+        }
+      ]
+    },
+    {
+      "id": "aspas",
+      "label": "aspas",
+      "symbol": "\" \" ou ' ' ou « »",
+      "definition": "Sinais de delimitação do discurso alheio, de termos especiais ou de sentido deslocado.",
+      "types": [
+        {
+          "id": "aspas_duplas",
+          "label": "Aspas duplas — padrão brasileiro",
+          "note": "No Brasil, convenção jornalística e editorial: aspas duplas retas: \"texto\". Guillemets (« ») são usados em Portugal e em edições mais eruditas."
+        },
+        {
+          "id": "aspas_simples",
+          "label": "Aspas simples — aspas dentro de aspas",
+          "rule": "Quando há aspas dentro de aspas, usam-se as simples para o nível interior.",
+          "example": "Ele disse: \"Quando falei 'talvez', não quis dizer 'sim'.\""
+        }
+      ],
+      "uses": [
+        {
+          "id": "asp_citacao",
+          "label": "Citação direta",
+          "rule": "Reprodução literal de texto ou fala.",
+          "examples": [
+            "Drummond escreveu: \"No meio do caminho tinha uma pedra.\"",
+            "\"A vida é curta, a arte é longa\", dizia Hipócrates."
+          ]
+        },
+        {
+          "id": "asp_titulo",
+          "label": "Títulos de partes menores (artigos, capítulos, poemas, músicas)",
+          "rule": "Títulos de obras menores, capítulos, artigos e músicas vão entre aspas. Títulos de obras completas (livros, filmes) vão em itálico.",
+          "examples": [
+            "O poema \"Sentimento do mundo\" abre o livro.",
+            "Publiquei o artigo \"A crise da leitura\" na revista."
+          ]
+        },
+        {
+          "id": "asp_ironia",
+          "label": "Ironia, distância, uso incomum",
+          "rule": "Palavra usada em sentido não-literal, irónico ou com ressalva.",
+          "examples": [
+            "O \"especialista\" nunca estudou o assunto.",
+            "Recebeu o \"elogio\" como um insulto.",
+            "Seu \"método\" era simplesmente copiar dos outros."
+          ]
+        },
+        {
+          "id": "asp_estrangeirismo",
+          "label": "Estrangeirismos e neologismos não consagrados",
+          "rule": "Palavras estrangeiras sem adaptação gráfica ou neologismos ainda não dicionarizados.",
+          "examples": [
+            "O \"feedback\" dos leitores foi positivo.",
+            "Adotou o \"mindset\" corporativo sem questionar."
+          ],
+          "note": "Termos estrangeiros dicionarizados e já incorporados ao português não precisam mais de aspas: internet, design, marketing, software."
+        },
+        {
+          "id": "asp_tecnico",
+          "label": "Termos técnicos em texto não especializado",
+          "examples": [
+            "A \"fonêmica\" estuda os fonemas como unidades distintivas.",
+            "O processo de \"elipse\" elimina termos recuperáveis pelo contexto."
+          ]
+        }
+      ],
+      "stylistic": [
+        {
+          "label": "Aspas como sinal de desconfiança",
+          "description": "O uso de aspas para distanciar o autor de um termo é um recurso retórico poderoso — implica que o termo é falso, inadequado ou pertence a outro.",
+          "note": "Uso excessivo dilui o efeito. O escritor criterioso reserva as aspas irónicas para os momentos mais significativos."
+        },
+        {
+          "label": "Prosa sem aspas no discurso direto",
+          "description": "Alguns escritores contemporâneos suprimem as aspas no discurso direto, fundindo a voz narrativa e a voz do personagem — criando ambiguidade intencional.",
+          "examples": ["Saramago, José — usa vírgulas e travessões mínimos, sem aspas."]
+        }
+      ]
+    },
+    {
+      "id": "travessao",
+      "label": "travessão",
+      "symbol": "—",
+      "definition": "Sinal de maior pausa e destaque que a vírgula. Introduz diálogo, isola elementos com ênfase, ou indica mudança brusca de raciocínio.",
+      "note_tipografica": "O travessão (—, em dash) é diferente do meia-risca (–, en dash) e do hífen (-). Em tipografia editorial brasileira: travessão = em dash (—).",
+      "uses": [
+        {
+          "id": "trav_dialogo",
+          "label": "Discurso direto — introdução da fala",
+          "rule": "O travessão substitui as aspas na introdução da fala de personagem em narrativa.",
+          "examples": [
+            "— Não entendo — disse ela.",
+            "— Temos que sair agora.",
+            "— Por quê? — ele perguntou, sem se mover."
+          ],
+          "note": "Convenção brasileira: travessão abre a fala; se há inciso narrativo no meio, fecha com travessão antes e abre com travessão depois. Se o inciso for no fim, apenas um travessão antes do inciso."
+        },
+        {
+          "id": "trav_aposto",
+          "label": "Aposto e adjunto com ênfase",
+          "rule": "Substitui as vírgulas para dar maior destaque ao termo isolado.",
+          "examples": [
+            "O único caminho possível — a verdade — assustava a todos.",
+            "Havia uma coisa que ela não suportava — a mentira.",
+            "Chegou finalmente — exausto, sujo, vivo."
+          ]
+        },
+        {
+          "id": "trav_mudanca",
+          "label": "Mudança brusca de raciocínio ou de perspectiva",
+          "examples": [
+            "Tudo parecia perfeito — e de repente, nada era.",
+            "Ia explicar — mas para quê?",
+            "Esperou anos — em vão."
+          ]
+        },
+        {
+          "id": "trav_resumo",
+          "label": "Resumo ou conclusão inesperada",
+          "examples": [
+            "Estudou, trabalhou, esperou — e perdeu tudo.",
+            "Amou, sofreu, esqueceu — ou pensou que havia esquecido."
+          ]
+        }
+      ],
+      "stylistic": [
+        {
+          "label": "O travessão como pausa dramática",
+          "description": "O travessão é mais forte que a vírgula, mais veloz que o ponto. Cria suspense, antecipação, corte. É um sinal tipograficamente visual — cria brancura na página.",
+          "note": "Na prosa literária brasileira, Guimarães Rosa e Clarice Lispector usam o travessão de forma altamente expressiva — não apenas para diálogos, mas para cortes e viradas de sentido."
+        },
+        {
+          "label": "Travessão vs parênteses vs vírgulas",
+          "description": "Três formas de isolar um elemento com gradação de ênfase e integração:",
+          "comparison": [
+            {"form": "vírgulas", "value": "integração natural — faz parte do fluxo"},
+            {"form": "travessão", "value": "destaque, ênfase, ruptura — chama atenção para o isolado"},
+            {"form": "parênteses", "value": "acessório, à parte, secundário — poderia ser omitido"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "parenteses",
+      "label": "parênteses",
+      "symbol": "( )",
+      "definition": "Isolam elementos acessórios, explicações secundárias, datas, fontes ou indicações que o autor considera fora do fluxo principal.",
+      "uses": [
+        {
+          "id": "par_explicacao",
+          "label": "Explicação ou esclarecimento acessório",
+          "examples": [
+            "O autor (formado em Letras pela USP) publicou três romances.",
+            "A personagem principal (cf. capítulo III) reaparece aqui com outro nome.",
+            "A lei (aprovada em 2003) entrou em vigor em 2004."
+          ]
+        },
+        {
+          "id": "par_data_local",
+          "label": "Datas e locais",
+          "examples": [
+            "Machado de Assis (1839–1908) fundou a Academia Brasileira de Letras.",
+            "Rio de Janeiro (então capital federal), 15 de novembro de 1889."
+          ]
+        },
+        {
+          "id": "par_fonte",
+          "label": "Referências e fontes",
+          "examples": [
+            "O fenômeno foi amplamente estudado (Silva, 2020).",
+            "(Grifo nosso.)",
+            "(Ver nota 12.)"
+          ]
+        },
+        {
+          "id": "par_opcao",
+          "label": "Indicação de alternativa ou opcional",
+          "examples": [
+            "O(s) autor(es) deve(m) enviar o arquivo.",
+            "Prezado(a) senhor(a):"
+          ]
+        }
+      ],
+      "stylistic": [
+        {
+          "label": "Parênteses como voz interior",
+          "description": "Na prosa literária, parênteses podem ser usados para comentários do narrador, pensamentos involuntários ou subtons que não cabem no fluxo da frase.",
+          "examples": [
+            "Ele concordou (mentindo, como sempre) e assinou o documento.",
+            "A criança dormia (finalmente) e a casa ficou quieta."
+          ]
+        },
+        {
+          "label": "Parênteses como metalinguagem",
+          "description": "O narrador se dirige ao leitor fora da diegese, usando parênteses como marcador desse deslocamento.",
+          "examples": [
+            "(...) o que não vem ao caso aqui.",
+            "(Mas já estamos nos adiantando.)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "colchetes",
+      "label": "colchetes",
+      "symbol": "[ ]",
+      "uses": [
+        {
+          "id": "col_supressao",
+          "label": "Indicação de supressão em citação",
+          "rule": "Quando se omite trecho de citação, usa-se [...] — reticências entre colchetes.",
+          "examples": [
+            "'O tempo [...] apaga tudo, menos a memória dos que amamos.'"
+          ]
+        },
+        {
+          "id": "col_insercao",
+          "label": "Inserção do editor ou pesquisador em texto alheio",
+          "rule": "Acréscimo de informação que não estava no original — indicação de que é o editor falando.",
+          "examples": [
+            "'Ele [Brás Cubas] narra sua própria morte no primeiro capítulo.'",
+            "'A carta foi escrita em 1854 [sic].' — [sic] indica que o erro estava no original."
+          ]
+        },
+        {
+          "id": "col_parenteses_dentro",
+          "label": "Parênteses dentro de parênteses",
+          "rule": "Quando há dois níveis de parentetização, o interno usa colchetes.",
+          "examples": [
+            "(Ver também: Cunha & Cintra [7ª ed., p. 342].)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "barra",
+      "label": "barra",
+      "symbol": "/",
+      "uses": [
+        {
+          "id": "bar_alternativa",
+          "label": "Indicação de alternativa ou opção",
+          "examples": ["e/ou", "sim/não", "passado/futuro"]
+        },
+        {
+          "id": "bar_fracao",
+          "label": "Fração e divisão",
+          "examples": ["1/3", "2/5", "km/h"]
+        },
+        {
+          "id": "bar_data",
+          "label": "Datas (convencional)",
+          "examples": ["15/11/1889", "01/01/2000"]
+        },
+        {
+          "id": "bar_verso",
+          "label": "Separação de versos em citação em prosa",
+          "rule": "Quando se citam versos de poema em texto corrido, a barra separa os versos.",
+          "examples": [
+            "Drummond escreveu: 'No meio do caminho tinha uma pedra / tinha uma pedra no meio do caminho.'"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "combinacoes",
+      "label": "combinações e sequências — regras tipográficas",
+      "entries": [
+        {
+          "id": "comb_ponto_aspas",
+          "label": "Ponto final e aspas",
+          "rule": "No padrão editorial brasileiro, o ponto fica FORA das aspas quando o período é do autor (não da citação).",
+          "examples": [
+            "Machado chamou a obra de \"capricho\". (ponto fora)",
+            "\"O tempo cura tudo.\" (ponto dentro — a citação é completa)"
+          ]
+        },
+        {
+          "id": "comb_virgula_aspas",
+          "label": "Vírgula e aspas",
+          "rule": "Vírgula fica geralmente após as aspas no padrão brasileiro.",
+          "examples": ["Ele disse \"não\", mas pensava \"sim\"."]
+        },
+        {
+          "id": "comb_excl_reticencias",
+          "label": "Exclamação / interrogação + reticências",
+          "rule": "Aceito: !... ou ?... para emoção truncada.",
+          "examples": ["— Como é possível!...", "— Mas por quê?..."]
+        },
+        {
+          "id": "comb_nao_duplicar",
+          "label": "NÃO se duplica o ponto final",
+          "rule": "Quando a frase termina com abreviatura ou reticências, não se acrescenta segundo ponto.",
+          "wrong": ["*Trouxe livros, canetas, etc..", "*Não voltou....", ],
+          "correct": ["Trouxe livros, canetas, etc.", "Não voltou..."]
+        }
+      ]
+    }
+  ]
+}

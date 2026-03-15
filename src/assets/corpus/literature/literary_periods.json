@@ -1,0 +1,452 @@
+{
+  "version": "1.0",
+  "area": "literature",
+  "topic": "literary_periods",
+  "description": "Períodos literários da língua portuguesa — características, contexto histórico, autores e obras canônicas. Cobre literatura portuguesa e brasileira do Trovadorismo ao contemporâneo.",
+  "sources": [
+    "Candido — Formação da Literatura Brasileira",
+    "Saraiva & Lopes — História da Literatura Portuguesa",
+    "Bosi — História Concisa da Literatura Brasileira",
+    "Moisés — A Literatura Portuguesa"
+  ],
+  "entries": [
+    {
+      "id": "trovadorismo",
+      "label": "Trovadorismo",
+      "period": "séc. XII – séc. XIV",
+      "context": "Portugal medieval, período de consolidação do reino e da língua galego-portuguesa. Influência da lírica provençal e da cultura árabe.",
+      "characteristics": [
+        "Poesia oral e musical — cantigas cantadas com acompanhamento",
+        "Linguagem galego-portuguesa (não ainda o português moderno)",
+        "Paralelismo formal: estrofes em espelho com variação do refrão",
+        "Temáticas centrais: amor cortês, saudade, natureza"
+      ],
+      "genres": [
+        {
+          "id": "cantiga_amor",
+          "label": "Cantiga de amor",
+          "description": "O trovador (homem) canta sofrimento amoroso pela dama inacessível. Amor não correspondido, adoração à distância. Influência provençal.",
+          "tone": "lamento, idealização, servilidade"
+        },
+        {
+          "id": "cantiga_amigo",
+          "label": "Cantiga de amigo",
+          "description": "Voz feminina (aunque escrita por homens) — a donzela chora a ausência do amado ('amigo'). Ambientação na natureza (rios, fontes, pinheiros).",
+          "tone": "saudade, intimidade, natureza como confidente"
+        },
+        {
+          "id": "cantiga_escarnio",
+          "label": "Cantiga de escárnio e maldizer",
+          "description": "Sátira social e pessoal. Escárnio: ironia e ambiguidade. Maldizer: ataque direto.",
+          "tone": "irônico, grotesco, satírico"
+        }
+      ],
+      "key_authors": ["Dom Dinis (rei trovador)", "João Garcia de Guilhade", "Paio Soares de Taveirós", "Martin Codax"],
+      "key_works": ["Cancioneiro da Ajuda", "Cancioneiro da Biblioteca Nacional", "Cancioneiro da Vaticana"],
+      "brazil": "Não se aplica — Brasil ainda não existia como entidade cultural."
+    },
+    {
+      "id": "humanismo",
+      "label": "Humanismo",
+      "period": "séc. XV",
+      "context": "Transição do teocentrismo medieval para o antropocentrismo renascentista. Em Portugal: expansão marítima, interesse pelo homem e pelo mundo concreto.",
+      "characteristics": [
+        "Centralidade do homem (anthropos) no lugar de Deus",
+        "Valorização da razão e da experiência",
+        "Prosa ganha espaço: crônicas históricas",
+        "Teatro profano e satírico emerge"
+      ],
+      "key_authors_pt": [
+        {"name": "Fernão Lopes", "role": "Cronista — historiografia literária. Gil Vicente (teatro)"},
+        {"name": "Gil Vicente", "role": "Pai do teatro português — farsas, moralidades e autos. Criticou corrupção do clero e da nobreza."}
+      ],
+      "key_works": [
+        "Fernão Lopes — Crónica de D. João I",
+        "Gil Vicente — Auto da Barca do Inferno, Farsa de Inês Pereira, Auto da Compadecida (influência)"
+      ]
+    },
+    {
+      "id": "classicismo_quinhentismo",
+      "label": "Classicismo / Quinhentismo",
+      "period": "séc. XVI",
+      "context": "Renascimento em Portugal — Luís de Camões. Expansão marítima, contato com outras culturas, humanismo consolidado. No Brasil: primeiros documentos escritos (literatura de informação).",
+      "characteristics": [
+        "Equilíbrio, harmonia, racionalidade",
+        "Retomada dos modelos greco-latinos (Virgílio, Ovídio, Petrarca)",
+        "Soneto como forma preferida (14 versos, esquema de rima fixo)",
+        "Medida nova (decassílabo) x medida velha (redondilha maior)",
+        "Mitologia clássica como repertório simbólico"
+      ],
+      "key_authors_pt": [
+        {"name": "Luís de Camões", "note": "Maior poeta da língua portuguesa. Poesia lírica (sonetos) e epopeia (Os Lusíadas)."},
+        {"name": "Sá de Miranda", "note": "Introdutor do soneto em Portugal."},
+        {"name": "Pero de Andrade Caminha"}
+      ],
+      "key_works": [
+        "Camões — Os Lusíadas (1572): epopeia em dez cantos, 8816 oitavas. Narra viagem de Vasco da Gama e glorifica Portugal.",
+        "Camões — Sonetos (Lírica): 'Amor é fogo que arde sem se ver…'"
+      ],
+      "brazil_quinhentismo": {
+        "label": "Quinhentismo brasileiro (Literatura de Informação)",
+        "characteristics": ["Documentos sobre o Brasil recém-descoberto", "Finalidade informativa (não literária stricto sensu)", "Perspectiva europeia sobre o Novo Mundo"],
+        "key_works": [
+          "Pero Vaz de Caminha — Carta ao Rei D. Manuel (1500): primeiro documento escrito sobre o Brasil. 'Certidão de nascimento' do Brasil.",
+          "Pero de Magalhães Gândavo — Tratado da Terra do Brasil",
+          "José de Anchieta — teatro, poesia, cartas (função catequética)"
+        ]
+      }
+    },
+    {
+      "id": "barroco",
+      "label": "Barroco",
+      "period": "séc. XVII – início do séc. XVIII",
+      "context": "Contrarreforma, tensão entre fé e razão, crise do humanismo renascentista. No Brasil: colonização consolidada, sociedade escravocrata, influência jesuítica.",
+      "characteristics": [
+        "Tensão e conflito — antíteses, paradoxos como forma de expressar dilemas existenciais",
+        "Dualidade espírito/carne, terra/céu, pecado/graça",
+        "Cultismo (gongorismo): vocabulário rebuscado, metáforas complexas",
+        "Conceptismo (quevedismo): jogos de ideias, silogismos, raciocínios elaborados",
+        "Uso intenso de figuras de linguagem: hipérbole, antítese, paradoxo, quiasmo"
+      ],
+      "key_authors_pt": [
+        {"name": "Padre Antônio Vieira", "note": "Maior prosador do barroco lusófono. Sermões, cartas, profecias. Defesa dos índios e escravos."},
+        {"name": "Francisco Manuel de Melo"}
+      ],
+      "key_authors_br": [
+        {"name": "Gregório de Matos Guerra", "note": "'Boca do Inferno'. Poesia religiosa, lírica e satírica. Crítica feroz à sociedade baiana colonial."},
+        {"name": "Padre Antônio Vieira (atuou no Brasil)"}
+      ],
+      "key_works": [
+        "Vieira — Sermão da Sexagésima (1655): defesa da pregação baseada em exemplos, crítica ao cultismo vazio",
+        "Vieira — Sermão pelo Bom Sucesso das Armas de Portugal contra as da Holanda (1640)",
+        "Gregório de Matos — 'Triste Bahia! Ó quão dessemelhante…' (soneto satírico)",
+        "Gregório de Matos — poesia lírica e religiosa"
+      ]
+    },
+    {
+      "id": "arcadismo",
+      "label": "Arcadismo / Neoclassicismo",
+      "period": "séc. XVIII",
+      "context": "Iluminismo, razão, retorno à simplicidade da Antiguidade clássica. No Brasil: Vila Rica (MG), inconfidência Mineira (1789), geração de intelectuais formados em Coimbra.",
+      "characteristics": [
+        "Inutilia truncat: cortar o inútil — simplicidade, equilíbrio",
+        "Fugere urbem: fuga da cidade para a natureza arcádica",
+        "Aurea mediocritas: valorização da mediocridade dourada (equilíbrio, nada em excesso)",
+        "Carpe diem: aproveitar o dia presente",
+        "Pastoralismo: personagens e cenários bucólicos (pastores, ninfas, fontes)",
+        "Razão sobre emoção — contrário ao excesso barroco"
+      ],
+      "key_authors_pt": [
+        {"name": "Bocage", "note": "Neoclassicismo português com traços pré-românticos. Sonetos apaixonados e irônicos."}
+      ],
+      "key_authors_br": [
+        {"name": "Cláudio Manuel da Costa", "note": "Primeiro poeta brasileiro do Arcadismo. Mescla natureza mineira com convenções pastoris."},
+        {"name": "Tomás Antônio Gonzaga", "note": "'Dirceu' das Liras. Marília de Dirceu — poesia amorosa clássica. Inconfidente."},
+        {"name": "Basílio da Gama", "note": "O Uraguai — epopeia antijesuítica, inaugura indianismo."},
+        {"name": "Frei José de Santa Rita Durão", "note": "Caramuru — epopeia sobre Diogo Álvares."}
+      ],
+      "key_works": [
+        "Gonzaga — Marília de Dirceu (1792): liras amorosas, considerado o maior poema lírico colonial",
+        "Basílio da Gama — O Uraguai (1769): primeira epopeia com visão simpática ao indígena",
+        "Durão — Caramuru (1781)"
+      ]
+    },
+    {
+      "id": "romantismo",
+      "label": "Romantismo",
+      "period": "1836–1881 (Portugal) / 1836–1881 (Brasil)",
+      "context": "Revolução Francesa, industrialização, burguesia ascendente, nacionalismos. No Brasil: Independência (1822), formação da identidade nacional.",
+      "characteristics": [
+        "Subjetivismo e emoção sobre razão",
+        "Nacionalismo e valorização do local (paisagens, histórias, tradições)",
+        "Indianismo brasileiro: o índio como herói nacional",
+        "Saudosismo, melancolia, mal-do-século",
+        "Idealização da mulher e do amor",
+        "Liberdade formal: verso livre, quebra das unidades clássicas"
+      ],
+      "brazil_phases": [
+        {
+          "id": "romantismo_1_geracao",
+          "label": "1ª geração (indianista e nacionalista)",
+          "period": "1836–1853",
+          "characteristics": ["Ufanismo — orgulho da terra brasileira", "Indianismo — o índio como símbolo do Brasil", "Religiosidade", "Natureza exuberante"],
+          "key_authors": [
+            {"name": "Gonçalves Dias", "note": "Maior lírico da 1ª geração. 'Canção do Exílio', 'I-Juca-Pirama'."},
+            {"name": "Gonçalves de Magalhães", "note": "Iniciador do romantismo no Brasil. A Confederação dos Tamoios."}
+          ],
+          "key_works": ["Gonçalves Dias — Primeiros Cantos (1846), 'Canção do Exílio'"]
+        },
+        {
+          "id": "romantismo_2_geracao",
+          "label": "2ª geração (ultra-romantismo / byronismo)",
+          "period": "1853–1870",
+          "characteristics": ["Egocentrismo, pessimismo, tédio existencial (spleen)", "Morte como fuga e fascínio", "Amor frustrado e idealizado", "Influência de Byron, Musset"],
+          "key_authors": [
+            {"name": "Álvares de Azevedo", "note": "Mor poeta da 2ª geração. 'Noite na Taverna', 'Lira dos Vinte Anos'. Morreu aos 20 anos."},
+            {"name": "Casimiro de Abreu", "note": "'As Primaveras' — saudade da infância e da pátria."},
+            {"name": "Junqueira Freire", "note": "Conflito entre vocação religiosa e vida sensual."}
+          ]
+        },
+        {
+          "id": "romantismo_3_geracao",
+          "label": "3ª geração (condoreirismo / social)",
+          "period": "1870–1881",
+          "characteristics": ["Engajamento social e abolicionista", "Eloquência e grandiloqüência (poesia como tribuna)", "Influência de Hugo"],
+          "key_authors": [
+            {"name": "Castro Alves", "note": "'Poeta dos Escravos'. 'O Navio Negreiro', 'Espumas Flutuantes'. Maior voz abolicionista."},
+            {"name": "Sousândrade"}
+          ],
+          "key_works": ["Castro Alves — O Navio Negreiro (1869-1870)"]
+        }
+      ],
+      "prose_romantismo": {
+        "key_authors_br": [
+          {"name": "José de Alencar", "note": "Romance indianista (O Guarani, Iracema), urbano (Senhora, Lucíola) e regionalista (O Sertanejo)."},
+          {"name": "Joaquim Manuel de Macedo", "note": "A Moreninha — primeiro romance brasileiro (1844)."}
+        ]
+      }
+    },
+    {
+      "id": "realismo_naturalismo",
+      "label": "Realismo / Naturalismo",
+      "period": "1881–1902",
+      "context": "Positivismo, evolucionismo (Darwin), materialismo histórico (Marx), determinismo. No Brasil: crise do Império, abolição (1888), República (1889).",
+      "characteristics_realismo": [
+        "Objetividade e análise crítica da realidade social",
+        "Personagens psicologicamente complexos — análise do interior",
+        "Crítica à burguesia, ao romantismo e à hipocrisia social",
+        "Narrador onisciente e irônico",
+        "Linguagem precisa, sem excessos ornamentais"
+      ],
+      "characteristics_naturalismo": [
+        "Determinismo biológico e social: o homem determinado pelo meio e pela hereditariedade",
+        "Temas tabu: prostituição, alcoolismo, loucura, sexualidade",
+        "Linguagem científica e clínica",
+        "Personagens como 'casos' a observar — menos psicologia, mais fisiologia"
+      ],
+      "key_authors_br": [
+        {
+          "name": "Machado de Assis",
+          "note": "Maior escritor brasileiro. Fundador da ABL. Realismo com ironia, pessimismo filosófico, narrador non-fiable.",
+          "phases": [
+            {"phase": "1ª (romântica)", "works": ["Ressurreição", "A Mão e a Luva"]},
+            {"phase": "2ª (realista madura)", "works": ["Memórias Póstumas de Brás Cubas (1881)", "Quincas Borba (1891)", "Dom Casmurro (1899)", "Esaú e Jacó", "Memorial de Aires"]}
+          ],
+          "hallmarks": ["Narrador morto que escreve post-mortem (Brás Cubas)", "Capítulos curtíssimos e digresivos", "Ironia e ambiguidade como método", "Capitu — o grande mistério da literatura brasileira"]
+        },
+        {
+          "name": "Aluísio Azevedo",
+          "note": "Naturalismo brasileiro. O Mulato (1881) — primeiro romance naturalista. O Cortiço (1890) — obra-prima, determinismo e coletividade.",
+          "key_works": ["O Mulato (1881)", "O Cortiço (1890)", "Casa de Pensão"]
+        },
+        {
+          "name": "Raul Pompéia",
+          "note": "O Ateneu (1888) — romance de formação, escrita poética e impressionista. Inclassificável — entre realismo e simbolismo."
+        }
+      ],
+      "key_authors_pt": [
+        {"name": "Eça de Queirós", "note": "Maior romancista português. O Crime do Padre Amaro, O Primo Basílio, Os Maias."},
+        {"name": "Antero de Quental", "note": "Conferências do Casino (1871). Poesia filosófica, sonetos."}
+      ],
+      "key_works_br": [
+        "Machado de Assis — Memórias Póstumas de Brás Cubas (1881): marco do realismo; narrador defunto",
+        "Machado de Assis — Dom Casmurro (1899): Capitu traiu?",
+        "Aluísio Azevedo — O Cortiço (1890): determinismo coletivo, sexualidade, raça"
+      ]
+    },
+    {
+      "id": "parnasianismo",
+      "label": "Parnasianismo",
+      "period": "1881–1902 (coexiste com realismo e simbolismo)",
+      "context": "Reação ao romantismo — busca da perfeição formal. Arte pela arte (l'art pour l'art). Paris como referência.",
+      "characteristics": [
+        "Culto à forma: métrica perfeita, rima rica, vocabulário preciso e raro",
+        "Impessoalidade — emoção subordinada à forma",
+        "Temas greco-latinos, exóticos, mitológicos",
+        "Objetividade e plasticidade — a poesia como escultura ou pintura",
+        "Soneto como forma eleita"
+      ],
+      "key_authors_br": [
+        {"name": "Olavo Bilac", "note": "Príncipe dos poetas brasileiros. 'Via Láctea', 'Tarde'. Soneto 'Língua Portuguesa': 'Última flor do Lácio, inculta e bela'."},
+        {"name": "Alberto de Oliveira", "note": "Presidente da ABL fundadora. Poesia de rigor formal."},
+        {"name": "Raimundo Correia", "note": "'As pombas' — imagem da melancolia."}
+      ],
+      "key_works": [
+        "Olavo Bilac — Poesias (1888)",
+        "Bilac — 'Profissão de Fé': arte como cinzelamento da pedra"
+      ]
+    },
+    {
+      "id": "simbolismo",
+      "label": "Simbolismo",
+      "period": "1893–1902 (Brasil) / 1890 (Portugal)",
+      "context": "Reação ao positivismo e ao naturalismo — subjetividade, espiritualidade, o inconsciente. Influência de Baudelaire, Verlaine, Mallarmé.",
+      "characteristics": [
+        "Sugestão ao invés de nomeação — a poesia evoca, não descreve",
+        "Musicalidade intensa — sons como portadores de sentido",
+        "Sinestesia: fusão de sentidos",
+        "Misticismo, espiritualismo, morte como tema",
+        "Linguagem hermética, simbólica, obscura",
+        "Uso do maiúsculo para abstrações personificadas (Morte, Amor, Beleza)"
+      ],
+      "key_authors_br": [
+        {"name": "Cruz e Sousa", "note": "'Dante Negro'. Simbolismo afro-brasileiro — dor racial e mística. 'Missal', 'Broquéis'. Maior simbolista brasileiro."},
+        {"name": "Alphonsus de Guimaraens", "note": "Simbolismo místico e fúnebre. 'Dona Mística', 'Kiriale'."}
+      ],
+      "key_authors_pt": [
+        {"name": "Eugênio de Castro", "note": "Iniciador do simbolismo em Portugal. 'Oaristos' (1890)."}
+      ],
+      "key_works": [
+        "Cruz e Sousa — Broquéis (1893): marco do simbolismo brasileiro",
+        "Cruz e Sousa — 'Antífona', 'Acrobata da Dor'",
+        "Alphonsus de Guimaraens — Kiriale (1902)"
+      ]
+    },
+    {
+      "id": "pre_modernismo",
+      "label": "Pré-Modernismo",
+      "period": "1902–1922",
+      "context": "Transição — nem estético (parnasianismo) nem vanguardista ainda. Crise da República Velha, Canudos, Contestado, questão social emergindo.",
+      "characteristics": [
+        "Regionalismo e valorização do Brasil real (não idealizado)",
+        "Denúncia social — sertão, mestiçagem, pobreza",
+        "Ruptura com o academicismo parnasiano sem ainda o Modernismo formal",
+        "Prosa predominante — 'geração de 1902'"
+      ],
+      "key_authors": [
+        {"name": "Euclides da Cunha", "note": "Os Sertões (1902) — documentário literário sobre a Guerra de Canudos. Obra inclassificável: história, sociologia, literatura."},
+        {"name": "Lima Barreto", "note": "Triste Fim de Policarpo Quaresma — crítica à República e ao nacionalismo ingênuo. Voz de marginalizados."},
+        {"name": "Monteiro Lobato", "note": "Urupês — Jeca Tatu como crítica ao atraso rural. Literatura infantil: Sítio do Picapau Amarelo."},
+        {"name": "Augusto dos Anjos", "note": "'Eu' (1912) — único livro. Vocabulário científico (naturalismo) com angústia existencial simbolista. 'Psicologia de um Vencido'."}
+      ],
+      "key_works": [
+        "Euclides da Cunha — Os Sertões (1902)",
+        "Lima Barreto — Triste Fim de Policarpo Quaresma (1915)",
+        "Augusto dos Anjos — Eu (1912)"
+      ]
+    },
+    {
+      "id": "modernismo",
+      "label": "Modernismo Brasileiro",
+      "period": "1922–1945",
+      "context": "Semana de Arte Moderna (São Paulo, 1922). Vanguardas europeias (futurismo, cubismo, expressionismo, surrealismo) + busca da identidade nacional.",
+      "phases": [
+        {
+          "id": "modernismo_1_fase",
+          "label": "1ª fase: Fase heroica (1922–1930)",
+          "characteristics": [
+            "Destruição — ruptura com o academicismo parnasiano",
+            "Verso livre e linguagem coloquial",
+            "Humor, ironia e paródia dos cânones",
+            "Pesquisa da identidade brasileira (antropofagismo)",
+            "Manifestos: Pau-Brasil (Oswald), Antropofágico (1928)"
+          ],
+          "key_authors": [
+            {"name": "Mário de Andrade", "note": "Teórico e artista central. 'Paulicéia Desvairada' (1922), 'Macunaíma' (1928) — rapsódia do herói sem nenhum caráter."},
+            {"name": "Oswald de Andrade", "note": "'Manifesto Pau-Brasil', 'Manifesto Antropófago'. Poesia-piada, desconstrução. 'Erro de Português'."},
+            {"name": "Manuel Bandeira", "note": "'A Cinza das Horas' (pré-moderno). Depois: 'Libertinagem' (1930) — coloquialismo, cotidiano, 'Evocação do Recife'."},
+            {"name": "Tarsila do Amaral", "note": "Artes plásticas — 'Abaporu' (1928), símbolo do Antropofagismo."}
+          ],
+          "key_works": [
+            "Mário de Andrade — Paulicéia Desvairada (1922)",
+            "Mário de Andrade — Macunaíma (1928)",
+            "Oswald de Andrade — Manifesto Antropófago (1928): 'Tupi or not Tupi, that is the question.'"
+          ]
+        },
+        {
+          "id": "modernismo_2_fase",
+          "label": "2ª fase: Consolidação (1930–1945)",
+          "characteristics": [
+            "Amadurecimento e construção — ao invés de destruição",
+            "Romance regionalista nordestino de 30: crise social, sertão, migrações",
+            "Poesia introspectiva e social (geração de 30)",
+            "Existencialismo e angústia"
+          ],
+          "key_authors_prosa": [
+            {"name": "Graciliano Ramos", "note": "Vidas Secas (1938) — seca, miséria, desumanização. Escrita austera, mínima. Memórias do Cárcere."},
+            {"name": "José Lins do Rego", "note": "Ciclo da cana-de-açúcar. Menino de Engenho (1932)."},
+            {"name": "Jorge Amado", "note": "Cacau, Jubiabá, Capitães da Areia — literatura engajada, mundo afro-baiano."},
+            {"name": "Rachel de Queiroz", "note": "O Quinze (1930) — primeiro grande romance do ciclo nordestino. Primeira mulher na ABL."},
+            {"name": "Érico Veríssimo", "note": "O Tempo e o Vento — épica gaúcha."}
+          ],
+          "key_authors_poesia": [
+            {"name": "Carlos Drummond de Andrade", "note": "Maior poeta brasileiro do século XX. 'Alguma Poesia' (1930), 'A Rosa do Povo' (1945). 'No meio do caminho', 'José'."},
+            {"name": "Cecília Meireles", "note": "Poesia lírica e filosófica. 'Romanceiro da Inconfidência', 'Mar Absoluto'."},
+            {"name": "Vinícius de Moraes", "note": "Poesia + MPB. 'Soneto de Fidelidade'. Parceiro de Tom Jobim."},
+            {"name": "Murilo Mendes", "note": "Poesia surrealista e religiosa."}
+          ],
+          "key_works": [
+            "Graciliano Ramos — Vidas Secas (1938)",
+            "Graciliano Ramos — São Bernardo (1934)",
+            "Carlos Drummond de Andrade — A Rosa do Povo (1945)",
+            "Rachel de Queiroz — O Quinze (1930)"
+          ]
+        },
+        {
+          "id": "modernismo_3_fase",
+          "label": "3ª fase: Geração de 45 / Tendências contemporâneas (1945–)",
+          "characteristics": [
+            "Reação ao coloquialismo — retorno à elaboração formal",
+            "Poesia concreta (1950s–60s): Noigandres — Augusto de Campos, Haroldo de Campos, Décio Pignatari",
+            "Romance de introspecção e experimentação",
+            "Regionalismo transfigurado (Grande Sertão: Veredas)"
+          ],
+          "key_authors": [
+            {"name": "João Guimarães Rosa", "note": "Grande Sertão: Veredas (1956) — obra-prima absoluta. Linguagem reinventada, sertão como universo metafísico, Diadorim."},
+            {"name": "Clarice Lispector", "note": "A Maçã no Escuro, A Paixão Segundo G.H., A Hora da Estrela. Prosa de fluxo de consciência, existencialismo feminino."},
+            {"name": "João Cabral de Melo Neto", "note": "Poesia anti-lírica, construtivista. Morte e Vida Severina (1955) — épica poética do retirante nordestino."},
+            {"name": "Ariano Suassuna", "note": "Auto da Compadecida (1955) — teatro popular, cordel, sátira."}
+          ],
+          "key_works": [
+            "Guimarães Rosa — Grande Sertão: Veredas (1956)",
+            "Clarice Lispector — A Hora da Estrela (1977)",
+            "João Cabral — Morte e Vida Severina (1955)",
+            "Ariano Suassuna — Auto da Compadecida (1955)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "contemporaneo",
+      "label": "Literatura Contemporânea Brasileira",
+      "period": "1960–atual",
+      "characteristics": [
+        "Pluralidade de estilos, vozes e perspectivas — não há escola dominante",
+        "Vozes historicamente marginalizadas ganham espaço: mulheres, negros, periferias, LGBTQIA+",
+        "Hibridismo de gêneros",
+        "Literatura de testemunho e memória",
+        "Ficção científica, distopia, fantástico"
+      ],
+      "key_authors": [
+        {"name": "Lygia Fagundes Telles", "note": "As Meninas (1973), A Estrutura da Bolha de Sabão. Psicologia feminina, suspense."},
+        {"name": "Rubem Fonseca", "note": "Conto urbano e violento. 'Feliz Ano Novo', 'O Cobrador'. Censurado durante a ditadura."},
+        {"name": "Chico Buarque", "note": "Estorvo, Budapeste, Leite Derramado. Ficção de alta literatura."},
+        {"name": "Raduan Nassar", "note": "Lavoura Arcaica (1975) — prosa bíblica e trágica. Obra única e essencial."},
+        {"name": "Milton Hatoum", "note": "Relato de um Certo Oriente, Dois Irmãos — Amazônia, imigração árabe, memória."},
+        {"name": "Conceição Evaristo", "note": "Escrevivência — becos da memória, gênero, raça. Ponciá Vicêncio."},
+        {"name": "Ferréz", "note": "Literatura periférica. Capão Pecado. Voz das favelas."},
+        {"name": "Daniel Galera", "note": "Barba Ensopada de Sangue. Ficção contemporânea urbana."}
+      ]
+    },
+    {
+      "id": "modernismo_portugues",
+      "label": "Modernismo Português",
+      "period": "1915–1940",
+      "context": "Revista Orpheu (1915) — escândalo literário. Fernando Pessoa, Mário de Sá-Carneiro, Almada Negreiros.",
+      "key_authors": [
+        {
+          "name": "Fernando Pessoa",
+          "note": "Maior poeta da língua portuguesa do século XX. Heterônimos — cada um com obra e personalidade distintas.",
+          "hetonyms": [
+            {"name": "Alberto Caeiro", "style": "Sensacionismo puro — ver sem pensar. 'O Guardador de Rebanhos'. 'Não tenho sentimentos.'"},
+            {"name": "Ricardo Reis", "style": "Neopagão, estóico, odes horácianas. 'Para ser grande, sê inteiro.'"},
+            {"name": "Álvaro de Campos", "style": "Futurismo, excesso, sensacionismo extremo. 'Ode Triunfal', 'Tabacaria'."},
+            {"name": "Fernando Pessoa ortônimo", "style": "Saudosismo, metafísica da saudade. 'Mensagem' (único livro publicado em vida)."}
+          ]
+        },
+        {"name": "Mário de Sá-Carneiro", "note": "Simbolismo decadentista. Suicidou-se em Paris. 'Dispersão'."},
+        {"name": "José Saramago", "note": "Prémio Nobel (1998). Ensaio sobre a Cegueira, O Evangelho Segundo Jesus Cristo, Blindness. Técnica narrativa sem pontuação ortodoxa."}
+      ]
+    }
+  ]
+}

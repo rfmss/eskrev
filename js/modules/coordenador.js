@@ -1,13 +1,18 @@
 /**
- * coordenador.js — Coordenador Central (6 agentes linguísticos)
+ * coordenador.js — Coordenador Central (7 agentes linguísticos)
  *
  * Ativado por --c. Abre overlay full-screen sobre o editor, analisa o
- * texto com os 6 agentes e permite aplicar correções. Ao fechar, reinjeta
+ * texto com os 7 agentes e permite aplicar correções. Ao fechar, reinjeta
  * o texto corrigido como texto plano na página ativa.
  *
  * Animação de entrada: clip-path expande do centro para fora (efeito
  * Megazord — dois painéis que deslizam e se encaixam).
+ *
+ * Agente 7 — Léxico: spell-checker offline por distância de Levenshtein
+ * contra o léxico pt_pos_lexicon.js (sem API, sem rede).
  */
+
+import { ptPosLexicon } from "../../src/js/modules/pt_pos_lexicon.js";
 
 // ── AGENTE 1 — ORTOGRAFIA ─────────────────────────────────────────────────
 const R1 = [
@@ -29,7 +34,7 @@ const R1 = [
   { e: /\bmeia\s+noite\b/gi, c: "meia-noite", r: "'Meia-noite' é grafado com hífen.", cat: "hifen", agt: 1 },
   { e: /\bmeia\s+dia\b/gi, c: "meio-dia", r: "'Meio-dia' é grafado com hífen.", cat: "hifen", agt: 1 },
   { e: /\bguarda\s+chuva\b/gi, c: "guarda-chuva", r: "Compostos com 'guarda' levam hífen.", cat: "hifen", agt: 1 },
-  { e: /\bchegou\s+em\b/gi, c: "chegou a", r: "'Chegar' rege preposição 'a', não 'em'.", cat: "regencia", agt: 1 },
+  // chegar: coberto pelo Agente 3 (R3) com regra completa
   { e: /\bprefiro\s+mais\b/gi, c: "prefiro", r: "'Prefiro' já indica comparação. 'Prefiro mais' é redundante.", cat: "pleonasmo", agt: 1 },
   // Contrações e registro informal
   { e: /\bpra\b/gi, c: "para", r: "'Pra' é contração informal de 'para'. Em escrita formal ou literária, prefira 'para'.", cat: "norma", agt: 1 },
@@ -75,31 +80,142 @@ const R2 = [
 ];
 
 // ── AGENTE 3 — SINTAXE ────────────────────────────────────────────────────
+// Filosofia: regras gramaticais, não banco de frases. Cada entrada codifica
+// a REGRA (o que é correto) e captura qualquer desvio, independentemente das
+// palavras específicas usadas — estilo lookahead negativo ou padrão aberto.
 const R3 = [
-  { e: /\bassistir\s+(?:o\s+jogo|o\s+filme|o\s+programa|o\s+show|o\s+espetáculo|os\s+jogos)\b/gi, c: "assistir ao jogo / ao filme", r: "'Assistir' no sentido de ver é transitivo indireto: 'assistir ao jogo'.", cat: "regencia_verbal", agt: 3 },
-  { e: /\bvisar\s+(?:o\s+lucro|o\s+resultado|o\s+objetivo|os\s+resultados)\b/gi, c: "visar ao lucro / ao objetivo", r: "'Visar' (objetivar) é transitivo indireto: 'visar a'.", cat: "regencia_verbal", agt: 3 },
-  { e: /\bobedece[rm]?\s+(?:as|a)\s+(?:regra|lei|norma|ordem|regras|leis|normas|ordens)\b/gi, c: "obedecer às regras / à lei", r: "'Obedecer' é transitivo indireto: 'obedecer à lei'.", cat: "regencia_verbal", agt: 3 },
-  { e: /\bimplicar\s+em\b/gi, c: "implicar (direto)", r: "'Implicar' no sentido de acarretar é transitivo direto — sem 'em'.", cat: "regencia_verbal", agt: 3 },
-  { e: /\bnamorar\s+com\b/gi, c: "namorar (direto)", r: "'Namorar' é transitivo direto: 'ele namora Ana'.", cat: "regencia_verbal", agt: 3 },
-  { e: /\besquecer\s+de\b/gi, c: "esquecer / esquecer-se de", r: "'Esquecer de' sem pronome é coloquial. Use 'esqueci o nome' ou 'esqueci-me do nome'.", cat: "regencia_verbal", agt: 3 },
-  { e: /\blembrar\s+de\b/gi, c: "lembrar / lembrar-se de", r: "'Lembrar de' sem pronome é coloquial. Use 'lembrei o nome' ou 'lembrei-me do nome'.", cat: "regencia_verbal", agt: 3 },
-  { e: /\bresponder\s+(?:o\s+email|o\s+ofício|o\s+questionário|a\s+pergunta)\b/gi, c: "responder ao email / à pergunta", r: "'Responder' algo é transitivo indireto: 'responder ao email'.", cat: "regencia_verbal", agt: 3 },
-  { e: /\bcapaz\s+em\b/gi, c: "capaz de", r: "'Capaz' rege 'de': 'capaz de fazer'.", cat: "regencia_nominal", agt: 3 },
-  { e: /\bansioso\s+para\b/gi, c: "ansioso por / ansioso com", r: "'Ansioso' rege 'por' ou 'com'. 'Ansioso para' é anglicismo.", cat: "regencia_nominal", agt: 3 },
-  { e: /\bimune\s+de\b/gi, c: "imune a", r: "'Imune' rege 'a': 'imune a críticas'.", cat: "regencia_nominal", agt: 3 },
-  { e: /\bse\s+vende\b|\bse\s+aluga\b|\bse\s+precisa\b|\bse\s+faz\b/gi, c: "vende-se / aluga-se / precisa-se / faz-se", r: "Com 'se' índice de indeterminação, a ênclise é obrigatória: 'vende-se'.", cat: "colocacao_pronominal", agt: 3 },
-  { e: /\bMe\s+(?:diga|fala|conta|explica|mostra|ajuda)\b/g, c: "Diga-me / Fale-me / Conte-me", r: "No imperativo afirmativo, o pronome vai depois do verbo: 'Diga-me'.", cat: "colocacao_pronominal", agt: 3 },
-  { e: /\bsendo\s+que\b/gi, c: "embora / uma vez que / pois / já que", r: "'Sendo que' é coloquial. Use a conjunção adequada ao sentido.", cat: "registro", agt: 3 },
-  { e: /\baonde\s+(?!vou|vai|foram|ir|fica|você\s+vai|ele\s+vai)\b/gi, c: "onde", r: "'Aonde' indica movimento (destino). Para lugar sem movimento, use 'onde'.", cat: "regencia_verbal", agt: 3 },
-  { e: /\bnenhum\s+dos\s+\w+\s+(?:foram|estavam|fizeram|disseram)\b/gi, c: "nenhum dos … (singular)", r: "Com 'nenhum dos', o verbo vai para o singular: 'nenhum dos alunos foi'.", cat: "concordancia_verbal", agt: 3 },
-  { e: /\bonde\s+(?=\w+\s+(?:disse|afirmou|declarou|escreveu|relatou|menciona))/gi, c: "em que / no qual / na qual", r: "'Onde' indica lugar físico. Para texto ou situação, use 'em que' ou 'no qual'.", cat: "ambiguidade", agt: 3 },
-  // "Para mim" + infinitivo — erro muito frequente
-  { e: /\bpara\s+mim\s+(?:fazer|ir|ser|ter|poder|dever|querer|falar|dizer|escrever|jogar|trabalhar|estudar|comer|beber|resolver|comprar|vender|trazer|criar|usar|abrir|fechar|entrar|sair|voltar|chegar|ficar|levar|ajudar|pensar|saber|ver|ouvir|ler|correr|ganhar|perder|começar|terminar|acabar|continuar|mudar|passar|dar|pegar|colocar|tirar|deixar)\b/gi, c: "para eu fazer / para eu ir…", r: "Antes de verbo no infinitivo, o pronome deve ser 'eu' (sujeito), não 'mim' (oblíquo): 'é fácil para eu fazer'.", cat: "regencia_nominal", agt: 3 },
-  { e: /\bchegar\s+em\b/gi, c: "chegar a", r: "'Chegar' transitivo indireto rege 'a': 'chegar ao aeroporto', não 'chegar no aeroporto'.", cat: "regencia_verbal", agt: 3 },
-  { e: /\bchegar\s+no\b|\bchegar\s+na\b|\bchegar\s+nos\b|\bchegar\s+nas\b/gi, c: "chegar ao / chegar à…", r: "'Chegar' rege preposição 'a': 'chegar à cidade', 'chegar ao trabalho'.", cat: "regencia_verbal", agt: 3 },
-  { e: /\bem\s+(?:casa|escola|hospital|trabalho|faculdade|universidade)\s+(?:cheguei|chegou|chegaram|chegamos)\b/gi, c: "à escola / ao trabalho…", r: "'Chegar' rege 'a': 'cheguei à escola', 'chegou ao hospital'.", cat: "regencia_verbal", agt: 3 },
-  { e: /\bvou\s+(?:no|na|nos|nas)\s+(?:médico|dentista|banco|mercado|cinema|teatro|supermercado|padaria|farmácia|academia|clube|parque)\b/gi, c: "vou ao médico / vou à farmácia…", r: "'Ir a' é o regente correto. Use 'ao/à' em vez de 'no/na': 'vou ao médico'.", cat: "regencia_verbal", agt: 3 },
-  { e: /\bfui\s+(?:no|na)\s+(?:médico|dentista|banco|mercado|cinema|teatro|supermercado|padaria|farmácia|academia)\b/gi, c: "fui ao médico / fui à farmácia…", r: "Use 'ao/à' (preposição 'a' + artigo): 'fui ao médico', 'fui à farmácia'.", cat: "regencia_verbal", agt: 3 },
+  // ── Regência verbal — chegar ─────────────────────────────────────────────
+  // REGRA: chegar rege "a" (ao/à/aos/às). Qualquer prep. locativa (em/no/na/nos/nas) é erro.
+  { e: /\bcheg(?:ar|ou|ei|amos|aram|aste|armos|arão|ava|avas|ávamos|ando)\s+(?:em|no|na|nos|nas)\b/gi,
+    c: "chegar a / ao / à…",
+    r: "'Chegar' rege a preposição 'a' (ao/à/aos/às): 'chegar ao aeroporto', 'chegar à escola'. Nunca 'chegar no/na'.",
+    cat: "regencia_verbal", agt: 3 },
+
+  // ── Regência verbal — ir ──────────────────────────────────────────────────
+  // REGRA: ir rege "a" (ao/à). Qualquer forma + no/na/nos/nas é erro.
+  { e: /\b(?:vou|fui|foi|irá|irei|iremos|irão|vamos|foram|iam|ia|ias|íamos)\s+(?:no|na|nos|nas)\s+\w+/gi,
+    c: "vou ao / fui à…",
+    r: "'Ir' rege a preposição 'a' (ao/à): 'vou ao médico', 'fui à farmácia'. Nunca 'vou no/na'.",
+    cat: "regencia_verbal", agt: 3 },
+
+  // ── Regência verbal — assistir (presenciar) ───────────────────────────────
+  // REGRA: "assistir" (ver/presenciar) é transitivo indireto — rege "a" (ao/à).
+  // "Assistir o jogo" (OD direto) é erro; "assistir ao jogo" (OI) é correto.
+  { e: /\bassistir\s+(?:o\b|os\b)\s+\w+/gi,
+    c: "assistir ao / aos…",
+    r: "'Assistir' no sentido de 'presenciar/ver' é transitivo indireto: 'assistir ao jogo', não 'assistir o jogo'.",
+    cat: "regencia_verbal", agt: 3 },
+
+  // ── Regência verbal — visar (objetivar) ──────────────────────────────────
+  // REGRA: "visar" (ter por objetivo) é transitivo indireto — rege "a".
+  // Distingue de "visar" (assinar/carimbar), que é TD.
+  { e: /\bvisar\s+(?:o\s+(?:lucro|resultado|objetivo|sucesso|crescimento|impacto|bem)|os\s+\w+)\b/gi,
+    c: "visar ao lucro / aos objetivos…",
+    r: "'Visar' (objetivar) é transitivo indireto: 'visar ao lucro', não 'visar o lucro'.",
+    cat: "regencia_verbal", agt: 3 },
+
+  // ── Regência verbal — obedecer ───────────────────────────────────────────
+  // REGRA: obedecer é transitivo indireto — rege "a" (à/às).
+  // "Obedecer as/os X" (sem prep.) é erro; "obedecer às regras" é correto.
+  { e: /\bobedece[rms]?\s+(?:as|os)\s+\w+/gi,
+    c: "obedecer às / aos…",
+    r: "'Obedecer' é transitivo indireto: 'obedecer às regras' (com crase), não 'obedecer as regras'.",
+    cat: "regencia_verbal", agt: 3 },
+
+  // ── Regência verbal — implicar (acarretar) ───────────────────────────────
+  { e: /\bimplicar\s+em\b/gi,
+    c: "implicar (direto)",
+    r: "'Implicar' no sentido de 'acarretar' é transitivo direto — sem preposição: 'isso implica responsabilidade'.",
+    cat: "regencia_verbal", agt: 3 },
+
+  // ── Regência verbal — namorar ────────────────────────────────────────────
+  { e: /\bnamorar\s+com\b/gi,
+    c: "namorar (direto)",
+    r: "'Namorar' é transitivo direto: 'ele namora Ana', não 'ele namora com Ana'.",
+    cat: "regencia_verbal", agt: 3 },
+
+  // ── Regência verbal — esquecer / lembrar ─────────────────────────────────
+  // REGRA: sem pronome reflexivo, estes verbos são TDs. "Esquecer de" sem pronome é coloquial.
+  { e: /\b(?:esquecer|esqueci|esqueceu|esqueço|esquecemos|esqueceram)\s+de\b/gi,
+    c: "esquecer / esquecer-se de",
+    r: "Sem pronome: 'esqueci o nome'. Com pronome: 'esqueci-me do nome'. 'Esquecer de' sem pronome é coloquial.",
+    cat: "regencia_verbal", agt: 3 },
+  { e: /\b(?:lembrar|lembrei|lembrou|lembro|lembramos|lembraram)\s+de\b/gi,
+    c: "lembrar / lembrar-se de",
+    r: "Sem pronome: 'lembrei o nome'. Com pronome: 'lembrei-me do nome'. 'Lembrar de' sem pronome é coloquial.",
+    cat: "regencia_verbal", agt: 3 },
+
+  // ── Regência verbal — responder ──────────────────────────────────────────
+  // REGRA: "responder" (dar resposta a algo) é transitivo indireto — rege "a".
+  // "Responder o X" (OD) é erro; "responder ao X" é correto.
+  { e: /\bresponder\s+(?:o\b|os\b)\s+\w+/gi,
+    c: "responder ao / aos…",
+    r: "'Responder' (dar resposta a algo) é transitivo indireto: 'responder ao email', não 'responder o email'.",
+    cat: "regencia_verbal", agt: 3 },
+
+  // ── Regência nominal — capaz ──────────────────────────────────────────────
+  // REGRA: "capaz" rege exclusivamente "de". Qualquer outra prep. é erro.
+  { e: /\bcapaz\s+(?:em|para|a\b|por|com|sobre)\b/gi,
+    c: "capaz de",
+    r: "'Capaz' rege exclusivamente 'de': 'capaz de fazer'. 'Capaz em/para/por' são incorretos.",
+    cat: "regencia_nominal", agt: 3 },
+
+  // ── Regência nominal — ansioso ────────────────────────────────────────────
+  { e: /\bansioso\s+para\b/gi,
+    c: "ansioso por / ansioso com",
+    r: "'Ansioso' rege 'por' ou 'com'. 'Ansioso para' é anglicismo (calco do inglês 'anxious to').",
+    cat: "regencia_nominal", agt: 3 },
+
+  // ── Regência nominal — imune ──────────────────────────────────────────────
+  { e: /\bimune\s+de\b/gi,
+    c: "imune a",
+    r: "'Imune' rege exclusivamente 'a': 'imune a críticas', não 'imune de críticas'.",
+    cat: "regencia_nominal", agt: 3 },
+
+  // ── Para mim + infinitivo ─────────────────────────────────────────────────
+  // REGRA: antes de infinitivo, o pronome é sujeito → "eu", nunca "mim" (oblíquo).
+  // Padrão aberto: detecta qualquer infinitivo (-ar/-er/-ir/-or), sem lista de verbos.
+  { e: /\bpara\s+mim\s+(?:\w+ar|\w+er|\w+ir|\w+or)\b/gi,
+    c: "para eu fazer / para eu ir…",
+    r: "Antes de verbo no infinitivo, o pronome deve ser sujeito ('eu'), não oblíquo ('mim'): 'para eu fazer'.",
+    cat: "regencia_nominal", agt: 3 },
+
+  // ── Colocação pronominal — se índice de indeterminação ───────────────────
+  // REGRA: "se" indeterminador exige ênclise. Proclise ("se vende") é incorreta na escrita formal.
+  { e: /\bse\s+(?:vende|aluga|precisa|faz|compra|procura|aceita|busca|contrata|oferece|entrega|atende)\b/gi,
+    c: "vende-se / aluga-se / precisa-se…",
+    r: "Com 'se' índice de indeterminação, a ênclise é obrigatória: 'vende-se', não 'se vende'.",
+    cat: "colocacao_pronominal", agt: 3 },
+
+  // ── Colocação pronominal — imperativo afirmativo ──────────────────────────
+  { e: /\bMe\s+(?:diga|fala|conta|explica|mostra|ajuda|dê|faz|traz|manda|passa|diz)\b/g,
+    c: "Diga-me / Fale-me / Conte-me…",
+    r: "No imperativo afirmativo, o pronome vai depois do verbo: 'Diga-me', não 'Me diga'.",
+    cat: "colocacao_pronominal", agt: 3 },
+
+  // ── Registro — sendo que ──────────────────────────────────────────────────
+  { e: /\bsendo\s+que\b/gi,
+    c: "embora / uma vez que / pois / já que",
+    r: "'Sendo que' é coloquial. Escolha a conjunção adequada: 'embora' (concessão), 'pois/já que' (causa).",
+    cat: "registro", agt: 3 },
+
+  // ── Aonde vs. onde ────────────────────────────────────────────────────────
+  { e: /\baonde\s+(?!vou|vai|foram|ir|fica|você\s+vai|ele\s+vai)\b/gi,
+    c: "onde",
+    r: "'Aonde' indica movimento (destino). Para lugar sem movimento, use 'onde'.",
+    cat: "regencia_verbal", agt: 3 },
+
+  // ── Concordância verbal — nenhum dos ─────────────────────────────────────
+  { e: /\bnenhum\s+dos\s+\w+\s+(?:foram|estavam|fizeram|disseram)\b/gi,
+    c: "nenhum dos … (singular)",
+    r: "Com 'nenhum dos', o verbo fica no singular: 'nenhum dos alunos foi'.",
+    cat: "concordancia_verbal", agt: 3 },
+
+  // ── Onde referencial — texto/situação ────────────────────────────────────
+  { e: /\bonde\s+(?=\w+\s+(?:disse|afirmou|declarou|escreveu|relatou|menciona))/gi,
+    c: "em que / no qual / na qual",
+    r: "'Onde' indica lugar físico. Para contexto textual ou situação, use 'em que' ou 'no qual'.",
+    cat: "ambiguidade", agt: 3 },
 ];
 
 // ── AGENTE 4 — SEMÂNTICA ──────────────────────────────────────────────────
@@ -223,6 +339,17 @@ const AGENTES = {
   4: { nome: "Semântica",  cor: "#ffd43b", sigla: "SE", regras: R4 },
   5: { nome: "Pontuação",  cor: "#f783ac", sigla: "PO", regras: R5 },
   6: { nome: "Crase",      cor: "#da77f2", sigla: "CR", regras: R6 },
+  7: { nome: "Léxico",     cor: "#ff9f43", sigla: "LE", regras: []  },
+};
+
+const DEF_AGENTE = {
+  1: "Ortografia — grafia correta das palavras, acentuação gráfica, uso do hífen e adequação à norma ortográfica vigente (Acordo de 2009).",
+  2: "Morfologia — concordância nominal e verbal, flexão de número, gênero e grau, e classe gramatical das formas.",
+  3: "Sintaxe — regras de regência (não banco de frases): detecta qualquer desvio de preposição, colocação pronominal e estrutura oracional por padrão aberto.",
+  4: "Semântica — sentido das palavras: paronímia, ambiguidade, redundância e usos semanticamente inadequados.",
+  5: "Pontuação — emprego correto de vírgula obrigatória e proibida, dois-pontos, reticências e delimitação de aposto.",
+  6: "Crase — acento grave resultante da contração preposição + artigo feminino: uso obrigatório, proibido e contextual.",
+  7: "Léxico — spell-checker offline por distância de Levenshtein: detecta prováveis erros de digitação e sugere a forma mais próxima no léxico.",
 };
 const COR_CAT = {
   grafia: "#ff6b6b", acento: "#cc5de8", hifen: "#4dabf7", regencia: "#20c997",
@@ -235,7 +362,87 @@ const COR_CAT = {
   colocacao_pronominal: "#e64980", registro: "#ae3ec9", regencia_verbal: "#20c997",
   regencia_nominal: "#0ca678", crase_obrigatoria: "#da77f2", crase_proibida: "#f03e3e",
   crase_horas: "#ffd43b", crase_demonstrativo: "#63e6be", crase_paises: "#ff922b",
+  typo: "#ff9f43",
 };
+// ── AGENTE 7 — LÉXICO (Levenshtein offline) ───────────────────────────────
+
+function levenshtein(a, b) {
+  if (a === b) return 0;
+  if (a.length === 0) return b.length;
+  if (b.length === 0) return a.length;
+  const prev = Array.from({ length: b.length + 1 }, (_, i) => i);
+  for (let i = 1; i <= a.length; i++) {
+    let cur = i;
+    for (let j = 1; j <= b.length; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      const tmp = cur;
+      cur = Math.min(prev[j] + 1, cur + 1, prev[j - 1] + cost);
+      prev[j - 1] = tmp;
+    }
+    prev[b.length] = cur;
+  }
+  return prev[b.length];
+}
+
+function normWord(w) {
+  try { return w.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); }
+  catch (_) { return w.toLowerCase(); }
+}
+
+function findSuggestions(norm, maxDist = 2, topN = 3) {
+  const len = norm.length;
+  const results = [];
+  for (const [key, entry] of ptPosLexicon.entries) {
+    // poda rápida por comprimento — Levenshtein ≥ |lenA - lenB|
+    if (Math.abs(key.length - len) > maxDist) continue;
+    const d = levenshtein(norm, key);
+    if (d <= maxDist) results.push({ word: entry.word ?? key, key, dist: d });
+  }
+  return results
+    .sort((a, b) => a.dist - b.dist || a.key.length - b.key.length)
+    .slice(0, topN);
+}
+
+function executarLexico(texto) {
+  if (!ptPosLexicon.coreLoaded) return [];
+  const erros = [];
+  const tokenRe = /[a-záàãâéêíóôõúüçñ'-]+/gi;
+  let m;
+  while ((m = tokenRe.exec(texto)) !== null) {
+    const word = m[0];
+    // ignora muito curtas, números, palavras iniciadas com maiúscula (nomes próprios)
+    if (word.length <= 3) continue;
+    if (/^\d/.test(word)) continue;
+    if (/^[A-ZÁÀÃÂÉÊÍÓÔÕÚ]/.test(word)) continue;
+
+    const norm = normWord(word);
+    // já está no léxico → válida
+    if (ptPosLexicon.entries.has(norm)) continue;
+    // padrão explícito de guess() → forma provável válida
+    const g = ptPosLexicon.guess(norm);
+    if (g && !g.fallback) continue;
+
+    // candidata a typo: busca os mais próximos
+    const sugs = findSuggestions(norm, 2, 3);
+    if (sugs.length === 0 || sugs[0].dist === 0) continue;
+
+    const best = sugs[0].word;
+    erros.push({
+      inicio: m.index,
+      fim:    m.index + word.length,
+      texto:  word,
+      certo:  best,
+      sugs:   sugs.map(s => s.word),
+      regra:  `Possíveis correções por distância de edição (Levenshtein).`,
+      categoria: "typo",
+      agente: 7,
+      prioA:  7,
+      prioC:  1,
+    });
+  }
+  return erros;
+}
+
 const LABEL_CAT = {
   grafia: "Grafia", acento: "Acentuação", hifen: "Hífen", regencia: "Regência",
   concordancia: "Concordância", flexao_verbal: "Flexão Verbal", flexao_nominal: "Flexão Nominal",
@@ -248,6 +455,7 @@ const LABEL_CAT = {
   registro: "Registro", regencia_verbal: "Regência V.", regencia_nominal: "Regência N.",
   crase_obrigatoria: "Crase Obrig.", crase_proibida: "Crase Proib.",
   crase_horas: "Crase Horas", crase_demonstrativo: "Crase Demon.", crase_paises: "Crase Países",
+  typo: "Typo",
 };
 
 // ── MOTOR ─────────────────────────────────────────────────────────────────
@@ -324,7 +532,7 @@ function buildOverlay() {
         <div class="coord-header">
           <div class="coord-title-text">
             <span class="coord-subtitle">Inspeção Linguística</span>
-            <span class="coord-subtitle-tag">6 agentes</span>
+            <span class="coord-subtitle-tag">7 agentes</span>
           </div>
           <div class="coord-header-actions">
             <span class="coord-corrected" id="coordCorrected"></span>
@@ -333,6 +541,7 @@ function buildOverlay() {
           </div>
         </div>
         <div class="coord-agents" id="coordAgents"></div>
+        <div class="coord-defs" id="coordDefs"></div>
         <div class="coord-stat-bar" id="coordStatBar"></div>
       </div>
 
@@ -341,7 +550,7 @@ function buildOverlay() {
         <div class="coord-highlight" id="coordHighlight" aria-hidden="true"></div>
         <textarea class="coord-textarea" id="coordTextarea"
           spellcheck="false"
-          placeholder="Texto da página aparece aqui. Os 6 agentes inspecionam em paralelo…"></textarea>
+          placeholder="Texto da página aparece aqui. Os 7 agentes inspecionam em paralelo…"></textarea>
       </div>
 
       <!-- ── BASE: filtros + fila ── -->
@@ -368,11 +577,24 @@ function resetState(texto) {
   return {
     texto,
     erros: [],
-    ativos: new Set([1, 2, 3, 4, 5, 6]),
+    ativos: new Set([1, 2, 3, 4, 5, 6, 7]),
+    clickOrder: [1, 2, 3, 4, 5, 6, 7],   // ordem de ativação dos agentes
     filtro: null,
     totalCorrigidos: 0,
     debounceTimer: 0,
+    sourceRange: null,   // preenchido no modo fragmento (seleção → inspecionar)
   };
+}
+
+function renderDefs() {
+  const el = document.getElementById("coordDefs");
+  if (!el) return;
+  const lines = _state.clickOrder.filter(id => _state.ativos.has(id));
+  if (lines.length === 0) { el.innerHTML = ""; return; }
+  el.innerHTML = lines.map(id => {
+    const agt = AGENTES[id];
+    return `<div class="coord-def-line" style="--def-cor:${agt.cor}">${DEF_AGENTE[id]}</div>`;
+  }).join("");
 }
 
 // ── RENDER ─────────────────────────────────────────────────────────────────
@@ -414,14 +636,17 @@ function render() {
       chip.className = "coord-agent-chip" + (ativo ? " is-active" : "");
       chip.dataset.agentId = id;
       chip.style.setProperty("--agt-cor", agt.cor);
+      chip.title = `${agt.nome} — ${DEF_AGENTE[numId] || ""}`;
       chip.innerHTML = `
         <span class="coord-chip-sigla">${agt.sigla}</span>
-        <span class="coord-chip-nome">${agt.nome}</span>
         <span class="coord-chip-count">${ativo ? (count > 0 ? count : "·") : "off"}</span>
       `;
       agentsEl.appendChild(chip);
     }
   }
+
+  // Def lines (abaixo dos chips, acima do editor)
+  renderDefs();
 
   // Stat bar
   const statBar = document.getElementById("coordStatBar");
@@ -478,6 +703,9 @@ function render() {
         const cor = COR_CAT[erro.categoria] || AGENTES[erro.agente]?.cor || "#4dabf7";
         const label = LABEL_CAT[erro.categoria] || erro.categoria;
         const agt = AGENTES[erro.agente];
+        const fixBtns = erro.sugs?.length > 0
+          ? erro.sugs.map(sug => `<button type="button" class="coord-queue-fix" data-erro-inicio="${erro.inicio}" data-certo="${escapeHtml(sug)}" style="border-color:${cor}40">${escapeHtml(sug)}</button>`).join("")
+          : `<button type="button" class="coord-queue-fix" data-erro-inicio="${erro.inicio}" style="border-color:${cor}40">${escapeHtml(erro.certo)}</button>`;
         return `
           <div class="coord-queue-item" data-queue-idx="${i}" style="border-left-color:${cor}">
             <span class="coord-queue-sigla" style="color:${agt?.cor};background:${agt?.cor}14;border-color:${agt?.cor}30">${agt?.sigla}</span>
@@ -485,8 +713,7 @@ function render() {
               <div class="coord-queue-pair">
                 <span class="coord-queue-wrong">${escapeHtml(erro.texto)}</span>
                 <span class="coord-queue-arrow">→</span>
-                <button type="button" class="coord-queue-fix" data-erro-inicio="${erro.inicio}"
-                  style="border-color:${cor}40">${escapeHtml(erro.certo)}</button>
+                ${fixBtns}
                 <span class="coord-queue-cat" style="color:${cor};background:${cor}14;border-color:${cor}30">${label}</span>
               </div>
               <div class="coord-queue-rule">${escapeHtml(erro.regra)}</div>
@@ -502,23 +729,25 @@ function render() {
   const techEl = document.getElementById("coordTechPanel");
   if (techEl) {
     const totalRegras = [R1,R2,R3,R4,R5,R6].flat().filter(r => r.c).length;
+    const lexEntries = ptPosLexicon.entries.size;
     const ativosArr = [...ativos].sort().join(", ");
     techEl.innerHTML = `
       <span>agentes_ativos: [${ativosArr}]</span>
-      <span>regras_totais: ${totalRegras}</span>
+      <span>regras_totais: ${totalRegras} · léxico: ${lexEntries} entradas</span>
       <span>deduplicação: sobreposição + prioridade agente × categoria</span>
       <span>debounce: 600ms · corrigir_tudo: offset acumulado</span>
       <span>fila_ativa: ${erros.length} ocorrência${erros.length !== 1 ? "s" : ""}</span>
-      <span>agentes: OR · MO · SI · SE · PO · CR — todos integrados</span>
+      <span>agentes: OR · MO · SI · SE · PO · CR · LE — todos integrados</span>
     `;
   }
 }
 
 // ── CORREÇÃO ───────────────────────────────────────────────────────────────
-function aplicarErro(inicio) {
+function aplicarErro(inicio, certoOverride) {
   const erro = _state.erros.find(e => e.inicio === inicio);
   if (!erro) return;
-  _state.texto = _state.texto.slice(0, erro.inicio) + erro.certo + _state.texto.slice(erro.fim);
+  const certo = certoOverride ?? erro.certo;
+  _state.texto = _state.texto.slice(0, erro.inicio) + certo + _state.texto.slice(erro.fim);
   _state.totalCorrigidos++;
   analyzeAndRender();
   syncTextarea();
@@ -548,7 +777,9 @@ function syncTextarea() {
 }
 
 function analyzeAndRender() {
-  _state.erros = executar(_state.texto, _state.ativos);
+  const base = executar(_state.texto, _state.ativos);
+  const lexico = _state.ativos.has(7) ? executarLexico(_state.texto) : [];
+  _state.erros = [...base, ...lexico].sort((a, b) => a.inicio - b.inicio);
   render();
 }
 
@@ -597,8 +828,9 @@ function attachEvents(ov, ctx, sourceEl) {
       <div class="coord-floater-pair">
         <span class="coord-floater-wrong">${escapeHtml(erro.texto)}</span>
         <span class="coord-floater-arrow">→</span>
-        <button type="button" class="coord-floater-fix" data-erro-inicio="${erro.inicio}"
-          style="border-color:${cor}40">${escapeHtml(erro.certo)}</button>
+        ${erro.sugs?.length > 0
+          ? erro.sugs.map(sug => `<button type="button" class="coord-floater-fix" data-erro-inicio="${erro.inicio}" data-certo="${escapeHtml(sug)}" style="border-color:${cor}40">${escapeHtml(sug)}</button>`).join("")
+          : `<button type="button" class="coord-floater-fix" data-erro-inicio="${erro.inicio}" style="border-color:${cor}40">${escapeHtml(erro.certo)}</button>`}
       </div>
       <span class="coord-floater-hint">clique na correção para aplicar</span>
     `;
@@ -622,7 +854,7 @@ function attachEvents(ov, ctx, sourceEl) {
   floater.addEventListener("click", (ev) => {
     const btn = ev.target.closest(".coord-floater-fix");
     if (!btn) return;
-    aplicarErro(Number(btn.dataset.erroInicio));
+    aplicarErro(Number(btn.dataset.erroInicio), btn.dataset.certo || undefined);
     floater.classList.remove("is-visible");
   });
 
@@ -631,8 +863,13 @@ function attachEvents(ov, ctx, sourceEl) {
     const chip = ev.target.closest(".coord-agent-chip");
     if (chip) {
       const id = Number(chip.dataset.agentId);
-      if (_state.ativos.has(id)) _state.ativos.delete(id);
-      else _state.ativos.add(id);
+      if (_state.ativos.has(id)) {
+        _state.ativos.delete(id);
+        _state.clickOrder = _state.clickOrder.filter(x => x !== id);
+      } else {
+        _state.ativos.add(id);
+        _state.clickOrder = [..._state.clickOrder.filter(x => x !== id), id];
+      }
       analyzeAndRender();
       return;
     }
@@ -649,7 +886,7 @@ function attachEvents(ov, ctx, sourceEl) {
     // Apply individual (queue item)
     const fixBtn = ev.target.closest(".coord-queue-fix, .coord-queue-apply");
     if (fixBtn) {
-      aplicarErro(Number(fixBtn.dataset.erroInicio));
+      aplicarErro(Number(fixBtn.dataset.erroInicio), fixBtn.dataset.certo || undefined);
       return;
     }
 
@@ -676,14 +913,21 @@ function attachEvents(ov, ctx, sourceEl) {
 }
 
 // ── OPEN / CLOSE ───────────────────────────────────────────────────────────
-export function openCoordenador(ctx) {
+export function openCoordenador(ctx, textoOverride, sourceRange) {
   // Determina a página ativa
   const sourceEl = ctx.state?.pages?.find(p => p === document.activeElement)
     || ctx.state?.pages?.[0]
     || document.querySelector(".pageContent");
   if (!sourceEl) return;
 
-  const texto = sourceEl.innerText || "";
+  let texto;
+  if (textoOverride !== undefined) {
+    texto = textoOverride;
+  } else {
+    const _cloneForText = sourceEl.cloneNode(true);
+    _cloneForText.querySelectorAll(".slice").forEach(s => s.remove());
+    texto = _cloneForText.innerText || "";
+  }
 
   // Cria ou reutiliza overlay
   let ov = document.getElementById("coordOverlay");
@@ -697,8 +941,16 @@ export function openCoordenador(ctx) {
   ov._sourceEl = sourceEl; // referência direta
 
   _state = resetState(texto);
+  if (sourceRange) _state.sourceRange = sourceRange;
   analyzeAndRender();
   syncTextarea();
+
+  // Carrega léxico em background → re-analisa quando pronto (Agent 7)
+  if (!ptPosLexicon.coreLoaded) {
+    ptPosLexicon.loadCore().then(() => {
+      if (_state) analyzeAndRender();
+    }).catch(() => {});
+  }
 
   // Abre com animação
   ov.classList.add("is-open");
@@ -716,11 +968,27 @@ function closeOverlay(ctx, sourceEl) {
   const ov = document.getElementById("coordOverlay");
   if (!ov) return;
 
-  // Reinjeta texto corrigido como texto plano
+  // Reinjeta texto corrigido via execCommand para preservar a pilha de undo (Ctrl+Z)
   const target = ov._sourceEl || sourceEl;
-  if (target && _state) {
-    target.innerText = _state.texto;
-    // Dispara input para sync de páginas
+  if (_state?.sourceRange) {
+    // Modo fragmento: substitui apenas a seleção original
+    try {
+      target?.focus();
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(_state.sourceRange);
+      document.execCommand("insertText", false, _state.texto);
+      target?.dispatchEvent(new Event("input", { bubbles: true }));
+    } catch (_) {}
+  } else if (target && _state) {
+    // Modo página inteira: seleciona tudo e substitui via execCommand
+    target.focus();
+    const range = document.createRange();
+    range.selectNodeContents(target);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    document.execCommand("insertText", false, _state.texto);
     target.dispatchEvent(new Event("input", { bubbles: true }));
   }
 

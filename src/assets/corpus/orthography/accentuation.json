@@ -1,0 +1,429 @@
+{
+  "version": "1.0",
+  "area": "orthography",
+  "topic": "accentuation",
+  "description": "Regras completas de acentuação gráfica do português brasileiro conforme o Acordo Ortográfico de 1990 (vigente no Brasil desde 2009). Inclui as mudanças em relação ao sistema anterior e os casos que permanecem.",
+  "sources": [
+    "Acordo Ortográfico da Língua Portuguesa — 1990 (Base IV, V, VI)",
+    "VOLP — Vocabulário Ortográfico da Língua Portuguesa, ABL, 6ª ed.",
+    "Rocha Lima — Gramática Normativa (49ª ed.)",
+    "Cunha & Cintra — Nova Gramática do Português Contemporâneo (7ª ed.)"
+  ],
+  "ao_1990_note": "O Acordo Ortográfico de 1990 foi ratificado pelo Brasil em 2004 e entrou em vigor obrigatório em 2009. As principais mudanças na acentuação foram: eliminação do trema em palavras portuguesas, supressão da maioria dos acentos diferenciais, e eliminação do acento nos ditongos abertos 'ei' e 'oi' de paroxítonas.",
+  "entries": [
+    {
+      "id": "tonicidade",
+      "label": "tonicidade — classificação por posição da sílaba tônica",
+      "description": "Toda palavra com mais de uma sílaba tem uma sílaba mais forte (tônica). A posição dessa sílaba classifica a palavra.",
+      "classes": [
+        {
+          "id": "proparoxitona",
+          "label": "proparoxítona",
+          "definition": "Sílaba tônica na antepenúltima sílaba.",
+          "rule": "Todas as proparoxítonas recebem acento gráfico — sem exceção.",
+          "accent_type": "agudo (vogais abertas: á, é, ó, i, u) ou circunflexo (vogais fechadas: â, ê, ô)",
+          "examples": [
+            "lâmpada", "médico", "número", "sábado", "cômodo", "ônibus",
+            "física", "pálido", "fábrica", "cético", "fôlego", "pêssego",
+            "bêbado", "tônico", "pálpebra", "fênix", "êxtase", "índice"
+          ],
+          "proparoxitonas_eventuais": {
+            "description": "Palavras que têm tonicidade proparoxítona apenas em determinadas formas flexionadas.",
+            "examples": [
+              {"form": "víamos", "note": "1ª pl. imperf. do ind. de 'ver'"},
+              {"form": "tínhamos", "note": "1ª pl. imperf. do ind. de 'ter'"},
+              {"form": "fôssemos", "note": "1ª pl. imperf. do subj. de 'ser/ir'"}
+            ]
+          }
+        },
+        {
+          "id": "paroxitona",
+          "label": "paroxítona",
+          "definition": "Sílaba tônica na penúltima sílaba. São a maioria das palavras do português.",
+          "rule": "Paroxítonas geralmente NÃO recebem acento. Recebem acento quando terminam em sílabas ou grupos consonantais que saem do padrão esperado.",
+          "accent_when_ending_in": [
+            {
+              "endings": ["-i", "-is"],
+              "examples": ["táxi", "júri", "oásis", "grátis", "lápis", "bílis"]
+            },
+            {
+              "endings": ["-us", "-um", "-uns"],
+              "examples": ["vírus", "ânus", "álbum", "fórum", "médium", "álbuns"]
+            },
+            {
+              "endings": ["-l"],
+              "examples": ["fácil", "difícil", "útil", "réptil", "cônsul", "móvel", "nível", "fóssil"]
+            },
+            {
+              "endings": ["-n"],
+              "examples": ["hífen", "abdômen", "cânon", "próton", "elétron", "nêutron"]
+            },
+            {
+              "endings": ["-r"],
+              "examples": ["açúcar", "caráter", "éter", "mártir"]
+            },
+            {
+              "endings": ["-x"],
+              "examples": ["tórax", "ônix", "félix (nome próprio)", "látex", "sílex", "vórtex"]
+            },
+            {
+              "endings": ["-ps"],
+              "examples": ["bíceps", "fórceps", "tríceps"]
+            },
+            {
+              "endings": ["-ã", "-ãs", "-ão", "-ãos"],
+              "examples": ["ímã", "órfã", "bênção", "órgão", "sótão"]
+            },
+            {
+              "endings": ["ditongo oral"],
+              "note": "Paroxítonas terminadas em ditongo oral sempre recebem acento.",
+              "examples": ["água", "régua", "mágoa", "pátio", "óleo", "núcleo", "série", "márie"]
+            },
+            {
+              "endings": ["hiato -EI- / -OI- (vogal tônica em hiato)"],
+              "note": "Hiatos com i ou u tônicos após vogais recebem acento.",
+              "examples": ["saúde", "saída", "raízes", "egoísmo", "país", "baú", "caí", "aí"]
+            }
+          ],
+          "no_accent_endings": {
+            "description": "Paroxítonas terminadas nestas sílabas NÃO recebem acento (são o padrão).",
+            "list": ["-a(s)", "-e(s)", "-o(s)", "-em", "-ens", "-am"]
+          }
+        },
+        {
+          "id": "oxitona",
+          "label": "oxítona",
+          "definition": "Sílaba tônica na última sílaba.",
+          "rule": "Oxítonas recebem acento quando terminam em: -a(s), -e(s), -o(s), -em, -ens.",
+          "examples": [
+            {"form": "sofá", "ending": "-a"},
+            {"form": "cafés", "ending": "-es"},
+            {"form": "avó", "ending": "-o"},
+            {"form": "também", "ending": "-em"},
+            {"form": "parabéns", "ending": "-ens"},
+            {"form": "ananás", "ending": "-as"},
+            {"form": "vocês", "ending": "-es"},
+            {"form": "cipó", "ending": "-o"},
+            {"form": "armazém", "ending": "-em"}
+          ],
+          "no_accent": {
+            "description": "Oxítonas terminadas em -i(s), -u(s), -r, -l, -z, -m (sem ser -em, -ens) NÃO recebem acento.",
+            "examples": ["aqui", "menu", "revolver (verbo)", "animal", "feliz", "item"]
+          }
+        },
+        {
+          "id": "monossilaba",
+          "label": "monossílaba tônica",
+          "definition": "Palavra de uma sílaba com pronúncia forte (tônica). Não confundir com monossílabas átonas (artigos, preposições, pronomes clíticos).",
+          "rule": "Monossílabas tônicas seguem as mesmas regras das oxítonas para fins de acentuação.",
+          "with_accent": [
+            {"form": "pá", "note": "termina em -a"},
+            {"form": "pé", "note": "termina em -e (aberto)"},
+            {"form": "pó", "note": "termina em -o (aberto)"},
+            {"form": "dê", "note": "verbo dar, subj./imp. — distingue do artigo 'de'... aguardar: ver acento diferencial"},
+            {"form": "fé", "note": ""},
+            {"form": "céu", "note": "termina em ditongo -éu"},
+            {"form": "réu", "note": ""},
+            {"form": "véu", "note": ""},
+            {"form": "mói", "note": "termina em ditongo -ói (oxítona)"},
+            {"form": "dói", "note": ""}
+          ],
+          "without_accent": [
+            {"form": "os, as, um, uns", "note": "átonos"},
+            {"form": "de, do, da, em, no, na", "note": "preposições/contrações — átonas"},
+            {"form": "me, te, se, lhe", "note": "pronomes clíticos — átonos"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ditongos_tritongos",
+      "label": "ditongos e tritongos — regras de acentuação",
+      "description": "Combinações de vogais na mesma sílaba.",
+      "entries": [
+        {
+          "id": "ditongo_crescente",
+          "label": "ditongo crescente",
+          "description": "Semivogal + vogal (ia, ie, io, ua, ue, ui, uo). Em paroxítonas, NÃO recebem acento na vogal do ditongo — a regra geral se aplica.",
+          "examples": ["história (parox. — acento porque termina em -a com hiato ória → propar.)", "série (parox. — termina em ditongo)"]
+        },
+        {
+          "id": "ditongo_decrescente",
+          "label": "ditongo decrescente aberto",
+          "description": "Vogal aberta + semivogal: -éi, -éu, -ói.",
+          "ao_1990_change": {
+            "description": "O AO 1990 eliminou o acento nos ditongos abertos ÉI e ÓI de paroxítonas. O acento permanece em OXÍTONAS e monossílabas.",
+            "removed": [
+              {"old": "idéia", "new": "ideia", "note": "paroxítona — acento removido"},
+              {"old": "assembléia", "new": "assembleia"},
+              {"old": "platéia", "new": "plateia"},
+              {"old": "heróico", "new": "heroico"},
+              {"old": "paranóico", "new": "paranoico"},
+              {"old": "andróide", "new": "androide"},
+              {"old": "jóia", "new": "joia"}
+            ],
+            "kept": [
+              {"form": "herói", "note": "oxítona — acento mantido"},
+              {"form": "anzóis", "note": "oxítona — acento mantido"},
+              {"form": "lençóis", "note": "oxítona — acento mantido"},
+              {"form": "papéis", "note": "oxítona — acento mantido"},
+              {"form": "fiéis", "note": "oxítona — acento mantido"},
+              {"form": "céu / céus", "note": "ditongo -éu em oxítona — acento mantido"},
+              {"form": "véu / véus", "note": "oxítona — mantido"},
+              {"form": "réu / réus", "note": "oxítona — mantido"}
+            ]
+          }
+        },
+        {
+          "id": "tritongo",
+          "label": "tritongo",
+          "description": "Semivogal + vogal + semivogal na mesma sílaba. Recebem acento se oxítonos e terminados em vogal acentuável.",
+          "examples": ["enxáguem", "averigúem", "argúem (de arguir)"]
+        }
+      ]
+    },
+    {
+      "id": "hiato",
+      "label": "hiato — regras de acentuação",
+      "description": "Sequência de duas vogais em sílabas diferentes. O acento no hiato serve para indicar que as vogais NÃO formam ditongo.",
+      "main_rule": "Nas sequências -OI- e -UI- e -AI- em que o segundo elemento (i, u) é tônico e forma hiato, ele recebe acento — exceto quando seguido de m, n, nh na mesma sílaba, ou precedido por ditongo.",
+      "with_accent": [
+        {"form": "saúde", "note": "a-ú-de — i/u tônico em hiato"},
+        {"form": "saída", "note": "sa-í-da"},
+        {"form": "baú", "note": "ba-ú — hiato + oxítona"},
+        {"form": "país", "note": "pa-ís"},
+        {"form": "raízes", "note": "ra-í-zes"},
+        {"form": "egoísta", "note": "e-go-ís-ta"},
+        {"form": "heroína", "note": "he-ro-í-na"},
+        {"form": "aí", "note": "a-í — monossílaba tônica"},
+        {"form": "caí", "note": "ca-í — hiato oxítono"}
+      ],
+      "exceptions_no_accent": {
+        "description": "I e U em hiato NÃO recebem acento quando:",
+        "rules": [
+          {
+            "rule": "Seguidos de -m, -n ou -nh na mesma sílaba",
+            "examples": [
+              {"form": "ruim", "note": "ru-im — i antes de m na mesma sílaba"},
+              {"form": "rainha", "note": "ra-i-nha — i antes de nh (não há hiato acentuado)"},
+              {"form": "moinho", "note": "mo-i-nho"}
+            ]
+          },
+          {
+            "rule": "Precedidos de ditongo (a sequência é tritongo ou similar)",
+            "examples": [
+              {"form": "feiura", "note": "fei-u-ra — o u após ditongo ei não recebe acento"},
+              {"form": "baiuca", "note": "bai-u-ca"}
+            ]
+          },
+          {
+            "rule": "Em formas verbais com pronome enclítico: -ia, -ie não recebem acento",
+            "examples": [
+              {"form": "caiu", "note": "ca-iu — oxítona, acento já marcado pela posição"},
+              {"form": "saiu", "note": "sa-iu"}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "accent_types",
+      "label": "tipos de acento gráfico",
+      "entries": [
+        {
+          "id": "agudo",
+          "symbol": "´",
+          "name": "acento agudo",
+          "value": "indica vogal tônica ABERTA: á, é, í, ó, ú",
+          "examples": ["pá", "café", "índio", "avó", "açúcar"]
+        },
+        {
+          "id": "circunflexo",
+          "symbol": "^",
+          "name": "acento circunflexo",
+          "value": "indica vogal tônica FECHADA: â, ê, ô",
+          "examples": ["câmara", "você", "avô", "tênue", "ônibus", "pêssego"]
+        },
+        {
+          "id": "grave",
+          "symbol": "`",
+          "name": "acento grave",
+          "value": "indica CRASE (fusão de preposição 'a' com artigo/pronome feminino). Não indica tonicidade.",
+          "examples": ["à (a + a)", "àquela (a + aquela)", "às (a + as)", "àquilo"]
+        },
+        {
+          "id": "til",
+          "symbol": "~",
+          "name": "til",
+          "value": "indica nasalização das vogais a e o: ã, õ",
+          "examples": ["irmã", "órfão", "nação", "coração", "ônibus (o til não é acento — é sinal de nasalização)"]
+        },
+        {
+          "id": "trema",
+          "symbol": "¨",
+          "name": "trema",
+          "ao_1990": "Suprimido de todas as palavras portuguesas e aportuguesadas pelo AO 1990. Mantido apenas em nomes próprios estrangeiros e seus derivados.",
+          "before": ["qüestão", "tranqüilo", "lingüística", "agüentar"],
+          "after": ["questão", "tranquilo", "linguística", "aguentar"],
+          "kept": ["Müller", "müleriano", "Büchner", "Citroën"]
+        }
+      ]
+    },
+    {
+      "id": "acento_diferencial",
+      "label": "acento diferencial — o que restou após o AO 1990",
+      "description": "Acento usado para distinguir palavras homógrafas (mesma grafia, sentido diferente). O AO 1990 eliminou a maioria. Restam pouquíssimos casos obrigatórios.",
+      "kept_mandatory": [
+        {
+          "pair": ["pôr (verbo)", "por (preposição)"],
+          "rule": "Pôr (infinitivo do verbo) sempre com circunflexo. Por (preposição) sempre sem.",
+          "examples": ["Vou pôr o livro na mesa.", "Saí por aqui."]
+        },
+        {
+          "pair": ["pôde (pretérito perfeito 3sg)", "pode (presente 3sg)"],
+          "rule": "Pôde (passado) com circunflexo; pode (presente) sem.",
+          "examples": ["Ontem ele pôde vir.", "Hoje ele não pode."]
+        },
+        {
+          "pair": ["tem (3sg de ter)", "têm (3pl de ter)"],
+          "rule": "Têm (3ª pessoa plural) com circunflexo, para distinguir de tem (3ª singular).",
+          "examples": ["Ela tem razão.", "Eles têm razão."]
+        },
+        {
+          "pair": ["vem (3sg de vir)", "vêm (3pl de vir)"],
+          "rule": "Vêm (3ª pessoa plural) com circunflexo, para distinguir de vem (3ª singular).",
+          "examples": ["Ela vem amanhã.", "Eles vêm amanhã."]
+        }
+      ],
+      "kept_optional_or_facultative": [
+        {
+          "note": "O AO 1990 tornou facultativo o acento diferencial em alguns pares que antes o exigiam.",
+          "pairs": [
+            {"form1": "fôrma (recipiente / tipo)", "form2": "forma (feição)", "status": "facultativo — pode escrever 'forma' em ambos os sentidos"},
+            {"form1": "pêlo (substantivo — pelo corporal)", "form2": "pelo (preposição + artigo)", "status": "eliminado — escreve-se 'pelo' em ambos"},
+            {"form1": "pêra (fruta)", "form2": "pera (preposição arcaica)", "status": "eliminado — escreve-se 'pera' ou 'pêra' (VOLP registra com acento)"},
+            {"form1": "pólo (esporte / polo magnético)", "form2": "polo (mesmo)", "status": "eliminado — 'polo' sem acento"}
+          ]
+        }
+      ],
+      "eliminated_ao1990": [
+        {"old": "pêlo", "new": "pelo", "note": "substantivo e preposição+artigo ficam iguais"},
+        {"old": "pára (verbo)", "new": "para (verbo e preposição ficam iguais)"},
+        {"old": "péla / pela", "new": "pela (preposição e verbo ficam iguais)"},
+        {"old": "cóco", "new": "coco"},
+        {"old": "bêbe (substantivo)", "new": "bebê (manteve — era paroxítona termina em -e; agora é oxítona sem acento? — ATENÇÃO: 'bebê' é oxítona com acento — mantido)"},
+        {"old": "fôra (adj/adv: de fora)", "new": "fora", "note": "eliminado"},
+        {"old": "êle / êles / êla / êlas / êste / êsse", "new": "ele / eles / ela / elas / este / esse", "note": "pronomes demonstrativos perderam acento"}
+      ]
+    },
+    {
+      "id": "formas_verbais_especiais",
+      "label": "formas verbais com acentuação especial",
+      "entries": [
+        {
+          "id": "crer_ler_ver_vir_dar",
+          "label": "Formas de crer, ler, ver, vir, dar — 3ª pessoa plural",
+          "ao_1990_change": "O AO 1990 eliminou o acento circunflexo na 3ª pessoa plural do presente do indicativo de crer, ler, ver quando havia dois ee ou oo.",
+          "before_after": [
+            {"old": "crêem (3pl)", "new": "creem"},
+            {"old": "lêem (3pl)", "new": "leem"},
+            {"old": "vêem (3pl)", "new": "veem"},
+            {"old": "dêem (3pl subj.)", "new": "deem"},
+            {"old": "vêm (3pl de vir)", "new": "vêm", "note": "MANTIDO — acento diferencial vem/vêm"}
+          ]
+        },
+        {
+          "id": "infinitivos_pessoais",
+          "label": "Infinitivo pessoal — 1ª e 3ª plural",
+          "rule": "As formas de 1ª e 3ª do plural do infinitivo pessoal levam acento quando a tônica for em posição que exigiria acento pelas regras gerais.",
+          "examples": [
+            {"form": "amarmos", "note": "paroxítona em -os — sem acento"},
+            {"form": "fazermos", "note": "sem acento"},
+            {"form": "partirmos", "note": "sem acento"},
+            {"form": "termos", "note": "paroxítona — sem acento"},
+            {"form": "pormos", "note": "sem acento (ver: 'pôr' leva acento, mas 'pormos' não leva porque a acentuação é da sílaba 'por' — circunflexo era diferencial)"}
+          ]
+        },
+        {
+          "id": "futuro_subj_especial",
+          "label": "Futuro do subjuntivo — 1ª e 3ª pl. de ser/ir",
+          "note": "As formas 'formos' e 'forem' (de ser/ir, futuro do subj.) não levam acento — são paroxítonas regulares.",
+          "examples": ["quando formos", "quando forem"]
+        }
+      ]
+    },
+    {
+      "id": "summary_ao1990",
+      "label": "resumo das mudanças do AO 1990 na acentuação",
+      "changes": [
+        {
+          "change": "1. Trema eliminado",
+          "detail": "Suprimido em palavras portuguesas. Mantido em estrangeirismos e nomes próprios.",
+          "before": ["qüestão", "tranqüilo", "lingüística"],
+          "after": ["questão", "tranquilo", "linguística"]
+        },
+        {
+          "change": "2. Ditongo aberto ÉI e ÓI em paroxítonas — acento eliminado",
+          "detail": "Paroxítonas com -éi-, -ói- perderam o acento.",
+          "before": ["idéia", "heróico", "jóia", "assembléia"],
+          "after": ["ideia", "heroico", "joia", "assembleia"],
+          "note": "Oxítonas MANTÊM: herói, anzóis, papéis"
+        },
+        {
+          "change": "3. Duplo ee e oo em formas verbais — acento eliminado",
+          "detail": "Formas como 'crêem', 'lêem', 'vêem', 'dêem' perdem o acento.",
+          "before": ["crêem", "lêem", "vêem", "dêem"],
+          "after": ["creem", "leem", "veem", "deem"],
+          "note": "ATENÇÃO: 'têm' (ter, 3pl) e 'vêm' (vir, 3pl) MANTÊM o acento diferencial"
+        },
+        {
+          "change": "4. Acento diferencial — maioria eliminada",
+          "detail": "Pares como pêlo/pelo, pára/para, péla/pela, cóco/coco perderam o acento diferencial.",
+          "kept": ["pôr/por", "pôde/pode", "têm/tem", "vêm/vem"]
+        },
+        {
+          "change": "5. Pronomes demonstrativos — acento eliminado",
+          "detail": "Este, esse, aquele, ele e derivados perderam o acento que os diferenciava.",
+          "before": ["êle", "êsse", "êste"],
+          "after": ["ele", "esse", "este"]
+        }
+      ]
+    },
+    {
+      "id": "divisao_silabica",
+      "label": "divisão silábica — princípios",
+      "description": "As regras de divisão silábica determinam como separar palavras na escrita (ao final da linha) e são a base para identificar paroxítonas, oxítonas e proparoxítonas.",
+      "rules": [
+        {
+          "id": "sil_vogal_consoante",
+          "rule": "Consoante entre duas vogais pertence à sílaba seguinte (à direita).",
+          "examples": ["ca-sa", "me-lo", "a-mi-go", "pe-dra"]
+        },
+        {
+          "id": "sil_dois_consoantes",
+          "rule": "Dois consoantes entre vogais: separam-se (um para cada lado), EXCETO os dígrafos e grupos inseparáveis.",
+          "examples": ["ap-to", "fac-to (EP) → fa-to (BR)", "rit-mo", "plas-ti-co"]
+        },
+        {
+          "id": "sil_digrafos_insepar",
+          "rule": "Dígrafos (lh, nh, ch, ss, rr, qu, gu) e grupos consonantais inseparáveis (pr, br, tr, dr, fr, gr, vr, cr, fl, bl, cl, gl, pl, br) NÃO se separam.",
+          "examples": [
+            "ca-lha-do", "ca-nha-da", "a-char", "pas-so", "car-ro",
+            "a-pri-mo-rar", "bra-ço", "clas-se", "glo-bo"
+          ]
+        },
+        {
+          "id": "sil_vogais",
+          "rule": "Duas vogais que formam hiato separam-se; duas vogais que formam ditongo ficam juntas.",
+          "hiato_examples": ["sa-ú-de", "pa-ís", "po-e-ta", "du-e-lo"],
+          "ditongo_examples": ["cai-xa", "fei-ra", "ouro (oi+r)", "au-to"]
+        },
+        {
+          "id": "sil_nunca_separar",
+          "rule": "NUNCA se separa: dígrafos (lh, nh, ch, rr, ss, qu, gu); grupos consonantais inseparáveis; letras do mesmo dígrafo.",
+          "wrong": ["*pa-lha-ço → pa-lha-ço (correto)", "*car-ro → car-ro (correto)", "*que-bra → que-bra (correto)"]
+        }
+      ]
+    }
+  ]
+}

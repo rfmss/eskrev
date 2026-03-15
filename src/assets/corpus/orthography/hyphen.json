@@ -1,0 +1,333 @@
+{
+  "version": "1.0",
+  "area": "orthography",
+  "topic": "hyphen",
+  "description": "Uso do hífen no português brasileiro conforme o Acordo Ortográfico de 1990 (vigente desde 2009). É a área de maior mudança do AO 1990 e a que mais gera dúvidas — as regras foram simplificadas, mas os critérios são mais contextuais.",
+  "sources": [
+    "Acordo Ortográfico da Língua Portuguesa — 1990 (Base XIII)",
+    "VOLP — ABL, 6ª ed.",
+    "Rocha Lima — Gramática Normativa (49ª ed.)",
+    "Nota da ABL sobre aplicação do AO 1990 no Brasil"
+  ],
+  "ao_1990_overview": {
+    "main_changes": [
+      "O critério passou a ser: QUANDO A JUNÇÃO CRIARIA SEQUÊNCIA GRÁFICA AMBÍGUA ou pronúncia incorreta → usa hífen. Quando a junção é natural → sem hífen.",
+      "Prefixos terminados em vogal + palavra iniciada por consoante diferente de r ou s → sem hífen (antes havia hífen).",
+      "Prefixos terminados em vogal + r ou s → duplica a consoante, sem hífen.",
+      "Prefixos terminados em vogal + vogal igual → hífen.",
+      "Prefixos terminados em vogal + h → hífen (o h desaparece quando o prefixo absorve a palavra)."
+    ]
+  },
+  "entries": [
+    {
+      "id": "prefixos_vogal_consoante",
+      "label": "Prefixo terminado em vogal + segundo elemento começa por consoante (não r, não s)",
+      "rule": "SEM hífen. A junção é direta.",
+      "examples": [
+        {"old": "auto-retrato (antes)", "new": "autorretrato", "prefix": "auto-"},
+        {"old": "contra-senso", "new": "contrassenso (ss)", "prefix": "contra-"},
+        {"old": "micro-biologia", "new": "microbiologia", "prefix": "micro-"},
+        {"old": "anti-pático", "new": "antipático", "prefix": "anti-"},
+        {"old": "ultra-mar", "new": "ultramar", "prefix": "ultra-"},
+        {"old": "extra-vagante", "new": "extravagante", "prefix": "extra-"},
+        {"old": "semi-círculo", "new": "semicírculo", "prefix": "semi-"},
+        {"old": "super-mercado", "new": "supermercado", "prefix": "super-"},
+        {"old": "sobre-natural", "new": "sobrenatural", "prefix": "sobre-"},
+        {"old": "inter-nacional", "new": "internacional", "prefix": "inter-"},
+        {"prefix": "multi-", "example": "multidisciplinar"},
+        {"prefix": "neo-", "example": "neologismo"},
+        {"prefix": "poly-", "example": "polivalente"}
+      ]
+    },
+    {
+      "id": "prefixos_vogal_r_s",
+      "label": "Prefixo terminado em vogal + r ou s → duplica a consoante, sem hífen",
+      "rule": "Quando o segundo elemento começa por R ou S e o prefixo termina em vogal: dobra-se a consoante e escreve-se sem hífen.",
+      "examples": [
+        {"prefix": "auto-", "base": "retrato", "result": "autorretrato"},
+        {"prefix": "auto-", "base": "suficiência", "result": "autossuficiência"},
+        {"prefix": "anti-", "base": "social", "result": "antissocial"},
+        {"prefix": "anti-", "base": "séptico", "result": "antisséptico"},
+        {"prefix": "contra-", "base": "senso", "result": "contrassenso"},
+        {"prefix": "contra-", "base": "revolução", "result": "contra-revolução → contrarrevolução"},
+        {"prefix": "extra-", "base": "sensorial", "result": "extrassensorial"},
+        {"prefix": "micro-", "base": "cirurgia", "result": "microcirurgia (c, não r — não dobra)"},
+        {"prefix": "neo-", "base": "realismo", "result": "neorrealismo"},
+        {"prefix": "sobre-", "base": "salto", "result": "sobressalto"},
+        {"prefix": "super-", "base": "resistente", "result": "super-resistente? → ATENÇÃO"},
+        {"prefix": "ultra-", "base": "sonografia", "result": "ultrassonografia"},
+        {"prefix": "multi-", "base": "racial", "result": "multirracial"}
+      ],
+      "note": "ATENÇÃO: 'super-' é um caso especial — o VOLP registra tanto 'superrealismo' quanto 'super-realismo'. Em caso de dúvida, consulte o VOLP."
+    },
+    {
+      "id": "prefixos_vogal_vogal_igual",
+      "label": "Prefixo terminado em vogal + segundo elemento começa pela MESMA vogal → hífen",
+      "rule": "Quando o prefixo termina com a mesma vogal que inicia o segundo elemento: usa-se hífen para evitar a sequência de duas vogais iguais.",
+      "examples": [
+        {"prefix": "anti-", "base": "imperialismo", "result": "anti-imperialismo", "note": "anti- (i) + imperialismo (i) — hífen"},
+        {"prefix": "anti-", "base": "inflação", "result": "antiinflação → anti-inflamatório", "note": "anti- (i) + inflamatório (i) — hífen"},
+        {"prefix": "auto-", "base": "observação", "result": "auto-observação"},
+        {"prefix": "contra-", "base": "ataque", "result": "contra-ataque", "note": "contra- (a) + ataque (a) — hífen"},
+        {"prefix": "contra-", "base": "almirante", "result": "contra-almirante"},
+        {"prefix": "semi-", "base": "interno", "result": "semi-interno"},
+        {"prefix": "supra-", "base": "auricular", "result": "supra-auricular"},
+        {"prefix": "extra-", "base": "escolar", "result": "extraescolar", "note": "extra- (a) + escolar (e) — vogais DIFERENTES, sem hífen"},
+        {"prefix": "micro-", "base": "ondas", "result": "micro-ondas", "note": "micro- (o) + ondas (o) — mesma vogal, hífen"}
+      ]
+    },
+    {
+      "id": "prefixos_vogal_h",
+      "label": "Prefixo terminado em vogal + segundo elemento começa por H → hífen",
+      "rule": "Quando o segundo elemento começa por H: usa-se hífen. O H é mantido.",
+      "examples": [
+        {"prefix": "anti-", "base": "herói", "result": "anti-herói"},
+        {"prefix": "anti-", "base": "higiênico", "result": "anti-higiênico"},
+        {"prefix": "auto-", "base": "hipnose", "result": "auto-hipnose"},
+        {"prefix": "contra-", "base": "hora", "result": "contra-hora"},
+        {"prefix": "extra-", "base": "hospitalar", "result": "extra-hospitalar"},
+        {"prefix": "neo-", "base": "humano", "result": "neo-humano"},
+        {"prefix": "pré-", "base": "histórico", "result": "pré-histórico"},
+        {"prefix": "semi-", "base": "hospitalar", "result": "semi-hospitalar"},
+        {"prefix": "super-", "base": "homem", "result": "super-homem"},
+        {"prefix": "sobre-", "base": "humano", "result": "sobre-humano"}
+      ]
+    },
+    {
+      "id": "prefixos_consoante",
+      "label": "Prefixo terminado em consoante",
+      "subtypes": [
+        {
+          "id": "consoante_mesma",
+          "label": "Prefixo termina em consoante + segundo elemento começa pela MESMA consoante → hífen",
+          "examples": [
+            {"prefix": "sub-", "base": "bibliotecário", "result": "sub-bibliotecário", "note": "b+b"},
+            {"prefix": "sub-", "base": "base", "result": "subbase? Alguns autores: sub-base. Verificar VOLP."},
+            {"prefix": "ab-", "base": "breviatura → abreviatura", "note": "fusão histórica — não se aplica mais"},
+            {"prefix": "ob-", "base": "jeção → objeção", "note": "fusão histórica"}
+          ]
+        },
+        {
+          "id": "consoante_diferente",
+          "label": "Prefixo termina em consoante + segundo elemento começa por vogal ou consoante diferente → sem hífen",
+          "examples": [
+            {"prefix": "sub-", "base": "aquático", "result": "subaquático"},
+            {"prefix": "sub-", "base": "humano", "result": "sub-humano", "note": "ATENÇÃO: b + h → hífen (próxima regra)"},
+            {"prefix": "inter-", "base": "racial", "result": "inter-racial"},
+            {"prefix": "super-", "base": "eficiente", "result": "supereficiente"}
+          ]
+        },
+        {
+          "id": "consoante_h",
+          "label": "Prefixo termina em consoante + segundo elemento começa por H → hífen",
+          "examples": [
+            {"prefix": "sub-", "base": "humano", "result": "sub-humano"},
+            {"prefix": "inter-", "base": "hospitalar", "result": "inter-hospitalar"},
+            {"prefix": "super-", "base": "homem", "result": "super-homem"},
+            {"prefix": "ab-", "base": "horrecente → abhorrescente", "result": "ab-horrescente"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prefixos_especiais",
+      "label": "Prefixos que sempre usam hífen",
+      "entries": [
+        {
+          "id": "ex_hifen",
+          "label": "ex- (estado anterior) — sempre com hífen",
+          "rule": "Quando indica condição anterior, sempre com hífen.",
+          "examples": ["ex-presidente", "ex-marido", "ex-aluno", "ex-namorado", "ex-ministro"],
+          "note": "NÃO confundir com o prefixo ex- latino (movimento para fora): exportar, excluir, expirar — SEM hífen."
+        },
+        {
+          "id": "vice_hifen",
+          "label": "vice- — sempre com hífen",
+          "examples": ["vice-presidente", "vice-reitor", "vice-campeão", "vice-versa"]
+        },
+        {
+          "id": "recém_hifen",
+          "label": "recém- — sempre com hífen",
+          "examples": ["recém-nascido", "recém-chegado", "recém-casado", "recém-formado"]
+        },
+        {
+          "id": "bem_hifen",
+          "label": "bem- — hífen quando sentido adjetivo / advérbio composto",
+          "examples": ["bem-estar", "bem-vindo", "bem-sucedido", "bem-humorado", "bem-feitor → benfeitor (fusão histórica)"],
+          "note": "Alguns derivados de bem- já se fundiu: benfeitor, benevolente (não levam hífen)."
+        },
+        {
+          "id": "mal_hifen",
+          "label": "mal- — hífen antes de vogal ou h; sem hífen antes de consoante (em geral)",
+          "examples": [
+            {"form": "mal-educado", "note": "hífen — mal + educado (vogal)"},
+            {"form": "mal-estar", "note": "hífen — mal + estar (vogal)"},
+            {"form": "mal-humorado", "note": "hífen — mal + h"},
+            {"form": "malcriado", "note": "sem hífen — mal + criado (consoante)"},
+            {"form": "malfeitor → malfeitor", "note": "sem hífen"}
+          ]
+        },
+        {
+          "id": "sem_hifen",
+          "label": "sem- — sempre com hífen",
+          "examples": ["sem-vergonha", "sem-terra", "sem-teto", "sem-número"]
+        },
+        {
+          "id": "alem_aquem",
+          "label": "além-, aquém- — sempre com hífen",
+          "examples": ["além-mar", "além-túmulo", "aquém-mar"]
+        }
+      ]
+    },
+    {
+      "id": "compostos_hifen",
+      "label": "Palavras compostas — hífen ou não?",
+      "description": "A maior mudança do AO 1990: muitos compostos que tinham hífen perderam-no.",
+      "entries": [
+        {
+          "id": "comp_perderam_hifen",
+          "label": "Compostos que PERDERAM o hífen (AO 1990)",
+          "examples": [
+            {"old": "auto-retrato", "new": "autorretrato"},
+            {"old": "guarda-chuva → MANTEVE", "new": "guarda-chuva", "note": "ver abaixo"},
+            {"old": "co-autor", "new": "coautor"},
+            {"old": "sócio-econômico", "new": "socioeconômico"},
+            {"old": "político-econômico → MANTEVE", "new": "político-econômico (adjetivos compostos — ver abaixo)"},
+            {"old": "bem-estar → MANTEVE", "new": "bem-estar"},
+            {"old": "xará (já era junto)"},
+            {"old": "infra-estrutura", "new": "infraestrutura"},
+            {"old": "supra-nacional", "new": "supranacional"},
+            {"old": "eletro-doméstico", "new": "eletrodoméstico"},
+            {"old": "multi-disciplinar", "new": "multidisciplinar"},
+            {"old": "contra-ponto", "new": "contraponto"}
+          ]
+        },
+        {
+          "id": "comp_mantiveram_hifen",
+          "label": "Compostos que MANTIVERAM o hífen",
+          "entries": [
+            {
+              "category": "Verbo + substantivo (objeto direto do verbo)",
+              "rule": "Mantêm hífen quando o segundo elemento é objeto direto do primeiro (compostos de verbo+substantivo com valor de 'quem faz').",
+              "examples": ["guarda-chuva", "guarda-costas", "porta-voz", "para-choque", "lava-louça", "quebra-cabeça", "beija-flor"]
+            },
+            {
+              "category": "Substantivo + adjetivo / adjetivo + substantivo (ambos com tonicidade)",
+              "examples": ["amor-perfeito (planta)", "surdo-mudo", "luso-brasileiro", "afro-descendente"]
+            },
+            {
+              "category": "Dois substantivos com sentido de oposição ou complementação",
+              "examples": ["físico-químico", "político-econômico", "histórico-geográfico"]
+            },
+            {
+              "category": "Adjetivos compostos (segundo elemento invariável)",
+              "rule": "Em adjetivos compostos, o segundo elemento é geralmente invariável quando o primeiro é uma cor.",
+              "examples": ["verde-claro / verde-escuro", "azul-marinho", "castanho-escuro", "rosa-choque", "amarelo-ouro"]
+            },
+            {
+              "category": "Nomes de espécies (plantas, animais) — compostos fixados pela nomenclatura",
+              "examples": ["bem-te-vi (pássaro)", "bem-me-quer (planta)", "erva-mate", "erva-doce", "couve-flor", "cana-de-açúcar"]
+            },
+            {
+              "category": "Compostos com elementos de carga simbólica ou expressividade",
+              "examples": ["meia-noite", "meia-hora", "pé-de-pato", "boca-de-lobo", "olho-de-peixe"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "adjetivos_compostos_cores",
+      "label": "Adjetivos compostos de cores — concordância e hífen",
+      "rules": [
+        {
+          "rule": "Adjetivos compostos de cor em geral são invariáveis no segundo elemento.",
+          "examples": [
+            "camisa verde-escuro / camisas verde-escuro",
+            "olhos castanho-claro / olhos castanho-claro",
+            "calça azul-marinho / calças azul-marinho"
+          ]
+        },
+        {
+          "rule": "EXCEÇÃO: surdo-mudo e outros com dois adjetivos plenos — ambos concordam.",
+          "examples": [
+            "o surdo-mudo / a surda-muda / os surdos-mudos / as surdas-mudas"
+          ]
+        },
+        {
+          "rule": "Quando o segundo elemento é um substantivo (como 'ouro', 'creme', 'vinho'), o adjetivo composto é invariável.",
+          "examples": [
+            "tecido amarelo-ouro / tecidos amarelo-ouro",
+            "cortina cor-de-rosa / cortinas cor-de-rosa"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "numeros_datas",
+      "label": "Números compostos e datas",
+      "rules": [
+        {
+          "rule": "Numerais compostos acima de vinte — sem hífen entre dezena e unidade (diferente do espanhol).",
+          "examples": ["vinte e um", "trinta e dois", "oitenta e cinco", "duzentos e quarenta e três"],
+          "note": "No antigo sistema: vinte-e-um (com hífen). O AO 1990 eliminou."
+        }
+      ]
+    },
+    {
+      "id": "decision_tree",
+      "label": "Árvore de decisão — devo usar hífen com prefixo?",
+      "steps": [
+        {
+          "step": 1,
+          "question": "O prefixo é: ex- (estado anterior), vice-, recém-, além-, aquém-, sem-, bem- (adj.), mal- (antes de vogal/h)?",
+          "yes": "→ USA HÍFEN sempre.",
+          "no": "→ Passe ao passo 2."
+        },
+        {
+          "step": 2,
+          "question": "O segundo elemento começa por H?",
+          "yes": "→ USA HÍFEN (ex: anti-herói, sub-humano).",
+          "no": "→ Passe ao passo 3."
+        },
+        {
+          "step": 3,
+          "question": "O prefixo termina em vogal e o segundo elemento começa pela MESMA vogal?",
+          "yes": "→ USA HÍFEN (ex: micro-ondas, anti-inflamatório).",
+          "no": "→ Passe ao passo 4."
+        },
+        {
+          "step": 4,
+          "question": "O segundo elemento começa por R ou S e o prefixo termina em vogal?",
+          "yes": "→ SEM HÍFEN — dobra a consoante (ex: antissocial, neorrealismo).",
+          "no": "→ Passe ao passo 5."
+        },
+        {
+          "step": 5,
+          "question": "Nos demais casos (prefixo termina em vogal + consoante diferente de r, s, h)?",
+          "answer": "→ SEM HÍFEN (ex: antiético, supermercado, ultrapassa)."
+        }
+      ]
+    },
+    {
+      "id": "common_errors",
+      "label": "Erros frequentes após o AO 1990",
+      "errors": [
+        {"wrong": "*anti-social", "correct": "antissocial", "rule": "vogal + s → dobra"},
+        {"wrong": "*auto-retrato", "correct": "autorretrato", "rule": "vogal + r → dobra"},
+        {"wrong": "*neo-realismo", "correct": "neorrealismo", "rule": "vogal + r → dobra"},
+        {"wrong": "*infra-estrutura", "correct": "infraestrutura", "rule": "vogal + vogal diferente → sem hífen"},
+        {"wrong": "*supra-nacional", "correct": "supranacional"},
+        {"wrong": "*extra-ordinário", "correct": "extraordinário"},
+        {"wrong": "*semi-árido", "correct": "semiárido", "rule": "semi (i) + árido (a) — vogais diferentes"},
+        {"wrong": "*micro-onda", "correct": "micro-onda", "note": "micro (o) + onda (o) — MESMA vogal: hífen. Correto: micro-ondas"},
+        {"wrong": "*co-autor", "correct": "coautor", "note": "co (o) + autor (a) — vogais diferentes: sem hífen"},
+        {"wrong": "*co-irmão", "correct": "co-irmão", "note": "co (o) + irmão (i) — vogais diferentes? Verificar VOLP"},
+        {"wrong": "*vice presidente", "correct": "vice-presidente"},
+        {"wrong": "*ex presidente", "correct": "ex-presidente"},
+        {"wrong": "*bem vindo", "correct": "bem-vindo"},
+        {"wrong": "*recém nascido", "correct": "recém-nascido"}
+      ]
+    }
+  ]
+}

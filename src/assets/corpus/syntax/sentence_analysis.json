@@ -1,0 +1,385 @@
+{
+  "version": "1.0",
+  "area": "syntax",
+  "topic": "sentence_analysis",
+  "description": "Análise sintática do português brasileiro — termos essenciais, integrantes e acessórios da oração; tipos de sujeito e predicado; orações coordenadas e subordinadas.",
+  "sources": [
+    "Rocha Lima — Gramática Normativa (49ª ed.)",
+    "Cunha & Cintra — Nova Gramática (7ª ed.)",
+    "Bechara — Moderna Gramática Portuguesa (37ª ed.)"
+  ],
+  "entries": [
+    {
+      "id": "periodo",
+      "label": "Período",
+      "definition": "Enunciado com sentido completo, delimitado por ponto final, de exclamação, interrogação ou reticências.",
+      "types": [
+        {
+          "id": "periodo_simples",
+          "label": "Período simples",
+          "description": "Contém apenas uma oração (um verbo ou locução verbal).",
+          "examples": ["O vento uivava.", "A cidade dormia sob a chuva."]
+        },
+        {
+          "id": "periodo_composto",
+          "label": "Período composto",
+          "description": "Contém duas ou mais orações (dois ou mais verbos/locuções verbais).",
+          "subtypes": [
+            {
+              "id": "coordenacao",
+              "label": "Coordenação",
+              "description": "Orações independentes sintaticamente, ligadas por coordenação. Cada oração tem sentido completo."
+            },
+            {
+              "id": "subordinacao",
+              "label": "Subordinação",
+              "description": "Uma oração (subordinada) depende sintaticamente de outra (principal) para ter sentido completo."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "termos_essenciais",
+      "label": "Termos Essenciais da Oração",
+      "items": [
+        {
+          "id": "sujeito",
+          "label": "Sujeito",
+          "definition": "Termo sobre o qual se declara algo; normalmente concorda com o verbo em número e pessoa.",
+          "types": [
+            {
+              "id": "sujeito_simples",
+              "label": "Simples",
+              "description": "Um único núcleo.",
+              "examples": ["O menino correu.", "Ele chegou cedo."]
+            },
+            {
+              "id": "sujeito_composto",
+              "label": "Composto",
+              "description": "Dois ou mais núcleos. Verbo geralmente vai ao plural.",
+              "examples": ["Pedro e Maria vieram.", "O sol e a lua iluminam o mundo."],
+              "note": "Quando os núcleos estão em 1ª e 2ª pessoas, prevalece o plural da 1ª. Quando em 2ª e 3ª, prevalece o plural da 2ª."
+            },
+            {
+              "id": "sujeito_indeterminado",
+              "label": "Indeterminado",
+              "description": "O agente existe mas não é identificado. Obtido por: (1) verbo na 3ª plural sem referente; (2) verbo na 3ª singular + 'se' (índice de indeterminação).",
+              "examples": ["Precisam de você lá.", "Vive-se bem aqui.", "Fala-se muito sobre isso."],
+              "note": "'Se' índice de indeterminação ≠ 'se' partícula apassivadora. Com partícula apassivadora, há sujeito paciente."
+            },
+            {
+              "id": "sujeito_inexistente",
+              "label": "Inexistente / Oração sem sujeito",
+              "description": "Verbos impessoais: fenômenos naturais, 'haver' existencial, 'fazer' de tempo, 'ser' com horas/datas.",
+              "examples": ["Choveu muito.", "Há muitas pessoas na fila.", "Faz dois anos que não o vejo.", "São três horas.", "É cedo."],
+              "note": "Erros comuns: pluralizar 'haver' existencial ('Haviam muitos') ou 'fazer' temporal ('Fazem dois anos'). Ambos são invariáveis."
+            },
+            {
+              "id": "sujeito_oracao",
+              "label": "Oração Subjetiva",
+              "description": "Quando o sujeito é uma oração inteira. Verbo da principal fica na 3ª singular.",
+              "examples": ["É preciso que você estude.", "Convém que todos compareçam.", "Parece que vai chover."]
+            },
+            {
+              "id": "sujeito_desinencial",
+              "label": "Desinencial / Elíptico",
+              "description": "Não expresso, mas identificável pela desinência verbal.",
+              "examples": ["Chegamos cedo. (= nós)", "Vieste ontem? (= tu)"]
+            }
+          ]
+        },
+        {
+          "id": "predicado",
+          "label": "Predicado",
+          "definition": "O que se declara sobre o sujeito.",
+          "types": [
+            {
+              "id": "predicado_verbal",
+              "label": "Verbal",
+              "description": "Núcleo é um verbo significativo (transitivo ou intransitivo). Não há predicativo do sujeito.",
+              "examples": ["O cachorro dormiu.", "Ela encontrou a chave."]
+            },
+            {
+              "id": "predicado_nominal",
+              "label": "Nominal",
+              "description": "Núcleo é o predicativo do sujeito; o verbo é de ligação.",
+              "verbos_de_ligacao": ["ser", "estar", "ficar", "parecer", "continuar", "tornar-se", "permanecer", "andar", "viver (= estar)", "virar (coloquial)"],
+              "examples": ["A tarde estava quente.", "Ela ficou triste.", "O céu parece limpo."]
+            },
+            {
+              "id": "predicado_verbo_nominal",
+              "label": "Verbo-nominal",
+              "description": "Dois núcleos: um verbo significativo + predicativo do sujeito ou do objeto.",
+              "examples": ["Ela chegou cansada. (chegou = verbal; cansada = pred. sujeito)", "Encontrei a sala vazia. (pred. objeto)", "Ele voltou diferente."]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "termos_integrantes",
+      "label": "Termos Integrantes da Oração",
+      "description": "Completam o sentido de verbos ou nomes. Sem eles, a oração fica incompleta.",
+      "items": [
+        {
+          "id": "objeto_direto",
+          "label": "Objeto Direto (OD)",
+          "definition": "Complemento de verbo transitivo direto (VTD). Sem preposição obrigatória.",
+          "test": "Perguntar 'o quê?' ou 'quem?' após o verbo.",
+          "examples": ["Comprei um livro.", "Ele viu Maria.", "Eu o encontrei. (pronome OD: o, a, os, as, me, te, nos, vos)"],
+          "note": "Objeto direto preposicionado: usa preposição por eufonia, ênfase ou para evitar ambiguidade com sujeito. Ex.: 'Amo a Deus.' / 'A Maria encontrou a Pedro.' (a = prep., não artigo)"
+        },
+        {
+          "id": "objeto_indireto",
+          "label": "Objeto Indireto (OI)",
+          "definition": "Complemento de verbo transitivo indireto (VTI). Com preposição obrigatória (geralmente 'a' ou 'de').",
+          "test": "Perguntar 'a quem?', 'de quê?', 'para quê?' após o verbo.",
+          "examples": ["Gosto de música.", "Ele obedeceu ao pai.", "Precisamos de ajuda.", "Ela se lembrou do compromisso."],
+          "pronouns": "Pronomes OI: lhe, lhes (substituem OI com prep. 'a'). Ex.: 'Dei-lhe o livro.' (= Dei o livro a ele.)"
+        },
+        {
+          "id": "complemento_nominal",
+          "label": "Complemento Nominal",
+          "definition": "Complementa o sentido de nome (substantivo, adjetivo, advérbio) abstrato. Sempre com preposição.",
+          "test": "O termo regente é um NOME (não verbo). Perguntar 'de quê?', 'a quê?', 'em quê?' após o nome.",
+          "examples": ["Tenho medo de altura. ('de altura' = compl. nom. de 'medo')", "Estava orgulhoso de si.", "Ficou satisfeito com o resultado.", "Temos necessidade de carinho."],
+          "distinction": "Distinguir de adjunto adnominal: adjetivos e locções adjetivas são adjuntos; o complemento nominal completa sentido de abstracto (geralmente substantivo deverbativo ou deadjetival)."
+        },
+        {
+          "id": "predicativo",
+          "label": "Predicativo",
+          "definition": "Atribui qualidade ao sujeito (pelo verbo de ligação) ou ao objeto (via verbo transitivo).",
+          "types": [
+            {
+              "id": "predicativo_sujeito",
+              "label": "Predicativo do sujeito",
+              "description": "Ligado ao sujeito via verbo de ligação ou verbo significativo.",
+              "examples": ["Ela é inteligente.", "Chegou cansada.", "O céu ficou vermelho."]
+            },
+            {
+              "id": "predicativo_objeto",
+              "label": "Predicativo do objeto",
+              "description": "Atribui qualidade ao objeto direto ou indireto. Verbo transitivo pleno.",
+              "examples": ["Considerou o plano inviável.", "Chamaram-no de herói.", "Encontrei a porta aberta.", "Elegeram-na presidente."]
+            }
+          ]
+        },
+        {
+          "id": "agente_passiva",
+          "label": "Agente da Passiva",
+          "definition": "Na voz passiva analítica, indica quem pratica a ação. Preposição 'por' (ou, raramente, 'de' em sentido figurado/literário).",
+          "examples": ["O livro foi escrito por Machado de Assis.", "Ela foi amada por todos.", "A cidade era respeitada de todos. (uso literário arcaico)"],
+          "note": "A transposição ativa→passiva: 'Machado escreveu o livro' → 'O livro foi escrito por Machado'. O OD ativo torna-se sujeito passivo; o sujeito ativo torna-se agente da passiva."
+        }
+      ]
+    },
+    {
+      "id": "termos_acessorios",
+      "label": "Termos Acessórios da Oração",
+      "description": "Enriquecem o sentido sem serem essenciais à estrutura básica. Incluem adjuntos adnominais, adverbiais, aposto e vocativo.",
+      "items": [
+        {
+          "id": "adjunto_adnominal",
+          "label": "Adjunto Adnominal",
+          "definition": "Modifica ou determina um substantivo. Pode ser artigo, adjetivo, locução adjetiva, pronome adjetivo, numeral.",
+          "examples": ["A bela canção ecoou.", "O livro de capa azul sumiu.", "Minha casa fica longe.", "Três pássaros voaram."],
+          "distinction": "Adjunto adnominal ≠ predicativo: adjunto está preso ao nome sem verbo intermediário; predicativo relaciona-se ao nome via verbo de ligação ou transitivo."
+        },
+        {
+          "id": "adjunto_adverbial",
+          "label": "Adjunto Adverbial",
+          "definition": "Modifica o verbo, adjetivo ou advérbio. Indica circunstância.",
+          "categories": [
+            {"label": "Tempo", "examples": ["ontem", "logo", "às três horas", "quando chegar"]},
+            {"label": "Lugar", "examples": ["aqui", "na cidade", "onde moro"]},
+            {"label": "Modo", "examples": ["rapidamente", "com cuidado", "como pôde"]},
+            {"label": "Causa", "examples": ["por descuido", "porque errou", "de tanto chorar"]},
+            {"label": "Finalidade", "examples": ["para estudar", "a fim de vencer"]},
+            {"label": "Concessão", "examples": ["apesar disso", "embora cansado", "mesmo que resista"]},
+            {"label": "Condição", "examples": ["se quiser", "caso precise"]},
+            {"label": "Instrumento", "examples": ["com a faca", "a tesoura"]},
+            {"label": "Companhia", "examples": ["com ela", "acompanhado de amigos"]},
+            {"label": "Intensidade", "examples": ["muito", "bastante", "pouco"]},
+            {"label": "Negação", "examples": ["não", "nunca", "jamais"]},
+            {"label": "Afirmação", "examples": ["sim", "certamente", "de fato"]}
+          ]
+        },
+        {
+          "id": "aposto",
+          "label": "Aposto",
+          "definition": "Termo que explica, resume, especifica ou desenvolve outro termo da oração.",
+          "types": [
+            {
+              "id": "aposto_explicativo",
+              "label": "Explicativo",
+              "description": "Explica ou desenvolve o termo anterior. Entre vírgulas (ou travessões/parênteses).",
+              "examples": ["Camões, o maior poeta lusitano, morreu na miséria.", "A cidade, São Paulo, cresce sem parar."]
+            },
+            {
+              "id": "aposto_enumerativo",
+              "label": "Enumerativo",
+              "description": "Detalha por enumeração. Segue os dois-pontos.",
+              "examples": ["Trouxe tudo: caderno, lápis e borracha.", "Dois sentimentos o dominavam: o medo e a esperança."]
+            },
+            {
+              "id": "aposto_resumitivo",
+              "label": "Resumitivo",
+              "description": "Resume uma enumeração anterior. Introduzido por pronome demonstrativo (tudo, todos, nada, nenhum).",
+              "examples": ["Alegria, paz, amor — tudo isso ele buscava.", "Flores, frutos, folhas — tudo floresceu."]
+            },
+            {
+              "id": "aposto_especificativo",
+              "label": "Especificativo",
+              "description": "Identifica/especifica sem separação por vírgula (preso ao substantivo).",
+              "examples": ["O rei D. Pedro II abdicou.", "O Rio São Francisco transbordou.", "O poeta Drummond marcou gerações."]
+            }
+          ]
+        },
+        {
+          "id": "vocativo",
+          "label": "Vocativo",
+          "definition": "Chama ou invoca o interlocutor. Isolado por vírgula(s). Não é sujeito.",
+          "examples": ["João, venha aqui.", "Venha aqui, João.", "Meus amigos, é hora de agir.", "Ó pátria amada!"],
+          "note": "Frequente erro: omitir a vírgula que isola o vocativo. 'Obrigado mãe' (sem vírgula = ambíguo) vs. 'Obrigado, mãe.' (vocativo claro)."
+        }
+      ]
+    },
+    {
+      "id": "coordenadas",
+      "label": "Orações Coordenadas",
+      "definition": "Orações independentes dentro do mesmo período. Ligadas por coordenação (com ou sem conjunção).",
+      "types": [
+        {
+          "id": "coord_assindetica",
+          "label": "Assindética",
+          "description": "Sem conjunção. Separadas por vírgula, ponto e vírgula ou dois-pontos.",
+          "examples": ["Entrou, sentou, calou.", "Chegou, olhou, partiu."]
+        },
+        {
+          "id": "coord_aditiva",
+          "label": "Sindética Aditiva",
+          "conjunctions": ["e", "nem", "não só... mas também", "tanto... quanto", "bem como"],
+          "examples": ["Estudou e passou.", "Nem chegou nem avisou.", "Não só veio, mas também trouxe presentes."]
+        },
+        {
+          "id": "coord_adversativa",
+          "label": "Sindética Adversativa",
+          "conjunctions": ["mas", "porém", "contudo", "todavia", "entretanto", "no entanto"],
+          "examples": ["Estudou, mas não passou.", "Tentou; contudo, falhou.", "Quis vir, porém não pôde."],
+          "note": "'Mas' inicia sempre a segunda oração. 'Porém', 'contudo', 'todavia', 'entretanto', 'no entanto' são móveis (podem aparecer no interior da oração)."
+        },
+        {
+          "id": "coord_conclusiva",
+          "label": "Sindética Conclusiva",
+          "conjunctions": ["logo", "portanto", "por isso", "assim", "pois (posposto)"],
+          "examples": ["Penso, logo existo.", "Errou; portanto, deve pagar.", "Estava doente, por isso não veio.", "Disse-o, pois. (pois posposto = conclusivo)"]
+        },
+        {
+          "id": "coord_explicativa",
+          "label": "Sindética Explicativa",
+          "conjunctions": ["pois (anteposto)", "porque", "que", "porquanto"],
+          "examples": ["Não saia, pois está chovendo.", "Cuida-te, que a vida é curta.", "Fique, porque preciso de você."],
+          "note": "'Pois' anteposto ao verbo = explicativa. 'Pois' posposto = conclusiva."
+        },
+        {
+          "id": "coord_alternativa",
+          "label": "Sindética Alternativa",
+          "conjunctions": ["ou", "ou... ou", "ora... ora", "quer... quer", "seja... seja"],
+          "examples": ["Venha ou mande avisar.", "Ora ria, ora chorava.", "Quer queiras, quer não, deverás ir."]
+        }
+      ]
+    },
+    {
+      "id": "subordinadas",
+      "label": "Orações Subordinadas",
+      "definition": "Dependem sintaticamente da oração principal. Funcionam como termos da principal (substantivas), modificadores de nome (adjetivas) ou de verbo/oração (adverbiais).",
+      "types": [
+        {
+          "id": "subst",
+          "label": "Substantivas",
+          "description": "Exercem função sintática de substantivo na oração principal: sujeito, OD, OI, predicativo, aposto, complemento nominal.",
+          "intro": "Introduzidas por 'que' (integrante), 'se', pronomes/advérbios interrogativos (subst. interrogativas indiretas).",
+          "subtypes": [
+            {"id": "subst_subjetiva", "label": "Subjetiva", "function": "Sujeito da principal", "examples": ["É preciso que estudemos.", "Convém que você fique.", "Parece que vai chover."]},
+            {"id": "subst_objetiva_direta", "label": "Objetiva direta", "function": "OD da principal", "examples": ["Quero que você fique.", "Sei que virá.", "Perguntou se eu vinha."]},
+            {"id": "subst_objetiva_indireta", "label": "Objetiva indireta", "function": "OI da principal", "examples": ["Preciso de que me ouças.", "Lembro-me de que prometeu.", "Insiste em que partamos."]},
+            {"id": "subst_predicativa", "label": "Predicativa", "function": "Predicativo do sujeito", "examples": ["O problema é que não há tempo.", "Meu desejo é que você seja feliz."]},
+            {"id": "subst_apositiva", "label": "Apositiva", "function": "Aposto", "examples": ["Só peço uma coisa: que sejam honestos.", "Tinha um sonho: que a paz viesse."]},
+            {"id": "subst_compl_nominal", "label": "Completiva nominal", "function": "Complemento nominal", "examples": ["Tenho medo de que falhe.", "Estou certo de que virá.", "Há necessidade de que ele compareça."]}
+          ]
+        },
+        {
+          "id": "adj",
+          "label": "Adjetivas",
+          "description": "Funcionam como adjetivo; modificam um antecedente (substantivo ou pronome). Introduzidas por pronomes relativos: que, quem, cujo, onde, quando, como, quanto.",
+          "subtypes": [
+            {
+              "id": "adj_explicativa",
+              "label": "Explicativa",
+              "description": "Entre vírgulas. Acrescenta informação, não restringe. O antecedente já é suficientemente determinado.",
+              "examples": ["Os homens, que são mortais, buscam o eterno.", "Machado de Assis, que nasceu no Rio, escreveu obras imortais."],
+              "note": "Retirar a oração não altera o sentido do sujeito."
+            },
+            {
+              "id": "adj_restritiva",
+              "label": "Restritiva",
+              "description": "Sem vírgulas. Restringe, delimita, identifica o antecedente. Essencial ao sentido.",
+              "examples": ["Os homens que estudam têm mais chances.", "O livro que comprei ontem é ótimo."],
+              "note": "Retirar a oração muda radicalmente o sentido (generaliza indevidamente)."
+            }
+          ],
+          "cujo_note": "'Cujo' = pronome relativo de posse (= 'de quem' / 'do qual'). Concorda com o POSSUÍDO (não com o possuidor). Ex.: 'O autor cujos livros li' (livros = possuído, masc. pl.)."
+        },
+        {
+          "id": "adv",
+          "label": "Adverbiais",
+          "description": "Funcionam como adjunto adverbial da oração principal. Classificam-se pela circunstância expressa.",
+          "subtypes": [
+            {"id": "adv_causal", "label": "Causal", "conj": ["porque", "pois", "visto que", "já que", "uma vez que", "como (anteposta)"], "examples": ["Ficou em casa porque estava doente.", "Como errou, foi punido."]},
+            {"id": "adv_consecutiva", "label": "Consecutiva", "conj": ["de modo que", "de forma que", "tanto... que", "tão... que", "tal... que"], "examples": ["Falou tanto que ficou rouco.", "Era tão bela que todos paravam."]},
+            {"id": "adv_condicional", "label": "Condicional", "conj": ["se", "caso", "desde que", "contanto que", "a menos que", "salvo se"], "examples": ["Se estudar, passará.", "Caso precise, ligue.", "Contanto que venha, está ótimo."]},
+            {"id": "adv_concessiva", "label": "Concessiva", "conj": ["embora", "ainda que", "mesmo que", "apesar de que", "por mais que", "conquanto", "posto que"], "examples": ["Embora chovesse, saiu.", "Mesmo que precise, não pedirá ajuda.", "Por mais que tente, não consegue."]},
+            {"id": "adv_final", "label": "Final", "conj": ["para que", "a fim de que", "que (após imperativo)"], "examples": ["Estuda para que possa passar.", "Aproximou-se a fim de que a vissem.", "Cale-se, que preciso pensar."]},
+            {"id": "adv_temporal", "label": "Temporal", "conj": ["quando", "enquanto", "assim que", "logo que", "antes que", "depois que", "até que", "desde que", "sempre que"], "examples": ["Quando chegar, avise.", "Enquanto dormia, nevou.", "Assim que soube, correu."]},
+            {"id": "adv_comparativa", "label": "Comparativa", "conj": ["como", "assim como", "tal como", "mais... do que", "menos... do que", "tanto quanto"], "examples": ["Trabalha mais do que dorme.", "Age como age seu pai.", "Tanto quanto sei, está bem."]},
+            {"id": "adv_proporcional", "label": "Proporcional", "conj": ["à medida que", "ao passo que", "à proporção que", "quanto mais... mais"], "examples": ["À medida que crescia, ficava mais sábio.", "Quanto mais lia, menos entendia."]},
+            {"id": "adv_conformativa", "label": "Conformativa", "conj": ["conforme", "segundo", "como", "consoante"], "examples": ["Fez conforme mandaram.", "Segundo disse, virá amanhã."]},
+            {"id": "adv_integrante", "label": "Integrante (modal)", "note": "Quando 'como' introduz oração adverbial de modo: 'Agiu como queria.'"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voz_verbal",
+      "label": "Vozes do Verbo",
+      "entries": [
+        {
+          "id": "voz_ativa",
+          "label": "Voz ativa",
+          "description": "Sujeito pratica a ação. Estrutura: sujeito agente + verbo transitivo + OD.",
+          "examples": ["O aluno leu o livro.", "Ela pintou o quadro."]
+        },
+        {
+          "id": "voz_passiva_analitica",
+          "label": "Voz passiva analítica",
+          "description": "Sujeito sofre a ação. Estrutura: verbo 'ser' (ou 'estar', 'ficar') + particípio + agente da passiva (facultativo).",
+          "examples": ["O livro foi lido pelo aluno.", "A pintura estava terminada.", "Ela ficou surpreendida pela notícia."]
+        },
+        {
+          "id": "voz_passiva_sintetica",
+          "label": "Voz passiva sintética (pronomial)",
+          "description": "Verbo + partícula apassivadora 'se'. Sujeito paciente concorda com o verbo.",
+          "examples": ["Vende-se apartamento. (= apartamento é vendido)", "Vendem-se apartamentos.", "Alugam-se salas comerciais."],
+          "note": "Partícula apassivadora ≠ índice de indeterminação. Com apassivadora, o verbo concorda com o sujeito paciente. Com indeterminação, o verbo fica na 3ª singular invariável."
+        },
+        {
+          "id": "voz_reflexiva",
+          "label": "Voz reflexiva",
+          "description": "Sujeito pratica e sofre a ação simultaneamente.",
+          "examples": ["Ela se machucou.", "Ele se cortou ao barbear.", "Lavaram-se as mãos antes de comer."]
+        }
+      ]
+    }
+  ]
+}

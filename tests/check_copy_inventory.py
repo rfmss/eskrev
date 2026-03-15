@@ -9,7 +9,6 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HTML_FILES = [
     os.path.join(ROOT, "index.html"),
     os.path.join(ROOT, "verify.html"),
-    os.path.join(ROOT, "totbooks.html"),
 ]
 
 LANG_FILE = os.path.join(ROOT, "src", "js", "modules", "lang.js")

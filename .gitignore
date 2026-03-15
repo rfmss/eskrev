@@ -20,3 +20,6 @@ js/main.bundle.js.map
 # OS artifacts
 .DS_Store
 Thumbs.db
+
+# Cache de ferramentas de build
+tools/.cache/

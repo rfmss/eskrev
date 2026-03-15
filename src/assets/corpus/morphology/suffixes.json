@@ -1,0 +1,229 @@
+{
+  "version": "1.0",
+  "area": "morphology",
+  "topic": "suffixes",
+  "description": "Catálogo de sufixos do português brasileiro — nominais, adjetivais, verbais e adverbiais — com origem, valor semântico e exemplos.",
+  "sources": [
+    "Rocha Lima — Gramática Normativa (49ª ed.)",
+    "Cunha & Cintra — Nova Gramática (7ª ed.)",
+    "Bechara — Moderna Gramática Portuguesa (37ª ed.)"
+  ],
+  "entries": [
+    {
+      "id": "s_agem_igem_ugem",
+      "form": "-agem / -igem / -ugem",
+      "origin": "latim",
+      "derived_class": "substantivo",
+      "value": "resultado de ação, coletivo, estado",
+      "examples": ["lavagem", "limpagem", "contagem", "chantagem", "ferrugem", "viagem (via fr.)", "bobagem", "bestagem", "folhagem", "rapinagem"]
+    },
+    {
+      "id": "s_al",
+      "form": "-al",
+      "origin": "latim",
+      "derived_class": "substantivo / adjetivo",
+      "value": "coletivo de plantas ou coisas; relativo a (adjetivo)",
+      "examples": ["cafezal", "arrozal", "bananal", "manguezal", "nacional (adj)", "federal (adj)", "sentimental (adj)", "canavial", "matagal"]
+    },
+    {
+      "id": "s_ancia_encia",
+      "form": "-ância / -ência / -ência",
+      "origin": "latim",
+      "derived_class": "substantivo abstrato",
+      "value": "qualidade, estado, ação (derivado de adjetivos em -ante/-ente ou verbos)",
+      "examples": ["elegância", "constância", "distância", "ciência", "violência", "consciência", "existência", "persistência", "importância"]
+    },
+    {
+      "id": "s_ao_cao_sao_xao",
+      "form": "-ão / -ção / -são / -xão",
+      "origin": "latim",
+      "derived_class": "substantivo abstrato",
+      "value": "resultado ou processo de ação verbal",
+      "examples": ["proteção", "confusão", "conexão", "ação", "canção", "reflexão", "discussão", "extensão", "percepção", "situação", "solução"]
+    },
+    {
+      "id": "s_aria",
+      "form": "-aria / -aria",
+      "origin": "latim",
+      "derived_class": "substantivo",
+      "value": "lugar onde se vende ou fabrica; conjunto; qualidade depreciativa",
+      "examples": ["padaria", "livraria", "pizzaria", "carpintaria", "bobaria", "palhavaria", "rotinaria", "besteira (variante -eira)"]
+    },
+    {
+      "id": "s_ario_eiro",
+      "form": "-ário / -ário",
+      "origin": "latim",
+      "derived_class": "substantivo / adjetivo",
+      "value": "agente, profissão, lugar, relativo a, que contém",
+      "examples": ["secretário", "funcionário", "vocabulário", "horário", "noturno → noturno (não -ário)", "armário", "itinerário", "centenário (adj)"]
+    },
+    {
+      "id": "s_dade_tade_tude",
+      "form": "-dade / -tade / -tude",
+      "origin": "latim",
+      "derived_class": "substantivo abstrato",
+      "value": "qualidade abstrata (derivado de adjetivos)",
+      "examples": ["bondade", "saudade", "verdade", "liberdade", "dignidade", "vontade", "atitude", "plenitude", "magnitude", "finitude", "gratidão (via -idão)"]
+    },
+    {
+      "id": "s_dor_tor_sor",
+      "form": "-dor / -tor / -sor",
+      "origin": "latim",
+      "derived_class": "substantivo / adjetivo",
+      "value": "agente — aquele que pratica a ação verbal",
+      "examples": ["trabalhador", "escritor", "leitor", "professor", "ouvidor", "vendedor", "construtor", "compositor", "produtor", "gestor", "monitor"]
+    },
+    {
+      "id": "s_eiro",
+      "form": "-eiro / -eira",
+      "origin": "latim",
+      "derived_class": "substantivo",
+      "value": "profissão, agente, árvore, objeto, lugar",
+      "examples": ["pedreiro", "carteiro", "livreiro", "macieira", "laranjeira", "capoeira", "cafezeiro", "galinheiro", "banheiro", "cozinheiro", "porteiro"]
+    },
+    {
+      "id": "s_eza",
+      "form": "-eza",
+      "origin": "latim",
+      "derived_class": "substantivo abstrato",
+      "value": "qualidade abstrata (derivado de adjetivos — especialmente sensações)",
+      "examples": ["beleza", "firmeza", "pobreza", "riqueza", "leveza", "limpeza", "tristeza", "fineza", "moleza", "grandeza", "certeza"]
+    },
+    {
+      "id": "s_ia",
+      "form": "-ia",
+      "origin": "grego/latim",
+      "derived_class": "substantivo",
+      "value": "qualidade, estado, ciência, campo de estudo, lugar",
+      "examples": ["democracia", "filosofia", "alegria", "ousadia", "biologia", "fotografia", "cidadania", "sapataria (var. -aria)", "energia", "utopia", "ironia"]
+    },
+    {
+      "id": "s_ice",
+      "form": "-ice",
+      "origin": "latim",
+      "derived_class": "substantivo",
+      "value": "qualidade (frequentemente pejorativa); estado habitual",
+      "examples": ["velhice", "tolice", "burrice", "avareza → avareza (não -ice)", "chatice", "frialdade → friezice (informal)", "criancice", "caduquice"]
+    },
+    {
+      "id": "s_idao",
+      "form": "-idão",
+      "origin": "latim",
+      "derived_class": "substantivo abstrato",
+      "value": "qualidade abstrata (semelhante a -tude)",
+      "examples": ["solidão", "escuridão", "vastidão", "multidão", "brevidade → (não -idão)", "certidão"]
+    },
+    {
+      "id": "s_ismo",
+      "form": "-ismo",
+      "origin": "grego",
+      "derived_class": "substantivo",
+      "value": "doutrina, sistema, comportamento, movimento, fenômeno",
+      "examples": ["realismo", "socialismo", "jornalismo", "impressionismo", "fanatismo", "racismo", "cubismo", "simbolismo", "americanismo (linguístico)"]
+    },
+    {
+      "id": "s_ista",
+      "form": "-ista",
+      "origin": "grego",
+      "derived_class": "substantivo / adjetivo",
+      "value": "adepto de doutrina, praticante de atividade, profissional",
+      "examples": ["jornalista", "dentista", "pianista", "socialista", "otimista", "pessimista", "turista", "motorista", "artista", "capitalista"]
+    },
+    {
+      "id": "s_ite",
+      "form": "-ite",
+      "origin": "grego (medicina)",
+      "derived_class": "substantivo",
+      "value": "inflamação (original); popularmente: obsessão, vício",
+      "examples": ["apendicite", "artrite", "bronquite", "gastrite", "otite", "internetite (neologismo humorístico)"]
+    },
+    {
+      "id": "s_mento",
+      "form": "-mento / -amento / -imento",
+      "origin": "latim",
+      "derived_class": "substantivo",
+      "value": "resultado, processo ou meio de ação verbal",
+      "examples": ["movimento", "tratamento", "crescimento", "comportamento", "conhecimento", "desenvolvimento", "julgamento", "sentimento", "entendimento"]
+    },
+    {
+      "id": "s_orio",
+      "form": "-ório / -ória",
+      "origin": "latim",
+      "derived_class": "substantivo / adjetivo",
+      "value": "lugar onde se realiza uma ação; que serve para; relativo a",
+      "examples": ["laboratório", "dormitório", "auditório", "escritório", "satisfatório (adj)", "preparatório (adj)", "obrigatório (adj)", "transitório (adj)"]
+    },
+    {
+      "id": "s_oso",
+      "form": "-oso / -osa",
+      "origin": "latim",
+      "derived_class": "adjetivo",
+      "value": "que tem muito de; cheio de; caracterizado por",
+      "examples": ["amoroso", "perigoso", "luminoso", "espaçoso", "saboroso", "poderoso", "duvidoso", "orgulhoso", "misterioso", "virtuoso"]
+    },
+    {
+      "id": "s_ude_itude",
+      "form": "-ude / -itude",
+      "origin": "latim",
+      "derived_class": "substantivo abstrato",
+      "value": "qualidade ou estado (erudito)",
+      "examples": ["atitude", "aptidão (via -idão)", "amplitude", "altitude", "latitude", "longitude", "plenitude", "servitude / servidão", "magnitude", "lassidão"]
+    },
+    {
+      "id": "s_ura",
+      "form": "-ura",
+      "origin": "latim",
+      "derived_class": "substantivo abstrato",
+      "value": "qualidade, estado, resultado de ação",
+      "examples": ["brancura", "frescura", "altura", "largura", "loucura", "amargura", "ternura", "formosura", "pintura", "escultura", "cobertura"]
+    },
+    {
+      "id": "a_vel",
+      "form": "-vel / -ável / -ível / -úvel",
+      "origin": "latim",
+      "derived_class": "adjetivo",
+      "value": "que pode ser; que merece ser (passivo de possibilidade)",
+      "examples": ["amável", "possível", "visível", "solúvel", "passível", "compreensível", "durável", "inalterável", "insuportável", "confiável"]
+    },
+    {
+      "id": "a_mente",
+      "form": "-mente",
+      "origin": "latim (mens = mente, disposição)",
+      "derived_class": "advérbio",
+      "value": "modo, maneira (derivado do feminino do adjetivo)",
+      "note": "Quando dois advérbios em -mente se seguem, acrescenta-se o sufixo apenas ao último: 'clara e objetivamente'.",
+      "examples": ["claramente", "rapidamente", "felizmente", "certamente", "provavelmente", "efetivamente", "silenciosamente", "profundamente"]
+    },
+    {
+      "id": "v_ar",
+      "form": "-ar / -ear / -ejar / -itar / -izar / -ificar / -escer / -ecer",
+      "origin": "latim",
+      "derived_class": "verbo",
+      "value": "sufixos verbalizadores — transformam substantivos e adjetivos em verbos",
+      "subtypes": [
+        {"form": "-ar", "value": "verbalização geral", "examples": ["cartear (carta)", "telefonar", "namorar", "amar (primitivo)"]},
+        {"form": "-ear", "value": "ação repetida ou contínua; verbs de ruído e movimento", "examples": ["guerrear", "folhear", "cochilar → cochilar (-ar)", "tagarelar", "nortear"]},
+        {"form": "-ejar", "value": "ação repetida, frequência, aproximação", "examples": ["gotejar", "papejar", "ventanear → ventejar", "clarear → clarejar", "voejar"]},
+        {"form": "-izar", "value": "tornar, transformar em, agir como", "examples": ["modernizar", "neutralizar", "digitalizar", "computerizar (anglicismo)", "amenizar"]},
+        {"form": "-ificar", "value": "tornar, fazer", "examples": ["pacificar", "justificar", "purificar", "classificar", "terrificar", "intensificar"]},
+        {"form": "-escer / -ecer", "value": "processo gradual, início ou desenvolvimento de estado", "examples": ["amadurecer", "florescer", "empalidecer", "enriquecer", "enfraquecer", "envelhecer", "aparecer", "desaparecer"]}
+      ]
+    },
+    {
+      "id": "s_inho_inha",
+      "form": "-inho / -inha / -zinho / -zinha",
+      "origin": "latim",
+      "derived_class": "substantivo / adjetivo (diminutivo)",
+      "value": "diminutivo; afeto; eufemismo; ironia",
+      "examples": ["casinha", "cafezinho", "livrinho", "beijinho", "rapidinho", "sozinho", "pequenininho", "filhinho"]
+    },
+    {
+      "id": "s_ao_aumentativo",
+      "form": "-ão / -ona / -zarrão",
+      "origin": "latim",
+      "derived_class": "substantivo / adjetivo (aumentativo)",
+      "value": "aumentativo; frequentemente pejorativo ou afetivo",
+      "examples": ["casarão", "homenzarrão", "bocona", "bragalhão", "mandão", "brigão", "chefão", "balaio → balaiaco"]
+    }
+  ]
+}

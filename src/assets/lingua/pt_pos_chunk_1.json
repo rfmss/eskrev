@@ -1,1 +1,6908 @@
-{"acelerar":{"pos":["VERB"]},"acelerando":{"pos":["VERB"]},"acelerado":{"pos":["VERB"]},"acelerada":{"pos":["VERB"]},"acelero":{"pos":["VERB"]},"aceleras":{"pos":["VERB"]},"acelera":{"pos":["VERB"]},"aceleramos":{"pos":["VERB"]},"aceleram":{"pos":["VERB"]},"acelerei":{"pos":["VERB"]},"aceleraste":{"pos":["VERB"]},"acelerou":{"pos":["VERB"]},"aceleraram":{"pos":["VERB"]},"acelerava":{"pos":["VERB"]},"aceleravas":{"pos":["VERB"]},"aceleravam":{"pos":["VERB"]},"aceleravamos":{"pos":["VERB"]},"acelerarei":{"pos":["VERB"]},"acelerara":{"pos":["VERB"]},"aceleraremos":{"pos":["VERB"]},"acelerarao":{"pos":["VERB"]},"acelere":{"pos":["VERB"]},"aceleres":{"pos":["VERB"]},"acelerem":{"pos":["VERB"]},"acumular":{"pos":["VERB"]},"acumulando":{"pos":["VERB"]},"acumulado":{"pos":["VERB"]},"acumulada":{"pos":["VERB"]},"acumulo":{"pos":["VERB"]},"acumulas":{"pos":["VERB"]},"acumula":{"pos":["VERB"]},"acumulamos":{"pos":["VERB"]},"acumulam":{"pos":["VERB"]},"acumulei":{"pos":["VERB"]},"acumulaste":{"pos":["VERB"]},"acumulou":{"pos":["VERB"]},"acumularam":{"pos":["VERB"]},"acumulava":{"pos":["VERB"]},"acumulavas":{"pos":["VERB"]},"acumulavam":{"pos":["VERB"]},"acumulavamos":{"pos":["VERB"]},"acumularei":{"pos":["VERB"]},"acumulara":{"pos":["VERB"]},"acumularemos":{"pos":["VERB"]},"acumularao":{"pos":["VERB"]},"acumule":{"pos":["VERB"]},"acumules":{"pos":["VERB"]},"acumulem":{"pos":["VERB"]},"adaptar":{"pos":["VERB"]},"adaptando":{"pos":["VERB"]},"adaptado":{"pos":["VERB"]},"adaptada":{"pos":["VERB"]},"adapto":{"pos":["VERB"]},"adaptas":{"pos":["VERB"]},"adapta":{"pos":["VERB"]},"adaptamos":{"pos":["VERB"]},"adaptam":{"pos":["VERB"]},"adaptei":{"pos":["VERB"]},"adaptaste":{"pos":["VERB"]},"adaptou":{"pos":["VERB"]},"adaptaram":{"pos":["VERB"]},"adaptava":{"pos":["VERB"]},"adaptavas":{"pos":["VERB"]},"adaptavam":{"pos":["VERB"]},"adaptavamos":{"pos":["VERB"]},"adaptarei":{"pos":["VERB"]},"adaptara":{"pos":["VERB"]},"adaptaremos":{"pos":["VERB"]},"adaptarao":{"pos":["VERB"]},"adapte":{"pos":["VERB"]},"adaptes":{"pos":["VERB"]},"adaptem":{"pos":["VERB"]},"adicar":{"pos":["VERB"]},"adicando":{"pos":["VERB"]},"adicado":{"pos":["VERB"]},"adicada":{"pos":["VERB"]},"adico":{"pos":["VERB"]},"adicas":{"pos":["VERB"]},"adica":{"pos":["VERB"]},"adicamos":{"pos":["VERB"]},"adicam":{"pos":["VERB"]},"adicei":{"pos":["VERB"]},"adicaste":{"pos":["VERB"]},"adicou":{"pos":["VERB"]},"adicaram":{"pos":["VERB"]},"adicava":{"pos":["VERB"]},"adicavas":{"pos":["VERB"]},"adicavam":{"pos":["VERB"]},"adicavamos":{"pos":["VERB"]},"adicarei":{"pos":["VERB"]},"adicara":{"pos":["VERB"]},"adicaremos":{"pos":["VERB"]},"adicarao":{"pos":["VERB"]},"adice":{"pos":["VERB"]},"adices":{"pos":["VERB"]},"adicem":{"pos":["VERB"]},"afetar":{"pos":["VERB"]},"afetando":{"pos":["VERB"]},"afetado":{"pos":["VERB"]},"afetada":{"pos":["VERB"]},"afeto":{"pos":["VERB"]},"afetas":{"pos":["VERB"]},"afeta":{"pos":["VERB"]},"afetamos":{"pos":["VERB"]},"afetam":{"pos":["VERB"]},"afetei":{"pos":["VERB"]},"afetaste":{"pos":["VERB"]},"afetou":{"pos":["VERB"]},"afetaram":{"pos":["VERB"]},"afetava":{"pos":["VERB"]},"afetavas":{"pos":["VERB"]},"afetavam":{"pos":["VERB"]},"afetavamos":{"pos":["VERB"]},"afetarei":{"pos":["VERB"]},"afetara":{"pos":["VERB"]},"afetaremos":{"pos":["VERB"]},"afetarao":{"pos":["VERB"]},"afete":{"pos":["VERB"]},"afetes":{"pos":["VERB"]},"afetem":{"pos":["VERB"]},"afirmar":{"pos":["VERB"]},"afirmando":{"pos":["VERB"]},"afirmado":{"pos":["VERB"]},"afirmada":{"pos":["VERB"]},"afirmo":{"pos":["VERB"]},"afirmas":{"pos":["VERB"]},"afirma":{"pos":["VERB"]},"afirmamos":{"pos":["VERB"]},"afirmam":{"pos":["VERB"]},"afirmei":{"pos":["VERB"]},"afirmaste":{"pos":["VERB"]},"afirmou":{"pos":["VERB"]},"afirmaram":{"pos":["VERB"]},"afirmava":{"pos":["VERB"]},"afirmavas":{"pos":["VERB"]},"afirmavam":{"pos":["VERB"]},"afirmavamos":{"pos":["VERB"]},"afirmarei":{"pos":["VERB"]},"afirmara":{"pos":["VERB"]},"afirmaremos":{"pos":["VERB"]},"afirmarao":{"pos":["VERB"]},"afirme":{"pos":["VERB"]},"afirmes":{"pos":["VERB"]},"afirmem":{"pos":["VERB"]},"agar":{"pos":["VERB"]},"agando":{"pos":["VERB"]},"agado":{"pos":["VERB"]},"agada":{"pos":["VERB"]},"ago":{"pos":["VERB"]},"agas":{"pos":["VERB"]},"aga":{"pos":["VERB"]},"agamos":{"pos":["VERB"]},"agam":{"pos":["VERB"]},"agei":{"pos":["VERB"]},"agaste":{"pos":["VERB"]},"agou":{"pos":["VERB"]},"agaram":{"pos":["VERB"]},"agava":{"pos":["VERB"]},"agavas":{"pos":["VERB"]},"agavam":{"pos":["VERB"]},"agavamos":{"pos":["VERB"]},"agarei":{"pos":["VERB"]},"agara":{"pos":["VERB"]},"agaremos":{"pos":["VERB"]},"agarao":{"pos":["VERB"]},"age":{"pos":["VERB"]},"ages":{"pos":["VERB"]},"agem":{"pos":["VERB"]},"alargar":{"pos":["VERB"]},"alargando":{"pos":["VERB"]},"alargado":{"pos":["VERB"]},"alargada":{"pos":["VERB"]},"alargo":{"pos":["VERB"]},"alargas":{"pos":["VERB"]},"alarga":{"pos":["VERB"]},"alargamos":{"pos":["VERB"]},"alargam":{"pos":["VERB"]},"alargei":{"pos":["VERB"]},"alargaste":{"pos":["VERB"]},"alargou":{"pos":["VERB"]},"alargaram":{"pos":["VERB"]},"alargava":{"pos":["VERB"]},"alargavas":{"pos":["VERB"]},"alargavam":{"pos":["VERB"]},"alargavamos":{"pos":["VERB"]},"alargarei":{"pos":["VERB"]},"alargara":{"pos":["VERB"]},"alargaremos":{"pos":["VERB"]},"alargarao":{"pos":["VERB"]},"alarge":{"pos":["VERB"]},"alarges":{"pos":["VERB"]},"alargem":{"pos":["VERB"]},"alcancar":{"pos":["VERB"]},"alcancando":{"pos":["VERB"]},"alcancado":{"pos":["VERB"]},"alcancada":{"pos":["VERB"]},"alcanco":{"pos":["VERB"]},"alcancas":{"pos":["VERB"]},"alcanca":{"pos":["VERB"]},"alcancamos":{"pos":["VERB"]},"alcancam":{"pos":["VERB"]},"alcancei":{"pos":["VERB"]},"alcancaste":{"pos":["VERB"]},"alcancou":{"pos":["VERB"]},"alcancaram":{"pos":["VERB"]},"alcancava":{"pos":["VERB"]},"alcancavas":{"pos":["VERB"]},"alcancavam":{"pos":["VERB"]},"alcancavamos":{"pos":["VERB"]},"alcancarei":{"pos":["VERB"]},"alcancara":{"pos":["VERB"]},"alcancaremos":{"pos":["VERB"]},"alcancarao":{"pos":["VERB"]},"alcance":{"pos":["VERB"]},"alcances":{"pos":["VERB"]},"alcancem":{"pos":["VERB"]},"alivar":{"pos":["VERB"]},"alivando":{"pos":["VERB"]},"alivado":{"pos":["VERB"]},"alivada":{"pos":["VERB"]},"alivo":{"pos":["VERB"]},"alivas":{"pos":["VERB"]},"aliva":{"pos":["VERB"]},"alivamos":{"pos":["VERB"]},"alivam":{"pos":["VERB"]},"alivei":{"pos":["VERB"]},"alivaste":{"pos":["VERB"]},"alivou":{"pos":["VERB"]},"alivaram":{"pos":["VERB"]},"alivava":{"pos":["VERB"]},"alivavas":{"pos":["VERB"]},"alivavam":{"pos":["VERB"]},"alivavamos":{"pos":["VERB"]},"alivarei":{"pos":["VERB"]},"alivara":{"pos":["VERB"]},"alivaremos":{"pos":["VERB"]},"alivarao":{"pos":["VERB"]},"alive":{"pos":["VERB"]},"alives":{"pos":["VERB"]},"alivem":{"pos":["VERB"]},"alocar":{"pos":["VERB"]},"alocando":{"pos":["VERB"]},"alocado":{"pos":["VERB"]},"alocada":{"pos":["VERB"]},"aloco":{"pos":["VERB"]},"alocas":{"pos":["VERB"]},"aloca":{"pos":["VERB"]},"alocamos":{"pos":["VERB"]},"alocam":{"pos":["VERB"]},"alocei":{"pos":["VERB"]},"alocaste":{"pos":["VERB"]},"alocou":{"pos":["VERB"]},"alocaram":{"pos":["VERB"]},"alocava":{"pos":["VERB"]},"alocavas":{"pos":["VERB"]},"alocavam":{"pos":["VERB"]},"alocavamos":{"pos":["VERB"]},"alocarei":{"pos":["VERB"]},"alocara":{"pos":["VERB"]},"alocaremos":{"pos":["VERB"]},"alocarao":{"pos":["VERB"]},"aloce":{"pos":["VERB"]},"aloces":{"pos":["VERB"]},"alocem":{"pos":["VERB"]},"amar":{"pos":["VERB"]},"amando":{"pos":["VERB"]},"amado":{"pos":["VERB"]},"amada":{"pos":["VERB"]},"amo":{"pos":["VERB"]},"amas":{"pos":["VERB"]},"ama":{"pos":["VERB"]},"amamos":{"pos":["VERB"]},"amam":{"pos":["VERB"]},"amei":{"pos":["VERB"]},"amaste":{"pos":["VERB"]},"amou":{"pos":["VERB"]},"amaram":{"pos":["VERB"]},"amava":{"pos":["VERB"]},"amavas":{"pos":["VERB"]},"amavam":{"pos":["VERB"]},"amavamos":{"pos":["VERB"]},"amarei":{"pos":["VERB"]},"amara":{"pos":["VERB"]},"amaremos":{"pos":["VERB"]},"amarao":{"pos":["VERB"]},"ame":{"pos":["VERB"]},"ames":{"pos":["VERB"]},"amem":{"pos":["VERB"]},"ampliar":{"pos":["VERB"]},"ampliando":{"pos":["VERB"]},"ampliado":{"pos":["VERB"]},"ampliada":{"pos":["VERB"]},"amplio":{"pos":["VERB"]},"amplias":{"pos":["VERB"]},"amplia":{"pos":["VERB"]},"ampliamos":{"pos":["VERB"]},"ampliam":{"pos":["VERB"]},"ampliei":{"pos":["VERB"]},"ampliaste":{"pos":["VERB"]},"ampliou":{"pos":["VERB"]},"ampliaram":{"pos":["VERB"]},"ampliava":{"pos":["VERB"]},"ampliavas":{"pos":["VERB"]},"ampliavam":{"pos":["VERB"]},"ampliavamos":{"pos":["VERB"]},"ampliarei":{"pos":["VERB"]},"ampliara":{"pos":["VERB"]},"ampliaremos":{"pos":["VERB"]},"ampliarao":{"pos":["VERB"]},"amplie":{"pos":["VERB"]},"amplies":{"pos":["VERB"]},"ampliem":{"pos":["VERB"]},"animar":{"pos":["VERB"]},"animando":{"pos":["VERB"]},"animado":{"pos":["VERB"]},"animada":{"pos":["VERB"]},"animo":{"pos":["VERB"]},"animas":{"pos":["VERB"]},"anima":{"pos":["VERB"]},"animamos":{"pos":["VERB"]},"animam":{"pos":["VERB"]},"animei":{"pos":["VERB"]},"animaste":{"pos":["VERB"]},"animou":{"pos":["VERB"]},"animaram":{"pos":["VERB"]},"animava":{"pos":["VERB"]},"animavas":{"pos":["VERB"]},"animavam":{"pos":["VERB"]},"animavamos":{"pos":["VERB"]},"animarei":{"pos":["VERB"]},"animara":{"pos":["VERB"]},"animaremos":{"pos":["VERB"]},"animarao":{"pos":["VERB"]},"anime":{"pos":["VERB"]},"animes":{"pos":["VERB"]},"animem":{"pos":["VERB"]},"anotar":{"pos":["VERB"]},"anotando":{"pos":["VERB"]},"anotado":{"pos":["VERB"]},"anotada":{"pos":["VERB"]},"anoto":{"pos":["VERB"]},"anotas":{"pos":["VERB"]},"anota":{"pos":["VERB"]},"anotamos":{"pos":["VERB"]},"anotam":{"pos":["VERB"]},"anotei":{"pos":["VERB"]},"anotaste":{"pos":["VERB"]},"anotou":{"pos":["VERB"]},"anotaram":{"pos":["VERB"]},"anotava":{"pos":["VERB"]},"anotavas":{"pos":["VERB"]},"anotavam":{"pos":["VERB"]},"anotavamos":{"pos":["VERB"]},"anotarei":{"pos":["VERB"]},"anotara":{"pos":["VERB"]},"anotaremos":{"pos":["VERB"]},"anotarao":{"pos":["VERB"]},"anote":{"pos":["VERB"]},"anotes":{"pos":["VERB"]},"anotem":{"pos":["VERB"]},"aparar":{"pos":["VERB"]},"aparando":{"pos":["VERB"]},"aparado":{"pos":["VERB"]},"aparada":{"pos":["VERB"]},"aparo":{"pos":["VERB"]},"aparas":{"pos":["VERB"]},"apara":{"pos":["VERB"]},"aparamos":{"pos":["VERB"]},"aparam":{"pos":["VERB"]},"aparei":{"pos":["VERB"]},"aparaste":{"pos":["VERB"]},"aparou":{"pos":["VERB"]},"apararam":{"pos":["VERB"]},"aparava":{"pos":["VERB"]},"aparavas":{"pos":["VERB"]},"aparavam":{"pos":["VERB"]},"aparavamos":{"pos":["VERB"]},"apararei":{"pos":["VERB"]},"aparara":{"pos":["VERB"]},"apararemos":{"pos":["VERB"]},"apararao":{"pos":["VERB"]},"apare":{"pos":["VERB"]},"apares":{"pos":["VERB"]},"aparem":{"pos":["VERB"]},"atendar":{"pos":["VERB"]},"atendando":{"pos":["VERB"]},"atendado":{"pos":["VERB"]},"atendada":{"pos":["VERB"]},"atendo":{"pos":["VERB"]},"atendas":{"pos":["VERB"]},"atenda":{"pos":["VERB"]},"atendamos":{"pos":["VERB"]},"atendam":{"pos":["VERB"]},"atendei":{"pos":["VERB"]},"atendaste":{"pos":["VERB"]},"atendou":{"pos":["VERB"]},"atendaram":{"pos":["VERB"]},"atendava":{"pos":["VERB"]},"atendavas":{"pos":["VERB"]},"atendavam":{"pos":["VERB"]},"atendavamos":{"pos":["VERB"]},"atendarei":{"pos":["VERB"]},"atendara":{"pos":["VERB"]},"atendaremos":{"pos":["VERB"]},"atendarao":{"pos":["VERB"]},"atende":{"pos":["VERB"]},"atendes":{"pos":["VERB"]},"atendem":{"pos":["VERB"]},"atingar":{"pos":["VERB"]},"atingando":{"pos":["VERB"]},"atingado":{"pos":["VERB"]},"atingada":{"pos":["VERB"]},"atingo":{"pos":["VERB"]},"atingas":{"pos":["VERB"]},"atinga":{"pos":["VERB"]},"atingamos":{"pos":["VERB"]},"atingam":{"pos":["VERB"]},"atingei":{"pos":["VERB"]},"atingaste":{"pos":["VERB"]},"atingou":{"pos":["VERB"]},"atingaram":{"pos":["VERB"]},"atingava":{"pos":["VERB"]},"atingavas":{"pos":["VERB"]},"atingavam":{"pos":["VERB"]},"atingavamos":{"pos":["VERB"]},"atingarei":{"pos":["VERB"]},"atingara":{"pos":["VERB"]},"atingaremos":{"pos":["VERB"]},"atingarao":{"pos":["VERB"]},"atinge":{"pos":["VERB"]},"atinges":{"pos":["VERB"]},"atingem":{"pos":["VERB"]},"atraiar":{"pos":["VERB"]},"atraiando":{"pos":["VERB"]},"atraiado":{"pos":["VERB"]},"atraiada":{"pos":["VERB"]},"atraio":{"pos":["VERB"]},"atraias":{"pos":["VERB"]},"atraia":{"pos":["VERB"]},"atraiamos":{"pos":["VERB"]},"atraiam":{"pos":["VERB"]},"atraiei":{"pos":["VERB"]},"atraiaste":{"pos":["VERB"]},"atraiou":{"pos":["VERB"]},"atraiaram":{"pos":["VERB"]},"atraiava":{"pos":["VERB"]},"atraiavas":{"pos":["VERB"]},"atraiavam":{"pos":["VERB"]},"atraiavamos":{"pos":["VERB"]},"atraiarei":{"pos":["VERB"]},"atraiara":{"pos":["VERB"]},"atraiaremos":{"pos":["VERB"]},"atraiarao":{"pos":["VERB"]},"atraie":{"pos":["VERB"]},"atraies":{"pos":["VERB"]},"atraiem":{"pos":["VERB"]},"atrasar":{"pos":["VERB"]},"atrasando":{"pos":["VERB"]},"atrasado":{"pos":["VERB"]},"atrasada":{"pos":["VERB"]},"atraso":{"pos":["VERB"]},"atrasas":{"pos":["VERB"]},"atrasa":{"pos":["VERB"]},"atrasamos":{"pos":["VERB"]},"atrasam":{"pos":["VERB"]},"atrasei":{"pos":["VERB"]},"atrasaste":{"pos":["VERB"]},"atrasou":{"pos":["VERB"]},"atrasaram":{"pos":["VERB"]},"atrasava":{"pos":["VERB"]},"atrasavas":{"pos":["VERB"]},"atrasavam":{"pos":["VERB"]},"atrasavamos":{"pos":["VERB"]},"atrasarei":{"pos":["VERB"]},"atrasara":{"pos":["VERB"]},"atrasaremos":{"pos":["VERB"]},"atrasarao":{"pos":["VERB"]},"atrase":{"pos":["VERB"]},"atrases":{"pos":["VERB"]},"atrasem":{"pos":["VERB"]},"atualiar":{"pos":["VERB"]},"atualiando":{"pos":["VERB"]},"atualiado":{"pos":["VERB"]},"atualiada":{"pos":["VERB"]},"atualio":{"pos":["VERB"]},"atualias":{"pos":["VERB"]},"atualia":{"pos":["VERB"]},"atualiamos":{"pos":["VERB"]},"atualiam":{"pos":["VERB"]},"atualiei":{"pos":["VERB"]},"atualiaste":{"pos":["VERB"]},"atualiou":{"pos":["VERB"]},"atualiaram":{"pos":["VERB"]},"atualiava":{"pos":["VERB"]},"atualiavas":{"pos":["VERB"]},"atualiavam":{"pos":["VERB"]},"atualiavamos":{"pos":["VERB"]},"atualiarei":{"pos":["VERB"]},"atualiara":{"pos":["VERB"]},"atualiaremos":{"pos":["VERB"]},"atualiarao":{"pos":["VERB"]},"atualie":{"pos":["VERB"]},"atualies":{"pos":["VERB"]},"atualiem":{"pos":["VERB"]},"avalar":{"pos":["VERB"]},"avalando":{"pos":["VERB"]},"avalado":{"pos":["VERB"]},"avalada":{"pos":["VERB"]},"avalo":{"pos":["VERB"]},"avalas":{"pos":["VERB"]},"avala":{"pos":["VERB"]},"avalamos":{"pos":["VERB"]},"avalam":{"pos":["VERB"]},"avalei":{"pos":["VERB"]},"avalaste":{"pos":["VERB"]},"avalou":{"pos":["VERB"]},"avalaram":{"pos":["VERB"]},"avalava":{"pos":["VERB"]},"avalavas":{"pos":["VERB"]},"avalavam":{"pos":["VERB"]},"avalavamos":{"pos":["VERB"]},"avalarei":{"pos":["VERB"]},"avalara":{"pos":["VERB"]},"avalaremos":{"pos":["VERB"]},"avalarao":{"pos":["VERB"]},"avale":{"pos":["VERB"]},"avales":{"pos":["VERB"]},"avalem":{"pos":["VERB"]},"batar":{"pos":["VERB"]},"batando":{"pos":["VERB"]},"batado":{"pos":["VERB"]},"batada":{"pos":["VERB"]},"bato":{"pos":["VERB"]},"batas":{"pos":["VERB"]},"bata":{"pos":["VERB"]},"batamos":{"pos":["VERB"]},"batam":{"pos":["VERB"]},"batei":{"pos":["VERB"]},"bataste":{"pos":["VERB"]},"batou":{"pos":["VERB"]},"bataram":{"pos":["VERB"]},"batava":{"pos":["VERB"]},"batavas":{"pos":["VERB"]},"batavam":{"pos":["VERB"]},"batavamos":{"pos":["VERB"]},"batarei":{"pos":["VERB"]},"batara":{"pos":["VERB"]},"bataremos":{"pos":["VERB"]},"batarao":{"pos":["VERB"]},"bate":{"pos":["VERB"]},"bates":{"pos":["VERB"]},"batem":{"pos":["VERB"]},"bloquar":{"pos":["VERB"]},"bloquando":{"pos":["VERB"]},"bloquado":{"pos":["VERB"]},"bloquada":{"pos":["VERB"]},"bloquo":{"pos":["VERB"]},"bloquas":{"pos":["VERB"]},"bloqua":{"pos":["VERB"]},"bloquamos":{"pos":["VERB"]},"bloquam":{"pos":["VERB"]},"bloquei":{"pos":["VERB"]},"bloquaste":{"pos":["VERB"]},"bloquou":{"pos":["VERB"]},"bloquaram":{"pos":["VERB"]},"bloquava":{"pos":["VERB"]},"bloquavas":{"pos":["VERB"]},"bloquavam":{"pos":["VERB"]},"bloquavamos":{"pos":["VERB"]},"bloquarei":{"pos":["VERB"]},"bloquara":{"pos":["VERB"]},"bloquaremos":{"pos":["VERB"]},"bloquarao":{"pos":["VERB"]},"bloque":{"pos":["VERB"]},"bloques":{"pos":["VERB"]},"bloquem":{"pos":["VERB"]},"captar":{"pos":["VERB"]},"captando":{"pos":["VERB"]},"captado":{"pos":["VERB"]},"captada":{"pos":["VERB"]},"capto":{"pos":["VERB"]},"captas":{"pos":["VERB"]},"capta":{"pos":["VERB"]},"captamos":{"pos":["VERB"]},"captam":{"pos":["VERB"]},"captei":{"pos":["VERB"]},"captaste":{"pos":["VERB"]},"captou":{"pos":["VERB"]},"captaram":{"pos":["VERB"]},"captava":{"pos":["VERB"]},"captavas":{"pos":["VERB"]},"captavam":{"pos":["VERB"]},"captavamos":{"pos":["VERB"]},"captarei":{"pos":["VERB"]},"captara":{"pos":["VERB"]},"captaremos":{"pos":["VERB"]},"captarao":{"pos":["VERB"]},"capte":{"pos":["VERB"]},"captes":{"pos":["VERB"]},"captem":{"pos":["VERB"]},"celebrar":{"pos":["VERB"]},"celebrando":{"pos":["VERB"]},"celebrado":{"pos":["VERB"]},"celebrada":{"pos":["VERB"]},"celebro":{"pos":["VERB"]},"celebras":{"pos":["VERB"]},"celebra":{"pos":["VERB"]},"celebramos":{"pos":["VERB"]},"celebram":{"pos":["VERB"]},"celebrei":{"pos":["VERB"]},"celebraste":{"pos":["VERB"]},"celebrou":{"pos":["VERB"]},"celebraram":{"pos":["VERB"]},"celebrava":{"pos":["VERB"]},"celebravas":{"pos":["VERB"]},"celebravam":{"pos":["VERB"]},"celebravamos":{"pos":["VERB"]},"celebrarei":{"pos":["VERB"]},"celebrara":{"pos":["VERB"]},"celebraremos":{"pos":["VERB"]},"celebrarao":{"pos":["VERB"]},"celebre":{"pos":["VERB"]},"celebres":{"pos":["VERB"]},"celebrem":{"pos":["VERB"]},"combatar":{"pos":["VERB"]},"combatando":{"pos":["VERB"]},"combatado":{"pos":["VERB"]},"combatada":{"pos":["VERB"]},"combato":{"pos":["VERB"]},"combatas":{"pos":["VERB"]},"combata":{"pos":["VERB"]},"combatamos":{"pos":["VERB"]},"combatam":{"pos":["VERB"]},"combatei":{"pos":["VERB"]},"combataste":{"pos":["VERB"]},"combatou":{"pos":["VERB"]},"combataram":{"pos":["VERB"]},"combatava":{"pos":["VERB"]},"combatavas":{"pos":["VERB"]},"combatavam":{"pos":["VERB"]},"combatavamos":{"pos":["VERB"]},"combatarei":{"pos":["VERB"]},"combatara":{"pos":["VERB"]},"combataremos":{"pos":["VERB"]},"combatarao":{"pos":["VERB"]},"combate":{"pos":["VERB"]},"combates":{"pos":["VERB"]},"combatem":{"pos":["VERB"]},"contribuar":{"pos":["VERB"]},"contribuando":{"pos":["VERB"]},"contribuado":{"pos":["VERB"]},"contribuada":{"pos":["VERB"]},"contribuo":{"pos":["VERB"]},"contribuas":{"pos":["VERB"]},"contribua":{"pos":["VERB"]},"contribuamos":{"pos":["VERB"]},"contribuam":{"pos":["VERB"]},"contribuei":{"pos":["VERB"]},"contribuaste":{"pos":["VERB"]},"contribuou":{"pos":["VERB"]},"contribuaram":{"pos":["VERB"]},"contribuava":{"pos":["VERB"]},"contribuavas":{"pos":["VERB"]},"contribuavam":{"pos":["VERB"]},"contribuavamos":{"pos":["VERB"]},"contribuarei":{"pos":["VERB"]},"contribuara":{"pos":["VERB"]},"contribuaremos":{"pos":["VERB"]},"contribuarao":{"pos":["VERB"]},"contribue":{"pos":["VERB"]},"contribues":{"pos":["VERB"]},"contribuem":{"pos":["VERB"]},"convocar":{"pos":["VERB"]},"convocando":{"pos":["VERB"]},"convocado":{"pos":["VERB"]},"convocada":{"pos":["VERB"]},"convoco":{"pos":["VERB"]},"convocas":{"pos":["VERB"]},"convoca":{"pos":["VERB"]},"convocamos":{"pos":["VERB"]},"convocam":{"pos":["VERB"]},"convocei":{"pos":["VERB"]},"convocaste":{"pos":["VERB"]},"convocou":{"pos":["VERB"]},"convocaram":{"pos":["VERB"]},"convocava":{"pos":["VERB"]},"convocavas":{"pos":["VERB"]},"convocavam":{"pos":["VERB"]},"convocavamos":{"pos":["VERB"]},"convocarei":{"pos":["VERB"]},"convocara":{"pos":["VERB"]},"convocaremos":{"pos":["VERB"]},"convocarao":{"pos":["VERB"]},"convoce":{"pos":["VERB"]},"convoces":{"pos":["VERB"]},"convocem":{"pos":["VERB"]},"copiar":{"pos":["VERB"]},"copiando":{"pos":["VERB"]},"copiado":{"pos":["VERB"]},"copiada":{"pos":["VERB"]},"copio":{"pos":["VERB"]},"copias":{"pos":["VERB"]},"copia":{"pos":["VERB"]},"copiamos":{"pos":["VERB"]},"copiam":{"pos":["VERB"]},"copiei":{"pos":["VERB"]},"copiaste":{"pos":["VERB"]},"copiou":{"pos":["VERB"]},"copiaram":{"pos":["VERB"]},"copiava":{"pos":["VERB"]},"copiavas":{"pos":["VERB"]},"copiavam":{"pos":["VERB"]},"copiavamos":{"pos":["VERB"]},"copiarei":{"pos":["VERB"]},"copiara":{"pos":["VERB"]},"copiaremos":{"pos":["VERB"]},"copiarao":{"pos":["VERB"]},"copie":{"pos":["VERB"]},"copies":{"pos":["VERB"]},"copiem":{"pos":["VERB"]},"critiar":{"pos":["VERB"]},"critiando":{"pos":["VERB"]},"critiado":{"pos":["VERB"]},"critiada":{"pos":["VERB"]},"critio":{"pos":["VERB"]},"critias":{"pos":["VERB"]},"critia":{"pos":["VERB"]},"critiamos":{"pos":["VERB"]},"critiam":{"pos":["VERB"]},"critiei":{"pos":["VERB"]},"critiaste":{"pos":["VERB"]},"critiou":{"pos":["VERB"]},"critiaram":{"pos":["VERB"]},"critiava":{"pos":["VERB"]},"critiavas":{"pos":["VERB"]},"critiavam":{"pos":["VERB"]},"critiavamos":{"pos":["VERB"]},"critiarei":{"pos":["VERB"]},"critiara":{"pos":["VERB"]},"critiaremos":{"pos":["VERB"]},"critiarao":{"pos":["VERB"]},"critie":{"pos":["VERB"]},"crities":{"pos":["VERB"]},"critiem":{"pos":["VERB"]},"decidar":{"pos":["VERB"]},"decidando":{"pos":["VERB"]},"decidado":{"pos":["VERB"]},"decidada":{"pos":["VERB"]},"decido":{"pos":["VERB"]},"decidas":{"pos":["VERB"]},"decida":{"pos":["VERB"]},"decidamos":{"pos":["VERB"]},"decidam":{"pos":["VERB"]},"decidei":{"pos":["VERB"]},"decidaste":{"pos":["VERB"]},"decidou":{"pos":["VERB"]},"decidaram":{"pos":["VERB"]},"decidava":{"pos":["VERB"]},"decidavas":{"pos":["VERB"]},"decidavam":{"pos":["VERB"]},"decidavamos":{"pos":["VERB"]},"decidarei":{"pos":["VERB"]},"decidara":{"pos":["VERB"]},"decidaremos":{"pos":["VERB"]},"decidarao":{"pos":["VERB"]},"decide":{"pos":["VERB"]},"decides":{"pos":["VERB"]},"decidem":{"pos":["VERB"]},"demarcar":{"pos":["VERB"]},"demarcando":{"pos":["VERB"]},"demarcado":{"pos":["VERB"]},"demarcada":{"pos":["VERB"]},"demarco":{"pos":["VERB"]},"demarcas":{"pos":["VERB"]},"demarca":{"pos":["VERB"]},"demarcamos":{"pos":["VERB"]},"demarcam":{"pos":["VERB"]},"demarcei":{"pos":["VERB"]},"demarcaste":{"pos":["VERB"]},"demarcou":{"pos":["VERB"]},"demarcaram":{"pos":["VERB"]},"demarcava":{"pos":["VERB"]},"demarcavas":{"pos":["VERB"]},"demarcavam":{"pos":["VERB"]},"demarcavamos":{"pos":["VERB"]},"demarcarei":{"pos":["VERB"]},"demarcara":{"pos":["VERB"]},"demarcaremos":{"pos":["VERB"]},"demarcarao":{"pos":["VERB"]},"demarce":{"pos":["VERB"]},"demarces":{"pos":["VERB"]},"demarcem":{"pos":["VERB"]},"dirigar":{"pos":["VERB"]},"dirigando":{"pos":["VERB"]},"dirigado":{"pos":["VERB"]},"dirigada":{"pos":["VERB"]},"dirigo":{"pos":["VERB"]},"dirigas":{"pos":["VERB"]},"diriga":{"pos":["VERB"]},"dirigamos":{"pos":["VERB"]},"dirigam":{"pos":["VERB"]},"dirigei":{"pos":["VERB"]},"dirigaste":{"pos":["VERB"]},"dirigou":{"pos":["VERB"]},"dirigaram":{"pos":["VERB"]},"dirigava":{"pos":["VERB"]},"dirigavas":{"pos":["VERB"]},"dirigavam":{"pos":["VERB"]},"dirigavamos":{"pos":["VERB"]},"dirigarei":{"pos":["VERB"]},"dirigara":{"pos":["VERB"]},"dirigaremos":{"pos":["VERB"]},"dirigarao":{"pos":["VERB"]},"dirige":{"pos":["VERB"]},"diriges":{"pos":["VERB"]},"dirigem":{"pos":["VERB"]},"eletrizar":{"pos":["VERB"]},"eletrizando":{"pos":["VERB"]},"eletrizado":{"pos":["VERB"]},"eletrizada":{"pos":["VERB"]},"eletrizo":{"pos":["VERB"]},"eletrizas":{"pos":["VERB"]},"eletriza":{"pos":["VERB"]},"eletrizamos":{"pos":["VERB"]},"eletrizam":{"pos":["VERB"]},"eletrizei":{"pos":["VERB"]},"eletrizaste":{"pos":["VERB"]},"eletrizou":{"pos":["VERB"]},"eletrizaram":{"pos":["VERB"]},"eletrizava":{"pos":["VERB"]},"eletrizavas":{"pos":["VERB"]},"eletrizavam":{"pos":["VERB"]},"eletrizavamos":{"pos":["VERB"]},"eletrizarei":{"pos":["VERB"]},"eletrizara":{"pos":["VERB"]},"eletrizaremos":{"pos":["VERB"]},"eletrizarao":{"pos":["VERB"]},"eletrize":{"pos":["VERB"]},"eletrizes":{"pos":["VERB"]},"eletrizem":{"pos":["VERB"]},"empurrar":{"pos":["VERB"]},"empurrando":{"pos":["VERB"]},"empurrado":{"pos":["VERB"]},"empurrada":{"pos":["VERB"]},"empurro":{"pos":["VERB"]},"empurras":{"pos":["VERB"]},"empurra":{"pos":["VERB"]},"empurramos":{"pos":["VERB"]},"empurram":{"pos":["VERB"]},"empurrei":{"pos":["VERB"]},"empurraste":{"pos":["VERB"]},"empurrou":{"pos":["VERB"]},"empurraram":{"pos":["VERB"]},"empurrava":{"pos":["VERB"]},"empurravas":{"pos":["VERB"]},"empurravam":{"pos":["VERB"]},"empurravamos":{"pos":["VERB"]},"empurrarei":{"pos":["VERB"]},"empurrara":{"pos":["VERB"]},"empurraremos":{"pos":["VERB"]},"empurrarao":{"pos":["VERB"]},"empurre":{"pos":["VERB"]},"empurres":{"pos":["VERB"]},"empurrem":{"pos":["VERB"]},"enterar":{"pos":["VERB"]},"enterando":{"pos":["VERB"]},"enterado":{"pos":["VERB"]},"enterada":{"pos":["VERB"]},"entero":{"pos":["VERB"]},"enteras":{"pos":["VERB"]},"entera":{"pos":["VERB"]},"enteramos":{"pos":["VERB"]},"enteram":{"pos":["VERB"]},"enterei":{"pos":["VERB"]},"enteraste":{"pos":["VERB"]},"enterou":{"pos":["VERB"]},"enteraram":{"pos":["VERB"]},"enterava":{"pos":["VERB"]},"enteravas":{"pos":["VERB"]},"enteravam":{"pos":["VERB"]},"enteravamos":{"pos":["VERB"]},"enterarei":{"pos":["VERB"]},"enterara":{"pos":["VERB"]},"enteraremos":{"pos":["VERB"]},"enterarao":{"pos":["VERB"]},"entere":{"pos":["VERB"]},"enteres":{"pos":["VERB"]},"enterem":{"pos":["VERB"]},"especiar":{"pos":["VERB"]},"especiando":{"pos":["VERB"]},"especiado":{"pos":["VERB"]},"especiada":{"pos":["VERB"]},"especio":{"pos":["VERB"]},"especias":{"pos":["VERB"]},"especia":{"pos":["VERB"]},"especiamos":{"pos":["VERB"]},"especiam":{"pos":["VERB"]},"especiei":{"pos":["VERB"]},"especiaste":{"pos":["VERB"]},"especiou":{"pos":["VERB"]},"especiaram":{"pos":["VERB"]},"especiava":{"pos":["VERB"]},"especiavas":{"pos":["VERB"]},"especiavam":{"pos":["VERB"]},"especiavamos":{"pos":["VERB"]},"especiarei":{"pos":["VERB"]},"especiara":{"pos":["VERB"]},"especiaremos":{"pos":["VERB"]},"especiarao":{"pos":["VERB"]},"especie":{"pos":["VERB"]},"especies":{"pos":["VERB"]},"especiem":{"pos":["VERB"]},"espirar":{"pos":["VERB"]},"espirando":{"pos":["VERB"]},"espirado":{"pos":["VERB"]},"espirada":{"pos":["VERB"]},"espiro":{"pos":["VERB"]},"espiras":{"pos":["VERB"]},"espira":{"pos":["VERB"]},"espiramos":{"pos":["VERB"]},"espiram":{"pos":["VERB"]},"espirei":{"pos":["VERB"]},"espiraste":{"pos":["VERB"]},"espirou":{"pos":["VERB"]},"espiraram":{"pos":["VERB"]},"espirava":{"pos":["VERB"]},"espiravas":{"pos":["VERB"]},"espiravam":{"pos":["VERB"]},"espiravamos":{"pos":["VERB"]},"espirarei":{"pos":["VERB"]},"espirara":{"pos":["VERB"]},"espiraremos":{"pos":["VERB"]},"espirarao":{"pos":["VERB"]},"espire":{"pos":["VERB"]},"espires":{"pos":["VERB"]},"espirem":{"pos":["VERB"]},"fotografarar":{"pos":["VERB"]},"fotografarando":{"pos":["VERB"]},"fotografarado":{"pos":["VERB"]},"fotografarada":{"pos":["VERB"]},"fotografaro":{"pos":["VERB"]},"fotografaras":{"pos":["VERB"]},"fotografara":{"pos":["VERB"]},"fotografaramos":{"pos":["VERB"]},"fotografaram":{"pos":["VERB"]},"fotografarei":{"pos":["VERB"]},"fotografaraste":{"pos":["VERB"]},"fotografarou":{"pos":["VERB"]},"fotografararam":{"pos":["VERB"]},"fotografarava":{"pos":["VERB"]},"fotografaravas":{"pos":["VERB"]},"fotografaravam":{"pos":["VERB"]},"fotografaravamos":{"pos":["VERB"]},"fotografararei":{"pos":["VERB"]},"fotografarara":{"pos":["VERB"]},"fotografararemos":{"pos":["VERB"]},"fotografararao":{"pos":["VERB"]},"fotografare":{"pos":["VERB"]},"fotografares":{"pos":["VERB"]},"fotografarem":{"pos":["VERB"]},"fortalar":{"pos":["VERB"]},"fortalando":{"pos":["VERB"]},"fortalado":{"pos":["VERB"]},"fortalada":{"pos":["VERB"]},"fortalo":{"pos":["VERB"]},"fortalas":{"pos":["VERB"]},"fortala":{"pos":["VERB"]},"fortalamos":{"pos":["VERB"]},"fortalam":{"pos":["VERB"]},"fortalei":{"pos":["VERB"]},"fortalaste":{"pos":["VERB"]},"fortalou":{"pos":["VERB"]},"fortalaram":{"pos":["VERB"]},"fortalava":{"pos":["VERB"]},"fortalavas":{"pos":["VERB"]},"fortalavam":{"pos":["VERB"]},"fortalavamos":{"pos":["VERB"]},"fortalarei":{"pos":["VERB"]},"fortalara":{"pos":["VERB"]},"fortalaremos":{"pos":["VERB"]},"fortalarao":{"pos":["VERB"]},"fortale":{"pos":["VERB"]},"fortales":{"pos":["VERB"]},"fortalem":{"pos":["VERB"]},"acidente":{"pos":["SUBST"]},"acidentes":{"pos":["SUBST"]},"agencia":{"pos":["SUBST"]},"agencias":{"pos":["SUBST"]},"agosto":{"pos":["SUBST"]},"ajuda":{"pos":["SUBST"]},"ajudas":{"pos":["SUBST"]},"aparelho":{"pos":["SUBST"]},"aparelhos":{"pos":["SUBST"]},"abertura":{"pos":["SUBST"]},"aberturas":{"pos":["SUBST"]},"arma":{"pos":["SUBST"]},"armas":{"pos":["SUBST"]},"arquivo":{"pos":["SUBST"]},"arquivos":{"pos":["SUBST"]},"aventura":{"pos":["SUBST"]},"aventuras":{"pos":["SUBST"]},"banco":{"pos":["SUBST"]},"bancos":{"pos":["SUBST"]},"bairro":{"pos":["SUBST"]},"bairros":{"pos":["SUBST"]},"camara":{"pos":["SUBST"]},"camaras":{"pos":["SUBST"]},"candidato":{"pos":["SUBST"]},"candidatos":{"pos":["SUBST"]},"cargo":{"pos":["SUBST"]},"cargos":{"pos":["SUBST"]},"causa":{"pos":["SUBST"]},"causas":{"pos":["SUBST"]},"centro":{"pos":["SUBST"]},"centros":{"pos":["SUBST"]},"chance":{"pos":["SUBST"]},"chances":{"pos":["SUBST"]},"chave":{"pos":["SUBST"]},"chaves":{"pos":["SUBST"]},"cidadao":{"pos":["SUBST"]},"cidadaos":{"pos":["SUBST"]},"codigo":{"pos":["SUBST"]},"codigos":{"pos":["SUBST"]},"colega":{"pos":["SUBST"]},"colegas":{"pos":["SUBST"]}}
+{
+  "abandono": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "abertura": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "aberturas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "absurdo": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "acelera": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acelerada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acelerado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aceleram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aceleramos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acelerando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acelerar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acelerara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aceleraram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acelerarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acelerarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aceleraremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aceleras": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aceleraste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acelerava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aceleravam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aceleravamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aceleravas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acelere": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acelerei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acelerem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aceleres": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acelero": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acelerou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acidente": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "acidentes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "acordo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "acordos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "acumula": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumulada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumulado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumulam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumulamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumulando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumular": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumulara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumularam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumularao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumularei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumularemos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumulas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumulaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumulava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumulavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumulavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumulavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumule": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumulei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumulem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumules": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumulo": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acumulou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "acusacao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "adapta": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adaptada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adaptado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adaptam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adaptamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adaptando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adaptar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adaptara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adaptaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adaptarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adaptarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adaptaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adaptas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adaptaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adaptava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adaptavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adaptavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adaptavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adapte": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adaptei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adaptem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adaptes": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adapto": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adaptou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adica": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adicada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adicado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adicam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adicamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adicando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adicar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adicara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adicaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adicarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adicarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adicaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adicas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adicaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adicava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adicavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adicavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adicavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adice": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adicei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adicem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adices": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adico": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "adicou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "advogada": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "advogado": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "afeta": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afetada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afetado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afetam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afetamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afetando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afetar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afetara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afetaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afetarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afetarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afetaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afetas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afetaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afetava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afetavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afetavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afetavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afete": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afetei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afetem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afetes": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afeto": {
+    "pos": [
+      "VERB",
+      "SUBST"
+    ]
+  },
+  "afetou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirma": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmacao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "afirmada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirme": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmes": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmo": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afirmou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "afogamento": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "aga": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "age": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agencia": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "agencias": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "ages": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ago": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agonia": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "agosto": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "agou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "agua": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "ajuda": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "ajudas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "alarga": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alargada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alargado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alargam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alargamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alargando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alargar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alargara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alargaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alargarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alargarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alargaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alargas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alargaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alargava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alargavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alargavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alargavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alarge": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alargei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alargem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alarges": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alargo": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alargou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcanca": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcancada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcancado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcancam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcancamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcancando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcancar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcancara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcancaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcancarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcancarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcancaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcancas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcancaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcancava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcancavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcancavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcancavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcance": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcancei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcancem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcances": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcanco": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alcancou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alegre": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "alegria": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "alegrias": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "alianca": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "alimento": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "alimentos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "aliva": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alivada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alivado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alivam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alivamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alivando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alivar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alivara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alivaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alivarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alivarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alivaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alivas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alivaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alivava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alivavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alivavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alivavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alive": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alivei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alivem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alives": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alivo": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alivou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aloca": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alocada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alocado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alocam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alocamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alocando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alocar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alocara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alocaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alocarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alocarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alocaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alocas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alocaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alocava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alocavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alocavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alocavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aloce": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alocei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alocem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aloces": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aloco": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "alocou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ama": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amarela": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "amarelas": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "amarelo": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "amarelos": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "amaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amarga": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "amargo": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "amas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ame": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ames": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amiga": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "amigas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "amigavel": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "amigo": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "amigos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "amizade": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "amizades": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "amo": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ampla": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "amplia": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ampliada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ampliado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ampliam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ampliamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ampliando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ampliar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ampliara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ampliaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ampliarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ampliarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ampliaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amplias": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ampliaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ampliava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ampliavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ampliavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ampliavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amplie": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ampliei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ampliem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amplies": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amplio": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ampliou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "amplo": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "angustia": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "anil": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "anima": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anime": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animes": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animo": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "animou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ano": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "anos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "anota": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anotada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anotado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anotam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anotamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anotando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anotar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anotara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anotaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anotarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anotarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anotaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anotas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anotaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anotava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anotavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anotavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anotavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anote": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anotei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anotem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anotes": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anoto": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "anotou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "ansiedade": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "ansiosa": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "ansioso": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "antiga": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "antigo": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "apara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aparada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aparado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aparam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aparamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aparando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aparar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aparara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "apararam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "apararao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "apararei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "apararemos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aparas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aparaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aparava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aparavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aparavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aparavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "apare": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aparei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aparelho": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "aparelhos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "aparem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "apares": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aparo": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "aparou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "apartamento": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "arma": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "armadilha": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "armario": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "armarios": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "armas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "arquiteta": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "arquiteto": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "arquivo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "arquivos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "arrogante": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "arrogantes": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "arroz": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "artista": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "artistas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "arvore": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "arvores": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "asfalto": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "assassino": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "astuta": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "astuto": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "atenda": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atende": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendes": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendo": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atendou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atinga": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atingada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atingado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atingam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atingamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atingando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atingar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atingara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atingaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atingarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atingarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atingaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atingas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atingaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atingava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atingavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atingavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atingavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atinge": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atingei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atingem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atinges": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atingo": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atingou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atlas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "ator": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "atraia": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraiada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraiado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraiam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraiamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraiando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraiar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraiara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraiaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraiarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraiarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraiaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraias": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraiaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraiava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraiavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraiavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraiavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraie": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraiei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraiem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraies": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraio": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraiou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrasa": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrasada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrasado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrasam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrasamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrasando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrasar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrasara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrasaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrasarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrasarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrasaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrasas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrasaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrasava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrasavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrasavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrasavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrase": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrasei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrasem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrases": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atraso": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atrasou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atriz": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "atualia": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualiada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualiado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualiam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualiamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualiando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualiar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualiara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualiaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualiarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualiarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualiaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualias": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualiaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualiava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualiavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualiavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualiavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualie": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualiei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualiem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualies": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualio": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "atualiou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "audaz": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "aurora": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "autor": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "autora": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "avala": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avalada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avalado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avalam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avalamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avalando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avalar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avalara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avalaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avalarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avalarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avalaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avalas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avalaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avalava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avalavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avalavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avalavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avale": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avalei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avalem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avales": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avalo": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avalou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "avara": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "avaro": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "aventura": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "aventuras": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "aviao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "azuis": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "azul": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "bairro": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "bairros": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "baixa": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "baixo": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "balcao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "banco": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "bancos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "barulho": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "bata": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "batada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "batado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "batalha": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "batalhas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "batam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "batamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "batando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "batar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "batara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bataram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "batarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "batarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bataremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "batas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bataste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "batava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "batavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "batavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "batavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bate": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "batei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "batem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bates": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bato": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "batou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bebida": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "bebidas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "bege": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "bela": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "belas": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "belo": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "belos": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "biblioteca": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "bloqua": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloquada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloquado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloquam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloquamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloquando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloquar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloquara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloquaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloquarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloquarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloquaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloquas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloquaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloquava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloquavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloquavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloquavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloque": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloquei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloquem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloques": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloquo": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "bloquou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "boca": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "bocas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "bondosa": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "bondoso": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "bordo": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "braco": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "bracos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "branca": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "branco": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "brava": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "bravo": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "breve": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "briga": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "brigas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "buraco": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cabeca": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cabecas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cabelo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cabelos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cadeira": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cadeiras": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cafe": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "calorosa": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "caloroso": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "cama": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "camara": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "camaras": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "camas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "candidato": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "candidatos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "caos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "caprichoso": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "capta": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "captada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "captado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "captam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "captamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "captando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "captar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "captara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "captaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "captarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "captarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "captaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "captas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "captaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "captava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "captavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "captavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "captavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "capte": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "captei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "captem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "captes": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "capto": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "captou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "cargo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cargos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "carmesim": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "carne": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "carnes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "carro": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "carros": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "carta": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cartas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "casa": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "casamento": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "casamentos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "casas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "causa": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "causas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "celebra": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebrada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebrado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebramos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebrando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebrar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebrara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebraram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebrarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebrarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebraremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebras": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebraste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebrava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebravam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebravamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebravas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebre": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebrei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebrem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebres": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebro": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "celebrou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "cena": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cenas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "centro": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "centros": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "certa": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "certeza": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "certo": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "chance": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "chances": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "chao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "chato": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "chave": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "chaves": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cheiro": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "chuva": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "chuvas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cidadao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cidadaos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cientista": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cientistas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cineasta": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cintura": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cinza": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "cinzas": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "cirurgia": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cirurgiao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "clinica": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "clinicas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "codigo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "codigos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "colega": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "colegas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "combata": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combatada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combatado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combatam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combatamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combatando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combatar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combatara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combataram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combatarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combatarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combataremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combatas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combataste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combatava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combatavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combatavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combatavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combate": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combatei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combatem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combates": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combato": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "combatou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "comerciante": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "comida": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "comidas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "companheira": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "companheiro": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "compromisso": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "comunidade": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "comunidades": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "conflito": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "conflitos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "contador": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "contadora": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "conto": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "contos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "contrato": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "contratos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "contribua": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribuada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribuado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribuam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribuamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribuando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribuar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribuara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribuaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribuarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribuarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribuaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribuas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribuaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribuava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribuavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribuavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribuavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribue": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribuei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribuem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribues": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribuo": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "contribuou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "conversa": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "conversas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "convoca": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convocada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convocado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convocam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convocamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convocando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convocar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convocara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convocaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convocarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convocarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convocaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convocas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convocaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convocava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convocavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convocavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convocavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convoce": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convocei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convocem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convoces": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convoco": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "convocou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copa": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "copia": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copiada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copiado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copiam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copiamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copiando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copiar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copiara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copiaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copiarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copiarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copiaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copias": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copiaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copiava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copiavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copiavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copiavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copie": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copiei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copiem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copies": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copio": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "copiou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "coral": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "corpo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "corpos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "corredor": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "corredores": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "corrida": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "costas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "covarde": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "covardes": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "cozinha": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cozinheira": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cozinheiro": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "creme": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "crenca": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "crencas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "crise": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "crises": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "critia": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critiada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critiado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critiam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critiamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critiando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critiar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critiara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critiaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critiarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critiarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critiaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critias": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critiaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critiava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critiavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critiavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critiavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critica": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "critico": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "critie": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critiei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critiem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "crities": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critio": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "critiou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "cronista": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "cru": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "cruel": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "cura": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "curiosa": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "curiosidade": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "curioso": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "curta": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "curto": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "decida": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decidada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decidado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decidam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decidamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decidando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decidar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decidara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decidaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decidarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decidarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decidaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decidas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decidaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decidava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decidavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decidavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decidavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decide": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decidei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decidem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decides": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decidida": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "decidido": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "decido": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decidou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "decisao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "dedo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "dedos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "delicada": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "delicado": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "delito": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "demarca": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarcada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarcado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarcam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarcamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarcando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarcar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarcara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarcaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarcarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarcarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarcaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarcas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarcaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarcava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarcavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarcavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarcavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarce": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarcei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarcem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarces": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarco": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "demarcou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "densa": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "denso": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "dente": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "dentes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "deputada": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "deputado": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "derrota": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "derrotas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "desastre": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "desejo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "desejos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "destino": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "destinos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "detetive": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "deus": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "deuses": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "devotada": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "devotado": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "diagnostico": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "diario": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "diligente": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "diplomata": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "diriga": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirigada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirigado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirigam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirigamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirigando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirigar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirigara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirigaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirigarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirigarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirigaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirigas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirigaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirigava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirigavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirigavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirigavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirige": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirigei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirigem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "diriges": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirigo": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "dirigou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "discreta": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "discreto": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "distancia": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "distante": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "distantes": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "divida": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "divorcio": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "doce": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "doenca": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "doencas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "doida": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "doido": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "dolorosa": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "doloroso": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "dor": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "dores": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "dramaturgo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "duvida": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "duvidas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "editor": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "editora": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "egoista": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "eletriza": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrize": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizes": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizo": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eletrizou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "eloquente": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "empurra": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurrada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurrado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurramos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurrando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurrar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurrara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurraram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurrarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurrarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurraremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurras": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurraste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurrava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurravam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurravamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurravas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurre": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurrei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurrem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurres": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurro": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "empurrou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "encantador": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "encantadora": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "encanto": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "encontro": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "encontros": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "enfermagem": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "enfermeira": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "enfermeiro": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "engenheira": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "engenheiro": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "enredo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "entera": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "enterada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "enterado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "enteram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "enteramos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "enterando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "enterar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "enterara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "enteraram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "enterarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "enterarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "enteraremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "enteras": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "enteraste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "enterava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "enteravam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "enteravamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "enteravas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "entere": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "enterei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "enterem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "enteres": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "entero": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "enterou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "epoca": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "epocas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "equivoco": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "eras": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "escada": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "escadas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "escritor": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "escritora": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "escritos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "escura": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "escuridao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "escuro": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "espaco": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "espalda": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "especia": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especiada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especiado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especiam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especiamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especiando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especiar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especiara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especiaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especiarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especiarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especiaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especias": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especiaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especiava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especiavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especiavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especiavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especie": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especiei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especiem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especies": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especio": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "especiou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espelho": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "esperanca": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "espinha": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "espira": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espirada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espirado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espiram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espiramos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espirando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espirar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espirara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espiraram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espirarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espirarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espiraremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espiras": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espiraste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espirava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espiravam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espiravamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espiravas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espire": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espirei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espirem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espires": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espirito": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "espiro": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "espirou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "esposa": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "esposas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "esposo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "esposos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "estacao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "estacoes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "estomago": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "estrada": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "estradas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "estreita": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "estreito": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "estrutura": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "etapa": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "eterna": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "eterno": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "exigente": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "exigentes": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "exilio": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "facao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "face": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "faces": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "familia": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "familias": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "fantasia": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "fantasias": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "fantasma": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "fantasmas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "fardo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "farinha": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "farmacia": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "fato": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "fatos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "febre": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "feijao": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "feitico": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "ferida": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "feridas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "ferimento": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "ferimentos": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "feroz": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "ferozmente": {
+    "pos": [
+      "ADV"
+    ]
+  },
+  "fervor": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "fiapo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "fiel": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "filosofa": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "filosofo": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "fingida": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "fingido": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "fio": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "fios": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "firme": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "fixas": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "fixo": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "flor": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "flores": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "floresta": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "florestas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "fome": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "forca": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "forcas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "fortala": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortalada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortalado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortalam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortalamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortalando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortalar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortalara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortalaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortalarao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortalarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortalaremos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortalas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortalaste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortalava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortalavam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortalavamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortalavas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortale": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortalei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortalem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortales": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortalo": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fortalou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografarada": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografarado": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografaram": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografaramos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografarando": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografarar": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografarara": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografararam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografararao": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografararei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografararemos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografaras": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografaraste": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografarava": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografaravam": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografaravamos": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografaravas": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografare": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografarei": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografarem": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografares": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografaro": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fotografarou": {
+    "pos": [
+      "VERB"
+    ]
+  },
+  "fraca": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "fraco": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "fragil": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "fraqueza": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "fria": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "frio": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "fronteira": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "fronteiras": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "fruta": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "frutas": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "fuga": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "fugitivo": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "funda": {
+    "pos": [
+      "ADJ"
+    ]
+  },
+  "fundo": {
+    "pos": [
+      "ADJ",
+      "SUBST"
+    ]
+  },
+  "furacoes": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "furia": {
+    "pos": [
+      "SUBST"
+    ]
+  },
+  "futuro": {
+    "pos": [
+      "SUBST",
+      "ADJ"
+    ]
+  },
+  "ombro": {
+    "pos": [
+      "SUBST"
+    ]
+  }
+}

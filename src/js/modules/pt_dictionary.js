@@ -1,8 +1,5 @@
 const DICT_CORE_URL = "src/assets/lingua/pt_dict_core.json";
-const DICT_CHUNKS = [
-    "src/assets/lingua/pt_dict_chunk_1.json",
-    "src/assets/lingua/pt_dict_chunk_2.json"
-];
+const DICT_RICH_BASE = "src/assets/lingua/pt_dict_rich_chunk_";
 const DOUBTS_URL = "src/assets/lingua/pt_duvidas.json";
 const REG_URL = "src/assets/lingua/pt_regencias.json";
 
@@ -16,7 +13,7 @@ export const ptDictionary = {
     entries: new Map(),
     formIndex: new Map(),
     coreLoaded: false,
-    chunksLoaded: new Set(),
+    richLoaded: new Set(),  // letras já carregadas do rich dict
     doubts: null,
     regencias: null,
 
@@ -88,13 +85,23 @@ export const ptDictionary = {
         this.coreLoaded = true;
     },
 
-    async loadChunk(idx) {
-        if (this.chunksLoaded.has(idx)) return;
-        const url = DICT_CHUNKS[idx];
-        if (!url) return;
-        const data = await fetchJson(url);
-        this.addEntries(data);
-        this.chunksLoaded.add(idx);
+    firstLetter(word) {
+        if (!word) return "_";
+        const a = word.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        const c = a[0] || "_";
+        return /[a-z]/.test(c) ? c : "_";
+    },
+
+    async loadRichChunk(letter) {
+        if (!letter || this.richLoaded.has(letter)) return;
+        const url = `${DICT_RICH_BASE}${letter}.json`;
+        try {
+            const data = await fetchJson(url);
+            this.addEntries(data);
+            this.richLoaded.add(letter);
+        } catch (err) {
+            console.warn("[DICT] rich chunk load failed", url, err);
+        }
     },
 
     async lookup(word) {
@@ -139,13 +146,18 @@ export const ptDictionary = {
             || tryKey(deaccentSingClean);
 
         if (!entry) {
-            for (let i = 0; i < DICT_CHUNKS.length; i += 1) {
-                if (!this.chunksLoaded.has(i)) {
+            // Carrega o rich chunk da letra da palavra (lazy, por letra)
+            const lettersToTry = [...new Set([
+                this.firstLetter(clean),
+                this.firstLetter(deaccentClean),
+                "_"
+            ])];
+            for (const letter of lettersToTry) {
+                if (!this.richLoaded.has(letter)) {
                     try {
-                        await this.loadChunk(i);
+                        await this.loadRichChunk(letter);
                     } catch (err) {
                         loadError = loadError || err;
-                        console.warn("[DICT] chunk load failed", DICT_CHUNKS[i], err);
                     }
                 }
                 entry = tryKey(raw)
@@ -162,8 +174,7 @@ export const ptDictionary = {
 
         const status = {
             coreLoaded: this.coreLoaded,
-            chunksLoaded: this.chunksLoaded.size,
-            chunksTotal: DICT_CHUNKS.length
+            richLoaded: this.richLoaded.size,
         };
         return { entry: entry || null, tried, raw, singular, deaccent, status, error: loadError };
     },

@@ -1,0 +1,412 @@
+{
+  "version": "1.0",
+  "area": "stylistics",
+  "topic": "figures",
+  "description": "Figuras de linguagem do português brasileiro — figuras de som/harmonia, figuras de construção sintática, vícios de linguagem e ritmo/versificação.",
+  "sources": [
+    "Rocha Lima — Gramática Normativa (49ª ed.)",
+    "Cunha & Cintra — Nova Gramática (7ª ed.)",
+    "Bechara — Moderna Gramática Portuguesa (37ª ed.)",
+    "Mattoso Câmara — Dicionário de Linguística e Gramática",
+    "Cidade — Lições de Literatura Portuguesa"
+  ],
+  "sections": [
+    {
+      "id": "figuras_som",
+      "label": "Figuras de Som e Harmonia",
+      "description": "Recursos que exploram a materialidade sonora das palavras — fonemas, ritmo, repetições de sons.",
+      "entries": [
+        {
+          "id": "aliteracao",
+          "label": "Aliteração",
+          "definition": "Repetição de consoantes (especialmente iniciais) em palavras próximas, criando efeito rítmico ou musical.",
+          "examples": [
+            "Vozes veladas, veludosas vozes… (Cruz e Sousa — /v/ dominante)",
+            "O rato roeu a roupa do rei de Roma. (popular — /r/)",
+            "Três pratos de trigo para três tigres. (trava-língua — /tr/)",
+            "Sete sábios silenciosos sentados. (/s/)"
+          ],
+          "literary_note": "A aliteração pode imitar sons da natureza (onomatopaica), criar tensão (/k/, /t/, /p/: oclusivas) ou fluidez (/s/, /l/, /m/: sibilantes e nasais)."
+        },
+        {
+          "id": "assonancia",
+          "label": "Assonância",
+          "definition": "Repetição de vogais tônicas iguais ou semelhantes em palavras próximas.",
+          "examples": [
+            "Minha terra tem palmeiras / Onde canta o sabiá. (Gonçalves Dias — /a/ dominante)",
+            "Sou um palmo de terra onde não cresce nada. (/a/ + /e/)",
+            "O gesto alto dos montes… (/o/ dominante)"
+          ],
+          "literary_note": "Vogais abertas (/a/, /ɛ/, /ɔ/) associam-se a grandeza, abertura, tristeza. Fechadas (/i/, /u/) a intimidade, angústia, contenção."
+        },
+        {
+          "id": "onomatopeia",
+          "label": "Onomatopeia",
+          "definition": "Palavra que imita um som natural ou usa sons que evocam o que descrevem.",
+          "examples": [
+            "O sino bate, bim-bom, bim-bom. (Manuel Bandeira)",
+            "O murmúrio das águas entre as pedras.",
+            "Zumzumzum das abelhas.",
+            "O farfalhar das folhas no vento.",
+            "O tinir das facas no prato."
+          ]
+        },
+        {
+          "id": "paronomasia",
+          "label": "Paronomásia",
+          "definition": "Aproximação de palavras de som semelhante mas sentido diferente (parônimos). Efeito lúdico, irônico ou poético.",
+          "examples": [
+            "Unidos venceremos, divididos seremos vendidos.",
+            "Com tato, ato.",
+            "O amor é lindo mas tem lindos lados ilhados. (jogo sonoro)",
+            "Viver é devir. (existir é tornar-se)",
+            "Errar é humano; perseverar é diabólico."
+          ]
+        },
+        {
+          "id": "rima",
+          "label": "Rima",
+          "definition": "Identidade ou semelhança de sons no final de versos.",
+          "types": [
+            {
+              "id": "rima_consoante",
+              "label": "Consoante (rica)",
+              "description": "Identidade de sons a partir da última vogal tônica, incluindo consoantes.",
+              "examples": ["amor / calor / dor", "saudade / cidade / claridade"]
+            },
+            {
+              "id": "rima_toante",
+              "label": "Toante (pobre)",
+              "description": "Identidade apenas nas vogais tônicas e seguintes; consoantes diferem.",
+              "examples": ["alma / palma / calma", "amor / flor (som /oɾ/ mas letras diferentes)"]
+            },
+            {
+              "id": "rima_identica",
+              "label": "Idêntica (equívoca)",
+              "description": "Repete a mesma palavra (ou homônimos). Efeito intencional ou vício.",
+              "examples": ["a / a", "saber / saber (homonímia)"]
+            }
+          ],
+          "schemes": [
+            {"id": "cruzada", "pattern": "ABAB", "note": "alternada"},
+            {"id": "emparelhada", "pattern": "AABB", "note": "paralela"},
+            {"id": "interpolada", "pattern": "ABBA", "note": "abraçada"},
+            {"id": "misturada", "pattern": "ABCABC", "note": "sextilha"},
+            {"id": "verso_branco", "pattern": "sem rima, com metro", "note": "branco ou livre com metro"},
+            {"id": "verso_livre", "pattern": "sem rima, sem metro fixo", "note": "poesia moderna"}
+          ]
+        },
+        {
+          "id": "metro",
+          "label": "Metro / Versificação",
+          "definition": "Contagem de sílabas poéticas (fonéticas, não gramaticais) de um verso.",
+          "rules": [
+            "Conta-se até a última sílaba tônica (+ eventualmente as átonas que seguem numa só posição).",
+            "Sinalefa: vogal final de palavra + vogal inicial da seguinte se fundem (elisão/crase prosódica).",
+            "Ditongação: vogal átona + tônica formam ditongo."
+          ],
+          "common_meters": [
+            {"name": "Redondilha menor", "syllables": 5, "examples": ["Saudade minha (Sa-u-da-de-mi)"]},
+            {"name": "Redondilha maior", "syllables": 7, "examples": ["Minha terra tem palmeiras (Mi-nha-ter-ra-tem-pal-mei)"]},
+            {"name": "Decassílabo", "syllables": 10, "examples": ["Mudam-se os tempos, mudam-se as vontades. (Camões)"]},
+            {"name": "Alexandrino", "syllables": 12, "examples": ["Era um porto de armas onde o cais se estende… (12)"]},
+            {"name": "Dodecassílabo", "syllables": 12, "note": "idem alexandrino, terminologia variante"},
+            {"name": "Verso heroico", "syllables": 10, "note": "decassílabo com acento na 6ª e 10ª sílabas"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "figuras_construcao",
+      "label": "Figuras de Construção (Sintáticas)",
+      "description": "Recursos que desviam da sintaxe padrão para fins expressivos.",
+      "entries": [
+        {
+          "id": "elipse",
+          "label": "Elipse",
+          "definition": "Omissão de termo subentendido pelo contexto. Torna o texto mais rápido e econômico.",
+          "examples": [
+            "Uns choraram; outros, riram. (omissão de 'outros' no segundo membro — não: o verbo 'choraram')",
+            "Na sala, silêncio. (omissão de verbo 'havia')",
+            "Em terra de cego, quem tem um olho é rei. (omissão de 'é')"
+          ]
+        },
+        {
+          "id": "zeugma",
+          "label": "Zeugma",
+          "definition": "Tipo específico de elipse: omissão de um verbo (ou termo) já expresso anteriormente.",
+          "examples": [
+            "Ela preferia o mar; eu, as montanhas. (omissão de 'preferia')",
+            "Pedro comprou flores; Maria, livros.",
+            "Uns querem honra; outros, dinheiro."
+          ]
+        },
+        {
+          "id": "anafora_construcao",
+          "label": "Anáfora (retórica / figura de construção)",
+          "definition": "Repetição de uma ou mais palavras no início de versos ou frases consecutivas. Efeito enfático, incantaório.",
+          "examples": [
+            "Amor é fogo que arde sem se ver / É ferida que dói e não se sente. (Camões — 'É')",
+            "Tudo passa. Tudo muda. Tudo some.",
+            "Não chores por mim. Não me busques. Não me esperes."
+          ],
+          "note": "Anáfora retórica ≠ anáfora textual (referência a termo anterior). Aqui é figura de repetição sonora/enfática."
+        },
+        {
+          "id": "epifora",
+          "label": "Epífora (epistrofé)",
+          "definition": "Repetição de palavras ao FINAL de versos ou cláusulas consecutivas.",
+          "examples": [
+            "Chorava, e eram lágrimas. / Amava, e era amor. / Vivia, e era vida.",
+            "Lutou até o fim. Resistiu até o fim. Morreu até o fim."
+          ]
+        },
+        {
+          "id": "gradacao",
+          "label": "Gradação (clímax / anticlímax)",
+          "definition": "Encadeamento de ideias em ordem crescente (clímax) ou decrescente (anticlímax) de intensidade.",
+          "examples": [
+            "Vim, vi, venci. (Júlio César — clímax)",
+            "Um grito, um sussurro, o silêncio. (clímax→anticlímax)",
+            "Não só mentiu, como jurou, como insistiu na mentira.",
+            "Chegou, desmontou, parou. (anticlímax humorístico)"
+          ]
+        },
+        {
+          "id": "quiasmo",
+          "label": "Quiasmo",
+          "definition": "Inversão na ordem sintática de elementos paralelos — estrutura especular (AB / BA).",
+          "examples": [
+            "Não viver para comer, mas comer para viver.",
+            "A arte imita a vida; a vida imita a arte.",
+            "O que sabemos é uma gota; o que ignoramos, um oceano.",
+            "Temos muito a aprender e pouco a ensinar; pouco a calar e muito a escutar."
+          ]
+        },
+        {
+          "id": "assindeto",
+          "label": "Assíndeto",
+          "definition": "Omissão das conjunções coordenativas. Ritmo rápido, enumeração intensa.",
+          "examples": [
+            "Entrou, olhou, saiu.",
+            "Vim, vi, venci.",
+            "Choro, rio, sofro, canto."
+          ]
+        },
+        {
+          "id": "polissindeto",
+          "label": "Polissíndeto",
+          "definition": "Repetição enfática de conjunções. Ritmo lento, acumulação, solenidade ou angústia.",
+          "examples": [
+            "E chora e ri e sofre e canta e morre.",
+            "E o vento e a chuva e o frio e a noite.",
+            "E foram e voltaram e foram outra vez."
+          ]
+        },
+        {
+          "id": "inversao_hiperbato",
+          "label": "Hipérbato / Inversão",
+          "definition": "Alteração da ordem direta (sujeito-verbo-objeto) para ênfase ou efeito estético.",
+          "examples": [
+            "Amigos, tenho poucos. (OD anteposto — ênfase em 'amigos')",
+            "Nas asas do vento viajou minha carta. (adj. adverbial anteposto)",
+            "De tanto amar, morreu. (causa anteposta)",
+            "Mísero de mim! (predicativo anteposto — literário)"
+          ]
+        },
+        {
+          "id": "anacoluto",
+          "label": "Anacoluto",
+          "definition": "Quebra da estrutura sintática iniciada — a construção abandona o termo de partida e recomeça de outro modo. Marca oralidade ou emoção.",
+          "examples": [
+            "Essa cidade, nunca sei como sair dela.",
+            "Minha mãe, sempre fui apegado a ela.",
+            "A vida, ela não é fácil.",
+            "Isso tudo que aconteceu, ninguém vai esquecer."
+          ],
+          "note": "O anacoluto é típico da fala coloquial. Na literatura, marca voz interior, descontrole emocional ou construção de personagem popular."
+        },
+        {
+          "id": "pleonasmo",
+          "label": "Pleonasmo",
+          "definition": "Repetição de ideia já expressa. Pode ser VÍCIO (redundância involuntária) ou FIGURA (ênfase intencional).",
+          "as_vice": {
+            "examples": [
+              "subir para cima ✗",
+              "entrar dentro ✗",
+              "há anos atrás ✗",
+              "conviver junto ✗",
+              "elo de ligação ✗"
+            ]
+          },
+          "as_figure": {
+            "examples": [
+              "Vim, vi, venci. (Júlio César — pleonasmo intensificador)",
+              "Ver com os próprios olhos.",
+              "Ouvir com os próprios ouvidos.",
+              "Chorando, as lágrimas escorriam. (literário arcaico)"
+            ]
+          }
+        },
+        {
+          "id": "silepse",
+          "label": "Silepse",
+          "definition": "Concordância com o sentido (lógico/psicológico), não com a forma gramatical.",
+          "types": [
+            {
+              "id": "silepse_genero",
+              "label": "De gênero",
+              "examples": [
+                "Vossa Excelência está enganado. (VE = feminino; enganado = concordou com o sexo biológico masculino do referente)",
+                "A criança ficou assustado. (criança = feminino; assustado = masculino do referente)"
+              ]
+            },
+            {
+              "id": "silepse_numero",
+              "label": "De número",
+              "examples": [
+                "O povo foi às ruas protestar. Estavam revoltados. (povo = sing.; 'estavam' = plural do sentido coletivo)",
+                "A multidão aplaudiu. Vibravam com a vitória."
+              ]
+            },
+            {
+              "id": "silepse_pessoa",
+              "label": "De pessoa",
+              "examples": [
+                "Os brasileiros somos hospitaleiros. (brasileiros = 3ª p.pl.; somos = 1ª p.pl. — o falante inclui a si)",
+                "Eu e você vamos resolver isso. → concordância normal (1ª pl.)"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eufemismo_construcao",
+          "label": "Eufemismo (construção perifrástica)",
+          "definition": "Substituição de expressão direta por outra mais suave, via construção indireta.",
+          "examples": [
+            "Passou desta para melhor. (= morreu)",
+            "Está em situação de rua. (= é morador de rua)",
+            "Fez suas necessidades. (= defecou/urinou)",
+            "Teve um episódio de saúde. (= adoeceu gravemente)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vicios_linguagem",
+      "label": "Vícios de Linguagem",
+      "description": "Desvios que prejudicam a clareza, elegância ou correção — ao contrário das figuras, não são intencionais nem expressivos.",
+      "entries": [
+        {
+          "id": "ambiguidade_vicio",
+          "label": "Ambiguidade / Anfibologia",
+          "definition": "Frase com mais de uma interpretação, por construção descuidada.",
+          "examples": [
+            "Vi o homem com o binóculo. ✗ (quem tinha o binóculo?)",
+            "Ele pediu ao filho que parasse. ✗ (quem devia parar?)"
+          ]
+        },
+        {
+          "id": "cacofonia",
+          "label": "Cacofonia",
+          "definition": "Encontro casual de sons que formam sequência desagradável ou obscena.",
+          "examples": [
+            "Cada vez. → 'cada vez' (ca-da-vez — o encontro 'ca-da' pode soar mal dependendo do contexto)",
+            "Por cada loca… (jogo inadvertido)",
+            "Ela me deu a bola. → 'deu a' ('dewa') — cuidado com encontros contextuais"
+          ],
+          "note": "Cacofonia é evitada pela revisão cuidadosa do ritmo fônico. O ouvido treinado detecta antes que o leitor."
+        },
+        {
+          "id": "eco",
+          "label": "Eco",
+          "definition": "Repetição involuntária de sons ou terminações próximas, especialmente de sufixos idênticos.",
+          "examples": [
+            "A situação da nação da instituição é degradação. (eco em -ção)",
+            "A clareza da beleza da leveza. (eco em -eza)",
+            "Trabalhamos tranquilamente, rapidamente, pacientemente. (eco em -mente — preferível reescrever)"
+          ],
+          "note": "Advérbios em -mente encadeados criam eco. A norma gramatical resolve com apenas o último: 'trabalhamos tranquila, rápida e pacientemente.'"
+        },
+        {
+          "id": "solecismo",
+          "label": "Solecismo",
+          "definition": "Erro de sintaxe: concordância, regência ou colocação erradas.",
+          "examples": [
+            "Fazem dois anos que não o vejo. ✗ (fazer temporal = impessoal)",
+            "Haviam muitas pessoas. ✗ (haver existencial = impessoal)",
+            "Prefiro mais chá do que café. ✗ (preferir já expressa comparação)",
+            "Me dá isso. ✗ (próclise proibida no início absoluto de frase — norma culta)"
+          ]
+        },
+        {
+          "id": "barbarismo",
+          "label": "Barbarismo",
+          "definition": "Uso de palavras estrangeiras sem necessidade (quando há equivalente em português) ou forma errada de palavra.",
+          "examples": [
+            "deletar (to delete) → excluir / apagar ✓",
+            "printar (to print) → imprimir ✓",
+            "bacalhao → bacalhau ✗ (grafia errada)",
+            "probrema → problema ✗ (metátese)"
+          ],
+          "note": "Estrangeirismos são aceitos quando não há equivalente consolidado ou quando o termo importado já está dicionarizado. O barbarismo é o uso desnecessário ou a forma incorreta."
+        },
+        {
+          "id": "gerundismo",
+          "label": "Gerundismo",
+          "definition": "Uso repetitivo e desnecessário de gerúndios em construções onde o infinitivo ou o presente são mais naturais. Característico do português empresarial desgastado.",
+          "examples": [
+            "Vou estar verificando o seu problema. ✗ → Vou verificar. ✓",
+            "Estarei enviando o relatório. ✗ → Enviarei / Vou enviar. ✓",
+            "Estaremos aguardando o seu retorno. ✗ → Aguardamos o seu retorno. ✓"
+          ]
+        },
+        {
+          "id": "redundancia",
+          "label": "Redundância (Pleonasmo vicioso)",
+          "definition": "Repetição desnecessária de informação já expressa.",
+          "examples": [
+            "subir para cima ✗",
+            "descer para baixo ✗",
+            "entrar dentro ✗",
+            "sair fora ✗",
+            "a razão é porque ✗ → a razão é que ✓",
+            "a nível de ✗ (barbarismo + redundância) → em termos de / no que diz respeito a ✓",
+            "mediante a ✗ → mediante ✓ ('mediante' já é preposição)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ritmo_prosa",
+      "label": "Ritmo na Prosa",
+      "definition": "A prosa também tem ritmo — organizado por extensão de frases, padrão acentual, paralelismos e pausas.",
+      "principles": [
+        {
+          "id": "ritmo_periodo_curto",
+          "label": "Períodos curtos",
+          "effect": "Velocidade, tensão, urgência, impacto. Associado a narrações de ação, cenas de suspense.",
+          "example": "Entrou. Olhou. Saiu. Ninguém percebeu."
+        },
+        {
+          "id": "ritmo_periodo_longo",
+          "label": "Períodos longos com orações subordinadas",
+          "effect": "Lentidão, reflexão, complexidade, atmosfera. Associado a descrições, fluxo de consciência.",
+          "example": "Enquanto caminhava pela rua estreita e úmida, ainda atravessada pelos últimos reflexos da noite, percebia que algo havia mudado irremediavelmente no ar da cidade."
+        },
+        {
+          "id": "ritmo_paralelismo",
+          "label": "Paralelismo sintático",
+          "effect": "Equilíbrio, simetria, solenidade, persuasão.",
+          "example": "Não há democracia sem educação, não há educação sem investimento, não há investimento sem vontade política."
+        },
+        {
+          "id": "ritmo_variacao",
+          "label": "Variação de extensão",
+          "effect": "O contraste entre período longo e período curto amplifica o efeito do curto.",
+          "example": "Depois de horas de negociação, de argumentos repetidos e contra-argumentos rebatidos, de silêncios tensos e olhares evitados, chegaram enfim a um acordo. Suspiraram."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,332 @@
+{
+  "version": "1.0",
+  "area": "morphology",
+  "topic": "flexion_nominal",
+  "description": "Flexão dos nomes (substantivos, adjetivos, pronomes, numerais): gênero, número e grau — com regras, irregularidades e notas normativas.",
+  "sources": [
+    "Rocha Lima — Gramática Normativa da Língua Portuguesa (49ª ed.)",
+    "Cunha & Cintra — Nova Gramática do Português Contemporâneo (7ª ed.)",
+    "Bechara — Moderna Gramática Portuguesa (37ª ed.)"
+  ],
+  "entries": [
+    {
+      "id": "gender",
+      "label": "gênero",
+      "description": "O português divide os nomes em masculino e feminino. O gênero não é motivado biologicamente para seres inanimados — é arbitrário e deve ser memorizado.",
+      "formation_rules": [
+        {
+          "id": "gender_suffixo_a",
+          "label": "Sufixo -a para o feminino",
+          "description": "A formação mais produtiva: troca -o por -a, ou acrescenta -a.",
+          "examples": [
+            {"masc": "menino", "fem": "menina"},
+            {"masc": "gato", "fem": "gata"},
+            {"masc": "mestre", "fem": "mestra"},
+            {"masc": "profissional (adj)", "note": "uniforme — não muda"}
+          ]
+        },
+        {
+          "id": "gender_sufixo_a_nominal",
+          "label": "Sufixo feminizador -ã / -oa / -esa / -essa / -isa / -triz",
+          "examples": [
+            {"masc": "ladrão", "fem": "ladra / ladrona"},
+            {"masc": "patrão", "fem": "patroa"},
+            {"masc": "barão", "fem": "baronesa"},
+            {"masc": "conde", "fem": "condessa"},
+            {"masc": "profeta", "fem": "profetisa"},
+            {"masc": "ator", "fem": "atriz"},
+            {"masc": "imperador", "fem": "imperatriz"}
+          ]
+        },
+        {
+          "id": "gender_heteronimos",
+          "label": "Heterônimos — radicais distintos",
+          "description": "Masculino e feminino têm radicais completamente diferentes.",
+          "examples": [
+            {"masc": "pai", "fem": "mãe"},
+            {"masc": "homem", "fem": "mulher"},
+            {"masc": "boi", "fem": "vaca"},
+            {"masc": "carneiro", "fem": "ovelha"},
+            {"masc": "cavalo", "fem": "égua"},
+            {"masc": "galo", "fem": "galinha"},
+            {"masc": "macho", "fem": "fêmea"},
+            {"masc": "genro", "fem": "nora"},
+            {"masc": "zangão", "fem": "abelha"},
+            {"masc": "veado", "fem": "corça"},
+            {"masc": "cão (macho)", "fem": "cadela"},
+            {"masc": "frade", "fem": "freira"},
+            {"masc": "rei", "fem": "rainha"},
+            {"masc": "padrasto", "fem": "madrasta"}
+          ]
+        },
+        {
+          "id": "gender_uniformes",
+          "label": "Uniformes (epicenos e sobrecomuns)",
+          "description": "Uma única forma para os dois gêneros. O sexo pode ser indicado pelos vocábulos 'macho' e 'fêmea' (epicenos) ou pelo artigo não varia (sobrecomuns).",
+          "epicenos": ["a cobra", "o jacaré", "o gavião", "a onça", "o mosquito"],
+          "sobrecomuns": ["a criança", "a testemunha", "a vítima", "o cônjuge", "a pessoa", "o indivíduo"]
+        },
+        {
+          "id": "gender_dois_generos",
+          "label": "Substantivos de dois gêneros (comuns de dois gêneros)",
+          "description": "A forma é a mesma, mas o artigo determina o gênero e o sentido.",
+          "examples": [
+            {"masc": "o artista", "fem": "a artista"},
+            {"masc": "o estudante", "fem": "a estudante"},
+            {"masc": "o jovem", "fem": "a jovem"},
+            {"masc": "o colega", "fem": "a colega"},
+            {"masc": "o imigrante", "fem": "a imigrante"}
+          ]
+        },
+        {
+          "id": "gender_ambiguos",
+          "label": "Substantivos ambíguos (dois gêneros com a mesma forma e mesmo sentido)",
+          "description": "Aceitos com qualquer gênero sem mudança semântica — a vacilação é registrada nas gramáticas.",
+          "examples": ["o/a cal", "o/a personagem", "o/a guaraná (duvidoso)", "o/a herpes", "o/a champanhe"]
+        },
+        {
+          "id": "gender_tricky",
+          "label": "Gêneros contraintuitivos — armadilhas comuns",
+          "description": "Substantivos cujo gênero contraria a expectativa da terminação.",
+          "masculinos": ["o dó (nota musical)", "o clã", "o alfinete", "o testículo", "o tufão", "o caráter", "o açúcar (masc. no singular, fem. no plural: as açúcares — facultativo)", "o eclipse", "o telefonema", "o telegrama", "o problema", "o poema", "o dilema", "o tema", "o sistema", "o clima", "o idioma", "o sintoma", "o programa", "o anátema"],
+          "femininos": ["a alface", "a árvore", "a aguardente", "a couve", "a dinamite", "a faringe", "a hélice", "a libido", "a omoplata", "a ordenha", "a usucapião", "a cal", "a febre", "a dor (fem.)", "a cor (fem.)", "a flor (fem.)"]
+        }
+      ]
+    },
+    {
+      "id": "number",
+      "label": "número",
+      "description": "Os nomes flexionam em singular (um ser) e plural (mais de um).",
+      "formation_rules": [
+        {
+          "id": "num_vogal",
+          "label": "Terminados em vogal ou ditongo oral → acrescenta -s",
+          "examples": [
+            {"sg": "mesa", "pl": "mesas"},
+            {"sg": "livro", "pl": "livros"},
+            {"sg": "pai", "pl": "pais"},
+            {"sg": "lei", "pl": "leis"},
+            {"sg": "chapéu", "pl": "chapéus"}
+          ]
+        },
+        {
+          "id": "num_m",
+          "label": "Terminados em -m → troca por -ns",
+          "examples": [
+            {"sg": "homem", "pl": "homens"},
+            {"sg": "irmão (exceção)", "note": "ver -ão"},
+            {"sg": "jovem", "pl": "jovens"},
+            {"sg": "nuvem", "pl": "nuvens"},
+            {"sg": "viagem", "pl": "viagens"},
+            {"sg": "origem", "pl": "origens"}
+          ]
+        },
+        {
+          "id": "num_ao",
+          "label": "Terminados em -ão → três possibilidades",
+          "subtypes": [
+            {
+              "plural_form": "-ões (maioria)",
+              "examples": ["ação/ações", "balão/balões", "botão/botões", "canção/canções", "coração/corações", "leão/leões", "limão/limões", "nação/nações", "pão/pães (irregular)", "questão/questões", "razão/razões", "região/regiões", "solução/soluções"]
+            },
+            {
+              "plural_form": "-ães (minoria)",
+              "examples": ["cão/cães", "capitão/capitães", "pão/pães", "guardião/guardiães (ou guardiões)", "charlatão/charlatães (ou charlatões)"]
+            },
+            {
+              "plural_form": "-ãos (invariáveis ou trissilábicos)",
+              "examples": ["cidadão/cidadãos", "irmão/irmãos", "mão/mãos", "cristão/cristãos", "grão/grãos", "bênção/bênçãos (ou bênções)", "sótão/sótãos", "órfão/órfãos"]
+            },
+            {
+              "note": "Vários substantivos em -ão aceitam mais de um plural. Consultar o VOLP. Ex: guardião → guardiões / guardiães / guardiãos (os três são aceitos)."
+            }
+          ]
+        },
+        {
+          "id": "num_r_z",
+          "label": "Terminados em -r e -z → acrescenta -es",
+          "examples": [
+            {"sg": "mar", "pl": "mares"},
+            {"sg": "cor", "pl": "cores"},
+            {"sg": "nariz", "pl": "narizes"},
+            {"sg": "raiz", "pl": "raízes"},
+            {"sg": "voz", "pl": "vozes"},
+            {"sg": "vez", "pl": "vezes"},
+            {"sg": "luz", "pl": "luzes"},
+            {"sg": "juiz", "pl": "juízes"},
+            {"sg": "paz", "pl": "pazes"}
+          ]
+        },
+        {
+          "id": "num_s_x_z_oxitonos",
+          "label": "Terminados em -s, -x → plural varia conforme a tonicidade",
+          "subtypes": [
+            {
+              "label": "Oxítonos e monossílabos em -s → acrescenta -es",
+              "examples": [
+                {"sg": "deus", "pl": "deuses"},
+                {"sg": "país", "pl": "países"},
+                {"sg": "ananás", "pl": "ananases"},
+                {"sg": "burgês (burgês)", "pl": "burgueses"}
+              ]
+            },
+            {
+              "label": "Paroxítonos e proparoxítonos em -s → invariáveis",
+              "examples": [
+                {"sg": "o lápis", "pl": "os lápis"},
+                {"sg": "o ônibus", "pl": "os ônibus"},
+                {"sg": "o atlas", "pl": "os atlas"},
+                {"sg": "o vírus", "pl": "os vírus"},
+                {"sg": "o bônus", "pl": "os bônus"},
+                {"sg": "o/a simples", "pl": "os/as simples"}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "num_al_el_ol_ul",
+          "label": "Terminados em -al, -el, -ol, -ul → troca -l por -is",
+          "examples": [
+            {"sg": "animal", "pl": "animais"},
+            {"sg": "canal", "pl": "canais"},
+            {"sg": "papel", "pl": "papéis"},
+            {"sg": "hotel", "pl": "hotéis"},
+            {"sg": "anzol", "pl": "anzóis"},
+            {"sg": "paul", "pl": "pauis"},
+            {"sg": "cônsul", "pl": "cônsules (exceção: acrescenta -es)"}
+          ]
+        },
+        {
+          "id": "num_il",
+          "label": "Terminados em -il",
+          "subtypes": [
+            {
+              "label": "Oxítonos → troca -il por -is",
+              "examples": [{"sg": "funil", "pl": "funis"}, {"sg": "barril", "pl": "barris"}, {"sg": "gentil", "pl": "gentis"}]
+            },
+            {
+              "label": "Paroxítonos → troca -il por -eis",
+              "examples": [{"sg": "fácil", "pl": "fáceis"}, {"sg": "difícil", "pl": "difíceis"}, {"sg": "réptil", "pl": "répteis"}, {"sg": "míssil", "pl": "mísseis"}, {"sg": "útil", "pl": "úteis"}]
+            }
+          ]
+        },
+        {
+          "id": "num_compostos",
+          "label": "Plural dos compostos",
+          "description": "A formação do plural dos compostos varia conforme a estrutura interna.",
+          "rules": [
+            {
+              "structure": "Substantivo + substantivo (ambos flexionam)",
+              "examples": [{"sg": "couve-flor", "pl": "couves-flores"}, {"sg": "navio-escola", "pl": "navios-escola (2ª invariável se ideia de função)"}, {"sg": "palavra-chave", "pl": "palavras-chave (ou palavras-chaves)"}]
+            },
+            {
+              "structure": "Substantivo + adjetivo / adjetivo + substantivo (ambos flexionam)",
+              "examples": [{"sg": "amor-perfeito", "pl": "amores-perfeitos"}, {"sg": "gentil-homem", "pl": "gentis-homens"}]
+            },
+            {
+              "structure": "Verbo + substantivo (só o substantivo flexiona)",
+              "examples": [{"sg": "guarda-roupa", "pl": "guarda-roupas"}, {"sg": "porta-voz", "pl": "porta-vozes"}, {"sg": "quebra-galho", "pl": "quebra-galhos"}]
+            },
+            {
+              "structure": "Verbo + verbo / verbo + advérbio (invariável ou flexão apenas no 1º)",
+              "examples": [{"sg": "o bate-boca", "pl": "os bate-bocas"}, {"sg": "o vaivém", "pl": "os vaivéns"}]
+            },
+            {
+              "structure": "Elementos invariáveis + substantivo (só o substantivo flexiona)",
+              "examples": [{"sg": "abaixo-assinado", "pl": "abaixo-assinados"}, {"sg": "bem-estar", "pl": "bens-estar (ou bem-estares — raro)"}]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "degree",
+      "label": "grau",
+      "description": "Os substantivos e adjetivos podem apresentar flexão de grau, indicando intensidade ou tamanho.",
+      "formation_rules": [
+        {
+          "id": "degree_aumentativo",
+          "label": "Aumentativo",
+          "subtypes": [
+            {
+              "label": "Analítico — com palavra de reforço (grande, enorme, colossal, gigantesco)",
+              "examples": ["casa grande", "problema enorme", "erro colossal"]
+            },
+            {
+              "label": "Sintético — com sufixo aumentativo",
+              "suffixes": [
+                {"form": "-ão / -ona", "examples": ["casa → casarão", "homem → homenzarrão", "boca → bocona"]},
+                {"form": "-aço / -aça", "examples": ["problema → problemação", "briga → brigaça", "corpo → corpão (ou corpão)"]},
+                {"form": "-alhão", "examples": ["fanfar → fanfarrão"]},
+                {"form": "-arrão / -orra", "examples": ["nariz → narigão / narizorra", "boca → bocarra"]},
+                {"form": "-zarrão", "examples": ["homem → homenzarrão"]}
+              ],
+              "note": "O aumentativo sintético frequentemente carrega valor pejorativo ou afetivo além da ideia de tamanho."
+            }
+          ]
+        },
+        {
+          "id": "degree_diminutivo",
+          "label": "Diminutivo",
+          "subtypes": [
+            {
+              "label": "Analítico — com palavra de reforço (pequeno, diminuto, minúsculo)",
+              "examples": ["casa pequena", "erro mínimo"]
+            },
+            {
+              "label": "Sintético — com sufixo diminutivo",
+              "suffixes": [
+                {"form": "-inho / -inha (o mais produtivo no Brasil)", "examples": ["casa → casinha", "café → cafezinho", "pão → pãozinho", "fácil → facilzinho"]},
+                {"form": "-zinho / -zinha (após vogal tônica ou ditongo)", "examples": ["pé → pezinho", "rei → reizinho", "nuvem → nuvenzinha"]},
+                {"form": "-ito / -ita (erudito ou regionalismos)", "examples": ["livro → livreto", "pobre → pobrezito (regional)"]},
+                {"form": "-ete / -eta", "examples": ["salão → salãozete (raro)", "bicicleta → bicicletinha"]},
+                {"form": "-ico / -ica", "examples": ["burro → burrico (regional)"]},
+                {"form": "-im", "examples": ["Joaquim (hipocorístico)"]}
+              ],
+              "note": "O diminutivo no português brasileiro também exprime afeto, polidez, eufemismo ou ironia — não apenas tamanho pequeno: 'um minutinho', 'pode ajudar um pouquinho?'."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gender_adjectives",
+      "label": "flexão de gênero nos adjetivos",
+      "description": "Os adjetivos concordam em gênero e número com o substantivo a que se referem.",
+      "formation_rules": [
+        {
+          "id": "adj_gender_o_a",
+          "label": "Biforme — terminados em -o (masc.) / -a (fem.)",
+          "examples": [
+            {"masc": "belo", "fem": "bela"},
+            {"masc": "cansado", "fem": "cansada"},
+            {"masc": "felizardo", "fem": "felizarda"}
+          ]
+        },
+        {
+          "id": "adj_gender_or_ora",
+          "label": "Biforme — terminados em -or (masc.) / -ora (fem.)",
+          "exceptions": "Melhor, pior, maior, menor — uniformes (mesma forma para ambos os gêneros)",
+          "examples": [
+            {"masc": "trabalhador", "fem": "trabalhadora"},
+            {"masc": "encantador", "fem": "encantadora"},
+            {"masc": "melhor", "fem": "melhor (uniforme)"}
+          ]
+        },
+        {
+          "id": "adj_gender_uniformes",
+          "label": "Uniforme — mesma forma para os dois gêneros",
+          "description": "Adjetivos terminados em -e, -m, -l, -r, -s, -z, -ês (variação em número, não gênero).",
+          "examples": [
+            {"form": "feliz", "note": "o homem feliz / a mulher feliz"},
+            {"form": "simples", "note": "o caso simples / a resposta simples"},
+            {"form": "jovem", "note": "o rapaz jovem / a moça jovem"},
+            {"form": "inteligente", "note": "o aluno inteligente / a aluna inteligente"},
+            {"form": "original", "note": "o texto original / a ideia original"},
+            {"form": "cortês", "note": "o gesto cortês / a atitude cortês"}
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -79,6 +79,15 @@ window.addEventListener("resize", () => {
 ctx.setStatus("ready");
 window.__ESKREV_INDEX2_READY__ = true;
 
+// ── Modos sidebar close button ────────────────────────────────────────────
+const modosSidebarClose = document.getElementById("modosSidebarClose");
+if (modosSidebarClose) {
+  modosSidebarClose.addEventListener("click", () => {
+    const s = document.getElementById("modosSidebar");
+    if (s) { s.classList.remove("is-open"); s.setAttribute("aria-hidden", "true"); }
+  });
+}
+
 // ── Notes sidebar ─────────────────────────────────────────────────────────
 initNotesSidebar();
 
@@ -111,8 +120,8 @@ document.addEventListener("keydown", (ev) => {
   if (mod && key === "s") {
     ev.preventDefault();
     ev.stopPropagation();
-    const filename = exportSkv();
-    ctx.setStatus?.(`salvo: ${filename}`);
+    ctx.setStatus?.("salvando…");
+    exportSkv().then((filename) => ctx.setStatus?.(`salvo: ${filename}`));
     return;
   }
 

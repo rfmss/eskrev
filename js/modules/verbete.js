@@ -1,8 +1,8 @@
 import { ptPosLexicon } from "../../src/js/modules/pt_pos_lexicon.js";
 
-// ── Dicionário — lazy-load por chunk de inicial ────────────────────────────
+// ── Dicionário — lazy-load por letra (rich chunks com sin + ant) ───────────
 const dictEntries     = new Map();
-const dictLoaded      = { core: false, chunk_1: false, chunk_2: false, chunk_3: false };
+const dictLoaded      = new Set();
 let regenciasData     = null;
 let duvidasData       = null;
 
@@ -12,30 +12,26 @@ async function fetchJson(url) {
   return res.json();
 }
 
-function chunkForKey(key) {
-  const c = key?.[0];
-  if (!c || !/[a-z]/.test(c)) return "core";
-  if (c <= "f") return "chunk_1";
-  if (c <= "o") return "chunk_2";
-  return "chunk_3";
+function letterForKey(key) {
+  const c = key?.normalize("NFD").replace(/[\u0300-\u036f]/g, "")?.[0];
+  if (!c || !/[a-z]/.test(c)) return "_";
+  return c;
 }
 
-async function loadDictChunk(chunk) {
-  if (dictLoaded[chunk]) return;
+async function loadDictChunk(letter) {
+  if (dictLoaded.has(letter)) return;
+  dictLoaded.add(letter);  // marca antes para evitar dupla requisição
   try {
-    const data = await fetchJson(`src/assets/lingua/pt_dict_${chunk}.json`);
+    const url = `src/assets/lingua/pt_dict_rich_chunk_${letter}.json`;
+    const data = await fetchJson(url);
     for (const [word, entry] of Object.entries(data || {})) {
       dictEntries.set(normalize(word), { word, ...entry });
     }
   } catch (_) {}
-  dictLoaded[chunk] = true;
 }
 
 async function loadDictFor(key) {
-  await Promise.all([
-    loadDictChunk("core"),
-    loadDictChunk(chunkForKey(key)),
-  ]);
+  await loadDictChunk(letterForKey(key));
 }
 
 async function loadRegencias() {
@@ -118,6 +114,18 @@ function formatVerbete(raw, key, dict, pos, reg, duvida) {
     lines.push("(não encontrado no corpus local)");
   }
 
+  // Sinônimos e antônimos
+  const sins = dict?.sin || [];
+  const ants = dict?.ant || [];
+  if (sins.length) {
+    lines.push("");
+    lines.push("Sinônimos: " + sins.join(", "));
+  }
+  if (ants.length) {
+    lines.push("");
+    lines.push("Antônimos: " + ants.join(", "));
+  }
+
   // Regência
   const regList = dict?.regencia?.length
     ? dict.regencia
@@ -185,14 +193,17 @@ function fallbackDesc(key, cls) {
   return map[cls] || null;
 }
 
-// ── Exports para lexCheck ──────────────────────────────────────────────────
-export { dictEntries };
-
 export async function loadAllDictChunks() {
-  await Promise.all([
-    loadDictChunk("core"),
-    loadDictChunk("chunk_1"),
-    loadDictChunk("chunk_2"),
-    loadDictChunk("chunk_3"),
-  ]);
+  const letters = "abcdefghijklmnopqrstuvwxyz_".split("");
+  await Promise.all(letters.map(l => loadDictChunk(l)));
+}
+
+/** Verifica se uma palavra existe no dicionário (case-insensitive). */
+export function dictHas(word) {
+  return dictEntries.has(normalize(word));
+}
+
+/** Retorna a entrada do dicionário para uma palavra, ou null se não existir. */
+export function dictGet(word) {
+  return dictEntries.get(normalize(word)) ?? null;
 }

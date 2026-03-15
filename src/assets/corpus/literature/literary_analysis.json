@@ -1,0 +1,393 @@
+{
+  "version": "1.0",
+  "area": "literature",
+  "topic": "literary_analysis",
+  "description": "Análise literária — categorias de análise de texto ficcional e poético: narrador, foco narrativo, personagem, espaço, tempo, discurso e versificação.",
+  "sources": [
+    "Candido & Castelo — A Personagem de Ficção",
+    "Genette — Discurso da Narrativa",
+    "Booth — A Retórica da Ficção",
+    "Todorov — Poética da Prosa",
+    "Moisés — A Análise Literária"
+  ],
+  "entries": [
+    {
+      "id": "narrador",
+      "label": "Narrador",
+      "definition": "Instância ficcional que narra a história. Não confundir com o autor — o narrador é uma construção do texto.",
+      "distinction": "Autor empírico (pessoa real) → Autor implícito (valores e visão de mundo que emanam do texto) → Narrador (voz que conta) → Personagem (quem age). São instâncias distintas.",
+      "types_by_person": [
+        {
+          "id": "narrador_1p",
+          "label": "Narrador em 1ª pessoa (homodiegético)",
+          "definition": "Narra a partir de dentro da história — é personagem. Perspectiva limitada ao que viveu, viu ou soube.",
+          "subtypes": [
+            {
+              "id": "autodiegetico",
+              "label": "Autodiegético",
+              "description": "O narrador é o protagonista da história que conta.",
+              "examples": ["Dom Casmurro (Machado): 'Agora que expliquei o título...' — Bentinho conta sua própria história.", "Memórias Póstumas de Brás Cubas: narrador-defunto conta a própria vida."]
+            },
+            {
+              "id": "homodiegetico_secundario",
+              "label": "Homodiegético secundário",
+              "description": "O narrador é personagem secundário que observa o protagonista.",
+              "examples": ["Watson narra as histórias de Sherlock Holmes.", "Nick Carraway narra O Grande Gatsby."]
+            }
+          ],
+          "reliability": "O narrador em 1ª pessoa é potencialmente não-confiável (unreliable narrator) — suas limitações, vieses e interesses podem distorcer o relato. Dom Casmurro é o caso paradigmático: acreditamos nele ou não?"
+        },
+        {
+          "id": "narrador_3p",
+          "label": "Narrador em 3ª pessoa (heterodiegético)",
+          "definition": "Narra de fora da história — não é personagem.",
+          "subtypes": [
+            {
+              "id": "onisciente",
+              "label": "Onisciente (total)",
+              "description": "Sabe tudo: pensamentos, sentimentos, passado e futuro de todos os personagens. Perspectiva onipotente.",
+              "examples": ["Narrador clássico do romance do século XIX.", "Muitos romances de Eça de Queirós."]
+            },
+            {
+              "id": "onisciente_seletivo",
+              "label": "Onisciente seletivo (limitado)",
+              "description": "Acessa o interior de apenas um personagem (ou de alguns). Perspectiva restrita.",
+              "examples": ["Vidas Secas (Graciliano): onisciência seletiva de Fabiano, Sinhá Vitória, até o cachorro Baleia.", "A maioria da ficção moderna."]
+            },
+            {
+              "id": "observador",
+              "label": "Observador (câmera / behaviorista)",
+              "description": "Registra apenas o que é externamente observável — ações, falas, cenário. Sem acesso ao interior.",
+              "examples": ["Hemingway usava essa técnica ('iceberg theory').", "'Hills Like White Elephants' — lemos o diálogo sem sabermos o que sentem."]
+            }
+          ]
+        },
+        {
+          "id": "narrador_2p",
+          "label": "Narrador em 2ª pessoa",
+          "definition": "Narra dirigindo-se ao leitor ou ao personagem como 'você' ou 'tu'. Efeito de interpelação, desconforto ou intimidade.",
+          "examples": ["Budapes (Chico Buarque): trechos em 2ª pessoa.", "Algumas narrativas experimentais e poemas narrativos."]
+        }
+      ],
+      "distance": {
+        "label": "Distância narrativa",
+        "description": "Proximidade ou afastamento do narrador em relação aos eventos.",
+        "types": [
+          {"label": "Narrador intrusivo", "description": "Comenta, opina, interpela o leitor explicitamente. Ex.: Machado de Assis, Sterne."},
+          {"label": "Narrador apagado", "description": "Tenta parecer invisível — não comenta, só narra. Realismo 'objetivo'."},
+          {"label": "Narrador iônico", "description": "Distância irônica entre o que diz e o que realmente significa."}
+        ]
+      }
+    },
+    {
+      "id": "foco_narrativo",
+      "label": "Foco Narrativo (Ponto de Vista)",
+      "definition": "A perspectiva a partir da qual a história é percebida e filtrada — quem vê, não quem fala (narrador pode ser diferente do focalizador).",
+      "genette_focalization": {
+        "label": "Focalização (Genette)",
+        "types": [
+          {
+            "id": "focalizacao_zero",
+            "label": "Focalização zero (não focalizado)",
+            "description": "O narrador sabe mais do que qualquer personagem. Narrador onisciente clássico.",
+            "examples": ["Romance realista do século XIX.", "'O narrador diz mais do que sabe qualquer personagem.'"]
+          },
+          {
+            "id": "focalizacao_interna",
+            "label": "Focalização interna",
+            "description": "O narrador filtra pelo que um personagem sabe e percebe. Pode ser fixa (um personagem) ou variável (alterna entre personagens).",
+            "examples": ["Vidas Secas: cada capítulo focaliza um personagem diferente.", "Henry James e o 'centro de consciência'."]
+          },
+          {
+            "id": "focalizacao_externa",
+            "label": "Focalização externa",
+            "description": "O narrador sabe menos do que o personagem — vê de fora, sem acesso à interioridade.",
+            "examples": ["Hemingway.", "Nouveau roman francês (Robbe-Grillet)."]
+          }
+        ]
+      },
+      "booth_note": "Wayne Booth distingue 'showing' (mostrar — cena dramática, diálogo) de 'telling' (contar — sumário narrativo). A tensão entre os dois determina o ritmo e a distância."
+    },
+    {
+      "id": "personagem",
+      "label": "Personagem",
+      "definition": "Ser fictício que age, pensa e sente na narrativa. Construído pela intersecção de traços físicos, psicológicos, sociais e morais.",
+      "types_complexity": [
+        {
+          "id": "plano",
+          "label": "Personagem plano (flat)",
+          "description": "Construído em torno de uma única ideia ou qualidade. Previsível, sem desenvolvimento. Eficaz na comédia e em personagens secundários.",
+          "examples": ["Personagens de farsa de Gil Vicente.", "Figuras alegóricas."]
+        },
+        {
+          "id": "redondo",
+          "label": "Personagem redondo (round)",
+          "description": "Complexo, contraditório, surpreendente de forma convincente. Capaz de mudança.",
+          "examples": ["Capitu (Dom Casmurro)", "Riobaldo (Grande Sertão: Veredas)", "Macabéa (A Hora da Estrela)"]
+        },
+        {
+          "id": "tipo",
+          "label": "Tipo",
+          "description": "Representa uma classe social, profissional ou moral — individualidade subordinada à função representativa.",
+          "examples": ["O avarento, o conquistador, o político corrupto como tipos."]
+        }
+      ],
+      "roles": [
+        {"id": "protagonista", "label": "Protagonista", "description": "Personagem central — portador do conflito principal."},
+        {"id": "antagonista", "label": "Antagonista", "description": "Se opõe ao protagonista. Pode ser pessoa, força, ou dimensão interna."},
+        {"id": "deuteragonista", "label": "Deuteragonista", "description": "Personagem secundário de relevância — alter ego, confidente, contraponto."},
+        {"id": "figurante", "label": "Figurante", "description": "Presença no pano de fundo social. Contribui para o verossímil do mundo ficcional."}
+      ],
+      "characterization": {
+        "label": "Caracterização",
+        "methods": [
+          {"label": "Direta", "description": "O narrador ou outro personagem declara características. Eficaz para traços estáveis."},
+          {"label": "Indireta", "description": "As características emergem das ações, falas, gestos, escolhas. Mais verossímil e literariamente rico."},
+          {"label": "Monólogo interior", "description": "Acesso à corrente de pensamento do personagem. Joyce, Clarice Lispector."},
+          {"label": "Fluxo de consciência", "description": "Forma extrema do monólogo — sintaxe disruptiva, livre associação, sem organização lógica explícita."}
+        ]
+      }
+    },
+    {
+      "id": "espaco",
+      "label": "Espaço",
+      "definition": "Dimensão física, psicológica e social onde a narrativa se desenrola. Nunca é mero cenário — contribui para o sentido.",
+      "types": [
+        {
+          "id": "espaco_fisico",
+          "label": "Espaço físico",
+          "description": "Lugar concreto e geográfico. Pode ser realista (Rio de Janeiro de Machado) ou inventado (Macondo de García Márquez).",
+          "literary_function": "O espaço físico frequentemente externaliza o estado interno dos personagens (patetic fallacy — erro patético: projeção emocional no ambiente)."
+        },
+        {
+          "id": "espaco_psicologico",
+          "label": "Espaço psicológico",
+          "description": "Espaço interior — a mente, a memória, o inconsciente como lugar narrativo.",
+          "examples": ["Proust: Em Busca do Tempo Perdido — o espaço é a memória involuntária.", "Clarice: a interioridade como único território."]
+        },
+        {
+          "id": "espaco_social",
+          "label": "Espaço social",
+          "description": "O ambiente define e constrange as possibilidades dos personagens. Determinismo naturalista ou crítica social.",
+          "examples": ["O Cortiço (Aluísio): o cortiço como espaço que determina os habitantes.", "Casa-Grande & Senzala como análise do espaço simbólico da sociedade brasileira."]
+        },
+        {
+          "id": "espaco_simbolico",
+          "label": "Espaço simbólico",
+          "description": "O lugar carregado de significados que extrapolam o físico.",
+          "examples": ["O sertão em Guimarães Rosa = espaço metafísico, 'o sertão é o mundo'.", "O mar em Camões = aventura, morte, sublime."]
+        }
+      ]
+    },
+    {
+      "id": "tempo",
+      "label": "Tempo",
+      "definition": "Dimensão temporal da narrativa — pode ser analisado como tempo da história (fabula) e tempo do discurso (sjuzet).",
+      "dimensions": [
+        {
+          "id": "tempo_cronologico",
+          "label": "Tempo cronológico (externo / histórico)",
+          "description": "Quando a história se passa no mundo real — época histórica, contexto sociopolítico. Âncora referencial.",
+          "examples": ["O Cortiço: Rio de Janeiro do final do Império.", "Vidas Secas: seca do Nordeste dos anos 30."]
+        },
+        {
+          "id": "tempo_psicologico",
+          "label": "Tempo psicológico (interno / subjetivo)",
+          "description": "Percepção subjetiva do tempo pelos personagens — dilata no sofrimento, abrevia na alegria. Analepses e prolepses.",
+          "examples": ["Em Busca do Tempo Perdido: a madeleine que dilata um momento em volumes.", "Fluxo de consciência de Molly Bloom (Joyce): último capítulo do Ulysses é uma hora dilatada."]
+        },
+        {
+          "id": "tempo_narrativo",
+          "label": "Tempo do discurso (ordem narrativa)",
+          "description": "A ordem em que os eventos são apresentados na narrativa — pode divergir da ordem cronológica dos eventos.",
+          "techniques": [
+            {"id": "analepse", "label": "Analepse (flashback)", "description": "Retorno ao passado. Recupera eventos anteriores ao ponto em que a narrativa se encontra."},
+            {"id": "prolepse", "label": "Prolepse (flashforward / antecipação)", "description": "Avanço ao futuro. Antecipa eventos que ainda não aconteceram no tempo da narrativa."},
+            {"id": "in_medias_res", "label": "In medias res", "description": "A narrativa começa no meio da ação, sem exposição prévia. Efeito de imersão imediata. Técnica homérica recuperada pelo romance moderno."},
+            {"id": "elipse", "label": "Elipse temporal", "description": "Supressão de período de tempo — o narrador salta meses ou anos sem relatar."},
+            {"id": "sumario", "label": "Sumário", "description": "Compressão de período longo em poucas linhas — 'Passaram-se dez anos.'"},
+            {"id": "cena", "label": "Cena", "description": "Correspondência entre tempo da história e tempo do discurso — principalmente no diálogo."},
+            {"id": "pausa", "label": "Pausa", "description": "O tempo da narrativa para enquanto o discurso avança — descrições longas, digressões."}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "discurso",
+      "label": "Formas do Discurso",
+      "definition": "Modos pelos quais a fala e o pensamento dos personagens são incorporados à narrativa.",
+      "types": [
+        {
+          "id": "discurso_direto",
+          "label": "Discurso direto",
+          "definition": "A fala do personagem é reproduzida literalmente, com marcas gráficas (aspas, travessão) e verbos dicendi.",
+          "examples": [
+            "— Não posso aceitar isso — disse ela, afastando-se.",
+            "'Amanhã voltarei', prometeu o velho."
+          ],
+          "effect": "Cria verossimilhança, caracteriza a voz do personagem, produz dramaticidade imediata."
+        },
+        {
+          "id": "discurso_indireto",
+          "label": "Discurso indireto",
+          "definition": "A fala é reportada pelo narrador com transformações de pessoa, tempo e modo.",
+          "transformation": "Direto: 'Quero partir amanhã.' → Indireto: Disse que queria partir no dia seguinte.",
+          "examples": [
+            "Ela respondeu que não podia aceitar aquilo.",
+            "O velho prometeu que voltaria."
+          ],
+          "effect": "Narrador mantém controle. Maior distância e mediação."
+        },
+        {
+          "id": "discurso_indireto_livre",
+          "label": "Discurso indireto livre (DIL)",
+          "definition": "Fusão da voz do narrador e da voz do personagem sem marcadores explícitos. Não há travessão nem verbo dicendi isolável — o pensamento do personagem atravessa a narração.",
+          "marker": "Reconhecível por exclamações, interrogações, interjeições e vocabulário subjetivo inseridos na narração em 3ª pessoa.",
+          "examples": [
+            "Ela saiu pela porta. Que ideia absurda! Como puderam pedir isso dela?",
+            "Fabiano estava satisfeito consigo. Voltaria a ser gente. Quem sabe? (Vidas Secas)",
+            "Que lhe importava! O mundo era assim mesmo. (Machado)"
+          ],
+          "effect": "Máxima imersão na subjetividade do personagem sem abandonar a 3ª pessoa. Técnica central do romance moderno.",
+          "history": "Desenvolvida por Flaubert (Madame Bovary), sistematizada pela crítica no século XX. Amplamente usada por Machado, Graciliano, Clarice."
+        },
+        {
+          "id": "monologo_interior",
+          "label": "Monólogo interior",
+          "definition": "Reprodução do pensamento de um personagem em 1ª pessoa, sem mediação narrativa explícita.",
+          "types_inner": [
+            {"label": "Citado", "description": "Com marcadores gráficos — distinguível do narrador."},
+            {"label": "Narrado", "description": "Integrado à narração sem marcadores — aproxima-se do DIL."},
+            {"label": "Fluxo de consciência", "description": "Forma radical — pensamento não filtrado, associações livres, sintaxe disruptiva."}
+          ],
+          "examples": ["Último capítulo do Ulysses (Joyce): Molly Bloom.", "A Paixão Segundo G.H. (Clarice): a narradora processa o trauma em tempo real."]
+        }
+      ]
+    },
+    {
+      "id": "enredo_estrutura",
+      "label": "Enredo e Estrutura Narrativa",
+      "definition": "O enredo é a ordenação artística dos eventos — não a sequência bruta (fábula), mas a construção com efeito estético (sjuzet).",
+      "elements": [
+        {"id": "exposicao", "label": "Exposição / Situação inicial", "description": "Apresentação do mundo ficcional — personagens, espaço, tempo, conflito latente."},
+        {"id": "complicacao", "label": "Complicação / Nó", "description": "Evento que perturba o equilíbrio inicial e instaura o conflito."},
+        {"id": "climax", "label": "Clímax", "description": "Ponto de máxima tensão — onde o conflito atinge intensidade insustentável."},
+        {"id": "desfecho", "label": "Desfecho / Resolução", "description": "Resolução do conflito — pode ser aberto (ambíguo), fechado (conclusivo) ou circular (retorno ao início)."}
+      ],
+      "conflict_types": [
+        {"label": "Homem vs. homem", "description": "Conflito interpessoal entre personagens."},
+        {"label": "Homem vs. natureza", "description": "Personagem contra forças naturais ou físicas."},
+        {"label": "Homem vs. sociedade", "description": "Indivíduo contra estruturas sociais, normas, instituições."},
+        {"label": "Homem vs. si mesmo", "description": "Conflito interno — psicológico, moral, existencial. Típico do romance moderno."},
+        {"label": "Homem vs. destino / transcendência", "description": "Conflito metafísico ou trágico. Herói trágico e hamartia."}
+      ]
+    },
+    {
+      "id": "analise_poema",
+      "label": "Análise do Poema",
+      "definition": "Categorias para a leitura e interpretação do texto poético.",
+      "elements": [
+        {
+          "id": "eu_lirico",
+          "label": "Eu lírico",
+          "definition": "Instância que fala no poema — voz construída pelo texto, não necessariamente o autor.",
+          "note": "Em 'Tabacaria' (Álvaro de Campos), o eu lírico não é Fernando Pessoa — é a persona heterônima. Mesmo em poemas em 1ª pessoa, a distinção é metodologicamente necessária."
+        },
+        {
+          "id": "metro_silabas",
+          "label": "Cômputo silábico",
+          "rules": [
+            "Contar sílabas poéticas (fonéticas), não gramaticais.",
+            "Contar até a última sílaba tônica — as átonas que seguem fundem-se à última posição.",
+            "Sinalefa: vogal final de palavra + vogal inicial da seguinte contam como uma sílaba ('minha alma' = mi-nha-l-ma = 4).",
+            "Ditongação: vogal átona + tônica formam ditongo e contam como uma ('a-mou' = a-mou = 2)."
+          ],
+          "common_meters": [
+            {"name": "Redondilha menor", "syllables": 5},
+            {"name": "Redondilha maior", "syllables": 7},
+            {"name": "Decassílabo heroico", "syllables": 10, "stress": "acento obrigatório na 6ª e 10ª sílabas"},
+            {"name": "Decassílabo sáfico", "syllables": 10, "stress": "acento na 4ª, 8ª e 10ª"},
+            {"name": "Alexandrino", "syllables": 12}
+          ]
+        },
+        {
+          "id": "rima_analise",
+          "label": "Esquema de rimas",
+          "patterns": [
+            {"name": "ABAB", "label": "Cruzada / alternada"},
+            {"name": "ABBA", "label": "Interpolada / abraçada"},
+            {"name": "AABB", "label": "Emparelhada / paralela"},
+            {"name": "sem rima", "label": "Verso branco (com metro) ou verso livre (sem metro fixo)"}
+          ]
+        },
+        {
+          "id": "estrofes",
+          "label": "Estrutura estrófica",
+          "types": [
+            {"name": "Dístico", "verses": 2},
+            {"name": "Terceto", "verses": 3},
+            {"name": "Quarteto / Quadra", "verses": 4},
+            {"name": "Quintilha", "verses": 5},
+            {"name": "Sextilha", "verses": 6},
+            {"name": "Oitava", "verses": 8},
+            {"name": "Soneto", "verses": "14 (2 quartetos + 2 tercetos)", "note": "Forma fixa italiana introduzida em Portugal por Sá de Miranda"}
+          ]
+        },
+        {
+          "id": "imagem_poetica",
+          "label": "Imagem poética",
+          "definition": "Representação sensorial ou intelectual construída pelo poema. Vai além da ilustração — é o modo pelo qual a poesia pensa.",
+          "types": [
+            {"label": "Metáfora estrutural", "description": "Imagem que organiza o poema inteiro em torno de uma analogia."},
+            {"label": "Símbolo recorrente", "description": "Imagem que retorna com carga acumulada dentro do poema ou da obra do poeta."},
+            {"label": "Correlativo objetivo", "description": "Eliot: objeto, situação ou evento que evoca emoção sem nomeá-la. 'Um punhado de pó' (Eliot) = horror e futilidade."}
+          ]
+        },
+        {
+          "id": "tom_atmosfera",
+          "label": "Tom e atmosfera",
+          "definition": "Tom = atitude do eu lírico em relação ao tema (melancólico, irônico, exaltado, sereno). Atmosfera = efeito sensorial e emocional geral do poema.",
+          "analysis_tip": "Identifique o campo semântico dominante, os fonemas prevalentes e a pontuação — eles constroem o tom antes mesmo que o sentido semântico seja apreendido."
+        }
+      ]
+    },
+    {
+      "id": "generos_literarios_analise",
+      "label": "Gêneros Literários — Critérios de Análise",
+      "entries": [
+        {
+          "id": "lirico_analise",
+          "label": "Lírico",
+          "central_question": "Como o eu lírico constrói e expressa sua subjetividade?",
+          "focus": ["eu lírico e sua relação com o mundo", "imagem poética e figuras de linguagem", "metro, rima e ritmo como portadores de sentido", "campo semântico e isotopia", "intertextualidade e tradição"]
+        },
+        {
+          "id": "epico_analise",
+          "label": "Épico / Narrativo",
+          "central_question": "Como a narrativa constrói o mundo ficcional e os agentes que o habitam?",
+          "focus": ["narrador e foco narrativo", "estrutura do enredo e gestão do tempo", "construção do espaço", "personagens e conflito", "discurso narrativo (DD, DI, DIL)"]
+        },
+        {
+          "id": "dramatico_analise",
+          "label": "Dramático",
+          "central_question": "Como o conflito se desenvolve e se resolve no espaço da encenação?",
+          "focus": ["conflito e peripécia", "caracterização dos personagens pelos diálogos (não pelo narrador)", "rubricas como metalinguagem do autor", "atos e cenas como unidades de tensão", "catarse e efeito sobre o espectador"]
+        }
+      ]
+    },
+    {
+      "id": "intertextualidade_literaria",
+      "label": "Intertextualidade Literária",
+      "definition": "Todo texto dialoga com textos anteriores — a literatura é um sistema de vozes em diálogo permanente (Bakhtin: dialogismo).",
+      "types": [
+        {"id": "citacao_lit", "label": "Citação", "description": "Reprodução explícita de trecho de outro texto com atribuição."},
+        {"id": "alusao_lit", "label": "Alusão", "description": "Referência implícita a obra, personagem ou mito sem citar diretamente. Pressupõe leitor-modelo culto."},
+        {"id": "parodia_lit", "label": "Paródia", "description": "Retomada transformadora e crítica. Mantém a forma do original e subverte o conteúdo (ou vice-versa)."},
+        {"id": "pastiche_lit", "label": "Pastiche", "description": "Imitação do estilo de outro autor sem subversão crítica. Homenagem ou exercício."},
+        {"id": "hipotexto", "label": "Hipotexto / Hipertexto (Genette)", "description": "Hipotexto = texto-fonte. Hipertexto = texto que o transforma. Ex.: Ulysses (Joyce) = hipertexto da Odisseia."},
+        {"id": "epifania", "label": "Epígrafe", "description": "Citação inicial que orienta a leitura e situa o texto numa tradição ou diálogo."}
+      ],
+      "note": "A competência intertextual do leitor determina quais camadas de sentido são acessíveis. Um texto pode ser lido sem o intertexto, mas o sentido construído será diferente."
+    }
+  ]
+}

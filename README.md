@@ -41,7 +41,7 @@ O Authoria carrega o arquivo, recalcula o hash e gera um **relatório técnico p
 - Post-its vinculados ao texto
 - Pomodoro integrado (25/50 min)
 - QR code sync desktop ↔ mobile
-- Temas (paper, ink, blueprint, dark)
+- Temas: paper (claro) e chumbo (dark near-black)
 - Suporte a PT, EN, ES, FR
 - Templates: romance, roteiro, redação ENEM, ensaio, acadêmico
 - Régua de leitura para revisão

@@ -1,0 +1,40 @@
+{
+  "version": "2.0.0",
+  "source": "OpenWordNet-PT v1.0.0 + pt_dict_chunks",
+  "total_entries": 376410,
+  "chunks": [
+    "_",
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z"
+  ],
+  "fields": [
+    "pos",
+    "def",
+    "sin",
+    "ant"
+  ]
+}

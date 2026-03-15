@@ -1,0 +1,266 @@
+{
+  "version": "1.0",
+  "area": "text_production",
+  "topic": "text_genres",
+  "description": "Gêneros textuais do português brasileiro — tipologia, características estruturais, finalidade comunicativa, suporte e recursos linguísticos.",
+  "sources": [
+    "Bakhtin — Estética da Criação Verbal",
+    "Marcuschi — Produção Textual, Análise de Gêneros e Compreensão",
+    "Koch & Elias — Ler e Escrever",
+    "Dolz & Schneuwly — Gêneros Orais e Escritos na Escola"
+  ],
+  "note": "Gênero textual ≠ tipo textual. Tipo = modo de organização do discurso (narração, descrição, argumentação, exposição, injunção). Gênero = prática sociocomunicativa historicamente situada com características relativamente estáveis.",
+  "entries": [
+    {
+      "id": "tipos_textuais",
+      "label": "Tipos Textuais",
+      "definition": "Modos de organização discursiva que se manifestam nos gêneros. Um gênero pode combinar múltiplos tipos.",
+      "types": [
+        {
+          "id": "narracao",
+          "label": "Narração",
+          "definition": "Relata eventos em sequência temporal, com personagens, conflito e resolução.",
+          "elements": ["narrador", "personagens", "tempo", "espaço", "enredo (situação inicial → conflito → clímax → desfecho)"],
+          "linguistic_markers": ["verbos de ação no pretérito", "conectores temporais (então, depois, quando, logo que)", "discurso direto/indireto", "advérbios de tempo e lugar"],
+          "genres": ["conto", "romance", "crônica narrativa", "fábula", "lenda", "reportagem", "relato de experiência"]
+        },
+        {
+          "id": "descricao",
+          "label": "Descrição",
+          "definition": "Representa características de pessoas, lugares, objetos ou situações — estática (estado) ou dinâmica (processo em andamento).",
+          "types_inner": [
+            {"label": "Objetiva", "note": "privilegia dados mensuráveis, sem julgamento"},
+            {"label": "Subjetiva", "note": "incorpora a perspectiva e os valores do observador"}
+          ],
+          "linguistic_markers": ["verbos de estado (ser, estar, parecer, ter)", "adjetivos e locuções adjetivas", "comparações e metáforas", "advérbios de modo e lugar", "orações adjetivas"],
+          "genres": ["verbete de enciclopédia", "laudo técnico", "ekphrasis literária", "perfil jornalístico", "manual de produto"]
+        },
+        {
+          "id": "argumentacao",
+          "label": "Argumentação",
+          "definition": "Expõe uma tese e a sustenta com argumentos, visando convencer ou persuadir o interlocutor.",
+          "elements": ["tese (posição do enunciador)", "argumentos (razões que sustentam)", "contra-argumentos (e sua refutação)", "conclusão"],
+          "linguistic_markers": ["conectores argumentativos (portanto, logo, assim, por isso, em razão disso)", "concessão (embora, apesar de, ainda que)", "modalizadores (certamente, provavelmente, é necessário que)", "verbos de opinião (acredito, defendo, sustento)"],
+          "genres": ["artigo de opinião", "editorial", "carta argumentativa", "ensaio", "dissertação acadêmica", "debate"]
+        },
+        {
+          "id": "exposicao",
+          "label": "Exposição / Explicação",
+          "definition": "Apresenta, explica e organiza informações sobre um tema, sem necessariamente tomar partido.",
+          "linguistic_markers": ["verbos de processo cognitivo (analisar, explicar, apresentar, demonstrar)", "definições ('X é...', 'entende-se por...')", "exemplos introduzidos por 'por exemplo', 'como', 'tal como'", "reformulações ('ou seja', 'isto é', 'em outras palavras')"],
+          "genres": ["artigo científico", "verbete", "relatório", "conferência", "aula expositiva", "documentário"]
+        },
+        {
+          "id": "injuncao",
+          "label": "Injunção / Instrução",
+          "definition": "Orienta o interlocutor a realizar ações. Predominam instruções, ordens, recomendações.",
+          "linguistic_markers": ["imperativo afirmativo e negativo", "infinitivo instrucional", "futuro do presente prescritivo ('o candidato deverá...')", "numeração de passos", "verbos modais (deve, precisa, é necessário)"],
+          "genres": ["manual de instruções", "receita culinária", "regulamento", "lei/decreto", "bula de remédio", "tutorial"]
+        }
+      ]
+    },
+    {
+      "id": "generos_literarios",
+      "label": "Gêneros Literários",
+      "entries": [
+        {
+          "id": "conto",
+          "label": "Conto",
+          "type": "narrativo",
+          "definition": "Narrativa curta, geralmente com um único conflito central, poucos personagens e unidade de efeito. Desfecho concentrado.",
+          "structure": "situação inicial → tensão → clímax → desfecho (geralmente surpreendente ou aberto)",
+          "varieties": ["conto de fadas", "conto fantástico", "conto policial", "conto de horror", "flash fiction (microconto)"],
+          "references": ["Poe — teoria da unidade de efeito", "Cortázar — Do conto breve e seus arredores"],
+          "linguistic_features": ["economia narrativa", "cada palavra tem peso", "tempo verbal condensado", "abertura in medias res frequente"]
+        },
+        {
+          "id": "cronica",
+          "label": "Crônica",
+          "type": "narrativo/argumentativo/lírico",
+          "definition": "Texto curto, publicado em jornal/revista, que parte do cotidiano para reflexão lírica, humorística ou crítica. Gênero híbrido por excelência.",
+          "features": ["brevidade", "linguagem acessível e coloquial", "ponto de vista pessoal e marcado", "atemporalidade apesar da origem jornalística"],
+          "varieties": ["crônica narrativa", "crônica argumentativa", "crônica lírica", "crônica humorística"],
+          "references": ["Antônio Cândido — A vida ao rés-do-chão", "Carlos Drummond de Andrade", "Rubem Braga", "Clarice Lispector (Descoberta do Mundo)"]
+        },
+        {
+          "id": "romance",
+          "label": "Romance",
+          "type": "narrativo",
+          "definition": "Narrativa longa, com múltiplos personagens, conflitos entrelaçados, desenvolvimento psicológico e abrangência social/histórica.",
+          "elements": ["enredo principal + subtramas", "personagens com interiority (monólogo, fluxo de consciência)", "tempo diegético amplo", "espaço múltiplo ou simbólico"],
+          "varieties": ["romance histórico", "romance psicológico", "romance social", "romance de formação (Bildungsroman)", "romance policial", "romance distópico"],
+          "note": "O romance é o gênero moderno por excelência — nasce com a burguesia e o capitalismo tipográfico."
+        },
+        {
+          "id": "poema",
+          "label": "Poema",
+          "type": "lírico",
+          "definition": "Texto que explora a dimensão sonora, rítmica e imagética da linguagem. Pode ou não ter metro e rima fixos.",
+          "elements": ["eu lírico (≠ autor)", "imagem poética", "ritmo (metro ou ritmo livre)", "figuras de linguagem densas"],
+          "varieties": ["soneto (14 versos: 2 quartetos + 2 tercetos)", "ode", "elegia", "haiku (5-7-5 sílabas, 3 versos)", "poema concreto", "slam/spoken word"],
+          "distinction": "Eu lírico ≠ eu empírico do autor. O poema constrói uma voz, não necessariamente autobiográfica."
+        },
+        {
+          "id": "drama",
+          "label": "Drama / Teatro",
+          "type": "dramático",
+          "definition": "Texto concebido para encenação — predominam diálogos, rubricas e divisão em atos/cenas.",
+          "structure": "didascálias (rubricas de cena) + falas + atos + cenas",
+          "varieties": ["tragédia (queda do herói por hamartia)", "comédia (conflito resolvido positivamente)", "drama moderno (realismo)", "teatro do absurdo", "musical"],
+          "note": "Na análise do texto dramático: distinguir texto principal (falas) de texto secundário (rubricas). O teatro é literatura + arte performática."
+        }
+      ]
+    },
+    {
+      "id": "generos_jornalisticos",
+      "label": "Gêneros Jornalísticos",
+      "entries": [
+        {
+          "id": "noticia",
+          "label": "Notícia",
+          "definition": "Relato objetivo e atual de fato de interesse público. Estrutura em pirâmide invertida: as informações mais importantes primeiro.",
+          "structure": "lide (quem, o quê, quando, onde, como, por quê) + corpo (detalhes em ordem decrescente de importância)",
+          "features": ["impessoalidade", "ausência de opinião explícita", "verbos na voz passiva ou 3ª pessoa", "citações de fontes com atribuição"]
+        },
+        {
+          "id": "reportagem",
+          "label": "Reportagem",
+          "definition": "Aprofundamento jornalístico de um tema. Mais longa que a notícia, com contextualização, múltiplas fontes e narrativa mais elaborada.",
+          "varieties": ["reportagem investigativa", "grande reportagem", "reportagem-perfil"],
+          "features": ["múltiplas vozes (polifonia)", "contexto histórico e social", "elementos narrativos e descritivos", "pode incluir opinião indireta pela seleção das fontes"]
+        },
+        {
+          "id": "artigo_opiniao",
+          "label": "Artigo de opinião",
+          "definition": "Texto argumentativo assinado por colaborador com posicionamento explícito sobre tema de relevância pública.",
+          "structure": "apresentação do tema → tese → argumentos → conclusão/proposta de intervenção",
+          "features": ["1ª pessoa ou impessoal opinativo", "argumentos de autoridade, exemplificação, causa e consequência", "linguagem formal com marcas de subjetividade"]
+        },
+        {
+          "id": "editorial",
+          "label": "Editorial",
+          "definition": "Texto argumentativo que expressa a posição institucional do veículo (não assinado ou assinado pela redação).",
+          "distinction": "editorial ≠ artigo de opinião: o editorial fala pela empresa jornalística; o artigo representa o autor individual"
+        },
+        {
+          "id": "cronica_jornalistica",
+          "label": "Crônica jornalística",
+          "definition": "Texto curto, assinado, sobre o cotidiano — híbrido entre jornalismo e literatura.",
+          "note": "Ver 'crônica' em gêneros literários."
+        }
+      ]
+    },
+    {
+      "id": "generos_academicos",
+      "label": "Gêneros Acadêmicos",
+      "entries": [
+        {
+          "id": "resumo",
+          "label": "Resumo",
+          "definition": "Condensação fiel do conteúdo essencial de um texto-fonte. Sem comentários ou opiniões do autor do resumo.",
+          "varieties": [
+            {"label": "Resumo indicativo", "note": "apenas aponta os temas abordados — não substitui o texto original"},
+            {"label": "Resumo informativo", "note": "apresenta os dados principais, objetivos, métodos, resultados — pode substituir o original para triagem"},
+            {"label": "Abstract", "note": "resumo em inglês de trabalho científico — norma ABNT NBR 6028"}
+          ],
+          "rules": ["sem citações diretas", "sem exemplos desenvolvidos", "sem juízo de valor", "usar 3ª pessoa ou impessoal", "verbos no presente do indicativo"]
+        },
+        {
+          "id": "resenha",
+          "label": "Resenha",
+          "definition": "Apresentação + avaliação crítica de uma obra (livro, filme, espetáculo). Contém resumo, contextualização e julgamento fundamentado.",
+          "structure": "apresentação da obra + contextualização do autor + síntese do conteúdo + avaliação crítica fundamentada",
+          "distinction": "resenha ≠ resumo: a resenha inclui avaliação; o resumo é neutro"
+        },
+        {
+          "id": "ensaio",
+          "label": "Ensaio",
+          "definition": "Texto de reflexão pessoal e aprofundada sobre um tema, com voz autoral marcada. Entre o acadêmico e o literário.",
+          "features": ["tese desenvolvida com argumentação densa", "exemplos literários e culturais", "intertextualidade explícita", "estilo elaborado e pessoal", "ausência de estrutura rígida"],
+          "references": ["Montaigne — inventor do gênero (séc. XVI)", "Virginia Woolf — ensaísmo literário", "Octavio Paz — O Labirinto da Solidão"]
+        },
+        {
+          "id": "artigo_cientifico",
+          "label": "Artigo científico",
+          "definition": "Relato de pesquisa original, submetido a periódico científico com revisão por pares.",
+          "structure": "título + autores + abstract + palavras-chave + introdução + metodologia + resultados + discussão + conclusão + referências",
+          "linguistic_features": ["impessoalidade (predomínio de voz passiva ou 'o estudo mostra...')", "terminologia técnica precisa", "hedging (atenuadores de afirmação: 'sugere', 'indica', 'parece que')", "citação obrigatória (ABNT, APA, Vancouver)"]
+        },
+        {
+          "id": "monografia_tcc",
+          "label": "Monografia / TCC / Dissertação / Tese",
+          "definition": "Trabalho acadêmico extenso que desenvolve pesquisa original ou revisão sistemática sobre tema específico.",
+          "hierarchy": [
+            {"label": "TCC (graduação)", "scope": "revisão bibliográfica ou pesquisa inicial"},
+            {"label": "Dissertação (mestrado)", "scope": "pesquisa original ou aprofundada"},
+            {"label": "Tese (doutorado)", "scope": "contribuição inédita ao campo do conhecimento"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "generos_cotidianos",
+      "label": "Gêneros do Cotidiano",
+      "entries": [
+        {
+          "id": "carta",
+          "label": "Carta",
+          "varieties": [
+            {"label": "Carta pessoal", "features": ["linguagem informal", "destinatário específico", "vínculo afetivo", "saudação + corpo + despedida"]},
+            {"label": "Carta formal/comercial", "features": ["linguagem formal", "objetividade", "tratamento adequado ao destinatário", "estrutura protocolar"]},
+            {"label": "Carta argumentativa (ENEM)", "features": ["interlocutor definido", "proposta de intervenção", "argumentação estruturada"]}
+          ]
+        },
+        {
+          "id": "email",
+          "label": "E-mail",
+          "definition": "Suporte digital da carta. Registro varia de informal a formal conforme a situação.",
+          "features": ["assunto obrigatório (substitui o título)", "saudação inicial e despedida", "linguagem adequada ao destinatário e contexto"]
+        },
+        {
+          "id": "curriculo",
+          "label": "Currículo",
+          "definition": "Documento que apresenta a trajetória profissional e acadêmica de um candidato.",
+          "features": ["objetividade", "cronologia inversa (mais recente primeiro)", "sem verbos na 1ª pessoa (estilo telegráfico: 'Responsável por...')", "adequação à vaga"]
+        },
+        {
+          "id": "receita",
+          "label": "Receita (culinária)",
+          "definition": "Gênero instrucional — lista de ingredientes + modo de preparo em sequência.",
+          "features": ["imperativo ou infinitivo instrucional", "numeração de passos", "linguagem precisa (quantidades, temperaturas, tempos)", "possibilidade de voz autoral em variações modernas"]
+        },
+        {
+          "id": "bula",
+          "label": "Bula de remédio",
+          "definition": "Texto técnico-informativo que apresenta composição, indicações, posologia, contraindicações e efeitos adversos de medicamento.",
+          "features": ["linguagem técnica + versão para paciente em linguagem acessível", "impessoalidade", "imperativo instrucional na posologia", "formato regulado pela ANVISA"]
+        }
+      ]
+    },
+    {
+      "id": "generos_digitais",
+      "label": "Gêneros Digitais",
+      "note": "Gêneros emergentes — características fluidas e em constante transformação.",
+      "entries": [
+        {
+          "id": "post_rede_social",
+          "label": "Post (rede social)",
+          "features": ["brevidade extrema", "multimodalidade (texto + imagem + emoji)", "hashtags e marcações", "alta interatividade (curtidas, compartilhamentos)", "linguagem coloquial ou mista"],
+          "varieties": ["post informativo", "post opinativo", "post humorístico (meme)", "post narrativo (thread)"]
+        },
+        {
+          "id": "blog",
+          "label": "Blog / Newsletter",
+          "features": ["voz autoral marcada", "periodicidade", "hibridismo de gêneros (crônica, ensaio, tutorial)", "interatividade via comentários", "linguagem entre formal e informal"],
+          "note": "Newsletter recupera formato de carta/boletim com distribuição digital direta ao leitor."
+        },
+        {
+          "id": "podcast_roteiro",
+          "label": "Podcast (roteiro)",
+          "features": ["oralidade planejada", "marcadores de fala (né, então, olha)", "referências a episódios e comunidade", "hibridismo: entrevista + ensaio + narração"],
+          "note": "O roteiro de podcast é gênero escrito com marcas de oralidade projetadas — planejamento da fala espontânea."
+        }
+      ]
+    }
+  ]
+}

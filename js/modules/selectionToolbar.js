@@ -1,6 +1,7 @@
 import { insertNodeAtCaret } from "./dom.js";
 import { createPostit } from "./postits.js";
 import { openSelectionConsultSlice } from "./slices.js";
+import { openCoordenador } from "./coordenador.js";
 
 function rangeTouchesSlice(editorEl, range) {
   const slices = editorEl.querySelectorAll(".slice");
@@ -26,11 +27,19 @@ function normalizeSelectionText(text) {
     .slice(0, 120);
 }
 
+function countWords(text) {
+  return text.split(/\s+/).filter(Boolean).length;
+}
+
 export function initSelectionToolbar(ctx, editorEl) {
   const toolbar = ctx?.refs?.selectionToolbarEl || document.getElementById("selectionToolbar");
   if (!toolbar || !editorEl) return;
 
+  const consultBtn = toolbar.querySelector('[data-act="consult"]');
+  const inspectBtn = toolbar.querySelector('[data-act="inspect"]');
+
   let selectedText = "";
+  let selectedTextFull = "";
   let selectedRange = null;
   let raf = 0;
 
@@ -71,6 +80,7 @@ export function initSelectionToolbar(ctx, editorEl) {
     if (!text) {
       selectedRange = null;
       selectedText = "";
+      selectedTextFull = "";
       hide();
       return;
     }
@@ -79,12 +89,19 @@ export function initSelectionToolbar(ctx, editorEl) {
     if (!rect || rect.width === 0 || rect.height === 0) {
       selectedRange = null;
       selectedText = "";
+      selectedTextFull = "";
       hide();
       return;
     }
 
     selectedRange = range.cloneRange();
     selectedText = text;
+    selectedTextFull = sel.toString().replace(/\s+/g, " ").trim();
+
+    const isMultiWord = countWords(text) > 1;
+    if (consultBtn) consultBtn.hidden = isMultiWord;
+    if (inspectBtn) inspectBtn.hidden = !isMultiWord;
+
     show(rect);
   };
 
@@ -125,6 +142,14 @@ export function initSelectionToolbar(ctx, editorEl) {
         ctx.setStatus?.(`consulta: ${selectedText}`);
       }
       hide();
+      return;
+    }
+
+    if (action === "inspect") {
+      const text = selectedTextFull;
+      const range = selectedRange?.cloneRange() ?? null;
+      hide();
+      openCoordenador(ctx, text, range);
       return;
     }
 

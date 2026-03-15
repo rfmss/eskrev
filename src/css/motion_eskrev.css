@@ -1,0 +1,198 @@
+/* =========================================================
+   ESKREV MOTION IDENTITY
+   Pacote de animação unificado — "isso é muito eskrev"
+
+   Filosofia:
+   - Entrada com propósito: objetos chegam de baixo, leves
+   - Saída invisível: desaparecem sem drama
+   - Hover: elevação sutil (translateY -2px), não escala
+   - Sem bounce, sem easing agressivo
+   - Velocidade editorial: rápido como uma vírgula
+   ========================================================= */
+
+/* ── Keyframes ────────────────────────────────────────── */
+
+@keyframes eskrev-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes eskrev-enter-fast {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes eskrev-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes eskrev-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Layout 2030: entrada de painéis ─────────────────── */
+
+body.layout-2030 .drawer.open,
+body.theme-iso .drawer.open {
+  animation: eskrev-enter var(--iso-dur-base) var(--iso-ease) both;
+}
+
+body.layout-2030 .hud,
+body.theme-iso .hud {
+  animation: eskrev-enter-fast var(--iso-dur-fast) var(--iso-ease) both;
+}
+
+/* ── Modais ───────────────────────────────────────────── */
+
+body.layout-2030 .modal-overlay.active .modal-box,
+body.theme-iso .modal-overlay.active .modal-box {
+  animation: eskrev-scale-in var(--iso-dur-base) var(--iso-ease) both;
+}
+
+body.layout-2030 .command-palette-box,
+body.theme-iso .command-palette-box {
+  animation: eskrev-scale-in var(--iso-dur-fast) var(--iso-ease) both;
+}
+
+/* ── Persona menu ─────────────────────────────────────── */
+
+body.layout-2030 #goalPersonaMenu.active,
+body.theme-iso #goalPersonaMenu.active {
+  animation: eskrev-scale-in var(--iso-dur-base) var(--iso-ease) both;
+}
+
+/* ── Hover lift: elevação editorial ──────────────────── */
+
+body.layout-2030 .hud-btn,
+body.layout-2030 .drawer-tab-btn,
+body.theme-iso .hud-btn,
+body.theme-iso .drawer-tab-btn {
+  transition:
+    background var(--iso-dur-fast) var(--iso-ease),
+    border-color var(--iso-dur-fast) var(--iso-ease),
+    color var(--iso-dur-fast) var(--iso-ease),
+    transform var(--iso-dur-fast) var(--iso-ease),
+    box-shadow var(--iso-dur-fast) var(--iso-ease);
+}
+
+body.layout-2030 .hud-btn:hover,
+body.layout-2030 .drawer-tab-btn:hover,
+body.theme-iso .hud-btn:hover,
+body.theme-iso .drawer-tab-btn:hover {
+  transform: translateY(-1px);
+}
+
+body.layout-2030 .hud-btn:active,
+body.layout-2030 .drawer-tab-btn:active,
+body.theme-iso .hud-btn:active,
+body.theme-iso .drawer-tab-btn:active {
+  transform: translateY(0);
+}
+
+/* ── Nav thumbs hover lift ────────────────────────────── */
+
+body.layout-2030.editor-mode-overview .nav-thumb,
+body.theme-iso.editor-mode-overview .nav-thumb {
+  transition:
+    background var(--iso-dur-fast) var(--iso-ease),
+    border-color var(--iso-dur-fast) var(--iso-ease),
+    transform var(--iso-dur-fast) var(--iso-ease),
+    box-shadow var(--iso-dur-fast) var(--iso-ease);
+}
+
+body.layout-2030.editor-mode-overview .nav-thumb:hover,
+body.theme-iso.editor-mode-overview .nav-thumb:hover {
+  transform: translateY(-2px);
+}
+
+/* ── Page cards browse lift ───────────────────────────── */
+
+@supports selector(:has(*)) {
+  body.layout-2030.theme-iso.editor-mode-browse:has(#pageMarkers .page-card) .page-card {
+    transition:
+      transform var(--iso-dur-base) var(--iso-ease),
+      opacity var(--iso-dur-base) var(--iso-ease),
+      filter var(--iso-dur-base) var(--iso-ease),
+      border-color var(--iso-dur-fast) var(--iso-ease),
+      box-shadow var(--iso-dur-base) var(--iso-ease);
+  }
+}
+
+/* ── Persona item hover ───────────────────────────────── */
+
+body.layout-2030 #goalPersonaMenu .goal-persona-item,
+body.theme-iso #goalPersonaMenu .goal-persona-item {
+  transition:
+    background var(--iso-dur-fast) var(--iso-ease),
+    border-color var(--iso-dur-fast) var(--iso-ease),
+    padding var(--iso-dur-fast) var(--iso-ease);
+}
+
+/* ── Command palette items ────────────────────────────── */
+
+body.layout-2030 .command-palette-item,
+body.theme-iso .command-palette-item {
+  transition:
+    background var(--iso-dur-fast) var(--iso-ease),
+    border-color var(--iso-dur-fast) var(--iso-ease),
+    transform var(--iso-dur-fast) var(--iso-ease);
+}
+
+body.layout-2030 .command-palette-item:hover,
+body.theme-iso .command-palette-item:hover {
+  transform: translateY(-1px);
+}
+
+/* ── Goal ladder button ───────────────────────────────── */
+
+body.layout-2030 #goalLadderBtn,
+body.theme-iso #goalLadderBtn {
+  transition:
+    background var(--iso-dur-fast) var(--iso-ease),
+    border-color var(--iso-dur-fast) var(--iso-ease),
+    transform var(--iso-dur-fast) var(--iso-ease),
+    box-shadow var(--iso-dur-fast) var(--iso-ease);
+}
+
+body.layout-2030 #goalLadderBtn:hover,
+body.theme-iso #goalLadderBtn:hover {
+  transform: translateY(-1px);
+}
+
+/* ── Editor wrap: entrada no carregamento ─────────────── */
+
+body.layout-2030 #editorWrap,
+body.theme-iso #editorWrap {
+  animation: eskrev-enter 200ms var(--iso-ease) both;
+}
+
+/* ── Reduced motion ───────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  body.layout-2030 *,
+  body.theme-iso * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

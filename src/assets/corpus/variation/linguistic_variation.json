@@ -1,0 +1,278 @@
+{
+  "version": "1.0",
+  "area": "variation",
+  "topic": "linguistic_variation",
+  "description": "Variação linguística do português brasileiro — tipos de variação, registros, dialetos, socioletos, fenômenos de contato e preconceito linguístico.",
+  "sources": [
+    "Bagno — Nada na língua é por acaso",
+    "Bagno — Preconceito linguístico: o que é, como se faz",
+    "Faraco — Norma Culta Brasileira",
+    "Coseriu — Teoria da Linguagem e Linguística Geral",
+    "Labov — Sociolinguística: Padrões"
+  ],
+  "entries": [
+    {
+      "id": "tipos_variacao",
+      "label": "Tipos de Variação Linguística",
+      "definition": "A língua varia em função de quem fala, onde, quando e em que situação. Nenhuma variante é intrinsecamente superior a outra — são adequadas a contextos diferentes.",
+      "types": [
+        {
+          "id": "diatopica",
+          "label": "Diatópica (Geográfica / Dialetal)",
+          "definition": "Variação no espaço geográfico. Diferenças de pronúncia, vocabulário e gramática entre regiões.",
+          "examples_br": [
+            {
+              "phenomenon": "Vogais médias pretônicas",
+              "description": "Abertura diferente das vogais /e/ e /o/ antes da sílaba tônica.",
+              "regional": "Rio de Janeiro tende ao fechamento; Sul/SP ao aberto; Nordeste mais aberto ainda."
+            },
+            {
+              "phenomenon": "Pronúncia do /r/ posvocálico",
+              "regional": "Caipira (retroflex): 'porta' com /ɻ/; Carioca: fricativa /x/; gaucho: vibrante"
+            },
+            {
+              "phenomenon": "Vocabulário regional",
+              "examples": [
+                {"word": "mandioca", "variants": ["aipim (Sul/RJ)", "macaxeira (Nordeste)"]},
+                {"word": "ônibus", "variants": ["busão (SP coloquial)", "lotação (RJ antigo)"]},
+                {"word": "menino", "variants": ["guri (Sul)", "moleque (RJ)", "menino (SP/Nordeste)", "pivete (PE)", "coroa (gíria)"]}
+              ]
+            }
+          ],
+          "note": "Dialeto = variedade regional com características sistemáticas próprias. Todo falante tem um dialeto — inclusive o 'padrão' é um dialeto com prestígio histórico-político."
+        },
+        {
+          "id": "diastratica",
+          "label": "Diastrática (Social)",
+          "definition": "Variação em função de fatores sociais: classe, escolaridade, geração, gênero, etnia.",
+          "phenomena": [
+            {
+              "id": "socioleto",
+              "label": "Socioleto",
+              "definition": "Variedade associada a grupo social específico.",
+              "examples": [
+                {"group": "Jovens urbanos", "features": "gírias, encurtamentos, ressignificações ('que delícia', 'surreal', 'top')"},
+                {"group": "Grupos LGBT+", "features": "pajubá/bajubá: vocabulário específico de resistência e identidade"},
+                {"group": "Grupos profissionais", "features": "jargão médico, jurídico, tecnológico — compreensível apenas a iniciados"},
+                {"group": "Grupos criminais", "features": "calão: vocabulário de ocultamento semântico"}
+              ]
+            },
+            {
+              "id": "variacao_etaria",
+              "label": "Variação etária",
+              "description": "A língua muda de geração a geração. Termos novos coexistem com arcaísmos.",
+              "examples": [
+                "Geração Z: 'surtir', 'cancelar', 'ship', 'xingamento com 'né não'",
+                "Geração anterior: 'legal' (surgiu nos 60s), 'barato' (gíria ressignificada)",
+                "Arcaísmos: 'vossemecê' > 'você'; 'botica' > 'farmácia'"
+              ]
+            },
+            {
+              "id": "variacao_genero",
+              "label": "Variação de gênero",
+              "description": "Pesquisas sociolinguísticas mostram que mulheres, em geral, lideram mudanças linguísticas e tendem ao prestígio aberto; homens tendem ao prestígio encoberto (variantes não-padrão como marcadores de solidariedade)."
+            }
+          ]
+        },
+        {
+          "id": "diafasica",
+          "label": "Diafásica (Situacional / Registro)",
+          "definition": "Variação em função da situação comunicativa — o mesmo falante usa registros diferentes conforme o contexto.",
+          "registers": [
+            {
+              "id": "registro_formal",
+              "label": "Registro formal (culto)",
+              "contexts": ["textos acadêmicos", "documentos jurídicos", "discursos solenes", "literatura canônica", "jornalismo de referência"],
+              "features": ["vocabulário preciso e amplo", "concordância plena", "orações subordinadas complexas", "ausência de gíria", "norma-padrão"]
+            },
+            {
+              "id": "registro_informal",
+              "label": "Registro informal (coloquial)",
+              "contexts": ["conversas entre amigos", "WhatsApp", "redes sociais pessoais", "narrativa coloquial"],
+              "features": ["gírias e expressões idiomáticas", "contrações ('tô', 'pra', 'né')", "concordância parcial ('nós foi')", "frases curtas e interrompidas", "anacolutos frequentes"]
+            },
+            {
+              "id": "registro_tecnico",
+              "label": "Registro técnico-científico",
+              "contexts": ["artigos científicos", "manuais técnicos", "relatórios"],
+              "features": ["terminologia especializada", "impessoalidade", "voz passiva frequente", "precisão sem ambiguidade"]
+            },
+            {
+              "id": "registro_literario",
+              "label": "Registro literário",
+              "contexts": ["ficção", "poesia", "crônica"],
+              "features": ["pode mesclar todos os registros intencionalmente", "a adequação ao contexto é substituída pela escolha estética", "violações da norma são figuras de linguagem"]
+            }
+          ],
+          "note": "Adequação de registro = usar o nível de formalidade compatível com o contexto. Não é questão de 'certo ou errado', mas de apropriado ou inadequado."
+        },
+        {
+          "id": "diacronica",
+          "label": "Diacrônica (Histórica)",
+          "definition": "Variação ao longo do tempo. A língua de hoje é diferente da de cem anos atrás.",
+          "phenomena": [
+            "Mudança fonológica: latim /kt/ > português /it/ (lacte > leite, nocte > noite)",
+            "Mudança lexical: 'botica' → 'farmácia', 'estalagem' → 'hotel'",
+            "Mudança gramatical: 'vós' praticamente desapareceu do PB coloquial; 'tu' recupera-se em várias regiões",
+            "Mudança semântica: 'idiota' (antes: pessoa simples), 'velhaco' (antes: ancião)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fenomenos_pb",
+      "label": "Fenômenos do Português Brasileiro",
+      "description": "Características que distinguem o PB do português europeu e do português padrão prescrito — alguns são estigmatizados, mas todos são sistemáticos.",
+      "entries": [
+        {
+          "id": "concordancia_nao_padrao",
+          "label": "Concordância verbal não-padrão",
+          "description": "Ausência de concordância nas variedades populares é fenômeno sistemático — não 'erro aleatório'.",
+          "examples": [
+            "'Nós foi lá' (em vez de 'fomos') — concordância com a 3ª pessoa do singular, que 'nós' assume em variedades populares",
+            "'Eles foi' — 3ª singular generalizada",
+            "'A gente foi' — correto (a gente = 3ª sing.)"
+          ],
+          "sociolinguistic_note": "A não-concordância é estigmatizada socialmente, mas é sistemática: sempre ocorre segundo regras internas à variedade. 'Nós foi' nunca vira 'Nós foram' nessa variedade."
+        },
+        {
+          "id": "rotacismo",
+          "label": "Rotacismo",
+          "definition": "Substituição de /l/ por /r/ em grupos consonantais no início de sílaba.",
+          "examples": ["'vranco' (branco)", "'craro' (claro)", "'probrema' (problema)", "'flor' → 'fror' (algumas variedades)"],
+          "note": "Fenômeno presente no latim vulgar (→ português moderno: 'duplo' < 'diplus'). Estigmatizado no PB, mas historicamente corrente."
+        },
+        {
+          "id": "apagamento_r_final",
+          "label": "Apagamento do /r/ final",
+          "definition": "Em variedades populares e coloquiais, o /r/ final de infinitivos e outros morfemas é apagado.",
+          "examples": ["'comer' → 'comê'", "'falar' → 'falá'", "'correr' → 'corrê'"],
+          "note": "No carioca culto, o /r/ final também é fricativa velar fraca, quase apagada em alguns contextos."
+        },
+        {
+          "id": "uso_tu_voce",
+          "label": "'Tu' vs. 'você'",
+          "description": "No PB, 'você' é o pronome de tratamento predominante (2ª pessoa singular) em quase todo o país. 'Tu' sobrevive no RS, PA, MA, regiões litorâneas do NE, e está se recuperando no RJ.",
+          "complexity": "'Tu' com conjugação de 3ª pessoa ('tu foi', 'tu quer') é forma não-padrão mas sistemática e amplamente usada.",
+          "standard": "Na norma culta escrita: 'tu' exige conjugação na 2ª pessoa ('tu foste', 'tu queres')."
+        },
+        {
+          "id": "objeto_direto_nulo",
+          "label": "Objeto direto nulo (OD nulo)",
+          "definition": "No PB, é muito comum omitir o objeto direto anafórico (já mencionado), em vez de usar pronome.",
+          "examples": [
+            "'Você viu o filme? — Vi. (∅)' (em vez de 'Vi-o' ou 'Vi ele')",
+            "'Comprei a revista e li (∅) ontem.' (em vez de 'li-a')"
+          ],
+          "note": "O PE usa pronome clítico ('Comprei-a e li-a'). No PB, o OD nulo é a norma coloquial; o clítico fica na norma escrita formal."
+        },
+        {
+          "id": "pronomes_retos_obliquos",
+          "label": "Pronomes retos em função de oblíquos",
+          "description": "No PB coloquial, pronomes retos assumem função de objeto e complemento.",
+          "examples": [
+            "'Vi ele.' (em vez de 'Vi-o') — PB coloquial",
+            "'Ela me ligou para mim.' — redundância coloquial",
+            "'Trouxe para ele.' (em vez de 'trouxe-lhe') — predominante no PB"
+          ],
+          "note": "O uso de 'lhe' como OI é mantido na norma culta escrita, mas raro na fala."
+        },
+        {
+          "id": "posicao_pronomes",
+          "label": "Próclise vs. ênclise no PB",
+          "description": "O PB coloquial tende fortemente à próclise (pronome antes do verbo) em todos os contextos, inclusive os que a norma prescreve ênclise.",
+          "examples": [
+            "'Me dá isso.' (início de frase — norma culta proíbe; coloquial permite)",
+            "'Eu me machuquei.' vs. 'Machuquei-me.' (ambas corretas)",
+            "'Vou te ligar.' vs. 'Vou ligar-te.' (PB prefere a primeira)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "preconceito_linguistico",
+      "label": "Preconceito Linguístico",
+      "definition": "Julgamento de valor sobre variedades linguísticas que não se baseia em critérios linguísticos, mas em preconceitos sociais, de classe, raça ou região.",
+      "principles": [
+        {
+          "id": "mito_lingua_unica",
+          "label": "Mito da língua única e imutável",
+          "description": "A crença de que existe 'uma língua correta' e que os desvios são 'erros'. Na linguística, todas as variedades são sistemáticas e legítimas — a noção de 'erro' é social, não linguística.",
+          "consequence": "A estigmatização de variedades populares penaliza grupos já marginalizados, associando capacidade intelectual à variante de prestígio."
+        },
+        {
+          "id": "norma_culta_vs_norma_padrao",
+          "label": "Norma culta ≠ norma-padrão",
+          "description": "Norma culta: o que os usuários cultos (com alta escolaridade) efetivamente usam na fala e escrita monitoradas. Norma-padrão: conjunto de prescrições gramaticais (o que os gramáticos dizem que se deve usar). As duas divergem em vários pontos no PB.",
+          "examples": [
+            "Norma-padrão: 'Vi-o ontem.' | Norma culta efetiva: 'Vi ele ontem.'",
+            "Norma-padrão: clíticos pós-verbais | Norma culta efetiva: pronome ante-verbal em muitos contextos",
+            "Norma-padrão: 'Nós fomos.' | Norma culta efetiva: 'A gente foi.' (em muitos contextos)"
+          ]
+        },
+        {
+          "id": "variacao_e_mudanca",
+          "label": "Variação e mudança são naturais",
+          "description": "Toda língua viva varia e muda. O latim 'errou' ao mudar para o português? A mudança linguística não é degradação — é o processo natural de vida da língua.",
+          "principle": "Língua morta é língua que não varia mais. Variação é sinal de vitalidade."
+        },
+        {
+          "id": "adequacao_contexto",
+          "label": "Adequação ao contexto como critério",
+          "description": "O critério legítimo não é 'certo ou errado', mas adequado ou inadequado ao contexto. Usar gíria numa tese ou jargão jurídico com amigos são igualmente inadequados.",
+          "literary_application": "Na ficção, usar a variedade do personagem (regional, coloquial) é escolha estética de autenticidade — não é 'erro ortográfico'."
+        }
+      ],
+      "references": [
+        "Marcos Bagno — Preconceito Linguístico (Loyola, 1999)",
+        "Carlos Alberto Faraco — Norma Culta Brasileira (Parábola, 2008)",
+        "Ataliba T. de Castilho — Nova Gramática do Português Brasileiro (Contexto, 2010)"
+      ]
+    },
+    {
+      "id": "contato_linguistico",
+      "label": "Contato Linguístico e Empréstimos",
+      "definition": "Fenômenos decorrentes do contato histórico do português com outras línguas no Brasil.",
+      "entries": [
+        {
+          "id": "indigenismos",
+          "label": "Indigenismos",
+          "description": "Palavras de línguas indígenas incorporadas ao português brasileiro — principalmente do tupi-guarani.",
+          "examples": {
+            "fauna": ["jacaré", "piranha", "capivara", "tucano", "jabuti"],
+            "flora": ["mandioca", "caju", "abacaxi", "ipê", "guaraná", "taioba"],
+            "lugares": ["Guanabara", "Tijuca", "Pará", "Paraná", "Itamarati"],
+            "outros": ["pipoca", "moqueca", "caipira", "bafafá", "cangaço (origem tupi discutida)"]
+          }
+        },
+        {
+          "id": "africanismos",
+          "label": "Africanismos",
+          "description": "Palavras de línguas africanas (bantu: quimbundo, quicongo; iorubá; eve-fon) incorporadas ao PB.",
+          "examples": {
+            "culinaria": ["acarajé", "vatapá", "dendê", "quiabo", "inhame", "jiló"],
+            "musica_religiao": ["samba", "axé", "candomblé", "orixá", "maculelê", "capoeira"],
+            "cotidiano": ["cachaça", "moleque", "quitanda", "mocambo", "cafuné", "bunda", "caçula", "miçanga"]
+          }
+        },
+        {
+          "id": "anglicismos",
+          "label": "Anglicismos",
+          "description": "Empréstimos do inglês — intensificados a partir do século XX, especialmente na tecnologia.",
+          "categories": [
+            {"area": "Tecnologia", "examples": ["internet", "software", "hardware", "download", "selfie", "streaming"]},
+            {"area": "Economia", "examples": ["marketing", "feedback", "startup", "benchmark", "stakeholder"]},
+            {"area": "Cultura pop", "examples": ["show", "rock", "hip-hop", "spoiler", "crossover"]},
+            {"area": "Aportuguesados", "examples": ["futebol (football)", "estresse (stress)", "xampu (shampoo)", "deletar (to delete — jargão)"]}
+          ]
+        },
+        {
+          "id": "italianismos",
+          "label": "Italianismos",
+          "description": "Empréstimos do italiano, intensificados pela imigração (1880-1930), especialmente no Sul e SP.",
+          "examples": ["macarrão", "pizza", "risoto", "cappuccino", "espaguete", "mafioso", "fichário (de 'ficário')", "polenta", "gripe (do it. 'grippe')"]
+        }
+      ]
+    }
+  ]
+}

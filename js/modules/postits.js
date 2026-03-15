@@ -1,5 +1,57 @@
 let postitSeq = 0;
 const POSTIT_TONES = ["yellow", "green", "blue", "pink"];
+const POSTITS_KEY = "skrv_postits_v1";
+
+// ── Persistência ──────────────────────────────────────────────────
+
+export function savePostits(ctx) {
+  const layer = getLayer(ctx);
+  if (!layer) return;
+  try {
+    const data = Array.from(layer.querySelectorAll(".postit")).map((note) => ({
+      id: note.dataset.postitId || "",
+      text: note.querySelector(".postitBody")?.textContent?.trim() || "",
+      tone: note.dataset.tone || POSTIT_TONES[0],
+      left: Number.parseFloat(note.style.left) || 0,
+      top: Number.parseFloat(note.style.top) || 0,
+      minimized: note.classList.contains("isMinimized"),
+    }));
+    localStorage.setItem(POSTITS_KEY, JSON.stringify(data));
+  } catch (_) {}
+}
+
+export function restorePostits(ctx) {
+  const layer = getLayer(ctx);
+  if (!layer) return;
+  try {
+    const raw = localStorage.getItem(POSTITS_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    if (!Array.isArray(data) || !data.length) return;
+    data.forEach((item) => {
+      const note = document.createElement("article");
+      note.className = "postit";
+      note.dataset.tone = POSTIT_TONES.includes(item.tone) ? item.tone : POSTIT_TONES[0];
+      if (item.id) note.dataset.postitId = item.id;
+      note.innerHTML = `
+        <header class="postitHead" title="Arraste para mover">
+          <div class="postitDots" aria-label="Cores do post-it">
+            <button class="postitToneBtn" type="button" title="Alternar cor"></button>
+          </div>
+          <span class="postitTitle">POST-IT</span>
+        </header>
+        <div class="postitBody"></div>
+      `;
+      const body = note.querySelector(".postitBody");
+      if (body) body.textContent = item.text || "";
+      note.style.left = `${Math.round(item.left || 0)}px`;
+      note.style.top = `${Math.round(item.top || 0)}px`;
+      if (item.minimized) note.classList.add("isMinimized");
+      layer.appendChild(note);
+      bindPostit(ctx, note);
+    });
+  } catch (_) {}
+}
 
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
@@ -142,10 +194,12 @@ function bindPostit(ctx, note) {
     const next = POSTIT_TONES[(idx + 1) % POSTIT_TONES.length] || POSTIT_TONES[0];
     note.dataset.tone = next;
     syncToneButton();
+    savePostits(ctx);
   };
 
   const setFoldState = (minimized) => {
     note.classList.toggle("isMinimized", minimized);
+    savePostits(ctx);
   };
   const toggleFold = () => setFoldState(!note.classList.contains("isMinimized"));
 
@@ -193,10 +247,12 @@ function bindPostit(ctx, note) {
     note.classList.remove("isDragging");
     if (note.classList.contains("isDeleteReady")) {
       note.remove();
+      savePostits(ctx); // persiste a remoção
       return;
     }
     note.classList.remove("isDeleteReady");
     snapPostitOutsidePage(ctx, note);
+    savePostits(ctx); // persiste nova posição
   };
 
   head.addEventListener("pointerdown", (ev) => {
@@ -242,6 +298,10 @@ export function hydratePostits(ctx) {
   const layer = getLayer(ctx);
   if (!layer) return;
   layer.querySelectorAll(".postit").forEach((note) => bindPostit(ctx, note));
+  // Restaura post-its salvos de sessões anteriores (apenas se layer estiver vazio)
+  if (!layer.querySelector(".postit")) {
+    restorePostits(ctx);
+  }
 }
 
 export function createPostit(ctx, text) {
@@ -276,6 +336,7 @@ export function createPostit(ctx, text) {
   note.style.top = `${Math.round(defaultY)}px`;
 
   bindPostit(ctx, note);
+  savePostits(ctx);
   return note;
 }
 

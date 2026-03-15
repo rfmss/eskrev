@@ -7,22 +7,33 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 JS_FILES = [
-    os.path.join("src", "js", "app.js"),
-    os.path.join("src", "js", "modules", "auth.js"),
-    os.path.join("src", "js", "modules", "editor.js"),
-    os.path.join("src", "js", "modules", "mobile.js"),
-    os.path.join("src", "js", "modules", "qr_transfer.js"),
-    os.path.join("src", "js", "modules", "ui.js"),
-    os.path.join("src", "js", "modules", "reset_flow.js"),
-    os.path.join("src", "js", "modules", "modal_accessibility.js"),
-    os.path.join("src", "mobile", "mobile.js"),
+    os.path.join("js", "main.js"),
+    os.path.join("js", "modules", "coordenador.js"),
+    os.path.join("js", "modules", "dock.js"),
+    os.path.join("js", "modules", "dom.js"),
+    os.path.join("js", "modules", "flowMarkers.js"),
+    os.path.join("js", "modules", "grammarLint.js"),
+    os.path.join("js", "modules", "keyboardSfx.js"),
+    os.path.join("js", "modules", "layout.js"),
+    os.path.join("js", "modules", "lexCheck.js"),
+    os.path.join("js", "modules", "mesa.js"),
+    os.path.join("js", "modules", "notes.js"),
+    os.path.join("js", "modules", "page.js"),
+    os.path.join("js", "modules", "pageFlow.js"),
+    os.path.join("js", "modules", "postits.js"),
+    os.path.join("js", "modules", "scrollSync.js"),
+    os.path.join("js", "modules", "selectionToolbar.js"),
+    os.path.join("js", "modules", "slices.js"),
+    os.path.join("js", "modules", "textops.js"),
+    os.path.join("js", "modules", "themes.js"),
+    os.path.join("js", "modules", "verbete.js"),
+    os.path.join("js", "modules", "wordclass.js"),
 ]
 
 HTML_FILES = [
     "index.html",
     "mobile.html",
     "verify.html",
-    "totbooks.html",
 ]
 
 ALLOWLIST_FILE = os.path.join("tests", "dom_wiring_allowlist.txt")

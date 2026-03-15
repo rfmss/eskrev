@@ -85,3 +85,57 @@
 ^WhatsApp$
 ^bitcoin$
 ^pix/paypal$
+# index.html — strings intencionais da UI onep (sem i18n)
+^eskrev — Slice Writer$
+^offline · tudo salvo localmente$
+^Temas$
+^Alternar tema claro/escuro$
+^Alternar claro/escuro$
+^Documento$
+^Indicadores de páginas virtuais$
+^Tags de cortes$
+^Post-its$
+^Rolagem do conteúdo$
+^ready$
+^CONSULTAR$
+^POST-IT$
+^Notas$
+^NOTAS$
+^Fechar notas$
+^✕$
+^Buscar\.\.\. \(#tag ou /pasta\)$
+^NOVA NOTA$
+^PASTAS$
+^TAGS$
+^Sem notas ainda\.$
+^Crie sua primeira nota para começar\.$
+^CRIAR NOTA$
+^Nova nota$
+^Voltar$
+^Fixar nota$
+^Apagar nota$
+^\+ NOVA$
+^Título$
+^Tags \(#tag, #outra\)$
+^Pasta \(opcional\)$
+^Texto\.\.\.$
+^Modos de escrita$
+^MODOS$
+^Fechar modos$
+^Mesa de projetos$
+^MESA$
+^Fechar mesa$
+^Aqui você continua projetos exportados de outras sessões do eskrev, por arquivo \(\.skv\) ou pelo celular\.$
+^NOVO$
+^ABRIR CÁPSULA$
+^Em breve: importar via QR do celular$
+^PUXAR DO CELULAR$
+^Faça backup regularmente\.$
+^Use ABRIR CÁPSULA para restaurar um \.skv\.$
+# verify.html — strings intencionais da UI de verificação
+^Authoria — Verificação técnica$
+^Assinatura Authoria$
+^Carregue um arquivo \.skv para verificar a assinatura\.$
+^Chave pública embutida no arquivo$
+^A chave pública do autor está incluída no arquivo \.skv\. Nenhum arquivo adicional necessário\.$
+^offline · verificação disponível localmente$

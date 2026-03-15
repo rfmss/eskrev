@@ -1,0 +1,331 @@
+{
+  "version": "1.0",
+  "area": "text_production",
+  "topic": "argumentation",
+  "description": "Argumentação e retórica no português brasileiro — estrutura do texto argumentativo, tipos de argumento, falácias e estratégias de persuasão.",
+  "sources": [
+    "Perelman & Olbrechts-Tyteca — Tratado da Argumentação: A Nova Retórica",
+    "Aristóteles — Retórica",
+    "Koch — A Inter-ação pela Linguagem",
+    "Abreu — Curso de Redação"
+  ],
+  "entries": [
+    {
+      "id": "estrutura_argumentativa",
+      "label": "Estrutura do Texto Argumentativo",
+      "definition": "Organização textual que sustenta uma posição (tese) por meio de argumentos, visando convencer o interlocutor.",
+      "elements": [
+        {
+          "id": "tese",
+          "label": "Tese",
+          "definition": "Posição do enunciador sobre o tema — o ponto de vista que se defende. Deve ser clara, delimitada e sustentável.",
+          "characteristics": [
+            "É discutível (não pode ser um fato incontestável)",
+            "É delimitada (não tão ampla que não possa ser sustentada)",
+            "É relevante para o contexto comunicativo",
+            "Pode ser explícita (declarada) ou implícita (construída pelo encadeamento)"
+          ],
+          "examples": [
+            "A educação financeira deve ser obrigatória no ensino médio.",
+            "O trabalho remoto aumenta a produtividade em determinados setores.",
+            "A literatura de cordel é patrimônio cultural a ser preservado nas escolas."
+          ]
+        },
+        {
+          "id": "argumento",
+          "label": "Argumento",
+          "definition": "Razão ou conjunto de razões que sustentam a tese. Deve ser pertinente, suficiente e coerente.",
+          "components": [
+            {"label": "Premissa", "description": "ponto de partida aceito ou demonstrável"},
+            {"label": "Desenvolvimento", "description": "raciocínio que conecta a premissa à conclusão"},
+            {"label": "Conclusão", "description": "resultado do raciocínio — confirma a tese ou avança em direção a ela"}
+          ]
+        },
+        {
+          "id": "contra_argumento",
+          "label": "Contra-argumento e Refutação",
+          "definition": "O bom texto argumentativo antecipa objeções à tese e as refuta — demonstra conhecimento da complexidade do tema e fortalece a posição.",
+          "structure": "Apresenta a objeção → reconhece o que ela tem de válido (concessão) → rebate com argumento mais forte",
+          "connectors": ["embora seja verdade que... é preciso considerar que...", "apesar de..., ...", "ainda que... não se pode ignorar que...", "por mais que... o fato é que..."],
+          "example": "Embora o trabalho remoto possa gerar isolamento social, estudos mostram que a autonomia sobre o próprio tempo compensa esse aspecto em muitos perfis profissionais."
+        },
+        {
+          "id": "conclusao_arg",
+          "label": "Conclusão",
+          "definition": "Retoma a tese (reafirmando-a à luz dos argumentos desenvolvidos) e fecha o raciocínio. Não deve introduzir argumentos novos.",
+          "strategies": [
+            "Síntese dos argumentos principais",
+            "Proposta de solução ou intervenção (gênero ENEM)",
+            "Projeção de consequências",
+            "Chamada à reflexão ou à ação",
+            "Citação que sintetiza o raciocínio"
+          ]
+        }
+      ],
+      "models": [
+        {
+          "id": "modelo_classico",
+          "label": "Modelo clássico (dissertativo)",
+          "structure": "Introdução (contextualização + tese) → Desenvolvimento (1 ou mais parágrafos com argumento + evidência + comentário) → Conclusão (síntese + proposta/reflexão)"
+        },
+        {
+          "id": "modelo_toulmin",
+          "label": "Modelo de Toulmin",
+          "elements": [
+            {"label": "Dado (D)", "description": "fato ou evidência que sustenta o argumento"},
+            {"label": "Afirmação (A)", "description": "a tese ou posição defendida"},
+            {"label": "Garantia (G)", "description": "princípio geral que conecta D a A"},
+            {"label": "Suporte (S)", "description": "evidência que sustenta a garantia"},
+            {"label": "Qualificador modal (Q)", "description": "grau de certeza da afirmação (provavelmente, certamente)"},
+            {"label": "Refutação (R)", "description": "condições em que a afirmação não se aplicaria"}
+          ],
+          "note": "Útil para analisar argumentos científicos e jurídicos onde a garantia (a regra geral) deve ser explicitada."
+        }
+      ]
+    },
+    {
+      "id": "tipos_argumento",
+      "label": "Tipos de Argumento",
+      "entries": [
+        {
+          "id": "arg_autoridade",
+          "label": "Argumento de autoridade",
+          "definition": "Baseia-se na opinião ou pesquisa de especialista reconhecido na área.",
+          "examples": [
+            "Segundo a OMS, o sedentarismo mata mais que o tabagismo.",
+            "Pesquisa da USP demonstrou que..."
+          ],
+          "caution": "Risco de falácia se a autoridade citada não é especialista no campo em questão (apelo à autoridade inadequada).",
+          "good_practice": "Citar a fonte com precisão; preferir dados de pesquisas revisadas por pares a opiniões isoladas."
+        },
+        {
+          "id": "arg_exemplificacao",
+          "label": "Argumento por exemplificação",
+          "definition": "Usa casos concretos para ilustrar e sustentar uma afirmação geral.",
+          "examples": [
+            "A Finlândia, que adotou o modelo de educação com ênfase no bem-estar, alcançou as melhores avaliações do PISA.",
+            "Cidades como Curitiba e Bogotá demonstram que o transporte público eficiente reduz emissões."
+          ],
+          "caution": "Um único exemplo não prova uma regra geral (falácia de generalização precipitada). Usar junto com dados estatísticos sempre que possível."
+        },
+        {
+          "id": "arg_causa_consequencia",
+          "label": "Argumento de causa e consequência",
+          "definition": "Estabelece relação causal entre fenômenos para justificar a tese.",
+          "examples": [
+            "A falta de acesso à educação de qualidade perpetua o ciclo de pobreza.",
+            "A dependência de combustíveis fósseis é causa direta das emissões que aceleram as mudanças climáticas."
+          ],
+          "caution": "Cuidado com a falácia post hoc ergo propter hoc (depois, portanto causado por) — correlação não é causalidade."
+        },
+        {
+          "id": "arg_comparacao",
+          "label": "Argumento por comparação / analogia",
+          "definition": "Compara situações semelhantes para sustentar que o que é válido para uma é válido para a outra.",
+          "examples": [
+            "Assim como países que investiram em saneamento reduziram doenças, o Brasil pode obter resultado semelhante.",
+            "À semelhança do que ocorreu na epidemia de gripe espanhola, a desinformação agrava pandemias."
+          ],
+          "caution": "A analogia tem limite — contextos diferentes podem invalidar a comparação."
+        },
+        {
+          "id": "arg_dados_estatisticos",
+          "label": "Argumento com dados e estatísticas",
+          "definition": "Usa números, índices e pesquisas para sustentar afirmações.",
+          "examples": [
+            "Segundo o IBGE (2022), 33 milhões de brasileiros passam fome — dado que evidencia a urgência de políticas de segurança alimentar.",
+            "O índice de Gini do Brasil (0,54) é um dos maiores do mundo, revelando desigualdade estrutural."
+          ],
+          "good_practice": "Contextualizar o dado (de onde vem, quando foi coletado, o que significa) para que o leitor possa avaliá-lo.",
+          "caution": "Dados descontextualizados ou de fontes não confiáveis enfraquecem o argumento."
+        },
+        {
+          "id": "arg_principio",
+          "label": "Argumento por princípio / valor",
+          "definition": "Apela a valores éticos, morais ou jurídicos amplamente compartilhados (dignidade humana, justiça, igualdade) como fundamento.",
+          "examples": [
+            "A dignidade humana, princípio fundamental da CF/88, exige que o Estado garanta condições mínimas de existência.",
+            "A igualdade de oportunidades é um valor constitutivo de qualquer democracia."
+          ],
+          "note": "Eficaz quando os valores invocados são compartilhados pelo público-alvo. Em contextos de dissenso valorativo, este argumento pode ser fraco."
+        },
+        {
+          "id": "arg_reducao_absurdo",
+          "label": "Redução ao absurdo (reductio ad absurdum)",
+          "definition": "Demonstra que a posição oposta à tese leva a consequências absurdas ou inaceitáveis.",
+          "example": "Se aceitarmos que o Estado não deve regular o mercado financeiro, teremos que aceitar também que fraudes e monopólios são legítimos — o que nenhuma sociedade democrática pode tolerar."
+        },
+        {
+          "id": "arg_concessao",
+          "label": "Concessão retórica",
+          "definition": "Reconhece parcialmente a validade do ponto de vista contrário antes de refutá-lo. Constrói boa-fé argumentativa.",
+          "structure": "É verdade que X [ponto do oponente]. Contudo / No entanto / Ainda assim, Y [argumento do enunciador] prevalece porque Z.",
+          "example": "É verdade que o custo inicial das energias renováveis é elevado. No entanto, estudos de longo prazo demonstram que a economia gerada ao longo de 20 anos supera os investimentos."
+        }
+      ]
+    },
+    {
+      "id": "falacias",
+      "label": "Falácias Argumentativas",
+      "definition": "Argumentos que parecem válidos mas contêm erros lógicos ou apelos ilegítimos. Identificar falácias é essencial tanto para evitá-las quanto para refutar o adversário.",
+      "entries": [
+        {
+          "id": "ad_hominem",
+          "label": "Ad hominem",
+          "definition": "Ataca o enunciador em vez de seu argumento.",
+          "example": "Não deveríamos ouvir sua proposta econômica — ele nem terminou o ensino médio.",
+          "note": "A validade de um argumento é independente de quem o enuncia."
+        },
+        {
+          "id": "espantalho",
+          "label": "Espantalho (Strawman)",
+          "definition": "Distorce o argumento do oponente para uma versão mais fácil de atacar, e refuta essa versão distorcida.",
+          "example": "Você defende mais regulação ambiental? Então quer destruir todos os empregos da indústria.",
+          "note": "A refutação honesta deve responder ao argumento real, não a sua caricatura."
+        },
+        {
+          "id": "apelo_emocao",
+          "label": "Apelo à emoção (Ad populum / Pathos ilegítimo)",
+          "definition": "Substitui argumentos racionais por apelos emocionais que nublam o julgamento.",
+          "example": "Pense nas crianças! Como podemos aceitar essa política?",
+          "note": "O apelo emocional não é sempre falácia — na retórica, o pathos é legítimo quando acompanha o logos. O problema é quando substitui o argumento."
+        },
+        {
+          "id": "autoridade_inadequada",
+          "label": "Apelo à autoridade inadequada",
+          "definition": "Cita autoridade fora de sua área de competência como argumento definitivo.",
+          "example": "Esse ator famoso disse que vacinas são perigosas — não podemos ignorar isso.",
+          "note": "A autoridade vale no domínio de sua especialidade. Prestígio pessoal não equivale a competência técnica."
+        },
+        {
+          "id": "falsa_dicotomia",
+          "label": "Falsa dicotomia (ou isso ou aquilo)",
+          "definition": "Apresenta apenas duas opções como se fossem as únicas possíveis, quando há alternativas intermediárias.",
+          "example": "Ou você apoia completamente essa reforma, ou é contra o progresso.",
+          "note": "A maioria das questões complexas tem mais de duas posições possíveis."
+        },
+        {
+          "id": "post_hoc",
+          "label": "Post hoc ergo propter hoc",
+          "definition": "Conclui que A causou B apenas porque A precedeu B.",
+          "example": "Desde que o novo prefeito assumiu, o crime aumentou — logo, ele é responsável pelo aumento.",
+          "note": "Correlação temporal não implica causalidade."
+        },
+        {
+          "id": "ladeira_escorregadia",
+          "label": "Ladeira escorregadia (Slippery slope)",
+          "definition": "Afirma que uma ação levará inevitavelmente a consequências extremas sem demonstrar os passos intermediários.",
+          "example": "Se permitirmos isso, em pouco tempo estaremos vivendo em uma ditadura.",
+          "note": "O argumento pode ser legítimo se os passos causais intermediários forem demonstrados."
+        },
+        {
+          "id": "apelo_natureza",
+          "label": "Apelo à natureza",
+          "definition": "Afirma que algo é bom porque é 'natural' ou mau porque é 'artificial'.",
+          "example": "Remédios naturais são sempre melhores que os industrializados.",
+          "note": "O que é natural não é necessariamente benéfico (arsênico é natural); o que é sintético não é necessariamente prejudicial."
+        },
+        {
+          "id": "generalizacao_precipitada",
+          "label": "Generalização precipitada",
+          "definition": "Tira conclusão geral a partir de amostra insuficiente ou não representativa.",
+          "example": "Conheço três médicos desonestos. Os médicos, em geral, são desonestos.",
+          "note": "A força de uma generalização depende do tamanho e representatividade da amostra."
+        }
+      ]
+    },
+    {
+      "id": "etica_argumentativa",
+      "label": "Ética e Retórica: Logos, Ethos, Pathos",
+      "definition": "Aristóteles identificou três modos de persuasão legítimos na retórica.",
+      "entries": [
+        {
+          "id": "logos",
+          "label": "Logos (Razão)",
+          "definition": "Persuasão pelo argumento racional — lógica, evidências, dados, raciocínio coerente.",
+          "application": "Dados estatísticos, experimentos, demonstrações lógicas, causas e consequências."
+        },
+        {
+          "id": "ethos",
+          "label": "Ethos (Caráter)",
+          "definition": "Persuasão pela construção de credibilidade do enunciador — demonstrar competência, honestidade e boa vontade.",
+          "application": "Citação de experiência própria, transparência sobre limitações, reconhecimento de vozes diversas, rigor na atribuição de fontes.",
+          "note": "O ethos não é uma característica pessoal prévia — é construído no e pelo discurso."
+        },
+        {
+          "id": "pathos",
+          "label": "Pathos (Emoção)",
+          "definition": "Persuasão pelo apelo às emoções do interlocutor — empatia, indignação, esperança, medo.",
+          "application": "Narrativas de casos concretos, imagens impactantes, linguagem evocativa.",
+          "note": "O pathos é legítimo quando não substitui o logos, mas o amplifica. Usar narrativas pessoais para ilustrar dados é pathos legítimo. Usar emoção para desviar do raciocínio é manipulação."
+        }
+      ]
+    },
+    {
+      "id": "redacao_enem",
+      "label": "Redação ENEM — Estrutura e Critérios",
+      "definition": "Gênero dissertativo-argumentativo específico com formato e critérios avaliados pelo ENEM.",
+      "structure": [
+        {
+          "part": "Introdução",
+          "function": "Apresentar o tema, contextualizar e enunciar a tese.",
+          "strategies": ["Dado estatístico relevante → reflexão → tese", "Citação de autor → contextualização → tese", "Situação hipotética ou narrativa breve → generalização → tese", "Conceito filosófico ou histórico → relação com o tema → tese"]
+        },
+        {
+          "part": "Desenvolvimento (2 parágrafos)",
+          "function": "Cada parágrafo desenvolve um argumento com evidência e comentário analítico.",
+          "structure": "Tópico frasal (argumento) + evidência/exemplo + comentário que conecta ao tema"
+        },
+        {
+          "part": "Conclusão",
+          "function": "Retomar a tese e apresentar proposta de intervenção.",
+          "proposta_de_intervencao": {
+            "definition": "Ação concreta para enfrentar o problema discutido. Deve responder: o quê, quem, como, com qual finalidade.",
+            "agents": ["Estado", "escola", "mídia", "ONGs", "empresas", "família", "sociedade civil"],
+            "example": "O Estado, por meio do Ministério da Educação, deve incluir a educação financeira no currículo básico, por meio de formação docente e materiais didáticos acessíveis, a fim de capacitar os jovens para decisões financeiras conscientes."
+          }
+        }
+      ],
+      "criteria": [
+        {"id": "c1", "label": "Competência 1", "description": "Domínio da modalidade escrita formal: ortografia, gramática, pontuação, adequação vocabular."},
+        {"id": "c2", "label": "Competência 2", "description": "Compreensão do tema e aplicação de repertório sociocultural pertinente."},
+        {"id": "c3", "label": "Competência 3", "description": "Seleção, organização e interpretação de argumentos em defesa do ponto de vista."},
+        {"id": "c4", "label": "Competência 4", "description": "Uso dos mecanismos linguísticos de coesão textual."},
+        {"id": "c5", "label": "Competência 5", "description": "Elaboração de proposta de intervenção social respeitando os direitos humanos."}
+      ]
+    },
+    {
+      "id": "reescrita",
+      "label": "Reescrita e Revisão",
+      "definition": "A produção textual é um processo, não um ato único. A reescrita é etapa fundamental do escritor profissional.",
+      "stages": [
+        {
+          "id": "rascunho",
+          "label": "Rascunho",
+          "description": "Escrever sem autocensura — deixar o pensamento fluir, capturar as ideias brutas. Não é hora de revisar."
+        },
+        {
+          "id": "revisao_macro",
+          "label": "Revisão macro (estrutura)",
+          "description": "Verificar: a tese está clara? Os argumentos sustentam a tese? Há progressão lógica? Os parágrafos têm unidade? A conclusão fecha o raciocínio?"
+        },
+        {
+          "id": "revisao_micro",
+          "label": "Revisão micro (linguagem)",
+          "description": "Verificar: coesão (conectores, anáforas)? Coerência (sem contradições)? Concordância e regência? Pontuação? Vocabulário preciso e variado? Erros ortográficos?"
+        },
+        {
+          "id": "distancia_temporal",
+          "label": "Distância temporal",
+          "description": "Reler o texto com distância temporal (horas ou dias) permite ver o que estava invisível por proximidade. O olhar fresco encontra o que o olhar do autor não consegue ver."
+        },
+        {
+          "id": "leitura_em_voz_alta",
+          "label": "Leitura em voz alta",
+          "description": "Revela problemas de ritmo, repetições, frases longas demais e erros de concordância que o olho escorrega.",
+          "note": "É a técnica mais poderosa de revisão para escritores. O ouvido capta o que o olho perdoa."
+        }
+      ]
+    }
+  ]
+}

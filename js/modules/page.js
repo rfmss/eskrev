@@ -205,9 +205,7 @@ export function currentPageEditable() {
 }
 
 function getKnownCommands(ctx) {
-  // "theme" aqui faz --t esperar 360ms antes de disparar,
-  // dando tempo para o usuário digitar --theme completo.
-  return ["h", "n", "a", "w", "d", "c", "theme"];
+  return ["h", "n", "a", "w", "d", "c"];
 }
 
 function isAmbiguousPrefix(ctx, cmd) {
@@ -372,7 +370,9 @@ export function wirePage(ctx, el) {
     el.dispatchEvent(new Event("input", { bubbles: true }));
   });
 
-  el.addEventListener("input", () => {
+  el.addEventListener("input", (inputEv) => {
+    // Ignora eventos bubbling vindos de inputs/textareas filhos (ex: composer post-it)
+    if (isFormLikeTarget(inputEv.target)) return;
     clearTimeout(t);
     t = setTimeout(() => {
       syncPlaceholderState(el);

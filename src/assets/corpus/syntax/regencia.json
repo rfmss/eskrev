@@ -1,0 +1,682 @@
+{
+  "version": "1.0",
+  "area": "syntax",
+  "topic": "regencia",
+  "description": "Regência verbal e nominal do português brasileiro — quais preposições cada verbo ou nome exige, com os casos de dupla regência, alteração de sentido e armadilhas comuns.",
+  "sources": [
+    "Rocha Lima — Gramática Normativa (49ª ed.)",
+    "Cunha & Cintra — Nova Gramática (7ª ed.)",
+    "Bechara — Moderna Gramática Portuguesa (37ª ed.)"
+  ],
+  "sections": [
+    {
+      "id": "regencia_verbal",
+      "label": "Regência Verbal",
+      "definition": "Relação de dependência entre o verbo e seus complementos. O verbo 'rege' (exige) determinada estrutura: sem preposição (VTD), com preposição (VTI) ou ambas (VTDI).",
+      "entries": [
+        {
+          "id": "rv_agradar",
+          "verb": "agradar",
+          "senses": [
+            {
+              "meaning": "fazer agrado, acariciar",
+              "transitivity": "VTD",
+              "preposition": null,
+              "examples": ["A mãe agradou o filho. (= fez carinho)"]
+            },
+            {
+              "meaning": "causar agrado, satisfazer",
+              "transitivity": "VTI",
+              "preposition": "a",
+              "examples": ["Seu discurso agradou a todos.", "Isso não me agrada."]
+            }
+          ]
+        },
+        {
+          "id": "rv_agradecer",
+          "verb": "agradecer",
+          "senses": [
+            {
+              "meaning": "expressar gratidão (pela coisa recebida) — VTD; (à pessoa) — VTI",
+              "transitivity": "VTDI",
+              "pattern": "agradecer algo (OD) + a alguém (OI)",
+              "examples": [
+                "Agradeço o convite. (OD = a coisa)",
+                "Agradeço a você. (OI = a pessoa)",
+                "Agradeço o convite a você. (os dois juntos)"
+              ],
+              "error": "Agradeço a ele o favor. ✓ | Agradeço ele. ✗ (pessoa não é OD de agradecer)"
+            }
+          ]
+        },
+        {
+          "id": "rv_aspirar",
+          "verb": "aspirar",
+          "senses": [
+            {
+              "meaning": "inalar, absorver",
+              "transitivity": "VTD",
+              "preposition": null,
+              "examples": ["Aspirou o pó pelo nariz.", "O aparelho aspira a sujeira."]
+            },
+            {
+              "meaning": "almejar, desejar",
+              "transitivity": "VTI",
+              "preposition": "a",
+              "examples": ["Aspira a um cargo melhor.", "Aspiramos a dias mais justos."],
+              "error": "Aspira o cargo de gerente. ✗ (no sentido de almejar, exige 'a')"
+            }
+          ]
+        },
+        {
+          "id": "rv_assistir",
+          "verb": "assistir",
+          "senses": [
+            {
+              "meaning": "ver, presenciar",
+              "transitivity": "VTI",
+              "preposition": "a",
+              "examples": ["Assistimos ao jogo.", "Assistiu à conferência."],
+              "error": "Assistimos o jogo. ✗ (no sentido de 'ver', exige preposição 'a')"
+            },
+            {
+              "meaning": "caber, pertencer (direito)",
+              "transitivity": "VTI",
+              "preposition": "a",
+              "examples": ["Assiste-lhe o direito de recorrer.", "Esse direito assiste a todos."]
+            },
+            {
+              "meaning": "prestar assistência, ajudar",
+              "transitivity": "VTD",
+              "preposition": null,
+              "examples": ["A equipe médica assistiu os feridos."]
+            },
+            {
+              "meaning": "morar (uso literário)",
+              "transitivity": "VTI",
+              "preposition": "em",
+              "examples": ["Assiste no Rio de Janeiro."]
+            }
+          ]
+        },
+        {
+          "id": "rv_chamar",
+          "verb": "chamar",
+          "senses": [
+            {
+              "meaning": "convocar, invocar",
+              "transitivity": "VTD ou VTI",
+              "preposition": "por",
+              "examples": ["Chamou a polícia.", "Chamava pela mãe."]
+            },
+            {
+              "meaning": "denominar, apelidar",
+              "transitivity": "VTD + predicativo",
+              "pattern": "chamar alguém (de) algo",
+              "examples": [
+                "Chamaram-no herói. (sem preposição — formal)",
+                "Chamaram-no de herói. (com 'de' — coloquial/aceito)",
+                "Chamaram-lhe herói. (OI — arcaico/literário)"
+              ],
+              "note": "A Gramática tradicional prefere sem preposição; o uso corrente com 'de' é amplamente aceito."
+            }
+          ]
+        },
+        {
+          "id": "rv_chegar_ir",
+          "verb": "chegar / ir",
+          "senses": [
+            {
+              "meaning": "movimento em direção a lugar",
+              "transitivity": "VTI",
+              "preposition": "a (não 'em')",
+              "examples": [
+                "Chegou ao Rio de Janeiro. ✓",
+                "Chegou no Rio de Janeiro. ✗ (uso informal, não recomendado na escrita formal)",
+                "Fui ao mercado. ✓",
+                "Fui no mercado. ✗"
+              ],
+              "note": "'Em' indica permanência/estado; 'a' indica direção/destino. 'Estar no mercado' ✓ vs 'ir ao mercado' ✓."
+            }
+          ]
+        },
+        {
+          "id": "rv_custar",
+          "verb": "custar",
+          "senses": [
+            {
+              "meaning": "ser custoso, difícil",
+              "transitivity": "VTI — sujeito = coisa difícil; beneficiado = OI com 'a'",
+              "preposition": "a",
+              "examples": [
+                "Custou-me aceitar a derrota. (= foi difícil para mim)",
+                "Custa a ele admitir que errou."
+              ],
+              "error": "Eu custei a aceitar. ✗ (o sujeito não é pessoa — o sujeito é a coisa difícil)"
+            },
+            {
+              "meaning": "ter preço",
+              "transitivity": "VTD",
+              "preposition": null,
+              "examples": ["O livro custa trinta reais."]
+            }
+          ]
+        },
+        {
+          "id": "rv_esquecer_lembrar",
+          "verb": "esquecer / lembrar",
+          "senses": [
+            {
+              "meaning": "sem pronome reflexivo",
+              "transitivity": "VTD",
+              "preposition": null,
+              "examples": [
+                "Esqueci o compromisso. ✓",
+                "Lembrei a data. ✓"
+              ]
+            },
+            {
+              "meaning": "com pronome reflexivo (esquecer-se / lembrar-se)",
+              "transitivity": "VTI",
+              "preposition": "de",
+              "examples": [
+                "Esqueci-me do compromisso. ✓",
+                "Lembrei-me da data. ✓"
+              ],
+              "error": "Esqueci-me o compromisso. ✗ | Lembrei-me a data. ✗"
+            }
+          ]
+        },
+        {
+          "id": "rv_implicar",
+          "verb": "implicar",
+          "senses": [
+            {
+              "meaning": "acarretar, ter como consequência",
+              "transitivity": "VTD",
+              "preposition": null,
+              "examples": [
+                "Essa decisão implica riscos. ✓",
+                "A aprovação implica mudanças no orçamento. ✓"
+              ],
+              "error": "Essa decisão implica em riscos. ✗ (no sentido de 'acarretar', não exige 'em')"
+            },
+            {
+              "meaning": "envolver, comprometer (pessoa)",
+              "transitivity": "VTD",
+              "preposition": "em",
+              "examples": [
+                "Implicaram-no no esquema de corrupção. (= envolveram)"
+              ]
+            },
+            {
+              "meaning": "antipatizar, teimar",
+              "transitivity": "VTI",
+              "preposition": "com",
+              "examples": ["Ele implica com tudo.", "Para de implicar comigo."]
+            }
+          ]
+        },
+        {
+          "id": "rv_informar",
+          "verb": "informar",
+          "senses": [
+            {
+              "meaning": "comunicar algo a alguém",
+              "transitivity": "VTDI",
+              "patterns": [
+                "informar algo (OD) a alguém (OI com 'a')",
+                "informar alguém (OD) de/sobre algo (OI com 'de' ou 'sobre')"
+              ],
+              "examples": [
+                "Informou o resultado à diretoria. ✓",
+                "Informou a diretoria do resultado. ✓",
+                "Informou a diretoria sobre o resultado. ✓"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rv_namorar",
+          "verb": "namorar",
+          "senses": [
+            {
+              "meaning": "ter relacionamento amoroso",
+              "transitivity": "VTD (no Brasil)",
+              "preposition": null,
+              "examples": [
+                "Ela namora Pedro. ✓ (uso brasileiro consolidado)",
+                "Ela namora com Pedro. (uso popular, aceito informalmente)"
+              ],
+              "note": "Na norma culta escrita, 'namorar' é VTD no Brasil: não exige preposição."
+            }
+          ]
+        },
+        {
+          "id": "rv_obedecer_desobedecer",
+          "verb": "obedecer / desobedecer",
+          "senses": [
+            {
+              "meaning": "seguir/transgredir ordem ou autoridade",
+              "transitivity": "VTI",
+              "preposition": "a",
+              "examples": [
+                "Obedeceu ao regulamento. ✓",
+                "Desobedeceu às ordens. ✓"
+              ],
+              "error": "Obedeceu o regulamento. ✗ | Desobedeceu as ordens. ✗"
+            }
+          ]
+        },
+        {
+          "id": "rv_pagar_perdoar",
+          "verb": "pagar / perdoar",
+          "senses": [
+            {
+              "meaning": "pagar/perdoar algo (a coisa) — VTD; pagar/perdoar alguém (a pessoa) — VTI",
+              "transitivity": "VTD ou VTI",
+              "patterns": [
+                "pagar/perdoar algo (OD)",
+                "pagar/perdoar a alguém (OI)"
+              ],
+              "examples": [
+                "Pagou a conta. (OD = a coisa) ✓",
+                "Pagou ao credor. (OI = a pessoa) ✓",
+                "Perdoou a dívida. (OD = a coisa) ✓",
+                "Perdoou ao devedor. (OI = a pessoa) ✓"
+              ],
+              "error": "Pagou o credor. ✗ | Perdoou o devedor. ✗ (pessoa = OI, não OD)"
+            }
+          ]
+        },
+        {
+          "id": "rv_preferir",
+          "verb": "preferir",
+          "senses": [
+            {
+              "meaning": "dar preferência",
+              "transitivity": "VTDI",
+              "preposition": "a (para o preterido)",
+              "examples": [
+                "Prefiro chá a café. ✓",
+                "Prefiro estudar a ficar ocioso. ✓"
+              ],
+              "error": "Prefiro chá mais que café. ✗ | Prefiro chá do que café. ✗ (pleonasmo com 'mais que/do que' — 'preferir' já expressa comparação)"
+            }
+          ]
+        },
+        {
+          "id": "rv_proceder",
+          "verb": "proceder",
+          "senses": [
+            {
+              "meaning": "agir, comportar-se",
+              "transitivity": "VI",
+              "examples": ["Procedeu com honestidade.", "Procedeu mal."]
+            },
+            {
+              "meaning": "originar-se, provir",
+              "transitivity": "VTI",
+              "preposition": "de",
+              "examples": ["Procede de família humilde.", "A palavra procede do latim."]
+            },
+            {
+              "meaning": "dar início a, realizar (procedimento)",
+              "transitivity": "VTI",
+              "preposition": "a",
+              "examples": ["Procedeu à leitura do documento.", "Procedam à votação."]
+            }
+          ]
+        },
+        {
+          "id": "rv_simpatizar_antipatizar",
+          "verb": "simpatizar / antipatizar",
+          "senses": [
+            {
+              "meaning": "sentir simpatia/antipatia por",
+              "transitivity": "VTI",
+              "preposition": "com",
+              "examples": [
+                "Simpatizei com a proposta. ✓",
+                "Antipatiza com o chefe. ✓"
+              ],
+              "error": "Simpatizei a proposta. ✗ | Antipatiza o chefe. ✗"
+            }
+          ]
+        },
+        {
+          "id": "rv_visar",
+          "verb": "visar",
+          "senses": [
+            {
+              "meaning": "ter como objetivo, almejar",
+              "transitivity": "VTI",
+              "preposition": "a",
+              "examples": [
+                "O projeto visa a melhorar a educação. ✓",
+                "Visamos a resultados concretos. ✓"
+              ],
+              "note": "Com infinitivo, a preposição 'a' pode ser omitida no uso informal: 'O projeto visa melhorar.' — aceito na norma culta contemporânea."
+            },
+            {
+              "meaning": "dar visto, rubricar",
+              "transitivity": "VTD",
+              "preposition": null,
+              "examples": ["O gerente visou o documento. (= assinou/deu visto)"]
+            },
+            {
+              "meaning": "mirar, apontar",
+              "transitivity": "VTD",
+              "preposition": null,
+              "examples": ["O atirador visou o alvo."]
+            }
+          ]
+        },
+        {
+          "id": "rv_responder",
+          "verb": "responder",
+          "senses": [
+            {
+              "meaning": "dar resposta a algo",
+              "transitivity": "VTI",
+              "preposition": "a",
+              "examples": [
+                "Respondeu à pergunta. ✓",
+                "Não respondeu ao e-mail. ✓"
+              ],
+              "error": "Respondeu a pergunta. ✗ (sem crase — ERRADO: 'a' é preposição + artigo 'a', logo forma crase: à)"
+            },
+            {
+              "meaning": "ser responsável por",
+              "transitivity": "VTI",
+              "preposition": "por",
+              "examples": ["Responde pelo setor de TI."]
+            }
+          ]
+        },
+        {
+          "id": "rv_morar_residir",
+          "verb": "morar / residir / habitar",
+          "senses": [
+            {
+              "meaning": "ter domicílio",
+              "transitivity": "VTI",
+              "preposition": "em (no Brasil)",
+              "examples": [
+                "Mora em São Paulo. ✓",
+                "Reside no centro da cidade. ✓",
+                "Habitava num casarão antigo. ✓"
+              ],
+              "note": "Em Portugal, usa-se 'a' (mora à Rua das Flores). No Brasil, 'em' é a norma."
+            }
+          ]
+        },
+        {
+          "id": "rv_consistir",
+          "verb": "consistir",
+          "senses": [
+            {
+              "meaning": "ser composto de / ter como essência",
+              "transitivity": "VTI",
+              "preposition": "em",
+              "examples": [
+                "A felicidade consiste em coisas simples. ✓",
+                "O plano consiste em três etapas. ✓"
+              ],
+              "error": "O plano consiste de três etapas. ✗"
+            }
+          ]
+        },
+        {
+          "id": "rv_querer",
+          "verb": "querer",
+          "senses": [
+            {
+              "meaning": "desejar",
+              "transitivity": "VTD",
+              "preposition": null,
+              "examples": ["Quero um café. ✓", "Quer sair agora. ✓"]
+            },
+            {
+              "meaning": "amar, gostar (sentimento afetivo)",
+              "transitivity": "VTI",
+              "preposition": "a",
+              "examples": ["Quero muito a você.", "Quer bem ao filho."]
+            }
+          ]
+        },
+        {
+          "id": "rv_ir_a_em",
+          "verb": "ir a / ir em",
+          "senses": [
+            {
+              "meaning": "destino pontual, breve",
+              "transitivity": "VTI",
+              "preposition": "a",
+              "examples": ["Fui ao banco. (destino pontual)", "Vou ao médico amanhã."]
+            },
+            {
+              "meaning": "destino com permanência ou situação",
+              "preposition": "em (informal, mas frequente)",
+              "examples": ["Fui na praia. (coloquial — indica que ficou lá)", "Fui no supermercado."],
+              "note": "Na escrita formal, 'a' é preferido para destino. 'Em' na língua coloquial indica permanência, mas é evitado na norma culta escrita."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regencia_nominal",
+      "label": "Regência Nominal",
+      "definition": "Relação entre um nome (substantivo, adjetivo, advérbio) e seu complemento preposicionado.",
+      "entries": [
+        {
+          "id": "rn_acessivel",
+          "name": "acessível / inacessível",
+          "preposition": "a",
+          "examples": ["acessível ao público", "inacessível a pessoas com deficiência"]
+        },
+        {
+          "id": "rn_acostumado",
+          "name": "acostumado",
+          "preposition": "a / com",
+          "examples": ["acostumado a trabalhar muito", "acostumado com a rotina"]
+        },
+        {
+          "id": "rn_apto",
+          "name": "apto",
+          "preposition": "a / para",
+          "examples": ["apto a concorrer", "apto para o cargo"]
+        },
+        {
+          "id": "rn_aversao",
+          "name": "aversão",
+          "preposition": "a / por",
+          "examples": ["aversão ao barulho", "aversão por mentiras"]
+        },
+        {
+          "id": "rn_capacidade",
+          "name": "capacidade",
+          "preposition": "de / para",
+          "examples": ["capacidade de liderança", "capacidade para o trabalho"]
+        },
+        {
+          "id": "rn_certeza",
+          "name": "certeza",
+          "preposition": "de",
+          "examples": ["certeza de que viria", "tenho certeza de sua honestidade"],
+          "error": "tenho certeza que virá ✗ — exige 'de que' antes da oração"
+        },
+        {
+          "id": "rn_compativel",
+          "name": "compatível / incompatível",
+          "preposition": "com",
+          "examples": ["compatível com o sistema", "incompatível com a função"]
+        },
+        {
+          "id": "rn_contente",
+          "name": "contente",
+          "preposition": "com / de",
+          "examples": ["contente com o resultado", "contente de te ver"]
+        },
+        {
+          "id": "rn_convicto",
+          "name": "convicto",
+          "preposition": "de",
+          "examples": ["convicto de sua inocência", "convicto de que acertou"]
+        },
+        {
+          "id": "rn_curiosidade",
+          "name": "curiosidade",
+          "preposition": "sobre / por / de",
+          "examples": ["curiosidade sobre o assunto", "curiosidade por ciência", "curiosidade de saber"]
+        },
+        {
+          "id": "rn_desejo",
+          "name": "desejo",
+          "preposition": "de",
+          "examples": ["desejo de vencer", "sem desejo de continuar"]
+        },
+        {
+          "id": "rn_diferente",
+          "name": "diferente",
+          "preposition": "de",
+          "examples": ["diferente do esperado", "bem diferente de mim"],
+          "error": "diferente ao esperado ✗"
+        },
+        {
+          "id": "rn_duvida",
+          "name": "dúvida",
+          "preposition": "sobre / em / de",
+          "examples": ["dúvida sobre o prazo", "dúvida em relação ao contrato", "sem dúvida de que errou"]
+        },
+        {
+          "id": "rn_fiel",
+          "name": "fiel",
+          "preposition": "a",
+          "examples": ["fiel ao contrato", "fiel aos seus princípios"]
+        },
+        {
+          "id": "rn_habil",
+          "name": "hábil",
+          "preposition": "em / para",
+          "examples": ["hábil em negociações", "hábil para lidar com crises"]
+        },
+        {
+          "id": "rn_medo",
+          "name": "medo",
+          "preposition": "de",
+          "examples": ["medo de altura", "medo do escuro", "medo de fracassar"]
+        },
+        {
+          "id": "rn_necessidade",
+          "name": "necessidade",
+          "preposition": "de",
+          "examples": ["necessidade de descanso", "necessidade de que todos participem"]
+        },
+        {
+          "id": "rn_obrigacao",
+          "name": "obrigação",
+          "preposition": "de",
+          "examples": ["obrigação de comparecer", "sem obrigação de responder"]
+        },
+        {
+          "id": "rn_orgulho",
+          "name": "orgulho",
+          "preposition": "de",
+          "examples": ["orgulho de si mesmo", "orgulho de sua trajetória"]
+        },
+        {
+          "id": "rn_possibilidade",
+          "name": "possibilidade",
+          "preposition": "de",
+          "examples": ["possibilidade de recurso", "sem possibilidade de retorno"]
+        },
+        {
+          "id": "rn_preferencia",
+          "name": "preferência",
+          "preposition": "por / a",
+          "examples": ["preferência por textos curtos", "dou preferência a projetos menores"]
+        },
+        {
+          "id": "rn_propicio",
+          "name": "propício",
+          "preposition": "a",
+          "examples": ["clima propício à criatividade", "momento propício à mudança"]
+        },
+        {
+          "id": "rn_respeito",
+          "name": "respeito",
+          "preposition": "a / por",
+          "examples": ["respeito à lei", "respeito por quem luta"]
+        },
+        {
+          "id": "rn_satisfacao",
+          "name": "satisfação",
+          "preposition": "com / de / em / por",
+          "examples": [
+            "satisfação com o resultado",
+            "satisfação de concluir o projeto",
+            "tenho satisfação em ajudar",
+            "satisfação por ter sido reconhecido"
+          ]
+        },
+        {
+          "id": "rn_solidario",
+          "name": "solidário",
+          "preposition": "com / a",
+          "examples": ["solidário com as vítimas", "solidário à causa"]
+        },
+        {
+          "id": "rn_suspeito",
+          "name": "suspeito",
+          "preposition": "de",
+          "examples": ["suspeito de fraude", "era suspeito de envolvimento"]
+        }
+      ]
+    },
+    {
+      "id": "crase",
+      "label": "Crase — síntese aplicada à regência",
+      "definition": "A crase marca a fusão da preposição 'a' com o artigo 'a' (ou com pronomes demonstrativos 'aquele/a/es/as', 'aquilo'). Só ocorre diante de palavra feminina que admite artigo 'a'.",
+      "rules": [
+        {
+          "id": "crase_regra_geral",
+          "label": "Regra geral",
+          "rule": "Há crase quando o verbo/nome exige preposição 'a' E o complemento é feminino com artigo.",
+          "test": "Substituir o feminino por masculino equivalente. Se aparecer 'ao', há crase no feminino.",
+          "examples": [
+            {"test": "Fui ao mercado → Fui à feira. ✓ (ao → à)", "note": "ir exige 'a'; 'feira' admite artigo"},
+            {"test": "Refiro-me ao presidente → Refiro-me à presidenta. ✓"}
+          ]
+        },
+        {
+          "id": "crase_proibida",
+          "label": "Crase proibida",
+          "cases": [
+            {"case": "Antes de substantivo masculino", "example": "Andou a pé. (sem crase)"},
+            {"case": "Antes de verbo", "example": "Começou a correr. (sem crase)"},
+            {"case": "Antes de pronome pessoal", "example": "Disse a ela. (sem crase)"},
+            {"case": "Antes de pronome de tratamento (exceto 'senhora')", "example": "A você. / A Vossa Senhoria."},
+            {"case": "Antes de 'uma'", "example": "Chegou a uma conclusão. (sem crase)"},
+            {"case": "Antes de nome de cidade sem artigo", "example": "Viajei a Paris. / Viajei ao Rio. (Rio tem artigo)"}
+          ]
+        },
+        {
+          "id": "crase_facultativa",
+          "label": "Crase facultativa",
+          "cases": [
+            {"case": "Antes de pronome possessivo feminino", "example": "Refiro-me a sua mãe. / Refiro-me à sua mãe."},
+            {"case": "Antes de nome de mulher célebre", "example": "Dedico a Clarice / à Clarice."}
+          ]
+        },
+        {
+          "id": "crase_demonstrativos",
+          "label": "Crase com demonstrativos",
+          "rule": "Preposição 'a' + 'aquele/a/es/as/aquilo' → 'àquele/àquela/àqueles/àquelas/àquilo'.",
+          "examples": ["Refiro-me àquele episódio.", "Comparável àquilo que vivemos.", "Semelhante àquelas situações."]
+        }
+      ]
+    }
+  ]
+}

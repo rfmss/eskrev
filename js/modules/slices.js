@@ -9,6 +9,60 @@ import { lookupVerbete } from "./verbete.js";
 import { corpus } from "../../src/js/modules/corpus.js";
 import { openCoordenador } from "./coordenador.js";
 
+// ── Countdown toast ────────────────────────────────────────────────────────
+// Para comandos que mudam o estado visual da tela: exibe "label  3 · 2 · 1"
+// no canto e executa fn() após 3s. ESC cancela.
+function showCountdown(label, fn) {
+  let toast = document.getElementById("eskrev-countdown");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "eskrev-countdown";
+    const style = document.createElement("style");
+    style.textContent = `
+      #eskrev-countdown {
+        position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+        z-index: 8999; background: var(--iso-ink-1, #111); color: var(--iso-paper, #f7f5f0);
+        font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: .12em;
+        padding: 7px 18px; border-radius: 3px; opacity: 0;
+        transition: opacity .18s; pointer-events: none; white-space: nowrap;
+      }
+      #eskrev-countdown.cd-visible { opacity: .9; pointer-events: auto; }
+    `;
+    document.head.appendChild(style);
+    document.body.appendChild(toast);
+  }
+
+  // Cancela countdown anterior se existir
+  if (toast._cdTimer) { clearInterval(toast._cdTimer); toast._cdTimer = null; }
+  if (toast._cdEsc)   { document.removeEventListener("keydown", toast._cdEsc, true); }
+
+  let n = 3;
+  const update = () => { toast.textContent = `${label}  ${n}`; };
+  update();
+  toast.classList.add("cd-visible");
+
+  const onEsc = (e) => {
+    if (e.key !== "Escape") return;
+    e.stopImmediatePropagation();
+    clearInterval(toast._cdTimer);
+    document.removeEventListener("keydown", toast._cdEsc, true);
+    toast.classList.remove("cd-visible");
+    toast._cdTimer = null;
+  };
+  toast._cdEsc = onEsc;
+  document.addEventListener("keydown", onEsc, true);
+
+  toast._cdTimer = setInterval(() => {
+    n -= 1;
+    if (n > 0) { update(); return; }
+    clearInterval(toast._cdTimer);
+    toast._cdTimer = null;
+    document.removeEventListener("keydown", toast._cdEsc, true);
+    toast.classList.remove("cd-visible");
+    fn();
+  }, 1000);
+}
+
 function decodeSliceHtml(value) {
   if (!value) return "";
   try {
@@ -810,6 +864,754 @@ function startLiveVerifyTag(ctx, tag) {
   document.addEventListener("input", onInput, { capture: true, passive: true });
 }
 
+// ── Pomodoro ───────────────────────────────────────────────────────────────
+function openPomodoro() {
+  const LS_TARGET   = "eskrev_pomo_target";
+  const LS_PHASE    = "eskrev_pomo_phase";  // "work" | "break" | "done"
+  const LS_DURATION = "eskrev_pomo_dur";
+
+  let overlay = document.getElementById("eskrev-pomo");
+  if (!overlay) {
+    overlay = document.createElement("div");
+    overlay.id = "eskrev-pomo";
+    const style = document.createElement("style");
+    style.textContent = `
+      #eskrev-pomo {
+        position: fixed; inset: 0; z-index: 8800;
+        display: flex; align-items: center; justify-content: center;
+        background: rgba(17,17,16,.92);
+        font-family: ui-monospace, monospace;
+        color: #f7f5f0;
+        transition: opacity .25s;
+      }
+      #eskrev-pomo.pomo-work {
+        inset: auto auto 18px 18px;
+        width: auto; height: auto;
+        background: none;
+        border: none;
+        border-radius: 0;
+        align-items: flex-start; justify-content: flex-start;
+        pointer-events: none;
+      }
+      #eskrev-pomo.pomo-hidden { display: none; }
+      .pomo-box {
+        display: flex; flex-direction: column; align-items: center; gap: 20px;
+        padding: 40px 48px; text-align: center;
+      }
+      .pomo-title {
+        font-size: 11px; letter-spacing: .2em; opacity: .5; text-transform: uppercase;
+      }
+      .pomo-clock {
+        font-size: 52px; font-weight: 700; letter-spacing: -.02em;
+        font-variant-numeric: tabular-nums;
+      }
+      .pomo-work .pomo-work-clock {
+        font-size: 11px; letter-spacing: .06em; font-variant-numeric: tabular-nums;
+        color: var(--iso-ink-3, #aaa);
+        opacity: .18;
+      }
+      .pomo-sub { font-size: 11px; opacity: .45; line-height: 1.6; }
+      .pomo-btns { display: flex; gap: 12px; }
+      .pomo-btn {
+        background: none; border: 1px solid rgba(247,245,240,.3);
+        color: #f7f5f0; padding: 10px 28px; font-size: 12px; letter-spacing: .12em;
+        cursor: pointer; font-family: ui-monospace, monospace;
+        transition: background .15s, border-color .15s;
+      }
+      .pomo-btn:hover { background: rgba(247,245,240,.1); border-color: rgba(247,245,240,.6); }
+      .pomo-btn.pomo-btn-stop {
+        border-color: rgba(247,245,240,.12); opacity: .4; font-size: 10px; padding: 6px 16px;
+      }
+      .pomo-btn.pomo-btn-stop:hover { opacity: .8; }
+      .pomo-locked-note { font-size: 10px; opacity: .3; letter-spacing: .08em; }
+    `;
+    document.head.appendChild(style);
+    document.body.appendChild(overlay);
+
+    let ticker = null;
+
+    function fmt(ms) {
+      const total = Math.max(0, Math.ceil(ms / 1000));
+      const m = Math.floor(total / 60).toString().padStart(2, "0");
+      const s = (total % 60).toString().padStart(2, "0");
+      return `${m}:${s}`;
+    }
+
+    function stopAll() {
+      clearInterval(ticker); ticker = null;
+      localStorage.removeItem(LS_TARGET);
+      localStorage.removeItem(LS_PHASE);
+      localStorage.removeItem(LS_DURATION);
+      overlay.className = "pomo-hidden";
+      overlay.innerHTML = "";
+    }
+
+    function startWork(minutes) {
+      const target = Date.now() + minutes * 60_000;
+      localStorage.setItem(LS_TARGET, String(target));
+      localStorage.setItem(LS_PHASE, "work");
+      localStorage.setItem(LS_DURATION, String(minutes));
+
+      overlay.className = "pomo-work";
+      overlay.innerHTML = `<span class="pomo-work-clock">${fmt(target - Date.now())}</span>`;
+
+      clearInterval(ticker);
+      ticker = setInterval(() => {
+        const diff = parseInt(localStorage.getItem(LS_TARGET)) - Date.now();
+        if (diff <= 0) { clearInterval(ticker); startBreak(); return; }
+        const el = overlay.querySelector(".pomo-work-clock");
+        if (el) el.textContent = fmt(diff);
+      }, 1000);
+    }
+
+    function startBreak() {
+      const BREAK_MS = 6 * 60_000;
+      const target = Date.now() + BREAK_MS;
+      localStorage.setItem(LS_TARGET, String(target));
+      localStorage.setItem(LS_PHASE, "break");
+
+      function renderBreak(diff) {
+        overlay.className = "";  // full-screen locked
+        overlay.innerHTML = `
+          <div class="pomo-box">
+            <div class="pomo-title">pausa obrigatória</div>
+            <div class="pomo-clock" id="pomoClock">${fmt(diff)}</div>
+            <div class="pomo-sub">
+              Descanse os olhos · afaste-se da tela<br>
+              O editor reabre ao fim da pausa.
+            </div>
+            <div class="pomo-locked-note">não é possível fechar antes do tempo</div>
+          </div>
+        `;
+      }
+      renderBreak(BREAK_MS);
+
+      clearInterval(ticker);
+      ticker = setInterval(() => {
+        const diff = parseInt(localStorage.getItem(LS_TARGET)) - Date.now();
+        const clockEl = overlay.querySelector("#pomoClock");
+        if (diff <= 0) { clearInterval(ticker); showDone(); return; }
+        if (clockEl) clockEl.textContent = fmt(diff);
+      }, 1000);
+    }
+
+    function showDone() {
+      localStorage.removeItem(LS_TARGET);
+      localStorage.setItem(LS_PHASE, "done");
+
+      overlay.className = "";
+      overlay.innerHTML = `
+        <div class="pomo-box">
+          <div class="pomo-title">ciclo concluído</div>
+          <div class="pomo-sub">Próximo ciclo ou encerrar?</div>
+          <div class="pomo-btns">
+            <button class="pomo-btn" data-dur="25">25 min</button>
+            <button class="pomo-btn" data-dur="50">50 min</button>
+          </div>
+          <button class="pomo-btn pomo-btn-stop" id="pomoStop">encerrar sessão</button>
+        </div>
+      `;
+      overlay.querySelectorAll("[data-dur]").forEach(btn => {
+        btn.onclick = () => startWork(parseInt(btn.dataset.dur));
+      });
+      overlay.querySelector("#pomoStop").onclick = () => stopAll();
+    }
+
+    function showSetup() {
+      overlay.className = "";
+      overlay.innerHTML = `
+        <div class="pomo-box">
+          <div class="pomo-title">pomodoro — foco</div>
+          <div class="pomo-sub">Quanto tempo de concentração?</div>
+          <div class="pomo-btns">
+            <button class="pomo-btn" data-dur="25">25 min</button>
+            <button class="pomo-btn" data-dur="50">50 min</button>
+          </div>
+          <button class="pomo-btn pomo-btn-stop" id="pomoCancelSetup">cancelar</button>
+        </div>
+      `;
+      overlay.querySelectorAll("[data-dur]").forEach(btn => {
+        btn.onclick = () => startWork(parseInt(btn.dataset.dur));
+      });
+      overlay.querySelector("#pomoCancelSetup").onclick = () => stopAll();
+    }
+
+    overlay._pomoShowSetup = showSetup;
+    overlay._pomoResume = () => {
+      const target = parseInt(localStorage.getItem(LS_TARGET));
+      const phase  = localStorage.getItem(LS_PHASE);
+      if (phase === "work" && target > Date.now()) {
+        // retoma ticker sem resetar o alvo
+        overlay.className = "pomo-work";
+        overlay.innerHTML = `<span class="pomo-work-clock">${fmt(target - Date.now())}</span>`;
+        clearInterval(ticker);
+        ticker = setInterval(() => {
+          const diff = parseInt(localStorage.getItem(LS_TARGET)) - Date.now();
+          if (diff <= 0) { clearInterval(ticker); startBreak(); return; }
+          const el = overlay.querySelector(".pomo-work-clock");
+          if (el) el.textContent = fmt(diff);
+        }, 1000);
+      } else if (phase === "break" && target > Date.now()) {
+        startBreak();
+      } else if (phase === "done") {
+        showDone();
+      }
+    };
+  }
+
+  // Se já há sessão ativa, retoma
+  const phase = localStorage.getItem(LS_PHASE);
+  if (phase === "work" || phase === "break") {
+    overlay._pomoResume?.();
+    return;
+  }
+  overlay._pomoShowSetup?.();
+}
+
+// ── Ereader ────────────────────────────────────────────────────────────────
+let _erLibraryBooks = null;
+let _erFioIndex = null;
+
+function openEreader() {
+  function getPageText(el) {
+    const clone = el.cloneNode(true);
+    clone.querySelectorAll(".slice,.sliceBar").forEach(n => n.remove());
+    return clone.innerText || "";
+  }
+  const pages = document.querySelectorAll(".pageContent");
+  const rawText = Array.from(pages).map(getPageText).join("\n\n").trim();
+  if (!rawText) return;
+
+  let overlay = document.getElementById("eskrev-ereader");
+  if (!overlay) {
+    overlay = document.createElement("div");
+    overlay.id = "eskrev-ereader";
+
+    const style = document.createElement("style");
+    style.textContent = `
+      #eskrev-ereader {
+        position: fixed; inset: 0; z-index: 9000;
+        display: flex; flex-direction: column;
+        transform: translateY(100%);
+        transition: transform .35s cubic-bezier(.2,1,.3,1);
+        background: var(--er-bg, #fcfbf9); color: var(--er-fg, #2c2c2c);
+        font-family: Georgia, 'Times New Roman', serif;
+      }
+      #eskrev-ereader.er-active { transform: translateY(0); }
+      /* temas */
+      .er-t-paper { --er-bg:#fcfbf9; --er-fg:#2c2c2c; --er-tb:rgba(247,245,240,.95); --er-glass:rgba(252,251,249,.88); --er-ruler:#c4542a; }
+      .er-t-sepia  { --er-bg:#f4ecd8; --er-fg:#5b4636; --er-tb:rgba(235,225,201,.95); --er-glass:rgba(244,236,216,.88); --er-ruler:#9b6a3a; }
+      .er-t-chumbo { --er-bg:#111110; --er-fg:#c0c0c0; --er-tb:rgba(20,20,19,.95);    --er-glass:rgba(17,17,16,.88);    --er-ruler:#4a90d9; }
+      /* toolbar */
+      #er-tb {
+        height: 48px; display: flex; align-items: center; gap: 6px;
+        padding: 0 16px; border-bottom: 1px solid rgba(128,128,128,.12);
+        background: var(--er-tb); backdrop-filter: blur(6px); flex-shrink: 0; z-index: 20;
+      }
+      #er-tb button {
+        background: none; border: 1px solid transparent; border-radius: 5px;
+        cursor: pointer; padding: 3px 9px; font-size: .75rem; font-family: ui-monospace, monospace;
+        color: inherit; opacity: .6; transition: opacity .12s, border-color .12s; white-space: nowrap;
+      }
+      #er-tb button:hover { opacity: 1; border-color: rgba(128,128,128,.3); }
+      #er-tb button.er-btn-on { opacity: 1; border-color: var(--er-ruler); color: var(--er-ruler); }
+      .er-sep { width: 1px; height: 18px; background: currentColor; opacity: .12; flex-shrink: 0; }
+      .er-spacer { flex: 1; }
+      /* body layout */
+      #er-body { flex: 1; display: flex; position: relative; overflow: hidden; min-height: 0; }
+      #er-viewer { flex: 1; position: relative; overflow: hidden; }
+      /* scroll mode */
+      .er-scroll #er-viewer { overflow-y: auto; }
+      .er-scroll #er-content {
+        position: static; width: min(66ch, 88vw); margin: 0 auto;
+        padding: 48px 0 120px; height: auto !important;
+        column-width: auto !important; transform: none !important;
+      }
+      /* page mode */
+      .er-page #er-viewer { overflow: hidden; }
+      .er-page #er-content {
+        position: absolute; top: 0; left: 0;
+        height: calc(100vh - 96px);
+        padding: 36px clamp(20px, 12vw, 140px);
+        column-width: 68vw; column-gap: calc(100vw - 68vw);
+        column-fill: auto; width: auto;
+        transition: left .32s cubic-bezier(.25,1,.5,1);
+      }
+      .er-click { position: absolute; top: 0; bottom: 0; width: 11%; z-index: 12; cursor: pointer; display: none; }
+      .er-page .er-click { display: block; }
+      .er-click-l { left: 0; } .er-click-r { right: 0; }
+      /* content */
+      #er-content { font-size: 19px; line-height: 1.85; text-align: justify; outline: none; }
+      #er-content p { margin: 0 0 .9em; }
+      /* ruler / lupa */
+      .er-ruler {
+        position: absolute; left: 0; right: 0; z-index: 15;
+        border-top: 1.5px solid var(--er-ruler); border-bottom: 1.5px solid var(--er-ruler);
+        cursor: grab; display: none; user-select: none; touch-action: none;
+        min-height: 44px;
+      }
+      .er-ruler.dragging { cursor: grabbing; }
+      .er-box.show-ruler .er-ruler { display: block; }
+      .er-glass {
+        position: absolute; left: 0; right: 0; z-index: 14;
+        background: var(--er-glass); pointer-events: none; display: none;
+      }
+      .er-box.show-ruler .er-glass { display: block; }
+      .er-glass-top { top: 0; height: var(--ruler-top, 40%); }
+      .er-glass-bot { top: calc(var(--ruler-top, 40%) + var(--ruler-h, 80px)); bottom: 0; }
+      /* ruler resize edges */
+      .er-ruler::before, .er-ruler::after {
+        content: ""; position: absolute; left: 0; right: 0; height: 10px; cursor: ns-resize; z-index: 16;
+      }
+      .er-ruler::before { top: 0; }
+      .er-ruler::after  { bottom: 0; }
+      /* ruler controls */
+      .er-ruler-bar {
+        position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+        display: none; gap: 4px; z-index: 17; align-items: center;
+      }
+      .er-box.show-ruler .er-ruler-bar { display: flex; }
+      .er-ruler-bar button {
+        background: var(--er-tb); border: 1px solid rgba(128,128,128,.2);
+        color: var(--er-fg); border-radius: 4px; padding: 2px 7px; font-size: .7rem;
+        cursor: pointer; font-family: ui-monospace, monospace; opacity: .7;
+      }
+      .er-ruler-bar button:hover { opacity: 1; }
+      /* glossary sidebar */
+      #er-glos {
+        width: 0; overflow: hidden; flex-shrink: 0;
+        transition: width .25s; border-left: 1px solid rgba(128,128,128,.12);
+        display: flex; flex-direction: column;
+      }
+      .er-box.show-glos #er-glos { width: 200px; }
+      .er-glos-title { font-size: 9px; letter-spacing: .18em; text-transform: uppercase; opacity: .45; padding: 12px 12px 6px; }
+      .er-glos-item { display: flex; justify-content: space-between; padding: 3px 12px; font-size: .75rem; opacity: .7; font-family: ui-monospace, monospace; }
+      /* library panel */
+      #er-lib-panel {
+        position: absolute; top: 0; right: 0; bottom: 0; width: 0; overflow: hidden;
+        background: var(--er-tb); border-left: 1px solid rgba(128,128,128,.12);
+        z-index: 18; transition: width .25s; display: flex; flex-direction: column;
+      }
+      .er-box.show-lib #er-lib-panel { width: 280px; }
+      .er-lib-header { display: flex; align-items: center; gap: 6px; padding: 10px 12px; border-bottom: 1px solid rgba(128,128,128,.12); flex-shrink: 0; }
+      .er-lib-tabs { display: flex; gap: 4px; padding: 8px 12px 4px; flex-shrink: 0; }
+      .er-lib-tab { background: none; border: 1px solid rgba(128,128,128,.2); border-radius: 4px; padding: 3px 10px; font-size: .7rem; cursor: pointer; color: inherit; font-family: ui-monospace, monospace; opacity: .55; }
+      .er-lib-tab.active { opacity: 1; border-color: var(--er-ruler); color: var(--er-ruler); }
+      .er-lib-lang { display: flex; gap: 3px; padding: 0 12px 6px; flex-shrink: 0; }
+      .er-lib-lang-btn { background: none; border: 1px solid rgba(128,128,128,.18); border-radius: 3px; padding: 2px 7px; font-size: .68rem; cursor: pointer; color: inherit; font-family: ui-monospace, monospace; opacity: .5; }
+      .er-lib-lang-btn.active { opacity: 1; border-color: var(--er-fg); }
+      .er-lib-list { flex: 1; overflow-y: auto; padding: 4px 0; }
+      .er-lib-item { padding: 8px 12px; cursor: pointer; border-bottom: 1px solid rgba(128,128,128,.06); }
+      .er-lib-item:hover { background: rgba(128,128,128,.08); }
+      .er-lib-item-title { font-size: .78rem; font-weight: 600; margin-bottom: 2px; }
+      .er-lib-item-author { font-size: .68rem; opacity: .5; font-family: ui-monospace, monospace; }
+      .er-lib-empty { padding: 20px 12px; font-size: .75rem; opacity: .45; text-align: center; }
+      .er-lib-back { background: none; border: none; cursor: pointer; font-size: .72rem; color: inherit; opacity: .5; padding: 0; font-family: ui-monospace, monospace; }
+      .er-lib-back:hover { opacity: 1; }
+      /* fio do verso */
+      .er-fio-tabs { display: flex; flex-wrap: wrap; gap: 3px; padding: 4px 12px 6px; flex-shrink: 0; }
+      .er-fio-tab { background: none; border: 1px solid rgba(128,128,128,.18); border-radius: 3px; padding: 2px 7px; font-size: .65rem; cursor: pointer; color: inherit; font-family: ui-monospace, monospace; opacity: .5; }
+      .er-fio-tab.active { opacity: 1; }
+      .er-fio-item { padding: 6px 12px; cursor: pointer; border-bottom: 1px solid rgba(128,128,128,.06); }
+      .er-fio-item:hover { background: rgba(128,128,128,.08); }
+      .er-fio-item .date { font-size: .62rem; opacity: .4; font-family: ui-monospace, monospace; }
+      .er-fio-item .title { font-size: .75rem; }
+      /* auto-scroll */
+      #er-play.er-btn-on { color: var(--er-ruler); border-color: var(--er-ruler); }
+      /* footer */
+      #er-footer { text-align: center; padding: 6px; font-size: .68rem; opacity: .4; flex-shrink: 0; font-family: ui-monospace, monospace; }
+    `;
+    document.head.appendChild(style);
+
+    overlay.innerHTML = `
+      <div id="er-tb">
+        <button id="er-close" title="Fechar (Esc)">✕</button>
+        <div class="er-sep"></div>
+        <button id="er-lib-btn" title="Biblioteca">biblioteca</button>
+        <button id="er-back" title="Voltar ao meu texto" style="display:none">← meu texto</button>
+        <div class="er-sep"></div>
+        <button id="er-glos-btn" title="Glossário de frequência">glossário</button>
+        <button id="er-ruler-btn" title="Régua de leitura (lupa)">régua</button>
+        <div class="er-spacer"></div>
+        <button id="er-play" title="Auto-scroll (A)">▶</button>
+        <button id="er-spd-d" title="Mais lento">−</button>
+        <button id="er-spd-u" title="Mais rápido">+</button>
+        <div class="er-sep"></div>
+        <button id="er-fminus" title="Fonte menor (-)">A−</button>
+        <button id="er-fplus"  title="Fonte maior (+)">A+</button>
+        <div class="er-sep"></div>
+        <button id="er-mode" title="Alternar modo (M)">⇄ página</button>
+        <button id="er-theme" title="Tema (T)">◑ tema</button>
+      </div>
+      <div class="er-box er-scroll" id="er-box">
+        <div id="er-body">
+          <div id="er-viewer">
+            <div class="er-glass er-glass-top"></div>
+            <div class="er-glass er-glass-bot"></div>
+            <div class="er-ruler" id="er-ruler-el">
+              <div class="er-ruler-bar">
+                <button id="er-ruler-close">fechar régua</button>
+              </div>
+            </div>
+            <div class="er-click er-click-l" id="er-prev"></div>
+            <div class="er-click er-click-r" id="er-next"></div>
+            <div id="er-content"></div>
+          </div>
+          <aside id="er-glos"><div class="er-glos-title">Frequência</div><div id="er-glos-list"></div></aside>
+          <aside id="er-lib-panel">
+            <div class="er-lib-header">
+              <button class="er-lib-back" id="er-lib-back" style="display:none">← voltar</button>
+              <span style="font-size:.75rem;opacity:.6;font-family:ui-monospace,monospace;flex:1">Biblioteca eskrev</span>
+            </div>
+            <div class="er-lib-tabs">
+              <button class="er-lib-tab active" id="er-lib-tab-books">livros</button>
+              <button class="er-lib-tab" id="er-lib-tab-fio">fio do verso</button>
+            </div>
+            <div class="er-lib-lang" id="er-lib-lang">
+              <button class="er-lib-lang-btn active" data-lang="ptbr">PTBR</button>
+              <button class="er-lib-lang-btn" data-lang="en">EN</button>
+              <button class="er-lib-lang-btn" data-lang="es">ES</button>
+              <button class="er-lib-lang-btn" data-lang="fr">FR</button>
+            </div>
+            <div id="er-fio-tabs" class="er-fio-tabs" style="display:none"></div>
+            <div class="er-lib-list" id="er-lib-list"></div>
+          </aside>
+        </div>
+        <div id="er-footer"></div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    const box     = overlay.querySelector("#er-box");
+    const viewer  = overlay.querySelector("#er-viewer");
+    const content = overlay.querySelector("#er-content");
+    const footer  = overlay.querySelector("#er-footer");
+    const btnMode = overlay.querySelector("#er-mode");
+    const glassT  = overlay.querySelector(".er-glass-top");
+    const glassB  = overlay.querySelector(".er-glass-bot");
+    const rulerEl = overlay.querySelector("#er-ruler-el");
+    const glosList= overlay.querySelector("#er-glos-list");
+    const libList = overlay.querySelector("#er-lib-list");
+    const libLang = overlay.querySelector("#er-lib-lang");
+    const fioTabs = overlay.querySelector("#er-fio-tabs");
+
+    const s = {
+      mode: "scroll", themeIdx: 0, page: 0, total: 1, fontSize: 19,
+      autoScroll: false, autoRaf: null, autoSpeed: 1,
+      libMode: "user", userText: "", userScroll: 0, libLang: "ptbr",
+      libView: "books",
+      themes: ["er-t-paper","er-t-sepia","er-t-chumbo"],
+      themeLabels: ["paper","sépia","chumbo"],
+    };
+
+    // ── Utilities ──
+    function esc(t) { return String(t||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+    function setTheme() {
+      s.themes.forEach(t => overlay.classList.remove(t));
+      overlay.classList.add(s.themes[s.themeIdx]);
+      overlay.querySelector("#er-theme").textContent = `◑ ${s.themeLabels[s.themeIdx]}`;
+    }
+    function renderFooter() {
+      if (s.mode === "page") { footer.textContent = `Página ${s.page+1} de ${s.total}`; return; }
+      const d = viewer.scrollHeight - viewer.clientHeight;
+      footer.textContent = `Lido: ${d > 0 ? Math.round(viewer.scrollTop/d*100) : 0}%`;
+    }
+    function calcPages() {
+      s.total = Math.max(1, Math.ceil(content.scrollWidth / window.innerWidth));
+      renderFooter();
+    }
+    function goPage(dir) {
+      const next = s.page + dir;
+      if (next >= 0 && next < s.total) { s.page = next; content.style.left = `-${s.page*100}vw`; renderFooter(); }
+    }
+    function setMode(m) {
+      s.mode = m;
+      box.className = box.className.replace(/\ber-(page|scroll)\b/g,"").trim();
+      box.classList.add(`er-${m}`);
+      btnMode.textContent = m === "page" ? "⇄ página" : "⇅ rolar";
+      if (m === "page") { s.page = 0; setTimeout(() => { calcPages(); content.style.left = "0"; renderFooter(); }, 60); }
+      else { content.style.left = "0"; setTimeout(renderFooter, 60); }
+    }
+    function adjustFont(delta) {
+      s.fontSize = Math.max(14, Math.min(32, s.fontSize + delta));
+      content.style.fontSize = s.fontSize + "px";
+      if (s.mode === "page") setTimeout(calcPages, 80);
+    }
+
+    // ── Glossário ──
+    function buildGlossary(text) {
+      const freq = new Map();
+      (text.toLowerCase().match(/[a-zà-ÿ]{4,}/gi) || []).forEach(w => freq.set(w, (freq.get(w)||0)+1));
+      const top = [...freq.entries()].sort((a,b)=>b[1]-a[1]).slice(0,25);
+      glosList.innerHTML = top.map(([w,n]) => `<div class="er-glos-item"><span>${esc(w)}</span><span>${n}</span></div>`).join("");
+    }
+
+    // ── Conteúdo ──
+    function textToHtml(raw, preserveBreaks = false) {
+      const blocks = raw.split(/\n{2,}/g).map(s=>s.trim()).filter(Boolean);
+      return blocks.map(b => {
+        const safe = esc(b);
+        const body = preserveBreaks ? safe.replace(/\n/g,"<br>") : safe.replace(/\n+/g," ");
+        return `<p>${body.replace(/\s{2,}/g," ").trim()}</p>`;
+      }).join("");
+    }
+    function normalizeGutenberg(raw) {
+      let t = raw.replace(/\r\n/g,"\n");
+      const sm = t.match(/\*\*\*\s*START OF (?:THIS|THE) PROJECT GUTENBERG EBOOK[\s\S]*?\*\*\*/i);
+      if (sm) t = t.slice(sm.index + sm[0].length);
+      const em = t.match(/\*\*\*\s*END OF (?:THIS|THE) PROJECT GUTENBERG EBOOK[\s\S]*?\*\*\*/i);
+      if (em) t = t.slice(0, em.index);
+      return t.replace(/[ \t]+\n/g,"\n").replace(/\n{3,}/g,"\n\n").trim();
+    }
+    function setContent(html, rawText) {
+      content.innerHTML = html;
+      content.scrollTop = 0;
+      if (s.mode === "page") { s.page = 0; setTimeout(calcPages, 60); }
+      buildGlossary(rawText || content.innerText || "");
+      renderFooter();
+    }
+    function showUserText() {
+      s.libMode = "user";
+      content.innerHTML = textToHtml(s.userText);
+      content.scrollTop = s.userScroll;
+      buildGlossary(s.userText);
+      overlay.querySelector("#er-back").style.display = "none";
+      renderFooter();
+    }
+
+    // ── Biblioteca ──
+    async function loadBooks() {
+      if (_erLibraryBooks) return _erLibraryBooks;
+      try { const r = await fetch("src/library/books.json"); _erLibraryBooks = (await r.json()).books || []; }
+      catch(_) { _erLibraryBooks = []; }
+      return _erLibraryBooks;
+    }
+    async function loadFio() {
+      if (_erFioIndex) return _erFioIndex;
+      try { const r = await fetch("src/assets/fiodoverso/index.json"); _erFioIndex = await r.json(); }
+      catch(_) { _erFioIndex = null; }
+      return _erFioIndex;
+    }
+    async function renderLibBooks() {
+      libList.innerHTML = `<div class="er-lib-empty">carregando…</div>`;
+      const books = await loadBooks();
+      const filtered = books.filter(b => b.language === s.libLang);
+      if (!filtered.length) { libList.innerHTML = `<div class="er-lib-empty">nenhum livro neste idioma</div>`; return; }
+      libList.innerHTML = filtered.map((b,i) =>
+        `<div class="er-lib-item" data-bi="${i}"><div class="er-lib-item-title">${esc(b.title)}</div><div class="er-lib-item-author">${esc(b.author)}</div></div>`
+      ).join("");
+      libList.querySelectorAll(".er-lib-item").forEach(item => {
+        item.onclick = async () => {
+          if (s.libMode !== "library") { s.userScroll = content.scrollTop; }
+          s.libMode = "library";
+          overlay.querySelector("#er-back").style.display = "";
+          libList.innerHTML = `<div class="er-lib-empty">carregando…</div>`;
+          const book = filtered[parseInt(item.dataset.bi)];
+          try {
+            const raw = await (await fetch(book.file)).text();
+            const clean = normalizeGutenberg(raw);
+            setContent(textToHtml(clean), clean);
+          } catch(_) { libList.innerHTML = `<div class="er-lib-empty">erro ao carregar</div>`; }
+          renderLibBooks();
+          box.classList.remove("show-lib");
+        };
+      });
+    }
+    async function renderFio() {
+      fioTabs.innerHTML = ""; libList.innerHTML = `<div class="er-lib-empty">carregando…</div>`;
+      const idx = await loadFio();
+      if (!idx?.months?.length) { libList.innerHTML = `<div class="er-lib-empty">não disponível</div>`; return; }
+      idx.months.forEach(month => {
+        const btn = document.createElement("button");
+        btn.className = "er-fio-tab";
+        btn.textContent = month.label || month.id;
+        btn.onclick = () => {
+          fioTabs.querySelectorAll(".er-fio-tab").forEach(b=>b.classList.remove("active"));
+          btn.classList.add("active");
+          renderFioMonth(month);
+        };
+        fioTabs.appendChild(btn);
+      });
+      fioTabs.querySelector(".er-fio-tab")?.classList.add("active");
+      renderFioMonth(idx.months[0]);
+    }
+    function renderFioMonth(month) {
+      if (!month?.entries?.length) { libList.innerHTML = `<div class="er-lib-empty">sem entradas</div>`; return; }
+      libList.innerHTML = month.entries.map((e,i) =>
+        `<div class="er-fio-item" data-fi="${i}"><div class="date">${esc(e.date||"")}</div><div class="title">${esc(e.title||"")}</div></div>`
+      ).join("");
+      libList.querySelectorAll(".er-fio-item").forEach(item => {
+        item.onclick = async () => {
+          if (s.libMode !== "fiodoverso") { s.userScroll = content.scrollTop; }
+          s.libMode = "fiodoverso";
+          overlay.querySelector("#er-back").style.display = "";
+          const entry = month.entries[parseInt(item.dataset.fi)];
+          try {
+            const raw = await (await fetch(`src/assets/fiodoverso/${entry.file}`)).text();
+            const clean = raw.replace(/^---[\s\S]*?---\s*/m,"");
+            setContent(textToHtml(clean, true), clean);
+          } catch(_) { content.innerHTML = `<p>erro ao carregar</p>`; }
+          box.classList.remove("show-lib");
+        };
+      });
+    }
+    function setLibView(view) {
+      s.libView = view;
+      overlay.querySelector("#er-lib-tab-books").classList.toggle("active", view==="books");
+      overlay.querySelector("#er-lib-tab-fio").classList.toggle("active", view==="fio");
+      libLang.style.display = view==="books" ? "" : "none";
+      fioTabs.style.display = view==="fio" ? "" : "none";
+      if (view === "books") renderLibBooks(); else renderFio();
+    }
+
+    // ── Régua / Lupa ──
+    function syncGlass() {
+      const vr = viewer.getBoundingClientRect();
+      const rr = rulerEl.getBoundingClientRect();
+      const top = rr.top - vr.top;
+      const h   = rr.height;
+      viewer.style.setProperty("--ruler-top", `${top}px`);
+      viewer.style.setProperty("--ruler-h",   `${h}px`);
+    }
+    let _rDrag=false, _rResize=null, _rY=0, _rTop=0, _rH=0;
+    const EDGE=10;
+    rulerEl.addEventListener("pointerdown", e => {
+      if (!box.classList.contains("show-ruler")) return;
+      const rr = rulerEl.getBoundingClientRect();
+      const dy = e.clientY - rr.top;
+      if (dy < EDGE) { _rResize="top"; }
+      else if (dy > rr.height - EDGE) { _rResize="bot"; }
+      else { _rDrag=true; _rResize=null; }
+      _rY=e.clientY; _rTop=rulerEl.offsetTop; _rH=rulerEl.offsetHeight;
+      rulerEl.classList.add("dragging");
+      rulerEl.setPointerCapture(e.pointerId);
+      e.preventDefault();
+    });
+    rulerEl.addEventListener("pointermove", e => {
+      if (!_rDrag && !_rResize) return;
+      const vr = viewer.getBoundingClientRect();
+      const delta = e.clientY - _rY;
+      const maxTop = vr.height - 44;
+      if (_rResize === "top") {
+        const newH = Math.max(44, _rH - delta);
+        const newT = Math.min(maxTop, Math.max(0, _rTop + (_rH - newH)));
+        rulerEl.style.top = `${newT}px`; rulerEl.style.height = `${newH}px`;
+      } else if (_rResize === "bot") {
+        rulerEl.style.height = `${Math.max(44, _rH + delta)}px`;
+      } else {
+        rulerEl.style.top = `${Math.max(0, Math.min(maxTop, _rTop + delta))}px`;
+      }
+      syncGlass();
+    });
+    rulerEl.addEventListener("pointerup", () => { _rDrag=false; _rResize=null; rulerEl.classList.remove("dragging"); });
+
+    // ── Auto-scroll ──
+    function stopAutoScroll() {
+      s.autoScroll = false;
+      if (s.autoRaf) cancelAnimationFrame(s.autoRaf);
+      s.autoRaf = null;
+      overlay.querySelector("#er-play").classList.remove("er-btn-on");
+      overlay.querySelector("#er-play").textContent = "▶";
+    }
+    function startAutoScroll() {
+      s.autoScroll = true;
+      overlay.querySelector("#er-play").classList.add("er-btn-on");
+      overlay.querySelector("#er-play").textContent = "⏸";
+      const step = () => {
+        if (!s.autoScroll) return;
+        const max = viewer.scrollHeight - viewer.clientHeight;
+        if (viewer.scrollTop >= max) { stopAutoScroll(); return; }
+        viewer.scrollTop += s.autoSpeed;
+        s.autoRaf = requestAnimationFrame(step);
+      };
+      s.autoRaf = requestAnimationFrame(step);
+    }
+
+    // ── Bindings ──
+    overlay.querySelector("#er-close").onclick  = () => { stopAutoScroll(); overlay.classList.remove("er-active"); };
+    overlay.querySelector("#er-mode").onclick   = () => setMode(s.mode==="page"?"scroll":"page");
+    overlay.querySelector("#er-theme").onclick  = () => { s.themeIdx=(s.themeIdx+1)%s.themes.length; setTheme(); };
+    overlay.querySelector("#er-fminus").onclick = () => adjustFont(-1);
+    overlay.querySelector("#er-fplus").onclick  = () => adjustFont(1);
+    overlay.querySelector("#er-prev").onclick   = () => goPage(-1);
+    overlay.querySelector("#er-next").onclick   = () => goPage(1);
+    overlay.querySelector("#er-play").onclick   = () => s.autoScroll ? stopAutoScroll() : startAutoScroll();
+    overlay.querySelector("#er-spd-d").onclick  = () => { s.autoSpeed = Math.max(.2, +(s.autoSpeed-.3).toFixed(1)); };
+    overlay.querySelector("#er-spd-u").onclick  = () => { s.autoSpeed = Math.min(4,  +(s.autoSpeed+.3).toFixed(1)); };
+    overlay.querySelector("#er-glos-btn").onclick = () => {
+      box.classList.toggle("show-glos");
+      overlay.querySelector("#er-glos-btn").classList.toggle("er-btn-on", box.classList.contains("show-glos"));
+    };
+    overlay.querySelector("#er-ruler-btn").onclick = () => {
+      const on = box.classList.toggle("show-ruler");
+      overlay.querySelector("#er-ruler-btn").classList.toggle("er-btn-on", on);
+      if (on) {
+        const vr = viewer.getBoundingClientRect();
+        rulerEl.style.top = `${Math.round(vr.height*.38)}px`;
+        rulerEl.style.height = "80px";
+        syncGlass();
+      }
+    };
+    overlay.querySelector("#er-ruler-close").onclick = () => {
+      box.classList.remove("show-ruler");
+      overlay.querySelector("#er-ruler-btn").classList.remove("er-btn-on");
+    };
+    overlay.querySelector("#er-lib-btn").onclick = () => {
+      const on = box.classList.toggle("show-lib");
+      if (on) { setLibView(s.libView); }
+    };
+    overlay.querySelector("#er-back").onclick = () => { showUserText(); box.classList.remove("show-lib"); };
+    overlay.querySelector("#er-lib-tab-books").onclick = () => setLibView("books");
+    overlay.querySelector("#er-lib-tab-fio").onclick   = () => setLibView("fio");
+    libLang.querySelectorAll(".er-lib-lang-btn").forEach(btn => {
+      btn.onclick = () => {
+        s.libLang = btn.dataset.lang;
+        libLang.querySelectorAll(".er-lib-lang-btn").forEach(b=>b.classList.toggle("active", b===btn));
+        renderLibBooks();
+      };
+    });
+    viewer.addEventListener("scroll", renderFooter, { passive: true });
+    window.addEventListener("resize", () => { if (s.mode==="page") calcPages(); });
+
+    // keyboard
+    document.addEventListener("keydown", e => {
+      if (!overlay.classList.contains("er-active")) return;
+      if (e.key==="Escape")    { stopAutoScroll(); overlay.classList.remove("er-active"); return; }
+      if (e.key==="m"||e.key==="M") setMode(s.mode==="page"?"scroll":"page");
+      if (e.key==="t"||e.key==="T") { s.themeIdx=(s.themeIdx+1)%s.themes.length; setTheme(); }
+      if (e.key==="a"||e.key==="A") { s.autoScroll?stopAutoScroll():startAutoScroll(); e.preventDefault(); }
+      if (e.key==="+"||e.key==="=") adjustFont(1);
+      if (e.key==="-"||e.key==="_") adjustFont(-1);
+      if (s.mode==="page") {
+        if (e.key==="ArrowRight"||e.key==="ArrowDown") goPage(1);
+        if (e.key==="ArrowLeft" ||e.key==="ArrowUp")   goPage(-1);
+      }
+    });
+
+    const appTheme = document.body.dataset.theme||"paper";
+    s.themeIdx = appTheme==="chumbo" ? 2 : 0;
+    setTheme();
+    overlay._erS = s;
+    overlay._erSetContent = setContent;
+    overlay._erShowUser = showUserText;
+    overlay._erTextToHtml = textToHtml;
+    overlay._erBuildGlossary = buildGlossary;
+  }
+
+  const s = overlay._erS;
+  s.userText = rawText;
+  s.userScroll = 0;
+  s.libMode = "user";
+  overlay.querySelector("#er-back").style.display = "none";
+  overlay._erSetContent(overlay._erTextToHtml(rawText), rawText);
+  overlay.querySelector("#er-content").style.fontSize = s.fontSize + "px";
+  overlay.classList.add("er-active");
+  const box = overlay.querySelector("#er-box");
+  box.classList.remove("show-glos","show-lib","show-ruler","er-btn-on");
+  box.className = box.className.replace(/\ber-(page|scroll)\b/g,"").trim() + " er-scroll";
+  overlay.querySelector("#er-mode").textContent = "⇄ página";
+}
+
 function buildHelpSlice(slice) {
   const bodyEl = slice.querySelector(".panelBody");
   if (!bodyEl) return;
@@ -825,8 +1627,7 @@ function buildHelpSlice(slice) {
       <div class="hGrid">
         <section class="vSection">
           <div class="vSectionTitle">Escrever</div>
-          ${cmd("--b", "buscar no texto")}
-          ${cmd("palavra --d", "verbete da palavra anterior")}
+          ${cmd("palavra--d", "verbete da palavra anterior")}
           ${cmd("--w", "colorir classes de palavras")}
           ${cmd("--c", "coordenador linguístico")}
           ${cmd("--g", "verificação gramatical")}
@@ -835,10 +1636,6 @@ function buildHelpSlice(slice) {
         <section class="vSection">
           <div class="vSectionTitle">Teclado</div>
           ${row("Ctrl+S", "salvar · exportar .skv")}
-          ${row("Esc", "fechar painel aberto")}
-          ${row("↓ fim da página", "próxima página")}
-          ${row("↑ início da página", "página anterior")}
-          ${row("← início da página", "mesclar com anterior")}
         </section>
         <section class="vSection">
           <div class="vSectionTitle">Arquivos</div>
@@ -852,13 +1649,12 @@ function buildHelpSlice(slice) {
           ${cmd("--p", "criar post-it")}
           ${cmd("--n", "notas laterais")}
           ${cmd("--r", "modo leitura")}
-          ${cmd("--f", "tela cheia · zen")}
-          ${cmd("--t", "barra de seleção")}
-          ${cmd("--theme", "alternar tema (paper / chumbo)")}
+          ${cmd("--f", "pomodoro · foco")}
+          ${cmd("--t", "alternar tema (paper / chumbo)")}
         </section>
       </div>
       <section class="vSection vSection--tip">
-        <p class="vNote">Topo do corte: minimiza · abre. &nbsp;·&nbsp; Laterais (gutter): fecham o corte.</p>
+        <p class="vNote">Clique no título do painel para minimizar ou expandir. &nbsp;·&nbsp; Clique nas bordas para fechar.</p>
       </section>
     </div>
   `;
@@ -1124,13 +1920,9 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
     return null;
   }
   if (c === "i" || c === "importar") {
-    return legacyModalSlice("import", "import") || openLocalSlice({
-      badge: "04",
-      title: "TRAZER PROJETO",
-      kindKey: "consult",
-      meta: "importação",
-      body: "Importação está indisponível no legado agora.",
-    });
+    const fi = document.getElementById("mesaFileInput");
+    if (fi) { fi.click(); return null; }
+    return openLocalSlice({ badge: "04", title: "IMPORTAR", kindKey: "consult", meta: "importação", body: "Input de arquivo não encontrado." });
   }
   if (c === "books") {
     return openLocalSlice({
@@ -1154,22 +1946,9 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
     buildVerifySlice(ctx, slice);
     return slice;
   }
-  if (c === "f" || c === "fullscreen") {
-    const active = !!document.fullscreenElement;
-    const toggleFs = async () => {
-      try {
-        if (active) await document.exitFullscreen();
-        else await document.documentElement.requestFullscreen();
-      } catch (_e) {}
-    };
-    toggleFs();
-    return openLocalSlice({
-      badge: "08",
-      title: "TELA CHEIA",
-      kindKey: "help",
-      meta: active ? "desativando" : "ativando",
-      body: active ? "Saindo da tela cheia." : "Entrando em tela cheia.",
-    });
+  if (c === "f" || c === "foco" || c === "pomodoro" || c === "pomo") {
+    openPomodoro();
+    return null;
   }
   if (c === "hardreset") {
     ctx.integrations?.persistence?.clear?.(el);
@@ -1200,36 +1979,28 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
     });
   }
 
-  if (c === "t" || c === "toolbar") {
-    return openLocalSlice({
-      badge: "11",
-      title: "TOOLBAR",
-      kindKey: "help",
-      meta: "atalhos de superfície",
-      body: "Comandos ativos: --h --b --s --n --i --books --a --v --f --d --l --t --p --r --w --m\n\nUse --m para modos de escrita (conto, romance, poesia…).",
-    });
+  if (c === "t") {
+    showCountdown("alternar tema", () => ctx.theme?.cycle?.());
+    return null;
   }
 
   if (c === "p" || c === "postit" || c === "note") {
-    const slice = openLocalSlice({
-      badge: "12",
-      title: "POST-IT",
-      kindKey: "consult",
-      meta: "captura rápida",
-      body: "Abrindo captura...",
+    showCountdown("post-it", () => {
+      const slice = openLocalSlice({
+        badge: "12",
+        title: "POST-IT",
+        kindKey: "consult",
+        meta: "captura rápida",
+        body: "",
+      });
+      attachPostitComposer(ctx, slice);
     });
-    attachPostitComposer(ctx, slice);
-    return slice;
+    return null;
   }
 
   if (c === "r" || c === "reader") {
-    return legacyModalSlice("reader", "reader") || openLocalSlice({
-      badge: "13",
-      title: "READER",
-      kindKey: "consult",
-      meta: "modo leitor",
-      body: "Reader está indisponível no legado agora.",
-    });
+    showCountdown("modo leitor", () => openEreader());
+    return null;
   }
 
   if (c === "writer") {
@@ -1391,8 +2162,8 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
   }
 
   if (c === "c") {
-    openCoordenador(ctx);
-    return null; // não cria slice — abre overlay diretamente
+    showCountdown("inspeção linguística", () => openCoordenador(ctx));
+    return null;
   }
 
   if (c === "h" || c === "help") {
