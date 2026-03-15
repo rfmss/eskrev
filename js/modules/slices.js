@@ -1879,13 +1879,116 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
   };
 
   if (c === "b" || c === "buscar") {
-    return legacyModalSlice("consultlegacy", "consultlegacy") || openLocalSlice({
-      badge: "01",
-      title: "BUSCAR",
-      kindKey: "consult",
-      meta: "busca local",
-      body: "Buscar está indisponível no legado agora.",
+    const slice = openLocalSlice({ badge: "01", title: "BUSCAR", kindKey: "consult", meta: "busca no texto" });
+    const body = slice?.querySelector?.(".panelBody");
+    if (!body) return slice;
+
+    // Injeta interface de busca
+    body.innerHTML = `
+      <div style="display:grid;gap:10px">
+        <input id="eskrev-search-input" type="search" placeholder="buscar no texto…"
+          style="width:100%;box-sizing:border-box;border:1px solid rgba(0,0,0,.18);border-radius:6px;
+                 background:rgba(255,255,255,.6);color:rgba(0,0,0,.82);padding:8px 10px;font:inherit;
+                 font-size:14px;outline:none;" autocomplete="off" spellcheck="false" />
+        <div id="eskrev-search-status" style="font-size:10px;color:rgba(0,0,0,.4);letter-spacing:.05em;min-height:1em"></div>
+      </div>
+    `;
+
+    const MARK_CLASS = "eskrev-search-mark";
+    const MARK_ACTIVE = "eskrev-search-mark-active";
+
+    // CSS da highlight
+    if (!document.getElementById("eskrev-search-style")) {
+      const s = document.createElement("style");
+      s.id = "eskrev-search-style";
+      s.textContent = `
+        .${MARK_CLASS} { background: rgba(196,84,42,.18); border-radius: 2px; }
+        .${MARK_ACTIVE} { background: rgba(196,84,42,.48); outline: 1px solid rgba(196,84,42,.6); }
+      `;
+      document.head.appendChild(s);
+    }
+
+    let marks = [];
+    let current = -1;
+
+    function clearMarks() {
+      document.querySelectorAll(`.${MARK_CLASS}`).forEach(m => m.replaceWith(document.createTextNode(m.textContent)));
+      marks = []; current = -1;
+    }
+
+    function highlightAll(term) {
+      clearMarks();
+      if (!term) return;
+      const pages = ctx.state.pages || document.querySelectorAll(".pageContent");
+      const re = new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
+      pages.forEach(pc => {
+        const walker = document.createTreeWalker(pc, NodeFilter.SHOW_TEXT, {
+          acceptNode(n) {
+            if (n.parentElement?.closest(".slice")) return NodeFilter.FILTER_REJECT;
+            if (n.parentElement?.tagName === "MARK") return NodeFilter.FILTER_REJECT;
+            return NodeFilter.FILTER_ACCEPT;
+          }
+        });
+        const nodes = [];
+        let n; while ((n = walker.nextNode())) nodes.push(n);
+        nodes.forEach(node => {
+          const text = node.textContent;
+          let match; re.lastIndex = 0;
+          const parts = []; let last = 0;
+          while ((match = re.exec(text)) !== null) {
+            if (match.index > last) parts.push(document.createTextNode(text.slice(last, match.index)));
+            const mark = document.createElement("mark");
+            mark.className = MARK_CLASS;
+            mark.textContent = match[0];
+            parts.push(mark);
+            marks.push(mark);
+            last = match.index + match[0].length;
+          }
+          if (parts.length) {
+            if (last < text.length) parts.push(document.createTextNode(text.slice(last)));
+            node.replaceWith(...parts);
+          }
+        });
+      });
+    }
+
+    function goTo(idx) {
+      if (!marks.length) return;
+      marks[current]?.classList.remove(MARK_ACTIVE);
+      current = ((idx % marks.length) + marks.length) % marks.length;
+      marks[current].classList.add(MARK_ACTIVE);
+      marks[current].scrollIntoView({ block: "center", behavior: "smooth" });
+      updateStatus();
+    }
+
+    function updateStatus() {
+      const el = document.getElementById("eskrev-search-status");
+      if (!el) return;
+      el.textContent = marks.length
+        ? `${current + 1} / ${marks.length} resultado${marks.length !== 1 ? "s" : ""}`
+        : input?.value ? "nenhum resultado" : "";
+    }
+
+    let debounce;
+    const input = body.querySelector("#eskrev-search-input");
+    input?.addEventListener("input", () => {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => {
+        highlightAll(input.value.trim());
+        if (marks.length) goTo(0); else updateStatus();
+      }, 180);
     });
+    input?.addEventListener("keydown", e => {
+      if (e.key === "Enter") { e.preventDefault(); goTo(e.shiftKey ? current - 1 : current + 1); }
+      if (e.key === "Escape") { clearMarks(); input.value = ""; updateStatus(); }
+    });
+
+    // Limpa marks quando o corte for removido
+    const obs = new MutationObserver(() => { if (!slice.isConnected) { clearMarks(); obs.disconnect(); } });
+    obs.observe(document.body, { childList: true, subtree: true });
+
+    requestAnimationFrame(() => input?.focus());
+    return slice;
   }
   if (c === "s" || c === "exportar") {
     return legacyModalSlice("export", "export") || openLocalSlice({
