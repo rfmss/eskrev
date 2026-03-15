@@ -137,14 +137,15 @@ jobs:
             exit 1
           fi
 
-      - name: Check manifest link in totbooks.html
+      - name: Check legacy files moved to _legacy/
         run: |
-          if grep -q 'rel="manifest"' totbooks.html; then
-            echo "✅ manifest link found in totbooks.html"
-          else
-            echo "❌ Missing manifest link in totbooks.html"
-            exit 1
-          fi
+          for f in totbooks.html onep.html fullm.html; do
+            if [ ! -f "_legacy/${f}" ]; then
+              echo "❌ _legacy/${f} not found"
+              exit 1
+            fi
+            echo "✅ _legacy/${f} present"
+          done
 
       - name: Check crypto_manager.js exists and exports key functions
         run: |
@@ -172,49 +173,11 @@ jobs:
             exit 1
           fi
 
-      - name: Check fullm.html exists and has manifest + SW
+      - name: Check index.html cached in sw.js
         run: |
-          if [ ! -f "fullm.html" ]; then
-            echo "❌ fullm.html not found"
-            exit 1
-          fi
-          if grep -q 'rel="manifest"' fullm.html; then
-            echo "✅ manifest link found in fullm.html"
+          if grep -q "index\.html" sw.js; then
+            echo "✅ index.html cached in sw.js"
           else
-            echo "❌ Missing manifest link in fullm.html"
-            exit 1
-          fi
-          if grep -q 'mode.*toggle\|modeToggle' fullm.html; then
-            echo "✅ mode toggle found in fullm.html"
-          else
-            echo "❌ Missing mode toggle in fullm.html"
-            exit 1
-          fi
-
-      - name: Check onep.html exists and has mode toggle
-        run: |
-          if [ ! -f "onep.html" ]; then
-            echo "❌ onep.html not found"
-            exit 1
-          fi
-          if grep -q 'modeToggle' onep.html; then
-            echo "✅ mode toggle found in onep.html"
-          else
-            echo "❌ Missing mode toggle in onep.html"
-            exit 1
-          fi
-
-      - name: Check fullm.html and onep.html cached in sw.js
-        run: |
-          if grep -q 'fullm.html' sw.js; then
-            echo "✅ fullm.html cached in sw.js"
-          else
-            echo "❌ fullm.html not in sw.js cache list"
-            exit 1
-          fi
-          if grep -q 'onep.html' sw.js; then
-            echo "✅ onep.html cached in sw.js"
-          else
-            echo "❌ onep.html not in sw.js cache list"
+            echo "❌ index.html not in sw.js cache list"
             exit 1
           fi
