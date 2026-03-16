@@ -1097,3 +1097,173 @@ body.layout-2030.theme-iso[data-theme="chumbo"] .modal-overlay.active {
     box-shadow: var(--iso-shadow-3);
   }
 }
+
+/* =========================================================
+   SCRIPT — tema pergaminho / roteiro de cinema
+   Ativa quando body tem layout-2030 + theme-iso + data-theme="script"
+   ========================================================= */
+body.layout-2030.theme-iso[data-theme="script"] {
+  /* Desk: couro/terra queimada — contraste cálido com o pergaminho */
+  --iso-paper: #c2a97a;
+  /* Card / editor: pergaminho aged — levemente amarelado */
+  --iso-paper-strong: #f5e9c8;
+
+  /* Tinta quente — castanho escuro, nunca preto frio */
+  --iso-ink-950: #1a1007;
+  --iso-ink-900: #2c1d0a;
+  --iso-ink-800: #42300f;
+  --iso-ink-700: #5c4522;
+  --iso-ink-600: #7a5e38;
+  --iso-ink-500: #9c7d52;
+  --iso-ink-400: #bba07a;
+  --iso-ink-300: #d4c09a;
+  --iso-ink-200: #e4d8b8;
+  --iso-ink-100: #eeead8;
+  --iso-ink-50:  #f7f4ea;
+
+  /* Grid: linhas sépia muito sutis */
+  --iso-grid: rgba(100, 70, 20, var(--iso-grid-alpha-effective));
+  --iso-grid-iso: rgba(100, 70, 20, calc(var(--iso-grid-alpha-effective) * 0.45));
+
+  /* Hairlines: quentes */
+  --iso-hairline: rgba(80, 55, 15, calc(0.18 * var(--iso-hairline-alpha-effective)));
+  --iso-hairline-strong: rgba(80, 55, 15, calc(0.32 * var(--iso-hairline-alpha-effective)));
+  --iso-hairline-inset: rgba(255, 248, 220, 0.52);
+
+  /* Accent: terracota (mesmo) + navy aquecido */
+  --iso-accent: #b84020;
+  --iso-accent-dim: rgba(184, 64, 32, 0.14);
+  --iso-accent-sys: #3d5a8a;
+  --iso-accent-sys-dim: rgba(61, 90, 138, 0.14);
+
+  /* Sombras quentes */
+  --iso-shadow-0:
+    0 0 0 1px rgba(60, 40, 10, 0.08),
+    0 1px 3px rgba(60, 40, 10, 0.08);
+  --iso-shadow-1:
+    0 1px 0 rgba(60, 40, 10, 0.12),
+    0 8px 24px rgba(60, 40, 10, 0.18),
+    0 24px 60px rgba(60, 40, 10, 0.14);
+  --iso-shadow-2:
+    0 0 0 1px rgba(60, 40, 10, 0.1),
+    0 2px 8px rgba(60, 40, 10, 0.14),
+    0 10px 30px rgba(60, 40, 10, 0.18),
+    0 28px 72px rgba(60, 40, 10, 0.15);
+  --iso-shadow-3:
+    0 0 0 1px rgba(60, 40, 10, 0.1),
+    0 3px 12px rgba(60, 40, 10, 0.14),
+    0 18px 44px rgba(60, 40, 10, 0.18),
+    0 36px 90px rgba(60, 40, 10, 0.16);
+}
+
+/* Campo unificado script: fundo couro sem repetição */
+body.layout-2030.theme-iso[data-theme="script"] {
+  background: var(--iso-paper) !important;
+}
+
+/* Grade horizontal tênue — evoca papel de roteiro */
+body.layout-2030.theme-iso[data-theme="script"]::before {
+  background:
+    linear-gradient(to bottom, var(--iso-grid) 1px, transparent 1px),
+    linear-gradient(to right, rgba(100, 70, 20, 0.03) 1px, transparent 1px);
+  background-size: 100% 28px, 28px 28px;
+}
+
+/* Vinheta quente sépia */
+body.layout-2030.theme-iso[data-theme="script"]::after {
+  background:
+    radial-gradient(
+      1200px 700px at 50% 35%,
+      rgba(60, 30, 0, 0) 0%,
+      rgba(60, 30, 0, 0.22) 70%,
+      rgba(40, 18, 0, 0.36) 100%
+    ),
+    radial-gradient(circle at 72% 80%, rgba(80, 45, 5, 0.15) 0%, transparent 55%);
+  mix-blend-mode: multiply;
+}
+
+/* Editor: pergaminho com borda fina sépia */
+body.layout-2030.theme-iso[data-theme="script"] #editor {
+  background: var(--iso-paper-strong);
+  border-color: var(--iso-hairline);
+  box-shadow: var(--iso-shadow-2);
+  /* Textura sutil de papel envelhecido via ruído SVG embutido */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeBlend in='SourceGraphic' mode='overlay' result='blend'/%3E%3CfeComposite in='blend' in2='SourceGraphic' operator='in'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* Wrappers transparentes */
+body.layout-2030.theme-iso[data-theme="script"] #editorWrap,
+body.layout-2030.theme-iso[data-theme="script"] .editor-page,
+body.layout-2030.theme-iso[data-theme="script"] .panel {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* HUD, drawer, modals: vidro creme */
+body.layout-2030.theme-iso[data-theme="script"] .hud,
+body.layout-2030.theme-iso[data-theme="script"] .drawer,
+body.layout-2030.theme-iso[data-theme="script"] .controls-inner,
+body.layout-2030.theme-iso[data-theme="script"] .command-palette-box,
+body.layout-2030.theme-iso[data-theme="script"] .modal-box {
+  background: rgba(245, 233, 200, 0.86) !important;
+  border-color: var(--iso-hairline) !important;
+}
+
+body.layout-2030.theme-iso[data-theme="script"] .hud:hover,
+body.layout-2030.theme-iso[data-theme="script"] .drawer:hover,
+body.layout-2030.theme-iso[data-theme="script"] .modal-box:hover,
+body.layout-2030.theme-iso[data-theme="script"] .command-palette-box:hover {
+  background: rgba(245, 233, 200, 0.96) !important;
+  border-color: var(--iso-hairline-strong) !important;
+}
+
+/* Modal script */
+body.layout-2030.theme-iso[data-theme="script"] .modal-box,
+body.layout-2030.theme-iso[data-theme="script"] .command-palette-box {
+  background: rgba(250, 242, 218, 0.94) !important;
+}
+
+/* Command palette script */
+body.layout-2030.theme-iso[data-theme="script"] .command-palette-item {
+  background: rgba(245, 233, 200, 0.72);
+  border-color: var(--iso-hairline);
+}
+
+body.layout-2030.theme-iso[data-theme="script"] .command-palette-item:hover,
+body.layout-2030.theme-iso[data-theme="script"] .command-palette-item.is-active {
+  background: rgba(250, 242, 218, 0.95);
+  border-color: var(--iso-hairline-strong);
+}
+
+/* Overlay script */
+body.layout-2030.theme-iso[data-theme="script"] .modal-overlay.active {
+  background: rgba(160, 120, 60, 0.32);
+  backdrop-filter: blur(2px);
+}
+
+body.layout-2030.theme-iso[data-theme="script"] .notes-overlay.active {
+  background: rgba(160, 120, 60, 0.36);
+}
+
+/* Page marker script */
+body.layout-2030.theme-iso[data-theme="script"] .page-marker::before {
+  background: color-mix(in srgb, var(--iso-paper) 72%, var(--iso-ink-600) 28%);
+  border-top-color: var(--iso-hairline);
+  border-bottom-color: var(--iso-hairline);
+  box-shadow:
+    0 -12px 32px rgba(60, 40, 10, 0.16),
+    0 12px 32px rgba(60, 40, 10, 0.16);
+}
+
+/* Logo area script */
+@media (min-width: 901px) {
+  body.layout-2030.theme-iso[data-theme="script"] .logo-area {
+    background: rgba(245, 233, 200, 0.74);
+    border: 1px solid var(--iso-hairline);
+    border-radius: var(--iso-radius-pill);
+    backdrop-filter: blur(4px);
+    padding: 5px 14px;
+    box-shadow: var(--iso-shadow-0);
+  }
+}
