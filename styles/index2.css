@@ -177,9 +177,9 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       cursor: url("../assets/cursors/bibata-ice/default.svg") 4 2, default;
     }
 
-    /* ── Papel: fonte de máquina de escrever ── */
-    body[data-theme="paper"] .pageContent,
-    body[data-theme="paper"] #editor {
+    /* ── Script: fonte de máquina de escrever ── */
+    body[data-theme="script"] .pageContent,
+    body[data-theme="script"] #editor {
       font-family: "Special Elite", "Courier New", "Courier", monospace;
       letter-spacing: 0.04em;
       line-height: 1.78;
