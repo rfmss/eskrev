@@ -2084,7 +2084,7 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
   }
 
   if (c === "t") {
-    showCountdown("alternar tema", () => ctx.theme?.cycle?.());
+    ctx.theme?.cycle?.();
     return null;
   }
 

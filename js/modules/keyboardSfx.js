@@ -32,7 +32,7 @@ export function createKeyboardSfx() {
     if (!Ctx) return;
     state.audioCtx = new Ctx();
     state.gainNode = state.audioCtx.createGain();
-    state.gainNode.gain.value = 0.28;
+    state.gainNode.gain.value = 0.55;
     state.gainNode.connect(state.audioCtx.destination);
     loadBuffer("type", TYPE_URL);
     loadBuffer("enter", ENTER_URL);
@@ -50,7 +50,7 @@ export function createKeyboardSfx() {
     if (!el) return;
     try {
       el.currentTime = 0;
-      el.volume = 0.25;
+      el.volume = 0.55;
       el.play().catch(() => {});
     } catch (_e) {}
   };

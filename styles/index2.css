@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
 /* ── Scrollbar global: elegante, com trilha sutil ────────────────────────
    Regra rígida — cobre QUALQUER elemento com overflow neste arquivo.
    Não duplicar em seletores específicos. ──────────────────────────────── */
@@ -173,6 +175,14 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       overflow: hidden; /* lock page scroll */
       cursor: url("../assets/cursors/bibata-ice/default.svg") 4 2, default;
+    }
+
+    /* ── Papel: fonte de máquina de escrever ── */
+    body:not([data-theme="chumbo"]):not([data-theme="script"]) .pageContent,
+    body:not([data-theme="chumbo"]):not([data-theme="script"]) #editor {
+      font-family: "Special Elite", "Courier New", "Courier", monospace;
+      letter-spacing: 0.04em;
+      line-height: 1.78;
     }
     .pageContent{
       cursor: url("../assets/cursors/bibata-ice/text.svg") 16 16, text;
