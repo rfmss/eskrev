@@ -178,8 +178,8 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
     }
 
     /* ── Papel: fonte de máquina de escrever ── */
-    body:not([data-theme="chumbo"]):not([data-theme="script"]) .pageContent,
-    body:not([data-theme="chumbo"]):not([data-theme="script"]) #editor {
+    body[data-theme="paper"] .pageContent,
+    body[data-theme="paper"] #editor {
       font-family: "Special Elite", "Courier New", "Courier", monospace;
       letter-spacing: 0.04em;
       line-height: 1.78;
