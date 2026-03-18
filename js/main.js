@@ -13,6 +13,7 @@ import { initWordClass } from "./modules/wordclass.js";
 import { initGrammarLint } from "./modules/grammarLint.js";
 import { initLexCheck }   from "./modules/lexCheck.js";
 import { initCoordenador } from "./modules/coordenador.js";
+import { idbInit } from "./modules/idb.js";
 
 const refs = {
   frameEl:             document.querySelector(".frame"),
@@ -59,6 +60,9 @@ const ctx = {
 
 ctx.integrations = createIntegrationRegistry(ctx);
 ctx.sfx?.bind?.();
+
+// ── Init: aguarda IDB pronto antes de restaurar estado ────────────────────
+await idbInit();
 
 // ── Init multi-page ───────────────────────────────────────────────────────
 addPage(ctx, null, true);    // cria page1, wires e foca

@@ -1,3 +1,5 @@
+import { idbGet, idbSet } from "./idb.js";
+
 let postitSeq = 0;
 const POSTIT_TONES = ["yellow", "green", "blue", "pink"];
 const POSTITS_KEY = "skrv_postits_v1";
@@ -16,7 +18,7 @@ export function savePostits(ctx) {
       top: Number.parseFloat(note.style.top) || 0,
       minimized: note.classList.contains("isMinimized"),
     }));
-    localStorage.setItem(POSTITS_KEY, JSON.stringify(data));
+    idbSet(POSTITS_KEY, data);
   } catch (_) {}
 }
 
@@ -24,9 +26,9 @@ export function restorePostits(ctx) {
   const layer = getLayer(ctx);
   if (!layer) return;
   try {
-    const raw = localStorage.getItem(POSTITS_KEY);
+    const raw = idbGet(POSTITS_KEY);
     if (!raw) return;
-    const data = JSON.parse(raw);
+    const data = Array.isArray(raw) ? raw : JSON.parse(raw);
     if (!Array.isArray(data) || !data.length) return;
     data.forEach((item) => {
       const note = document.createElement("article");
