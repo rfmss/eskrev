@@ -4,6 +4,7 @@
  */
 import { removePage, checkOverflow, savePagesState, addPage } from "./pageFlow.js";
 import { savePostits, restorePostits } from "./postits.js";
+import { idbGet, idbSet, idbRemove } from "./idb.js";
 
 const NOTES_KEY    = "skrv_mobile_notes_v1";
 const POSTITS_KEY  = "skrv_postits_v1";
@@ -87,9 +88,10 @@ const mesaStore = {
 
   init() {
     try {
-      const raw = localStorage.getItem(STORE_KEY) || localStorage.getItem("tot_data");
+      const raw = idbGet(STORE_KEY) || idbGet("tot_data");
       if (raw) {
-        const parsed = JSON.parse(raw);
+        // idbGet retorna valor já parseado
+        const parsed = (typeof raw === "string") ? JSON.parse(raw) : raw;
         this.data = parsed;
         if (!Array.isArray(this.data.projects)) this.data.projects = [];
         if (!Array.isArray(this.data.mobileNotes)) this.data.mobileNotes = [];
@@ -117,12 +119,12 @@ const mesaStore = {
     if (immediate) {
       clearTimeout(this._timer);
       this._timer = null;
-      try { localStorage.setItem(STORE_KEY, JSON.stringify(this.data)); } catch (_) {}
+      idbSet(STORE_KEY, this.data);
       return;
     }
     clearTimeout(this._timer);
     this._timer = setTimeout(() => {
-      try { localStorage.setItem(STORE_KEY, JSON.stringify(this.data)); } catch (_) {}
+      idbSet(STORE_KEY, this.data);
       this._timer = null;
     }, 500);
   },
@@ -401,22 +403,22 @@ export async function exportSkv() {
   // 2a. HTML das páginas (preserva formatação)
   let pagesHtml = [];
   try {
-    const raw = localStorage.getItem(PAGES_KEY);
-    if (raw) pagesHtml = JSON.parse(raw);
+    const val = idbGet(PAGES_KEY);
+    if (val) pagesHtml = Array.isArray(val) ? val : JSON.parse(val);
   } catch (_) {}
 
   // 2b. Notas laterais
   let notes = [];
   try {
-    const raw = localStorage.getItem(NOTES_KEY);
-    if (raw) notes = JSON.parse(raw);
+    const val = idbGet(NOTES_KEY);
+    if (val) notes = Array.isArray(val) ? val : JSON.parse(val);
   } catch (_) {}
 
   // 2c. Post-its
   let postits = [];
   try {
-    const raw = localStorage.getItem(POSTITS_KEY);
-    if (raw) postits = JSON.parse(raw);
+    const val = idbGet(POSTITS_KEY);
+    if (val) postits = Array.isArray(val) ? val : JSON.parse(val);
   } catch (_) {}
 
   // 2d. Proof: hash SHA-256 do texto completo + timestamp
@@ -641,26 +643,26 @@ export function initMesa(ctx) {
 
             // Notas laterais
             if (Array.isArray(parsed.notes)) {
-              try { localStorage.setItem(NOTES_KEY, JSON.stringify(parsed.notes)); } catch (_) {}
+              idbSet(NOTES_KEY, parsed.notes);
             }
 
-            // Post-its: grava no localStorage e restaura no DOM
+            // Post-its: grava no IDB e restaura no DOM
             const postitLayer = document.getElementById("postitLayer");
             if (postitLayer) {
               // Remove post-its existentes antes de restaurar
               postitLayer.querySelectorAll(".postit").forEach(n => n.remove());
             }
             if (Array.isArray(parsed.postits) && parsed.postits.length) {
-              try { localStorage.setItem(POSTITS_KEY, JSON.stringify(parsed.postits)); } catch (_) {}
+              idbSet(POSTITS_KEY, parsed.postits);
               restorePostits(ctx);
             } else {
-              try { localStorage.removeItem(POSTITS_KEY); } catch (_) {}
+              idbRemove(POSTITS_KEY);
             }
 
             // Páginas HTML (preserva formatação)
             const editor = getEditor();
             if (Array.isArray(parsed.pagesHtml) && parsed.pagesHtml.length && editor) {
-              try { localStorage.setItem(PAGES_KEY, JSON.stringify(parsed.pagesHtml)); } catch (_) {}
+              idbSet(PAGES_KEY, parsed.pagesHtml);
               clearExtraPages();
               editor.innerHTML = parsed.pagesHtml[0] || "";
               for (let i = 1; i < parsed.pagesHtml.length; i++) {

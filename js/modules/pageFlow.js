@@ -1,5 +1,6 @@
 import { wirePage } from "./page.js";
 import { hydrateSlices } from "./slices.js";
+import { idbGet, idbSet, idbRemove } from "./idb.js";
 
 const A4_PX = Math.round(297 * (96 / 25.4)); // ≈ 1123px
 
@@ -289,16 +290,15 @@ export function savePagesState(ctx) {
       });
       return clone.innerHTML;
     });
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    idbSet(STORAGE_KEY, data);
   } catch (_) {}
 }
 
 export function restorePagesState(ctx) {
   try {
-    // ── v2 (atual) ────────────────────────────────────────────────────────
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      const data = JSON.parse(raw);
+    // ── v2 (atual) — idbGet retorna valor já parseado ─────────────────────
+    const data = idbGet(STORAGE_KEY);
+    if (data) {
       if (!data?.length) return;
       ctx.state.pages[0].innerHTML = data[0] || "";
       for (let i = 1; i < data.length; i++) {
@@ -319,11 +319,9 @@ export function restorePagesState(ctx) {
     }
 
     // ── migração v1 → v2 (consolida páginas; overflow re-distribui) ───────
-    const rawV1 = localStorage.getItem(STORAGE_KEY_V1);
-    if (rawV1) {
-      const dataV1 = JSON.parse(rawV1);
+    const dataV1 = idbGet(STORAGE_KEY_V1);
+    if (dataV1) {
       if (Array.isArray(dataV1) && dataV1.length) {
-        // Junta tudo numa só string HTML e deixa o overflow redistribuir
         const combined = dataV1.join("");
         ctx.state.pages[0].innerHTML = combined;
         ctx.state.pages[0].querySelectorAll(".slice").forEach((s) => s.remove());
@@ -333,15 +331,15 @@ export function restorePagesState(ctx) {
           checkOverflow(ctx, ctx.state.pages[0]);
           savePagesState(ctx); // grava já em v2
         });
-        localStorage.removeItem(STORAGE_KEY_V1);
+        idbRemove(STORAGE_KEY_V1);
       }
       return;
     }
 
     // ── legado single-page (antes do sistema multi-page) ──────────────────
-    const legacy = localStorage.getItem(LEGACY_KEY);
+    const legacy = idbGet(LEGACY_KEY);
     if (legacy) {
-      ctx.state.pages[0].innerHTML = legacy;
+      ctx.state.pages[0].innerHTML = typeof legacy === "string" ? legacy : "";
       ctx.state.pages[0].querySelectorAll(".slice").forEach((s) => s.remove());
       hydrateSlices(ctx, ctx.state.pages[0]);
       syncPlaceholder(ctx.state.pages[0]);

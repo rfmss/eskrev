@@ -3,6 +3,8 @@
  * Armazenamento: localStorage "skrv_mobile_notes_v1" (compatível com fullm)
  */
 
+import { idbGet, idbSet } from "./idb.js";
+
 const NOTES_KEY    = "skrv_mobile_notes_v1";
 const NOTES_LIMIT  = 200;
 const FOLDERS_LIMIT = 30;
@@ -10,15 +12,14 @@ const PINNED_LIMIT  = 5;
 
 // ── Data helpers ────────────────────────────────────────────────
 function notesCache() {
-  try {
-    const raw = localStorage.getItem(NOTES_KEY);
-    const parsed = raw ? JSON.parse(raw) : [];
-    return Array.isArray(parsed) ? parsed : [];
-  } catch (_) { return []; }
+  const val = idbGet(NOTES_KEY);
+  if (!val) return [];
+  if (Array.isArray(val)) return val;
+  try { const p = JSON.parse(val); return Array.isArray(p) ? p : []; } catch (_) { return []; }
 }
 
 function saveNotes(notes) {
-  try { localStorage.setItem(NOTES_KEY, JSON.stringify(Array.isArray(notes) ? notes : [])); } catch (_) {}
+  idbSet(NOTES_KEY, Array.isArray(notes) ? notes : []);
 }
 
 const normalizeTag    = (t) => String(t || "").trim().replace(/^#/, "").toLowerCase();

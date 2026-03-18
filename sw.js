@@ -1,4 +1,4 @@
-const CACHE_NAME = "skrv-cache-v129";
+const CACHE_NAME = "skrv-cache-v130";
 const CORE_ASSETS = [
   "./",
   "./index.html",
@@ -24,6 +24,7 @@ const CORE_ASSETS = [
   "./js/modules/dom.js",
   "./js/modules/flowMarkers.js",
   "./js/modules/grammarLint.js",
+  "./js/modules/idb.js",
   "./js/modules/keyboardSfx.js",
   "./js/modules/layout.js",
   "./js/modules/lexCheck.js",
@@ -84,6 +85,7 @@ const CACHE_ASSETS_ALL = [
   "./js/modules/dom.js",
   "./js/modules/flowMarkers.js",
   "./js/modules/grammarLint.js",
+  "./js/modules/idb.js",
   "./js/modules/keyboardSfx.js",
   "./js/modules/layout.js",
   "./js/modules/lexCheck.js",
