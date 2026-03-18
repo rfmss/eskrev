@@ -38,3 +38,34 @@
 
 **Scores dos agentes (limitação de regex):**
 Agente 5 (Pontuação) tem teto ~40 — detecção de vírgula requer parse sintático real, não regex.
+
+---
+
+### [2026-03-18] Decisão arquitetural — Progressive Enhancement para dispositivos modestos
+
+**Intenção registrada:** o eskrev deve, quando chegar o momento, suportar dispositivos antigos (iPad 2ª geração, Android 2015–2017) sem degradar a interface — apenas o motor de análise se adapta ao tier do hardware.
+
+**Motivação:** escritores de periferia, escolas públicas modestas, regiões com acesso restrito a hardware novo. Mesma dignidade de uso independentemente do dispositivo.
+
+**Arquitetura de tiers (a implementar):**
+- `high` — Workers completos, áudio, animações, debounce 300ms
+- `mid` — Workers em fila (3 simultâneos), sem áudio, debounce 500ms
+- `low` — análise síncrona na thread principal, debounce 800ms, animações desativadas
+
+**Detecção por capacidade real** (nunca por User-Agent):
+```javascript
+function detectTier() {
+  const cores = navigator.hardwareConcurrency || 1;
+  const memory = navigator.deviceMemory || 0.5;
+  const workers = typeof Worker !== "undefined";
+  if (cores >= 4 && memory >= 2) return "high";
+  if (cores >= 2 && workers)     return "mid";
+  return "low";
+}
+```
+
+**O que NÃO mudar:** interface visual, corpus, funcionalidades disponíveis, look and feel.
+
+**Pré-condição para implementar:** manter o projeto em vanilla JS puro, sem bundler com tree-shaking agressivo, sem framework. A porta permanece aberta enquanto essa condição for mantida.
+
+**Referência:** análise de compatibilidade realizada em 2026-03-18. iOS 9.3.6 (iPad 2) suporta Web Workers, IndexedDB, CSS Custom Properties e ES6 básico — o que exclui apenas `async/await`, `fetch` e ES Modules.

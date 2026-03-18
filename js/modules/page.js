@@ -363,7 +363,7 @@ export function wirePage(ctx, el) {
       return;
     }
 
-    ctx.sfx?.playForKey?.(ev);
+    if (document.body.dataset.theme === "script") ctx.sfx?.playForKey?.(ev);
     if (!isEnter) return;
     ev.preventDefault();
     insertTextAtCaret("\n");
