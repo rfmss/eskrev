@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="eskrev — editor offline para escritores. Escreva, organize e exporte com verificação técnica de autoria." />
+  <meta name="theme-color" content="#F5F4F2" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#161615"  media="(prefers-color-scheme: dark)" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="eskrev" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="src/assets/icons/eskrev.ico" sizes="any" />
+  <link rel="icon" href="src/assets/icons/logoEskrev.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="src/assets/icons/eskrev.png" />
+  <title>eskrev — Slice Writer</title>
+
+  <!-- ── Sprint 1 — Design System ─────────────────────────────────────── -->
+  <link rel="stylesheet" href="styles/v2/reset.css" />
+  <link rel="stylesheet" href="styles/v2/tokens.css" />
+  <link rel="stylesheet" href="styles/v2/themes.css" />
+  <link rel="stylesheet" href="styles/v2/editor.css" />
+  <link rel="stylesheet" href="styles/v2/panels.css" />
+  <link rel="stylesheet" href="styles/v2/annotations.css" />
+
+  <!-- ── Componentes internos (slices, postits, notas, mesa, coordenador) -->
+  <link rel="stylesheet" href="styles/index2.css" />
+
+  <style>
+    /* ── Cache progress bar ───────────────────────────────────────────── */
+    #cacheBar {
+      position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+      background: linear-gradient(to right, var(--accent), var(--accent-soft));
+      z-index: 9998;
+      transition: width 0.5s cubic-bezier(0.22,0.61,0.36,1), opacity 0.8s ease;
+      pointer-events: none;
+    }
+    #cacheBar.done { opacity: 0; }
+
+    /* ── Offline banner ───────────────────────────────────────────────── */
+    #offlineBanner {
+      display: none;
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+      z-index: 9999;
+      background: var(--bg-tag); color: var(--text-on-dark);
+      font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.08em;
+      padding: 8px 20px; border-radius: 4px; white-space: nowrap;
+      pointer-events: none;
+    }
+    #offlineBanner.visible { display: block; }
+
+    /* ── Compat: mapeia estrutura legada → nova ───────────────────────── */
+    /* O JS usa .pageContent — CSS v2 usa .pageContent também (mantido) */
+    /* Mas o container legado .pages precisa viver dentro de .editorArea */
+    .editorArea > .pages {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      width: 100%;
+      padding: 0; /* editorArea já tem padding */
+    }
+
+    /* Scrollbar do editorArea */
+    .editorArea::-webkit-scrollbar { width: 4px; }
+    .editorArea::-webkit-scrollbar-track { background: transparent; }
+    .editorArea::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+
+    /* Status bar slim — fica no canto inferior esquerdo */
+    .statusBar {
+      position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%);
+      font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.08em;
+      color: var(--text-tertiary); pointer-events: none; z-index: 90;
+      opacity: 0; transition: opacity 300ms;
+    }
+    .statusBar.visible { opacity: 1; }
+  </style>
+</head>
+
+<body data-ui-version="v3">
+  <!-- Cache progress indicator -->
+  <div id="cacheBar" aria-hidden="true"></div>
+
+  <!-- Offline banner -->
+  <div id="offlineBanner" role="status" aria-live="polite">
+    offline · tudo salvo localmente
+  </div>
+
+  <!-- ══ APP SHELL ═══════════════════════════════════════════════════════ -->
+  <div class="appCanvas">
+
+    <!-- ── Topbar ─────────────────────────────────────────────────────── -->
+    <header class="topbar">
+      <div class="topbar__left">
+        <!-- Indicadores de modo: escrita / análise -->
+        <div class="topbar__dots" aria-label="Modo atual" role="status">
+          <span class="topbar__dot topbar__dot--active" id="dotWrite"  title="Modo escrita"></span>
+          <span class="topbar__dot topbar__dot--dim"    id="dotAnalyze" title="Modo análise"></span>
+        </div>
+        <span class="topbar__sep" aria-hidden="true"></span>
+        <!-- Brand -->
+        <span class="topbar__brand">eskrev</span>
+        <span class="topbar__pageinfo" id="topbarPageInfo" aria-live="polite"></span>
+      </div>
+
+      <div class="topbar__center">
+        <!-- Toggles de classes gramaticais — preenchidos pelo JS (wordclass.js) -->
+        <div class="toggleBar" id="toggleBar" role="toolbar" aria-label="Classes gramaticais" hidden></div>
+      </div>
+
+      <div class="topbar__right">
+        <!-- Badge de ocorrências do lint -->
+        <span class="gramBadge gramBadge--clean" id="gramBadge" aria-live="polite" aria-atomic="true"></span>
+
+        <!-- Botão: ativar/desativar análise -->
+        <button type="button" class="topbar__btn topbar__btn--analyze" id="btnAnalyze"
+          aria-pressed="false" aria-controls="appBody sidePanel"
+          title="Inspecionar texto (..g)">
+          ANÁLISE
+        </button>
+
+        <!-- Botão: corrigir tudo (aparece só quando há erros) -->
+        <button type="button" class="topbar__btn" id="btnApplyAll"
+          style="display:none" aria-label="Corrigir todas as ocorrências">
+          CORRIGIR TUDO
+        </button>
+
+        <span class="topbar__sep" aria-hidden="true"></span>
+
+        <!-- Toggle de tema claro/escuro -->
+        <button type="button" class="themeToggle" id="themeToggleBtn"
+          aria-label="Alternar tema claro/escuro" aria-pressed="false"
+          title="Alternar claro/escuro">
+        </button>
+
+        <!-- Menu: mesa, notas, modos -->
+        <button type="button" class="topbar__btn" id="btnMesa"   title="Mesa de projetos (..a)">MESA</button>
+        <button type="button" class="topbar__btn" id="btnNotas"  title="Notas laterais (..n)">NOTAS</button>
+        <button type="button" class="topbar__btn" id="btnModos"  title="Modos de escrita (..m)">MODOS</button>
+      </div>
+    </header>
+
+    <!-- ── Corpo do app: escrita ↔ análise ────────────────────────────── -->
+    <main class="appBody appBody--write" id="appBody">
+
+      <!-- Painel lateral de análise (oculto em modo escrita) -->
+      <aside class="sidePanel" id="sidePanel" aria-label="Inspeção linguística" aria-hidden="true">
+        <div class="sidePanel__header">
+          <span class="sidePanel__title">ANÁLISE</span>
+          <span class="sidePanel__count" id="sidePanelCount">0 ocorrências</span>
+        </div>
+
+        <!-- Tabs de filtro -->
+        <div class="sidePanel__tabs" role="tablist" aria-label="Filtrar por tipo">
+          <button role="tab" class="sidePanel__tab sidePanel__tab--active" data-filter="all">TODOS</button>
+          <button role="tab" class="sidePanel__tab" data-filter="erro"   style="color:var(--alert-erro)">ERRO</button>
+          <button role="tab" class="sidePanel__tab" data-filter="vicio"  style="color:var(--accent)">VÍCIO</button>
+          <button role="tab" class="sidePanel__tab" data-filter="estilo" style="color:var(--alert-estilo)">ESTILO</button>
+        </div>
+
+        <!-- Lista de alertas — preenchida pelo JS -->
+        <div class="alertList" id="alertList" role="list">
+          <div class="alertList__empty">
+            <p class="alertList__emptyLabel">Nenhuma ocorrência encontrada.</p>
+          </div>
+        </div>
+
+        <!-- Rodapé com métricas -->
+        <footer class="sidePanel__footer">
+          <div class="metric">
+            <span class="metric__value" id="metricErros">0</span>
+            <span class="metric__label">erros</span>
+          </div>
+          <div class="metric">
+            <span class="metric__value" id="metricVicios">0</span>
+            <span class="metric__label">vícios</span>
+          </div>
+          <div class="metric">
+            <span class="metric__value" id="metricPalavras">0</span>
+            <span class="metric__label">palavras</span>
+          </div>
+          <div class="metric">
+            <span class="metric__value" id="metricMente">0%</span>
+            <span class="metric__label">-mente</span>
+          </div>
+        </footer>
+      </aside>
+
+      <!-- Área do editor ──────────────────────────────────────────────── -->
+      <div class="editorArea" id="editorArea">
+
+        <!-- Páginas do documento — o JS (main.js) injeta .pageContent aqui -->
+        <div id="pages" class="pages" aria-label="Documento"></div>
+
+        <!-- Rails existentes (slices, page flow, post-its) -->
+        <aside id="pageFlowRail" class="pageFlowMarkers" aria-label="Indicadores de páginas virtuais"></aside>
+        <aside id="sliceDockRail" class="sliceDock" aria-label="Tags de cortes"></aside>
+        <aside id="postitLayer" class="postitLayer" aria-label="Post-its"></aside>
+
+      </div>
+
+    </main>
+
+  </div><!-- /.appCanvas -->
+
+  <!-- ── Status bar ──────────────────────────────────────────────────────── -->
+  <div class="statusBar" id="statusBarEl"><span id="status">ready</span></div>
+
+  <!-- ── Selection toolbar (inalterada) ──────────────────────────────────── -->
+  <div id="selectionToolbar" class="selectionToolbar" aria-hidden="true">
+    <button type="button" class="selectionToolbarBtn isPrimary" data-act="consult">CONSULTAR</button>
+    <button type="button" class="selectionToolbarBtn isPrimary" data-act="inspect" hidden>INSPECIONAR</button>
+    <button type="button" class="selectionToolbarBtn" data-act="postit">POST-IT</button>
+  </div>
+
+  <!-- ── Notes sidebar (inalterada) ──────────────────────────────────────── -->
+  <div id="notesSidebar" class="notesSidebar" aria-label="Notas" aria-hidden="true">
+    <div class="notes-header">
+      <h2>NOTAS</h2>
+      <button class="notesSidebarClose notes-close" type="button" aria-label="Fechar notas">&#x2715;</button>
+    </div>
+    <div class="notes-body">
+      <div class="notes-stage notes-stage-list is-active" data-stage="list">
+        <div class="notes-search">
+          <div class="notes-search-row">
+            <svg class="notes-search-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input id="onepNotesSearch" class="notes-search-input" placeholder="Buscar... (#tag ou /pasta)" />
+          </div>
+          <button id="onepNotesNew" class="notes-new-btn" type="button">NOVA NOTA</button>
+        </div>
+        <div id="onepNotesFoldersWrap" class="notes-filters" hidden>
+          <div class="notes-filter-title">PASTAS</div>
+          <div id="onepNotesFolders" class="notes-filter-list"></div>
+        </div>
+        <div id="onepNotesTagsWrap" class="notes-filters" hidden>
+          <div class="notes-filter-title">TAGS</div>
+          <div id="onepNotesTagsList" class="notes-filter-list"></div>
+        </div>
+        <div id="onepNotesEmpty" class="notes-empty" hidden>
+          <div class="notes-empty-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>
+          </div>
+          <div class="notes-empty-title">Sem notas ainda.</div>
+          <div class="notes-empty-body">Crie sua primeira nota para começar.</div>
+          <button id="onepNotesEmptyCreate" class="notes-new-btn notes-empty-create" type="button">CRIAR NOTA</button>
+        </div>
+        <div id="onepNotesList" class="notes-list"></div>
+        <button id="onepNotesFab" class="notes-fab" type="button" aria-label="Nova nota">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div id="onepNotesOverlay" class="notes-overlay">
+          <div class="notes-overlay-header">
+            <span id="onepNotesOverlayTitle"></span>
+            <div class="notes-overlay-actions">
+              <button id="onepNotesOverlayNew" class="notes-new-btn notes-overlay-new" type="button">+ NOVA</button>
+              <button id="onepNotesOverlayClose" class="notes-close" type="button">&#x2715;</button>
+            </div>
+          </div>
+          <div id="onepNotesOverlayList" class="notes-list"></div>
+        </div>
+      </div>
+      <div class="notes-stage notes-stage-edit" data-stage="edit">
+        <div class="notes-stage-header">
+          <button id="onepNotesBack" class="notes-stage-back" type="button" aria-label="Voltar">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="notes-spacer"></div>
+          <button id="onepNotesPinToggle" class="notes-pin-toggle" type="button" aria-label="Fixar nota">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/></svg>
+          </button>
+          <button id="onepNotesDelete" class="notes-delete-btn" type="button" aria-label="Apagar nota">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+          </button>
+        </div>
+        <div class="notes-edit">
+          <input id="onepNotesTitle"  class="notes-input" placeholder="Título" spellcheck="false" />
+          <input id="onepNotesTags"   class="notes-input" placeholder="Tags (#tag, #outra)" spellcheck="false" />
+          <input id="onepNotesFolder" class="notes-input" placeholder="Pasta (opcional)" spellcheck="false" />
+          <textarea id="onepNotesBody" class="notes-textarea" placeholder="Texto..." spellcheck="false"></textarea>
+          <div class="notes-meta" id="onepNotesMeta"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Modos sidebar (inalterada) ──────────────────────────────────────── -->
+  <div id="modosSidebar" class="modosSidebar" aria-label="Modos de escrita" aria-hidden="true">
+    <div class="modos-header">
+      <span id="modosTitle">MODOS</span>
+      <button id="modosSidebarClose" type="button" aria-label="Fechar modos">&#x2715;</button>
+    </div>
+    <div id="modosContent" class="modos-content"></div>
+  </div>
+
+  <!-- ── Mesa sidebar (inalterada) ───────────────────────────────────────── -->
+  <div id="filesSidebar" class="filesSidebar" aria-label="Mesa de projetos" aria-hidden="true">
+    <div class="mesaHead">
+      <span class="mesaTitle">MESA</span>
+      <button class="filesSidebarClose" type="button" aria-label="Fechar mesa">&#x2715;</button>
+    </div>
+    <div class="mesaBody">
+      <p class="mesaDesc">Aqui você continua projetos exportados de outras sessões do eskrev, por arquivo (.skv) ou pelo celular.</p>
+      <div class="mesaActions">
+        <button id="mesaNewBtn" class="mesaActionBtn is-primary" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          NOVO
+        </button>
+        <button id="mesaOpenBtn" class="mesaActionBtn" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          ABRIR CÁPSULA
+        </button>
+      </div>
+      <div id="mesaProjectList" class="mesaProjectList"></div>
+      <p class="mesaHint">Faça backup regularmente.<br>Use ABRIR CÁPSULA para restaurar um .skv.</p>
+      <input type="file" id="mesaFileInput" class="mesaFileInput" accept=".skv,.json" />
+    </div>
+  </div>
+
+  <!-- ══ SCRIPTS ═════════════════════════════════════════════════════════ -->
+
+  <!-- Módulo principal (inalterado — usa os mesmos IDs do DOM) -->
+  <script type="module" src="js/main.js"></script>
+
+  <script>
+    // ── Topbar: toggle escrita ↔ análise ──────────────────────────────────
+    const appBody     = document.getElementById('appBody');
+    const sidePanel   = document.getElementById('sidePanel');
+    const btnAnalyze  = document.getElementById('btnAnalyze');
+    const dotWrite    = document.getElementById('dotWrite');
+    const dotAnalyze  = document.getElementById('dotAnalyze');
+
+    let analyzeMode = false;
+
+    btnAnalyze.addEventListener('click', () => {
+      analyzeMode = !analyzeMode;
+      appBody.classList.toggle('appBody--write',   !analyzeMode);
+      appBody.classList.toggle('appBody--analyze', analyzeMode);
+      sidePanel.setAttribute('aria-hidden', String(!analyzeMode));
+      btnAnalyze.setAttribute('aria-pressed', String(analyzeMode));
+      dotWrite.classList.toggle('topbar__dot--active', !analyzeMode);
+      dotWrite.classList.toggle('topbar__dot--dim',    analyzeMode);
+      dotAnalyze.classList.toggle('topbar__dot--active', analyzeMode);
+      dotAnalyze.classList.toggle('topbar__dot--dim',    !analyzeMode);
+    });
+
+    // ── Topbar: botões de acesso rápido aos sidebars existentes ──────────
+    const openSidebar = (id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const isOpen = el.getAttribute('aria-hidden') === 'false';
+      el.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
+      el.classList.toggle('is-open', !isOpen);
+    };
+
+    document.getElementById('btnMesa') ?.addEventListener('click', () => openSidebar('filesSidebar'));
+    document.getElementById('btnNotas')?.addEventListener('click', () => openSidebar('notesSidebar'));
+    document.getElementById('btnModos')?.addEventListener('click', () => openSidebar('modosSidebar'));
+
+    // ── Toggle de tema ────────────────────────────────────────────────────
+    const html           = document.documentElement;
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const THEME_KEY      = 'eskrev:app:theme';
+
+    function applyTheme(t) {
+      html.setAttribute('data-theme', t);
+      // Compatibilidade com os módulos JS que leem body.dataset.theme
+      document.body.dataset.theme = t === 'dark' ? 'chumbo' : 'paper';
+      themeToggleBtn?.setAttribute('aria-pressed', String(t === 'dark'));
+      try { localStorage.setItem(THEME_KEY, t); } catch (_) {}
+    }
+
+    themeToggleBtn?.addEventListener('click', () => {
+      applyTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+
+    // Restaura tema salvo (com fallback para preferência do sistema)
+    const savedTheme = (() => {
+      try { return localStorage.getItem(THEME_KEY); } catch (_) { return null; }
+    })();
+    applyTheme(savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+
+    // ── Status bar: mostra por 3s, depois some ────────────────────────────
+    const statusBarEl = document.getElementById('statusBarEl');
+    let _statusTimer  = 0;
+    const origStatus  = document.getElementById('status');
+    if (origStatus && statusBarEl) {
+      new MutationObserver(() => {
+        statusBarEl.classList.add('visible');
+        clearTimeout(_statusTimer);
+        _statusTimer = setTimeout(() => statusBarEl.classList.remove('visible'), 3000);
+      }).observe(origStatus, { childList: true, characterData: true, subtree: true });
+    }
+
+    // ── Service Worker ────────────────────────────────────────────────────
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then((reg) => {
+            navigator.serviceWorker.addEventListener('message', (event) => {
+              const data = event.data || {};
+              if (data.type === 'cache-status') {
+                const bar = document.getElementById('cacheBar');
+                if (!bar) return;
+                const pct = data.total > 0 ? Math.round((data.cached / data.total) * 100) : 0;
+                bar.style.width = pct + '%';
+                if (pct >= 100) { bar.classList.add('done'); setTimeout(() => bar.remove(), 800); }
+              }
+            });
+            if (reg.active) {
+              reg.active.postMessage({ type: 'cache-extras' });
+              reg.active.postMessage({ type: 'cache-status' });
+            }
+            reg.addEventListener('updatefound', () => {
+              const w = reg.installing;
+              if (w) w.addEventListener('statechange', () => {
+                if (w.state === 'activated') reg.active.postMessage({ type: 'cache-extras' });
+              });
+            });
+          })
+          .catch(() => {});
+      });
+    }
+
+    // ── Offline banner ────────────────────────────────────────────────────
+    const offlineBanner = document.getElementById('offlineBanner');
+    const updateOnline  = () => offlineBanner?.classList.toggle('visible', !navigator.onLine);
+    window.addEventListener('online',  updateOnline);
+    window.addEventListener('offline', updateOnline);
+    updateOnline();
+  </script>
+
+</body>
+</html>

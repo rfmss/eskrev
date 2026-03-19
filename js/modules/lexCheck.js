@@ -4,16 +4,6 @@
  * Após 2s de inatividade no editor, varre o texto e marca palavras que não
  * existem no dicionário (360k entradas via dictHas/dictGet). Hover mostra sugestões
  * por distância de edição; clique substitui a palavra no texto.
- *
- * CORREÇÕES v2:
- *  1. edits1 opera sobre forma NORMALIZADA (sem acentos) — evita candidatos
- *     com acentuação impossível gerados pela substituição cega de diacríticos.
- *  2. suggest valida o candidato tanto na forma normalizada quanto na forma
- *     original do dicionário — garante que só palavras reais são sugeridas.
- *  3. Filtro mínimo de 3 caracteres em candidatos (era 2 — gerava lixo).
- *  4. Distância 2 usa apenas candidatos de distância 1 que existem no dict,
- *     não qualquer edição — reduz explosão combinatória e melhora qualidade.
- *  5. suggest retorna sempre entry.word do dicionário, nunca o candidato cru.
  */
 
 import { dictHas, dictGet, loadAllDictChunks } from "./verbete.js";
@@ -27,6 +17,7 @@ function normalize(w) {
 }
 
 // ── Palavras a nunca marcar ────────────────────────────────────────────────
+// Inclui a ignorelist do acento + artigos/preposições curtas
 const SKIP = new Set([
   ...ACCENT_IGNORELIST,
   "a", "e", "o", "é", "à", "i", "u",
@@ -46,99 +37,66 @@ async function ensureLoaded() {
 }
 
 function isKnown(word) {
-  if (!_ready) return true;
+  if (!_ready) return true; // ainda carregando → não marcar
   return dictHas(word);
 }
 
-// ── Sugestões por distância de edição ─────────────────────────────────────
-//
-// CORREÇÃO CENTRAL: o alfabeto usado nas edições é APENAS ASCII sem acentos.
-// Isso evita que substituições gerem candidatos como "cásá", "têxtó", etc.
-// A acentuação correta vem do entry.word do dicionário — não do candidato gerado.
-//
-const ASCII_ALPHA = "abcdefghijklmnopqrstuvwxyz";
+// ── Sugestões por distância de edição (algoritmo Norvig) ──────────────────
+// Alfabeto PT-BR com diacríticos mais comuns
+const PT_ALPHA = "aáâãbcçdeéêfghiíjklmnoóôõpqrstuúüvwxyz";
 
-// Gera todas as edições a distância 1 de uma palavra NORMALIZADA (sem acentos).
-// Retorna Set de strings normalizadas (minúsculas, sem acentos).
-function edits1Normalized(normWord) {
-  const w   = normWord;
+function edits1(word) {
+  const w = word.toLowerCase();
   const out = new Set();
   const n   = w.length;
-
   for (let i = 0; i < n; i++) {
     // deleção
     out.add(w.slice(0, i) + w.slice(i + 1));
     // transposição adjacente
-    if (i < n - 1) out.add(w.slice(0, i) + w[i + 1] + w[i] + w.slice(i + 2));
-    // substituição (só ASCII — acentos vêm do dicionário)
-    for (const c of ASCII_ALPHA) out.add(w.slice(0, i) + c + w.slice(i + 1));
+    if (i < n - 1) out.add(w.slice(0, i) + w[i+1] + w[i] + w.slice(i+2));
+    // substituição
+    for (const c of PT_ALPHA) out.add(w.slice(0, i) + c + w.slice(i + 1));
     // inserção
-    for (const c of ASCII_ALPHA) out.add(w.slice(0, i) + c + w.slice(i));
+    for (const c of PT_ALPHA) out.add(w.slice(0, i) + c + w.slice(i));
   }
   // inserção no final
-  for (const c of ASCII_ALPHA) out.add(w + c);
-
+  for (const c of PT_ALPHA) out.add(w + c);
   return out;
-}
-
-// Dado um candidato normalizado, tenta encontrar a entrada real no dicionário.
-// Retorna a entry.word (com acentuação correta) ou null se não existir.
-function resolveCandidate(normCandidate) {
-  if (normCandidate.length < 3) return null;
-
-  // Tenta direto (muitas palavras PT-BR não têm acento)
-  if (dictHas(normCandidate)) {
-    const entry = dictGet(normCandidate);
-    // Usa entry.word se disponível — é a forma canônica do dicionário
-    return entry?.word || normCandidate;
-  }
-
-  return null;
 }
 
 export function suggest(word, limit = 4) {
   if (!_ready || !word || word.length < 3) return [];
 
-  const normWord = normalize(word);
-  const found    = new Map(); // normCandidate → { word, dist }
+  const found = new Map(); // normed → {word, dist}
 
-  // ── Distância 1 ──────────────────────────────────────────────────────────
-  for (const normCandidate of edits1Normalized(normWord)) {
-    if (normCandidate === normWord) continue;
-    if (found.has(normCandidate)) continue;
-
-    const resolved = resolveCandidate(normCandidate);
-    if (resolved) {
-      found.set(normCandidate, { word: resolved, dist: 1 });
+  // Distância 1
+  for (const candidate of edits1(word)) {
+    if (candidate.length < 2) continue;
+    const norm = normalize(candidate);
+    if (!found.has(norm) && dictHas(candidate)) {
+      const entry = dictGet(candidate);
+      found.set(norm, { word: entry?.word || candidate, dist: 1 });
     }
   }
 
-  // ── Distância 2 ──────────────────────────────────────────────────────────
-  // CORREÇÃO: parte apenas dos candidatos de dist-1 que já existem no dict,
-  // não de todas as edições — qualidade muito melhor, menos lixo.
+  // Distância 2 — só se dist-1 insuficiente; capado em 40 bases para não travar
   if (found.size < limit) {
-    const dist1Valid = [...found.values()]
-      .filter(r => r.dist === 1)
-      .map(r => normalize(r.word))
-      .slice(0, 20); // limita a base para não travar
-
-    outer:
-    for (const base of dist1Valid) {
-      for (const normCandidate of edits1Normalized(base)) {
-        if (normCandidate === normWord) continue;
-        if (found.has(normCandidate)) continue;
-
-        const resolved = resolveCandidate(normCandidate);
-        if (resolved) {
-          found.set(normCandidate, { word: resolved, dist: 2 });
-          if (found.size >= limit * 4) break outer;
+    const dist1arr = [...edits1(word)].slice(0, 40);
+    outer: for (const e1 of dist1arr) {
+      for (const candidate of edits1(e1)) {
+        if (candidate === word.toLowerCase() || candidate.length < 2) continue;
+        const norm = normalize(candidate);
+        if (!found.has(norm) && dictHas(candidate)) {
+          const entry = dictGet(candidate);
+          found.set(norm, { word: entry?.word || candidate, dist: 2 });
+          if (found.size >= limit * 3) break outer;
         }
       }
     }
   }
 
   return [...found.values()]
-    .sort((a, b) => a.dist - b.dist || a.word.length - b.word.length)
+    .sort((a, b) => a.dist - b.dist)
     .slice(0, limit)
     .map(r => r.word);
 }
@@ -159,6 +117,7 @@ export async function scanLex(editorEl) {
   await ensureLoaded();
   clearLexMarks(editorEl);
 
+  // Walker ignora .slice, .gram-mark e .lex-mark já existentes
   const walker = document.createTreeWalker(
     editorEl,
     NodeFilter.SHOW_TEXT,
@@ -173,7 +132,7 @@ export async function scanLex(editorEl) {
   );
 
   const toWrap = [];
-  const wordRe = /\b([a-záàâãéêíóôõúüçA-ZÁÀÂÃÉÊÍÓÔÕÚÜÇ]{3,})\b/g;
+  const wordRe  = /\b([a-záàâãéêíóôõúüçA-ZÁÀÂÃÉÊÍÓÔÕÚÜÇ]{3,})\b/g;
   let tNode;
 
   while ((tNode = walker.nextNode())) {
@@ -194,6 +153,7 @@ export async function scanLex(editorEl) {
     }
   }
 
+  // Aplica marcas de trás para frente (preserva offsets)
   toWrap.sort((a, b) => a.node === b.node ? b.start - a.start : 0);
 
   for (const { node, start, end, word } of toWrap) {
@@ -210,8 +170,8 @@ export async function scanLex(editorEl) {
 }
 
 // ── Floater de sugestões ──────────────────────────────────────────────────
-let _floater   = null;
-let _hideTimer = 0;
+let _floater    = null;
+let _hideTimer  = 0;
 
 function getFloater() {
   if (_floater) return _floater;
@@ -251,21 +211,24 @@ function showFloater(markEl, sugs) {
   f.innerHTML = html;
   f.setAttribute("aria-hidden", "false");
 
+  // Posiciona abaixo da palavra marcada
   const rect = markEl.getBoundingClientRect();
   let top  = rect.bottom + window.scrollY + 5;
   let left = rect.left + window.scrollX;
   if (left + 220 > window.innerWidth) left = window.innerWidth - 228;
-  if (top + 80 > window.innerHeight + window.scrollY)
+  if (top + 80   > window.innerHeight + window.scrollY)
     top = rect.top + window.scrollY - 80 - 5;
 
   f.style.top  = top  + "px";
   f.style.left = left + "px";
   f.classList.add("isVisible");
 
+  // Chips clicáveis → substituem a palavra
   f.querySelectorAll(".lf-chip").forEach(btn => {
     btn.addEventListener("click", () => {
       const sug  = btn.dataset.sug;
       const orig = markEl.textContent;
+      // Preserva capitalização se a palavra original começa com maiúscula
       const replacement = /^[A-ZÁÀÂÃÉÊÍÓÔÕÚÜÇ]/.test(orig)
         ? sug.charAt(0).toUpperCase() + sug.slice(1)
         : sug;
@@ -283,6 +246,7 @@ export function initLexCheck() {
   const DEBOUNCE_MS = 2000;
   let timer = 0;
 
+  // Carrega dict em background imediatamente
   ensureLoaded();
 
   document.addEventListener("input", (ev) => {
@@ -292,6 +256,7 @@ export function initLexCheck() {
     timer = setTimeout(() => scanLex(editorEl), DEBOUNCE_MS);
   });
 
+  // Ao focar no editor, limpa marcas (edição ativa)
   document.addEventListener("focusin", (ev) => {
     const editorEl = ev.target?.closest?.(".pageContent");
     if (!editorEl) return;
@@ -300,6 +265,7 @@ export function initLexCheck() {
     scheduleHide();
   });
 
+  // Hover → mostra floater com sugestões
   document.addEventListener("mouseover", (ev) => {
     const mark = ev.target?.closest?.(".lex-mark");
     if (!mark) return;

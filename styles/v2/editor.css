@@ -1,0 +1,184 @@
+/**
+ * editor.css — Área de escrita e página A4
+ * O escritor vê apenas branco, tipografia e o cursor.
+ * Zero distração em modo escrita.
+ */
+
+/* ── Área de escrita (scroll container) ────────────────────────────────── */
+.editorArea {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--space-12) var(--space-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+  background: transparent; /* mostra o grid do canvas */
+  min-height: calc(100vh - var(--topbar-height));
+}
+
+/* Foco total — esconde distrações quando cursor está na página */
+.editorArea--focus {
+  padding-top: var(--space-16);
+}
+
+/* ── Página A4 ──────────────────────────────────────────────────────────── */
+.page {
+  width: var(--page-width);
+  min-height: var(--page-min-height);
+  background: var(--bg-page);
+  border: 1px solid var(--border-page);
+  box-shadow: var(--shadow-page);
+  position: relative;
+  flex-shrink: 0;
+
+  /* Transição suave ao trocar tema */
+  transition: background var(--transition-base), box-shadow var(--transition-base);
+}
+
+/* Número de página — canto inferior direito, fora do texto */
+.page::after {
+  content: attr(data-page-num);
+  position: absolute;
+  bottom: var(--space-8);
+  right: var(--page-padding-h);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  letter-spacing: 0.06em;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Conteúdo editável dentro da página ────────────────────────────────── */
+.pageContent {
+  padding: var(--page-padding-v) var(--page-padding-h);
+  min-height: calc(var(--page-min-height) - var(--page-padding-v) * 2);
+  outline: none;
+
+  /* Tipografia do escritor */
+  font-family: var(--font-editor);
+  font-size: var(--text-editor);
+  line-height: 1.8;
+  color: var(--text-page);
+  letter-spacing: 0.01em;
+
+  /* Word break para textos longos */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+/* Placeholder */
+.pageContent:empty::before {
+  content: attr(data-placeholder);
+  color: var(--text-tertiary);
+  font-style: italic;
+  pointer-events: none;
+}
+
+/* Parágrafos */
+.pageContent p {
+  margin-bottom: 1.2em;
+}
+
+.pageContent p:last-child {
+  margin-bottom: 0;
+}
+
+/* Primeira linha do primeiro parágrafo — sem indentação */
+.pageContent p + p {
+  text-indent: 2em;
+}
+
+/* ── Marcações de análise dentro do texto ──────────────────────────────── */
+
+/* Sublinhado ondulado — erros de palavra */
+.gram-mark {
+  position: relative;
+  cursor: pointer;
+  border-radius: 1px;
+}
+
+.gram-mark::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 1px;
+}
+
+/* Cores por categoria */
+.gram-mark[data-cat="concordancia"]::after,
+.gram-mark[data-cat="regencia"]::after,
+.gram-mark[data-cat="norma"]::after,
+.gram-mark[data-cat="grafia"]::after,
+.gram-mark[data-cat="acento"]::after { background: var(--alert-erro); }
+
+.gram-mark[data-cat="pleonasmo"]::after,
+.gram-mark[data-cat="semantica"]::after,
+.gram-mark[data-cat="morfologia"]::after,
+.gram-mark[data-cat="paronimia"]::after { background: var(--alert-vicio); }
+
+.gram-mark[data-cat="pontuacao"]::after,
+.gram-mark[data-cat="crase"]::after { background: var(--alert-estilo); }
+
+.gram-mark[data-cat="hifen"]::after,
+.gram-mark[data-cat="tipografia"]::after { background: var(--alert-info); }
+
+/* Hover na marcação */
+.gram-mark:hover::after { opacity: 0.6; }
+
+/* Marcação léxica (palavra desconhecida) */
+.lex-mark {
+  position: relative;
+  cursor: pointer;
+}
+
+.lex-mark::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--text-tertiary);
+  border-radius: 1px;
+  /* tracejado simulado com gradiente */
+  background: repeating-linear-gradient(
+    90deg,
+    var(--text-tertiary) 0px,
+    var(--text-tertiary) 3px,
+    transparent 3px,
+    transparent 6px
+  );
+}
+
+/* ── Responsivo ─────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .editorArea {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .page {
+    width: 100%;
+    min-height: auto;
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+  }
+
+  .pageContent {
+    padding: var(--space-8) var(--space-6);
+  }
+}
+
+@media (max-width: 480px) {
+  .pageContent {
+    padding: var(--space-6) var(--space-4);
+    font-size: 1rem;
+  }
+}

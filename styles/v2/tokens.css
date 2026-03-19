@@ -1,0 +1,127 @@
+/**
+ * tokens.css — Design System Tokens
+ * Editor PT-BR — baseado no layout de referência @thesonia33 / Easometric
+ *
+ * Paleta: branco expandido + cinza estrutural + laranja cirúrgico
+ * Tipografia: monospace para UI, serif para escrita
+ * Grid: diagonal sutil de fundo, isometria nos elementos de interface
+ */
+
+:root {
+
+  /* ── Cores base ──────────────────────────────────────────────────────── */
+  --bg-canvas:       #F5F4F2;   /* fundo geral — branco levemente quente */
+  --bg-page:         #FFFFFF;   /* página A4 */
+  --bg-panel:        #F0EFED;   /* painel lateral */
+  --bg-panel-item:   #EBEBEA;   /* item de painel inativo */
+  --bg-tag:          #1A1A18;   /* tags/badges escuros (como caixinhas pretas) */
+
+  --border:          #DDDCDA;   /* bordas estruturais */
+  --border-strong:   #C8C7C4;   /* bordas de ênfase */
+  --border-page:     #E8E7E5;   /* borda da página no canvas */
+
+  /* ── Tipografia ──────────────────────────────────────────────────────── */
+  --text-primary:    #1A1A18;   /* texto principal */
+  --text-secondary:  #6B6A67;   /* labels, meta */
+  --text-tertiary:   #9C9B98;   /* numerais inativos, placeholder */
+  --text-page:       #1A1A18;   /* texto do escritor na página */
+  --text-on-dark:    #F5F4F2;   /* texto sobre fundo escuro */
+
+  /* ── Acento — laranja cirúrgico ──────────────────────────────────────── */
+  --accent:          #E8420A;   /* laranja ativo — único acento quente */
+  --accent-soft:     #F5C4B5;   /* laranja suave para hover/estados */
+  --accent-line:     #E8420A;   /* barra lateral do item ativo */
+
+  /* ── Alertas do editor ───────────────────────────────────────────────── */
+  --alert-erro:      #D32F2F;   /* ERRO — vermelho */
+  --alert-vicio:     #E8420A;   /* VÍCIO — laranja (mesmo acento) */
+  --alert-estilo:    #1565C0;   /* ESTILO — azul */
+  --alert-info:      #2E7D32;   /* INFO — verde */
+
+  /* ── Tipografia — famílias ───────────────────────────────────────────── */
+  --font-ui:         'JetBrains Mono', 'Fira Mono', 'Courier New', monospace;
+  --font-editor:     'Georgia', 'Times New Roman', serif;
+  --font-label:      var(--font-ui);
+
+  /* ── Escala de tamanhos ──────────────────────────────────────────────── */
+  --text-xs:         0.625rem;   /* 10px — numerais de item */
+  --text-sm:         0.75rem;    /* 12px — labels, meta */
+  --text-base:       0.875rem;   /* 14px — UI geral */
+  --text-md:         1rem;       /* 16px — corpo do painel */
+  --text-editor:     1.0625rem;  /* 17px — texto do escritor */
+  --text-lg:         1.25rem;    /* 20px — títulos de seção */
+
+  /* ── Espaçamento ─────────────────────────────────────────────────────── */
+  --space-1:    0.25rem;   /*  4px */
+  --space-2:    0.5rem;    /*  8px */
+  --space-3:    0.75rem;   /* 12px */
+  --space-4:    1rem;      /* 16px */
+  --space-5:    1.25rem;   /* 20px */
+  --space-6:    1.5rem;    /* 24px */
+  --space-8:    2rem;      /* 32px */
+  --space-10:   2.5rem;    /* 40px */
+  --space-12:   3rem;      /* 48px */
+  --space-16:   4rem;      /* 64px */
+
+  /* ── Layout ──────────────────────────────────────────────────────────── */
+  --panel-width:     360px;      /* largura do painel lateral */
+  --topbar-height:   48px;       /* barra superior */
+  --page-width:      794px;      /* A4 em 96dpi */
+  --page-min-height: 1123px;     /* A4 em 96dpi */
+  --page-padding-v:  72px;       /* margem vertical da página */
+  --page-padding-h:  80px;       /* margem horizontal da página */
+
+  /* ── Sombras ─────────────────────────────────────────────────────────── */
+  --shadow-page:     0 1px 4px rgba(26,26,24,0.08), 0 4px 16px rgba(26,26,24,0.04);
+  --shadow-panel:    1px 0 0 var(--border);
+  --shadow-floater:  0 4px 16px rgba(26,26,24,0.12), 0 1px 4px rgba(26,26,24,0.08);
+  --shadow-tag:      0 2px 8px rgba(26,26,24,0.20);
+
+  /* ── Bordas arredondadas ─────────────────────────────────────────────── */
+  --radius-sm:   2px;
+  --radius-md:   4px;
+  --radius-lg:   8px;
+  --radius-tag:  2px;    /* tags: quase retas como no design de referência */
+
+  /* ── Transições ──────────────────────────────────────────────────────── */
+  --transition-fast:   120ms ease;
+  --transition-base:   200ms ease;
+  --transition-slow:   350ms ease;
+
+  /* ── Grid de fundo (diagonal sutil como no design de referência) ─────── */
+  --grid-color:    rgba(26,26,24,0.045);
+  --grid-size:     28px;
+
+  /* ── Isometria — ângulo das caixinhas de alerta ──────────────────────── */
+  --iso-skew-x:    -30deg;
+  --iso-skew-y:     30deg;
+  --iso-scale:      0.577;   /* tan(30°) — proporção isométrica */
+}
+
+/* ── Tema escuro ─────────────────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --bg-canvas:       #161615;
+  --bg-page:         #1E1E1C;
+  --bg-panel:        #191918;
+  --bg-panel-item:   #222220;
+  --bg-tag:          #F5F4F2;
+
+  --border:          #2C2C2A;
+  --border-strong:   #3A3A38;
+  --border-page:     #2A2A28;
+
+  --text-primary:    #E8E7E4;
+  --text-secondary:  #8A8985;
+  --text-tertiary:   #5A5A57;
+  --text-page:       #E8E7E4;
+  --text-on-dark:    #1A1A18;
+
+  --accent:          #FF5722;
+  --accent-soft:     #3D1A10;
+  --accent-line:     #FF5722;
+
+  --shadow-page:     0 1px 4px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2);
+  --shadow-floater:  0 4px 16px rgba(0,0,0,0.4), 0 1px 4px rgba(0,0,0,0.3);
+
+  --grid-color:      rgba(255,255,255,0.025);
+}

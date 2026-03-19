@@ -1,0 +1,81 @@
+/**
+ * reset.css — Normalize mínimo
+ * Compatível com Safari iOS 9+ (iPad 2ª geração)
+ * Sem dependências externas
+ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  line-height: 1.5;
+  font-family: var(--font-ui);
+  color: var(--text-primary);
+  background: var(--bg-canvas);
+  overflow-x: hidden;
+}
+
+/* Remove estilos de lista */
+ul, ol { list-style: none; }
+
+/* Links sem sublinhado por padrão */
+a { color: inherit; text-decoration: none; }
+
+/* Imagens responsivas */
+img, svg { display: block; max-width: 100%; }
+
+/* Botões como elemento neutro */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Input neutro */
+input, textarea {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Foco visível apenas via teclado */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Seleção de texto */
+::selection {
+  background: var(--accent-soft);
+  color: var(--text-primary);
+}
+
+/* Scrollbar — webkit */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--text-tertiary); }
