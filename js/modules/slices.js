@@ -473,7 +473,7 @@ function bindSliceInteractions(ctx, root) {
 
   const toggle = () => root.classList.toggle("isMinimized");
   const topHandle = root.querySelector(".sliceTopHandle");
-  const dockBtn = root.querySelector(".sliceDockBtn");
+  const bottomHandle = root.querySelector(".sliceBottomHandle");
   const leftGutter = root.querySelector(".gutter.left");
   const rightGutter = root.querySelector(".gutter.right");
   const panelBody = root.querySelector(".panelBody");
@@ -573,7 +573,7 @@ function bindSliceInteractions(ctx, root) {
     window.addEventListener("resize", apply);
     apply();
   }
-  if (dockBtn) dockBtn.addEventListener("click", (ev) => {
+  if (bottomHandle) bottomHandle.addEventListener("click", (ev) => {
     ev.stopPropagation();
     dockSlice();
   });
@@ -627,7 +627,6 @@ export function makeSlice(ctx, payload) {
   root.innerHTML = `
     <div class="sliceRow">
       <div class="sliceTopHandle" title="Minimizar/expandir corte"></div>
-      <button class="sliceDockBtn" type="button" title="Enviar para lateral"></button>
       <div class="gutter left" title="Fechar corte"></div>
 
       <div class="sliceCard">
@@ -643,6 +642,7 @@ export function makeSlice(ctx, payload) {
       </div>
 
       <div class="gutter right" title="Fechar corte"></div>
+      <div class="sliceBottomHandle" title="Enviar para lateral"></div>
     </div>
   `;
 
@@ -1746,7 +1746,7 @@ function buildVerifySlice(ctx, slice) {
         <div class="vSectionTitle">Verificar arquivo</div>
         <p class="vNote">Suba um .skv para confirmar se o conteúdo não foi alterado após a exportação.</p>
         <label class="vFileLabel">
-          <input type="file" class="vFileInput" id="${fileId}" accept=".skv,.json" />
+          <input type="file" class="vFileInput" id="${fileId}" accept=".skv,.json" tabindex="-1" />
           <span class="vFileBtn">Escolher .skv</span>
         </label>
         <div class="vVerifyResult" id="${resultId}" style="display:none"></div>
@@ -2273,17 +2273,15 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
   }
 
   if (c === "p" || c === "postit" || c === "note") {
-    showCountdown("post-it", () => {
-      const slice = openLocalSlice({
-        badge: "12",
-        title: "POST-IT",
-        kindKey: "consult",
-        meta: "captura rápida",
-        body: "",
-      });
-      attachPostitComposer(ctx, slice);
+    const slice = openLocalSlice({
+      badge: "06",
+      title: "POST-IT",
+      kindKey: "consult",
+      meta: "captura rápida",
+      body: "",
     });
-    return null;
+    attachPostitComposer(ctx, slice);
+    return slice;
   }
 
   if (c === "r" || c === "reader") {
@@ -2484,19 +2482,6 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
       meta: "inventário legado",
       body: lines.join("\n"),
     });
-  }
-
-  if (c === "postit" || c === "note") {
-    const slice = makeSlice(ctx, {
-      badge: "06",
-      title: "POST-IT",
-      kindKey: "consult",
-      meta: "captura rápida",
-      body: "Abrindo captura...",
-      focusScroll: "heavy",
-    });
-    attachPostitComposer(ctx, slice);
-    return slice;
   }
 
   const openPersonaSlice = (tokenRaw) => {

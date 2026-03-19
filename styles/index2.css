@@ -191,7 +191,7 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
     [role="button"],
     .gutter,
     .sliceTopHandle,
-    .sliceDockBtn{
+    .sliceBottomHandle{
       cursor: url("../assets/cursors/bibata-ice/pointer.svg") 9 3, pointer;
     }
 
@@ -1007,33 +1007,61 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
           transparent 100%
         );
     }
-    .sliceDockBtn{
+    .sliceBottomHandle{
       position: absolute;
-      top: 10px;
-      right: calc(var(--slice-gutter-w) + 12px); /* avoid conflict with close gutter */
-      width: 18px;
-      height: 12px;
-      border: none;
-      background: transparent;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: calc(var(--venom-gap, 16px) + 2px);
+      z-index: 3;
       cursor: url("../assets/cursors/bibata-ice/pointer.svg") 9 3, pointer;
-      z-index: 6;
       user-select: none;
       -webkit-user-select: none;
+      background:
+        linear-gradient(
+          to top,
+          rgba(124,124,124,.14) 0,
+          rgba(124,124,124,.14) 6px,
+          transparent 6px,
+          transparent 100%
+        );
     }
-    .sliceDockBtn::before{
+    .sliceBottomHandle::after{
       content: "";
       position: absolute;
-      left: 2px;
-      right: 2px;
-      top: 5px;
-      height: 2px;
-      border-radius: 2px;
-      background: rgba(0,0,0,.42);
-      transition: background-color var(--motion-fast) linear, transform var(--motion-fast) var(--ease-standard);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: rgba(124,124,124,.42);
+      pointer-events: none;
     }
-    .sliceDockBtn:hover::before{
+    .sliceBottomHandle:hover{
+      background:
+        linear-gradient(
+          to top,
+          rgba(196,84,42,.18) 0,
+          rgba(196,84,42,.18) 6px,
+          transparent 6px,
+          transparent 100%
+        );
+    }
+    .sliceBottomHandle::before{
+      content: "";
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 22px;
+      height: 1px;
+      border-radius: 999px;
+      background: rgba(124,124,124,.42);
+      pointer-events: none;
+      transition: background var(--motion-fast) linear, width var(--motion-fast) var(--ease-standard);
+    }
+    .sliceBottomHandle:hover::before{
       background: rgba(196,84,42,.62);
-      transform: scaleX(1.08);
+      width: 30px;
     }
 
     .sliceRow::before{
@@ -1620,7 +1648,7 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       .gutter,
       .gutter::after,
       .sliceTag,
-      .sliceDockBtn::before{
+      .sliceBottomHandle::before{
         transition: none !important;
         animation: none !important;
       }

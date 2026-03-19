@@ -235,11 +235,15 @@ export async function toggleWordClass(ctx) {
     for (const pc of (ctx.state.pages || [])) {
       // input: re-anota com debounce
       const inputFn = () => {
+        if (ctx.state._wcAnnotating) return; // re-anotação em curso — ignora
         clearTimeout(ctx.state._wcTimers?.get(pc));
         const t = setTimeout(() => {
+          if (ctx.state._wcAnnotating) return;
+          ctx.state._wcAnnotating = true;
           const saved = saveCursorWC(pc);
           annotate(pc);
           if (saved) restoreCursorWC(saved);
+          ctx.state._wcAnnotating = false;
         }, 400);
         ctx.state._wcTimers?.set(pc, t);
       };
@@ -291,6 +295,7 @@ export async function toggleWordClass(ctx) {
 
 export function initWordClass(ctx) {
   ctx.state.wcActive = false;
+  ctx.state._wcAnnotating = false;
   ctx.state._wcListeners = new Map();
   ctx.state._wcHoverListeners = new Map();
   ctx.state._wcTouchListeners = new Map();

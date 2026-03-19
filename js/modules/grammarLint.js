@@ -2913,7 +2913,9 @@ function scanAndMark(editorEl, onDone) {
     NodeFilter.SHOW_TEXT,
     {
       acceptNode(node) {
-        if (node.parentElement?.closest?.(".slice")) return NodeFilter.FILTER_REJECT;
+        const p = node.parentElement;
+        if (p?.closest?.(".slice")) return NodeFilter.FILTER_REJECT;
+        if (p?.className?.startsWith?.("wc-")) return NodeFilter.FILTER_REJECT;
         return NodeFilter.FILTER_ACCEPT;
       },
     }
@@ -2947,7 +2949,9 @@ function scanAndMark(editorEl, onDone) {
       editorEl, NodeFilter.SHOW_TEXT,
       {
         acceptNode(node) {
-          if (node.parentElement?.closest?.(".slice,.gram-mark")) return NodeFilter.FILTER_REJECT;
+          const p = node.parentElement;
+          if (p?.closest?.(".slice,.gram-mark")) return NodeFilter.FILTER_REJECT;
+          if (p?.className?.startsWith?.("wc-")) return NodeFilter.FILTER_REJECT;
           return NodeFilter.FILTER_ACCEPT;
         },
       }
