@@ -38,9 +38,9 @@ export function restorePostits(ctx) {
       note.innerHTML = `
         <header class="postitHead" title="Arraste para mover">
           <div class="postitBtns">
-            <button class="postitBtn postitClose" type="button" title="Fechar" aria-label="Fechar post-it"></button>
-            <button class="postitBtn postitMin"   type="button" title="Minimizar" aria-label="Minimizar post-it"></button>
-            <button class="postitBtn postitColor" type="button" title="Alternar cor" aria-label="Alternar cor"></button>
+            <button class="postitBtn postitClose" type="button" title="Fechar" aria-label="Fechar post-it"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 1L7 7M7 1L1 7"/></svg></button>
+            <button class="postitBtn postitMin"   type="button" title="Minimizar" aria-label="Minimizar post-it"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 4H7"/></svg></button>
+            <button class="postitBtn postitColor" type="button" title="Alternar cor" aria-label="Alternar cor"><svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="2.5"/></svg></button>
           </div>
           <span class="postitTitle">POST-IT</span>
         </header>
@@ -337,9 +337,9 @@ export function createPostit(ctx, text) {
   note.innerHTML = `
     <header class="postitHead" title="Arraste para mover">
       <div class="postitBtns">
-        <button class="postitBtn postitClose" type="button" title="Fechar" aria-label="Fechar post-it"></button>
-        <button class="postitBtn postitMin"   type="button" title="Minimizar" aria-label="Minimizar post-it"></button>
-        <button class="postitBtn postitColor" type="button" title="Alternar cor" aria-label="Alternar cor"></button>
+        <button class="postitBtn postitClose" type="button" title="Fechar" aria-label="Fechar post-it"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 1L7 7M7 1L1 7"/></svg></button>
+        <button class="postitBtn postitMin"   type="button" title="Minimizar" aria-label="Minimizar post-it"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 4H7"/></svg></button>
+        <button class="postitBtn postitColor" type="button" title="Alternar cor" aria-label="Alternar cor"><svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="2.5"/></svg></button>
       </div>
       <span class="postitTitle">POST-IT</span>
     </header>

@@ -503,22 +503,25 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       pointer-events: auto;
     }
     .postitBtn {
-      width: 11px;
-      height: 11px;
-      border: 1px solid rgba(0,0,0,.20);
-      border-radius: 999px;
+      width: 16px;
+      height: 16px;
+      border: none;
+      border-radius: 0;
       padding: 0;
+      background: transparent;
       flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--postit-ink);
+      opacity: 0.28;
       cursor: url("../assets/cursors/bibata-ice/pointer.svg") 9 3, pointer;
-      transition: transform 100ms ease, filter 100ms ease;
+      transition: opacity 120ms ease;
     }
-    .postitBtn:hover {
-      transform: scale(1.15);
-      filter: brightness(.92);
-    }
-    .postitClose  { background: #ef5b5b; border-color: rgba(180,40,40,.35); }
-    .postitMin    { background: #f0c842; border-color: rgba(160,120,20,.35); }
-    .postitColor  { background: var(--postit-swatch); border-color: rgba(0,0,0,.18); }
+    .postitBtn:hover { opacity: 0.75; }
+    .postitClose:hover { color: #c0392b; opacity: 1; }
+    .postitColor { color: var(--postit-swatch); opacity: 0.55; }
+    .postitColor:hover { opacity: 1; }
     .postitTitle{
       font-family: 'JetBrains Mono', 'Fira Mono', 'Courier New', monospace;
       font-size: 8px;
