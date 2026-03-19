@@ -11,6 +11,7 @@
 import { corpus } from "../../src/js/modules/corpus.js";
 import { makeSlice } from "./slices.js";
 import { insertNodeAtCaret } from "./dom.js";
+import { RULES_EXTENDED } from "./grammarLintExtended.js";
 
 // ── Mapa de acentuação: carregado uma vez, lazily ──────────────────────────
 let _accentMap    = null;
@@ -73,7 +74,7 @@ export const CATEGORY_COLORS = {
 };
 
 // ── Regras ────────────────────────────────────────────────────────────────
-const RULES = [
+const RULES_BASE = [
 
   // ── CONCORDÂNCIA ─────────────────────────────────────────────────────────
   {
@@ -2275,8 +2276,418 @@ A crase com países depende de um fator crucial: o país admite artigo definido?
 
 **Mnemônica:** se pode substituir por "conforme" → "à medida que". Se pode substituir por "porque/dado que" → "na medida em que".`,
   },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // BLOCO A — GERUNDISMO (variantes adicionais)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  {
+    id: "gerundismo_vai_estar",
+    category: "norma",
+    pattern: /\bvai\s+estar\s+\w+ndo\b/gi,
+    label: "Gerundismo (vai estar + gerúndio)",
+    explanation: "Substitua 'vai estar fazendo' por 'vai fazer' — mais direto e correto.",
+    wrong: "Vai estar esperando na recepção.",
+    right: "Vai esperar na recepção.",
+    area: "variation", topic: "linguistic_variation",
+    detail: `## Gerundismo: "vai estar + gerúndio"
+
+"Vai estar + gerúndio" é mais uma variante do gerundismo corporativo. A perífrase "vai + infinitivo" já expressa o futuro com clareza — o "estar" é supérfluo.
+
+✗  Vai estar esperando na recepção.
+✓  Vai esperar na recepção.
+
+✗  Vai estar enviando em breve.
+✓  Vai enviar em breve.`,
+  },
+  {
+    id: "gerundismo_ira_estar",
+    category: "norma",
+    pattern: /\birá\s+estar\s+\w+ndo\b/gi,
+    label: "Gerundismo (irá estar + gerúndio)",
+    explanation: "Substitua 'irá estar fazendo' por 'irá fazer' — mais direto e correto.",
+    wrong: "Irá estar disponível amanhã.",
+    right: "Estará disponível amanhã.",
+    area: "variation", topic: "linguistic_variation",
+    detail: `## Gerundismo: "irá estar + gerúndio"
+
+"Irá estar + gerúndio" combina dois auxiliares para expressar o futuro — quando bastaria um verbo no futuro simples.
+
+✗  Irá estar disponível amanhã.
+✓  Estará disponível amanhã.
+
+✗  Irá estar aguardando sua ligação.
+✓  Aguardará sua ligação.`,
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // BLOCO B — PLEONASMOS VICIOSOS (novos)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  {
+    id: "acabamento_final",
+    category: "pleonasmo",
+    pattern: /\bacabamento\s+final\b/gi,
+    label: "Pleonasmo vicioso: acabamento final",
+    explanation: "'Acabamento' já é a etapa final de um processo — 'final' é redundante.",
+    wrong: "O acabamento final ficou impecável.",
+    right: "O acabamento ficou impecável.",
+    area: "stylistics", topic: "figures",
+    detail: `## Pleonasmo vicioso: "acabamento final"
+
+"Acabamento" denota a fase conclusiva de um processo. "Final" não acrescenta informação — é redundante.
+
+✗  O acabamento final ficou impecável.
+✓  O acabamento ficou impecável.`,
+  },
+  {
+    id: "adiar_para_depois",
+    category: "pleonasmo",
+    pattern: /\badiar\s+para\s+depois\b/gi,
+    label: "Pleonasmo vicioso: adiar para depois",
+    explanation: "'Adiar' já significa mover para um momento posterior — 'para depois' é redundante.",
+    wrong: "Vamos adiar para depois a reunião.",
+    right: "Vamos adiar a reunião.",
+    area: "stylistics", topic: "figures",
+    detail: `## Pleonasmo vicioso: "adiar para depois"
+
+"Adiar" = transferir para data posterior. "Para depois" repete exatamente esse sentido.
+
+✗  Vamos adiar para depois a reunião.
+✓  Vamos adiar a reunião.`,
+  },
+  {
+    id: "comparecer_pessoalmente",
+    category: "pleonasmo",
+    pattern: /\bcomparecer\s+pessoalmente\b/gi,
+    label: "Pleonasmo vicioso: comparecer pessoalmente",
+    explanation: "'Comparecer' implica presença física — 'pessoalmente' é redundante.",
+    wrong: "O réu deverá comparecer pessoalmente.",
+    right: "O réu deverá comparecer.",
+    area: "stylistics", topic: "figures",
+    detail: `## Pleonasmo vicioso: "comparecer pessoalmente"
+
+"Comparecer" = apresentar-se, estar presente. A presença física já está embutida no verbo.
+
+✗  O réu deverá comparecer pessoalmente.
+✓  O réu deverá comparecer.`,
+  },
+  {
+    id: "erario_publico",
+    category: "pleonasmo",
+    pattern: /\berário\s+público\b/gi,
+    label: "Pleonasmo vicioso: erário público",
+    explanation: "'Erário' é por definição o tesouro público — o adjetivo 'público' é redundante.",
+    wrong: "Os recursos do erário público foram desviados.",
+    right: "Os recursos do erário foram desviados.",
+    area: "stylistics", topic: "figures",
+    detail: `## Pleonasmo vicioso: "erário público"
+
+"Erário" = tesouro do Estado, fazenda pública. O adjetivo "público" é inerente ao substantivo.
+
+✗  Os recursos do erário público foram desviados.
+✓  Os recursos do erário foram desviados.`,
+  },
+  {
+    id: "futuro_porvir",
+    category: "pleonasmo",
+    pattern: /\bfuturo\s+porvir\b/gi,
+    label: "Pleonasmo vicioso: futuro porvir",
+    explanation: "'Porvir' já significa 'futuro' — usar os dois juntos é redundante.",
+    wrong: "As gerações do futuro porvir.",
+    right: "As gerações do porvir. / As gerações futuras.",
+    area: "stylistics", topic: "figures",
+    detail: `## Pleonasmo vicioso: "futuro porvir"
+
+"Porvir" (substantivo) = o futuro, o que há de vir. Usar "futuro porvir" equivale a dizer "futuro futuro".
+
+✗  As gerações do futuro porvir.
+✓  As gerações do porvir.
+✓  As gerações futuras.`,
+  },
+  {
+    id: "urgente_para_agora",
+    category: "pleonasmo",
+    pattern: /\burgente\s+para\s+agora\b/gi,
+    label: "Pleonasmo vicioso: urgente para agora",
+    explanation: "'Urgente' já implica imediatismo — 'para agora' é redundante.",
+    wrong: "É urgente para agora.",
+    right: "É urgente.",
+    area: "stylistics", topic: "figures",
+    detail: `## Pleonasmo vicioso: "urgente para agora"
+
+"Urgente" = que exige ação imediata. "Para agora" apenas repete a ideia de imediatismo.
+
+✗  É urgente para agora.
+✓  É urgente.`,
+  },
+  {
+    id: "multidao_pessoas",
+    category: "pleonasmo",
+    pattern: /\bmultidão\s+de\s+pessoas\b/gi,
+    label: "Pleonasmo vicioso: multidão de pessoas",
+    explanation: "'Multidão' já pressupõe um grande número de pessoas — 'de pessoas' é redundante.",
+    wrong: "Uma multidão de pessoas protestou.",
+    right: "Uma multidão protestou.",
+    area: "stylistics", topic: "figures",
+    detail: `## Pleonasmo vicioso: "multidão de pessoas"
+
+"Multidão" = grande quantidade de pessoas reunidas. "De pessoas" é redundante.
+
+✗  Uma multidão de pessoas protestou.
+✓  Uma multidão protestou.`,
+  },
+  {
+    id: "novidade_nunca_vista",
+    category: "pleonasmo",
+    pattern: /\bnovidade\s+nunca\s+vista\b/gi,
+    label: "Pleonasmo vicioso: novidade nunca vista",
+    explanation: "'Novidade' já implica algo novo ou nunca visto — a complementação é redundante.",
+    wrong: "Uma novidade nunca vista antes.",
+    right: "Uma novidade.",
+    area: "stylistics", topic: "figures",
+    detail: `## Pleonasmo vicioso: "novidade nunca vista"
+
+"Novidade" = algo que não existia ou não era conhecido antes. "Nunca vista" repete esse sentido.
+
+✗  Uma novidade nunca vista antes.
+✓  Uma novidade.`,
+  },
+  {
+    id: "orcamento_previo",
+    category: "pleonasmo",
+    pattern: /\borçamento\s+prévio\b/gi,
+    label: "Pleonasmo vicioso: orçamento prévio",
+    explanation: "'Orçamento' é sempre feito antes da execução — 'prévio' é redundante.",
+    wrong: "Solicite um orçamento prévio.",
+    right: "Solicite um orçamento.",
+    area: "stylistics", topic: "figures",
+    detail: `## Pleonasmo vicioso: "orçamento prévio"
+
+Um orçamento é, por natureza, elaborado antes da contratação ou execução do serviço. "Prévio" não acrescenta informação.
+
+✗  Solicite um orçamento prévio.
+✓  Solicite um orçamento.`,
+  },
+  {
+    id: "reabertura_novamente",
+    category: "pleonasmo",
+    pattern: /\breabertura\s+novamente\b/gi,
+    label: "Pleonasmo vicioso: reabertura novamente",
+    explanation: "O prefixo 're-' já indica repetição — 'novamente' é redundante.",
+    wrong: "Anunciaram a reabertura novamente das inscrições.",
+    right: "Anunciaram a reabertura das inscrições.",
+    area: "stylistics", topic: "figures",
+    detail: `## Pleonasmo vicioso: "reabertura novamente"
+
+O prefixo "re-" em "reabertura" já indica que algo está sendo aberto de novo. "Novamente" duplica esse sentido.
+
+✗  Anunciaram a reabertura novamente das inscrições.
+✓  Anunciaram a reabertura das inscrições.`,
+  },
+  {
+    id: "ha_tempo_atras",
+    category: "pleonasmo",
+    pattern: /\bhá\s+(?:muito|pouco|algum|bastante|tanto)\s+tempo\s+atrás\b/gi,
+    label: "Pleonasmo vicioso: há tempo atrás",
+    explanation: "'Há' indica passado e 'atrás' também — use apenas um dos dois.",
+    wrong: "Aconteceu há muito tempo atrás.",
+    right: "Aconteceu há muito tempo. / Aconteceu muito tempo atrás.",
+    area: "stylistics", topic: "figures",
+    detail: `## Pleonasmo vicioso: "há tempo atrás"
+
+"Há" (do verbo haver) indica tempo passado decorrido. "Atrás" também situa no passado. Os dois juntos formam pleonasmo.
+
+✗  Aconteceu há muito tempo atrás.
+✓  Aconteceu há muito tempo.
+✓  Aconteceu muito tempo atrás.
+
+**Regra:** escolha um dos dois marcadores temporais — nunca ambos. Para casos com números ("há 3 anos atrás"), a regra é a mesma.`,
+  },
+  {
+    id: "planejar_futuro",
+    category: "pleonasmo",
+    pattern: /\bplanejar\s+o\s+futuro\b/gi,
+    label: "Pleonasmo vicioso: planejar o futuro",
+    explanation: "'Planejar' é sempre orientado ao futuro — 'o futuro' é redundante no contexto geral.",
+    wrong: "Precisamos planejar o futuro.",
+    right: "Precisamos planejar.",
+    area: "stylistics", topic: "figures",
+    detail: `## Pleonasmo vicioso: "planejar o futuro"
+
+"Planejar" é, por definição, pensar e organizar ações para o que virá. "O futuro" não especifica nada — apenas repete o que está implícito.
+
+✗  Precisamos planejar o futuro.
+✓  Precisamos planejar.
+✓  Precisamos planejar os próximos passos.  (se quiser especificar, seja mais concreto)`,
+  },
+  {
+    id: "vereador_camara",
+    category: "pleonasmo",
+    pattern: /\bvereador\s+da\s+câmara\b/gi,
+    label: "Pleonasmo vicioso: vereador da câmara",
+    explanation: "Vereador é, por definição, membro da Câmara Municipal — 'da câmara' é redundante.",
+    wrong: "O vereador da câmara propôs a lei.",
+    right: "O vereador propôs a lei.",
+    area: "stylistics", topic: "figures",
+    detail: `## Pleonasmo vicioso: "vereador da câmara"
+
+"Vereador" = membro eleito da Câmara Municipal. A origem institucional já está embutida no cargo.
+
+✗  O vereador da câmara propôs a lei.
+✓  O vereador propôs a lei.`,
+  },
+  {
+    id: "senador_senado",
+    category: "pleonasmo",
+    pattern: /\bsenador\s+do\s+senado\b/gi,
+    label: "Pleonasmo vicioso: senador do senado",
+    explanation: "Senador é, por definição, membro do Senado — 'do senado' é redundante.",
+    wrong: "O senador do senado votou contra.",
+    right: "O senador votou contra.",
+    area: "stylistics", topic: "figures",
+    detail: `## Pleonasmo vicioso: "senador do senado"
+
+"Senador" = membro do Senado Federal. "Do senado" apenas repete a definição do cargo.
+
+✗  O senador do senado votou contra.
+✓  O senador votou contra.`,
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // BLOCO C — PARÔNIMOS (novos)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  {
+    id: "cumprimento_comprimento",
+    category: "paronimia",
+    pattern: /\bcumprimento\s+(?:do|da|de|em|ao)\s+(?:caminho|distância|fio|cabo|rio|estrada|linha|percurso)\b/gi,
+    label: "Cuidado: cumprimento × comprimento",
+    explanation: "'Cumprimento' = saudação ou ação de cumprir. 'Comprimento' = extensão, tamanho.",
+    wrong: "O cumprimento do fio é de 10 metros.",
+    right: "O comprimento do fio é de 10 metros.",
+    area: "semantics", topic: "paronimia",
+    detail: `## Parônimos: cumprimento × comprimento
+
+Dois substantivos com grafia parecida e significados completamente diferentes.
+
+**Cumprimento** (com u):
+- Saudação: "Dei um cumprimento ao vizinho."
+- Ato de cumprir: "O cumprimento do contrato foi rigoroso."
+
+**Comprimento** (com o):
+- Extensão, medida linear: "O comprimento da estrada é de 40 km."
+- Dimensão de um objeto: "Qual é o comprimento do cabo?"
+
+✗  O cumprimento do rio é de 500 km.
+✓  O comprimento do rio é de 500 km.
+
+**Dica:** para extensão/medida, pense em "comprido" → comprimento.`,
+  },
+  {
+    id: "cessao_seccao_sessao",
+    category: "paronimia",
+    pattern: /\bcessão\s+(?:de|do|da|dos|das)\s+(?:espaço|sala|local|área)\b/gi,
+    label: "Cuidado: cessão × seção × sessão",
+    explanation: "'Cessão' = ato de ceder. 'Seção' = divisão, departamento. 'Sessão' = período de atividade.",
+    wrong: "A cessão do espaço foi confirmada.",
+    right: "A cessão do espaço foi confirmada. (ceder o espaço — correto se for isso) / A seção de espaço foi demarcada. (divisão)",
+    area: "semantics", topic: "paronimia",
+    detail: `## Parônimos: cessão × seção × sessão
+
+Três palavras com pronúncia idêntica (/se'sãw/) e sentidos distintos.
+
+**Cessão** (de ceder):
+- Ato de transferir ou ceder algo: "A cessão do imóvel foi assinada."
+
+**Seção** (divisão):
+- Parte, departamento, setor: "A seção de informática está no 3º andar."
+- Corte, divisão física: "A seção transversal do osso."
+
+**Sessão** (período de tempo):
+- Reunião, exibição, período de atividade: "A sessão do tribunal durou três horas."
+- "Sessão de cinema", "sessão de fotos".
+
+**Dica:** cessão → ceder | seção → setor | sessão → sentar (reunião)`,
+  },
+  {
+    id: "mal_mau_contexto",
+    category: "paronimia",
+    pattern: /\bmal\s+(?:tempo|cheiro|hálito|humor|caráter|índole|comportamento|exemplo)\b/gi,
+    label: "Mal × mau: atenção ao contexto",
+    explanation: "'Mau' é adjetivo (oposto de bom). 'Mal' é advérbio (oposto de bem) ou substantivo.",
+    wrong: "Ele tem mal hálito.",
+    right: "Ele tem mau hálito.",
+    area: "semantics", topic: "paronimia",
+    detail: `## Parônimos: mal × mau
+
+**Mau** (adjetivo — oposto de bom):
+- Qualifica substantivos: mau caráter, mau exemplo, mau humor, mau cheiro, mau hálito.
+- Concorda em gênero: mau/má, maus/más.
+
+**Mal** (advérbio — oposto de bem):
+- Modifica verbos ou adjetivos: "Ele se comportou mal." / "Estava mal informado."
+- Também pode ser substantivo: "O mal do século."
+
+✗  Ele tem mal hálito.        ✓  Ele tem mau hálito.
+✗  É um mal exemplo.          ✓  É um mau exemplo.
+✗  Estava de mal humor.       ✓  Estava de mau humor.
+
+**Teste rápido:** substitua por "bom/boa". Se funcionar, use "mau/má". Se não, use "mal".
+✓  Ele tem bom hálito → mau hálito (adjetivo)
+✗  Ele se comportou bom → se comportou mal (advérbio)`,
+  },
+  {
+    id: "ascender_acender",
+    category: "paronimia",
+    pattern: /\bascender\s+(?:a\s+)?(?:luz|vela|fogo|fogueira|forno|churrasqueira)\b/gi,
+    label: "Ascender × acender",
+    explanation: "'Acender' = colocar fogo, ligar. 'Ascender' = subir, elevar-se.",
+    wrong: "Ascenda a vela antes de dormir.",
+    right: "Acenda a vela antes de dormir.",
+    area: "semantics", topic: "paronimia",
+    detail: `## Parônimos: acender × ascender
+
+**Acender** (com c):
+- Colocar fogo, ligar (luz, aparelho): "Acendeu o forno." / "Acendeu a luz."
+
+**Ascender** (com sc):
+- Subir, elevar-se, progredir: "Ascendeu ao cargo de diretor." / "O balão ascendeu."
+
+✗  Ascenda a fogueira.        ✓  Acenda a fogueira.
+✗  Acendeu na carreira.       ✓  Ascendeu na carreira.
+
+**Dica:** acender → fogo/luz | ascender → ascensão, subida.`,
+  },
+  {
+    id: "emigrar_imigrar",
+    category: "paronimia",
+    pattern: /\bimigrar\s+(?:para\s+)?(?:o\s+exterior|fora\s+do\s+país|outro\s+país)\b/gi,
+    label: "Imigrar × emigrar",
+    explanation: "'Emigrar' = sair do país de origem. 'Imigrar' = entrar em outro país.",
+    wrong: "Ele decidiu imigrar para o exterior.",
+    right: "Ele decidiu emigrar. (sair do Brasil) / Ele imigrou para a Alemanha. (entrar na Alemanha)",
+    area: "semantics", topic: "paronimia",
+    detail: `## Parônimos: emigrar × imigrar
+
+**Emigrar** (saída):
+- Deixar o país de origem para viver em outro lugar.
+- "Os brasileiros que emigram vão para Portugal, EUA, Japão..."
+
+**Imigrar** (entrada):
+- Entrar em um país estrangeiro para nele residir.
+- "Os alemães que imigraram para o Brasil no século XIX..."
+
+A mesma pessoa *emigra* do país de origem e *imigra* no país de destino.
+
+✗  Ele imigrou para o exterior.   (vago — quem emigra vai para "fora"; quem imigra chega em algum lugar específico)
+✓  Ele emigrou do Brasil.
+✓  Ele imigrou para Portugal.`,
+  },
+
 ];
 
+const RULES = [...RULES_BASE, ...RULES_EXTENDED];
 const RULE_MAP = new Map(RULES.map(r => [r.id, r]));
 
 // ── Badge de contagem ─────────────────────────────────────────────────────

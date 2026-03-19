@@ -14,6 +14,7 @@ import { initGrammarLint } from "./modules/grammarLint.js";
 import { initLexCheck }   from "./modules/lexCheck.js";
 import { initCoordenador } from "./modules/coordenador.js";
 import { idbInit } from "./modules/idb.js";
+import { markEditorReady, markFirstAction } from "./modules/perf.js";
 
 const refs = {
   frameEl:             document.querySelector(".frame"),
@@ -82,6 +83,7 @@ window.addEventListener("resize", () => {
 
 ctx.setStatus("ready");
 window.__ESKREV_INDEX2_READY__ = true;
+markEditorReady();
 
 // ── Modos sidebar close button ────────────────────────────────────────────
 const modosSidebarClose = document.getElementById("modosSidebarClose");
@@ -115,6 +117,17 @@ requestAnimationFrame(() => {
   const first = document.getElementById("page1");
   if (first) first.focus();
 });
+
+// ── Marca primeira ação no editor (TTFA) ─────────────────────────────────
+{
+  const onFirstAction = () => {
+    markFirstAction();
+    document.removeEventListener("keydown", onFirstAction, true);
+    document.removeEventListener("input", onFirstAction, true);
+  };
+  document.addEventListener("keydown", onFirstAction, true);
+  document.addEventListener("input", onFirstAction, true);
+}
 
 document.addEventListener("keydown", (ev) => {
   const key = String(ev.key || "").toLowerCase();

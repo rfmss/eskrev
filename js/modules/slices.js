@@ -9,6 +9,9 @@ import { lookupVerbete } from "./verbete.js";
 import { corpus } from "../../src/js/modules/corpus.js";
 import { openCoordenador } from "./coordenador.js";
 import { exportSkv } from "./mesa.js";
+import { hasKey, generateAuthorKey, getPublicKeyJwk, exportPublicCert } from "../../src/js/modules/crypto_manager.js";
+import { analyzeStyle } from "./styleAnalysis.js";
+import { getPerfReport } from "./perf.js";
 
 // ── Countdown toast ────────────────────────────────────────────────────────
 // Para comandos que mudam o estado visual da tela: exibe "label  3 · 2 · 1"
@@ -1646,6 +1649,7 @@ function buildHelpSlice(slice) {
         <section class="vSection">
           <div class="vSectionTitle">Arquivos</div>
           ${cmd("..s", "salvar · exportar .skv")}
+          ${cmd("..authoria", "assinar .skv com ECDSA (Authoria)")}
           ${cmd("..a", "mesa de projetos")}
           ${cmd("..i", "importar .skv")}
           ${cmd("..v", "verificação + estatísticas")}
@@ -1673,6 +1677,7 @@ function buildVerifySlice(ctx, slice) {
 
   const text = getEditorText();
   const stats = computeTextStats(text);
+  const style = analyzeStyle(text);
 
   if (metaEl) metaEl.textContent = `${stats.words} palavras · calculando hash…`;
 
@@ -1697,6 +1702,38 @@ function buildVerifySlice(ctx, slice) {
           ${stats.longestWord ? `<div class="vRow"><span class="vLabel">Palavra + longa</span><span class="vVal">${escapeHtml(stats.longestWord)}</span></div>` : ""}
         </div>
       </section>
+      ${style.resumo ? `
+      <section class="vSection">
+        <div class="vSectionTitle">Estilo</div>
+        <div class="vGrid">
+          <div class="vRow"><span class="vLabel">Advérbios -mente</span><span class="vVal">${style.resumo.densidadeMente}%</span></div>
+          <div class="vRow"><span class="vLabel">Vozes passivas</span><span class="vVal">${style.resumo.totalPassiva}</span></div>
+          <div class="vRow"><span class="vLabel">Média palavras/frase</span><span class="vVal">${style.resumo.mediaWordsPorSentenca}</span></div>
+        </div>
+        ${style.alertas.length ? `
+        <div class="vStyleAlerts">
+          ${style.alertas.slice(0, 5).map(a => `
+            <div class="vStyleAlert vStyleAlert--${a.nivel.toLowerCase()}">
+              <span class="vAlertNivel">${a.nivel}</span>
+              <span class="vAlertMsg">${escapeHtml(a.mensagem)} <span class="vAlertPar">(§${a.paragrafo + 1})</span></span>
+            </div>
+          `).join("")}
+          ${style.alertas.length > 5 ? `<div class="vStyleMore">+${style.alertas.length - 5} alertas no painel de análise</div>` : ""}
+        </div>` : `<p class="vNote">Densidade dentro do esperado.</p>`}
+      </section>` : ""}
+      ${(() => {
+        const perf = getPerfReport();
+        if (!perf.ttfr && !perf.ttfa) return "";
+        const statusClass = perf.status ? ` vPerfVal--${perf.status}` : "";
+        return `
+      <section class="vSection">
+        <div class="vSectionTitle">Performance</div>
+        <div class="vGrid">
+          ${perf.ttfrFmt ? `<div class="vRow"><span class="vLabel">Editor pronto</span><span class="vVal">${perf.ttfrFmt}</span></div>` : ""}
+          ${perf.ttfaFmt ? `<div class="vRow"><span class="vLabel">Primeira ação</span><span class="vVal${statusClass}">${perf.ttfaFmt}</span></div>` : ""}
+        </div>
+      </section>`;
+      })()}
       <section class="vSection">
         <div class="vSectionTitle">Anterioridade</div>
         <div class="vGrid">
@@ -1770,6 +1807,141 @@ function buildVerifySlice(ctx, slice) {
       reader.readAsText(file, "utf-8");
     });
   }
+}
+
+// ── --authoria Assinatura ECDSA ───────────────────────────────────────────
+
+function buildAuthoriaSlice(ctx, slice) {
+  const bodyEl = slice.querySelector(".panelBody");
+  const metaEl = slice.querySelector(".sliceMeta");
+  if (!bodyEl) return;
+
+  if (metaEl) metaEl.textContent = "verificando chave…";
+
+  const uid = slice.dataset.sliceId || "auth";
+  const msgId = `authMsg-${uid}`;
+
+  function showMsg(el, text, type = "info") {
+    el.textContent = text;
+    el.className = `auth-msg auth-msg--${type}`;
+    el.style.display = text ? "" : "none";
+  }
+
+  // Render: nenhuma chave encontrada — formulário de criação
+  function renderSetup() {
+    if (metaEl) metaEl.textContent = "Authoria · sem chave";
+    bodyEl.innerHTML = `
+      <div class="auth-slice">
+        <p class="auth-intro">Nenhuma chave de autor encontrada. Crie uma chave para assinar seus arquivos .skv com ECDSA P-256.</p>
+        <div class="auth-form">
+          <label class="auth-label">Senha da chave
+            <input type="password" class="auth-input" id="authPwd-${uid}" placeholder="mínimo 8 caracteres" autocomplete="new-password" />
+          </label>
+          <label class="auth-label">Confirmar senha
+            <input type="password" class="auth-input" id="authPwd2-${uid}" placeholder="repita a senha" autocomplete="new-password" />
+          </label>
+          <p id="${msgId}" class="auth-msg" style="display:none"></p>
+          <button type="button" class="auth-btn auth-btn--primary" id="authGenBtn-${uid}">Gerar chave</button>
+        </div>
+        <p class="auth-note">A chave privada é cifrada com sua senha e fica somente neste navegador (IndexedDB). Nunca sai do seu dispositivo.</p>
+      </div>
+    `;
+
+    const pwdEl  = bodyEl.querySelector(`#authPwd-${uid}`);
+    const pwd2El = bodyEl.querySelector(`#authPwd2-${uid}`);
+    const msgEl  = bodyEl.querySelector(`#${msgId}`);
+    const genBtn = bodyEl.querySelector(`#authGenBtn-${uid}`);
+
+    genBtn.addEventListener("click", async () => {
+      const pwd  = pwdEl.value.trim();
+      const pwd2 = pwd2El.value.trim();
+      if (pwd.length < 8) { showMsg(msgEl, "A senha deve ter pelo menos 8 caracteres.", "error"); return; }
+      if (pwd !== pwd2)   { showMsg(msgEl, "As senhas não coincidem.", "error"); return; }
+      genBtn.disabled = true;
+      genBtn.textContent = "Gerando…";
+      try {
+        await generateAuthorKey(pwd);
+        renderKeyExists();
+      } catch (err) {
+        showMsg(msgEl, `Erro: ${err.message}`, "error");
+        genBtn.disabled = false;
+        genBtn.textContent = "Gerar chave";
+      }
+    });
+
+    requestAnimationFrame(() => pwdEl?.focus());
+  }
+
+  // Render: chave ativa — painel de assinatura + export
+  function renderKeyExists() {
+    if (metaEl) metaEl.textContent = "Authoria · chave ativa";
+    bodyEl.innerHTML = `
+      <div class="auth-slice">
+        <div class="auth-status">
+          <span class="auth-status-dot"></span>
+          <span class="auth-status-label">Chave de autor ativa</span>
+        </div>
+        <div class="auth-form auth-form--sign">
+          <label class="auth-label">Senha para assinar
+            <input type="password" class="auth-input" id="authSign-${uid}" placeholder="senha da chave" autocomplete="current-password" />
+          </label>
+          <p id="${msgId}" class="auth-msg" style="display:none"></p>
+          <button type="button" class="auth-btn auth-btn--primary" id="authSignBtn-${uid}">✎ Assinar e exportar .skv</button>
+        </div>
+        <div class="auth-actions">
+          <button type="button" class="auth-btn auth-btn--ghost" id="authCertBtn-${uid}">⬇ Baixar certificado público</button>
+        </div>
+        <p class="auth-note">O certificado público (.authoria-pub.json) pode ser compartilhado para que outros verifiquem sua assinatura.</p>
+      </div>
+    `;
+
+    const signPwdEl = bodyEl.querySelector(`#authSign-${uid}`);
+    const signBtn   = bodyEl.querySelector(`#authSignBtn-${uid}`);
+    const certBtn   = bodyEl.querySelector(`#authCertBtn-${uid}`);
+    const msgEl     = bodyEl.querySelector(`#${msgId}`);
+
+    signBtn.addEventListener("click", async () => {
+      const pwd = signPwdEl.value;
+      if (!pwd) { showMsg(msgEl, "Digite a senha da chave.", "error"); return; }
+      signBtn.disabled = true;
+      signBtn.textContent = "Assinando…";
+      showMsg(msgEl, "", "info");
+      try {
+        const filename = await exportSkv(pwd);
+        showMsg(msgEl, `Assinado e exportado: ${filename}`, "ok");
+        ctx.setStatus?.(`authoria: exportado ${filename}`);
+        signPwdEl.value = "";
+      } catch (err) {
+        showMsg(msgEl, `Erro: ${err.message}`, "error");
+      } finally {
+        signBtn.disabled = false;
+        signBtn.textContent = "✎ Assinar e exportar .skv";
+      }
+    });
+
+    certBtn.addEventListener("click", async () => {
+      const cert = await exportPublicCert();
+      if (!cert) { showMsg(bodyEl.querySelector(`#${msgId}`), "Nenhuma chave para exportar.", "error"); return; }
+      const blob = new Blob([JSON.stringify(cert, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "authoria-pub.json";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 3000);
+      ctx.setStatus?.("authoria: certificado público baixado");
+    });
+
+    requestAnimationFrame(() => signPwdEl?.focus());
+  }
+
+  // Inicializa — verifica chave e exibe painel correto
+  hasKey().then(exists => {
+    if (exists) renderKeyExists();
+    else renderSetup();
+  }).catch(() => renderSetup());
 }
 
 export function handleCommand(ctx, el, cmd, wordOverride) {
@@ -2048,6 +2220,18 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
     });
     slice.dataset.liveVerify = "1";
     buildVerifySlice(ctx, slice);
+    return slice;
+  }
+  if (c === "authoria" || c === "auth" || c === "assinar") {
+    const slice = openLocalSlice({
+      badge: "AU",
+      title: "AUTHORIA",
+      kindKey: "consult",
+      meta: "verificando chave…",
+      body: " ",
+      focusScroll: "light",
+    });
+    buildAuthoriaSlice(ctx, slice);
     return slice;
   }
   if (c === "f" || c === "foco" || c === "pomodoro" || c === "pomo") {

@@ -5,6 +5,7 @@
 import { removePage, checkOverflow, savePagesState, addPage } from "./pageFlow.js";
 import { savePostits, restorePostits } from "./postits.js";
 import { idbGet, idbSet, idbRemove } from "./idb.js";
+import { signContent } from "../../src/js/modules/crypto_manager.js";
 
 const NOTES_KEY    = "skrv_mobile_notes_v1";
 const POSTITS_KEY  = "skrv_postits_v1";
@@ -389,7 +390,8 @@ function enableInlineRename(infoEl, id, currentName, store, listEl, onSwitch) {
 }
 
 // ── Export .skv ───────────────────────────────────────────────────
-export async function exportSkv() {
+// password (opcional): se fornecida, assina com ECDSA P-256 via Authoria.
+export async function exportSkv(password = null) {
   // 1. Flush página ativa para o store
   const pages = document.querySelectorAll(".pageContent");
   const allText = Array.from(pages).map(el => getPageText(el)).join("");
@@ -430,12 +432,25 @@ export async function exportSkv() {
     words: allText.trim() ? allText.trim().split(/\s+/).length : 0,
   };
 
+  // 2e. Assinatura ECDSA Authoria (opcional — requer senha)
+  let authoria_sig = null;
+  if (password) {
+    try {
+      const { signature, publicKeyJwk, signed_at } = await signContent(contentHash, password);
+      authoria_sig = { signature, public_key_jwk: publicKeyJwk, signed_at };
+    } catch (err) {
+      // Propaga: o caller (slice) exibe o erro ao usuário
+      throw err;
+    }
+  }
+
   const snapshot = {
     ...data,
     pagesHtml,
     notes,
     postits,
     proof,
+    ...(authoria_sig ? { authoria_sig } : {}),
     skv_version: 2,
   };
 

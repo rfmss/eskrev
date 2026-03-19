@@ -986,8 +986,12 @@
                     openBook(dragBook);
                 } else {
                     const slot = getSlot(dragBook);
-                    dragBook.style.left = `${slot.left}px`;
-                    dragBook.style.top = `${slot.top}px`;
+                    const book = dragBook;
+                    book.classList.add("snap-back");
+                    book.style.left = `${slot.left}px`;
+                    book.style.top = `${slot.top}px`;
+                    const onEnd = () => { book.classList.remove("snap-back"); book.removeEventListener("transitionend", onEnd); };
+                    book.addEventListener("transitionend", onEnd);
                 }
                 setDeleteProgress(dragBook, 0);
                 dragBook = null;
@@ -1004,8 +1008,12 @@
                 document.body.classList.remove("is-dragging");
                 setDeleteProgress(dragBook, 0);
                 const slot = getSlot(dragBook);
-                dragBook.style.left = `${slot.left}px`;
-                dragBook.style.top = `${slot.top}px`;
+                const book = dragBook;
+                book.classList.add("snap-back");
+                book.style.left = `${slot.left}px`;
+                book.style.top = `${slot.top}px`;
+                const onEndC = () => { book.classList.remove("snap-back"); book.removeEventListener("transitionend", onEndC); };
+                book.addEventListener("transitionend", onEndC);
                 dragBook = null;
                 dragStart = null;
                 dragMoved = false;

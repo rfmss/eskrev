@@ -13,6 +13,7 @@
  */
 
 import { ptPosLexicon } from "../../src/js/modules/pt_pos_lexicon.js";
+import { analyzeStyle } from "./styleAnalysis.js";
 
 // ── AGENTE 1 — ORTOGRAFIA ─────────────────────────────────────────────────
 const R1 = [
@@ -216,6 +217,18 @@ const R3 = [
     c: "em que / no qual / na qual",
     r: "'Onde' indica lugar físico. Para contexto textual ou situação, use 'em que' ou 'no qual'.",
     cat: "ambiguidade", agt: 3 },
+
+  // ── Cujo + artigo — dupla determinação ───────────────────────────────────
+  { e: /\bcujo\s+o\b|\bcuja\s+a\b|\bcujos\s+os\b|\bcujas\s+as\b/gi,
+    c: "cujo / cuja / cujos / cujas (sem artigo)",
+    r: "'Cujo' já é determinante — não leva artigo depois. 'Cujo o livro' é erro; use 'cujo livro'.",
+    cat: "concordancia", agt: 3 },
+
+  // ── Há vs. a — tempo decorrido ───────────────────────────────────────────
+  { e: /\ba\s+(?:um|dois|três|quatro|cinco|seis|sete|oito|nove|dez|\d+|pouco|muito|algum)\s+(?:tempo|anos?|meses?|dias?|horas?|semanas?)\s+(?:atrás|passados?)\b/gi,
+    c: "há … atrás",
+    r: "Para tempo decorrido, use 'há' (verbo haver). 'A dois anos atrás' tem dupla marcação; correto: 'há dois anos'.",
+    cat: "grafia", agt: 3 },
 ];
 
 // ── AGENTE 4 — SEMÂNTICA ──────────────────────────────────────────────────
@@ -250,6 +263,43 @@ const R4 = [
   { e: /\bnão\s+obstante\s+(?:de\s+)?isso\b/gi, c: "não obstante isso / não obstante", r: "'Não obstante' não requer preposição 'de'. Diga 'não obstante isso' ou apenas 'não obstante'.", cat: "regencia_nominal", agt: 4 },
   { e: /\bapesar\s+que\b/gi, c: "apesar de (que)", r: "'Apesar de' rege preposição 'de'. 'Apesar que' não está consagrado; use 'apesar de que' ou 'embora'.", cat: "regencia_nominal", agt: 4 },
   { e: /\bem\s+função\s+que\b/gi, c: "em função de", r: "'Em função de' rege preposição 'de', não 'que'.", cat: "regencia_nominal", agt: 4 },
+
+  // ── Parônimos: acender × ascender ────────────────────────────────────────
+  { e: /\bascendeu?\s+(?:a\s+luz|as\s+luzes|o\s+fogo|uma\s+vela|a\s+lareira|o\s+fogão)\b/gi,
+    c: "acendeu a luz / o fogo…",
+    r: "'Acender' = ligar, iluminar. 'Ascender' = elevar-se. Para luz e fogo, use 'acender'.", cat: "paronimia", agt: 4 },
+  { e: /\bacendeu?\s+(?:ao\s+poder|ao\s+trono|ao\s+cargo|à\s+chefia|à\s+presidência|socialmente)\b/gi,
+    c: "ascendeu ao poder / cargo…",
+    r: "'Ascender' = elevar-se hierarquicamente. 'Acender' é para luz/fogo. Use 'ascender' para posição.", cat: "paronimia", agt: 4 },
+
+  // ── Parônimos: infligir × infringir (pena) ───────────────────────────────
+  { e: /\binfringi(?:u|ram)\s+(?:uma?\s+)?(?:pena|castigo|punição|sofrimento|dano)\b/gi,
+    c: "infligiu uma pena / castigo…",
+    r: "'Infligir' = causar pena ou sofrimento. 'Infringir' = violar norma. Para penas/castigos, use 'infligir'.", cat: "paronimia", agt: 4 },
+
+  // ── Parônimos: deferir × diferir ─────────────────────────────────────────
+  { e: /\bdiferi(?:u|ram)\s+(?:o\s+)?(?:pedido|requerimento|recurso|solicitação)\b/gi,
+    c: "deferiu o pedido / recurso…",
+    r: "'Deferir' = conceder, aprovar (jurídico). 'Diferir' = ser diferente. 'Diferiu o pedido' está errado.", cat: "paronimia", agt: 4 },
+  { e: /\bdeferiu?\s+(?:de|do|da)\s+/gi,
+    c: "diferiu de…",
+    r: "'Diferir de' = ser diferente de. 'Deferir de' não existe; use 'diferir de'.", cat: "paronimia", agt: 4 },
+
+  // ── Anglicismo semântico: realizar que ───────────────────────────────────
+  { e: /\breali(?:zou|za|zei|zamos|zaram)\s+que\b/gi,
+    c: "percebeu que / notou que…",
+    r: "Em PT-BR, 'realizar' = concretizar. 'Perceber', 'notar', 'tomar consciência' para o sentido de 'to realize' do inglês.", cat: "inadequado", agt: 4 },
+
+  // ── Jargão burocrático ────────────────────────────────────────────────────
+  { e: /\bdiante\s+do\s+(?:acima\s+)?exposto\b/gi,
+    c: "portanto / assim / logo…",
+    r: "Clichê burocrático. Conclua diretamente: 'A proposta é, portanto, viável.' sem fórmula preambular.", cat: "redundancia", agt: 4 },
+  { e: /\bno\s+que\s+(?:tange|diz\s+respeito|concerne)\s+(?:a|ao|à|aos|às)\b/gi,
+    c: "quanto a / sobre / em relação a…",
+    r: "Jargão burocrático pesado. Prefira 'quanto a', 'sobre', 'em relação a' para o mesmo resultado.", cat: "redundancia", agt: 4 },
+  { e: /\bfazer\s+uma\s+(?:reflexão|análise|avaliação|discussão|consideração|abordagem)\b/gi,
+    c: "refletir / analisar / avaliar…",
+    r: "Verbo nominalizado dilui a ação. Use o verbo direto: 'refletir', 'analisar', 'avaliar'.", cat: "redundancia", agt: 4 },
 ];
 
 // ── AGENTE 5 — PONTUAÇÃO ──────────────────────────────────────────────────
@@ -321,7 +371,7 @@ const R6 = [
 ];
 
 // ── TABELAS ────────────────────────────────────────────────────────────────
-const PRIO_AGENTE = { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 };
+const PRIO_AGENTE = { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 8: 8 };
 const PRIO_CAT = {
   grafia: 1, acento: 2, hifen: 3, crase_proibida: 4, crase_obrigatoria: 5,
   virgula_proibida: 6, regencia: 7, concordancia: 8, flexao_verbal: 9,
@@ -340,6 +390,7 @@ const AGENTES = {
   5: { nome: "Pontuação",  cor: "#f783ac", sigla: "PO", regras: R5 },
   6: { nome: "Crase",      cor: "#da77f2", sigla: "CR", regras: R6 },
   7: { nome: "Léxico",     cor: "#ff9f43", sigla: "LE", regras: []  },
+  8: { nome: "Estilo",    cor: "#9c27b0", sigla: "ES", regras: []  },
 };
 
 const DEF_AGENTE = {
@@ -350,6 +401,7 @@ const DEF_AGENTE = {
   5: "Pontuação — emprego correto de vírgula obrigatória e proibida, dois-pontos, reticências e delimitação de aposto.",
   6: "Crase — acento grave resultante da contração preposição + artigo feminino: uso obrigatório, proibido e contextual.",
   7: "Léxico — spell-checker offline por distância de Levenshtein: detecta prováveis erros de digitação e sugere a forma mais próxima no léxico.",
+  8: "Estilo — densidade de advérbios em -mente, voz passiva e comprimento de sentença por parágrafo. Perfil: literário (≥3 -mente = vício) e jornalístico (≥2 -mente = vício).",
 };
 const COR_CAT = {
   grafia: "#ff6b6b", acento: "#cc5de8", hifen: "#4dabf7", regencia: "#20c997",
@@ -363,6 +415,9 @@ const COR_CAT = {
   regencia_nominal: "#0ca678", crase_obrigatoria: "#da77f2", crase_proibida: "#f03e3e",
   crase_horas: "#ffd43b", crase_demonstrativo: "#63e6be", crase_paises: "#ff922b",
   typo: "#ff9f43",
+  densidade_mente:  "#9c27b0",
+  densidade_passiva: "#7b1fa2",
+  comprimento_frase: "#6a1b9a",
 };
 // ── AGENTE 7 — LÉXICO (Levenshtein offline) ───────────────────────────────
 
@@ -443,6 +498,13 @@ function executarLexico(texto) {
   return erros;
 }
 
+// ── AGENTE 8 — ESTILO (densidade de -mente, voz passiva, comprimento) ─────
+function executarEstilo(texto) {
+  const perfil = _state?.perfil || "literario";
+  const { alertas, resumo } = analyzeStyle(texto, perfil);
+  return { alertas, resumo };
+}
+
 const LABEL_CAT = {
   grafia: "Grafia", acento: "Acentuação", hifen: "Hífen", regencia: "Regência",
   concordancia: "Concordância", flexao_verbal: "Flexão Verbal", flexao_nominal: "Flexão Nominal",
@@ -456,6 +518,9 @@ const LABEL_CAT = {
   crase_obrigatoria: "Crase Obrig.", crase_proibida: "Crase Proib.",
   crase_horas: "Crase Horas", crase_demonstrativo: "Crase Demon.", crase_paises: "Crase Países",
   typo: "Typo",
+  densidade_mente:   "Advérbios -mente",
+  densidade_passiva: "Voz Passiva",
+  comprimento_frase: "Sentenças Longas",
 };
 
 // ── MOTOR ─────────────────────────────────────────────────────────────────
@@ -532,7 +597,7 @@ function buildOverlay() {
         <div class="coord-header">
           <div class="coord-title-text">
             <span class="coord-subtitle">Inspeção Linguística</span>
-            <span class="coord-subtitle-tag">7 agentes</span>
+            <span class="coord-subtitle-tag">8 agentes</span>
           </div>
           <div class="coord-header-actions">
             <span class="coord-corrected" id="coordCorrected"></span>
@@ -550,13 +615,14 @@ function buildOverlay() {
         <div class="coord-highlight" id="coordHighlight" aria-hidden="true"></div>
         <textarea class="coord-textarea" id="coordTextarea"
           spellcheck="false"
-          placeholder="Texto da página aparece aqui. Os 7 agentes inspecionam em paralelo…"></textarea>
+          placeholder="Texto da página aparece aqui. Os 8 agentes inspecionam em paralelo…"></textarea>
       </div>
 
       <!-- ── BASE: filtros + fila ── -->
       <div class="coord-bot">
         <div class="coord-filters" id="coordFilters"></div>
         <div class="coord-queue" id="coordQueue"></div>
+        <div class="coord-style-panel" id="coordStylePanel" style="display:none"></div>
         <div class="coord-tech-panel" id="coordTechPanel"></div>
       </div>
 
@@ -572,17 +638,21 @@ function buildOverlay() {
 
 // ── ESTADO DO COORDENADOR ────────────────────────────────────────────────
 let _state = null;
+let _escAbort = null; // AbortController para remover listener Escape ao fechar
 
 function resetState(texto) {
   return {
     texto,
     erros: [],
-    ativos: new Set([1, 2, 3, 4, 5, 6, 7]),
-    clickOrder: [1, 2, 3, 4, 5, 6, 7],   // ordem de ativação dos agentes
+    ativos: new Set([1, 2, 3, 4, 5, 6, 7, 8]),
+    clickOrder: [1, 2, 3, 4, 5, 6, 7, 8],   // ordem de ativação dos agentes
     filtro: null,
     totalCorrigidos: 0,
     debounceTimer: 0,
     sourceRange: null,   // preenchido no modo fragmento (seleção → inspecionar)
+    styleAlerts: [],
+    styleResumo: null,
+    perfil: "literario",
   };
 }
 
@@ -725,6 +795,38 @@ function render() {
     }
   }
 
+  // Style panel (Agente 8)
+  const stylePanelEl = document.getElementById("coordStylePanel");
+  if (stylePanelEl) {
+    if (ativos.has(8) && _state.styleResumo) {
+      const r = _state.styleResumo;
+      const visible = _state.styleAlerts.slice(0, 5);
+      const extra = _state.styleAlerts.length - visible.length;
+      const alertasHtml = visible.length
+        ? visible.map(a => {
+            const cls = a.nivel === "VICIO" ? "vicio" : a.nivel === "ESTILO" ? "estilo" : "info";
+            return `<div class="coord-style-alert coord-style-alert--${cls}">
+              <span class="coord-style-nivel">${a.nivel}</span>
+              <span class="coord-style-msg">${escapeHtml(a.mensagem)}</span>
+              ${a.paragrafo ? `<span class="coord-style-par">§${a.paragrafo}</span>` : ""}
+            </div>`;
+          }).join("") + (extra > 0 ? `<div class="coord-style-more">+${extra} alertas adicionais</div>` : "")
+        : `<p class="coord-style-ok">Densidade dentro do esperado.</p>`;
+      stylePanelEl.innerHTML = `
+        <div class="coord-style-header">
+          <span class="coord-style-sigla" style="color:#9c27b0;background:#9c27b014;border-color:#9c27b030">ES</span>
+          <span class="coord-style-title">Estilo</span>
+          <span class="coord-style-metrics">${r.densidadeMente}% -mente · ${r.totalPassiva} passiva${r.totalPassiva !== 1 ? "s" : ""} · ${r.mediaWordsPorSentenca} p/frase</span>
+        </div>
+        ${alertasHtml}
+      `;
+      stylePanelEl.style.display = "";
+    } else {
+      stylePanelEl.innerHTML = "";
+      stylePanelEl.style.display = "none";
+    }
+  }
+
   // Tech panel
   const techEl = document.getElementById("coordTechPanel");
   if (techEl) {
@@ -737,7 +839,7 @@ function render() {
       <span>deduplicação: sobreposição + prioridade agente × categoria</span>
       <span>debounce: 600ms · corrigir_tudo: offset acumulado</span>
       <span>fila_ativa: ${erros.length} ocorrência${erros.length !== 1 ? "s" : ""}</span>
-      <span>agentes: OR · MO · SI · SE · PO · CR · LE — todos integrados</span>
+      <span>agentes: OR · MO · SI · SE · PO · CR · LE · ES — todos integrados</span>
     `;
   }
 }
@@ -780,6 +882,14 @@ function analyzeAndRender() {
   const base = executar(_state.texto, _state.ativos);
   const lexico = _state.ativos.has(7) ? executarLexico(_state.texto) : [];
   _state.erros = [...base, ...lexico].sort((a, b) => a.inicio - b.inicio);
+  if (_state.ativos.has(8)) {
+    const { alertas, resumo } = executarEstilo(_state.texto);
+    _state.styleAlerts = alertas;
+    _state.styleResumo = resumo;
+  } else {
+    _state.styleAlerts = [];
+    _state.styleResumo = null;
+  }
   render();
 }
 
@@ -903,13 +1013,6 @@ function attachEvents(ov, ctx, sourceEl) {
     }
   });
 
-  // Keyboard Escape → close
-  ov.addEventListener("keydown", (ev) => {
-    if (ev.key === "Escape") {
-      ev.preventDefault();
-      closeOverlay(ctx, sourceEl);
-    }
-  });
 }
 
 // ── OPEN / CLOSE ───────────────────────────────────────────────────────────
@@ -951,6 +1054,16 @@ export function openCoordenador(ctx, textoOverride, sourceRange) {
       if (_state) analyzeAndRender();
     }).catch(() => {});
   }
+
+  // Escape global → fecha independentemente do foco
+  if (_escAbort) _escAbort.abort();
+  _escAbort = new AbortController();
+  document.addEventListener("keydown", (ev) => {
+    if (ev.key === "Escape") {
+      ev.preventDefault();
+      closeOverlay(ctx, ov._sourceEl);
+    }
+  }, { capture: true, signal: _escAbort.signal });
 
   // Abre com animação
   ov.classList.add("is-open");
@@ -995,6 +1108,7 @@ function closeOverlay(ctx, sourceEl) {
   ov.classList.remove("is-open");
   document.body.style.overflow = "";
   ctx.setStatus?.("coordenador central: fechado");
+  if (_escAbort) { _escAbort.abort(); _escAbort = null; }
 
   // Foca de volta no editor
   setTimeout(() => {

@@ -1,4 +1,4 @@
-const CACHE_NAME = "skrv-cache-v130";
+const CACHE_NAME = "skrv-cache-v137";
 const CORE_ASSETS = [
   "./",
   "./index.html",
@@ -24,6 +24,7 @@ const CORE_ASSETS = [
   "./js/modules/dom.js",
   "./js/modules/flowMarkers.js",
   "./js/modules/grammarLint.js",
+  "./js/modules/grammarLintExtended.js",
   "./js/modules/idb.js",
   "./js/modules/keyboardSfx.js",
   "./js/modules/layout.js",
@@ -40,6 +41,8 @@ const CORE_ASSETS = [
   "./js/modules/themes.js",
   "./js/modules/verbete.js",
   "./js/modules/wordclass.js",
+  "./js/modules/styleAnalysis.js",
+  "./js/modules/perf.js",
   // JS — módulos src (compartilhados com verify.html e mobile.html)
   "./src/js/modules/crypto_manager.js",
   "./src/js/modules/corpus.js",
@@ -85,6 +88,7 @@ const CACHE_ASSETS_ALL = [
   "./js/modules/dom.js",
   "./js/modules/flowMarkers.js",
   "./js/modules/grammarLint.js",
+  "./js/modules/grammarLintExtended.js",
   "./js/modules/idb.js",
   "./js/modules/keyboardSfx.js",
   "./js/modules/layout.js",
@@ -101,6 +105,7 @@ const CACHE_ASSETS_ALL = [
   "./js/modules/themes.js",
   "./js/modules/verbete.js",
   "./js/modules/wordclass.js",
+  "./js/modules/styleAnalysis.js",
   // JS — módulos src
   "./src/js/app.js",
   "./src/js/modules/auth.js",

@@ -69,3 +69,19 @@ function detectTier() {
 **Pré-condição para implementar:** manter o projeto em vanilla JS puro, sem bundler com tree-shaking agressivo, sem framework. A porta permanece aberta enquanto essa condição for mantida.
 
 **Referência:** análise de compatibilidade realizada em 2026-03-18. iOS 9.3.6 (iPad 2) suporta Web Workers, IndexedDB, CSS Custom Properties e ES6 básico — o que exclui apenas `async/await`, `fetch` e ES Modules.
+
+---
+
+### [2026-03-19] Bug: listener Escape em overlay sem foco
+
+**Causa raiz:** `ov.addEventListener("keydown", ...)` só dispara via bubbling — se o foco sair do overlay (clique fora do textarea, janela perder foco), Escape não fecha o coordenador. `div` sem `tabindex` não recebe keydown diretamente.
+
+**Solução:** mover o listener para `document.addEventListener("keydown", ..., { capture: true, signal: _escAbort.signal })`. O `AbortController` é criado em `openCoordenador()` e abortado em `closeOverlay()` — limpeza automática sem acúmulo de listeners.
+
+**Prevenção:** qualquer modal/overlay que precisa responder a Escape deve registrar no `document` com capture, não no próprio elemento. Usar sempre `AbortController` para garantir limpeza quando o overlay fecha.
+
+---
+
+### [2026-03-19] Playwright: is_visible() não detecta opacity:0
+
+**Observação:** Playwright `is_visible()` retorna `True` mesmo com `opacity: 0`. Ele checa `display: none`, `visibility: hidden` ou bounding box zero — não `opacity`. Para testar overlays que fecham via CSS transition de opacity, usar `evaluate()` para checar a classe CSS (`classList.contains("is-open")`) ou o valor computado de opacity diretamente.

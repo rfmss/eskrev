@@ -5,10 +5,21 @@ _(nada no momento)_
 
 ## Backlog
 - [ ] TSA RFC 3161 opcional (freetsa.org) — âncora de timestamp quando online
-- [ ] Integrar key Authoria no fluxo onep (modal de setup + exportSkv com assinatura)
-- [ ] Mobile wallet: arrastar para delete, empty state
-- [ ] Performance: medir tempo até primeira ação útil (<30s)
 - [ ] Exportar índice de busca para acelerar queries offline do corpus
+- [ ] Progressive Enhancement — tiers high/mid/low por hardwareConcurrency + deviceMemory
+- [ ] verify.html — validação visual de assinatura ECDSA (authoria_sig no .skv)
+
+## Feito nesta sessão (2026-03-19)
+- [x] 27 skills linguísticas instaladas (.claude/skills/) — morfologia, sintaxe, semântica, textual
+- [x] grammarLintExtended.js — 40 regras (sintaxe, parônimos, jargão/clichê)
+- [x] coordenador.js R3/R4 expandidos — 168 regras nos 6 agentes
+- [x] styleAnalysis.js — análise de densidade (-mente, voz passiva, comprimento)
+- [x] Agente 8 (Estilo) integrado no coordenador com painel dedicado
+- [x] Authoria no onep — `..authoria`: geração de chave, assinatura ECDSA, download de certificado público
+- [x] perf.js — TTFR + TTFA medidos e exibidos no painel `..v` com classe de cor
+- [x] Mobile wallet: empty state icon, snap-back animation, drag hint `is-deleting::after`
+- [x] Bug fix: Escape do coordenador movido para `document` capture (AbortController) — antes falhava se foco saísse do overlay
+- [x] QA: 15/15 testes Playwright passando — boot, perf, coordenador, authoria, grammarLint
 
 ## Feito recentemente
 - [x] `--v` slice: estatísticas completas + hash SHA-256 ao vivo + verificação de .skv inline
