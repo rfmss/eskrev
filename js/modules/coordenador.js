@@ -597,7 +597,7 @@ function buildOverlay() {
         <div class="coord-header">
           <div class="coord-title-text">
             <span class="coord-subtitle">Inspeção Linguística</span>
-            <span class="coord-subtitle-tag">8 agentes</span>
+            <span class="coord-err-badge" id="coordErrBadge"></span>
           </div>
           <div class="coord-header-actions">
             <span class="coord-corrected" id="coordCorrected"></span>
@@ -606,8 +606,6 @@ function buildOverlay() {
           </div>
         </div>
         <div class="coord-agents" id="coordAgents"></div>
-        <div class="coord-defs" id="coordDefs"></div>
-        <div class="coord-stat-bar" id="coordStatBar"></div>
       </div>
 
       <!-- ── MEIO: editor ── -->
@@ -622,8 +620,10 @@ function buildOverlay() {
       <div class="coord-bot">
         <div class="coord-filters" id="coordFilters"></div>
         <div class="coord-queue" id="coordQueue"></div>
-        <div class="coord-style-panel" id="coordStylePanel" style="display:none"></div>
-        <div class="coord-tech-panel" id="coordTechPanel"></div>
+        <details class="coord-tech-panel" id="coordTechPanel">
+          <summary class="coord-tech-toggle">debug</summary>
+          <div class="coord-tech-body"></div>
+        </details>
       </div>
 
     </div>
@@ -657,14 +657,7 @@ function resetState(texto) {
 }
 
 function renderDefs() {
-  const el = document.getElementById("coordDefs");
-  if (!el) return;
-  const lines = _state.clickOrder.filter(id => _state.ativos.has(id));
-  if (lines.length === 0) { el.innerHTML = ""; return; }
-  el.innerHTML = lines.map(id => {
-    const agt = AGENTES[id];
-    return `<div class="coord-def-line" style="--def-cor:${agt.cor}">${DEF_AGENTE[id]}</div>`;
-  }).join("");
+  // Definições removidas do painel — disponíveis via title dos chips
 }
 
 // ── RENDER ─────────────────────────────────────────────────────────────────
@@ -676,6 +669,10 @@ function render() {
   if (highlightEl) {
     highlightEl.innerHTML = renderHighlight(texto, erros);
   }
+
+  // Error count badge
+  const badgeEl = document.getElementById("coordErrBadge");
+  if (badgeEl) badgeEl.textContent = erros.length > 0 ? String(erros.length) : "";
 
   // Stat: total corrigidos
   const correctedEl = document.getElementById("coordCorrected");
@@ -709,7 +706,7 @@ function render() {
       chip.title = `${agt.nome} — ${DEF_AGENTE[numId] || ""}`;
       chip.innerHTML = `
         <span class="coord-chip-sigla">${agt.sigla}</span>
-        <span class="coord-chip-count">${ativo ? (count > 0 ? count : "·") : "off"}</span>
+        ${ativo && count > 0 ? `<span class="coord-chip-badge">${count}</span>` : ""}
       `;
       agentsEl.appendChild(chip);
     }
@@ -718,23 +715,7 @@ function render() {
   // Def lines (abaixo dos chips, acima do editor)
   renderDefs();
 
-  // Stat bar
-  const statBar = document.getElementById("coordStatBar");
-  if (statBar) {
-    const active = Object.entries(AGENTES)
-      .map(([id, a]) => ({ id: Number(id), ...a, count: erros.filter(e => e.agente === Number(id)).length }))
-      .filter(s => s.count > 0 && ativos.has(s.id));
-    if (active.length > 0) {
-      statBar.innerHTML = `
-        <span class="coord-stat-label">DISTRIBUIÇÃO:</span>
-        ${active.map(s => `<span class="coord-stat-chip" style="color:${s.cor};border-color:${s.cor}40;background:${s.cor}12">${s.sigla} ${s.count}</span>`).join("")}
-        <span class="coord-stat-total">total: ${erros.length}</span>
-      `;
-      statBar.style.display = "";
-    } else {
-      statBar.style.display = "none";
-    }
-  }
+  // Stat bar: removida — contagem no badge do header
 
   // Filters
   const filtersEl = document.getElementById("coordFilters");
@@ -760,16 +741,17 @@ function render() {
     }
   }
 
-  // Correction queue
+  // Correction queue (+ style panel como item inline)
   const queueEl = document.getElementById("coordQueue");
   if (queueEl) {
     const lista = filtro !== null ? erros.filter(e => e.agente === filtro) : erros;
+    let queueHtml = "";
     if (lista.length === 0) {
-      queueEl.innerHTML = erros.length === 0
+      queueHtml = erros.length === 0
         ? `<p class="coord-empty">Nenhuma ocorrência encontrada.</p>`
         : `<p class="coord-empty">Sem ocorrências para o agente selecionado.</p>`;
     } else {
-      queueEl.innerHTML = lista.map((erro, i) => {
+      queueHtml = lista.map((erro, i) => {
         const cor = COR_CAT[erro.categoria] || AGENTES[erro.agente]?.cor || "#4dabf7";
         const label = LABEL_CAT[erro.categoria] || erro.categoria;
         const agt = AGENTES[erro.agente];
@@ -793,12 +775,9 @@ function render() {
         `;
       }).join("");
     }
-  }
 
-  // Style panel (Agente 8)
-  const stylePanelEl = document.getElementById("coordStylePanel");
-  if (stylePanelEl) {
-    if (ativos.has(8) && _state.styleResumo) {
+    // Agente 8 — Estilo como item inline da fila (sem filtro por agente)
+    if (ativos.has(8) && _state.styleResumo && filtro === null) {
       const r = _state.styleResumo;
       const visible = _state.styleAlerts.slice(0, 5);
       const extra = _state.styleAlerts.length - visible.length;
@@ -811,36 +790,38 @@ function render() {
               ${a.paragrafo ? `<span class="coord-style-par">§${a.paragrafo}</span>` : ""}
             </div>`;
           }).join("") + (extra > 0 ? `<div class="coord-style-more">+${extra} alertas adicionais</div>` : "")
-        : `<p class="coord-style-ok">Densidade dentro do esperado.</p>`;
-      stylePanelEl.innerHTML = `
-        <div class="coord-style-header">
-          <span class="coord-style-sigla" style="color:#9c27b0;background:#9c27b014;border-color:#9c27b030">ES</span>
-          <span class="coord-style-title">Estilo</span>
-          <span class="coord-style-metrics">${r.densidadeMente}% -mente · ${r.totalPassiva} passiva${r.totalPassiva !== 1 ? "s" : ""} · ${r.mediaWordsPorSentenca} p/frase</span>
+        : "";
+      queueHtml += `
+        <div class="coord-queue-item coord-queue-item--style" style="border-left-color:#9c27b0">
+          <span class="coord-queue-sigla" style="color:#9c27b0;background:#9c27b014;border-color:#9c27b030">ES</span>
+          <div class="coord-queue-body">
+            <div class="coord-queue-pair">
+              <span class="coord-style-metrics">${r.densidadeMente}% -mente · ${r.totalPassiva} passiva${r.totalPassiva !== 1 ? "s" : ""} · ${r.mediaWordsPorSentenca} p/frase</span>
+            </div>
+            ${alertasHtml || `<div class="coord-queue-rule">Densidade dentro do esperado.</div>`}
+          </div>
         </div>
-        ${alertasHtml}
       `;
-      stylePanelEl.style.display = "";
-    } else {
-      stylePanelEl.innerHTML = "";
-      stylePanelEl.style.display = "none";
     }
+
+    queueEl.innerHTML = queueHtml;
   }
 
-  // Tech panel
+  // Tech panel (colapsável via <details>)
   const techEl = document.getElementById("coordTechPanel");
   if (techEl) {
-    const totalRegras = [R1,R2,R3,R4,R5,R6].flat().filter(r => r.c).length;
-    const lexEntries = ptPosLexicon.entries.size;
-    const ativosArr = [...ativos].sort().join(", ");
-    techEl.innerHTML = `
-      <span>agentes_ativos: [${ativosArr}]</span>
-      <span>regras_totais: ${totalRegras} · léxico: ${lexEntries} entradas</span>
-      <span>deduplicação: sobreposição + prioridade agente × categoria</span>
-      <span>debounce: 600ms · corrigir_tudo: offset acumulado</span>
-      <span>fila_ativa: ${erros.length} ocorrência${erros.length !== 1 ? "s" : ""}</span>
-      <span>agentes: OR · MO · SI · SE · PO · CR · LE · ES — todos integrados</span>
-    `;
+    const body = techEl.querySelector(".coord-tech-body");
+    if (body) {
+      const totalRegras = [R1,R2,R3,R4,R5,R6].flat().filter(r => r.c).length;
+      const lexEntries = ptPosLexicon.entries.size;
+      const ativosArr = [...ativos].sort().join(", ");
+      body.innerHTML = `
+        <span>agentes_ativos: [${ativosArr}]</span>
+        <span>regras_totais: ${totalRegras} · léxico: ${lexEntries} entradas</span>
+        <span>fila_ativa: ${erros.length} ocorrência${erros.length !== 1 ? "s" : ""}</span>
+        <span>debounce: 600ms · deduplicação: sobreposição + prioridade agente × categoria</span>
+      `;
+    }
   }
 }
 

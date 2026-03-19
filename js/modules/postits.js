@@ -37,8 +37,10 @@ export function restorePostits(ctx) {
       if (item.id) note.dataset.postitId = item.id;
       note.innerHTML = `
         <header class="postitHead" title="Arraste para mover">
-          <div class="postitDots" aria-label="Cores do post-it">
-            <button class="postitToneBtn" type="button" title="Alternar cor"></button>
+          <div class="postitBtns">
+            <button class="postitBtn postitClose" type="button" title="Fechar" aria-label="Fechar post-it"></button>
+            <button class="postitBtn postitMin"   type="button" title="Minimizar" aria-label="Minimizar post-it"></button>
+            <button class="postitBtn postitColor" type="button" title="Alternar cor" aria-label="Alternar cor"></button>
           </div>
           <span class="postitTitle">POST-IT</span>
         </header>
@@ -198,7 +200,9 @@ function bindPostit(ctx, note) {
   ensurePostitId(note);
 
   const head = note.querySelector(".postitHead");
-  const toneBtn = note.querySelector(".postitToneBtn");
+  const closeBtn = note.querySelector(".postitClose");
+  const minBtn   = note.querySelector(".postitMin");
+  const colorBtn = note.querySelector(".postitColor");
   const body = note.querySelector(".postitBody");
   if (!head || !body) return;
 
@@ -206,17 +210,11 @@ function bindPostit(ctx, note) {
     note.dataset.tone = POSTIT_TONES[Math.floor(Math.random() * POSTIT_TONES.length)];
   }
 
-  const syncToneButton = () => {
-    if (!toneBtn) return;
-    toneBtn.style.background = getComputedStyle(note).getPropertyValue("--postit-head").trim() || "";
-    toneBtn.title = `Cor: ${note.dataset.tone || "post-it"} (clique para alternar)`;
-  };
   const cycleTone = () => {
     const current = note.dataset.tone;
     const idx = POSTIT_TONES.indexOf(current);
     const next = POSTIT_TONES[(idx + 1) % POSTIT_TONES.length] || POSTIT_TONES[0];
     note.dataset.tone = next;
-    syncToneButton();
     savePostits(ctx);
   };
 
@@ -226,20 +224,23 @@ function bindPostit(ctx, note) {
   };
   const toggleFold = () => setFoldState(!note.classList.contains("isMinimized"));
 
-  if (toneBtn) {
-    toneBtn.addEventListener("click", (ev) => {
-      // Ignore color clicks right after a drag release.
-      const suppressUntil = Number(note.dataset.suppressToneUntil || "0");
-      if (Date.now() < suppressUntil) {
-        ev.preventDefault();
-        ev.stopPropagation();
-        return;
-      }
-      ev.stopPropagation();
-      cycleTone();
-    });
-  }
-  syncToneButton();
+  if (closeBtn) closeBtn.addEventListener("click", (ev) => {
+    ev.stopPropagation();
+    note.remove();
+    savePostits(ctx);
+  });
+  if (minBtn) minBtn.addEventListener("click", (ev) => {
+    ev.stopPropagation();
+    const suppressUntil = Number(note.dataset.suppressToneUntil || "0");
+    if (Date.now() < suppressUntil) { ev.preventDefault(); return; }
+    toggleFold();
+  });
+  if (colorBtn) colorBtn.addEventListener("click", (ev) => {
+    ev.stopPropagation();
+    const suppressUntil = Number(note.dataset.suppressToneUntil || "0");
+    if (Date.now() < suppressUntil) { ev.preventDefault(); return; }
+    cycleTone();
+  });
 
   let drag = null;
   let moved = false;
@@ -280,7 +281,7 @@ function bindPostit(ctx, note) {
 
   head.addEventListener("pointerdown", (ev) => {
     if (ev.button !== 0) return;
-    if (ev.target && ev.target.closest(".postitToneBtn")) return;
+    if (ev.target && ev.target.closest(".postitBtn")) return;
     const x = Number.parseFloat(note.style.left || "0");
     const y = Number.parseFloat(note.style.top || "0");
     drag = {
@@ -304,15 +305,12 @@ function bindPostit(ctx, note) {
     const dy = Math.abs(ev.clientY - drag.pointerY);
     const movedByUp = dx > dragThreshold || dy > dragThreshold;
     const actuallyDragged = moved || movedByUp;
-    const onToneArea = !!(ev.target && ev.target.closest(".postitDots"));
 
     endDrag();
     // Prevent accidental color/minimize click right after a drag.
     if (actuallyDragged) {
       note.dataset.suppressToneUntil = String(Date.now() + 220);
-      return;
     }
-    if (!onToneArea) toggleFold();
   });
   head.addEventListener("pointercancel", endDrag);
 }
@@ -338,8 +336,10 @@ export function createPostit(ctx, text) {
   note.dataset.tone = POSTIT_TONES[Math.floor(Math.random() * POSTIT_TONES.length)];
   note.innerHTML = `
     <header class="postitHead" title="Arraste para mover">
-      <div class="postitDots" aria-label="Cores do post-it">
-        <button class="postitToneBtn" type="button" title="Alternar cor"></button>
+      <div class="postitBtns">
+        <button class="postitBtn postitClose" type="button" title="Fechar" aria-label="Fechar post-it"></button>
+        <button class="postitBtn postitMin"   type="button" title="Minimizar" aria-label="Minimizar post-it"></button>
+        <button class="postitBtn postitColor" type="button" title="Alternar cor" aria-label="Alternar cor"></button>
       </div>
       <span class="postitTitle">POST-IT</span>
     </header>

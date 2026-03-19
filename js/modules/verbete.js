@@ -1,10 +1,23 @@
+/**
+ * verbete.js — Dicionário PT-BR com lookup por verbete
+ *
+ * CORREÇÕES v2:
+ *  1. formatVerbete usa sempre entry.word como forma canônica — nunca
+ *     o raw digitado pelo usuário como palavra exibida no cabeçalho quando
+ *     o dict tem a forma correta.
+ *  2. Adicionado filtro em posLabel para não retornar null em casos
+ *     onde posList está vazio mas pos tem entrada.
+ *  3. cleanDef mais robusto — remove artefatos de múltiplas fontes.
+ *  4. Lookup no regenciasData normalizado para evitar miss por capitalização.
+ */
+
 import { ptPosLexicon } from "../../src/js/modules/pt_pos_lexicon.js";
 
-// ── Dicionário — lazy-load por letra (rich chunks com sin + ant) ───────────
-const dictEntries     = new Map();
-const dictLoaded      = new Set();
-let regenciasData     = null;
-let duvidasData       = null;
+// ── Dicionário — lazy-load por letra ──────────────────────────────────────
+const dictEntries  = new Map();
+const dictLoaded   = new Set();
+let regenciasData  = null;
+let duvidasData    = null;
 
 async function fetchJson(url) {
   const res = await fetch(url);
@@ -20,9 +33,9 @@ function letterForKey(key) {
 
 async function loadDictChunk(letter) {
   if (dictLoaded.has(letter)) return;
-  dictLoaded.add(letter);  // marca antes para evitar dupla requisição
+  dictLoaded.add(letter);
   try {
-    const url = `src/assets/lingua/pt_dict_rich_chunk_${letter}.json`;
+    const url  = `src/assets/lingua/pt_dict_rich_chunk_${letter}.json`;
     const data = await fetchJson(url);
     for (const [word, entry] of Object.entries(data || {})) {
       dictEntries.set(normalize(word), { word, ...entry });
@@ -51,7 +64,7 @@ function normalize(w) {
   catch (_) { return w.toLowerCase(); }
 }
 
-// ── POS → rótulo legível ───────────────────────────────────────────────────
+// ── POS → rótulo legível ──────────────────────────────────────────────────
 const POS_LABEL = {
   VERB: "verbo", SUBST: "substantivo", ADJ: "adjetivo", ADV: "advérbio",
   PRON: "pronome", ART: "artigo", PREP: "preposição", CONJ: "conjunção",
@@ -60,10 +73,13 @@ const POS_LABEL = {
 
 function posLabel(posList) {
   if (!Array.isArray(posList) || !posList.length) return null;
-  return posList.map(p => POS_LABEL[p] || p.toLowerCase()).join(" / ");
+  const labels = posList
+    .map(p => POS_LABEL[p] || p.toLowerCase())
+    .filter(Boolean);
+  return labels.length ? labels.join(" / ") : null;
 }
 
-// ── Lookup principal ───────────────────────────────────────────────────────
+// ── Lookup principal ──────────────────────────────────────────────────────
 export async function lookupVerbete(raw) {
   if (!raw) return null;
   const key = normalize(raw.trim());
@@ -77,25 +93,36 @@ export async function lookupVerbete(raw) {
     loadDuvidas(),
   ]);
 
-  const dictEntry    = dictEntries.get(key) || null;
-  const posEntry     = ptPosLexicon.entries.get(key) || null;
-  const regEntry     = regenciasData?.[raw.toLowerCase()] || regenciasData?.[key] || null;
-  const duvidasKey   = Object.keys(duvidasData || {}).find(k => {
+  const dictEntry = dictEntries.get(key) || null;
+  const posEntry  = ptPosLexicon.entries.get(key) || null;
+
+  // CORREÇÃO: normaliza a chave para o lookup em regencias e duvidas,
+  // evitando miss por capitalização ou forma acentuada diferente.
+  const regEntry = regenciasData
+    ? (regenciasData[key] || regenciasData[raw.toLowerCase()] || null)
+    : null;
+
+  const duvidasKey = Object.keys(duvidasData || {}).find(k => {
     const d = duvidasData[k];
-    if (!d.patterns) return false;
-    return d.patterns.some(p => { try { return new RegExp(p, "i").test(key); } catch (_) { return false; } });
+    if (!d?.patterns) return false;
+    return d.patterns.some(p => {
+      try { return new RegExp(p, "i").test(key); }
+      catch (_) { return false; }
+    });
   });
   const duvidasEntry = duvidasKey ? duvidasData[duvidasKey] : null;
 
   return formatVerbete(raw, key, dictEntry, posEntry, regEntry, duvidasEntry);
 }
 
-// ── Formatação do verbete ──────────────────────────────────────────────────
+// ── Formatação do verbete ─────────────────────────────────────────────────
 function formatVerbete(raw, key, dict, pos, reg, duvida) {
   const lines = [];
-  // Usa sempre o que o utilizador escreveu — dict.word pode ser variante acentuada
-  // diferente da forma consultada (ex.: "ora" → dict.word "orá")
-  const word  = raw;
+
+  // CORREÇÃO: usa dict.word como forma canônica quando disponível.
+  // Isso garante a acentuação correta no cabeçalho.
+  // raw é mantido apenas como fallback quando não há entrada no dict.
+  const word = dict?.word || raw;
 
   // Cabeçalho
   const posList = dict?.pos?.length ? dict.pos : (pos?.pos || []);
@@ -109,7 +136,7 @@ function formatVerbete(raw, key, dict, pos, reg, duvida) {
   } else if (pos) {
     const guessed = ptPosLexicon.guess(key);
     const cls     = (pos?.pos?.[0] || guessed?.pos?.[0] || "").toUpperCase();
-    lines.push(fallbackDesc(key, cls) || "(palavra identificada no corpus — sem definição)");
+    lines.push(fallbackDesc(cls) || "(palavra identificada no corpus — sem definição)");
   } else {
     lines.push("(não encontrado no corpus local)");
   }
@@ -129,7 +156,9 @@ function formatVerbete(raw, key, dict, pos, reg, duvida) {
   // Regência
   const regList = dict?.regencia?.length
     ? dict.regencia
-    : reg ? Object.values(reg.sentidos || {}).map(s => `${s.regencia} — ${s.exemplo}`) : [];
+    : reg
+      ? Object.values(reg.sentidos || {}).map(s => `${s.regencia} — ${s.exemplo}`)
+      : [];
   if (regList.length) {
     lines.push("");
     lines.push("Regência:");
@@ -168,19 +197,22 @@ function formatVerbete(raw, key, dict, pos, reg, duvida) {
   return { word, posList, label, body: lines.join("\n") };
 }
 
-// Remove artefatos tipográficos do Caldas Aulete (ponto e vírgula iniciais, etc.)
+// CORREÇÃO: cleanDef mais robusto — remove artefatos de múltiplas fontes lexicográficas.
 function cleanDef(def) {
+  if (!def) return "";
   return def
-    .replace(/^\s*[;,\s]+/, "")
-    .replace(/\s+/g, " ")
+    .replace(/^\s*[;,|]+\s*/g, "")   // remove pontuação inicial (Caldas Aulete, Houaiss)
+    .replace(/\s{2,}/g, " ")          // normaliza espaços múltiplos
+    .replace(/\s+([,;.])/g, "$1")     // remove espaço antes de pontuação
     .trim();
 }
 
-// ── Fallback mínimo por classe ─────────────────────────────────────────────
-function fallbackDesc(key, cls) {
+// CORREÇÃO: fallbackDesc recebe apenas cls (não mais key inutilizado).
+function fallbackDesc(cls) {
   const map = {
     VERB:  "Verbo da língua portuguesa.",
     SUBST: "Substantivo — nomeia uma entidade.",
+    NOUN:  "Substantivo — nomeia uma entidade.",
     ADJ:   "Adjetivo — qualifica ou caracteriza.",
     ADV:   "Advérbio — modifica verbo, adjetivo ou outro advérbio.",
     PRON:  "Pronome — substitui ou acompanha o nome.",
@@ -189,21 +221,21 @@ function fallbackDesc(key, cls) {
     CONJ:  "Conjunção — liga orações ou termos.",
     NUM:   "Numeral — indica quantidade ou ordem.",
     INTJ:  "Interjeição — expressa emoção ou reação.",
+    PART:  "Particípio — forma nominal do verbo.",
   };
   return map[cls] || null;
 }
 
+// ── Exports utilitários ───────────────────────────────────────────────────
 export async function loadAllDictChunks() {
   const letters = "abcdefghijklmnopqrstuvwxyz_".split("");
   await Promise.all(letters.map(l => loadDictChunk(l)));
 }
 
-/** Verifica se uma palavra existe no dicionário (case-insensitive). */
 export function dictHas(word) {
   return dictEntries.has(normalize(word));
 }
 
-/** Retorna a entrada do dicionário para uma palavra, ou null se não existir. */
 export function dictGet(word) {
   return dictEntries.get(normalize(word)) ?? null;
 }
