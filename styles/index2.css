@@ -4147,7 +4147,8 @@ body[data-theme="chumbo"] .coord-overlay {
 .hCmd {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 10px;
-  color: var(--accent);
+  color: var(--ink);
+  opacity: .62;
   letter-spacing: .2px;
 }
 .hDesc {
