@@ -10,7 +10,7 @@
 :root {
 
   /* ── Cores base ──────────────────────────────────────────────────────── */
-  --bg-canvas:       #F5F4F2;   /* fundo geral — branco levemente quente */
+  --bg-canvas:       #B8C5BC;   /* fundo geral — sage Anthropic */
   --bg-page:         #FFFFFF;   /* página A4 */
   --bg-panel:        #F0EFED;   /* painel lateral */
   --bg-panel-item:   #EBEBEA;   /* item de painel inativo */
@@ -71,11 +71,11 @@
   --page-padding-v:  72px;       /* margem vertical da página */
   --page-padding-h:  80px;       /* margem horizontal da página */
 
-  /* ── Sombras ─────────────────────────────────────────────────────────── */
-  --shadow-page:     0 1px 4px rgba(26,26,24,0.08), 0 4px 16px rgba(26,26,24,0.04);
+  /* ── Sombras — limpas no Anthropic aesthetic ─────────────────────────── */
+  --shadow-page:     none;
   --shadow-panel:    1px 0 0 var(--border);
-  --shadow-floater:  0 4px 16px rgba(26,26,24,0.12), 0 1px 4px rgba(26,26,24,0.08);
-  --shadow-tag:      0 2px 8px rgba(26,26,24,0.20);
+  --shadow-floater:  none;
+  --shadow-tag:      none;
 
   /* ── Bordas arredondadas ─────────────────────────────────────────────── */
   --radius-sm:   2px;
