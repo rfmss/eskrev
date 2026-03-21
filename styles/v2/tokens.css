@@ -100,7 +100,7 @@
 
 /* ── Tema escuro ─────────────────────────────────────────────────────────── */
 [data-theme="dark"] {
-  --bg-canvas:       #161615;
+  --bg-canvas:       #1C1917;   /* escuro Anthropic */
   --bg-page:         #1E1E1C;
   --bg-panel:        #191918;
   --bg-panel-item:   #222220;

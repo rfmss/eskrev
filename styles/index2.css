@@ -21,7 +21,7 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb      { background: rgba(255
 body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255,255,255,.28); }
 
     :root{
-      --bg: #B8C5BC;
+      --bg: #B8C5BC;   /* sage Anthropic */
       --ink: rgba(0,0,0,.86);
       --muted: rgba(0,0,0,.48);
 
@@ -82,7 +82,7 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       --wc-intj:  #b7770d;   /* laranja    — interjeição        */
     }
     body[data-theme="chumbo"]{
-      --bg: #111110;
+      --bg: #1C1917;   /* escuro Anthropic */
       --ink: rgba(232,228,220,.92);
       --muted: rgba(232,228,220,.48);
       --accent: #c4542a;
