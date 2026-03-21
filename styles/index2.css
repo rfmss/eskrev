@@ -40,7 +40,7 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       /* page */
       --page-bg: rgba(247,246,243,.88);
       --page-border: rgba(0,0,0,.10);
-      --page-radius: 4px;
+      --page-radius: 6px;   /* unificado com frame-radius */
       --page-width: 760px;
       --page-height: 960px; /* “Word-ish” viewport page */
       --page-pad: 56px;
@@ -120,44 +120,6 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       --wc-intj:  #f0b27a;   /* laranja clara   — interjeição   */
     }
 
-    body[data-theme="script"]{
-      --bg: #b8a070;
-      --ink: rgba(42,28,10,.88);
-      --muted: rgba(42,28,10,.46);
-      --accent: #b84020;
-      --iso-paper: #c2a97a;
-      --iso-ink-1: rgba(42,28,10,.88);
-      --page-bg: rgba(245,233,200,.94);
-      --page-border: rgba(80,55,15,.18);
-      --grid-1: rgba(80,55,15,.045);
-      --grid-2: rgba(80,55,15,.022);
-      --shadow-1:
-        0 0 0 1px rgba(60,40,10,.09),
-        0 4px 12px rgba(60,40,10,.16),
-        0 16px 40px rgba(60,40,10,.13);
-      --shadow-2:
-        0 0 0 1px rgba(60,40,10,.08),
-        0 2px 8px rgba(60,40,10,.13);
-      --tag-define: #b84020;
-      --tag-vocab: #7a6448;
-      --tag-help: #8b7450;
-      --tag-consult: #6a7468;
-      --tag-unknown: #8a7e68;
-      --tag-mix-base: #f5e9c8;
-      --tag-border-base: rgba(80,55,15,.20);
-
-      /* classes de palavras — tons quentes sépia */
-      --wc-verb:  #a83020;
-      --wc-subst: #2a4e7a;
-      --wc-adj:   #2a6e42;
-      --wc-adv:   #6a3888;
-      --wc-pron:  #c07020;
-      --wc-art:   #1a7868;
-      --wc-prep:  #6e3818;
-      --wc-conj:  #9a2e72;
-      --wc-num:   #2a58a0;
-      --wc-intj:  #ae6010;
-    }
 
     html, body { height: 100%; margin: 0; overflow: hidden !important; }
     body{
@@ -187,13 +149,6 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     }
 
-    /* ── Script: fonte de máquina de escrever ── */
-    body[data-theme="script"] .pageContent,
-    body[data-theme="script"] #editor {
-      font-family: "Special Elite", "Courier New", "Courier", monospace;
-      letter-spacing: 0.04em;
-      line-height: 1.78;
-    }
     .pageContent{
       cursor: url("../assets/cursors/bibata-ice/text.svg") 16 16, text;
     }
@@ -325,7 +280,7 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       gap: 6px;
       padding: 6px;
       border: 1px solid rgba(0,0,0,.14);
-      border-radius: 9px;
+      border-radius: 6px;
       background: rgba(247,246,243,.88);
       backdrop-filter: blur(5px);
       opacity: 0;
@@ -431,7 +386,7 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       width: 164px;
       min-height: 96px;
       border: 1.5px solid var(--postit-border);
-      border-radius: 0;
+      border-radius: var(--page-radius);
       background: var(--postit-bg);
       box-shadow: none;
       color: var(--postit-ink);
@@ -670,7 +625,7 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       border: 1px solid color-mix(in srgb, var(--tag-vocab) 44%, var(--tag-border-base));
       background: color-mix(in srgb, var(--tag-vocab) 10%, var(--tag-mix-base));
       color: var(--tag-vocab);
-      border-radius: 5px 5px 0 0;
+      border-radius: 6px 6px 0 0;
       padding: 1px 5px;
       min-width: 38px; /* proportional to reduced height */
       height: 10px; /* ~30% shorter */
@@ -699,7 +654,7 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       border: 1px solid rgba(0,0,0,.14);
       background: rgba(247,246,243,.90);
       color: rgba(0,0,0,.68);
-      border-radius: 7px 7px 0 0;
+      border-radius: 6px 6px 0 0;
       padding: 4px 10px 4px 15px; /* larger left wing */
       text-align: left;
       font-family: inherit;
@@ -1749,19 +1704,6 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       .page { animation-duration: 0.01ms !important; }
     }
 
-/* ── Script: pergaminho sépia ─────────────────────────────────── */
-
-body[data-theme="script"]::before {
-  /* grade horizontal tênue — evoca papel de roteiro */
-  background:
-    linear-gradient(to bottom, rgba(80,55,15,.035) 1px, transparent 1px) 0 0 / 100% 28px,
-    linear-gradient(to right, rgba(80,55,15,.018) 1px, transparent 1px) 0 0 / 188px 188px,
-    linear-gradient(to bottom, rgba(80,55,15,.018) 1px, transparent 1px) 0 0 / 188px 188px,
-    linear-gradient(to bottom, rgba(255,240,200,.06), rgba(60,30,0,.04));
-}
-
-body[data-theme="script"] .pageBreak .line.top  { background: rgba(80,55,15,.18); }
-body[data-theme="script"] .pageBreak .line.bottom{ background: rgba(80,55,15,.12); }
 
 /* ── Chumbo dark: overrides não cobertos por var(--ink) ───────── */
 
