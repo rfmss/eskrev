@@ -1,4 +1,4 @@
-const CACHE_NAME = "skrv-cache-v173";
+const CACHE_NAME = "skrv-cache-v175";
 const CORE_ASSETS = [
   "./",
   "./index.html",
@@ -44,6 +44,7 @@ const CORE_ASSETS = [
   "./js/modules/styleAnalysis.js",
   "./js/modules/perf.js",
   "./js/modules/onboard.js",
+  "./js/modules/qrStream.js",
   // JS — módulos src (compartilhados com verify.html e mobile.html)
   "./src/js/modules/crypto_manager.js",
   "./src/js/modules/corpus.js",

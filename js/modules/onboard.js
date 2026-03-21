@@ -62,18 +62,7 @@ function renderDemo(step) {
             <div class="obFakeTagHint">arrastar ↕</div>
           </div>
           <div class="obCursor" aria-hidden="true">
-            <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- index finger -->
-              <rect x="8" y="1" width="4" height="10" rx="2" fill="white" stroke="#1a1918" stroke-width="1.2"/>
-              <!-- middle finger -->
-              <rect x="12.5" y="4" width="3.5" height="8" rx="1.75" fill="white" stroke="#1a1918" stroke-width="1.2"/>
-              <!-- ring finger -->
-              <rect x="16" y="5.5" width="3" height="7" rx="1.5" fill="white" stroke="#1a1918" stroke-width="1.2"/>
-              <!-- palm + thumb side -->
-              <path d="M4.5 8.5C4.5 7.7 5.1 7 5.9 7H8V17C8 17 7.5 19 6 19.5C4.5 20 3 18.5 3 17V11C3 10 3.7 9 4.5 8.5Z" fill="white" stroke="#1a1918" stroke-width="1.2"/>
-              <!-- palm base -->
-              <path d="M8 11H16V17C16 18.5 14.5 20 13 20H9C8.4 20 8 19.6 8 19V11Z" fill="white" stroke="#1a1918" stroke-width="1.2"/>
-            </svg>
+            <img src="assets/cursors/bibata-ice/pointer.svg" width="28" height="28" alt="">
           </div>
         </div>
       </div>`;

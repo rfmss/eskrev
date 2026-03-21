@@ -12,6 +12,7 @@ import { exportSkv } from "./mesa.js";
 import { hasKey, generateAuthorKey, getPublicKeyJwk, exportPublicCert } from "../../src/js/modules/crypto_manager.js";
 import { analyzeStyle } from "./styleAnalysis.js";
 import { getPerfReport } from "./perf.js";
+import { buildQrSliceBody, initQrSlice } from "./qrStream.js";
 
 // ── Countdown toast ────────────────────────────────────────────────────────
 // Para comandos que mudam o estado visual da tela: exibe "label  3 · 2 · 1"
@@ -1646,6 +1647,7 @@ function buildHelpSlice(slice) {
         ${item("projetos e arquivos", "..a")}
         ${item("salvar · exportar .skv", "..s")}
         ${item("importar .skv", "..i")}
+        ${item("enviar para celular (QR)", "..q")}
         ${group("Ferramentas")}
         ${item("notas laterais", "..n")}
         ${item("criar post-it", "..p")}
@@ -2161,6 +2163,7 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
     if (sidebar) {
       sidebar.classList.toggle("is-open");
       const isOpen = sidebar.classList.contains("is-open");
+      if (isOpen) document.getElementById("filesSidebar")?.classList.remove("is-open");
       ctx.setStatus?.(isOpen ? "notas: aberto" : "notas: fechado");
       if (isOpen) {
         const searchInput = sidebar.querySelector(".notes-search-input");
@@ -2175,6 +2178,7 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
     if (sidebar) {
       sidebar.classList.toggle("is-open");
       const isOpen = sidebar.classList.contains("is-open");
+      if (isOpen) document.getElementById("notesSidebar")?.classList.remove("is-open");
       ctx.setStatus?.(isOpen ? "arquivos: aberto" : "arquivos: fechado");
       if (isOpen) {
         const newBtn = document.getElementById("mesaNewBtn");
@@ -2451,6 +2455,21 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
       focusScroll: "heavy",
     });
     buildHelpSlice(slice);
+    return slice;
+  }
+
+  if (c === "q") {
+    const slice = openLocalSlice({
+      badge: "06",
+      title: "CELULAR",
+      kindKey: "qr",
+      meta: "enviar por QR code",
+      body: " ",
+      focusScroll: "heavy",
+    });
+    const panelBody = slice.querySelector(".panelBody");
+    if (panelBody) panelBody.innerHTML = buildQrSliceBody();
+    initQrSlice(slice);
     return slice;
   }
 

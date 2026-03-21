@@ -16,6 +16,7 @@ import { initCoordenador } from "./modules/coordenador.js";
 import { idbInit } from "./modules/idb.js";
 import { markEditorReady, markFirstAction } from "./modules/perf.js";
 import { initOnboard } from "./modules/onboard.js";
+import { ensureEditableAnchorAfterNode } from "./modules/dom.js";
 
 const refs = {
   frameEl:             document.querySelector(".frame"),
@@ -91,7 +92,16 @@ initOnboard();
 document.querySelectorAll(".ftab[data-cmd]").forEach(btn => {
   btn.addEventListener("click", () => {
     const el = currentPageEditable();
-    handleCommand(ctx, el, btn.dataset.cmd);
+    const sliceNode = handleCommand(ctx, el, btn.dataset.cmd);
+    if (sliceNode?.classList?.contains("slice")) {
+      const target = el || document.querySelector(".pageContent");
+      if (target) {
+        target.appendChild(sliceNode);
+        ensureEditableAnchorAfterNode(sliceNode);
+        target.focus();
+        sliceNode.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+    }
   });
 });
 
