@@ -28,7 +28,13 @@ export function positionSliceDockRail(ctx) {
   const pageRect = page.getBoundingClientRect();
   const contentRect = content.getBoundingClientRect();
 
-  const left = Math.round(pageRect.right - viewportRect.left + dockOffsetX);
+  const rightGutter = viewportRect.right - pageRect.right;
+  const tagVisualW = 24; // visual width of tag after 90° rotation (= tag height)
+  const hasRightRoom = rightGutter >= tagVisualW;
+  const left = hasRightRoom
+    ? Math.round(pageRect.right - viewportRect.left + dockOffsetX)
+    : Math.round(pageRect.right - viewportRect.left - tagVisualW + dockOffsetX);
+  sliceDockEl.classList.toggle("is-mobile", !hasRightRoom);
   const top = Math.round(contentRect.top - viewportRect.top + dockOffsetY);
   const height = Math.max(0, Math.round(contentRect.height));
 

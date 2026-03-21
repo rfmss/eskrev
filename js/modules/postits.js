@@ -12,7 +12,7 @@ export function savePostits(ctx) {
   try {
     const data = Array.from(layer.querySelectorAll(".postit")).map((note) => ({
       id: note.dataset.postitId || "",
-      text: note.querySelector(".postitBody")?.textContent?.trim() || "",
+      text: note.querySelector(".postitBody")?.innerText?.trim() || "",
       tone: note.dataset.tone || POSTIT_TONES[0],
       left: Number.parseFloat(note.style.left) || 0,
       top: Number.parseFloat(note.style.top) || 0,
@@ -44,7 +44,7 @@ export function restorePostits(ctx) {
           </div>
           <span class="postitTitle">POST-IT</span>
         </header>
-        <div class="postitBody"></div>
+        <div class="postitBody" contenteditable="true" spellcheck="false"></div>
       `;
       const body = note.querySelector(".postitBody");
       if (body) body.textContent = item.text || "";
@@ -242,6 +242,8 @@ function bindPostit(ctx, note) {
     cycleTone();
   });
 
+  if (body) body.addEventListener("input", () => savePostits(ctx));
+
   let drag = null;
   let moved = false;
   const dragThreshold = 4;
@@ -343,7 +345,7 @@ export function createPostit(ctx, text) {
       </div>
       <span class="postitTitle">POST-IT</span>
     </header>
-    <div class="postitBody"></div>
+    <div class="postitBody" contenteditable="true" spellcheck="false"></div>
   `;
   const body = note.querySelector(".postitBody");
   if (body) body.textContent = String(text || "").trim();

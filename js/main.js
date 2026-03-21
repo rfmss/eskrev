@@ -2,7 +2,7 @@ import { fitTopbar, positionSliceDockRail } from "./modules/layout.js";
 import { refreshDockTags } from "./modules/dock.js";
 import { hydratePostits } from "./modules/postits.js";
 import { currentPageEditable } from "./modules/page.js";
-import { hydrateDockTags } from "./modules/slices.js";
+import { hydrateDockTags, handleCommand } from "./modules/slices.js";
 import { cycleTheme, getCurrentTheme, initThemes, setTheme } from "./modules/themes.js";
 import { createKeyboardSfx } from "./modules/keyboardSfx.js";
 import { createIntegrationRegistry } from "./integrations/registry.js";
@@ -15,6 +15,7 @@ import { initLexCheck }   from "./modules/lexCheck.js";
 import { initCoordenador } from "./modules/coordenador.js";
 import { idbInit } from "./modules/idb.js";
 import { markEditorReady, markFirstAction } from "./modules/perf.js";
+import { initOnboard } from "./modules/onboard.js";
 
 const refs = {
   frameEl:             document.querySelector(".frame"),
@@ -84,6 +85,15 @@ window.addEventListener("resize", () => {
 ctx.setStatus("ready");
 window.__ESKREV_INDEX2_READY__ = true;
 markEditorReady();
+initOnboard();
+
+// ── Fixed tab bar ─────────────────────────────────────────────────────────
+document.querySelectorAll(".ftab[data-cmd]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const el = currentPageEditable();
+    handleCommand(ctx, el, btn.dataset.cmd);
+  });
+});
 
 // ── Modos sidebar close button ────────────────────────────────────────────
 const modosSidebarClose = document.getElementById("modosSidebarClose");

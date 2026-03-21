@@ -1625,47 +1625,36 @@ function buildHelpSlice(slice) {
   const bodyEl = slice.querySelector(".panelBody");
   if (!bodyEl) return;
 
-  const row = (kbd, desc) =>
-    `<div class="hRow"><span class="hKey">${kbd}</span><span class="hDesc">${desc}</span></div>`;
+  const item = (desc, c) =>
+    `<div class="hItem"><span class="hDesc">${desc}</span><code class="hCmd">${c}</code></div>`;
 
-  const cmd = (c, desc, extra = "") =>
-    `<div class="hRow"><span class="hCmd">${c}</span><span class="hDesc">${desc}${extra ? `<span class="hCmdExtra">${extra}</span>` : ""}</span></div>`;
+  const group = (label) =>
+    `<div class="hGroup">${label}</div>`;
 
   bodyEl.innerHTML = `
     <div class="hSlice">
-      <div class="hGrid">
-        <section class="vSection">
-          <div class="vSectionTitle">Escrever</div>
-          ${cmd("palavra..d", "verbete da palavra anterior")}
-          ${cmd("..w", "colorir classes de palavras")}
-          ${cmd("..c", "coordenador linguístico")}
-          ${cmd("..g", "verificação gramatical")}
-          ${cmd("..m", "modos de escrita")}
-        </section>
-        <section class="vSection">
-          <div class="vSectionTitle">Teclado</div>
-          ${row("Ctrl+S", "salvar · exportar .skv")}
-        </section>
-        <section class="vSection">
-          <div class="vSectionTitle">Arquivos</div>
-          ${cmd("..s", "salvar · exportar .skv")}
-          ${cmd("..authoria", "assinar .skv com ECDSA (Authoria)")}
-          ${cmd("..a", "mesa de projetos")}
-          ${cmd("..i", "importar .skv")}
-          ${cmd("..v", "verificação + estatísticas")}
-        </section>
-        <section class="vSection">
-          <div class="vSectionTitle">Ferramentas</div>
-          ${cmd("..p", "criar post-it")}
-          ${cmd("..n", "notas laterais")}
-          ${cmd("..r", "modo leitura")}
-          ${cmd("..f", "pomodoro · foco")}
-          ${cmd("..t", "alternar tema (paper / chumbo)")}
-        </section>
+      <p class="hIntro">Todos os atalhos são disparados com <code class="hInlineCmd">..</code> (dois pontos finais) seguido de uma letra. Digite diretamente no editor.</p>
+      <div class="hList">
+        ${group("Escrita")}
+        ${item("ajuda e atalhos", "..h")}
+        ${item("modos de escrita", "..m")}
+        ${item("verificar e estatísticas", "..v")}
+        ${item("coordenador linguístico", "..c")}
+        ${item("verificação gramatical", "..g")}
+        ${item("verbete da palavra anterior", "palavra..d")}
+        ${group("Arquivos")}
+        ${item("projetos e arquivos", "..a")}
+        ${item("salvar · exportar .skv", "..s")}
+        ${item("importar .skv", "..i")}
+        ${group("Ferramentas")}
+        ${item("notas laterais", "..n")}
+        ${item("criar post-it", "..p")}
+        ${item("modo leitura", "..r")}
+        ${item("foco · pomodoro", "..f")}
+        ${item("alternar tema", "..t")}
+        ${group("Teclado")}
+        ${item("salvar", "Ctrl+S")}
       </div>
-      <section class="vSection vSection--tip">
-        <p class="vNote">Clique no título do painel para minimizar ou expandir. &nbsp;·&nbsp; Clique nas bordas para fechar.</p>
-      </section>
     </div>
   `;
 }
@@ -2455,7 +2444,7 @@ export function handleCommand(ctx, el, cmd, wordOverride) {
   if (c === "h" || c === "help") {
     const slice = openLocalSlice({
       badge: "01",
-      title: "HELP",
+      title: "MENU",
       kindKey: "help",
       meta: "atalhos e comandos",
       body: " ",

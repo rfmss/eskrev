@@ -15,6 +15,9 @@
   <link rel="icon" href="src/assets/icons/logoEskrev.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="src/assets/icons/eskrev.png" />
   <title>eskrev — Slice Writer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" />
   <link rel="stylesheet" href="styles/index2.css" />
   <style>
     /* Cache progress bar — discreta, some ao completar */
@@ -87,7 +90,13 @@
       </div>
 
       <div class="viewport">
-        <div id="pages" class="pages" aria-label="Documento"></div>
+        <div id="pages" class="pages" aria-label="Documento">
+          <nav id="fixedTabBar" class="fixedTabBar" aria-label="Atalhos rápidos">
+            <button class="ftab" data-cmd="n" type="button">NOTAS</button>
+            <button class="ftab" data-cmd="a" type="button">ARQUIVO</button>
+            <button class="ftab" data-cmd="h" type="button">MENU</button>
+          </nav>
+        </div>
         <aside id="pageFlowRail" class="pageFlowMarkers" aria-label="Indicadores de páginas virtuais"></aside>
         <aside id="sliceDockRail" class="sliceDock" aria-label="Tags de cortes"></aside>
         <aside id="postitLayer" class="postitLayer" aria-label="Post-its"></aside>

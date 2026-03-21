@@ -27,7 +27,7 @@ export function addPage(ctx, afterContentEl, focus = false) {
   if (pageNum === 1) {
     content.setAttribute(
       "data-placeholder",
-      "..h ajuda  ·  ..n notas  ·  ..a arquivos",
+      "Comece a escrever. Atalhos: ..h para ajuda, ..a para arquivo, ..n para notas.",
     );
   }
 

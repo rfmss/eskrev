@@ -1,10 +1,9 @@
 const THEME_KEY = "eskrev:index2:theme";
-const THEMES = new Set(["paper", "script", "chumbo"]);
-const THEME_ORDER = ["paper", "script", "chumbo"];
+const THEMES = new Set(["paper", "chumbo"]);
+const THEME_ORDER = ["paper", "chumbo"];
 
 const THEME_LABELS = {
   paper:  "Tema claro ativo",
-  script: "Tema roteiro ativo",
   chumbo: "Tema escuro ativo",
 };
 
@@ -14,7 +13,6 @@ function applyTheme(theme) {
   const isDark = safe === "chumbo";
   document.querySelectorAll(".chrome .themeToggle").forEach((el) => {
     el.classList.toggle("is-dark", isDark);
-    el.classList.toggle("is-script", safe === "script");
     el.setAttribute("aria-pressed", isDark ? "true" : "false");
     el.setAttribute("title", THEME_LABELS[safe] ?? "Tema ativo");
   });
@@ -43,7 +41,8 @@ export function cycleTheme() {
 
 export function initThemes() {
   const saved = localStorage.getItem(THEME_KEY);
-  const initial = applyTheme(saved || "paper");
+  // se estava em "script", migra para "paper"
+  const initial = applyTheme(THEMES.has(saved) ? saved : "paper");
 
   document.querySelectorAll(".chrome .themeToggle").forEach((btn) => {
     btn.addEventListener("click", () => cycleTheme());
