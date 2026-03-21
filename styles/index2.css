@@ -163,9 +163,28 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
     body{
       color: var(--ink);
       background: var(--bg);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-family: ui-serif, Georgia, 'Times New Roman', serif;
       overflow: hidden; /* lock page scroll */
       cursor: url("../assets/cursors/bibata-ice/default.svg") 4 2, default;
+    }
+
+    /* ── UI elements: monospace em badges, tags, status, comandos ── */
+    .statusBar,
+    .sliceTag,
+    .badge,
+    .sliceMeta,
+    .sliceHead,
+    .postitHead,
+    .postitFooter,
+    .selectionToolbarBtn,
+    .coordPanel,
+    .notesSidebar .notes-header,
+    .notes-search-input,
+    .notes-input,
+    .notes-textarea,
+    .notes-new-btn,
+    #status {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     }
 
     /* ── Script: fonte de máquina de escrever ── */
@@ -1145,7 +1164,7 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       grid-template-rows: auto 1fr;
       border-radius: 0;
       border: none;
-      background: transparent;
+      background: rgba(247,246,243,.92);
       box-shadow: none;
       overflow: visible;
       padding: .44em var(--page-pad) .52em;
@@ -1160,7 +1179,9 @@ body[data-theme="chumbo"] *::-webkit-scrollbar-thumb:hover{ background: rgba(255
       display:flex;
       justify-content: space-between;
       gap: 6px;
-      padding-bottom: .12em;
+      padding: .2em var(--page-pad) .2em;
+      margin: 0 calc(-1 * var(--page-pad));
+      background: rgba(0,0,0,.055);
       border-bottom: none;
       align-items: baseline;
       line-height: 1.15;
