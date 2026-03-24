@@ -15,9 +15,6 @@
   <link rel="icon" href="src/assets/icons/logoEskrev.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="src/assets/icons/eskrev.png" />
   <title>eskrev — Slice Writer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" />
   <link rel="stylesheet" href="styles/index2.css" />
   <style>
     /* Cache progress bar — discreta, some ao completar */
@@ -50,7 +47,7 @@
       text-align: center;
       padding: 8px 20px;
       pointer-events: none;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-family: 'Courier New', Courier, monospace;
       border-radius: 4px;
       white-space: nowrap;
       backdrop-filter: blur(8px);
@@ -228,24 +225,31 @@
     </div>
   </div>
 
-  <script type="module" src="js/main.js"></script>
+  <script>
+if(!Object.values){Object.values=function(o){return Object.keys(o).map(function(k){return o[k];});};}
+if(!Array.prototype.find){Array.prototype.find=function(fn){for(var i=0;i<this.length;i++){if(fn(this[i],i,this))return this[i];}return undefined;};}
+if(!Array.prototype.findIndex){Array.prototype.findIndex=function(fn){for(var i=0;i<this.length;i++){if(fn(this[i],i,this))return i;}return -1;};}
+if(!String.prototype.includes){String.prototype.includes=function(s){return this.indexOf(s)!==-1;};}
+if(!Array.prototype.includes){Array.prototype.includes=function(v){return this.indexOf(v)!==-1;};}
+</script>
+<script src="js/main.bundle.js"></script>
   <script>
     // Service Worker registration
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
+      window.addEventListenerfunction('load', () {
         navigator.serviceWorker.register('./sw.js')
-          .then((reg) => {
+          .thenfunction((reg) {
             // Listen for cache progress updates
-            navigator.serviceWorker.addEventListener('message', (event) => {
-              const data = event.data || {};
+            navigator.serviceWorker.addEventListenerfunction('message', (event) {
+              var data = event.data || {};
               if (data.type === 'cache-status') {
-                const bar = document.getElementById('cacheBar');
+                var bar = document.getElementById('cacheBar');
                 if (!bar) return;
-                const pct = data.total > 0 ? Math.round((data.cached / data.total) * 100) : 0;
+                var pct = data.total > 0 ? Math.round((data.cached / data.total) * 100) : 0;
                 bar.style.width = pct + '%';
                 if (pct >= 100) {
                   bar.classList.add('done');
-                  setTimeout(() => bar.remove(), 800);
+                  setTimeout(function() { return bar.remove(), 800); };
                 }
               }
             });
@@ -254,10 +258,10 @@
               reg.active.postMessage({ type: 'cache-extras' });
               reg.active.postMessage({ type: 'cache-status' });
             }
-            reg.addEventListener('updatefound', () => {
-              const newWorker = reg.installing;
+            reg.addEventListenerfunction('updatefound', () {
+              var newWorker = reg.installing;
               if (newWorker) {
-                newWorker.addEventListener('statechange', () => {
+                newWorker.addEventListenerfunction('statechange', () {
                   if (newWorker.state === 'activated') {
                     reg.active.postMessage({ type: 'cache-extras' });
                   }
@@ -265,15 +269,15 @@
               }
             });
           })
-          .catch(() => {
+          .catchfunction(() {
             // SW registration failed silently — app still works
           });
       });
     }
 
     // Offline / online detection
-    const offlineBanner = document.getElementById('offlineBanner');
-    const updateOnlineStatus = () => {
+    var offlineBanner = document.getElementById('offlineBanner');
+    var updateOnlineStatus = function() {
       if (!offlineBanner) return;
       if (!navigator.onLine) {
         offlineBanner.classList.add('visible');
