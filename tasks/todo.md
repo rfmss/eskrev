@@ -52490,3 +52490,4 @@ _(nada no momento)_
 - [x] [2026-03-21 18:05] feat: notas e arquivos alternam — abrir um fecha o outro (83a970557)
 - [x] [2026-03-21 18:05] feat: notas e arquivos alternam — abrir um fecha o outro (4161aa716)
 - [x] [2026-03-21 18:05] feat: notas e arquivos alternam — abrir um fecha o outro (748372872)
+- [x] [2026-03-21 18:05] feat: notas e arquivos alternam — abrir um fecha o outro (4b1c15772)

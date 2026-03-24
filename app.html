@@ -319,8 +319,8 @@
 
   <!-- ══ SCRIPTS ═════════════════════════════════════════════════════════ -->
 
-  <!-- Módulo principal (inalterado — usa os mesmos IDs do DOM) -->
-  <script type="module" src="js/main.js"></script>
+  <!-- Bundle pré-compilado (iOS 9 / Safari 9 compatible — sem type=module) -->
+  <script src="js/main.bundle.js"></script>
 
   <script>
     // ── Topbar: toggle escrita ↔ análise ──────────────────────────────────
@@ -353,9 +353,9 @@
       el.classList.toggle('is-open', !isOpen);
     };
 
-    document.getElementById('btnMesa') ?.addEventListener('click', () => openSidebar('filesSidebar'));
-    document.getElementById('btnNotas')?.addEventListener('click', () => openSidebar('notesSidebar'));
-    document.getElementById('btnModos')?.addEventListener('click', () => openSidebar('modosSidebar'));
+    var _btnMesa  = document.getElementById('btnMesa');  if (_btnMesa)  _btnMesa.addEventListener('click',  function() { openSidebar('filesSidebar'); });
+    var _btnNotas = document.getElementById('btnNotas'); if (_btnNotas) _btnNotas.addEventListener('click', function() { openSidebar('notesSidebar'); });
+    var _btnModos = document.getElementById('btnModos'); if (_btnModos) _btnModos.addEventListener('click', function() { openSidebar('modosSidebar'); });
 
     // ── Toggle de tema ────────────────────────────────────────────────────
     const html           = document.documentElement;
@@ -366,11 +366,11 @@
       html.setAttribute('data-theme', t);
       // Compatibilidade com os módulos JS que leem body.dataset.theme
       document.body.dataset.theme = t === 'dark' ? 'chumbo' : 'paper';
-      themeToggleBtn?.setAttribute('aria-pressed', String(t === 'dark'));
+      if (themeToggleBtn) themeToggleBtn.setAttribute('aria-pressed', String(t === 'dark'));
       try { localStorage.setItem(THEME_KEY, t); } catch (_) {}
     }
 
-    themeToggleBtn?.addEventListener('click', () => {
+    if (themeToggleBtn) themeToggleBtn.addEventListener('click', function() {
       applyTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
     });
 
@@ -424,7 +424,7 @@
 
     // ── Offline banner ────────────────────────────────────────────────────
     const offlineBanner = document.getElementById('offlineBanner');
-    const updateOnline  = () => offlineBanner?.classList.toggle('visible', !navigator.onLine);
+    var updateOnline = function() { if (offlineBanner) offlineBanner.classList.toggle('visible', !navigator.onLine); };
     window.addEventListener('online',  updateOnline);
     window.addEventListener('offline', updateOnline);
     updateOnline();

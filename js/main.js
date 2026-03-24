@@ -62,9 +62,10 @@ const ctx = {
 };
 
 ctx.integrations = createIntegrationRegistry(ctx);
-ctx.sfx?.bind?.();
+if (ctx.sfx && ctx.sfx.bind) ctx.sfx.bind();
 
 // ── Init: aguarda IDB pronto antes de restaurar estado ────────────────────
+(async function init() {
 await idbInit();
 
 // ── Init multi-page ───────────────────────────────────────────────────────
@@ -89,11 +90,11 @@ markEditorReady();
 initOnboard();
 
 // ── Fixed tab bar ─────────────────────────────────────────────────────────
-document.querySelectorAll(".ftab[data-cmd]").forEach(btn => {
+Array.prototype.forEach.call(document.querySelectorAll(".ftab[data-cmd]"), function(btn) {
   btn.addEventListener("click", () => {
     const el = currentPageEditable();
     const sliceNode = handleCommand(ctx, el, btn.dataset.cmd);
-    if (sliceNode?.classList?.contains("slice")) {
+    if (sliceNode && sliceNode.classList && sliceNode.classList.contains("slice")) {
       const target = el || document.querySelector(".pageContent");
       if (target) {
         target.appendChild(sliceNode);
@@ -103,7 +104,7 @@ document.querySelectorAll(".ftab[data-cmd]").forEach(btn => {
       }
     }
   });
-});
+}); // end forEach ftab
 
 // ── Modos sidebar close button ────────────────────────────────────────────
 const modosSidebarClose = document.getElementById("modosSidebarClose");
@@ -157,8 +158,8 @@ document.addEventListener("keydown", (ev) => {
   if (mod && key === "s") {
     ev.preventDefault();
     ev.stopPropagation();
-    ctx.setStatus?.("salvando…");
-    exportSkv().then((filename) => ctx.setStatus?.(`salvo: ${filename}`));
+    if (ctx.setStatus) ctx.setStatus("salvando…");
+    exportSkv().then(function(filename) { if (ctx.setStatus) ctx.setStatus("salvo: " + filename); });
     return;
   }
 
@@ -177,3 +178,4 @@ document.addEventListener("keydown", (ev) => {
     sel.addRange(range);
   }
 }, true);
+})(); // end async init
